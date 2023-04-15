@@ -1,2 +1,2 @@
-# flutterconfweb
-repositorio del sitio de flutterconflatam.dev
+# FlutterConf Web
+Este es el repositorio para el sitio de flutterconflatam.dev
