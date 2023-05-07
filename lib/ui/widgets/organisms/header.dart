@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_conf_colombia/main.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
+import 'package:flutter_conf_colombia/ui/internations/translation.dart';
 
 class Header extends StatelessWidget {
-  Header({
+  const Header({
     required this.tabController,
     required this.sections,
     required this.onTap,
@@ -23,6 +23,27 @@ class Header extends StatelessWidget {
       title: Container(
         height: 100.0,
       ),
+      actions: [
+        InkWell(
+          onTap: () {
+            FlutterCon.setLocale(context, Translation.es);
+          },
+          child: const Text(
+            'Español',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        const SizedBox(width: 10),
+        InkWell(
+          onTap: () {
+            FlutterCon.setLocale(context, Translation.en);
+          },
+          child: const Text(
+            'English',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ],
       bottom: TabBar(
         onTap: onTap,
         controller: tabController,
@@ -34,7 +55,7 @@ class Header extends StatelessWidget {
         tabs: [
           for (final section in sections)
             Tab(
-              text: section.title,
+              text: Translation.of(context, section.title),
             ),
         ],
       ),
