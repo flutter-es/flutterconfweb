@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
+import 'package:flutter_conf_colombia/ui/entities/tab_section.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/cfp_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/contact_container.dart';
+import 'package:flutter_conf_colombia/ui/widgets/organisms/footer.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/header.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/home_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/schedule_container.dart';
@@ -20,6 +22,9 @@ class _HomePageState extends State<HomePage>
   late TabController tabController;
   late ScrollController scrollController;
   late List<HomeSection> sections;
+  late List<TabSection> tabSections;
+
+  bool isScrolled = false;
 
   @override
   void initState() {
@@ -63,6 +68,37 @@ class _HomePageState extends State<HomePage>
       vsync: this,
     );
 
+    tabSections = <TabSection>[];
+
+    var sumBefore = 0.0;
+    for (var i = 0; i < sections.length; i++) {
+      final section = sections[i];
+
+      tabSections.add(
+        TabSection(
+          index: i,
+          start: sumBefore,
+          end: sumBefore + section.size,
+        ),
+      );
+
+      sumBefore = sumBefore + section.size;
+    }
+
+    scrollController.addListener(() {
+      if (isScrolled) {
+        return;
+      }
+
+      final position = scrollController.offset;
+
+      for (final section in tabSections) {
+        if (position < section.end && position >= section.start) {
+          tabController.animateTo(section.index);
+        }
+      }
+    });
+
     super.initState();
   }
 
@@ -76,22 +112,27 @@ class _HomePageState extends State<HomePage>
             tabController: tabController,
             sections: sections,
             onTap: (index) {
-              var sumBefore = 0.0;
-              for (var i = 0; i < index; i++) {
-                final section = sections[index];
-                sumBefore = sumBefore + section.size;
-              }
+              final section = tabSections[index];
+
+              const duration = Duration(milliseconds: 300);
+
+              isScrolled = true;
 
               scrollController.animateTo(
-                sumBefore,
-                duration: const Duration(milliseconds: 300),
+                section.start,
+                duration: duration,
                 curve: Curves.linear,
               );
+
+              Future.delayed(duration, () {
+                isScrolled = false;
+              });
             },
           ),
           SliverList(
             delegate: SliverChildListDelegate([
               ...sections.map((e) => e.builder(context)),
+              Footer(),
             ]),
           )
         ],
