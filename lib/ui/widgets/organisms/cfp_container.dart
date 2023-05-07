@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/ui/internations/translation.dart';
 
 class CfpContainer extends StatelessWidget {
   const CfpContainer({super.key});
@@ -13,7 +14,9 @@ class CfpContainer extends StatelessWidget {
       height: height,
       color: Colors.amber[400],
       alignment: Alignment.center,
-      child: const Text(title),
+      child: Text(
+        Translation.of(context, title),
+      ),
     );
   }
 }
