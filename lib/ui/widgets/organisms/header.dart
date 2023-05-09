@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/l10n/support_locale.dart';
 import 'package:flutter_conf_colombia/main.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
-import 'package:flutter_conf_colombia/ui/internations/translation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -26,7 +27,7 @@ class Header extends StatelessWidget {
       actions: [
         InkWell(
           onTap: () {
-            FlutterCon.setLocale(context, Translation.es);
+            FlutterCon.setLocale(context, SupportLocale.es);
           },
           child: const Text(
             'Español',
@@ -36,7 +37,7 @@ class Header extends StatelessWidget {
         const SizedBox(width: 10),
         InkWell(
           onTap: () {
-            FlutterCon.setLocale(context, Translation.en);
+            FlutterCon.setLocale(context, SupportLocale.en);
           },
           child: const Text(
             'English',
@@ -55,7 +56,7 @@ class Header extends StatelessWidget {
         tabs: [
           for (final section in sections)
             Tab(
-              text: Translation.of(context, section.title),
+              text: AppLocalizations.of(context)!.menu(section.title),
             ),
         ],
       ),

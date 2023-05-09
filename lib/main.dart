@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/l10n/support_locale.dart';
 import 'package:flutter_conf_colombia/ui/pages/home_page.dart';
-import 'package:flutter_conf_colombia/ui/internations/translation.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const FlutterCon());
@@ -20,7 +20,7 @@ class FlutterCon extends StatefulWidget {
 }
 
 class _FlutterConState extends State<FlutterCon> {
-  Locale _locale = Translation.es;
+  Locale _locale = SupportLocale.es;
 
   void changeLanguage(Locale newLocal) {
     setState(() {
@@ -38,14 +38,10 @@ class _FlutterConState extends State<FlutterCon> {
       ),
       locale: _locale,
       localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+        AppLocalizations.delegate,
+        ...AppLocalizations.localizationsDelegates,
       ],
-      supportedLocales: const [
-        Translation.en,
-        Translation.es,
-      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       home: const HomePage(),
     );
   }

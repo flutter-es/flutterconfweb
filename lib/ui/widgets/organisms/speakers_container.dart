@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/ui/internations/translation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SpeakersContainer extends StatelessWidget {
   const SpeakersContainer({super.key});
@@ -15,7 +15,7 @@ class SpeakersContainer extends StatelessWidget {
       color: Colors.blue[400],
       alignment: Alignment.center,
       child: Text(
-        Translation.of(context, title),
+        AppLocalizations.of(context)!.menu(title),
       ),
     );
   }
