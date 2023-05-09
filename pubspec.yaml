@@ -10,8 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rive: ^0.10.4
 
+  rive: 0.10.4
+  responsive_builder: 0.6.4
 
 dev_dependencies:
   flutter_test:
