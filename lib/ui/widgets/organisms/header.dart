@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_conf_colombia/l10n/support_locale.dart';
 import 'package:flutter_conf_colombia/main.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_conf_colombia/ui/widgets/animations/flutter_logo_animated.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -21,8 +23,18 @@ class Header extends StatelessWidget {
     return SliverAppBar(
       backgroundColor: Colors.white,
       pinned: true,
-      title: Container(
-        height: 100.0,
+      expandedHeight: 250,
+      collapsedHeight: 100,
+      flexibleSpace: Container(
+        height: 250,
+        margin: const EdgeInsets.only(bottom: 40),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Expanded(child: FlutterLogoAnimated()),
+            Spacer() // for the localization buttons
+          ],
+        ),
       ),
       actions: [
         InkWell(

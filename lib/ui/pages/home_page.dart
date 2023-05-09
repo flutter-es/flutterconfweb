@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
 import 'package:flutter_conf_colombia/ui/entities/tab_section.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/cfp_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/contact_container.dart';
+import 'package:flutter_conf_colombia/ui/widgets/organisms/event_features_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/footer.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/header.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/home_container.dart';
+import 'package:flutter_conf_colombia/ui/widgets/organisms/mobile_drawer.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/schedule_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/speakers_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/tickets_container.dart';
+import 'package:flutter_conf_colombia/ui/widgets/utils/custom_tab_controller.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  late TabController tabController;
+  late CustomTabController tabController;
   late ScrollController scrollController;
   late List<HomeSection> sections;
   late List<TabSection> tabSections;
@@ -40,6 +45,11 @@ class _HomePageState extends State<HomePage>
         builder: (_) => const CfpContainer(),
         size: CfpContainer.height,
         title: CfpContainer.title,
+      ),
+      HomeSection(
+        builder: (_) => const EventFeaturesContainer(),
+        size: EventFeaturesContainer.height,
+        title: EventFeaturesContainer.title,
       ),
       HomeSection(
         builder: (_) => const TicketsContainer(),
@@ -63,7 +73,7 @@ class _HomePageState extends State<HomePage>
       ),
     ];
 
-    tabController = TabController(
+    tabController = CustomTabController(
       length: sections.length,
       vsync: this,
     );
@@ -104,31 +114,38 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = getValueForScreenType(
+      context: context,
+      mobile: true,
+      tablet: false,
+    );
+
     return Scaffold(
+      appBar: isMobile
+          ? AppBar(
+              title: Icon(FlutterConfLatamIcons.flutter),
+            )
+          : null,
+      drawer: isMobile
+          ? MobileDrawer(
+              tabController: tabController.mobile(),
+              sections: sections,
+              onTap: (index) {
+                moveSectionByIndex(index, isMobile: isMobile);
+              },
+            )
+          : null,
       body: CustomScrollView(
         controller: scrollController,
         slivers: [
-          Header(
-            tabController: tabController,
-            sections: sections,
-            onTap: (index) {
-              final section = tabSections[index];
-
-              const duration = Duration(milliseconds: 300);
-
-              isScrolled = true;
-
-              scrollController.animateTo(
-                section.start,
-                duration: duration,
-                curve: Curves.linear,
-              );
-
-              Future.delayed(duration, () {
-                isScrolled = false;
-              });
-            },
-          ),
+          if (!isMobile)
+            Header(
+              tabController: tabController.build(),
+              sections: sections,
+              onTap: (index) {
+                moveSectionByIndex(index, isMobile: isMobile);
+              },
+            ),
           SliverList(
             delegate: SliverChildListDelegate([
               ...sections.map((e) => e.builder(context)),
@@ -138,5 +155,27 @@ class _HomePageState extends State<HomePage>
         ],
       ),
     );
+  }
+
+  void moveSectionByIndex(int index, {bool isMobile = false}) {
+    final section = tabSections[index];
+
+    const duration = Duration(milliseconds: 300);
+
+    isScrolled = true;
+
+    final additional = isMobile //
+        ? 0
+        : (index == 0 ? 0 : (kToolbarHeight + kTextTabBarHeight));
+
+    scrollController.animateTo(
+      section.start + additional,
+      duration: duration,
+      curve: Curves.linear,
+    );
+
+    Future.delayed(duration, () {
+      isScrolled = false;
+    });
   }
 }

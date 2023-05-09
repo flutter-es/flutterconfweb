@@ -35,6 +35,12 @@ class _FlutterConState extends State<FlutterCon> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Poppins',
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+          centerTitle: true,
+        ),
       ),
       locale: _locale,
       localizationsDelegates: [

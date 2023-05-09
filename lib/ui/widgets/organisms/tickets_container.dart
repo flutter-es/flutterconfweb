@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_colombia/styles/colors.dart';
+import 'package:flutter_conf_colombia/ui/widgets/animations/flutter_dash_animations.dart';
 
 class TicketsContainer extends StatelessWidget {
   const TicketsContainer({super.key});
@@ -12,10 +15,33 @@ class TicketsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      color: Colors.purple[400],
-      alignment: Alignment.center,
-      child: Text(
-        AppLocalizations.of(context)!.menu(title),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            FlutterLatamColors.ticketBgTopColor,
+            FlutterLatamColors.ticketBgBottomColor
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: -200,
+            left: 0,
+            top: 0,
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.75,
+                child: const FlutterDashAnimation(
+                  animation: FlutterDashAnimations.flutterdashticket,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
