@@ -15,6 +15,7 @@ class FlutterCon extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Poppins'
       ),
       home: HomePage(),
     );

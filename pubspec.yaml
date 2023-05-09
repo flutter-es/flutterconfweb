@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  rive: ^0.10.4
 
 
 dev_dependencies:
@@ -22,7 +23,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/anims/
   fonts:
+    - family: FlutterConfLatamIcons
+      fonts:
+        - asset: assets/iconfonts/FlutterConfLatamIcons.ttf
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins/Poppins-Black.ttf

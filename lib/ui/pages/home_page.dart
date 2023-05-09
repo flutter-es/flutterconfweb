@@ -3,6 +3,7 @@ import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
 import 'package:flutter_conf_colombia/ui/entities/tab_section.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/cfp_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/contact_container.dart';
+import 'package:flutter_conf_colombia/ui/widgets/organisms/event_features_container.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/footer.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/header.dart';
 import 'package:flutter_conf_colombia/ui/widgets/organisms/home_container.dart';
@@ -40,6 +41,11 @@ class _HomePageState extends State<HomePage>
         builder: (_) => const CfpContainer(),
         size: CfpContainer.height,
         title: CfpContainer.title,
+      ),
+      HomeSection(
+        builder: (_) => const EventFeaturesContainer(),
+        size: EventFeaturesContainer.height,
+        title: EventFeaturesContainer.title,
       ),
       HomeSection(
         builder: (_) => const TicketsContainer(),
