@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
 import 'package:flutter_conf_colombia/ui/widgets/animations/flutter_logo_animated.dart';
 
 class Header extends StatelessWidget {
-  Header({
+  const Header({
     required this.tabController,
     required this.sections,
     required this.onTap,
@@ -32,7 +30,7 @@ class Header extends StatelessWidget {
             Expanded(child: FlutterLogoAnimated()),
             Spacer() // for the localization buttons
           ],
-        )
+        ),
       ),
       bottom: TabBar(
         onTap: onTap,
