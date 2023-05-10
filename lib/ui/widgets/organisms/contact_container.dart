@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_conf_colombia/ui/ui_extensions.dart';
 
 class ContactContainer extends StatelessWidget {
   const ContactContainer({super.key});
@@ -15,7 +15,7 @@ class ContactContainer extends StatelessWidget {
       color: Colors.red[400],
       alignment: Alignment.center,
       child: Text(
-        AppLocalizations.of(context)!.menu(title),
+        context.menu(title),
       ),
     );
   }

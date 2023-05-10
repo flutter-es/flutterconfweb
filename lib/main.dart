@@ -11,7 +11,10 @@ class FlutterCon extends StatefulWidget {
   const FlutterCon({super.key});
 
   static void setLocale(BuildContext context, Locale newLocale) {
-    final state = context.findAncestorStateOfType<_FlutterConState>()!;
+    final state = context.findAncestorStateOfType<_FlutterConState>();
+
+    if (state == null) return;
+
     state.changeLanguage(newLocale);
   }
 
@@ -43,7 +46,7 @@ class _FlutterConState extends State<FlutterCon> {
         ),
       ),
       locale: _locale,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         ...AppLocalizations.localizationsDelegates,
       ],

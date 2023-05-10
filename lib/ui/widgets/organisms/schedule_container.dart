@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_conf_colombia/ui/ui_extensions.dart';
 
 class ScheduleContainer extends StatelessWidget {
   const ScheduleContainer({super.key});
@@ -15,7 +15,7 @@ class ScheduleContainer extends StatelessWidget {
       color: Colors.green[400],
       alignment: Alignment.center,
       child: Text(
-        AppLocalizations.of(context)!.menu(title),
+        context.menu(title),
       ),
     );
   }

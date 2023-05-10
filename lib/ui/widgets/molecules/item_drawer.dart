@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
+import 'package:flutter_conf_colombia/ui/ui_extensions.dart';
 
 class ItemDrawer extends StatelessWidget {
   const ItemDrawer({
@@ -31,9 +32,7 @@ class ItemDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
 
-              if (!isSelected) {
-                onTap();
-              }
+              onTap();
             },
             borderRadius: borderRaidus,
             child: Container(
@@ -47,7 +46,7 @@ class ItemDrawer extends StatelessWidget {
                     )
                   : null,
               child: Text(
-                section.title,
+                context.menu(section.title),
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,

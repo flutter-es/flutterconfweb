@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_conf_colombia/l10n/support_locale.dart';
 import 'package:flutter_conf_colombia/main.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_conf_colombia/ui/ui_extensions.dart';
 import 'package:flutter_conf_colombia/ui/widgets/animations/flutter_logo_animated.dart';
 
 class Header extends StatelessWidget {
@@ -68,7 +67,7 @@ class Header extends StatelessWidget {
         tabs: [
           for (final section in sections)
             Tab(
-              text: AppLocalizations.of(context)!.menu(section.title),
+              text: context.menu(section.title),
             ),
         ],
       ),

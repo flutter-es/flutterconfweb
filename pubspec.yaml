@@ -17,8 +17,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_localizations:
     sdk: flutter
+
+  very_good_analysis: 4.0.0+1
   
 flutter:
   generate: true
