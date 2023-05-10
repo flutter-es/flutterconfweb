@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/ui/ui_extensions.dart';
 
 class ScheduleContainer extends StatelessWidget {
   const ScheduleContainer({super.key});
@@ -13,7 +14,9 @@ class ScheduleContainer extends StatelessWidget {
       height: height,
       color: Colors.green[400],
       alignment: Alignment.center,
-      child: const Text(title),
+      child: Text(
+        context.menu(title),
+      ),
     );
   }
 }

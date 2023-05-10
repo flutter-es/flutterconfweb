@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/ui/ui_extensions.dart';
 
 class HomeContainer extends StatelessWidget {
   const HomeContainer({super.key});
@@ -13,7 +14,9 @@ class HomeContainer extends StatelessWidget {
       height: height,
       color: Colors.grey[400],
       alignment: Alignment.center,
-      child: const Text(title),
+      child: Text(
+        context.menu(title),
+      ),
     );
   }
 }

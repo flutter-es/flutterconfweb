@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/l10n/support_locale.dart';
+import 'package:flutter_conf_colombia/main.dart';
 import 'package:flutter_conf_colombia/ui/entities/home_section.dart';
+import 'package:flutter_conf_colombia/ui/ui_extensions.dart';
 import 'package:flutter_conf_colombia/ui/widgets/animations/flutter_logo_animated.dart';
 
 class Header extends StatelessWidget {
@@ -32,6 +35,27 @@ class Header extends StatelessWidget {
           ],
         ),
       ),
+      actions: [
+        InkWell(
+          onTap: () {
+            FlutterCon.setLocale(context, SupportLocale.es);
+          },
+          child: const Text(
+            'Español',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        const SizedBox(width: 10),
+        InkWell(
+          onTap: () {
+            FlutterCon.setLocale(context, SupportLocale.en);
+          },
+          child: const Text(
+            'English',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ],
       bottom: TabBar(
         onTap: onTap,
         controller: tabController,
@@ -43,7 +67,7 @@ class Header extends StatelessWidget {
         tabs: [
           for (final section in sections)
             Tab(
-              text: section.title,
+              text: context.menu(section.title),
             ),
         ],
       ),

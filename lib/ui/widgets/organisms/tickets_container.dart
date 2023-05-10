@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_colombia/ui/widgets/animations/flutter_dash_animations.dart';
 
 class TicketsContainer extends StatelessWidget {

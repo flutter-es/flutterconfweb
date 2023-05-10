@@ -1,0 +1,12 @@
+{
+  "@@locale": "es",
+  "menu": "{title, select, home_container{Acerca de} cfp_container{CFP} tickets_container{Entradas} speakers_container{Expositores} schedule_container{Cronograma} contact_container{Contacto} other{menuItem}}",
+  "@menu": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "helloWorld": "¡Hola Mundo!"
+}

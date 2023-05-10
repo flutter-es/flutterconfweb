@@ -16,10 +16,7 @@ class CfpContainer extends StatelessWidget {
       height: height,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Colors.white,
-              FlutterLatamColors.cfpColor
-          ],
+          colors: [Colors.white, FlutterLatamColors.cfpColor],
         ),
       ),
       alignment: Alignment.center,
