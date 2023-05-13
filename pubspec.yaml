@@ -13,6 +13,9 @@ dependencies:
   intl: any
   rive: 0.10.4
   responsive_builder: 0.6.4
+  flutter_svg: ^2.0.5
+  flutter_riverpod: ^2.3.6
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +31,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/images/
     - assets/anims/
   fonts:
     - family: FlutterConfLatamIcons
