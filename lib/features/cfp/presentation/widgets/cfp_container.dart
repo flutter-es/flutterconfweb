@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/cfp/presentation/responsiveness/cfp_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/cfp/presentation/providers/cfpfeature_providers.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
@@ -8,11 +9,13 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class CfpContainer extends ConsumerWidget {
+
   const CfpContainer({super.key});
 
-  static const height = 600.0;
+  static double height = 700.0;
 
   static const title = 'cfp_container';
 
@@ -20,36 +23,38 @@ class CfpContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final cfpSectionData = ref.watch(cfpSectionProvider);
+    final config = CFPBannerResponsiveConfig.getCFPBannerConfig(context);
+
+    CfpContainer.height = config.bannerHeight;
 
     return Container(
       height: height,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.white, FlutterLatamColors.cfpColor],
-        ),
+      decoration: BoxDecoration(
+        gradient: config.bannerGradient,
       ),
       alignment: Alignment.center,
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.topLeft,
+            alignment: config.logoAlignment,
             child: Container(
-              margin: const EdgeInsets.only(left: 80),
-              width: 400,
-              height: 400,
+              margin: EdgeInsets.only(left: config.flutterLogoLeftMargin),
+              width: config.flutterLogoSize,
+              height: config.flutterLogoSize,
               child: const FlutterLogoAnimated(),
             ),
           ),
-          const Positioned(
-            bottom: -20,
+          Positioned(
+            bottom: config.dashBottomOffset,
             right: 0,
             top: 0,
+            left: 0,
             child: Align(
-              alignment: Alignment.bottomRight,
+              alignment: config.dashAlignment,
               child: SizedBox(
-                width: 800,
-                height: 800,
-                child: FlutterDashAnimation(
+                width: config.dashSize,
+                height: config.dashSize,
+                child: const FlutterDashAnimation(
                   animation: FlutterDashAnimations.flutterdashflag,
                 ),
               ),
@@ -57,21 +62,35 @@ class CfpContainer extends ConsumerWidget {
           ),
 
           Align(
-            alignment: Alignment.bottomLeft,
+            alignment: config.cfpButtonAlignment,
             child: Container(
-              margin: const EdgeInsets.all(80),
-              child: CircleRoundIconButton(
-                icon: FlutterConfLatamIcons.speaker,
-                label: cfpSectionData.cfpButtonLabel,
-                iconColor: Colors.white,
-                backgroundColor: Color(0xFF3B9ED8),
-                labelColor: Colors.white,
-                circleColor: Color(0xFF0C5B8A),
-                labelWeight: FontWeight.bold,
-                onTap: () {
-                  Utils.launchUrlLink(cfpSectionData.cfpUrlLink);
-                }
-              )),
+              margin: EdgeInsets.all(config.cfpButtonMargin),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircleRoundIconButton(
+                    icon: FlutterConfLatamIcons.speaker,
+                    label: cfpSectionData.cfpButtonLabel,
+                    iconColor: Colors.white,
+                    backgroundColor: FlutterLatamColors.lightBlue,
+                    labelColor: Colors.white,
+                    circleColor: FlutterLatamColors.darkBlue,
+                    labelWeight: FontWeight.bold,
+                    fontSize: config.cfpButtonLabelSize,
+                    iconSize: config.cfpButtonIconSize,
+                    iconPadding: config.cfpButtonIconPadding,
+                    onTap: () {
+                      Utils.launchUrlLink(cfpSectionData.cfpUrlLink);
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    cfpSectionData.cfpSubmitLabel,
+                    style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: FlutterLatamColors.darkBlue),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),

@@ -131,6 +131,7 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   void moveSectionByIndex(int index, {bool isMobile = false}) {
+    
     final section = tabSections[index];
 
     const duration = Duration(milliseconds: 300);

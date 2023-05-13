@@ -8,6 +8,7 @@
       }
     }
   },
+  "comingSoon": "!VIENE PRONTO!",
   "about": "Acerca de",
   "cfp": "CFP",
   "tickets": "Entradas",
@@ -22,5 +23,6 @@
   "eventFeature3": "Expositores de Alta Calidad",
   "getYourTicket": "¡OBTEN TU ENTRADA!",
   "cfpOpen": "¡CFP YA ESTÁ ABIERTO!",
+  "submitYourTalk": "¡Envía tu charla!",
   "ticketBannerSlogan": "La Conferencia de Flutter\nmás anticipada de\nLatinoamérica"
 }

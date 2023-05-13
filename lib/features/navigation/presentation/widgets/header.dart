@@ -39,7 +39,6 @@ class Header extends ConsumerWidget {
         InkWell(
           onTap: () {
             ref.read(currentLocalizationProvider.notifier).state = SupportLocale.es;
-            //FlutterConf.setLocale(context, SupportLocale.es);
           },
           child: const Text(
             'Español',
