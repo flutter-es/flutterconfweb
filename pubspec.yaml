@@ -32,6 +32,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/sponsors/
     - assets/anims/
   fonts:
     - family: FlutterConfLatamIcons
