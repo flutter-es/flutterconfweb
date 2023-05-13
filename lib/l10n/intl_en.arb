@@ -8,5 +8,19 @@
       }
     }
   },
-  "helloWorld": "Hello World!"
+  "about": "About",
+  "cfp": "CFP",
+  "tickets": "Tickets",
+  "sponsors": "Sponsors",
+  "speakers": "Speakers",
+  "schedule": "Schedule",
+  "contact": "Contact",
+  "eventFeatures": "Event Features",
+  "helloWorld": "Hello World!",
+  "eventFeature1": "2 Days full of Flutter Content",
+  "eventFeature2": "Multi-track sessions",
+  "eventFeature3": "Top-notch Speakers",
+  "getYourTicket" : "GET YOUR TICKET!",
+  "cfpOpen": "CFP NOW OPEN!",
+  "ticketBannerSlogan": "The most anticipated\nFlutter Conference\n in Latin America!"
 }

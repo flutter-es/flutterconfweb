@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/l10n/support_locale.dart';
-import 'package:flutter_conf_colombia/ui/pages/home_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const FlutterCon());
+  runApp(
+    ProviderScope(
+      child: FlutterConf(),
+    ),
+  );
 }
 
-class FlutterCon extends StatefulWidget {
-  const FlutterCon({super.key});
+class FlutterConf extends ConsumerWidget {
 
-  static void setLocale(BuildContext context, Locale newLocale) {
-    final state = context.findAncestorStateOfType<_FlutterConState>();
-
-    if (state == null) return;
-
-    state.changeLanguage(newLocale);
-  }
+  // void changeLanguage(Locale newLocal) {
+  //   setState(() {
+  //     _locale = newLocal;
+  //   });
+  //   ref.read(changedLocalizationProvider.notifier).state = newLocal;
+  // }
 
   @override
-  State<FlutterCon> createState() => _FlutterConState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
 
-class _FlutterConState extends State<FlutterCon> {
-  Locale _locale = SupportLocale.es;
+    final appLocale = ref.watch(currentLocalizationProvider);
 
-  void changeLanguage(Locale newLocal) {
-    setState(() {
-      _locale = newLocal;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Con',
+      title: 'Flutter Conf LATAM',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -45,7 +39,7 @@ class _FlutterConState extends State<FlutterCon> {
           centerTitle: true,
         ),
       ),
-      locale: _locale,
+      locale: appLocale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         ...AppLocalizations.localizationsDelegates,

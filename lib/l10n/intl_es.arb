@@ -8,5 +8,19 @@
       }
     }
   },
-  "helloWorld": "¡Hola Mundo!"
+  "about": "Acerca de",
+  "cfp": "CFP",
+  "tickets": "Entradas",
+  "sponsors": "Patrocinadores",
+  "speakers": "Expositores",
+  "schedule": "Cronograma",
+  "contact": "Contacto",
+  "eventFeatures": "Evento",
+  "helloWorld": "¡Hola Mundo!",
+  "eventFeature1": "2 Días de Contenido de Flutter",
+  "eventFeature2": "Sesiones Paralelas",
+  "eventFeature3": "Expositores de Alta Calidad",
+  "getYourTicket": "¡OBTEN TU ENTRADA!",
+  "cfpOpen": "¡CFP YA ESTÁ ABIERTO!",
+  "ticketBannerSlogan": "La Conferencia de Flutter\nmás anticipada de\nLatinoamérica"
 }
