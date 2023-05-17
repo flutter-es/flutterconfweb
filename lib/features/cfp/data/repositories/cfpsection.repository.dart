@@ -11,6 +11,7 @@ class CFPSectionRepository {
   CFPSectionModel getCFPSectionData() {
     final appLoc = ref.watch(appLocalizationsProvider);
     return CFPSectionModel(
+      cfpSubmitLabel: appLoc.submitYourTalk,
       cfpButtonLabel: appLoc.cfpOpen,
       cfpUrlLink: 'https://sessionize.com'
     );

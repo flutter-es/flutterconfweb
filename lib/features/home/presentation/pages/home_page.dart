@@ -55,7 +55,7 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   void setupSections() {
-    sections = ref.watch(homeSectionsProvider);
+    sections = ref.refresh(homeSectionsProvider);
 
     tabController = CustomTabController(
       length: sections.length,
@@ -131,6 +131,10 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   void moveSectionByIndex(int index, {bool isMobile = false}) {
+    
+    // temp fix for the auto-scrolling and resizing banners
+    setupSections();
+
     final section = tabSections[index];
 
     const duration = Duration(milliseconds: 300);

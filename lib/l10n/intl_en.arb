@@ -8,6 +8,7 @@
       }
     }
   },
+  "comingSoon": "COMING SOON!",
   "about": "About",
   "cfp": "CFP",
   "tickets": "Tickets",
@@ -22,5 +23,6 @@
   "eventFeature3": "Top-notch Speakers",
   "getYourTicket" : "GET YOUR TICKET!",
   "cfpOpen": "CFP NOW OPEN!",
+  "submitYourTalk": "Submit your talk!",
   "ticketBannerSlogan": "The most anticipated\nFlutter Conference\n in Latin America!"
 }

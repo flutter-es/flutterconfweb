@@ -4,8 +4,14 @@ enum FlutterLogoAnimations {
   flutterlogo,
 }
 
+enum FlutterWarningAnimations {
+  flutterwarning
+}
+
 enum FlutterDashAnimations {
   flutterdashwave,
   flutterdashticket,
   flutterdashflag,
+  flutterconfconstruction,
+  flutterdashconst,
 }
