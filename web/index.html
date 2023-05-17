@@ -23,13 +23,13 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="flutter_conf_colombia">
+  <meta name="apple-mobile-web-app-title" content="Flutter Conf Latam">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>flutter_conf_colombia</title>
+  <title>Flutter Conf Latam</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
@@ -47,6 +47,7 @@
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
+        entrypointUrl: "main.dart.js?v=" + serviceWorkerVersion,
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
             appRunner.runApp();

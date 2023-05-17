@@ -3,7 +3,6 @@ import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterLogoAnimated extends StatefulWidget {
-
   const FlutterLogoAnimated({
     super.key,
     this.animation = FlutterLogoAnimations.flutterconflogo,
@@ -16,7 +15,6 @@ class FlutterLogoAnimated extends StatefulWidget {
 }
 
 class _FlutterLogoAnimatedState extends State<FlutterLogoAnimated> {
-
   late rive.StateMachineController smController;
   late rive.RiveAnimation animation;
 
@@ -33,7 +31,6 @@ class _FlutterLogoAnimatedState extends State<FlutterLogoAnimated> {
   }
 
   void onRiveInit(rive.Artboard artboard) {
-    
     smController = rive.StateMachineController.fromArtboard(
       artboard,
       widget.animation.name,
@@ -45,7 +42,7 @@ class _FlutterLogoAnimatedState extends State<FlutterLogoAnimated> {
   void dispose() {
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -55,7 +52,7 @@ class _FlutterLogoAnimatedState extends State<FlutterLogoAnimated> {
           height: constraints.maxHeight,
           child: animation,
         );
-      }
+      },
     );
   }
 }

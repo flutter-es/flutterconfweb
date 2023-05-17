@@ -12,7 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CfpContainer extends ConsumerWidget {
-
   const CfpContainer({super.key});
 
   static double height = 700.0;
@@ -21,7 +20,6 @@ class CfpContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final cfpSectionData = ref.watch(cfpSectionProvider);
     final config = CFPBannerResponsiveConfig.getCFPBannerConfig(context);
 
@@ -60,7 +58,6 @@ class CfpContainer extends ConsumerWidget {
               ),
             ),
           ),
-
           Align(
             alignment: config.cfpButtonAlignment,
             child: Container(
@@ -86,7 +83,10 @@ class CfpContainer extends ConsumerWidget {
                   const SizedBox(height: 10),
                   Text(
                     cfpSectionData.cfpSubmitLabel,
-                    style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: FlutterLatamColors.darkBlue),
+                    style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: FlutterLatamColors.darkBlue),
                   ),
                 ],
               ),

@@ -82,7 +82,6 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-
     setupSections();
 
     final isMobile = getValueForScreenType(
@@ -94,9 +93,11 @@ class _HomePageState extends ConsumerState<HomePage>
     return Scaffold(
       appBar: isMobile
           ? AppBar(
-              title: SvgPicture.asset('${Constants.imagesPath}/flutter_logo_color.svg',
-                width: 40, height: 40,
-              )
+              title: SvgPicture.asset(
+                '${Constants.imagesPath}/flutter_logo_color.svg',
+                width: 40,
+                height: 40,
+              ),
             )
           : null,
       drawer: isMobile
@@ -131,7 +132,6 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   void moveSectionByIndex(int index, {bool isMobile = false}) {
-    
     // temp fix for the auto-scrolling and resizing banners
     setupSections();
 

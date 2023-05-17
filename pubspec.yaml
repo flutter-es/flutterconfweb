@@ -10,6 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  flutter_web_plugins:
+    sdk: flutter
+    
   intl: any
   rive: 0.10.4
   responsive_builder: 0.6.4
