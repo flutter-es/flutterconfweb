@@ -81,12 +81,12 @@ class Footer extends StatelessWidget {
               height: 160.0,
               child: Stack(
                 children: [
-                  Positioned(
+                  /* Positioned(
                     left: 85.0,
                     bottom: 0.0,
                     top: 0.0,
                     child: socialNetworks(),
-                  ),
+                  ), */
                   Align(
                     child: flutterConfLogo(),
                   ),
@@ -103,11 +103,11 @@ class Footer extends StatelessWidget {
               children: [
                 const SizedBox(height: 40.0),
                 flutterConfLogo(),
-                const SizedBox(height: 40.0),
+                /*  const SizedBox(height: 40.0),
                 Transform.scale(
                   scale: 0.8,
                   child: socialNetworks(),
-                ),
+                ), */
                 const SizedBox(height: 40.0),
                 copyright(),
                 const SizedBox(height: 20.0),
