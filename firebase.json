@@ -6,5 +6,172 @@
       "**/.*",
       "**/node_modules/**"
     ]
-  }
+  },
+  "headers": [
+    {
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=7200"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "content-encoding"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://flutterconfweb.web.app"
+        }
+      ]
+    },
+    {
+      "source": "**/*.@(jpg|jpeg|gif|png)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=7200"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "content-encoding"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://flutterconfweb.web.app"
+        }
+      ]
+    },
+    {
+      "source": "**/*.@(css|js|html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=0, no-cache"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "content-encoding"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://flutterconfweb.web.app"
+        }
+      ]
+    },
+    {
+      "source": "**/assets/**",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=7200"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "content-encoding"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://flutterconfweb.web.app"
+        }
+      ]
+    },
+    {
+      "source": "**/*.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=7200"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Accept-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "content-encoding"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://flutterconfweb.web.app"
+        }
+      ]
+    },
+    {
+      "source": "**/resources.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=7200"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Accept-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "content-encoding"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://flutterconfweb.web.app"
+        }
+      ]
+    },
+    {
+      "source": "**",
+      "headers": [
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "content-encoding"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://flutterconfweb.web.app"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/icons/icon-192.png",
+      "destination": "/icons/icon-192.png"
+    },
+    {
+      "source": "/icons/icon-512.png",
+      "destination": "/icons/icon-512.png"
+    },
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ]
 }
