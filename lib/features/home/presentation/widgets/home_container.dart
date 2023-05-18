@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/cfp/presentation/providers/cfpfeature_providers.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
@@ -10,11 +11,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeContainer extends ConsumerWidget {
-  const HomeContainer({super.key});
+  HomeContainer({super.key});
 
   static const height = 700.0;
 
   static const title = 'home_container';
+
+  final analytics = FirebaseAnalytics.instance;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,9 +76,7 @@ class HomeContainer extends ConsumerWidget {
                               fontSize: 20.0,
                               iconSize: 20.0,
                               iconPadding: 15.0,
-                              onTap: () {
-                                Utils.launchUrlLink(cfpSectionData.cfpUrlLink);
-                              },
+                              onTap: () => clickCFP(cfpSectionData.cfpUrlLink),
                             ),
                           ],
                         ),
@@ -178,9 +179,7 @@ class HomeContainer extends ConsumerWidget {
                       fontSize: 18.0,
                       iconSize: 18.0,
                       iconPadding: 13.0,
-                      onTap: () {
-                        Utils.launchUrlLink(cfpSectionData.cfpUrlLink);
-                      },
+                      onTap: () => clickCFP(cfpSectionData.cfpUrlLink),
                     ),
                   ],
                 ),
@@ -238,5 +237,11 @@ class HomeContainer extends ConsumerWidget {
               ],
             ),
     );
+  }
+
+  void clickCFP(String url) {
+    analytics.logEvent(name: 'click_cfp');
+
+    Utils.launchUrlLink(url);
   }
 }

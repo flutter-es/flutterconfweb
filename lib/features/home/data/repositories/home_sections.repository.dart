@@ -19,7 +19,7 @@ class HomeSectionsRepository {
 
     return [
       HomeSection(
-        builder: (_) => const HomeContainer(),
+        builder: (_) => HomeContainer(),
         size: HomeContainer.height,
         title: appLoc.about,
       ),

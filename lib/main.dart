@@ -1,22 +1,33 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_colombia/firebase_options.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-void main() {
+void main() async {
   setUrlStrategy(PathUrlStrategy());
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: FlutterConf(),
     ),
   );
 }
 
 class FlutterConf extends ConsumerWidget {
-  const FlutterConf({super.key});
+  FlutterConf({super.key}) {
+    analytics.logAppOpen();
+  }
+
+  final analytics = FirebaseAnalytics.instance;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
