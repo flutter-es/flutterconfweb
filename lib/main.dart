@@ -1,3 +1,6 @@
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:js' as js;
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +28,20 @@ void main() async {
 class FlutterConf extends ConsumerWidget {
   FlutterConf({super.key}) {
     analytics.logAppOpen();
+
+    final initTime = js.context['initTime'] as int;
+
+    final currentTime = DateTime.now().millisecondsSinceEpoch;
+
+    final diff = (currentTime - initTime) / 1000;
+
+    print('diff $diff');
+    analytics.logEvent(
+      name: 'render_time',
+      parameters: {
+        'diff': diff,
+      },
+    );
   }
 
   final analytics = FirebaseAnalytics.instance;
