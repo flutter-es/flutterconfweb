@@ -8,6 +8,7 @@
       }
     }
   },
+  "copyright": "© 2023 Flutter Conf Latam",
   "comingSoon": "!VIENE PRONTO!",
   "about": "Acerca de",
   "cfp": "CFP",
@@ -22,7 +23,11 @@
   "eventFeature2": "Sesiones Paralelas",
   "eventFeature3": "Expositores de Alta Calidad",
   "getYourTicket": "¡OBTEN TU ENTRADA!",
-  "cfpOpen": "¡CFP ya está abierto!",
+  "cfpOpen": "¡El CFP ya está abierto!",
   "submitYourTalk": "¡Envía tu charla!",
-  "ticketBannerSlogan": "La Conferencia de Flutter\nmás anticipada de\nLatinoamérica"
+  "ticketBannerSlogan": "La Conferencia de Flutter\nmás anticipada de\nLatinoamérica",
+  "homeContainerTitle": "¡Hola Latinoamérica,\nnos vemos pronto!",
+  "homeContainerContent": "El evento de Flutter en español más esperado en toda Latinoamérica unida,\nque reúne por 2 días a más de 30 expositores de todo LATAM.",
+  "homeContainerDateLabel": "25 & 26 de Octubre, 2023",
+  "homeContainerCountryLabel": "Medellín, Colombia"
 }

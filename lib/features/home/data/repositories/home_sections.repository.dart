@@ -21,7 +21,7 @@ class HomeSectionsRepository {
       HomeSection(
         builder: (_) => HomeContainer(),
         size: HomeContainer.height,
-        title: appLoc.about,
+        title: '', //appLoc.about,
       ),
       // HomeSection(
       //   builder: (_) => const WipContainer(),

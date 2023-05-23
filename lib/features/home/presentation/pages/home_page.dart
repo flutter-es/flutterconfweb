@@ -6,6 +6,7 @@ import 'package:flutter_conf_colombia/features/home/presentation/providers/home_
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/custom_tab_controller.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/footer.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/header.dart';
+import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/mobile_drawer.dart';
 import 'package:flutter_conf_colombia/helpers/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -97,9 +98,13 @@ class _HomePageState extends ConsumerState<HomePage>
                 width: 40,
                 height: 40,
               ),
+              actions: [
+                LanguageButton()
+              ],
             )
           : null,
-      drawer: isMobile
+      drawer: null
+      /* isMobile
           ? MobileDrawer(
               tabController: tabController.mobile(),
               sections: sections,
@@ -107,24 +112,35 @@ class _HomePageState extends ConsumerState<HomePage>
                 moveSectionByIndex(index, isMobile: isMobile);
               },
             )
-          : null,
-      body: CustomScrollView(
-        controller: scrollController,
-        slivers: [
-          if (!isMobile)
-            Header(
-              tabController: tabController.build(),
-              sections: sections,
-              onTap: (index) {
-                moveSectionByIndex(index, isMobile: isMobile);
-              },
+          : null */,
+      body: Column(
+        children: [
+          Expanded(
+            child: CustomScrollView(
+              controller: scrollController,
+              slivers: [
+                if (!isMobile)
+                  Header(
+                    tabController: tabController.build(),
+                    sections: sections,
+                    onTap: (index) {
+                      moveSectionByIndex(index, isMobile: isMobile);
+                    },
+                  ),
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      ...sections.map((e) => e.builder(context)),
+
+                      // in mobile, make it part of the scroll
+                      if (isMobile) const Footer() else const SizedBox.shrink()
+                    ]),
+                  )
+              ],
             ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              ...sections.map((e) => e.builder(context)),
-              const Footer(),
-            ]),
-          )
+          ),
+
+          // otherwise make it "sticky"
+          if (!isMobile) const Footer() else const SizedBox.shrink()
         ],
       ),
     );

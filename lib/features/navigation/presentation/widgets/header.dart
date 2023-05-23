@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
+import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -73,6 +74,10 @@ class Header extends ConsumerWidget {
               ],
             ),
           ),
+           const Align(
+            alignment: Alignment.topRight,
+            child: LanguageButton(),
+          )
         ],
       ),
     );

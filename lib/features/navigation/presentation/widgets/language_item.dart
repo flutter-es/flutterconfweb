@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_conf_colombia/styles/colors.dart';
 
 class LanguageItem extends StatelessWidget {
   const LanguageItem({
     required this.title,
     required this.isActive,
     required this.onTap,
+    required this.locale,
     super.key,
   });
 
   final String title;
   final bool isActive;
-  final VoidCallback onTap;
+  final Function onTap;
+  final Locale locale;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          onTap(locale);
+        },
+        child: Text(title.toUpperCase(),
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: isActive ? Colors.white : FlutterLatamColors.darkBlue)
+        ),
       ),
     );
   }
