@@ -3,9 +3,8 @@ import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CFPSectionRepository {
-
   CFPSectionRepository(this.ref);
-  
+
   final Ref ref;
 
   CFPSectionModel getCFPSectionData() {
@@ -13,7 +12,8 @@ class CFPSectionRepository {
     return CFPSectionModel(
       cfpSubmitLabel: appLoc.submitYourTalk,
       cfpButtonLabel: appLoc.cfpOpen,
-      cfpUrlLink: 'https://sessionize.com'
+      cfpUrlLink:
+          'https://docs.google.com/forms/d/e/1FAIpQLSd9DRutDGzKcKUcwLh103oRIBQw3cppEqBYAR5IfAmbAage9g/viewform',
     );
   }
 }

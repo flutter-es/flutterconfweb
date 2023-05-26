@@ -1,20 +1,14 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/cfp/presentation/widgets/cfp_container.dart';
-import 'package:flutter_conf_colombia/features/contact/presentation/widgets/contact_container.dart';
 import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
 import 'package:flutter_conf_colombia/features/home/data/models/tab_section.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/providers/home_providers.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/custom_tab_controller.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/widgets/event_features_container.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/widgets/home_container.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/footer.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/header.dart';
+import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/mobile_drawer.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_container.dart';
-import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/speakers_container.dart';
-import 'package:flutter_conf_colombia/features/tickets/presentation/widgets/tickets_container.dart';
 import 'package:flutter_conf_colombia/helpers/constants.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -35,8 +29,14 @@ class _HomePageState extends ConsumerState<HomePage>
 
   bool isScrolled = false;
 
+  final analytics = FirebaseAnalytics.instance;
+
   @override
   void initState() {
+    analytics
+      ..setCurrentScreen(screenName: 'home_page')
+      ..logScreenView(screenName: 'home_page');
+
     super.initState();
     scrollController = ScrollController();
     scrollController.addListener(() {
@@ -82,7 +82,6 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-
     setupSections();
 
     final isMobile = getValueForScreenType(
@@ -94,9 +93,14 @@ class _HomePageState extends ConsumerState<HomePage>
     return Scaffold(
       appBar: isMobile
           ? AppBar(
-              title: SvgPicture.asset('${Constants.imagesPath}/flutter_logo_color.svg',
-                width: 40, height: 40,
-              )
+              title: SvgPicture.asset(
+                '${Constants.imagesPath}/flutter_logo_color.svg',
+                width: 40,
+                height: 40,
+              ),
+              actions: [
+                LanguageButton()
+              ],
             )
           : null,
       drawer: isMobile
@@ -108,30 +112,35 @@ class _HomePageState extends ConsumerState<HomePage>
               },
             )
           : null,
-      body: CustomScrollView(
-        controller: scrollController,
-        slivers: [
-          if (!isMobile)
-            Header(
-              tabController: tabController.build(),
-              sections: sections,
-              onTap: (index) {
-                moveSectionByIndex(index, isMobile: isMobile);
-              },
+      body: Column(
+        children: [
+          Expanded(
+            child: CustomScrollView(
+              controller: scrollController,
+              slivers: [
+                if (!isMobile)
+                  Header(
+                    tabController: tabController.build(),
+                    sections: sections,
+                    onTap: (index) {
+                      moveSectionByIndex(index, isMobile: isMobile);
+                    },
+                  ),
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      ...sections.map((e) => e.builder(context)),
+                      const Footer()
+                    ]),
+                  )
+              ],
             ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              ...sections.map((e) => e.builder(context)),
-              const Footer(),
-            ]),
-          )
+          ),
         ],
       ),
     );
   }
 
   void moveSectionByIndex(int index, {bool isMobile = false}) {
-    
     // temp fix for the auto-scrolling and resizing banners
     setupSections();
 

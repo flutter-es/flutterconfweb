@@ -19,9 +19,9 @@ class TicketsContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final ticketSectionData = ref.watch(ticketSectionProvider);
-    final config = TicketBannerResponsiveConfig.getTicketBannerResponsiveConfig(context);
+    final config =
+        TicketBannerResponsiveConfig.getTicketBannerResponsiveConfig(context);
 
     TicketsContainer.height = config.bannerSize;
 
@@ -43,8 +43,10 @@ class TicketsContainer extends ConsumerWidget {
             alignment: config.titleAlignment,
             child: Container(
               margin: const EdgeInsets.all(40),
-              child: Text(ticketSectionData.slogan,
-                textAlign: config.titleTextAlign, style: TextStyle(
+              child: Text(
+                ticketSectionData.slogan,
+                textAlign: config.titleTextAlign,
+                style: TextStyle(
                   height: 1.25,
                   fontSize: config.titleSize,
                   fontWeight: FontWeight.bold,
@@ -52,7 +54,6 @@ class TicketsContainer extends ConsumerWidget {
               ),
             ),
           ),
-
           Align(
             alignment: config.ticketButtonAlignment,
             child: Container(
@@ -80,7 +81,6 @@ class TicketsContainer extends ConsumerWidget {
               ),
             ),
           ),
-
           Positioned(
             bottom: config.dashOffset,
             left: 0,
