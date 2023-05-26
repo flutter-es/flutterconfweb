@@ -15,3 +15,11 @@ enum FlutterDashAnimations {
   flutterconfconstruction,
   flutterdashconst,
 }
+
+enum SponsorshipLevels {
+  platinum,
+  gold,
+  silver,
+  bronze,
+  other,
+}

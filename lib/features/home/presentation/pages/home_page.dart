@@ -103,8 +103,7 @@ class _HomePageState extends ConsumerState<HomePage>
               ],
             )
           : null,
-      drawer: null
-      /* isMobile
+      drawer: isMobile
           ? MobileDrawer(
               tabController: tabController.mobile(),
               sections: sections,
@@ -112,7 +111,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 moveSectionByIndex(index, isMobile: isMobile);
               },
             )
-          : null */,
+          : null,
       body: Column(
         children: [
           Expanded(
@@ -130,17 +129,12 @@ class _HomePageState extends ConsumerState<HomePage>
                   SliverList(
                     delegate: SliverChildListDelegate([
                       ...sections.map((e) => e.builder(context)),
-
-                      // in mobile, make it part of the scroll
-                      if (isMobile) const Footer() else const SizedBox.shrink()
+                      const Footer()
                     ]),
                   )
               ],
             ),
           ),
-
-          // otherwise make it "sticky"
-          if (!isMobile) const Footer() else const SizedBox.shrink()
         ],
       ),
     );

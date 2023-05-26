@@ -21,14 +21,10 @@ class HomeSectionsRepository {
       HomeSection(
         builder: (_) => HomeContainer(),
         size: HomeContainer.height,
-        title: '', //appLoc.about,
+        title: appLoc.about,
       ),
-      // HomeSection(
-      //   builder: (_) => const WipContainer(),
-      //   size: WipContainer.height,
-      //   title: appLoc.about,
-      // ),
-      /* HomeSection(
+      
+      HomeSection(
         builder: (_) => const CfpContainer(),
         size: CfpContainer.height,
         title: appLoc.cfp,
@@ -52,7 +48,7 @@ class HomeSectionsRepository {
         builder: (_) => const SponsorsContainer(),
         size: SponsorsContainer.height,
         title: appLoc.sponsors,
-      ), */
+      ),
     ];
   }
 }
