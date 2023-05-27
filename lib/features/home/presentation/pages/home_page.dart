@@ -55,7 +55,7 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   void setupSections() {
-    sections = ref.refresh(homeSectionsProvider);
+    sections = ref.watch(homeSectionsProvider);
 
     tabController = CustomTabController(
       length: sections.length,
