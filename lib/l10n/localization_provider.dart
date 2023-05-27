@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final currentLocalizationProvider = StateProvider<Locale>((ref) {
-  //return WidgetsBinding.instance.platformDispatcher.locale;
   return SupportLocale.es;
 });
 
