@@ -23,3 +23,12 @@ enum SponsorshipLevels {
   bronze,
   other,
 }
+
+enum SponsorshipFilter {
+  platinum,
+  gold,
+  silver,
+  bronze,
+  other,
+  all
+}

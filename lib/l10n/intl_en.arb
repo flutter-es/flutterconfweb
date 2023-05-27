@@ -29,5 +29,11 @@
   "homeContainerTitle": "Hello, Latin America,\nwe'll see you soon!",
   "homeContainerContent": "Flutter Conf Latam is the most anticipated Flutter event in Latin America.\nThe Flutter Community will gather for a 2-day event with over 30 speakers.",
   "homeContainerDateLabel": "October 25  & 26, 2023",
-  "homeContainerCountryLabel": "Medellin, Colombia"
+  "homeContainerCountryLabel": "Medellin, Colombia",
+  "ourSponsors": "OUR SPONSORS",
+  "becomeASponsor": "BECOME A SPONSOR",
+  "sponsorshipPlatinum":"Platinum",
+  "sponsorshipGold":"Gold",
+  "sponsorshipSilver":"Silver",
+  "sponsorshipBronze":"Bronze"
 }
