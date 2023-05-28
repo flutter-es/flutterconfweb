@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/sponsors_region.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
-import 'package:flutter_conf_colombia/helpers/styles.dart';
+import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

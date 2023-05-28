@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/helpers/styles.dart';
+import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class NavigationResponsiveConfig {

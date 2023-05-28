@@ -13,6 +13,7 @@ class FlutterLatamColors {
   static const Color darkGreen = Color(0xFF385600);
   static const Color sponsorsBanner = Color(0xFF003087);
   static const Color brightYellow = Color(0xFFFCCE19);
+  static const Color blueText = Color(0xFF324AA6);
 
   // sponsorship level colors
   static const Color platinum = Color(0xFF939393);

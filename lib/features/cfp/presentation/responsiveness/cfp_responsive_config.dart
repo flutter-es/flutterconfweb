@@ -45,7 +45,7 @@ class CFPBannerResponsiveConfig {
         flutterLogoLeftMargin: 0.0,
         cfpButtonAlignment: Alignment.center,
         cfpButtonIconSize: 20.0,
-        cfpButtonLabelSize: 25.0, 
+        cfpButtonLabelSize: 20.0, 
         cfpButtonIconPadding: 10.0,
         cfpButtonMargin: 0.0,
         bannerGradient: LinearGradient(

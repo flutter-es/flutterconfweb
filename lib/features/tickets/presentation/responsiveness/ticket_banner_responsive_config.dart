@@ -47,7 +47,7 @@ class TicketBannerResponsiveConfig {
         titleAlignment: Alignment.topCenter,
         titleTextAlign: TextAlign.center,
         ticketButtonIconSize: 20.0,
-        ticketButtonLabelSize: 25.0,
+        ticketButtonLabelSize: 20.0,
         ticketButtonIconPadding: 10.0,
         ticketButtonMargin: 0.0,
         ticketButtonAlignment: Alignment.center,
