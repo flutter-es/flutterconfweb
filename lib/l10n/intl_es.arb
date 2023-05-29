@@ -41,5 +41,8 @@
   "sponsorshipPlatinum":"Platino",
   "sponsorshipGold":"Oro",
   "sponsorshipSilver":"Plata",
-  "sponsorshipBronze":"Cobre"
+  "sponsorshipBronze":"Cobre",
+  "errorPageTitle": "¡Oh, disculpa!",
+  "errorPageSubtitle": "¡No fue culpa de Dash, en serio!",
+  "errorReturHomeButton": "Volver al inicio"
 }

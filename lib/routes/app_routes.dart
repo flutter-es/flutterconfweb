@@ -1,5 +1,5 @@
 import 'package:flutter_conf_colombia/features/cfp/presentation/pages/cfp_page.dart';
-import 'package:flutter_conf_colombia/features/errors/presentation/error.page.dart';
+import 'package:flutter_conf_colombia/features/errors/presentation/pages/error.page.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_colombia/features/shellpage/shell.page.dart';
 import 'package:flutter_conf_colombia/features/speakers/presentation/pages/speakers_page.dart';
