@@ -8,6 +8,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Utils {
 
+  static GlobalKey<NavigatorState> mainNav = GlobalKey();
+  static GlobalKey<NavigatorState> tabNav = GlobalKey();
+  static GlobalKey<ScaffoldState> mainScaffold = GlobalKey();
+
   static Future<void> launchUrlLink(String url) async {
     await launchUrl(Uri.parse(url));
   }

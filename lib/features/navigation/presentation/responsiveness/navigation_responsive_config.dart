@@ -8,26 +8,36 @@ class NavigationResponsiveConfig {
     required this.languageButtonWidth,
     required this.footerLayoutDirection,
     required this.footerItemsGap,
+    required this.logoHeight,
+    required this.maxHeaderHeight,
   });
 
   final double languageButtonWidth;
   final Axis footerLayoutDirection;
   final SizedBox footerItemsGap;
+  final double logoHeight;
+  final double maxHeaderHeight;
 
   static NavigationResponsiveConfig getNavigationConfig(BuildContext ctxt) {
 
     final config = getValueForScreenType(context: ctxt,
       mobile: const NavigationResponsiveConfig(
+        logoHeight: 120,
+        maxHeaderHeight: 120,
         languageButtonWidth: 100,
         footerLayoutDirection: Axis.vertical,
         footerItemsGap: FlutterConfLatamStyles.smallVGap,
       ),
       tablet: const NavigationResponsiveConfig(
-        languageButtonWidth: 180,
+        logoHeight: 180,
+        maxHeaderHeight: 180,
+        languageButtonWidth: 140,
         footerLayoutDirection: Axis.horizontal,
         footerItemsGap: FlutterConfLatamStyles.smallHGap,
       ),
       desktop: const NavigationResponsiveConfig(
+        maxHeaderHeight: 120,
+        logoHeight: 220,
         languageButtonWidth: 180,
         footerLayoutDirection: Axis.horizontal,
         footerItemsGap: FlutterConfLatamStyles.smallHGap,

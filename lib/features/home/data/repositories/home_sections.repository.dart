@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/cfp/presentation/widgets/cfp_container.dart';
 import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/event_features_container.dart';
@@ -15,39 +16,24 @@ class HomeSectionsRepository {
   final Ref ref;
 
   List<HomeSection> getHomeSections() {
-    final appLoc = ref.watch(appLocalizationsProvider);
-
     return [
       HomeSection(
         builder: (_) => HomeContainer(),
-        size: HomeContainer.height,
-        title: appLoc.about,
       ),
-      
       HomeSection(
         builder: (_) => const CfpContainer(),
-        size: CfpContainer.height,
-        title: appLoc.cfp,
       ),
       HomeSection(
         builder: (_) => const EventFeaturesContainer(),
-        size: EventFeaturesContainer.height,
-        title: appLoc.eventFeatures,
       ),
       HomeSection(
         builder: (_) => const TicketsContainer(),
-        size: TicketsContainer.height,
-        title: appLoc.tickets,
       ),
       HomeSection(
         builder: (_) => const SpeakersContainer(),
-        size: SpeakersContainer.height,
-        title: appLoc.speakers,
       ),
       HomeSection(
         builder: (_) => const SponsorsContainer(),
-        size: SponsorsContainer.height,
-        title: appLoc.sponsors,
       ),
     ];
   }

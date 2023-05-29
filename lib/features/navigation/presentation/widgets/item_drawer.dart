@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
+import 'package:flutter_conf_colombia/features/navigation/data/models/tab_navigation_item.dart';
 import 'package:flutter_conf_colombia/helpers/ui_extensions.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ItemDrawer extends StatelessWidget {
+class ItemDrawer extends ConsumerWidget {
+
   const ItemDrawer({
-    required this.section,
-    required this.isSelected,
-    required this.onTap,
-    super.key,
+    required this.item
   });
 
-  final HomeSection section;
-  final bool isSelected;
-  final VoidCallback onTap;
-
+  final TabNavigationItem item;
+  
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const borderRaidus = BorderRadius.all(
       Radius.circular(60.0),
     );
@@ -32,7 +30,6 @@ class ItemDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
 
-              onTap();
             },
             borderRadius: borderRaidus,
             child: Container(
@@ -40,17 +37,17 @@ class ItemDrawer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
               ),
-              decoration: isSelected
+              decoration: item.isSelected!
                   ? const BoxDecoration(
                       color: Colors.white12,
                     )
                   : null,
               child: Text(
-                section.title,
+                item.label,
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
-                  color: isSelected ? Colors.white : Colors.black,
+                  color: item.isSelected! ? Colors.white : Colors.black,
                 ),
               ),
             ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SchedulePage extends StatelessWidget {
+class ContactPage extends StatelessWidget {
 
-  static const String route = '/schedule';
+  static const String route = '/contact';
   
-  const SchedulePage({super.key});
+  const ContactPage({super.key});
 
   @override
   Widget build(BuildContext context) {

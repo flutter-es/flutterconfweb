@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_colombia/firebase_options.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_colombia/routes/app_routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -52,7 +53,7 @@ class FlutterConf extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appLocale = ref.watch(currentLocalizationProvider);
 
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Conf LATAM',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -71,7 +72,9 @@ class FlutterConf extends ConsumerWidget {
         ...AppLocalizations.localizationsDelegates,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomePage(),
+      routeInformationProvider: AppRoutes.router.routeInformationProvider,
+      routeInformationParser: AppRoutes.router.routeInformationParser,
+      routerDelegate: AppRoutes.router.routerDelegate,
     );
   }
 }
