@@ -1,4 +1,5 @@
 import 'package:flutter_conf_colombia/features/cfp/presentation/pages/cfp_page.dart';
+import 'package:flutter_conf_colombia/features/errors/presentation/error.page.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_colombia/features/shellpage/shell.page.dart';
 import 'package:flutter_conf_colombia/features/splash/presentation/pages/splash.page.dart';
@@ -19,7 +20,7 @@ class AppRoutes {
         path: SplashPage.route,
         builder: (context, state) {
             return const SplashPage();
-        }
+        },
       ),
       ShellRoute(
         navigatorKey: Utils.tabNav,
@@ -31,31 +32,36 @@ class AppRoutes {
             parentNavigatorKey: Utils.tabNav,
             path: HomePage.route,
             pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  child: const HomePage()
+                return const NoTransitionPage(
+                  child: HomePage(),
                 );
-            }
+            },
           ),
           GoRoute(
             parentNavigatorKey: Utils.tabNav,
             path: CFPPage.route,
             pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  child: const CFPPage()
+                return const NoTransitionPage(
+                  child: CFPPage(),
                 );
-            }
+            },
           ),
           GoRoute(
             parentNavigatorKey: Utils.tabNav,
             path: TicketsPage.route,
             pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  child: TicketsPage()
+                return const NoTransitionPage(
+                  child: TicketsPage(),
                 );
-            }
+            },
           ),
         ]
-      )
-    ]
+      ),
+    ],
+    errorPageBuilder: (context, state) {
+      return NoTransitionPage(
+        child: ErrorPage(errorMessage: state.error.toString())
+      );
+    }
   );
 }

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class TabNavigationItem {
 
   const TabNavigationItem({
@@ -11,4 +9,16 @@ class TabNavigationItem {
   final String label;
   final String route;
   final bool? isSelected;
+
+  TabNavigationItem copyWith({
+      String? label,
+      String? route,
+      bool? isSelected
+    }) {
+      return TabNavigationItem(
+        label: label ?? this.label, 
+        route: route ?? this.route,
+        isSelected: isSelected ?? this.isSelected 
+    );
+  }
 }

@@ -29,6 +29,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
     return SliverAppBar(
       backgroundColor: Colors.white,
       pinned: true,
+      elevation: 0,
       expandedHeight: uiConfig.maxHeaderHeight,
       collapsedHeight: kToolbarHeight,
       flexibleSpace: Stack(
@@ -66,7 +67,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
             child: TabBar(
               onTap: (index) {
                 // 
-                GoRouter.of(context).go(tabItems[index].route);
+                ref.read(navigationItemsProvider.notifier).selectNavItem(tabItems[index]);
               },
               controller: CustomTabController(length: tabItems.length, vsync: this).build(),
               isScrollable: true,
@@ -77,7 +78,11 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
               tabs: [
                 for (final tabItem in tabItems)
                   Tab(
-                    text: tabItem.label,
+                    child: Text(
+                      tabItem.label,
+                      style: TextStyle(
+                        color: tabItem.isSelected! ? FlutterLatamColors.darkBlue : Colors.grey)
+                    ),
                   ),
               ],
             ),

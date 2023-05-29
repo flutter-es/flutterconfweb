@@ -48,8 +48,8 @@ class Footer extends ConsumerWidget {
       color: Colors.black,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 40,
-          vertical: 40,
+          horizontal: 30,
+          vertical: 30,
         ),
         child: Flex(
           direction: uiConfig.footerLayoutDirection,
