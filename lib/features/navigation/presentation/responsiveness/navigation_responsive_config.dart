@@ -10,6 +10,8 @@ class NavigationResponsiveConfig {
     required this.footerItemsGap,
     required this.logoHeight,
     required this.maxHeaderHeight,
+    required this.showLogoOnFooter,
+    required this.footerPadding,
   });
 
   final double languageButtonWidth;
@@ -17,6 +19,8 @@ class NavigationResponsiveConfig {
   final SizedBox footerItemsGap;
   final double logoHeight;
   final double maxHeaderHeight;
+  final bool showLogoOnFooter;
+  final double footerPadding;
 
   static NavigationResponsiveConfig getNavigationConfig(BuildContext ctxt) {
 
@@ -27,6 +31,8 @@ class NavigationResponsiveConfig {
         languageButtonWidth: 100,
         footerLayoutDirection: Axis.vertical,
         footerItemsGap: FlutterConfLatamStyles.smallVGap,
+        showLogoOnFooter: false,
+        footerPadding: 10,
       ),
       tablet: const NavigationResponsiveConfig(
         logoHeight: 180,
@@ -34,6 +40,8 @@ class NavigationResponsiveConfig {
         languageButtonWidth: 140,
         footerLayoutDirection: Axis.horizontal,
         footerItemsGap: FlutterConfLatamStyles.smallHGap,
+        showLogoOnFooter: true,
+        footerPadding: 20,
       ),
       desktop: const NavigationResponsiveConfig(
         maxHeaderHeight: 120,
@@ -41,6 +49,8 @@ class NavigationResponsiveConfig {
         languageButtonWidth: 180,
         footerLayoutDirection: Axis.horizontal,
         footerItemsGap: FlutterConfLatamStyles.smallHGap,
+        showLogoOnFooter: true,
+        footerPadding: 30
       ),
     );
 

@@ -1,7 +1,6 @@
 import 'package:flutter_conf_colombia/features/home/data/models/event_feature.model.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EventFeatureRepository {
