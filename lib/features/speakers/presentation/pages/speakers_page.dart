@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SpeakersPage extends ConsumerWidget {
 
   static const String route = '/speakers';
-  
+
   const SpeakersPage({super.key});
 
   @override
@@ -15,8 +15,8 @@ class SpeakersPage extends ConsumerWidget {
     final appLoc = ref.watch(appLocalizationsProvider);
     final speakers = ref.read(speakersProvider);
 
-    return Container(
-      child: const SizedBox.shrink()
+    return Center(
+      child: Text('Speakers'),
     );
   }
 }

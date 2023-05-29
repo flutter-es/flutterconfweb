@@ -10,6 +10,8 @@
   },
   "copyright": "© 2023 Flutter Conf Latam",
   "comingSoon": "COMING SOON!",
+  "homeContainerMainTitle": "Hello World, we'll see you in Medellin!",
+  "homeContainerSubtitle": "For the largest Flutter conference in Latin America",
   "home": "Home",
   "about": "About",
   "cfp": "CFP",

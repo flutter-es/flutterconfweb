@@ -52,23 +52,16 @@ class HomeContainer extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: uiConfig.titleAlignment,
                     children: [
-                      Text('Hola Mundo,\nnos vemos en\nMedellín',
+                      Text(homeContainerData.title,
                       textAlign: uiConfig.textAlign,
                       style: TextStyle(
                         height: 1,
                         color: FlutterLatamColors.blueText,
                         fontSize: uiConfig.titleSize, fontWeight: FontWeight.bold),),
-                      Text.rich(
-                        TextSpan(
-                          style: TextStyle(
-                            color: FlutterLatamColors.blueText,
-                            fontSize: uiConfig.subtitleSize),
-                          children: [
-                            TextSpan(text: 'Para la conferencia de Flutter '),
-                            TextSpan(text: '\nmás grande de Latinoámerica'),
-                          ]
-                        ),
-                        textAlign: uiConfig.textAlign,
+                      Text(homeContainerData.content, textAlign: uiConfig.textAlign, style: TextStyle(
+                          color: FlutterLatamColors.blueText,
+                          fontSize: uiConfig.subtitleSize
+                        )
                       )
                     ],
                   ),

@@ -11,8 +11,8 @@ class HomeContainerRepository {
     final appLoc = ref.watch(appLocalizationsProvider);
 
     return HomeContainerModel(
-      title: appLoc.homeContainerTitle,
-      content: appLoc.homeContainerContent,
+      title: appLoc.homeContainerMainTitle,
+      content: appLoc.homeContainerSubtitle,
       buttonLabel: appLoc.cfpOpen,
       dateLabel: appLoc.homeContainerDateLabel,
       countryLabel: appLoc.homeContainerCountryLabel,
