@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
+import 'package:flutter_conf_colombia/features/home/presentation/widgets/custom_tab_controller.dart';
+import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
+import 'package:flutter_conf_colombia/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class Header extends ConsumerWidget {
+class Header extends ConsumerStatefulWidget {
+
   const Header({
-    required this.tabController,
-    required this.sections,
-    required this.onTap,
     super.key,
   });
 
-  final TabController tabController;
-  final List<HomeSection> sections;
-  final ValueChanged<int> onTap;
+  @override
+  HeaderState createState() => HeaderState();
+}
+
+class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    const maxHeight = 120.0;
+  Widget build(BuildContext context) {
+    
+    final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
+    final tabItems = ref.watch(navigationItemsProvider);
 
     return SliverAppBar(
       backgroundColor: Colors.white,
       pinned: true,
-      expandedHeight: maxHeight,
+      elevation: 0,
+      expandedHeight: uiConfig.maxHeaderHeight,
       collapsedHeight: kToolbarHeight,
       flexibleSpace: Stack(
         children: [
@@ -35,13 +41,13 @@ class Header extends ConsumerWidget {
             child: LayoutBuilder(
               builder: (_, constraint) {
                 final currentHeight = constraint.maxHeight;
-                final currentWidth = currentHeight * 220.0 / maxHeight;
+                final currentWidth = currentHeight * uiConfig.logoHeight / uiConfig.maxHeaderHeight;
 
                 const maxPadding = 20.8;
 
                 final percent = (currentHeight - kToolbarHeight) *
                     100 /
-                    (maxHeight - kToolbarHeight);
+                    (uiConfig.maxHeaderHeight - kToolbarHeight);
 
                 final left = maxPadding - (maxPadding * percent / 100);
 
@@ -59,17 +65,24 @@ class Header extends ConsumerWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: TabBar(
-              onTap: onTap,
-              controller: tabController,
+              onTap: (index) {
+                // 
+                ref.read(navigationItemsProvider.notifier).selectNavItem(tabItems[index]);
+              },
+              controller: CustomTabController(length: tabItems.length, vsync: this).build(),
               isScrollable: true,
               indicatorWeight: 1.0,
               indicatorColor: Colors.white,
               labelColor: FlutterLatamColors.darkBlue,
               unselectedLabelColor: Colors.grey,
               tabs: [
-                for (final section in sections)
+                for (final tabItem in tabItems)
                   Tab(
-                    text: section.title,
+                    child: Text(
+                      tabItem.label,
+                      style: TextStyle(
+                        color: tabItem.isSelected! ? FlutterLatamColors.darkBlue : Colors.grey)
+                    ),
                   ),
               ],
             ),

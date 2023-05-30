@@ -1,3 +1,4 @@
+import 'package:flutter_conf_colombia/features/home/data/repositories/datelocation_container.repository.dart';
 import 'package:flutter_conf_colombia/features/home/data/repositories/event_feature.repository.dart';
 import 'package:flutter_conf_colombia/features/home/data/repositories/home_container_repository.dart';
 import 'package:flutter_conf_colombia/features/home/data/repositories/home_sections.repository.dart';
@@ -25,4 +26,12 @@ final homeSectionsProvider = Provider((ref) {
 
 final homeContainerDataProvider = Provider((ref) {
   return ref.watch(homeContainerRepositoryProvider).getHomeContainerContent();
+});
+
+final dateLocationRepositoryProvider = Provider((ref) {
+  return DateLocationRepository(ref);
+});
+
+final dateLocationProvider = Provider((ref) {
+  return ref.watch(dateLocationRepositoryProvider).getDateLocationContainerContent();
 });

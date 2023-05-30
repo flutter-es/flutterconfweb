@@ -10,6 +10,12 @@
   },
   "copyright": "© 2023 Flutter Conf Latam",
   "comingSoon": "COMING SOON!",
+  "homeContainerMainTitle": "Hello World, we'll see you in Medellin!",
+  "homeContainerSubtitle": "For the largest Flutter conference in Latin America",
+  "conferenceDate": "October 25th & 26th",
+  "conferenceLocation": "Medellin, Colombia",
+  "conferenceAddress": "Bancolombia Medellin Branch\nRoute 48 #26-85\nEl Poblado, Medellin, Antioquia",
+  "home": "Home",
   "about": "About",
   "cfp": "CFP",
   "tickets": "Tickets",
@@ -29,5 +35,14 @@
   "homeContainerTitle": "Hello, Latin America,\nwe'll see you soon!",
   "homeContainerContent": "Flutter Conf Latam is the most anticipated Flutter event in Latin America.\nThe Flutter Community will gather for a 2-day event with over 30 speakers.",
   "homeContainerDateLabel": "October 25  & 26, 2023",
-  "homeContainerCountryLabel": "Medellin, Colombia"
+  "homeContainerCountryLabel": "Medellin, Colombia",
+  "ourSponsors": "OUR SPONSORS",
+  "becomeASponsor": "BECOME A SPONSOR",
+  "sponsorshipPlatinum":"Platinum",
+  "sponsorshipGold":"Gold",
+  "sponsorshipSilver":"Silver",
+  "sponsorshipBronze":"Bronze",
+  "errorPageTitle": "Uh-oh, sorry!",
+  "errorPageSubtitle": "It wasn't Dash's fault - I swear!",
+  "errorReturHomeButton": "Return Home"
 }

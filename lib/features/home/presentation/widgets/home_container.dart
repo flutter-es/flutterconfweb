@@ -5,6 +5,7 @@ import 'package:flutter_conf_colombia/features/home/presentation/providers/home_
 import 'package:flutter_conf_colombia/features/home/presentation/responsiveness/home_section_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
+import 'package:flutter_conf_colombia/helpers/constants.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
@@ -28,117 +29,67 @@ class HomeContainer extends ConsumerWidget {
 
     return SizedBox(
       height: uiConfig.bannerHeight,
-      child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: uiConfig.sectionPadding,
-            vertical: uiConfig.sectionPadding,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.5,
+              child: Image.asset('${Constants.imagesPath}/topbanner.png',
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          child: Flex(
+          Flex(
             direction: uiConfig.layoutDirection,
             children: [
-              SizedBox(height: uiConfig.pageTopGap),
               Expanded(
-                flex: 3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      homeContainerData.title,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: uiConfig.sectionPadding,
+                    vertical: uiConfig.sectionPadding,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: uiConfig.titleAlignment,
+                    children: [
+                      Text(homeContainerData.title,
                       textAlign: uiConfig.textAlign,
                       style: TextStyle(
-                        fontSize: uiConfig.titleSize,
-                        fontWeight: FontWeight.bold,
-                        height: 1.3,
-                      ),
-                    ),
-                    const SizedBox(height: 25.0),
-                    Text(
-                      homeContainerData.content,
-                      textAlign: uiConfig.textAlign,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.black.withOpacity(0.7),
-                      ),
-                    ),
-                    const SizedBox(height: 60.0),
-                    Row(
-                      mainAxisAlignment: uiConfig.buttonRowAlignment,
-                      children: [
-                        CircleRoundIconButton(
-                          icon: FlutterConfLatamIcons.speaker,
-                          label: homeContainerData.buttonLabel,
-                          iconColor: Colors.white,
-                          backgroundColor: FlutterLatamColors.lightBlue,
-                          labelColor: Colors.white,
-                          circleColor: FlutterLatamColors.darkBlue,
-                          labelWeight: FontWeight.w600,
-                          fontSize: uiConfig.buttonLabelSize,
-                          iconSize: uiConfig.buttonIconSize,
-                          iconPadding: uiConfig.buttonIconPadding,
-                          onTap: () => clickCFP(homeContainerData.cfpUrlLink),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: uiConfig.buttonBottomGap),
-                    Text(
-                      homeContainerData.dateLabel,
-                      textAlign: uiConfig.textAlign,
-                      style: TextStyle(
-                        fontSize: uiConfig.dateSize,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 5.0),
-                    Row(
-                      mainAxisAlignment: uiConfig.dateCountryRowAlignment,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 5.0,
-                          ),
-                          child: Image.asset(
-                            'assets/images/colombia_flag.png',
-                            height: uiConfig.flagSize,
-                            width: uiConfig.flagSize,
-                          ),
-                        ),
-                        const SizedBox(width: 10.0),
-                        Text(
-                          homeContainerData.countryLabel,
-                          textAlign: uiConfig.textAlign,
-                          style: TextStyle(
-                            fontSize: uiConfig.countryLabelSize,
-                            color: FlutterLatamColors.darkBlue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        height: 1,
+                        color: FlutterLatamColors.blueText,
+                        fontSize: uiConfig.titleSize, fontWeight: FontWeight.bold),),
+                      Text(homeContainerData.content, textAlign: uiConfig.textAlign, style: TextStyle(
+                          color: FlutterLatamColors.blueText,
+                          fontSize: uiConfig.subtitleSize
+                        )
+                      )
+                    ],
+                  ),
                 ),
               ),
               Expanded(
-                flex: 2,
                 child: Stack(
-                  clipBehavior: Clip.none,
                   children: [
                     Positioned(
                       right: 0.0,
-                      bottom: 0.0,
-                      left: uiConfig.dashLeftPosition,
+                      bottom: uiConfig.dashBottomOffset,
+                      left: 0,
+                      top: 0,
                       child: SizedBox(
                         height: uiConfig.dashSize,
                         width: uiConfig.dashSize,
                         child: const FlutterDashAnimation(
-                          animation: FlutterDashAnimations.flutterdashconst,
+                          animation: FlutterDashAnimations.flutterdashwave,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
-              ),
+              )
             ],
           ),
-        )
+        ],
+      )
       );
   }
 

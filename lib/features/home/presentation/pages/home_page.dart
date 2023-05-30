@@ -14,6 +14,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomePage extends ConsumerStatefulWidget {
+
+  static const String route = '/home';
+
   const HomePage({super.key});
 
   @override
@@ -23,7 +26,6 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage>
     with TickerProviderStateMixin {
   late CustomTabController tabController;
-  late ScrollController scrollController;
   late List<HomeSection> sections;
   late List<TabSection> tabSections;
 
@@ -38,130 +40,20 @@ class _HomePageState extends ConsumerState<HomePage>
       ..logScreenView(screenName: 'home_page');
 
     super.initState();
-    scrollController = ScrollController();
-    scrollController.addListener(() {
-      if (isScrolled) {
-        return;
-      }
-
-      final position = scrollController.offset;
-
-      for (final section in tabSections) {
-        if (position < section.end && position >= section.start) {
-          tabController.animateTo(section.index);
-        }
-      }
-    });
-  }
-
-  void setupSections() {
-    sections = ref.watch(homeSectionsProvider);
-
-    tabController = CustomTabController(
-      length: sections.length,
-      vsync: this,
-    );
-
-    tabSections = <TabSection>[];
-
-    var sumBefore = 0.0;
-    for (var i = 0; i < sections.length; i++) {
-      final section = sections[i];
-
-      tabSections.add(
-        TabSection(
-          index: i,
-          start: sumBefore,
-          end: sumBefore + section.size,
-        ),
-      );
-
-      sumBefore = sumBefore + section.size;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    setupSections();
+    sections = ref.watch(homeSectionsProvider);
 
-    final isMobile = getValueForScreenType(
-      context: context,
-      mobile: true,
-      tablet: false,
+    return CustomScrollView(
+      slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate([
+              ...sections.map((e) => e.builder(context)),
+            ]),
+          )
+      ],
     );
-
-    return Scaffold(
-      appBar: isMobile
-          ? AppBar(
-              title: SvgPicture.asset(
-                '${Constants.imagesPath}/flutter_logo_color.svg',
-                width: 40,
-                height: 40,
-              ),
-              actions: const [
-                LanguageButton()
-              ],
-            )
-          : null,
-      drawer: isMobile
-          ? MobileDrawer(
-              tabController: tabController.mobile(),
-              sections: sections,
-              onTap: (index) {
-                moveSectionByIndex(index, isMobile: isMobile);
-              },
-            )
-          : null,
-      body: Column(
-        children: [
-          Expanded(
-            child: CustomScrollView(
-              controller: scrollController,
-              slivers: [
-                if (!isMobile)
-                  Header(
-                    tabController: tabController.build(),
-                    sections: sections,
-                    onTap: (index) {
-                      moveSectionByIndex(index, isMobile: isMobile);
-                    },
-                  ),
-                  SliverList(
-                    delegate: SliverChildListDelegate([
-                      ...sections.map((e) => e.builder(context)),
-                      const Footer()
-                    ]),
-                  )
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void moveSectionByIndex(int index, {bool isMobile = false}) {
-    // temp fix for the auto-scrolling and resizing banners
-    setupSections();
-
-    final section = tabSections[index];
-
-    const duration = Duration(milliseconds: 300);
-
-    isScrolled = true;
-
-    final additional = isMobile //
-        ? 0
-        : (index == 0 ? 0 : (kToolbarHeight + kTextTabBarHeight));
-
-    scrollController.animateTo(
-      section.start + additional,
-      duration: duration,
-      curve: Curves.easeInOut,
-    );
-
-    Future.delayed(duration, () {
-      isScrolled = false;
-    });
   }
 }

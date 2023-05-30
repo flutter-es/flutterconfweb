@@ -22,7 +22,7 @@ class Footer extends ConsumerWidget {
           child: Text(
             appLoc.copyright,
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.grey,
             ),
           ),
         );
@@ -47,15 +47,15 @@ class Footer extends ConsumerWidget {
     return ColoredBox(
       color: Colors.black,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 40,
-          vertical: 40,
+        padding: EdgeInsets.symmetric(
+          horizontal: uiConfig.footerPadding,
+          vertical: uiConfig.footerPadding,
         ),
         child: Flex(
           direction: uiConfig.footerLayoutDirection,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            flutterConfLogo(),
+            if (uiConfig.showLogoOnFooter) flutterConfLogo(),
             uiConfig.footerItemsGap,
             socialNetworks(),
             uiConfig.footerItemsGap,
