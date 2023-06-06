@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
+import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/item_drawer.dart';
 import 'package:flutter_conf_colombia/helpers/constants.dart';
@@ -16,6 +17,7 @@ class MobileDrawer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final tabItems = ref.watch(navigationItemsProvider);
+    final visibleTabItems = tabItems.where((t) => t.display!).toList();
 
     return Drawer(
       backgroundColor: Colors.blue,
@@ -29,11 +31,20 @@ class MobileDrawer extends ConsumerWidget {
           children: [
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset('${Constants.imagesPath}/FlutterLogo_White.svg',
-                    width: 80,
-                    height: 80,
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(HomePage.route);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset('${Constants.imagesPath}/FlutterLogo_White.svg',
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -41,9 +52,9 @@ class MobileDrawer extends ConsumerWidget {
             Expanded(
               child: Column(
                 children: [
-                  for (var i = 0; i < tabItems.length; i++)
+                  for (var i = 0; i < visibleTabItems.length; i++)
                     ItemDrawer(
-                      item: tabItems[i]
+                      item: visibleTabItems[i],
                     ),
                 ],
               ),

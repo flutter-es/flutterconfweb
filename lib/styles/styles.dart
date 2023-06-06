@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/styles/colors.dart';
 
 class FlutterConfLatamStyles {
 
@@ -23,4 +24,14 @@ class FlutterConfLatamStyles {
   static const EdgeInsets largeMargin = EdgeInsets.all(32);
   static const EdgeInsets xLargeMargin = EdgeInsets.all(64);
   static const EdgeInsets xxLargeMargin = EdgeInsets.all(128);
+
+  static const TextStyle h1 = TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h2 = TextStyle(fontSize: 56, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h3 = TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h4 = TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h5 = TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h6 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h7 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+
+
 }

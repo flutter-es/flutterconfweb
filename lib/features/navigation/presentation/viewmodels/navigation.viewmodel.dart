@@ -19,7 +19,12 @@ class NavigationViewModel extends StateNotifier<List<TabNavigationItem>> {
 
     state = [
       for (var element in state)
-       element.copyWith(isSelected: item == element)
+       element.copyWith(isSelected: item == element,)
     ];
+  }
+
+  void selectNavItemFromRoute(String route) {
+    final routeItem = state.where((i) => i.route == route).first;
+    selectNavItem(routeItem);
   }
 }

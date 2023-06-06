@@ -16,7 +16,7 @@ class TicketBannerResponsiveConfig {
     required this.ticketButtonMargin, 
     required this.ticketButtonAlignment, 
     required this.ticketButtonColumnCrossAxis, 
-    required this.ticketButtonColumnMainAxis   
+    required this.ticketButtonColumnMainAxis,
 });
 
 
