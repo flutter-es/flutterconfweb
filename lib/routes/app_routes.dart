@@ -1,6 +1,8 @@
 import 'package:flutter_conf_colombia/features/cfp/presentation/pages/cfp_page.dart';
+import 'package:flutter_conf_colombia/features/contact/presentation/pages/contact.page.dart';
 import 'package:flutter_conf_colombia/features/errors/presentation/pages/error.page.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:flutter_conf_colombia/features/shellpage/shell.page.dart';
 import 'package:flutter_conf_colombia/features/speakers/presentation/pages/speakers_page.dart';
 import 'package:flutter_conf_colombia/features/splash/presentation/pages/splash.page.dart';
@@ -70,9 +72,27 @@ class AppRoutes {
             parentNavigatorKey: Utils.tabNav,
             path: SponsorsPage.route,
             pageBuilder: (context, state) {
-                return const NoTransitionPage(
-                  child: SponsorsPage(),
-                );
+              return const NoTransitionPage(
+                child: SponsorsPage(),
+              );
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: Utils.tabNav,
+            path: SchedulePage.route,
+            pageBuilder: (context, state) {
+              return const NoTransitionPage(
+                child: SchedulePage(),
+              );
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: Utils.tabNav,
+            path: ContactPage.route,
+            pageBuilder: (context, state) {
+              return const NoTransitionPage(
+                child: ContactPage(),
+              );
             },
           ),
         ]

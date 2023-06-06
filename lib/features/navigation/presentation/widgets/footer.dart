@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/social_media_container.dart';
 import 'package:flutter_conf_colombia/helpers/constants.dart';
@@ -19,29 +21,38 @@ class Footer extends ConsumerWidget {
     Widget socialNetworks() => const SocialMediaContainer();
 
     Widget copyright() => Center(
-          child: Text(
-            appLoc.copyright,
-            style: const TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-        );
+      child: Text(
+        appLoc.copyright,
+        style: const TextStyle(
+          color: Colors.grey,
+        ),
+      ),
+    );
 
-    Widget flutterConfLogo() => Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Icon(
-          FlutterConfLatamIcons.flutteconflatam_text,
-          size: 40,
-          color: Colors.white,
+    Widget flutterConfLogo() => 
+    MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(HomePage.route);
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              FlutterConfLatamIcons.flutteconflatam_text,
+              size: 40,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 15.0),
+            SvgPicture.asset(
+              '${Constants.imagesPath}/FlutterLogo_White.svg',
+              width: 40,
+              height: 40,
+            ),
+          ],
         ),
-        const SizedBox(width: 15.0),
-        SvgPicture.asset(
-          '${Constants.imagesPath}/FlutterLogo_White.svg',
-          width: 40,
-          height: 40,
-        ),
-      ],
+      ),
     );
 
     return ColoredBox(

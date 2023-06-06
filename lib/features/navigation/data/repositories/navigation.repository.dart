@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/cfp/presentation/pages/cfp_page.dart';
+import 'package:flutter_conf_colombia/features/contact/presentation/pages/contact.page.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_colombia/features/navigation/data/models/tab_navigation_item.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:flutter_conf_colombia/features/speakers/presentation/pages/speakers_page.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/pages/sponsors_page.dart';
 import 'package:flutter_conf_colombia/features/tickets/presentation/pages/tickets_page.dart';
@@ -22,12 +24,13 @@ class NavigationRepository {
       TabNavigationItem(
         label: appLoc.home,
         route: HomePage.route,
-        isSelected: true
+        isSelected: true,
+        display: false,
       ),
-      TabNavigationItem(
-        label: appLoc.cfp,
-        route: CFPPage.route,
-      ),
+      // TabNavigationItem(
+      //   label: appLoc.cfp,
+      //   route: CFPPage.route,
+      // ),
       TabNavigationItem(
         label: appLoc.tickets,
         route: TicketsPage.route,
@@ -39,7 +42,14 @@ class NavigationRepository {
       TabNavigationItem(
         label: appLoc.sponsors,
         route: SponsorsPage.route,
-
+      ),
+      TabNavigationItem(
+        label: appLoc.schedule,
+        route: SchedulePage.route,
+      ),
+      TabNavigationItem(
+        label: appLoc.contact,
+        route: ContactPage.route,
       )
     ];
   }

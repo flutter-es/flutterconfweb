@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/custom_tab_controller.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/l
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class Header extends ConsumerStatefulWidget {
 
@@ -25,6 +25,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
     
     final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
     final tabItems = ref.watch(navigationItemsProvider);
+    final visibleTabItems = tabItems.where((t) => t.display!).toList();
 
     return SliverAppBar(
       backgroundColor: Colors.white,
@@ -57,7 +58,15 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                   ),
                   width: currentWidth,
                   height: currentHeight,
-                  child: const FlutterLogoAnimated(),
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(HomePage.route);
+                      },
+                      child: const FlutterLogoAnimated(),
+                    ),
+                  ),
                 );
               },
             ),
@@ -66,22 +75,22 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
             alignment: Alignment.bottomCenter,
             child: TabBar(
               onTap: (index) {
-                // 
-                ref.read(navigationItemsProvider.notifier).selectNavItem(tabItems[index]);
+                final navItem = visibleTabItems[index];
+                ref.read(navigationItemsProvider.notifier).selectNavItem(navItem);
               },
-              controller: CustomTabController(length: tabItems.length, vsync: this).build(),
+              controller: CustomTabController(length: visibleTabItems.length, vsync: this).build(),
               isScrollable: true,
               indicatorWeight: 1.0,
               indicatorColor: Colors.white,
               labelColor: FlutterLatamColors.darkBlue,
               unselectedLabelColor: Colors.grey,
               tabs: [
-                for (final tabItem in tabItems)
+                for (final tabItem in visibleTabItems)
                   Tab(
                     child: Text(
                       tabItem.label,
                       style: TextStyle(
-                        color: tabItem.isSelected! ? FlutterLatamColors.darkBlue : Colors.grey)
+                        color: tabItem.isSelected! ? FlutterLatamColors.darkBlue : Colors.grey),
                     ),
                   ),
               ],
