@@ -8,9 +8,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ItemDrawer extends ConsumerWidget {
 
   const ItemDrawer({
-    required this.item
+    required this.item,
+    required this.onTap
   });
 
+  final Function onTap;
   final TabNavigationItem item;
   
   @override
@@ -29,8 +31,7 @@ class ItemDrawer extends ConsumerWidget {
           height: 60.0,
           child: InkWell(
             onTap: () {
-              Navigator.of(context).pop();
-              ref.read(navigationItemsProvider.notifier).selectNavItem(item);
+              onTap();
             },
             borderRadius: borderRaidus,
             child: Container(

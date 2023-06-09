@@ -4,6 +4,7 @@ import 'package:flutter_conf_colombia/features/home/presentation/widgets/custom_
 import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/language_button.dart';
+import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +20,15 @@ class Header extends ConsumerStatefulWidget {
 }
 
 class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
+
+  @override
+  void initState() {
+    super.initState();
+
+    ref.read(webLocalStorageProvider).initLocalStorage().then((value) {
+      ref.read(navigationItemsProvider.notifier).init();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
