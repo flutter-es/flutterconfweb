@@ -31,7 +31,7 @@ class HomeSectionsRepository {
         builder: (_) => const TicketsContainer(),
       ),
       HomeSection(
-        builder: (_) => const SpeakersContainer(),
+        builder: (_) => SpeakersContainer(),
       ),
       HomeSection(
         builder: (_) => const SponsorsContainer(),
