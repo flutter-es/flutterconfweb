@@ -32,3 +32,9 @@ enum SponsorshipFilter {
   other,
   all
 }
+
+enum SocialMediaLinks {
+  twitter,
+  linkedin,
+  github,
+}

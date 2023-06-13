@@ -1,56 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_conf_colombia/features/speakers/data/models/speaker_social.model.dart';
 
-class SpeakerModel extends StatefulWidget {
+class SpeakerModel {
   final String? name;
   final String? company;
-  final String? twitter;
-  final String? linkedin;
   final String? photo;
-  final DocumentSnapshot documentSnapshot;
+  final String? description;
+  final String? title;
+  final List<SpeakerSocial>? socialMediaLinks;
+
   SpeakerModel({
-    required this.documentSnapshot,
     this.name,
+    this.title,
     this.company,
-    this.twitter,
-    this.linkedin,
     this.photo,
+    this.description,
+    this.socialMediaLinks,
   });
 
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
-
-  factory SpeakerModel.fromFirestore(
-    DocumentSnapshot<Map<String, dynamic>> snapshot,
-    SnapshotOptions? options,
-  ) {
-    final data = snapshot.data();
+  factory SpeakerModel.fromFirestore(Map<String, dynamic> json) {
     return SpeakerModel(
-      name: data?['name'].toString(),
-      company: data?['company'].toString(),
-      twitter: data?['twitter'].toString(),
-      linkedin: data?['linkedin'].toString(),
-      photo: data?['photo'].toString(),
-      documentSnapshot: data?['documentSnapshot'] as DocumentSnapshot,
+      name: json['name'].toString(),
+      company: json['company'].toString(),
+      title: json['title'].toString(),
+      photo: json['photo'].toString(),
+      description: json['description'].toString(),
+      socialMediaLinks: (json['social_media_links'] as List<dynamic>).map(
+        (social) => SpeakerSocial.fromFirestore(social as Map<String, dynamic>)
+      ).toList()
     );
   }
-
-  /*SpeakerModel copyWith({
-    String? name,
-    String? company,
-    String? twitter,
-    String? linkedin,
-    String? photo,
-  }) {
-    return SpeakerModel(
-      name: name ?? this.name,
-      company: company ?? this.company,
-      twitter: twitter ?? this.twitter,
-      linkedin: linkedin ?? this.linkedin,
-      photo: photo ?? this.photo,
-    );
-  }*/
 }
+
+
