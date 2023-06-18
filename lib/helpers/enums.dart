@@ -4,9 +4,7 @@ enum FlutterLogoAnimations {
   flutterlogo,
 }
 
-enum FlutterWarningAnimations {
-  flutterwarning
-}
+enum FlutterWarningAnimations { flutterwarning }
 
 enum FlutterDashAnimations {
   flutterdashwave,
@@ -24,14 +22,7 @@ enum SponsorshipLevels {
   other,
 }
 
-enum SponsorshipFilter {
-  platinum,
-  gold,
-  silver,
-  bronze,
-  other,
-  all
-}
+enum SponsorshipFilter { platinum, gold, silver, bronze, other, all }
 
 enum SocialMediaLinks {
   twitter,

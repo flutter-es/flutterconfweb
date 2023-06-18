@@ -13,13 +13,13 @@ class SponsorsContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig = SponsorsResponsiveConfig.getSponsorsBannerConfig(context);
 
     return Container(
       color: FlutterLatamColors.sponsorsBanner,
-      padding: FlutterConfLatamStyles.bannerPadding,
+      margin: FlutterConfLatamStyles.smallMargin,
+      padding: FlutterConfLatamStyles.smallPadding,
       alignment: Alignment.center,
       child: Column(
         children: [
@@ -28,22 +28,35 @@ class SponsorsContainer extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Text(appLoc.ourSponsors,
-                  style: TextStyle(color: Colors.white, fontSize: uiConfig.titleSize)
+                child: Text(
+                  appLoc.ourSponsors,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: uiConfig.titleSize,
+                  ),
                 ),
               ),
             ],
           ),
           FlutterConfLatamStyles.smallVGap,
-          SponsorsRegion(level: SponsorshipLevels.platinum,),
-          SponsorsRegion(level: SponsorshipLevels.gold,),
-          SponsorsRegion(level: SponsorshipLevels.silver,),
-          SponsorsRegion(level: SponsorshipLevels.bronze,),
+          SponsorsRegion(
+            level: SponsorshipLevels.platinum,
+          ),
+          SponsorsRegion(
+            level: SponsorshipLevels.gold,
+          ),
+          SponsorsRegion(
+            level: SponsorshipLevels.silver,
+          ),
+          SponsorsRegion(
+            level: SponsorshipLevels.bronze,
+          ),
           FlutterConfLatamStyles.smallVGap,
           ElevatedButton(
             onPressed: () {},
@@ -54,13 +67,17 @@ class SponsorsContainer extends ConsumerWidget {
             ),
             child: Padding(
               padding: uiConfig.buttonPadding,
-              child: Text(appLoc.becomeASponsor,
-                style: TextStyle(color: Colors.black, fontSize: uiConfig.buttonLabelSize),
+              child: Text(
+                appLoc.becomeASponsor,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: uiConfig.buttonLabelSize,
+                ),
               ),
             ),
           )
         ],
-      )
+      ),
     );
   }
 }

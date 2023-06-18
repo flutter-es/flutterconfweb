@@ -44,5 +44,7 @@
   "sponsorshipBronze":"Bronze",
   "errorPageTitle": "Uh-oh, sorry!",
   "errorPageSubtitle": "It wasn't Dash's fault - I swear!",
-  "errorReturHomeButton": "Return Home"
+  "errorReturHomeButton": "Return Home",
+  "speakers": "Speakers",
+  "firstSpeakers": "Meet our first speakers!"
 }

@@ -44,5 +44,7 @@
   "sponsorshipBronze":"Cobre",
   "errorPageTitle": "¡Oh, disculpa!",
   "errorPageSubtitle": "¡No fue culpa de Dash, en serio!",
-  "errorReturHomeButton": "Volver al inicio"
+  "errorReturHomeButton": "Volver al inicio",
+  "speakers": "Expositores",
+  "firstSpeakers": "¡Conoce a nuestros primeros expositores!"
 }
