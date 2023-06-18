@@ -8,6 +8,7 @@ import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
+import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -75,7 +76,7 @@ class TicketsContainer extends ConsumerWidget {
                     fontSize: config.ticketButtonLabelSize,
                     iconPadding: config.ticketButtonIconPadding,
                   ),
-                  const SizedBox(height: 20),
+                  FlutterConfLatamStyles.smallVGap,
                   const ComingSoonContainer()
                 ],
               ),

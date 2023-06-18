@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_page_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/comingsoon_container.dart';
+import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +15,7 @@ class SchedulePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
+    final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig = SchedulePageResponsiveConfig.getSchedulePageResponsiveConfig(context);
 
     return SingleChildScrollView(
@@ -31,22 +33,24 @@ class SchedulePage extends ConsumerWidget {
                     size: uiConfig.headerIconSize, color: FlutterLatamColors.blueText,
                   ),
                   uiConfig.headerGap,
-                  Text('Schedule', 
+                  Text(appLoc.schedule, 
                     textAlign: TextAlign.center, 
                     style: uiConfig.headerStyle,
                   ),
                 ],
               ),
               uiConfig.pageVerticalGap,
-              Text("We are putting together an amazing agenda for you to enjoy and learn, full of great technical Flutter talks, imparted by a top-notch line-up of speakers at the top of their game!",
+              ComingSoonContainer(),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.schedulePageContent,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-              Text('PLEASE CHECK BACK AGAIN SOON WHEN WE WILL HAVE THE FULL SCHEDULE AVAILABLE', textAlign: TextAlign.center,
+              Text(appLoc.schedulePageSubcontent, textAlign: TextAlign.center,
                 style: uiConfig.subheaderStyle
               ),
               uiConfig.pageVerticalGap,
-              ComingSoonContainer()
+              
             ].animate(
               interval: 50.ms,
             ).slideY(

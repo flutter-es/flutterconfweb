@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
+import 'package:flutter_conf_colombia/features/sponsors/presentation/pages/sponsors_page.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/responsiveness/sponsors_responsive.config.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/sponsors_region.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
@@ -18,8 +20,7 @@ class SponsorsContainer extends ConsumerWidget {
 
     return Container(
       color: FlutterLatamColors.sponsorsBanner,
-      margin: FlutterConfLatamStyles.smallMargin,
-      padding: FlutterConfLatamStyles.smallPadding,
+      padding: FlutterConfLatamStyles.bannerPadding,
       alignment: Alignment.center,
       child: Column(
         children: [
@@ -45,21 +46,23 @@ class SponsorsContainer extends ConsumerWidget {
             ],
           ),
           FlutterConfLatamStyles.smallVGap,
-          SponsorsRegion(
+          const SponsorsRegion(
             level: SponsorshipLevels.platinum,
           ),
-          SponsorsRegion(
+          const SponsorsRegion(
             level: SponsorshipLevels.gold,
           ),
-          SponsorsRegion(
+          const SponsorsRegion(
             level: SponsorshipLevels.silver,
           ),
-          SponsorsRegion(
+          const SponsorsRegion(
             level: SponsorshipLevels.bronze,
           ),
           FlutterConfLatamStyles.smallVGap,
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(SponsorsPage.route);
+            },
             style: ElevatedButton.styleFrom(
               elevation: 0,
               shape: const StadiumBorder(),

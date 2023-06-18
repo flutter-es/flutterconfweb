@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/comingsoon_container.dart';
 import 'package:flutter_conf_colombia/features/tickets/presentation/responsiveness/ticket_page_responsive_config.dart';
+import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
@@ -17,6 +18,7 @@ class TicketsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
+    final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig = TicketPageResponsiveConfig.getTicketPageResponsiveConfig(context);
 
     return SingleChildScrollView(
@@ -34,24 +36,16 @@ class TicketsPage extends ConsumerWidget {
                     size: uiConfig.headerIconSize, color: FlutterLatamColors.blueText,
                   ),
                   uiConfig.headerGap,
-                  Text('Tickets', 
+                  Text(appLoc.tickets, 
                     textAlign: TextAlign.center, 
                     style: uiConfig.headerStyle,
                   ),
                 ],
               ),
               uiConfig.pageVerticalGap,
-              Text("Curtain up for FlutterConf LATAM '23, which will take place in 2023 in the iconic city of Medellin, in Colombia. Two full days of multiple tracks with in-depth tech talks, workshops, panels, and more. A place where Flutter & Dart experts, GDEs, & hundreds of FlutterDevs will converge in one single place. Your ticket grants access to FlutterConf LATAM 2023.",
-                textAlign: TextAlign.center,
-              ),
-              uiConfig.pageVerticalGap,
-              Text('PLEASE CHECK BACK AGAIN SOON WHEN WE WILL HAVE THE TICKET PURCHASE SYSTEM AVAILABLE!', textAlign: TextAlign.center,
-                style: uiConfig.subheaderStyle
-              ),
-              uiConfig.pageVerticalGap,
               CircleRoundIconButton(
                 icon: FlutterConfLatamIcons.ticket,
-                label: 'Buy your Ticket',
+                label: appLoc.getYourTicket,
                 iconColor: Colors.white,
                 backgroundColor: FlutterLatamColors.lightBlue,
                 labelColor: Colors.white,
@@ -64,6 +58,53 @@ class TicketsPage extends ConsumerWidget {
               ),
               FlutterConfLatamStyles.mediumVGap,
               const ComingSoonContainer(),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.ticketsPageTitle1, textAlign: TextAlign.center, style: uiConfig.subheaderStyle),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.ticketsPageParagraph1,
+                textAlign: TextAlign.center,
+              ),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.ticketsPageTitle2,
+                textAlign: TextAlign.center,
+                style: uiConfig.subheaderStyle,
+              ),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.ticketsPageSubtitleExpert,
+                textAlign: TextAlign.center,
+                style: uiConfig.paragraphHeaderStyle,
+              ),
+              FlutterConfLatamStyles.smallVGap,
+              Text(appLoc.ticketsPageParagraphExperts,
+                textAlign: TextAlign.center,
+              ),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.ticketsPageSubtitleNetworking,
+                textAlign: TextAlign.center,
+                style: uiConfig.paragraphHeaderStyle,
+              ),
+              FlutterConfLatamStyles.smallVGap,
+              Text(appLoc.ticketsPageParagraphNetworking,
+                textAlign: TextAlign.center,
+              ),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.ticketsPageSubtitleSwag,
+                textAlign: TextAlign.center,
+                style: uiConfig.paragraphHeaderStyle,
+              ),
+              FlutterConfLatamStyles.smallVGap,
+              Text(appLoc.ticketsPageParagraphSwag,
+                textAlign: TextAlign.center,
+              ),
+              uiConfig.pageVerticalGap,
+              Text(appLoc.ticketsPageTitle3,
+                textAlign: TextAlign.center,
+                style: uiConfig.paragraphHeaderStyle,
+              ),
+              Text(appLoc.ticketsPageBottomParagraph,
+                textAlign: TextAlign.center,
+              ),
+              uiConfig.pageVerticalGap,
             ].animate(
               interval: 50.ms,
             ).slideY(
