@@ -70,6 +70,7 @@ class SponsorsPage extends ConsumerWidget {
                     fontSize: uiConfig.ticketButtonLabelSize,
                     iconPadding: uiConfig.ticketButtonIconPadding,
                     onTap: () {
+                      Utils.launchUrlLink(appLoc.sponsorshipPackageLink);
                     },
                   ),
                   uiConfig.pageVerticalGap,
