@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/providers/sponsors.providers.dart';
+import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/sponsor_widget.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/sponsors_region_header.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
@@ -34,9 +35,7 @@ class SponsorsRegion extends ConsumerWidget {
                     children: List.generate(sponsors.length, (index) {
 
                       final singleSponsor = sponsors[index];
-                      return SvgPicture.asset(singleSponsor.imgUrl,
-                        width: 100, height: 100,
-                      );
+                      return SponsorWidget(sponsor: singleSponsor);
                     }),
                   ),
                   FlutterConfLatamStyles.mediumVGap,

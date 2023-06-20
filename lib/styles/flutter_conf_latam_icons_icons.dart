@@ -14,6 +14,7 @@
 /// 
 ///
 import 'package:flutter/widgets.dart';
+import 'package:flutter_conf_colombia/helpers/enums.dart';
 
 class FlutterConfLatamIcons {
   FlutterConfLatamIcons._();
@@ -33,4 +34,18 @@ class FlutterConfLatamIcons {
   static const IconData tiktok = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData twitter = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData youtube = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData github = IconData(0xf308, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+
+  static IconData getIconFromEnum(SocialMediaLinks social) {
+    switch(social) {
+      case SocialMediaLinks.twitter:
+        return twitter;
+      case SocialMediaLinks.linkedin:
+        return linkedin;
+      case SocialMediaLinks.github:
+        return github;
+      default:
+        return flutter;
+    }
+  }
 }
