@@ -34,7 +34,7 @@ class HomeContainer extends ConsumerWidget {
           Positioned.fill(
             child: Opacity(
               opacity: 0.5,
-              child: Image.asset('${Constants.imagesPath}/topbanner.png',
+              child: Image.asset('${Constants.imagesPath}/topbanner.jpg',
                 fit: BoxFit.cover,
               ),
             ),

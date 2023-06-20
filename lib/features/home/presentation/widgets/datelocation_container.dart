@@ -17,7 +17,7 @@ class DateLocationContainer extends ConsumerWidget {
     return Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('${Constants.imagesPath}/medellin.png'),
+            image: AssetImage('${Constants.imagesPath}/medellin.jpg'),
               fit: BoxFit.cover,
             ),
         ),

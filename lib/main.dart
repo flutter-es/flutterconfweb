@@ -10,12 +10,13 @@ import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/routes/app_routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
+//import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  setUrlStrategy(PathUrlStrategy());
+  // TODO: reevaluar la estrategia de ruta de web
+  // setUrlStrategy(PathUrlStrategy());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

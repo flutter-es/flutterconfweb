@@ -30,7 +30,7 @@ class NavigationResponsiveConfig {
         maxHeaderHeight: 120,
         languageButtonWidth: 100,
         footerLayoutDirection: Axis.vertical,
-        footerItemsGap: FlutterConfLatamStyles.smallVGap,
+        footerItemsGap: FlutterConfLatamStyles.xsmallVGap,
         showLogoOnFooter: false,
         footerPadding: 10,
       ),

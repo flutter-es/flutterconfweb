@@ -3,6 +3,7 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 
 class FlutterConfLatamStyles {
 
+  static const SizedBox xsmallVGap = SizedBox(height: 10);
   static const SizedBox smallVGap = SizedBox(height: 20);
   static const SizedBox mediumVGap = SizedBox(height: 40);
   static const SizedBox largeVGap = SizedBox(height: 60);
