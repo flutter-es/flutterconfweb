@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
 import 'package:flutter_conf_colombia/features/sponsors/data/models/sponsor.model.dart';
-import 'package:flutter_conf_colombia/features/sponsors/data/models/sponsorshiplevel.model.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SponsorsRepository {
