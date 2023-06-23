@@ -17,9 +17,9 @@ class SponsorWidget extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          Utils.launchUrlLink(sponsor.link);
+          Utils.launchUrlLink(sponsor.url);
         },
-        child: SvgPicture.asset(sponsor.imgUrl,
+        child: SvgPicture.network(sponsor.logo,
           width: 100, height: 100,
         ),
       ),

@@ -1,5 +1,7 @@
-import 'package:flutter_animate/flutter_animate.dart';
+import 'dart:async';
+import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
 import 'package:flutter_conf_colombia/features/sponsors/data/models/sponsor.model.dart';
+import 'package:flutter_conf_colombia/features/sponsors/data/models/sponsorshiplevel.model.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,27 +13,22 @@ class SponsorsRepository {
 
   Future<List<SponsorModel>> getSponsors() {
 
-    return Future.delayed(Duration.zero, () {
-      return const [
-        SponsorModel(
-          imgUrl: './assets/images/sponsors/flutter_logo.svg', 
-          name: 'Flutter', 
-          level: SponsorshipLevels.platinum, 
-          link: 'https://flutter.dev',
-        ),
-        SponsorModel(
-          imgUrl: './assets/images/sponsors/invertase_logo.svg', 
-          name: 'Invertase', 
-          level: SponsorshipLevels.platinum, 
-          link: 'https://invertase.io/',
-        ),
-        SponsorModel(
-          imgUrl: './assets/images/sponsors/bancolombia_logo.svg', 
-          name: 'Bancolombia', 
-          level: SponsorshipLevels.platinum, 
-          link: 'https://www.bancolombia.com/',
-        ),
-      ];
+    Completer<List<SponsorModel>> sponsorsCompleter = Completer();
+
+    final dbInstance = ref.read(dbProvider);
+    dbInstance.collection('sponsors').get().then((snapshot) async {
+        final sponsorsList = snapshot.docs.map((level) => 
+          SponsorModel.fromFirestore(level.data())
+        ).toList();
+
+      sponsorsCompleter.complete(sponsorsList);
+
+    }).catchError((error) {
+      sponsorsCompleter.completeError(error.toString());
+    }).onError((error, stackTrace) {
+      sponsorsCompleter.completeError(error.toString());
     });
+
+    return sponsorsCompleter.future;
   }
 }
