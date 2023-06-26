@@ -20,7 +20,7 @@ class SpeakersList extends ConsumerWidget {
             spacing: 10,
             runSpacing: 64,
             children: [
-              for (var speaker in speakersList)
+              for (var speaker in speakersList.where((s) => s.display! == true))
                 SpeakerBadge(speaker: speaker)
             ].animate(
               interval: 100.ms,

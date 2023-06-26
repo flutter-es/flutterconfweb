@@ -10,6 +10,7 @@ class SpeakerModel {
   final String? title;
   final String? country;
   final List<SpeakerSocial>? socialMediaLinks;
+  final bool? display;
 
   SpeakerModel({
     this.name,
@@ -19,6 +20,7 @@ class SpeakerModel {
     this.description,
     this.country,
     this.socialMediaLinks,
+    this.display,
   });
 
   factory SpeakerModel.fromFirestore(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class SpeakerModel {
       photo: json['photo'].toString(),
       description: json['description'].toString(),
       country: json['country_flag'].toString(),
+      display: bool.parse(json['display'].toString()),
       socialMediaLinks: (json['social_media_links'] as List<dynamic>)
           .map((social) =>
               SpeakerSocial.fromFirestore(social as Map<String, dynamic>))
