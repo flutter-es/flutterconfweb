@@ -15,7 +15,8 @@ class TicketSectionRepository {
     return TicketSectionModel(
       slogan: appLoc.ticketBannerSlogan,
       ticketBtnLabel: appLoc.getYourTicket,
-      ticketLink: 'https://ti.to',
+      ticketLink: 'https://ti.to/flutterconflatam/flutterconflatam2023',
+      announcement: appLoc.ticketsAnnouncementMessage,
     );
   }
 }

@@ -22,13 +22,13 @@ class HomeSectionsRepository {
         builder: (_) => const DateLocationContainer(),
       ),
       HomeSection(
-        builder: (_) => const CfpContainer(),
+        builder: (_) => const TicketsContainer(),
       ),
       HomeSection(
         builder: (_) => const EventFeaturesContainer(),
       ),
       HomeSection(
-        builder: (_) => const TicketsContainer(),
+        builder: (_) => const CfpContainer(),
       ),
       HomeSection(
         builder: (_) => SpeakersContainer(),

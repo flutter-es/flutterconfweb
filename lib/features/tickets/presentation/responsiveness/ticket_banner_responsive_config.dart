@@ -17,6 +17,8 @@ class TicketBannerResponsiveConfig {
     required this.ticketButtonAlignment, 
     required this.ticketButtonColumnCrossAxis, 
     required this.ticketButtonColumnMainAxis,
+    required this.ticketAnnouncementSize,
+    required this.ticketAnnouncementAlignment,
 });
 
 
@@ -31,7 +33,9 @@ class TicketBannerResponsiveConfig {
   final double ticketButtonLabelSize;
   final double ticketButtonIconPadding;
   final double ticketButtonMargin;
+  final double ticketAnnouncementSize;
   final Alignment ticketButtonAlignment;
+  final TextAlign ticketAnnouncementAlignment;
   final CrossAxisAlignment ticketButtonColumnCrossAxis;
   final MainAxisAlignment ticketButtonColumnMainAxis;
 
@@ -53,6 +57,8 @@ class TicketBannerResponsiveConfig {
         ticketButtonAlignment: Alignment.center,
         ticketButtonColumnCrossAxis: CrossAxisAlignment.center,
         ticketButtonColumnMainAxis: MainAxisAlignment.center,
+        ticketAnnouncementSize: 16,
+        ticketAnnouncementAlignment: TextAlign.center,
       ),
       tablet: const TicketBannerResponsiveConfig(
         bannerSize: 600,
@@ -69,6 +75,8 @@ class TicketBannerResponsiveConfig {
         ticketButtonAlignment: Alignment.bottomRight,
         ticketButtonColumnCrossAxis: CrossAxisAlignment.end,
         ticketButtonColumnMainAxis: MainAxisAlignment.end,
+        ticketAnnouncementSize: 16,
+        ticketAnnouncementAlignment: TextAlign.right,
       ),
       desktop: const TicketBannerResponsiveConfig(
         bannerSize: 600,
@@ -85,6 +93,8 @@ class TicketBannerResponsiveConfig {
         ticketButtonAlignment: Alignment.bottomRight,
         ticketButtonColumnCrossAxis: CrossAxisAlignment.end,
         ticketButtonColumnMainAxis: MainAxisAlignment.end,
+        ticketAnnouncementSize: 24,
+        ticketAnnouncementAlignment: TextAlign.right,
       ),
     );
 
