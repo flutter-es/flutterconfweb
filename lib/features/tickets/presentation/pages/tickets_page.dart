@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/comingsoon_container.dart';
+import 'package:flutter_conf_colombia/features/tickets/presentation/providers/ticketfeature_providers.dart';
 import 'package:flutter_conf_colombia/features/tickets/presentation/responsiveness/ticket_page_responsive_config.dart';
+import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
@@ -18,6 +20,7 @@ class TicketsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
+    final ticketSectionData = ref.watch(ticketSectionProvider);
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig = TicketPageResponsiveConfig.getTicketPageResponsiveConfig(context);
 
@@ -54,10 +57,25 @@ class TicketsPage extends ConsumerWidget {
                 fontSize: uiConfig.ticketButtonLabelSize,
                 iconSize: uiConfig.ticketButtonIconSize,
                 iconPadding: uiConfig.ticketButtonIconPadding,
-                onTap: null,
+                onTap: () {
+                  Utils.launchUrlLink(ticketSectionData.ticketLink);
+                },
               ),
               FlutterConfLatamStyles.mediumVGap,
-              const ComingSoonContainer(),
+              Container(
+                decoration: BoxDecoration(
+                  color: FlutterLatamColors.brightYellow.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(50)
+                ),
+                padding: FlutterConfLatamStyles.largePadding,
+                child: Text(ticketSectionData.announcement,
+                  textAlign: TextAlign.center,
+                  style: uiConfig.paragraphHeaderStyle.copyWith(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              FlutterConfLatamStyles.mediumVGap,
               uiConfig.pageVerticalGap,
               Text(appLoc.ticketsPageTitle1, textAlign: TextAlign.center, style: uiConfig.subheaderStyle),
               uiConfig.pageVerticalGap,
