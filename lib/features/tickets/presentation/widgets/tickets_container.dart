@@ -55,6 +55,24 @@ class TicketsContainer extends ConsumerWidget {
               ),
             ),
           ),
+          
+          Positioned(
+            bottom: config.dashOffset,
+            left: 0,
+            top: 0,
+            right: 0,
+            child: Align(
+              alignment: config.dashAlignment,
+              child: SizedBox(
+                width: config.dashSize,
+                height: config.dashSize,
+                child: const FlutterDashAnimation(
+                  animation: FlutterDashAnimations.flutterdashticket,
+                ),
+              ),
+            ),
+          ),
+          
           Align(
             alignment: config.ticketButtonAlignment,
             child: Container(
@@ -94,22 +112,7 @@ class TicketsContainer extends ConsumerWidget {
               ),
             ),
           ),
-          Positioned(
-            bottom: config.dashOffset,
-            left: 0,
-            top: 0,
-            right: 0,
-            child: Align(
-              alignment: config.dashAlignment,
-              child: SizedBox(
-                width: config.dashSize,
-                height: config.dashSize,
-                child: const FlutterDashAnimation(
-                  animation: FlutterDashAnimations.flutterdashticket,
-                ),
-              ),
-            ),
-          ),
+          
         ],
       ),
     );
