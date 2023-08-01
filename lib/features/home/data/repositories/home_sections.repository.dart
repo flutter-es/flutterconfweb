@@ -28,10 +28,7 @@ class HomeSectionsRepository {
         builder: (_) => const EventFeaturesContainer(),
       ),
       HomeSection(
-        builder: (_) => const CfpContainer(),
-      ),
-      HomeSection(
-        builder: (_) => SpeakersContainer(),
+        builder: (_) => const SpeakersContainer(),
       ),
       HomeSection(
         builder: (_) => const SponsorsContainer(),
