@@ -1,4 +1,5 @@
 import 'package:flutter_conf_colombia/features/cfp/presentation/widgets/cfp_container.dart';
+import 'package:flutter_conf_colombia/features/communities/presentation/widgets/communities_container.dart';
 import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/datelocation_container.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/event_features_container.dart';
@@ -32,6 +33,9 @@ class HomeSectionsRepository {
       ),
       HomeSection(
         builder: (_) => const SponsorsContainer(),
+      ),
+      HomeSection(
+        builder: (_) => const CommunitiesContainer(),
       ),
     ];
   }

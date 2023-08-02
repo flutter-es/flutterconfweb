@@ -6,11 +6,17 @@ class SpeakersResponsiveConfig {
   SpeakersResponsiveConfig(
       {required this.titleSize,
       required this.buttonLabelSize,
-      required this.buttonPadding});
+      required this.buttonPadding,
+      required this.bannerMargin,
+      required this.bannerPadding,
+    }
+  );
 
   final double titleSize;
   final double buttonLabelSize;
   final EdgeInsets buttonPadding;
+  final EdgeInsets bannerPadding;
+  final EdgeInsets bannerMargin;
 
   static SpeakersResponsiveConfig getSpeakersBannerConfig(BuildContext ctxt) {
     final config = getValueForScreenType(
@@ -19,16 +25,22 @@ class SpeakersResponsiveConfig {
         titleSize: 15,
         buttonLabelSize: 20,
         buttonPadding: FlutterConfLatamStyles.smallPadding,
+        bannerPadding: FlutterConfLatamStyles.mediumPadding,
+        bannerMargin: FlutterConfLatamStyles.mediumMargin,
       ),
       tablet: SpeakersResponsiveConfig(
         titleSize: 20,
         buttonLabelSize: 20,
         buttonPadding: FlutterConfLatamStyles.smallPadding,
+        bannerPadding: FlutterConfLatamStyles.mediumPadding,
+        bannerMargin: FlutterConfLatamStyles.mediumMargin,
       ),
       desktop: SpeakersResponsiveConfig(
         titleSize: 30,
         buttonLabelSize: 30,
         buttonPadding: FlutterConfLatamStyles.mediumPadding,
+        bannerPadding: FlutterConfLatamStyles.largePadding,
+        bannerMargin: FlutterConfLatamStyles.largeMargin,
       ),
     );
 

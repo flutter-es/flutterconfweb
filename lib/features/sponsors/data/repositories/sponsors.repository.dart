@@ -11,17 +11,17 @@ class SponsorsRepository {
 
   Future<List<SponsorModel>> getSponsors() {
 
-    Completer<List<SponsorModel>> sponsorsCompleter = Completer();
+    final sponsorsCompleter = Completer<List<SponsorModel>>();
 
     final dbInstance = ref.read(dbProvider);
     dbInstance.collection('sponsors').get().then((snapshot) async {
         final sponsorsList = snapshot.docs.map((level) => 
-          SponsorModel.fromFirestore(level.data())
+          SponsorModel.fromFirestore(level.data()),
         ).toList();
 
       sponsorsCompleter.complete(sponsorsList);
 
-    }).catchError((error) {
+    }).catchError((dynamic error) {
       sponsorsCompleter.completeError(error.toString());
     }).onError((error, stackTrace) {
       sponsorsCompleter.completeError(error.toString());

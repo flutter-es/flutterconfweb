@@ -24,15 +24,14 @@ class SpeakersContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     
     final appLoc = ref.watch(appLocalizationsProvider);
+    final config = SpeakersResponsiveConfig.getSpeakersBannerConfig(context);
     
     return Container(
-      margin: FlutterConfLatamStyles.largeMargin,
-      padding: FlutterConfLatamStyles.largePadding,
+      margin: config.bannerMargin,
+      padding: config.bannerPadding,
       alignment: Alignment.center,
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Color(0xffffffff),
-      ),
+      color: Colors.white,
       child: Column(
         children: [
           Text(
