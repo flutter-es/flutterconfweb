@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/communities/presentation/providers/communities_provider.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

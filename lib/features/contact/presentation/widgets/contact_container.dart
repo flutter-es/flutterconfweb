@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/helpers/ui_extensions.dart';
 
 class ContactContainer extends StatelessWidget {
   const ContactContainer({super.key});
