@@ -6,7 +6,6 @@ import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/spo
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 
 class SponsorsRegion extends ConsumerWidget {
 
@@ -30,7 +29,6 @@ class SponsorsRegion extends ConsumerWidget {
               SponsorsRegionHeader(level: level),
               FlutterConfLatamStyles.mediumVGap,
                   Wrap(
-                    direction: Axis.horizontal,
                     alignment: WrapAlignment.center,
                     runAlignment: WrapAlignment.center,
                     children: List.generate(sponsors.length, (index) {

@@ -71,6 +71,7 @@
   "sponsorshipGold":"Gold",
   "sponsorshipSilver":"Silver",
   "sponsorshipBronze":"Bronze",
+  "sponsorshipInKind": "In-Kind Sponsorship",
   "errorPageTitle": "Uh-oh, sorry!",
   "errorPageSubtitle": "It wasn't Dash's fault - I swear!",
   "errorReturHomeButton": "Return Home",

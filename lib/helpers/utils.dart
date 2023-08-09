@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/cfp/presentation/responsiveness/cfp_responsive_config.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -26,6 +24,8 @@ class Utils {
         return FlutterLatamColors.silver;
       case SponsorshipLevels.bronze:
         return FlutterLatamColors.bronze;
+      case SponsorshipLevels.inkind:
+        return Colors.blueAccent;
       case SponsorshipLevels.other:
         return Colors.black;
     }
@@ -41,6 +41,8 @@ class Utils {
         return loc.sponsorshipSilver;
       case SponsorshipLevels.bronze:
         return loc.sponsorshipBronze;
+      case SponsorshipLevels.inkind:
+        return loc.sponsorshipInKind;
       case SponsorshipLevels.other:
         return '';
     }

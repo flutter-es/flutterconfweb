@@ -19,6 +19,7 @@ enum SponsorshipLevels {
   gold,
   silver,
   bronze,
+  inkind,
   other,
 }
 

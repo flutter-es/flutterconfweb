@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SponsorsRegionHeader extends ConsumerWidget {

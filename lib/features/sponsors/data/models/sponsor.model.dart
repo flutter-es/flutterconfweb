@@ -9,11 +9,6 @@ class SponsorModel {
     required this.url,
   });
 
-  final String logo;
-  final String name;
-  final String url;
-  final SponsorshipLevels level;
-
   factory SponsorModel.fromFirestore(Map<String, dynamic> json) {
     return SponsorModel(
       logo: json['logo'].toString(), 
@@ -22,4 +17,9 @@ class SponsorModel {
       url: json['url'].toString(),
     );
   }
+
+  final String logo;
+  final String name;
+  final String url;
+  final SponsorshipLevels level;
 }

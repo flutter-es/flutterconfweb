@@ -63,6 +63,7 @@
   "sponsorshipGold":"Oro",
   "sponsorshipSilver":"Plata",
   "sponsorshipBronze":"Cobre",
+  "sponsorshipInKind": "Patrocinio en Especie",
   "sponsorsTitle": "Patrocinadores",
   "sponsorsSubTitle": "¡Gracias a nuestros increíbles patrocinadores!",
   "sponsorsParagraphTop": "Extendemos nuestro más sincero agradecimiento a nuestros valiosos patrocinadores que han apoyado generosamente Flutter Conf Latam 2023. Su compromiso y dedicación inquebrantables hacen posible este evento, y estamos orgullosos de tenerlos como parte de nuestra comunidad. Únase a nosotros para reconocer sus contribuciones y muestre su apoyo a estas destacadas organizaciones.",
