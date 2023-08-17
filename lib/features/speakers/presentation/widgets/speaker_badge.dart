@@ -23,6 +23,7 @@ class SpeakerBadge extends StatelessWidget {
                   speaker.photo!,
                   width: 100,
                   height: 100,
+                  fit: BoxFit.cover,
                 ),
               ),
               FlutterConfLatamStyles.smallVGap,
