@@ -3,6 +3,12 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 
 class FlutterConfLatamStyles {
 
+  static const double xsmallRadius = 12;
+  static const double smallRadius = 24;
+  static const double mediumRadius = 40;
+  static const double largeRadius = 64;
+  static const double xlargeRadius = 80;
+
   static const SizedBox xsmallVGap = SizedBox(height: 10);
   static const SizedBox smallVGap = SizedBox(height: 20);
   static const SizedBox mediumVGap = SizedBox(height: 40);

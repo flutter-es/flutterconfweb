@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
+import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -46,5 +49,63 @@ class Utils {
       case SponsorshipLevels.other:
         return '';
     }
+  }
+  
+  static bool isMobile() {
+    return getDeviceType(MediaQuery.sizeOf(Utils.mainNav.currentContext!)) == DeviceScreenType.mobile;
+  }
+
+  static void showSpeakerInfo(Widget speakerContent) {
+    showUIModal(Utils.mainNav.currentContext!,
+      Container(
+        margin: isMobile() ? FlutterConfLatamStyles.largeMargin.copyWith(
+          left: 0, right: 0, bottom: 0,
+        ) : FlutterConfLatamStyles.largeMargin,
+        padding: FlutterConfLatamStyles.bannerPadding,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: isMobile() ? const BorderRadius.only(
+            topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
+            topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
+          ) : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+        ),
+        child: speakerContent,  
+      ),
+    );
+  }
+
+  static void showUIModal(
+    BuildContext context, 
+    Widget child,
+    { bool dismissible = false, Function? onDismissed, }) {
+   
+    if (isMobile()) {
+      showModalBottomSheet(
+        isDismissible: dismissible,
+        isScrollControlled: true,
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (ctxt) {
+          return child;
+        }
+      ).whenComplete(() {
+        onDismissed!();
+      });
+    }
+    else {
+      showDialog(
+        context: context,
+        builder: (ctxt) {
+          return FractionallySizedBox(
+            widthFactor: 0.5,
+            heightFactor: 0.8,
+            child: child
+          );
+        }
+      ).whenComplete(() {
+        onDismissed!();
+      });
+    }
+    
   }
 }
