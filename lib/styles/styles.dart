@@ -8,6 +8,7 @@ class FlutterConfLatamStyles {
   static const SizedBox mediumVGap = SizedBox(height: 40);
   static const SizedBox largeVGap = SizedBox(height: 60);
 
+  static const SizedBox xsmallHGap = SizedBox(width: 10);
   static const SizedBox smallHGap = SizedBox(width: 20);
   static const SizedBox mediumHGap = SizedBox(width: 40);
   static const SizedBox largeHGap = SizedBox(width: 60);
@@ -33,6 +34,11 @@ class FlutterConfLatamStyles {
   static const TextStyle h5 = TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
   static const TextStyle h6 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
   static const TextStyle h7 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h8 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
 
-
+  static const double xsmallRadius = 12;
+  static const double smallRadius = 24;
+  static const double mediumRadius = 40;
+  static const double largeRadius = 64;
+  static const double xlargeRadius = 80;
 }

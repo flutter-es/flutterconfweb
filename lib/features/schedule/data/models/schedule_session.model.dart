@@ -1,0 +1,21 @@
+import 'package:flutter_conf_colombia/features/schedule/data/models/session.model.dart';
+import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
+
+class ScheduleSessionModel {
+
+  const ScheduleSessionModel({
+    required this.id,
+    required this.speakers,
+    required this.dateTime,
+    required this.duration,
+    required this.room,
+    required this.session,
+  });
+
+  final String id;
+  final List<SpeakerModel> speakers;
+  final SessionModel session;
+  final DateTime dateTime;
+  final Duration duration;
+  final String room;
+}
