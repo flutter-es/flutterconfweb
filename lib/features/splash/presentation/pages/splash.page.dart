@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     timer = Timer(2.seconds, () {
-      GoRouter.of(context).go(HomePage.route);
+      Router.neglect(context, () => GoRouter.of(context).go(HomePage.route)); 
     });
   }
 
