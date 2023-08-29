@@ -14,7 +14,7 @@ import 'package:go_router/go_router.dart';
 class AppRoutes {
 
   static final router = GoRouter(
-    routerNeglect: true,
+    //routerNeglect: true,
     initialLocation: SplashPage.route,
     navigatorKey: Utils.mainNav,
 

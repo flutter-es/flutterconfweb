@@ -15,7 +15,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  setUrlStrategy(PathUrlStrategy());
+  //setUrlStrategy(PathUrlStrategy());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
