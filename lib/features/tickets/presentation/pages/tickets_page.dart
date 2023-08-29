@@ -62,20 +62,6 @@ class TicketsPage extends ConsumerWidget {
                 },
               ),
               FlutterConfLatamStyles.mediumVGap,
-              Container(
-                decoration: BoxDecoration(
-                  color: FlutterLatamColors.brightYellow.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(50)
-                ),
-                padding: FlutterConfLatamStyles.largePadding,
-                child: Text(ticketSectionData.announcement,
-                  textAlign: TextAlign.center,
-                  style: uiConfig.paragraphHeaderStyle.copyWith(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              FlutterConfLatamStyles.mediumVGap,
               uiConfig.pageVerticalGap,
               Text(appLoc.ticketsPageTitle1, textAlign: TextAlign.center, style: uiConfig.subheaderStyle),
               uiConfig.pageVerticalGap,
