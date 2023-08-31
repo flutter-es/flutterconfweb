@@ -82,16 +82,6 @@ class TicketsContainer extends ConsumerWidget {
                 crossAxisAlignment: config.ticketButtonColumnCrossAxis,
                 mainAxisAlignment: config.ticketButtonColumnMainAxis,
                 children: [
-                  Container(
-                    padding: FlutterConfLatamStyles.largePadding,
-                    child: Text(ticketSectionData.announcement,
-                      textAlign: config.ticketAnnouncementAlignment,
-                      style: TextStyle(
-                        fontSize: config.ticketAnnouncementSize,
-                        color: Colors.white
-                      ),
-                    ),
-                  ),
                   CircleRoundIconButton(
                     icon: FlutterConfLatamIcons.ticket,
                     label: ticketSectionData.ticketBtnLabel,
