@@ -19,8 +19,11 @@ class SpeakersRepository {
 
     final dbInstance = ref.read(dbProvider);
     dbInstance.collection('speakers').get().then((snapshot) {
-      List<SpeakerModel> speakers = snapshot.docs.map((speakerDoc) => SpeakerModel.fromFirestore(
-      speakerDoc.data() as Map<String, dynamic>)).toList();
+      List<SpeakerModel> speakers = snapshot.docs.map((speakerDoc) => 
+        SpeakerModel.fromFirestore(
+          speakerDoc.id,
+          speakerDoc.data() as Map<String, dynamic>)
+      ).toList();
 
       speakersCompleter.complete(speakers);
 

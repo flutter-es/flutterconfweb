@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/sessions/data/models/session.metadata.model.dart';
+import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
@@ -58,10 +60,12 @@ class Utils {
   static void showSpeakerInfo(Widget speakerContent) {
     showUIModal(Utils.mainNav.currentContext!,
       Container(
-        margin: isMobile() ? FlutterConfLatamStyles.largeMargin.copyWith(
+        margin: isMobile() ? FlutterConfLatamStyles.xLargeMargin.copyWith(
           left: 0, right: 0, bottom: 0,
         ) : FlutterConfLatamStyles.largeMargin,
-        padding: FlutterConfLatamStyles.bannerPadding,
+        padding: isMobile() ? const EdgeInsets.symmetric(
+          horizontal: FlutterConfLatamStyles.mediumSize, vertical: FlutterConfLatamStyles.largeSize
+        ) : FlutterConfLatamStyles.bannerPadding,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: isMobile() ? const BorderRadius.only(
@@ -69,8 +73,9 @@ class Utils {
             topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
           ) : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
         ),
-        child: speakerContent,  
+        child: speakerContent,
       ),
+      dismissible: true,
     );
   }
 
@@ -97,7 +102,7 @@ class Utils {
         context: context,
         builder: (ctxt) {
           return FractionallySizedBox(
-            widthFactor: 0.5,
+            widthFactor: 0.7,
             heightFactor: 0.8,
             child: child
           );
@@ -107,5 +112,30 @@ class Utils {
       });
     }
     
+  }
+
+  static List<SessionMetadataModel> buildMetadataListFromSession(
+    AppLocalizations appLoc,
+    SessionModel session) {
+    return [
+      SessionMetadataModel(
+        label: appLoc.sessionLang, 
+        value: session.language, 
+        bgColor: Colors.blueAccent,
+        labelColor: Colors.white,
+      ),
+      SessionMetadataModel(
+        label: appLoc.sessionFormat, 
+        value: session.format, 
+        bgColor: Colors.greenAccent,
+        labelColor: Colors.black,
+      ),
+      SessionMetadataModel(
+        label: appLoc.sessionLevel, 
+        value: session.level, 
+        bgColor: Colors.orangeAccent,
+        labelColor: Colors.black,
+      )
+    ];
   }
 }

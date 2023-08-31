@@ -11,6 +11,7 @@ class SpeakerModel {
   final String? country;
   final List<SpeakerSocial>? socialMediaLinks;
   final bool? display;
+  final String? id;
 
   SpeakerModel({
     this.name,
@@ -21,10 +22,12 @@ class SpeakerModel {
     this.country,
     this.socialMediaLinks,
     this.display,
+    this.id,
   });
 
-  factory SpeakerModel.fromFirestore(Map<String, dynamic> json) {
+  factory SpeakerModel.fromFirestore(String id, Map<String, dynamic> json) {
     return SpeakerModel(
+      id: id,
       name: json['name'].toString(),
       company: json['company'].toString(),
       title: json['title'].toString(),

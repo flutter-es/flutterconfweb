@@ -6,35 +6,56 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
 
-class SpeakerBadge extends StatelessWidget {
+class SpeakerBadge extends StatefulWidget {
 
-  final Function onSpeakerTap;
+  Function? onSpeakerTap;
   final SpeakerModel speaker;
 
-  const SpeakerBadge({
+  SpeakerBadge({
     required this.speaker,
-    required this.onSpeakerTap,
-    super.key
+    this.onSpeakerTap,
+    super.key,
   });
+
+  @override
+  State<SpeakerBadge> createState() => _SpeakerBadgeState();
+}
+
+class _SpeakerBadgeState extends State<SpeakerBadge> {
+
+  Color hoverColor = Colors.transparent;
+  Color inkWellBg = FlutterLatamColors.lightBlue.withOpacity(0.125);
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      color: hoverColor,
+      borderRadius: BorderRadius.circular(FlutterConfLatamStyles.mediumRadius),
+      clipBehavior: Clip.antiAlias,
       child: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () => onSpeakerTap(speaker),
+          cursor: widget.onSpeakerTap != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          child: InkWell(
+            highlightColor: inkWellBg,
+            splashColor: inkWellBg,
+            onHover: widget.onSpeakerTap != null ? (value) {
+              setState(() {
+                hoverColor = value ? inkWellBg : Colors.transparent;
+              });
+            } : null,
+            onTap: widget.onSpeakerTap != null ? () => widget.onSpeakerTap!(widget.speaker) : null,
             child: Container(
               color: Colors.transparent,
               width: 300,
               child: Padding(
-                padding: FlutterConfLatamStyles.smallPadding,
+                padding: EdgeInsets.symmetric(
+                  vertical: FlutterConfLatamStyles.largeSize,
+                  horizontal: FlutterConfLatamStyles.mediumSize,
+                ),
                 child: Column(
                   children: [
                     ClipOval(
                       child: Image.network(
-                        speaker.photo!,
+                        widget.speaker.photo!,
                         width: 100,
                         height: 100,
                         fit: BoxFit.cover,
@@ -42,28 +63,28 @@ class SpeakerBadge extends StatelessWidget {
                     ),
                     FlutterConfLatamStyles.smallVGap,
                     Text(
-                      speaker.name!,
+                      widget.speaker.name!,
                       style: FlutterConfLatamStyles.h6,
                       textAlign: TextAlign.center,
                     ),
                     ClipOval(
                       child: Image.network(
-                        speaker.country!,
+                        widget.speaker.country!,
                         width: 50,
                         height: 50,
                         fit: BoxFit.cover,
                       ),
                     ),
-                    if (speaker.company!.isNotEmpty)
+                    if (widget.speaker.company!.isNotEmpty)
                       FlutterConfLatamStyles.smallVGap
                     else 
                       const SizedBox.shrink(),
-                    Text(speaker.company!, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
+                    Text(widget.speaker.company!, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 200),
-                      child: Text(speaker.title!, textAlign: TextAlign.center)),
+                      child: Text(widget.speaker.title!, textAlign: TextAlign.center)),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      for (var social in speaker.socialMediaLinks!)
+                      for (var social in widget.speaker.socialMediaLinks!)
                         IconButton(
                           onPressed: () {
                             Utils.launchUrlLink(social.link);

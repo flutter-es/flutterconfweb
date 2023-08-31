@@ -1,36 +1,33 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final speakersRepositoryProvider = Provider((ref) {
-  return SpeakersRepository(ref);
-});
-
-class SpeakersRepository {
-  SpeakersRepository(this.ref);
+class SessionsRepository {
+  SessionsRepository(this.ref);
 
   final Ref ref;
 
-  Future<List<SpeakerModel>> getSpeakers() {
-    Completer<List<SpeakerModel>> speakersCompleter = Completer();
+  Future<List<SessionModel>> getSessions() {
+    Completer<List<SessionModel>> sessionsCompleter = Completer();
 
     final dbInstance = ref.read(dbProvider);
-    dbInstance.collection('speakers').get().then((snapshot) {
-      List<SpeakerModel> speakers = snapshot.docs.map((speakerDoc) => SpeakerModel.fromFirestore(
-      speakerDoc.data() as Map<String, dynamic>)).toList();
+    dbInstance.collection('sessions').get().then((snapshot) {
+      final sessions = snapshot.docs.map((sessionDoc) => 
+      SessionModel.fromFirestore(
+        sessionDoc.data(),),).toList();
 
-      speakersCompleter.complete(speakers);
+      sessionsCompleter.complete(sessions);
 
-    }).catchError((error) {
-      speakersCompleter.completeError(error.toString());
+    }).catchError((dynamic error) {
+      sessionsCompleter.completeError(error.toString());
     }).onError((error, stackTrace) {
-      speakersCompleter.completeError(error.toString());
+      sessionsCompleter.completeError(error.toString());
     });
     
 
-    return speakersCompleter.future;
+    return sessionsCompleter.future;
   }
 }
