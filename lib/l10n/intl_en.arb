@@ -87,5 +87,6 @@
   "sessionLang": "Language",
   "sessionFormat": "Format",
   "sessionLevel": "Level",
-  "sessionTalkNotification": "The content of this talk will be published later. Visit us later for more details."
+  "sessionTalkNotification": "The content of this talk will be published later. Visit us later for more details.",
+  "speakerBadgeMoreInfo": "View More Info"
 }

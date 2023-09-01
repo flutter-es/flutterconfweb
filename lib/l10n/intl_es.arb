@@ -87,5 +87,6 @@
   "sessionLang": "Lenguage",
   "sessionFormat": "Formato",
   "sessionLevel": "Nivel",
-  "sessionTalkNotification": "El contenido de esta charla será publicada más adelante. Visítenos luego para más detalles."
+  "sessionTalkNotification": "El contenido de esta charla será publicada más adelante. Visítenos luego para más detalles.",
+  "speakerBadgeMoreInfo": "Ver Más Info"
 }
