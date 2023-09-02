@@ -4,12 +4,12 @@ import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/sch
 
 class ScheduleDayBlock extends StatelessWidget {
 
-  final ScheduleDayModel scheduleDay;
-
   const ScheduleDayBlock({
     required this.scheduleDay,
-    super.key
+    super.key,
   });
+
+  final ScheduleDayModel scheduleDay;
 
   @override
   Widget build(BuildContext context) {

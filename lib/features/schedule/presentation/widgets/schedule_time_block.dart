@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/schedule/data/models/schedule_time_block.model.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_time_block_time_label.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
@@ -16,6 +17,9 @@ class ScheduleTimeBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
+    
     return Padding(
       padding: FlutterConfLatamStyles.mediumPadding,
       child: Container(
@@ -27,16 +31,18 @@ class ScheduleTimeBlock extends StatelessWidget {
             color: FlutterLatamColors.lightBlue, width: 5,),
           ),
         ),
-        child: Row(
+        child: Flex(
+          direction: uiConfig.timeContentOrientation,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
+              flex: uiConfig.timeFlexValue,
               child: ScheduleTimeBlockTimeLabel(
                 time: timeBlock.time,
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: uiConfig.contentFlexValue,
               child: Column(
                 children: [
                   for(final session in timeBlock.sessions)

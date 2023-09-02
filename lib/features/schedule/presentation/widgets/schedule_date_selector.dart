@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
@@ -19,6 +20,7 @@ class ScheduleDateSelector extends ConsumerWidget {
 
     final selectedEventDate = ref.watch(scheduleDaySelectionProvider);
     final appLoc = ref.watch(appLocalizationsProvider);
+    final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
 
     return Row(
       children: [
@@ -54,8 +56,8 @@ class ScheduleDateSelector extends ConsumerWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('${appLoc.scheduleDay} ${index + 1}', style: FlutterConfLatamStyles.h5.copyWith(color: Colors.white)),
-                          Text(ref.read(shortDateFormatterProvider(currentDate)), style: FlutterConfLatamStyles.h7.copyWith(color: Colors.white))
+                          Text('${appLoc.scheduleDay} ${index + 1}', style: uiConfig.tabDayLabelStyle.copyWith(color: Colors.white)),
+                          Text(ref.read(shortDateFormatterProvider(currentDate)), style: uiConfig.tabDateLabelStyle.copyWith(color: Colors.white))
                         ],
                       ),
                     ),

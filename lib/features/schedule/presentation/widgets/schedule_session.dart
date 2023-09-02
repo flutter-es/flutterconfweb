@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/schedule/data/models/schedule_session.model.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session_add_to_fav.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session_room_info.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session_speaker_badge.dart';
@@ -42,6 +43,7 @@ class _ScheduleSessionState extends ConsumerState<ScheduleSession> {
 
     final currentEventTime = ref.read(currentEventLocationTimeProvider(widget.sessionInfo.dateTime));
     final bgColor = currentEventTime ? FlutterLatamColors.brightYellow : FlutterLatamColors.lightBlue;
+    final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
 
     return Container(
       padding: FlutterConfLatamStyles.mediumPadding,
@@ -73,10 +75,12 @@ class _ScheduleSessionState extends ConsumerState<ScheduleSession> {
             ),
           ),
           FlutterConfLatamStyles.mediumVGap,
-          Row(
+          Flex(
+            direction: uiConfig.contentBottomRowOrientation,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
+                flex: uiConfig.contentBottomLeftFlex,
                 child: Wrap(
                   children: [
                     for(final speaker in widget.sessionInfo.speakers)

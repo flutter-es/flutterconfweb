@@ -49,10 +49,4 @@ class FlutterConfLatamStyles {
   static const TextStyle h6 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
   static const TextStyle h7 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
   static const TextStyle h8 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-
-  static const double xsmallRadius = 12;
-  static const double smallRadius = 24;
-  static const double mediumRadius = 40;
-  static const double largeRadius = 64;
-  static const double xlargeRadius = 80;
 }

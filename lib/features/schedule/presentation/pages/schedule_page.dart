@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_page_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_day_block.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_date_selector.dart';
@@ -22,7 +23,7 @@ class SchedulePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = SchedulePageResponsiveConfig.getSchedulePageResponsiveConfig(context);
+    final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
     final schedule = ref.watch(scheduleFutureProvider);
 
     return SingleChildScrollView(
