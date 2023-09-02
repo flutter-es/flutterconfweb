@@ -84,4 +84,10 @@
   "communitiesTitle": "Collaborating Communities",
   "communitiesSubtitle": "This event wouldn't be possible with the support of the following communities:",
   "scheduleDay": "Day"
+  "sessionTags": "Tags",
+  "sessionLang": "Language",
+  "sessionFormat": "Format",
+  "sessionLevel": "Level",
+  "sessionTalkNotification": "The content of this talk will be published later. Visit us later for more details.",
+  "speakerBadgeMoreInfo": "View More Info"
 }

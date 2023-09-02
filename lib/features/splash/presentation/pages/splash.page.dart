@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
 
-  static const String route = '/splash';
+  static const String route = '/';
 
   const SplashPage({super.key});
 
@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     timer = Timer(2.seconds, () {
-      GoRouter.of(context).go(HomePage.route);
+      Router.neglect(context, () => GoRouter.of(context).go(HomePage.route)); 
     });
   }
 

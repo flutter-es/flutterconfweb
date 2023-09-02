@@ -17,7 +17,6 @@ class AppRoutes {
     routerNeglect: true,
     initialLocation: SplashPage.route,
     navigatorKey: Utils.mainNav,
-
     routes: [
       GoRoute(
         parentNavigatorKey: Utils.mainNav,
@@ -102,6 +101,7 @@ class AppRoutes {
       return NoTransitionPage(
         child: ErrorPage(errorMessage: state.error.toString())
       );
-    }
+    },
+    
   );
 }
