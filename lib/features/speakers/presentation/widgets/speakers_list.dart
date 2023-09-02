@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/session_container.dart';
+import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/features/speakers/presentation/providers/speakers_providers.dart';
 import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/speaker_badge.dart';
+import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/speaker_content_window.dart';
+import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SpeakersList extends ConsumerWidget {
@@ -21,7 +25,16 @@ class SpeakersList extends ConsumerWidget {
             runSpacing: 64,
             children: [
               for (var speaker in speakersList.where((s) => s.display! == true))
-                SpeakerBadge(speaker: speaker)
+                SpeakerBadge(
+                  speaker: speaker,
+                  onSpeakerTap: (SpeakerModel speakerModel) {
+                    Utils.showSpeakerInfo(
+                      SpeakerContentWindow(
+                        speaker: speakerModel,
+                      )
+                    );
+                  },  
+                )
             ].animate(
               interval: 100.ms,
             ).scaleXY(

@@ -21,6 +21,9 @@ class SponsorsList extends StatelessWidget {
         SponsorsRegion(
           level: SponsorshipLevels.bronze,
         ),
+        SponsorsRegion(
+          level: SponsorshipLevels.inkind,
+        ),
       ],
     );
   }

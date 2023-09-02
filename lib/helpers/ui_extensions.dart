@@ -12,3 +12,9 @@ extension BuildContextTranslateExtension on BuildContext {
     return instance.menu(key);
   }
 }
+
+extension CleanBreakLines on String {
+  String cleanBreakLines() {
+    return replaceAll('\\n', '\n');
+  }
+}

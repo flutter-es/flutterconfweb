@@ -3,6 +3,19 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 
 class FlutterConfLatamStyles {
 
+  static const double xsmallSize = 4;
+  static const double smallSize = 8;
+  static const double mediumSize = 16;
+  static const double largeSize = 32;
+  static const double xLargeSize = 64;
+  static const double xxLargeSize = 128;
+
+  static const double xsmallRadius = 12;
+  static const double smallRadius = 24;
+  static const double mediumRadius = 40;
+  static const double largeRadius = 64;
+  static const double xlargeRadius = 80;
+
   static const SizedBox xsmallVGap = SizedBox(height: 10);
   static const SizedBox smallVGap = SizedBox(height: 20);
   static const SizedBox mediumVGap = SizedBox(height: 40);
@@ -14,6 +27,7 @@ class FlutterConfLatamStyles {
 
   static const EdgeInsets bannerPadding = EdgeInsets.all(40);
 
+  static const EdgeInsets xsmallPadding = EdgeInsets.all(4);
   static const EdgeInsets smallPadding = EdgeInsets.all(8);
   static const EdgeInsets mediumPadding = EdgeInsets.all(16);
   static const EdgeInsets largePadding = EdgeInsets.all(32);
