@@ -13,9 +13,15 @@ class SpeakersRepository {
   SpeakersRepository(this.ref);
 
   final Ref ref;
+  List<SpeakerModel> cachedSpeakers = [];
 
   Future<List<SpeakerModel>> getSpeakers() {
+
     Completer<List<SpeakerModel>> speakersCompleter = Completer();
+
+    if (cachedSpeakers.isNotEmpty) {
+      return Future.value(cachedSpeakers);
+    }
 
     final dbInstance = ref.read(dbProvider);
     dbInstance.collection('speakers').get().then((snapshot) {
@@ -25,7 +31,9 @@ class SpeakersRepository {
           speakerDoc.data() as Map<String, dynamic>)
       ).toList();
 
-      speakersCompleter.complete(speakers);
+      cachedSpeakers = speakers;
+
+      speakersCompleter.complete(cachedSpeakers);
 
     }).catchError((error) {
       speakersCompleter.completeError(error.toString());
