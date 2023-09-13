@@ -35,10 +35,10 @@ class SpeakerModel {
       description: json['description'].toString(),
       country: json['country_flag'].toString(),
       display: bool.parse(json['display'].toString()),
-      socialMediaLinks: (json['social_media_links'] as List<dynamic>)
+      socialMediaLinks: json.containsKey('social_media_links') ? (json['social_media_links'] as List<dynamic>)
           .map((social) =>
               SpeakerSocial.fromFirestore(social as Map<String, dynamic>))
-          .toList(),
+          .toList() : [],
     );
   }
 }
