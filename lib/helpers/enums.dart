@@ -30,3 +30,12 @@ enum SocialMediaLinks {
   linkedin,
   github,
 }
+
+enum SessionType {
+  singleSpeaker,
+  multiSpeaker,
+  panel,
+  keynote,
+  eventSession,
+  workshop
+}

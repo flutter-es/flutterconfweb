@@ -17,7 +17,8 @@ class ScheduleRepository {
             time: DateTime.parse('2023-10-25T10:00:00Z'),
             sessions: [
               ScheduleSessionModel(
-                id: '', 
+                id: '',
+                slotIndex: 0,
                 speakers: [
                   SpeakerModel(
                     name: 'John Smith',
@@ -36,7 +37,8 @@ class ScheduleRepository {
                 ),
               ),
               ScheduleSessionModel(
-                id: '', 
+                id: '',
+                slotIndex: 1,
                 speakers: [
                   SpeakerModel(
                     name: 'Jane Smith',
@@ -55,7 +57,8 @@ class ScheduleRepository {
                 ),
               ),
               ScheduleSessionModel(
-                id: '', 
+                id: '',
+                slotIndex: 2,
                 speakers: [
                   SpeakerModel(
                     name: 'Maria Jackson',
@@ -75,7 +78,8 @@ class ScheduleRepository {
             time: DateTime.parse('2023-10-25T10:30:00Z'),
             sessions: [
               ScheduleSessionModel(
-                id: '', 
+                id: '',
+                slotIndex: 3,
                 speakers: [
                   SpeakerModel(
                     name: 'Michael Bison',
@@ -90,7 +94,8 @@ class ScheduleRepository {
                 ),
               ),
               ScheduleSessionModel(
-                id: '', 
+                id: '',
+                slotIndex: 4,
                 speakers: [
                   SpeakerModel(
                     name: 'Luisa Marie',
@@ -106,6 +111,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 5,
                 speakers: [
                   SpeakerModel(
                     name: 'Carl Rose',
@@ -126,6 +132,7 @@ class ScheduleRepository {
             sessions: [
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 6,
                 speakers: [
                   SpeakerModel(
                     name: 'Paola Lazaro',
@@ -141,6 +148,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 7,
                 speakers: [
                   SpeakerModel(
                     name: 'Jennifer Aninston',
@@ -156,6 +164,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 8,
                 speakers: [
                   SpeakerModel(
                     name: 'Peter Blake',
@@ -176,6 +185,7 @@ class ScheduleRepository {
             sessions: [
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 9,
                 speakers: [
                   SpeakerModel(
                     name: 'Peter Blake',
@@ -191,6 +201,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 10,
                 speakers: [
                   SpeakerModel(
                     name: 'Paola Lazaro',
@@ -206,6 +217,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 11,
                 speakers: [
                   SpeakerModel(
                     name: 'Peter Blake',
@@ -231,6 +243,7 @@ class ScheduleRepository {
             sessions: [
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 12,
                 speakers: [
                   SpeakerModel(
                     name: 'John Smith',
@@ -250,6 +263,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 13,
                 speakers: [
                   SpeakerModel(
                     name: 'Jane Smith',
@@ -269,6 +283,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 14,
                 speakers: [
                   SpeakerModel(
                     name: 'Maria Jackson',
@@ -289,6 +304,7 @@ class ScheduleRepository {
             sessions: [
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 15,
                 speakers: [
                   SpeakerModel(
                     name: 'Michael Bison',
@@ -304,6 +320,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 16,
                 speakers: [
                   SpeakerModel(
                     name: 'Luisa Marie',
@@ -319,6 +336,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 17,
                 speakers: [
                   SpeakerModel(
                     name: 'Carl Rose',
@@ -339,6 +357,7 @@ class ScheduleRepository {
             sessions: [
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 18,
                 speakers: [
                   SpeakerModel(
                     name: 'Paola Lazaro',
@@ -354,6 +373,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 19,
                 speakers: [
                   SpeakerModel(
                     name: 'Jennifer Aninston',
@@ -369,6 +389,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 20,
                 speakers: [
                   SpeakerModel(
                     name: 'Peter Blake',
@@ -389,6 +410,7 @@ class ScheduleRepository {
             sessions: [
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 21,
                 speakers: [
                   SpeakerModel(
                     name: 'Peter Blake',
@@ -404,6 +426,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 22,
                 speakers: [
                   SpeakerModel(
                     name: 'Raj Kutrapali',
@@ -419,6 +442,7 @@ class ScheduleRepository {
               ),
               ScheduleSessionModel(
                 id: '', 
+                slotIndex: 23,
                 speakers: [
                   SpeakerModel(
                     name: 'Peter Blake',

@@ -1,3 +1,5 @@
+import 'package:flutter_conf_colombia/helpers/enums.dart';
+
 class SessionModel {
 
   final String description;
@@ -8,6 +10,8 @@ class SessionModel {
   final String title;
   final List<String> tags;
   final bool isAnnounced;
+  final List<String> speakers;
+  final SessionType sessionType;
 
   const SessionModel({
     required this.description, 
@@ -18,6 +22,8 @@ class SessionModel {
     required this.title, 
     required this.tags,
     required this.isAnnounced,
+    required this.speakers,
+    required this.sessionType,
   });
 
   factory SessionModel.fromFirestore(Map<String, dynamic> json) {
@@ -30,6 +36,8 @@ class SessionModel {
       speakerId: json['speakerId'].toString(), 
       title: json['title'].toString(), 
       tags: (json['tags'] as List<dynamic>).map((e) => e.toString()).toList(),
+      sessionType: SessionType.values.firstWhere((s) => s.name == json['sessionType']),
+      speakers: (json['speakers'] as List<dynamic>).map((e) => e.toString()).toList(),
     );
   }
 
@@ -51,6 +59,8 @@ class SessionModel {
       speakerId: speakerID ?? this.speakerId, 
       title: title ?? this.title, 
       tags: tags ?? this.tags,
+      sessionType: sessionType ?? this.sessionType,
+      speakers: speakers ?? this.speakers,
     );
   }
 }

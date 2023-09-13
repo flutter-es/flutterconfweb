@@ -31,18 +31,17 @@ class _ScheduleSessionState extends ConsumerState<ScheduleSession> {
   void initState() {
     super.initState();
 
-    Timer.periodic(1.seconds, (timer) {
-      setState(() {
+    // Timer.periodic(1.seconds, (timer) {
+    //   setState(() {
         
-      });
-    });
+    //   });
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
 
-    final currentEventTime = ref.read(currentEventLocationTimeProvider(widget.sessionInfo.dateTime));
-    final bgColor = currentEventTime ? FlutterLatamColors.brightYellow : FlutterLatamColors.lightBlue;
+    final bgColor =  FlutterLatamColors.lightBlue;
     final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
 
     return Container(

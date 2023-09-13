@@ -5,6 +5,7 @@ class ScheduleSessionModel {
 
   const ScheduleSessionModel({
     required this.id,
+    required this.slotIndex,
     required this.speakers,
     required this.dateTime,
     required this.duration,
@@ -13,6 +14,7 @@ class ScheduleSessionModel {
   });
 
   final String id;
+  final int slotIndex;
   final List<SpeakerModel> speakers;
   final SessionModel session;
   final DateTime dateTime;
