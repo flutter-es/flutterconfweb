@@ -26,10 +26,6 @@ class SchedulePage extends ConsumerWidget {
     final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
     final schedule = ref.watch(scheduleFutureProvider);
 
-    // return SingleChildScrollView(
-    //   child: ScheduleDayBlock(
-    //    )
-    // );
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -53,16 +49,6 @@ class SchedulePage extends ConsumerWidget {
                 ],
               ),
               uiConfig.pageVerticalGap,
-              // const ComingSoonContainer(),
-              // uiConfig.pageVerticalGap,
-              // Text(appLoc.schedulePageContent,
-              //   textAlign: TextAlign.center,
-              // ),
-              // uiConfig.pageVerticalGap,
-              // Text(appLoc.schedulePageSubcontent, textAlign: TextAlign.center,
-              //   style: uiConfig.subheaderStyle
-              // ),
-              // uiConfig.pageVerticalGap,
               schedule.when(
                 data: (scheduleData) {
 

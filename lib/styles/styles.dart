@@ -51,6 +51,16 @@ class FlutterConfLatamStyles {
   static const TextStyle h7 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
   static const TextStyle h8 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
 
+  static const TextStyle label1 = TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label2 = TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label3 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label4 = TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label5 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label6 = TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label7 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label8 = TextStyle(fontSize: 4, fontWeight: FontWeight.bold, color: Colors.black);
+
+
   static TextStyle getStylesFromSessionType(SessionType sessionType) {
     switch(sessionType) {
       case SessionType.eventSession:

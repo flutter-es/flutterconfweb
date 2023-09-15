@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_cell_content.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session.dart';
 import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
@@ -19,62 +21,14 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
 
   Widget getSessionFromSlotId(int id) {
 
-    
     if (sessions.any((s) => s.scheduleSlot == id)) {
       final foundSession = sessions.firstWhere((s) => s.scheduleSlot == id);
-      final sessionColor = Utils.getColorFromSessionType(foundSession.sessionType);
-      return Container(
-          padding: const EdgeInsets.all(20),
-          color: Utils.getColorFromSessionType(foundSession.sessionType),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(sessions.firstWhere((s) => s.scheduleSlot == id).title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: FlutterConfLatamStyles.getStylesFromSessionType(foundSession.sessionType),
-                  ),
-                  Text(sessions.firstWhere((s) => s.scheduleSlot == id).description,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-              if (foundSession.speakerId.isNotEmpty)
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          width: 4, color: sessionColor,
-                          strokeAlign: BorderSide.strokeAlignOutside
-                        ),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            speakers.firstWhere((s) => s.id == foundSession.speakerId).photo!,
-                          ),
-                          fit: BoxFit.cover,
-                        )
-                      ),
-                    ),
-                    FlutterConfLatamStyles.xsmallHGap,
-                    Text(speakers.firstWhere((s) => s.id == foundSession.speakerId).name!, style: FlutterConfLatamStyles.h7.copyWith(
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black)),
-                  ],
-                )
-            ],
-          )
-        );
+      final speakersList = speakers.where((s) => foundSession.speakers.contains(s.id)).toList();
+
+      return ScheduleCellContent(
+        session: foundSession, 
+        speakers: speakersList
+      );
     }
                         
    return Container(
@@ -84,16 +38,19 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
+    
     return StaggeredGrid.count(
       axisDirection: AxisDirection.down,
         crossAxisCount: 7,
         mainAxisSpacing: 8,
         crossAxisSpacing: 8,
         children: [
-          StaggeredGridTile.count(
+          const StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: const SizedBox.shrink(),
+            child: SizedBox.shrink(),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -103,9 +60,9 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  padding: EdgeInsets.all(20),
+                  padding: uiConfig.trackTabPadding,
                   color: Colors.orangeAccent,
-                  child: Text('Track 1', style: FlutterConfLatamStyles.h6.copyWith(color: Colors.black), textAlign: TextAlign.center,),
+                  child: Text('Track 1', style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
                 )
               ],
             ),
@@ -118,9 +75,9 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  padding: EdgeInsets.all(20),
+                  padding: uiConfig.trackTabPadding,
                   color: Colors.orangeAccent,
-                  child: Text('Track 2', style: FlutterConfLatamStyles.h6.copyWith(color: Colors.black), textAlign: TextAlign.center,),
+                  child: Text('Track 2', style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
                 )
               ],
             ),
@@ -133,9 +90,9 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  padding: EdgeInsets.all(20),
+                  padding: uiConfig.trackTabPadding,
                   color: Colors.greenAccent,
-                  child: Text('Workshops', style: FlutterConfLatamStyles.h6.copyWith(color: Colors.black), textAlign: TextAlign.center,),
+                  child: Text('Workshops', style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
                 )
               ],
             ),
