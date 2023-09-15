@@ -1,4 +1,4 @@
-import 'package:flutter_conf_colombia/features/schedule/data/models/session.model.dart';
+import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 
 class ScheduleSessionModel {

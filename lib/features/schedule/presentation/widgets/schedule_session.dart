@@ -8,6 +8,7 @@ import 'package:flutter_conf_colombia/features/schedule/presentation/responsiven
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session_add_to_fav.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session_room_info.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session_speaker_badge.dart';
+import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,7 @@ class ScheduleSession extends ConsumerStatefulWidget {
     super.key,
   });
 
-  final ScheduleSessionModel sessionInfo;
+  final SessionModel sessionInfo;
 
   @override
   ConsumerState<ScheduleSession> createState() => _ScheduleSessionState();
@@ -62,14 +63,14 @@ class _ScheduleSessionState extends ConsumerState<ScheduleSession> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ScheduleSessionRoomInfo(
-                roomInfo:  widget.sessionInfo.room,
+                roomInfo: 'Room1', // widget.sessionInfo.room,
               ),
             ],
           ),
           FlutterConfLatamStyles.smallVGap,
           Padding(
             padding: FlutterConfLatamStyles.mediumPadding,
-            child: Text(widget.sessionInfo.session.title,
+            child: Text(widget.sessionInfo.title,
               style: FlutterConfLatamStyles.h5.copyWith(color: Colors.black),
             ),
           ),
@@ -82,10 +83,10 @@ class _ScheduleSessionState extends ConsumerState<ScheduleSession> {
                 flex: uiConfig.contentBottomLeftFlex,
                 child: Wrap(
                   children: [
-                    for(final speaker in widget.sessionInfo.speakers)
-                      ScheduleSessionSpeakerBadge(
-                        speakerInfo: speaker,
-                      ),
+                    // for(final speaker in widget.sessionInfo.speakers)
+                    //   ScheduleSessionSpeakerBadge(
+                    //     speakerInfo: speaker,
+                    //   ),
                   ],
                 ),
               ),

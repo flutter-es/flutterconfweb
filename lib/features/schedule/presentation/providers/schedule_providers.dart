@@ -7,7 +7,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 final scheduleRepositoryProvider = Provider((ref) {
-  return ScheduleRepository();
+  return ScheduleRepository(ref);
 });
 
 final scheduleFutureProvider = FutureProvider<List<ScheduleDayModel>>((ref) {

@@ -26,6 +26,10 @@ class SchedulePage extends ConsumerWidget {
     final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
     final schedule = ref.watch(scheduleFutureProvider);
 
+    // return SingleChildScrollView(
+    //   child: ScheduleDayBlock(
+    //    )
+    // );
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -70,57 +74,6 @@ class SchedulePage extends ConsumerWidget {
                       ScheduleDateSelector(
                         eventDates: scheduleData.map((s) => s.date).toList(),
                       ),
-                      // Container(
-                      //   margin: FlutterConfLatamStyles.mediumMargin.copyWith(
-                      //     right: 0,
-                      //   ),
-                      //   child: Row(
-                      //     children: [
-                      //       Expanded(
-                      //         flex: uiConfig.timeFlexValue,
-                      //         child: SizedBox.shrink()
-                      //       ),
-                      //       Expanded(
-                      //         flex: uiConfig.contentFlexValue,
-                      //         child: Row(
-                      //           children: [
-                      //             Expanded(
-                      //               child: Container(
-                      //                 decoration: BoxDecoration(
-                      //                   color: Color.fromARGB(255, 203, 156, 0),
-                      //                 ),
-                      //                 margin: FlutterConfLatamStyles.mediumMargin.copyWith(
-                      //                   bottom: 0,
-                      //                   right: FlutterConfLatamStyles.mediumMargin.right / 3,
-                      //                 ),
-                      //                 padding: FlutterConfLatamStyles.mediumPadding,
-                      //                 child: Text('Track 1', textAlign: TextAlign.center, style: FlutterConfLatamStyles.h6.copyWith(
-                      //                   color: Colors.white
-                      //                 )),
-                      //               ),
-                      //             ),
-                      //             Expanded(
-                      //               child: Container(
-                      //                 decoration: BoxDecoration(
-                                        
-                      //                   color: Color.fromARGB(255, 203, 156, 0),
-                      //                 ),
-                      //                 margin: FlutterConfLatamStyles.mediumMargin.copyWith(
-                      //                   bottom: 0,
-                      //                   left: FlutterConfLatamStyles.mediumMargin.left / 3,
-                      //                 ),
-                      //                 padding: FlutterConfLatamStyles.mediumPadding,
-                      //                 child: Text('Track 2', textAlign: TextAlign.center, style: FlutterConfLatamStyles.h6.copyWith(
-                      //                   color: Colors.white
-                      //                 )),
-                      //               ),
-                      //             )
-                      //           ],
-                      //         )
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
                       ScheduleDayBlock(
                         key: ValueKey(scheduleSelectedDate),
                         scheduleDay: scheduleDayForSelection,

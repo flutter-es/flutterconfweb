@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 
 class FlutterConfLatamStyles {
@@ -49,4 +50,13 @@ class FlutterConfLatamStyles {
   static const TextStyle h6 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
   static const TextStyle h7 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
   static const TextStyle h8 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+
+  static TextStyle getStylesFromSessionType(SessionType sessionType) {
+    switch(sessionType) {
+      case SessionType.eventSession:
+        return h6;
+      default:
+        return h7.copyWith(color: Colors.black);
+    }
+  }
 }

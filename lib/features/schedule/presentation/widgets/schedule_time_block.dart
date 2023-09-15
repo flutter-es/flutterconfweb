@@ -45,10 +45,10 @@ class ScheduleTimeBlock extends StatelessWidget {
               flex: uiConfig.contentFlexValue,
               child: Column(
                 children: [
-                  for(final session in timeBlock.sessions)
-                    ScheduleSession(
-                      sessionInfo: session,
-                    ),
+                  // for(final session in timeBlock.sessions)
+                  //   ScheduleSession(
+                  //     sessionInfo: session,
+                  //   ),
                 ],
               ),
             )

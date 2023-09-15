@@ -27,7 +27,6 @@ class ScheduleDateSelector extends ConsumerWidget {
         ...List.generate(
           eventDates.length, (index) {
           
-          
           final currentDate = eventDates[index];
           final dateSelected = selectedEventDate ?? eventDates.first;
           final bgColor = dateSelected == currentDate ? FlutterLatamColors.darkBlue : FlutterLatamColors.lightBlue;
