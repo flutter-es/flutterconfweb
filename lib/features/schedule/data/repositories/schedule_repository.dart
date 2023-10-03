@@ -20,13 +20,15 @@ class ScheduleRepository {
 
     return [
       ScheduleDayModel(
+        dayIndex: 1,
         date: DateTime.parse('2023-10-25T00:00:00Z'),
-        sessions: sessions,
+        sessions: sessions.where((s) => s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('1')).toList(),
         speakers:  speakers,
       ),
       ScheduleDayModel(
+        dayIndex: 2,
         date: DateTime.parse('2023-10-26T00:00:00Z'),
-        sessions: sessions,
+        sessions: sessions.where((s) => s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('2')).toList(),
         speakers: speakers,
       ),
     ];

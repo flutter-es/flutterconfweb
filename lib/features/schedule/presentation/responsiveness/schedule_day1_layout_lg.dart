@@ -19,7 +19,7 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
     super.key
   });
 
-  Widget getSessionFromSlotId(int id) {
+  Widget getSessionFromSlotId(String id) {
 
     if (sessions.any((s) => s.scheduleSlot == id)) {
       final foundSession = sessions.firstWhere((s) => s.scheduleSlot == id);
@@ -32,7 +32,8 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
     }
                         
    return Container(
-    color: Colors.grey.withOpacity(0.125)
+    color: Colors.grey.withOpacity(0.125),
+    //child: Text(id),
    );
   }
 
@@ -98,16 +99,15 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
             ),
           ),
     
-    
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('7:30-8:00AM'),
+            child: Text('7:30-8:00 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(1),
+            child: getSessionFromSlotId('1-1'),
           ),
     
           StaggeredGridTile.count(
@@ -118,7 +118,7 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(2),
+            child: getSessionFromSlotId('1-2'),
           ),
     
           StaggeredGridTile.count(
@@ -129,18 +129,18 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(32),
+            child: getSessionFromSlotId('1-3'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(3),
+            child: getSessionFromSlotId('1-4'),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 2,
-            child: getSessionFromSlotId(5),
+            child: getSessionFromSlotId('1-5'),
           ),
     
           StaggeredGridTile.count(
@@ -152,7 +152,7 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(4),
+            child: getSessionFromSlotId('1-6'),
           ),
           
           StaggeredGridTile.count(
@@ -163,17 +163,17 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(6),
+            child: getSessionFromSlotId('1-7'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(7),
+            child: getSessionFromSlotId('1-8'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(31),
+            child: getSessionFromSlotId('1-9'),
           ),
     
           StaggeredGridTile.count(
@@ -184,17 +184,17 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(8),
+            child: getSessionFromSlotId('1-10'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(9),
+            child: getSessionFromSlotId('1-11'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 2,
-            child: getSessionFromSlotId(11),
+            child: getSessionFromSlotId('1-12'),
           ),
     
           StaggeredGridTile.count(
@@ -205,12 +205,12 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(30),
+            child: getSessionFromSlotId('1-13'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(10),
+            child: getSessionFromSlotId('1-14'),
           ),
     
           StaggeredGridTile.count(
@@ -221,7 +221,7 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(12),
+            child: getSessionFromSlotId('1-15'),
           ),
           
     
@@ -233,17 +233,17 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(13),
+            child: getSessionFromSlotId('1-16'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(14),
+            child: getSessionFromSlotId('1-17'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
-            child: getSessionFromSlotId(29),
+            mainAxisCellCount: 2,
+            child: getSessionFromSlotId('1-18'),
           ),
           
           StaggeredGridTile.count(
@@ -254,18 +254,14 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(15),
+            child: getSessionFromSlotId('1-19'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(16),
+            child: getSessionFromSlotId('1-20'),
           ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
-            child: getSessionFromSlotId(28),
-          ),
+          
           
     
           StaggeredGridTile.count(
@@ -274,9 +270,14 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
             child: Text('15:00 / 15:20 PM'),
           ),
           StaggeredGridTile.count(
-            crossAxisCellCount: 6,
+            crossAxisCellCount: 4,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(17),
+            child: getSessionFromSlotId('1-21'),
+          ),
+          StaggeredGridTile.count(
+            crossAxisCellCount: 2,
+            mainAxisCellCount: 2,
+            child: getSessionFromSlotId('1-22'),
           ),
           
           StaggeredGridTile.count(
@@ -287,17 +288,12 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(18),
+            child: getSessionFromSlotId('1-23'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(19),
-          ),
-          StaggeredGridTile.count(
-            crossAxisCellCount: 2,
-            mainAxisCellCount: 2,
-            child: getSessionFromSlotId(27),
+            child: getSessionFromSlotId('1-24'),
           ),
           
           StaggeredGridTile.count(
@@ -308,7 +304,12 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(20),
+            child: getSessionFromSlotId('1-25'),
+          ),
+          StaggeredGridTile.count(
+            crossAxisCellCount: 2,
+            mainAxisCellCount: 1,
+            child: getSessionFromSlotId('1-26'),
           ),
           
     
@@ -320,17 +321,17 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(26),
+            child: getSessionFromSlotId('1-27'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(33),
+            child: getSessionFromSlotId('1-28'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 2,
-            child: getSessionFromSlotId(25),
+            child: getSessionFromSlotId('1-29'),
           ),
           
           StaggeredGridTile.count(
@@ -341,7 +342,7 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(21),
+            child: getSessionFromSlotId('1-30'),
           ),
           
           StaggeredGridTile.count(
@@ -352,17 +353,17 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(22),
+            child: getSessionFromSlotId('1-31'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(23),
+            child: getSessionFromSlotId('1-32'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(34),
+            child: getSessionFromSlotId('1-33'),
           ),
           
           StaggeredGridTile.count(
@@ -373,7 +374,7 @@ class ScheduleDay1LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId(24),
+            child: getSessionFromSlotId('1-34'),
           ),
         ],
       );

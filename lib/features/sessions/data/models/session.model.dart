@@ -12,7 +12,7 @@ class SessionModel {
   final bool isAnnounced;
   final List<String> speakers;
   final SessionType sessionType;
-  final int scheduleSlot;
+  final String scheduleSlot;
 
   const SessionModel({
     required this.description, 
@@ -40,7 +40,7 @@ class SessionModel {
       tags: (json['tags'] as List<dynamic>).map((e) => e.toString()).toList(),
       sessionType: SessionType.values.firstWhere((s) => s.name == json['sessionType']),
       speakers: (json['speakers'] as List<dynamic>).map((e) => e.toString()).toList(),
-      scheduleSlot: json.containsKey('scheduleSlot') ? int.parse(json['scheduleSlot'].toString()) : 0,
+      scheduleSlot: json.containsKey('scheduleSlot') ? json['scheduleSlot'].toString() : '',
     );
   }
 
@@ -52,7 +52,7 @@ class SessionModel {
     String? speakerID,
     String? title,
     List<String>? tags,
-    int? slotIndex,
+    String? scheduleSlot,
   }) {
     return SessionModel(
       isAnnounced: isAnnounced ?? this.isAnnounced,
@@ -65,7 +65,7 @@ class SessionModel {
       tags: tags ?? this.tags,
       sessionType: sessionType ?? this.sessionType,
       speakers: speakers ?? this.speakers,
-      scheduleSlot: slotIndex ?? this.scheduleSlot
+      scheduleSlot: scheduleSlot ?? this.scheduleSlot
     );
   }
 }

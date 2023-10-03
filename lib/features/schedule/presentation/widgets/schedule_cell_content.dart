@@ -14,7 +14,8 @@ class ScheduleCellContent extends StatelessWidget {
   const ScheduleCellContent({
     required this.session,
     required this.speakers,
-    super.key});
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,77 +40,92 @@ class ScheduleCellContent extends StatelessWidget {
       desktop: true,
     );
 
-    double cellPadding = getValueForScreenType(context: context,
+    final double cellPadding = getValueForScreenType(context: context,
       mobile: 8,
       tablet: 10,
       desktop: 16,
     );
 
-    return Container(
-      padding: EdgeInsets.all(cellPadding),
-      color: Utils.getColorFromSessionType(session.sessionType),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () {
+          
+        },
+        child: Container(
+          padding: EdgeInsets.all(cellPadding),
+          color: Utils.getColorFromSessionType(session.sessionType),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(session.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: FlutterConfLatamStyles.getStylesFromSessionType(session.sessionType),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(session.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: FlutterConfLatamStyles.getStylesFromSessionType(session.sessionType),
+                  ),
+                  Visibility(
+                    visible: showSessionDescription,
+                    child: Text(session.description,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               ),
-              Visibility(
-                visible: showSessionDescription,
-                child: Text(session.description,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+              if (speakers.isNotEmpty)
+                Wrap(
+                  clipBehavior: Clip.antiAlias,
+                  children: [
+                    for(final speaker in speakers)
+                      Visibility(
+                        visible: showSpeakerImage,
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                            right: FlutterConfLatamStyles.mediumSize,
+                            bottom: FlutterConfLatamStyles.mediumSize,  
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 3, color: sessionColor,
+                                    strokeAlign: BorderSide.strokeAlignOutside,
+                                  ),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      speaker.photo!,
+                                    ),
+                                    fit: BoxFit.cover,
+                                  )
+                                ),
+                              ),
+                              FlutterConfLatamStyles.xsmallHGap,
+                              Visibility(
+                                visible: showSpeaker,
+                                child: Text(speaker.name!, style: 
+                                  FlutterConfLatamStyles.label6,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                  ],
                 ),
-              ),
             ],
           ),
-          if (speakers.isNotEmpty)
-            Row(
-              children: [
-                for(final speaker in speakers)
-                  Visibility(
-                    visible: showSpeakerImage,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 30,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              width: 3, color: sessionColor,
-                              strokeAlign: BorderSide.strokeAlignOutside,
-                            ),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                speaker.photo!,
-                              ),
-                              fit: BoxFit.cover,
-                            )
-                          ),
-                        ),
-                        FlutterConfLatamStyles.xsmallHGap,
-                        Visibility(
-                          visible: showSpeaker,
-                          child: Text(speaker.name!, style: 
-                            FlutterConfLatamStyles.label6,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-              ],
-            )
-        ],
-      )
+        ),
+      ),
     );
   }
 }
