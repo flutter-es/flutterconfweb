@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class FlutterConfLatamStyles {
 
@@ -61,10 +62,14 @@ class FlutterConfLatamStyles {
   static const TextStyle label8 = TextStyle(fontSize: 4, fontWeight: FontWeight.bold, color: Colors.black);
 
 
-  static TextStyle getStylesFromSessionType(SessionType sessionType) {
+  static TextStyle getStylesFromSessionType(SessionType sessionType, BuildContext context) {
     switch(sessionType) {
       case SessionType.eventSession:
-        return h6;
+        return getValueForScreenType(context: context,
+          mobile: h7,
+          tablet: h6,
+          desktop: h6
+        );
       default:
         return h7.copyWith(color: Colors.black);
     }

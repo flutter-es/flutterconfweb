@@ -23,13 +23,13 @@ class ScheduleCellContent extends StatelessWidget {
     final sessionColor = Utils.getColorFromSessionType(session.sessionType);
 
     final showSpeakerImage = getValueForScreenType(context: context,
-      mobile: false,
+      mobile: true,
       tablet: false,
       desktop: true,
     );
 
     final showSpeaker = getValueForScreenType(context: context,
-      mobile: false,
+      mobile: true,
       tablet: false,
       desktop: true,
     );
@@ -41,9 +41,27 @@ class ScheduleCellContent extends StatelessWidget {
     );
 
     final double cellPadding = getValueForScreenType(context: context,
-      mobile: 8,
+      mobile: 18,
       tablet: 10,
       desktop: 16,
+    );
+
+    final double cellRadius = getValueForScreenType(context: context,
+      mobile: 10,
+      tablet: 0,
+      desktop: 0,
+    );
+
+    final double bottomMargin = getValueForScreenType(context: context,
+      mobile: 20,
+      tablet: 0,
+      desktop: 0,
+    );
+
+    final SizedBox speakerGap = getValueForScreenType(context: context,
+      mobile: FlutterConfLatamStyles.smallVGap,
+      tablet: null,
+      desktop: null,
     );
 
     return MouseRegion(
@@ -53,8 +71,12 @@ class ScheduleCellContent extends StatelessWidget {
           
         },
         child: Container(
+          margin: EdgeInsets.only(bottom: bottomMargin),
           padding: EdgeInsets.all(cellPadding),
-          color: Utils.getColorFromSessionType(session.sessionType),
+          decoration: BoxDecoration(
+            color: Utils.getColorFromSessionType(session.sessionType),
+            borderRadius: BorderRadius.circular(cellRadius),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +88,7 @@ class ScheduleCellContent extends StatelessWidget {
                   Text(session.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: FlutterConfLatamStyles.getStylesFromSessionType(session.sessionType),
+                    style: FlutterConfLatamStyles.getStylesFromSessionType(session.sessionType, context),
                   ),
                   Visibility(
                     visible: showSessionDescription,
@@ -77,6 +99,7 @@ class ScheduleCellContent extends StatelessWidget {
                   ),
                 ],
               ),
+              speakerGap,
               if (speakers.isNotEmpty)
                 Wrap(
                   clipBehavior: Clip.antiAlias,
