@@ -146,6 +146,19 @@ class Utils {
      return session;
   }
 
+  static Widget getTimeLabelHeader(String label, { MainAxisAlignment alignment = MainAxisAlignment.end }) {
+    final timeLabelStyle = isMobile() ? FlutterConfLatamStyles.h6 : FlutterConfLatamStyles.h7;
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: alignment,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: timeLabelStyle),
+      ],
+    );
+  }
+
   static List<SessionMetadataModel> buildMetadataListFromSession(
     AppLocalizations appLoc,
     SessionModel session) {
@@ -174,10 +187,11 @@ class Utils {
   static Color getColorFromSessionType(SessionType sessionType) {
     switch(sessionType) {
       case SessionType.eventSession:
-      case SessionType.panel:
         return Colors.lightBlue.withOpacity(0.5);
+      case SessionType.panel:
+        return Colors.lightBlue.withOpacity(0.25);
       case SessionType.keynote:
-        return Colors.blue.withOpacity(0.5);
+        return Colors.blue.withOpacity(0.25);
       case SessionType.workshop:
         return Colors.greenAccent.withOpacity(0.5);
       case SessionType.singleSpeaker:

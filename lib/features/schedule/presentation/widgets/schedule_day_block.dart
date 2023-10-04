@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/schedule/data/models/schedule_day.model.dart';
-import 'package:flutter_conf_colombia/features/schedule/data/models/schedule_session.model.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_day1_layout_lg.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_day1_mobiletablet.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_day2_layout_lg.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_day2_mobiletablet.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_time_block.dart';
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/providers/sessions_provider.dart';
-import 'package:flutter_conf_colombia/features/speakers/presentation/providers/speakers_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class Tile extends StatelessWidget {

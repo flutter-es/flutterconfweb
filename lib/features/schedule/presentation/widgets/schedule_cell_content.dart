@@ -31,7 +31,7 @@ class ScheduleCellContent extends StatelessWidget {
       desktop: true,
     );
 
-    final showSpeaker = getValueForScreenType(context: context,
+    final showSpeakerName = getValueForScreenType(context: context,
       mobile: true,
       tablet: true,
       desktop: true,
@@ -141,11 +141,12 @@ class ScheduleCellContent extends StatelessWidget {
                               ),
                               FlutterConfLatamStyles.xsmallHGap,
                               Visibility(
-                                visible: showSpeaker,
+                                visible: showSpeakerName,
                                 child: Text(speaker.name!, style: 
                                   FlutterConfLatamStyles.label6,
                                 ),
                               ),
+                              FlutterConfLatamStyles.xsmallHGap,
                             ],
                           ),
                         ),

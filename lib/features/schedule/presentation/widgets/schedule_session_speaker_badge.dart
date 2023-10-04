@@ -24,11 +24,9 @@ class ScheduleSessionSpeakerBadge extends StatelessWidget {
             ),
           ),
           FlutterConfLatamStyles.xsmallHGap,
-          Expanded(
-            child: Text(
-              speakerInfo.name!, 
-              style: FlutterConfLatamStyles.h7.copyWith(color: Colors.black),
-            ),
+          Text(
+            speakerInfo.name!, 
+            style: FlutterConfLatamStyles.h7.copyWith(color: Colors.black),
           ),
           FlutterConfLatamStyles.mediumHGap,
         ]

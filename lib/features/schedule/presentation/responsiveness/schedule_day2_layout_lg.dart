@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_cell_content.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session.dart';
 import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/schedule_session_container.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/session_main_content.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -24,35 +19,8 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
     super.key
   });
 
-  Widget getSessionFromSlotId(String id) {
-
-    if (sessions.any((s) => s.scheduleSlot == id)) {
-      final foundSession = sessions.firstWhere((s) => s.scheduleSlot == id);
-      final speakersList = speakers.where((s) => foundSession.speakers.contains(s.id)).toList();
-
-      return ScheduleCellContent(
-        session: foundSession, 
-        speakers: speakersList,
-        onScheduleTap: () {
-           Utils.showSessionInfo(
-            ScheduleSessionContainer(
-              session: foundSession,
-              speakers: speakersList,
-            ),
-          );
-        },
-      );
-    }
-                        
-   return Container(
-    color: Colors.grey.withOpacity(0.125),
-    //child: Text('$id'),
-   );
-  }
-
-  Widget getTimeLabelHeader(String label) {
-    const timeLabelStyle = TextStyle(color: FlutterLatamColors.darkBlue, fontSize: FlutterConfLatamStyles.mediumSize, fontWeight: FontWeight.bold);
-    return Text(label, style: timeLabelStyle);
+  Widget getSessionFromSlotId(String id, WidgetRef ref) {
+    return ref.read(scheduleSlotProvider(id));
   }
 
   @override
@@ -121,169 +89,169 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('7:30 - 8:00 AM'),
+            child: Utils.getTimeLabelHeader('7:30 - 8:00 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-1'),
+            child: getSessionFromSlotId('2-1', ref),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('9:00 AM - 10:00 AM'),
+            child: Utils.getTimeLabelHeader('9:00 AM - 10:00 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-2'),
+            child: getSessionFromSlotId('2-2', ref),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('10:00 - 10:40 AM'),
+            child: Utils.getTimeLabelHeader('10:00 - 10:40 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-3'),
+            child: getSessionFromSlotId('2-3', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-4'),
+            child: getSessionFromSlotId('2-4', ref),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 2,
-            child: getSessionFromSlotId('2-5'),
+            child: getSessionFromSlotId('2-5', ref),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('10:40 - 11:00 AM'),
+            child: Utils.getTimeLabelHeader('10:40 - 11:00 AM'),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-6'),
+            child: getSessionFromSlotId('2-6', ref),
           ),
           
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('11:00 - 11:40 AM'),
+            child: Utils.getTimeLabelHeader('11:00 - 11:40 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-7'),
+            child: getSessionFromSlotId('2-7', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-8'),
+            child: getSessionFromSlotId('2-8', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-9'),
+            child: getSessionFromSlotId('2-9', ref),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('11:40 - 12:00 PM'),
+            child: Utils.getTimeLabelHeader('11:40 - 12:00 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-10'),
+            child: getSessionFromSlotId('2-10', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-11'),
+            child: getSessionFromSlotId('2-11', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 2,
-            child: getSessionFromSlotId('2-12'),
+            child: getSessionFromSlotId('2-12', ref),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('12:40 - 12:40 AM'),
+            child: Utils.getTimeLabelHeader('12:40 - 12:40 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-13'),
+            child: getSessionFromSlotId('2-13', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-14'),
+            child: getSessionFromSlotId('2-14', ref),
           ),
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('12:40 - 14:00 AM'),
+            child: Utils.getTimeLabelHeader('12:40 - 14:00 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-15'),
+            child: getSessionFromSlotId('2-15', ref),
           ),
           
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('14:00 - 14:20 AM'),
+            child: Utils.getTimeLabelHeader('14:00 - 14:20 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-16'),
+            child: getSessionFromSlotId('2-16', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-17'),
+            child: getSessionFromSlotId('2-17', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-18'),
+            child: getSessionFromSlotId('2-18', ref),
           ),
           
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('14:20 - 15:00 PM'),
+            child: Utils.getTimeLabelHeader('14:20 - 15:00 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-19'),
+            child: getSessionFromSlotId('2-19', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-20'),
+            child: getSessionFromSlotId('2-20', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 2,
-            child: getSessionFromSlotId('2-21'),
+            child: getSessionFromSlotId('2-21', ref),
           ),
           
           
@@ -291,106 +259,106 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('15:00 - 15:20 PM'),
+            child: Utils.getTimeLabelHeader('15:00 - 15:20 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-22'),
+            child: getSessionFromSlotId('2-22', ref),
           ),
           
           
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('15:20 - 16:00 PM'),
+            child: Utils.getTimeLabelHeader('15:20 - 16:00 PM'),
           ),
 
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-23'),
+            child: getSessionFromSlotId('2-23', ref),
           ),
 
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-24'),
+            child: getSessionFromSlotId('2-24', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-25'),
+            child: getSessionFromSlotId('2-25', ref),
           ),
           
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('16:00 - 16:20 PM'),
+            child: Utils.getTimeLabelHeader('16:00 - 16:20 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-26'),
+            child: getSessionFromSlotId('2-26', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 2,
-            child: getSessionFromSlotId('2-27'),
+            child: getSessionFromSlotId('2-27', ref),
           ),
           
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('16:20 - 17:00 PM'),
+            child: Utils.getTimeLabelHeader('16:20 - 17:00 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-28'),
+            child: getSessionFromSlotId('2-28', ref),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-29'),
+            child: getSessionFromSlotId('2-29', ref),
           ),
           
           
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('17:00 - 17:40 PM'),
+            child: Utils.getTimeLabelHeader('17:00 - 17:40 PM'),
           ),
 
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-30'),
+            child: getSessionFromSlotId('2-30', ref),
           ),
 
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-31'),
+            child: getSessionFromSlotId('2-31', ref),
           ),
 
            StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-32'),
+            child: getSessionFromSlotId('2-32', ref),
           ),
           
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: getTimeLabelHeader('17:40 - 18:00 PM'),
+            child: Utils.getTimeLabelHeader('17:40 - 18:00 PM'),
           ),
          
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
             mainAxisCellCount: 1,
-            child: getSessionFromSlotId('2-33'),
+            child: getSessionFromSlotId('2-33', ref),
           ),
           
         ],

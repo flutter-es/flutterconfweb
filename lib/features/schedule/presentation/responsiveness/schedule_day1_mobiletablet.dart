@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_cell_content.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
 import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/schedule_session_container.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/session_main_content.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ScheduleDay1MobileTabletLayout extends StatelessWidget {
+class ScheduleDay1MobileTabletLayout extends ConsumerWidget {
 
   List<SessionModel> sessions;
   List<SpeakerModel> speakers;
@@ -19,112 +17,82 @@ class ScheduleDay1MobileTabletLayout extends StatelessWidget {
     super.key
   });
 
-  Widget getSessionFromSlotId(String id) {
-
-    if (sessions.any((s) => s.scheduleSlot == id)) {
-      final foundSession = sessions.firstWhere((s) => s.scheduleSlot == id);
-      final speakersList = speakers.where((s) => foundSession.speakers.contains(s.id)).toList();
-
-      return ScheduleCellContent(
-        session: foundSession, 
-        speakers: speakersList,
-        onScheduleTap: () {
-          Utils.showSessionInfo(
-            ScheduleSessionContainer(
-              session: foundSession,
-              speakers: speakersList,
-            ),
-          );
-        },
-      );
-    }
-                        
-   return Container(
-    color: Colors.grey.withOpacity(0.125),
-   );
-  }
-
-  Widget getTimeLabelHeader(String label) {
-    const timeLabelStyle = TextStyle(color: FlutterLatamColors.darkBlue, fontSize: FlutterConfLatamStyles.mediumSize, fontWeight: FontWeight.bold);
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: FlutterConfLatamStyles.smallSize),
-      child: Text(label, style: timeLabelStyle),
-    );
+  Widget getSessionFromSlotId(String id, WidgetRef ref) {
+    return ref.read(scheduleSlotProvider(id));
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
     return Container(
       margin: const EdgeInsets.only(top: FlutterConfLatamStyles.mediumSize),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          getTimeLabelHeader('7:30 - 8:00 AM'),
-          getSessionFromSlotId('1-1'),
+          Utils.getTimeLabelHeader('7:30 - 8:00 AM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-1', ref),
     
-          getTimeLabelHeader('9:00 AM - 10:00 AM'),
-          getSessionFromSlotId('1-2'),
+          Utils.getTimeLabelHeader('9:00 AM - 10:00 AM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-2', ref),
     
-          getTimeLabelHeader('10:00 - 10:40 AM'),
-          getSessionFromSlotId('1-3'),
-          getSessionFromSlotId('1-4'),
-          getSessionFromSlotId('1-5'),
+          Utils.getTimeLabelHeader('10:00 - 10:40 AM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-3', ref),
+          getSessionFromSlotId('1-4', ref),
+          getSessionFromSlotId('1-5', ref),
     
-          getTimeLabelHeader('10:40 - 11:00 AM'),
-          getSessionFromSlotId('1-6'),
+          Utils.getTimeLabelHeader('10:40 - 11:00 AM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-6', ref),
     
-          getTimeLabelHeader('11:00 - 11:40 AM'),
-          getSessionFromSlotId('1-7'),
-          getSessionFromSlotId('1-8'),
+          Utils.getTimeLabelHeader('11:00 - 11:40 AM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-7', ref),
+          getSessionFromSlotId('1-8', ref),
     
-          getTimeLabelHeader('11:40 - 12:00 AM'),
-          getSessionFromSlotId('1-10'),
-          getSessionFromSlotId('1-11'),
-          getSessionFromSlotId('1-12'),
+          Utils.getTimeLabelHeader('11:40 - 12:00 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-10', ref),
+          getSessionFromSlotId('1-11', ref),
+          getSessionFromSlotId('1-12', ref),
     
-          getTimeLabelHeader('12:00 - 12:40 AM'),
-          getSessionFromSlotId('1-13'),
-          getSessionFromSlotId('1-14'),
+          Utils.getTimeLabelHeader('12:00 - 12:40 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-13', ref),
+          getSessionFromSlotId('1-14', ref),
     
-          getTimeLabelHeader('12:40 - 14:00 AM'),
-          getSessionFromSlotId('1-15'),
+          Utils.getTimeLabelHeader('12:40 - 14:00 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-15', ref),
     
-          getTimeLabelHeader('14:00 - 14:20 PM'),
-          getSessionFromSlotId('1-16'),
-          getSessionFromSlotId('1-17'),
-          getSessionFromSlotId('1-18'),
+          Utils.getTimeLabelHeader('14:00 - 14:20 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-16', ref),
+          getSessionFromSlotId('1-17', ref),
+          getSessionFromSlotId('1-18', ref),
     
-          getTimeLabelHeader('14:20 - 15:00 PM'),
-          getSessionFromSlotId('1-19'),
-          getSessionFromSlotId('1-20'),
+          Utils.getTimeLabelHeader('14:20 - 15:00 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-19', ref),
+          getSessionFromSlotId('1-20', ref),
     
-          getTimeLabelHeader('15:00 - 15:20 PM'),
-          getSessionFromSlotId('1-21'),
-          getSessionFromSlotId('1-22'),
+          Utils.getTimeLabelHeader('15:00 - 15:20 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-21', ref),
+          getSessionFromSlotId('1-22', ref),
     
-          getTimeLabelHeader('15:20 - 16:00 PM'),
-          getSessionFromSlotId('1-23'),
-          getSessionFromSlotId('1-24'),
+          Utils.getTimeLabelHeader('15:20 - 16:00 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-23', ref),
+          getSessionFromSlotId('1-24', ref),
     
-          getTimeLabelHeader('16:00 - 16:20 PM'),
-          getSessionFromSlotId('1-25'),
+          Utils.getTimeLabelHeader('16:00 - 16:20 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-25', ref),
     
-          getTimeLabelHeader('16:20 - 17:00 PM'),
-          getSessionFromSlotId('1-27'),
-          getSessionFromSlotId('1-28'),
-          getSessionFromSlotId('1-29'),
+          Utils.getTimeLabelHeader('16:20 - 17:00 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-27', ref),
+          getSessionFromSlotId('1-28', ref),
+          getSessionFromSlotId('1-29', ref),
     
-          getTimeLabelHeader('17:00 - 17:20 PM'),
-          getSessionFromSlotId('1-30'),
+          Utils.getTimeLabelHeader('17:00 - 17:20 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-30', ref),
     
-          getTimeLabelHeader('17:20-18:00 PM'),
-          getSessionFromSlotId('1-31'),
-          getSessionFromSlotId('1-32'),
+          Utils.getTimeLabelHeader('17:20 - 18:00 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-31', ref),
+          getSessionFromSlotId('1-32', ref),
     
-          getTimeLabelHeader('18:00 - 18:20 PM'),
-          getSessionFromSlotId('1-34'),
+          Utils.getTimeLabelHeader('18:00 - 18:20 PM', alignment: MainAxisAlignment.start),
+          getSessionFromSlotId('1-34', ref),
         ]
       ),
     );

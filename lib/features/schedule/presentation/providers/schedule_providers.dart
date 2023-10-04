@@ -1,5 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/schedule/data/models/schedule_day.model.dart';
 import 'package:flutter_conf_colombia/features/schedule/data/repositories/schedule_repository.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_cell_content.dart';
+import 'package:flutter_conf_colombia/features/sessions/presentation/providers/sessions_provider.dart';
+import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/schedule_session_container.dart';
+import 'package:flutter_conf_colombia/features/speakers/presentation/providers/speakers_providers.dart';
+import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -42,6 +48,35 @@ final currentEventLocationTimeProvider = Provider.family((ref, DateTime sessionT
     final now = tz.TZDateTime.now(detroit);
     return now.minute > sessionTime.minute;
 });
+
+final scheduleSlotProvider = Provider.family((ref, String id) {
+  final speakers = ref.read(speakersProvider).value;
+  final sessions = ref.read(sessionsProvider).value;
+
+  if (sessions!.any((s) => s.scheduleSlot == id)) {
+      final foundSession = sessions.firstWhere((s) => s.scheduleSlot == id);
+      final speakersList = speakers!.where((s) => foundSession.speakers.contains(s.id)).toList();
+
+      return ScheduleCellContent(
+        session: foundSession, 
+        speakers: speakersList,
+        onScheduleTap: () {
+          Utils.showSessionInfo(
+            ScheduleSessionContainer(
+              session: foundSession,
+              speakers: speakersList,
+            ),
+          );
+        },
+      );
+    }
+                        
+   return Container(
+    color: Colors.grey.withOpacity(0.125),
+   );
+});
+
+
 
 
 

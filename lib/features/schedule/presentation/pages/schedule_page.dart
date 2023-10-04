@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_page_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_day_block.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_date_selector.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_time_block.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/comingsoon_container.dart';
+import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_day_block.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SchedulePage extends ConsumerWidget {

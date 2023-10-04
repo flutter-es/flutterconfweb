@@ -72,6 +72,7 @@ class ScheduleSessionContainer extends ConsumerWidget {
                 ) : null,
                 additionalBottomContent: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     FlutterConfLatamStyles.smallVGap,
                     Text(appLoc.sessionSpeakerLabel, style: FlutterConfLatamStyles.h7),
