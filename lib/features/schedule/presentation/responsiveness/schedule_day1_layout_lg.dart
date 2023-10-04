@@ -38,8 +38,8 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
     return StaggeredGrid.count(
       axisDirection: AxisDirection.down,
         crossAxisCount: 7,
-        mainAxisSpacing: 6,
-        crossAxisSpacing: 6,
+        mainAxisSpacing: 8,
+        crossAxisSpacing: 8,
         children: [
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
@@ -71,7 +71,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
                 Container(
                   padding: uiConfig.trackTabPadding,
                   color: Colors.orangeAccent,
-                  child: Text(appLoc.scheduleTrack1, style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
+                  child: Text(appLoc.scheduleTrack2, style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
                 ),
               ],
             ),
