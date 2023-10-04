@@ -13,6 +13,7 @@ class SessionModel {
   final List<String> speakers;
   final SessionType sessionType;
   final String scheduleSlot;
+  final String room;
 
   const SessionModel({
     required this.description, 
@@ -26,6 +27,7 @@ class SessionModel {
     required this.speakers,
     required this.sessionType,
     required this.scheduleSlot,
+    required this.room,
   });
 
   factory SessionModel.fromFirestore(Map<String, dynamic> json) {
@@ -41,6 +43,7 @@ class SessionModel {
       sessionType: SessionType.values.firstWhere((s) => s.name == json['sessionType']),
       speakers: (json['speakers'] as List<dynamic>).map((e) => e.toString()).toList(),
       scheduleSlot: json.containsKey('scheduleSlot') ? json['scheduleSlot'].toString() : '',
+      room: json.containsKey('room') ? json['room'].toString() : '',
     );
   }
 
@@ -65,7 +68,8 @@ class SessionModel {
       tags: tags ?? this.tags,
       sessionType: sessionType ?? this.sessionType,
       speakers: speakers ?? this.speakers,
-      scheduleSlot: scheduleSlot ?? this.scheduleSlot
+      scheduleSlot: scheduleSlot ?? this.scheduleSlot,
+      room: room ?? this.room,
     );
   }
 }

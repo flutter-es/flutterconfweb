@@ -13,21 +13,26 @@ class ScheduleSessionSpeakerBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CircleAvatar( 
-          backgroundImage: NetworkImage(
-            speakerInfo.photo!,  
+    return Container(
+      margin: const EdgeInsets.only(bottom: FlutterConfLatamStyles.mediumSize),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircleAvatar( 
+            backgroundImage: NetworkImage(
+              speakerInfo.photo!,  
+            ),
           ),
-        ),
-        FlutterConfLatamStyles.xsmallHGap,
-        Text(
-          speakerInfo.name!, 
-          style: FlutterConfLatamStyles.h7.copyWith(color: Colors.black),
-        ),
-        FlutterConfLatamStyles.mediumHGap,
-      ]
+          FlutterConfLatamStyles.xsmallHGap,
+          Expanded(
+            child: Text(
+              speakerInfo.name!, 
+              style: FlutterConfLatamStyles.h7.copyWith(color: Colors.black),
+            ),
+          ),
+          FlutterConfLatamStyles.mediumHGap,
+        ]
+      ),
     );
   }
 }

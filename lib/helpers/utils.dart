@@ -56,6 +56,28 @@ class Utils {
     return getDeviceType(MediaQuery.sizeOf(Utils.mainNav.currentContext!)) == DeviceScreenType.mobile;
   }
 
+  static void showSessionInfo(Widget sessionContent) {
+    showUIModal(Utils.mainNav.currentContext!,
+      Container(
+        margin: isMobile() ? FlutterConfLatamStyles.xLargeMargin.copyWith(
+          left: 0, right: 0, bottom: 0,
+        ) : FlutterConfLatamStyles.largeMargin,
+        padding: isMobile() ? const EdgeInsets.symmetric(
+          horizontal: FlutterConfLatamStyles.mediumSize, vertical: FlutterConfLatamStyles.largeSize
+        ) : FlutterConfLatamStyles.bannerPadding,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: isMobile() ? const BorderRadius.only(
+            topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
+            topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
+          ) : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+        ),
+        child: sessionContent,
+      ),
+      dismissible: true,
+    );
+  }
+
   static void showSpeakerInfo(Widget speakerContent) {
     showUIModal(Utils.mainNav.currentContext!,
       Container(

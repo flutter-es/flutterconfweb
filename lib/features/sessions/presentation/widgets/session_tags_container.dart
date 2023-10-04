@@ -24,25 +24,28 @@ class SessionTagsContainer extends ConsumerWidget {
           child: Text(appLoc.sessionTags, style: FlutterConfLatamStyles.h7),
         ),
         FlutterConfLatamStyles.smallVGap,
-        Wrap(
-          children: List.generate(
-            tags.length, (index) {
-              return Container(
-                padding: FlutterConfLatamStyles.xsmallPadding.copyWith(
-                  left: FlutterConfLatamStyles.mediumSize, right: FlutterConfLatamStyles.mediumSize,
-                ),
-                margin: const EdgeInsets.only(
-                  bottom: FlutterConfLatamStyles.smallSize,
-                  right: FlutterConfLatamStyles.smallSize,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blueAccent.withOpacity(0.25),
-                  borderRadius: BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
-                ),
-                child: Text(tags[index], style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-              );
-            }),
-        ),
+        
+        if (tags.isNotEmpty)
+          Wrap(
+            children: List.generate(
+              tags.length, (index) {
+                
+                return tags[index].isNotEmpty ? Container(
+                  padding: FlutterConfLatamStyles.xsmallPadding.copyWith(
+                    left: FlutterConfLatamStyles.mediumSize, right: FlutterConfLatamStyles.mediumSize,
+                  ),
+                  margin: const EdgeInsets.only(
+                    bottom: FlutterConfLatamStyles.smallSize,
+                    right: FlutterConfLatamStyles.smallSize,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+                  ),
+                  child: Text(tags[index], style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                ) : const SizedBox.shrink();
+              }),
+          ),
       ],
     );
   }

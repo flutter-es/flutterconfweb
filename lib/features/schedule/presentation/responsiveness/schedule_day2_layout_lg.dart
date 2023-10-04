@@ -3,12 +3,17 @@ import 'package:flutter_conf_colombia/features/schedule/presentation/responsiven
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_cell_content.dart';
 import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_session.dart';
 import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
+import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/schedule_session_container.dart';
+import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/session_main_content.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
+import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class ScheduleDay2LargeLayout extends StatelessWidget {
+class ScheduleDay2LargeLayout extends ConsumerWidget {
 
   List<SessionModel> sessions;
   List<SpeakerModel> speakers;
@@ -27,7 +32,15 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
 
       return ScheduleCellContent(
         session: foundSession, 
-        speakers: speakersList
+        speakers: speakersList,
+        onScheduleTap: () {
+           Utils.showSessionInfo(
+            ScheduleSessionContainer(
+              session: foundSession,
+              speakers: speakersList,
+            ),
+          );
+        },
       );
     }
                         
@@ -37,11 +50,17 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
    );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget getTimeLabelHeader(String label) {
+    const timeLabelStyle = TextStyle(color: FlutterLatamColors.darkBlue, fontSize: FlutterConfLatamStyles.mediumSize, fontWeight: FontWeight.bold);
+    return Text(label, style: timeLabelStyle);
+  }
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
-    
+
     return StaggeredGrid.count(
       axisDirection: AxisDirection.down,
         crossAxisCount: 7,
@@ -63,7 +82,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
                 Container(
                   padding: uiConfig.trackTabPadding,
                   color: Colors.orangeAccent,
-                  child: Text('Track 1', style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
+                  child: Text(appLoc.scheduleTrack1, style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
                 )
               ],
             ),
@@ -78,7 +97,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
                 Container(
                   padding: uiConfig.trackTabPadding,
                   color: Colors.orangeAccent,
-                  child: Text('Track 2', style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
+                  child: Text(appLoc.scheduleTrack2, style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
                 )
               ],
             ),
@@ -93,7 +112,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
                 Container(
                   padding: uiConfig.trackTabPadding,
                   color: Colors.greenAccent,
-                  child: Text('Workshops', style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
+                  child: Text(appLoc.scheduleWorkshops, style: uiConfig.trackLabelStyle.copyWith(color: Colors.black), textAlign: TextAlign.center,),
                 )
               ],
             ),
@@ -102,7 +121,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('7:30-8:00 AM'),
+            child: getTimeLabelHeader('7:30 - 8:00 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
@@ -113,7 +132,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('9:00 AM / 10:00 AM'),
+            child: getTimeLabelHeader('9:00 AM - 10:00 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
@@ -124,7 +143,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('10:00 / 10:40 AM'),
+            child: getTimeLabelHeader('10:00 - 10:40 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -146,7 +165,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('10:40 / 11:00 AM'),
+            child: getTimeLabelHeader('10:40 - 11:00 AM'),
           ),
     
           StaggeredGridTile.count(
@@ -158,7 +177,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('11:00 / 11:40 AM'),
+            child: getTimeLabelHeader('11:00 - 11:40 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -179,7 +198,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('11:40 / 12:00 PM'),
+            child: getTimeLabelHeader('11:40 - 12:00 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -200,7 +219,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('12:40 / 12:40 AM'),
+            child: getTimeLabelHeader('12:40 - 12:40 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -216,7 +235,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('12:40 / 14:00 AM'),
+            child: getTimeLabelHeader('12:40 - 14:00 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,
@@ -228,7 +247,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('14:00 / 14:20 AM'),
+            child: getTimeLabelHeader('14:00 - 14:20 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -249,7 +268,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('14:20 / 15:00 PM'),
+            child: getTimeLabelHeader('14:20 - 15:00 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -272,7 +291,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('15:00 / 15:20 PM'),
+            child: getTimeLabelHeader('15:00 - 15:20 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
@@ -284,7 +303,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('15:20 / 16:00 PM'),
+            child: getTimeLabelHeader('15:20 - 16:00 PM'),
           ),
 
           StaggeredGridTile.count(
@@ -307,7 +326,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('16:00 / 16:20 PM'),
+            child: getTimeLabelHeader('16:00 - 16:20 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 4,
@@ -324,7 +343,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('16:20 / 17:00 PM'),
+            child: getTimeLabelHeader('16:20 - 17:00 PM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
@@ -341,7 +360,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('17:00 / 17:40 PM'),
+            child: getTimeLabelHeader('17:00 - 17:40 PM'),
           ),
 
           StaggeredGridTile.count(
@@ -365,7 +384,7 @@ class ScheduleDay2LargeLayout extends StatelessWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Text('17:40 / 18:00 PM'),
+            child: getTimeLabelHeader('17:40 - 18:00 PM'),
           ),
          
           StaggeredGridTile.count(

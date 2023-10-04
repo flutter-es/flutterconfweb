@@ -83,11 +83,15 @@
   "speakersPageBottomParagraph": "Get ready to be inspired by these exceptional speakers at Flutter Conf Latam 2023. Mark your calendars and join us for a transformative experience in the world of Flutter.",
   "communitiesTitle": "Collaborating Communities",
   "communitiesSubtitle": "This event wouldn't be possible with the support of the following communities:",
-  "scheduleDay": "Day",
   "sessionTags": "Tags",
   "sessionLang": "Language",
   "sessionFormat": "Format",
   "sessionLevel": "Level",
   "sessionTalkNotification": "The content of this talk will be published later. Visit us later for more details.",
-  "speakerBadgeMoreInfo": "View More Info"
+  "speakerBadgeMoreInfo": "View More Info",
+  "sessionSpeakerLabel": "Speaker(s)",
+  "scheduleWorkshops": "Workshops",
+  "scheduleDay": "Day",
+  "scheduleTrack1": "Track 1",
+  "scheduleTrack2": "Track 2"
 }
