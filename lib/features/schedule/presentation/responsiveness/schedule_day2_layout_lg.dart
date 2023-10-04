@@ -7,6 +7,7 @@ import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleDay2LargeLayout extends ConsumerWidget {
 
@@ -28,6 +29,11 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
 
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
+    final headerCellCount = getValueForScreenType(context: context,
+      mobile: 0.75,
+      tablet: 0.5,
+      desktop: 0.5,
+    );
 
     return StaggeredGrid.count(
       axisDirection: AxisDirection.down,
@@ -35,14 +41,14 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
         mainAxisSpacing: 8,
         crossAxisSpacing: 8,
         children: [
-          const StaggeredGridTile.count(
+          StaggeredGridTile.count(
             crossAxisCellCount: 1,
-            mainAxisCellCount: 1,
-            child: SizedBox.shrink(),
+            mainAxisCellCount: headerCellCount,
+            child: const SizedBox.shrink(),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
+            mainAxisCellCount: headerCellCount,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -57,7 +63,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
+            mainAxisCellCount: headerCellCount,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -72,7 +78,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 2,
-            mainAxisCellCount: 1,
+            mainAxisCellCount: headerCellCount,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -85,6 +91,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
               ],
             ),
           ),
+          
     
           StaggeredGridTile.count(
             crossAxisCellCount: 1,

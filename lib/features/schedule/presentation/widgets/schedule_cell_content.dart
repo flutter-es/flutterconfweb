@@ -37,12 +37,6 @@ class ScheduleCellContent extends StatelessWidget {
       desktop: true,
     );
 
-    final showSessionDescription = session.sessionType != SessionType.eventSession && getValueForScreenType(context: context,
-      mobile: false,
-      tablet: false,
-      desktop: true,
-    );
-
     final double cellPadding = getValueForScreenType(context: context,
       mobile: 18,
       tablet: 18,
@@ -96,13 +90,6 @@ class ScheduleCellContent extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: FlutterConfLatamStyles.getStylesFromSessionType(session.sessionType, context),
-                  ),
-                  Visibility(
-                    visible: showSessionDescription,
-                    child: Text(session.description,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
                   ),
                 ],
               ),
