@@ -96,7 +96,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           StaggeredGridTile.count(
             crossAxisCellCount: 1,
             mainAxisCellCount: 1,
-            child: Utils.getTimeLabelHeader('7:30 - 8:00 AM'),
+            child: Utils.getTimeLabelHeader('7:00 - 9:00 AM'),
           ),
           StaggeredGridTile.count(
             crossAxisCellCount: 6,

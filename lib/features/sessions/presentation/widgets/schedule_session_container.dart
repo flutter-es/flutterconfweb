@@ -37,17 +37,23 @@ class ScheduleSessionContainer extends ConsumerWidget {
       child: Material(
         color: Colors.transparent,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(right: FlutterConfLatamStyles.smallSize),
+          padding: const EdgeInsets.only(right: FlutterConfLatamStyles.mediumSize),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SessionMainContent(
                 session: session,
-                additionalTopContent: session.room.isNotEmpty ? Row(
+                additionalTopContent: session.room.isNotEmpty ? Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: FlutterConfLatamStyles.smallSize),
+                      child: Text(appLoc.scheduleRoomLabel, style: const TextStyle(color: Colors.black)),
+                    ),
                     Container(
                       margin: FlutterConfLatamStyles.smallMargin.copyWith(
+                        top: 0,
                         left: 0,
                         bottom: FlutterConfLatamStyles.largeSize,
                       ),

@@ -29,7 +29,7 @@ class ScheduleDay1MobileTabletLayout extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Utils.getTimeLabelHeader('7:30 - 8:00 AM', alignment: MainAxisAlignment.start),
+          Utils.getTimeLabelHeader('7:00 - 9:00 AM', alignment: MainAxisAlignment.start),
           getSessionFromSlotId('1-1', ref),
     
           Utils.getTimeLabelHeader('9:00 AM - 10:00 AM', alignment: MainAxisAlignment.start),

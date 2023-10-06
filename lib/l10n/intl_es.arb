@@ -93,5 +93,6 @@
   "scheduleWorkshops": "Talleres",
   "scheduleDay": "Día",
   "scheduleTrack1": "Track 1",
-  "scheduleTrack2": "Track 2"
+  "scheduleTrack2": "Track 2",
+  "scheduleRoomLabel": "Salón"
 }
