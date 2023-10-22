@@ -88,5 +88,11 @@
   "sessionFormat": "Formato",
   "sessionLevel": "Nivel",
   "sessionTalkNotification": "El contenido de esta charla será publicada más adelante. Visítenos luego para más detalles.",
-  "speakerBadgeMoreInfo": "Ver Más Info"
+  "speakerBadgeMoreInfo": "Ver Más Info",
+  "sessionSpeakerLabel": "Expositor(es)",
+  "scheduleWorkshops": "Talleres",
+  "scheduleDay": "Día",
+  "scheduleTrack1": "Track 1",
+  "scheduleTrack2": "Track 2",
+  "scheduleRoomLabel": "Salón"
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/sessions/data/models/session.metadata.model.dart';
 import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
@@ -55,6 +54,28 @@ class Utils {
   
   static bool isMobile() {
     return getDeviceType(MediaQuery.sizeOf(Utils.mainNav.currentContext!)) == DeviceScreenType.mobile;
+  }
+
+  static void showSessionInfo(Widget sessionContent) {
+    showUIModal(Utils.mainNav.currentContext!,
+      Container(
+        margin: isMobile() ? FlutterConfLatamStyles.xLargeMargin.copyWith(
+          left: 0, right: 0, bottom: 0,
+        ) : FlutterConfLatamStyles.largeMargin,
+        padding: isMobile() ? const EdgeInsets.symmetric(
+          horizontal: FlutterConfLatamStyles.mediumSize, vertical: FlutterConfLatamStyles.largeSize
+        ) : FlutterConfLatamStyles.bannerPadding,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: isMobile() ? const BorderRadius.only(
+            topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
+            topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
+          ) : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+        ),
+        child: sessionContent,
+      ),
+      dismissible: true,
+    );
   }
 
   static void showSpeakerInfo(Widget speakerContent) {
@@ -114,6 +135,30 @@ class Utils {
     
   }
 
+  static SessionModel? getSessionFromSlotId(List<SessionModel> sessions, int id) {
+
+    SessionModel? session;
+
+     if (sessions.any((SessionModel s) => s.scheduleSlot == 1)) {
+      session = sessions.firstWhere((s) => s.scheduleSlot == id);
+     }
+
+     return session;
+  }
+
+  static Widget getTimeLabelHeader(String label, { MainAxisAlignment alignment = MainAxisAlignment.end }) {
+    final timeLabelStyle = isMobile() ? FlutterConfLatamStyles.h6 : FlutterConfLatamStyles.h7;
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: alignment,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: timeLabelStyle),
+      ],
+    );
+  }
+
   static List<SessionMetadataModel> buildMetadataListFromSession(
     AppLocalizations appLoc,
     SessionModel session) {
@@ -137,5 +182,22 @@ class Utils {
         labelColor: Colors.black,
       )
     ];
+  }
+
+  static Color getColorFromSessionType(SessionType sessionType) {
+    switch(sessionType) {
+      case SessionType.eventSession:
+        return Colors.lightBlue.withOpacity(0.5);
+      case SessionType.panel:
+        return Colors.lightBlue.withOpacity(0.25);
+      case SessionType.keynote:
+        return Colors.blue.withOpacity(0.25);
+      case SessionType.workshop:
+        return Colors.greenAccent.withOpacity(0.5);
+      case SessionType.singleSpeaker:
+        return Colors.orangeAccent.withOpacity(0.25);
+      default:
+        return Colors.grey.withOpacity(0.25);
+    }
   }
 }
