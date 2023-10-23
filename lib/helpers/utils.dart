@@ -200,4 +200,22 @@ class Utils {
         return Colors.grey.withOpacity(0.25);
     }
   }
+
+  static Color getTrackColorForSession(SessionType sessionType) {
+    switch(sessionType) {
+      case SessionType.eventSession:
+        return Colors.transparent;
+      case SessionType.panel:
+        return Colors.lightBlue;
+      case SessionType.keynote:
+        return Colors.blue;
+      case SessionType.workshop:
+        return Colors.greenAccent;
+      case SessionType.multiSpeaker:
+      case SessionType.singleSpeaker:
+        return Colors.orangeAccent;
+      default:
+        return Colors.grey.withOpacity(0.25);
+    }
+  }
 }
