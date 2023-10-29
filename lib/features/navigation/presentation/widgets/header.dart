@@ -11,8 +11,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Header extends ConsumerStatefulWidget {
 
+  final bool showMenu;
   const Header({
     super.key,
+    this.showMenu = true,
   });
 
   @override
@@ -81,29 +83,32 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
               },
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: TabBar(
-              onTap: (index) {
-                final navItem = visibleTabItems[index];
-                ref.read(navigationItemsProvider.notifier).selectNavItem(navItem);
-              },
-              controller: CustomTabController(length: visibleTabItems.length, vsync: this).build(),
-              isScrollable: true,
-              indicatorWeight: 1.0,
-              indicatorColor: Colors.white,
-              labelColor: FlutterLatamColors.darkBlue,
-              unselectedLabelColor: Colors.grey,
-              tabs: [
-                for (final tabItem in visibleTabItems)
-                  Tab(
-                    child: Text(
-                      tabItem.label,
-                      style: TextStyle(
-                        color: tabItem.isSelected! ? FlutterLatamColors.darkBlue : Colors.grey),
+          Visibility(
+            visible: widget.showMenu,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: TabBar(
+                onTap: (index) {
+                  final navItem = visibleTabItems[index];
+                  ref.read(navigationItemsProvider.notifier).selectNavItem(navItem);
+                },
+                controller: CustomTabController(length: visibleTabItems.length, vsync: this).build(),
+                isScrollable: true,
+                indicatorWeight: 1.0,
+                indicatorColor: Colors.white,
+                labelColor: FlutterLatamColors.darkBlue,
+                unselectedLabelColor: Colors.grey,
+                tabs: [
+                  for (final tabItem in visibleTabItems)
+                    Tab(
+                      child: Text(
+                        tabItem.label,
+                        style: TextStyle(
+                          color: tabItem.isSelected! ? FlutterLatamColors.darkBlue : Colors.grey),
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
            const Align(

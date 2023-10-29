@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
+import 'package:flutter_conf_colombia/features/wrap/farewell-page.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +27,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     timer = Timer(2.seconds, () {
-      Router.neglect(context, () => GoRouter.of(context).go(HomePage.route)); 
+      Router.neglect(context, () => GoRouter.of(context).go(FarewellPage.route)); 
     });
   }
 

@@ -8,6 +8,7 @@ import 'package:flutter_conf_colombia/features/speakers/presentation/pages/speak
 import 'package:flutter_conf_colombia/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/pages/sponsors_page.dart';
 import 'package:flutter_conf_colombia/features/tickets/presentation/pages/tickets_page.dart';
+import 'package:flutter_conf_colombia/features/wrap/farewell-page.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,6 +24,13 @@ class AppRoutes {
         path: SplashPage.route,
         builder: (context, state) {
             return const SplashPage();
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: Utils.mainNav,
+        path: FarewellPage.route,
+        builder: (context, state) {
+            return const FarewellPage();
         },
       ),
       ShellRoute(

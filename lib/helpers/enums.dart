@@ -12,6 +12,7 @@ enum FlutterDashAnimations {
   flutterdashflag,
   flutterconfconstruction,
   flutterdashconst,
+  confettibg,
 }
 
 enum SponsorshipLevels {

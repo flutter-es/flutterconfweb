@@ -94,5 +94,10 @@
   "scheduleDay": "Día",
   "scheduleTrack1": "Track 1",
   "scheduleTrack2": "Track 2",
-  "scheduleRoomLabel": "Salón"
+  "scheduleRoomLabel": "Salón",
+  "wrapTitle": "¡Y eso es todo!",
+  "wrapSubtitle": "Gracias Colombia\npor ser un increíble país anfitrión.",
+  "wrapContent1": "Y gracias a todos los asistentes y expositores que vinieron a nuestro evento desde todas partes del mundo para hacer este evento posible.",
+  "wrapContent2": "¡Nos vemos en la próxima entrega de Flutter Conf Latam!",
+  "wrapThankYouSponsors": "Gracias a Nuestros Patrocinadores"
 }

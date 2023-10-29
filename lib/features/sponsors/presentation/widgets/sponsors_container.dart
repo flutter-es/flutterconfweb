@@ -10,7 +10,12 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SponsorsContainer extends ConsumerWidget {
-  const SponsorsContainer({super.key});
+
+  final bool wrapUp;
+  const SponsorsContainer({
+    super.key,
+    this.wrapUp = false,  
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,13 +34,13 @@ class SponsorsContainer extends ConsumerWidget {
             children: [
               Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Text(
-                  appLoc.ourSponsors,
+                  wrapUp ? appLoc.wrapThankYouSponsors : appLoc.ourSponsors,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: uiConfig.titleSize,
@@ -61,22 +66,25 @@ class SponsorsContainer extends ConsumerWidget {
             level: SponsorshipLevels.inkind,
           ),
           FlutterConfLatamStyles.smallVGap,
-          ElevatedButton(
-            onPressed: () {
-              ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(SponsorsPage.route);
-            },
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              shape: const StadiumBorder(),
-              backgroundColor: FlutterLatamColors.brightYellow,
-            ),
-            child: Padding(
-              padding: uiConfig.buttonPadding,
-              child: Text(
-                appLoc.becomeASponsor,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: uiConfig.buttonLabelSize,
+          Visibility(
+            visible: !wrapUp,
+            child: ElevatedButton(
+              onPressed: () {
+                ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(SponsorsPage.route);
+              },
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+                shape: const StadiumBorder(),
+                backgroundColor: FlutterLatamColors.brightYellow,
+              ),
+              child: Padding(
+                padding: uiConfig.buttonPadding,
+                child: Text(
+                  appLoc.becomeASponsor,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: uiConfig.buttonLabelSize,
+                  ),
                 ),
               ),
             ),

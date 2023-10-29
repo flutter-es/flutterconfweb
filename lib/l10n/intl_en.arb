@@ -94,5 +94,10 @@
   "scheduleDay": "Day",
   "scheduleTrack1": "Track 1",
   "scheduleTrack2": "Track 2",
-  "scheduleRoomLabel": "Room"
+  "scheduleRoomLabel": "Room",
+  "wrapTitle": "And that's a wrap!",
+  "wrapSubtitle": "Thank you Colombia\nfor being an amazing hosting country.",
+  "wrapContent1": "And thanks to all attendees and speakers who made their way to our event from all over the world to make this event possible.",
+  "wrapContent2": "See you at the next Flutter Conf Latam!",
+  "wrapThankYouSponsors": "Thanks to our Sponsors"
 }
