@@ -8,7 +8,7 @@
       }
     }
   },
-  "copyright": "© 2023 Flutter Conf Latam",
+  "copyright": "© 2024 Flutter Conf Latam",
   "comingSoon": "COMING SOON!",
   "about": "About",
   "cfp": "CFP",
@@ -26,8 +26,8 @@
   "cfpOpen": "CFP now open!",
   "submitYourTalk": "Submit your talk!",
   "ticketBannerSlogan": "The most anticipated\nFlutter Conference\n in Latin America!",
-  "homeContainerTitle": "Hello, Latin America,\nwe'll see you soon!",
-  "homeContainerContent": "Flutter Conf Latam is the most anticipated Flutter event in Latin America.\nThe Flutter Community will gather for a 2-day event with over 30 speakers.",
-  "homeContainerDateLabel": "October 25  & 26, 2023",
-  "homeContainerCountryLabel": "Medellin, Colombia"
+  "homeContainerTitle": "Hello, Mexico,\nwe'll see you soon!",
+  "homeContainerContent": "FlutterConf Latam is the most anticipated Flutter event in Latin America.\nThe Flutter Community will gather for a 2-day event, \nwith a lot of code, learning, networking and fun. \nKeep in touch in our social networks for more information.",
+  "homeContainerDateLabel": "October, 2024",
+  "homeContainerCountryLabel": "CDMX, Mexico"
 }

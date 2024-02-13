@@ -22,13 +22,13 @@ class HomeContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final homeContainerData = ref.watch(homeContainerDataProvider);
-    final uiConfig = HomeSectionResponsiveConfig.getHomeSectionBannerConfig(context);
+    final uiConfig =
+        HomeSectionResponsiveConfig.getHomeSectionBannerConfig(context);
 
     return SizedBox(
-      height: uiConfig.bannerHeight,
-      child: Padding(
+        height: uiConfig.bannerHeight,
+        child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: uiConfig.sectionPadding,
             vertical: uiConfig.sectionPadding,
@@ -138,8 +138,7 @@ class HomeContainer extends ConsumerWidget {
               ),
             ],
           ),
-        )
-      );
+        ));
   }
 
   void clickCFP(String url) {
