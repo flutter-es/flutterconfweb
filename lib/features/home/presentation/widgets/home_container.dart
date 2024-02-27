@@ -61,7 +61,7 @@ class HomeContainer extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 60.0),
-                    Row(
+                    /*Row(
                       mainAxisAlignment: uiConfig.buttonRowAlignment,
                       children: [
                         CircleRoundIconButton(
@@ -78,7 +78,7 @@ class HomeContainer extends ConsumerWidget {
                           onTap: () => clickCFP(homeContainerData.cfpUrlLink),
                         ),
                       ],
-                    ),
+                    ),*/
                     SizedBox(height: uiConfig.buttonBottomGap),
                     Text(
                       homeContainerData.dateLabel,
@@ -97,7 +97,7 @@ class HomeContainer extends ConsumerWidget {
                             bottom: 5.0,
                           ),
                           child: Image.asset(
-                            'assets/images/colombia_flag.png',
+                            'assets/images/mexico_flag.png',
                             height: uiConfig.flagSize,
                             width: uiConfig.flagSize,
                           ),
