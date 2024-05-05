@@ -97,7 +97,7 @@ class HomeContainer extends ConsumerWidget {
                             bottom: 5.0,
                           ),
                           child: Image.asset(
-                            'assets/images/mexico_flag.png',
+                            'assets/images/BanderaPeru.png',
                             height: uiConfig.flagSize,
                             width: uiConfig.flagSize,
                           ),
