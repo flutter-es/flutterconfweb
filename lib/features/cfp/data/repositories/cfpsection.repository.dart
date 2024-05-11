@@ -12,8 +12,7 @@ class CFPSectionRepository {
     return CFPSectionModel(
       cfpSubmitLabel: appLoc.submitYourTalk,
       cfpButtonLabel: appLoc.cfpOpen,
-      cfpUrlLink:
-          'https://docs.google.com/forms/d/e/1FAIpQLSd9DRutDGzKcKUcwLh103oRIBQw3cppEqBYAR5IfAmbAage9g/viewform',
+      cfpUrlLink: 'https://forms.gle/oQPB3g7Ln7GTcpdq6',
     );
   }
 }

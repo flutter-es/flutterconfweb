@@ -23,9 +23,9 @@ class HomeContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final homeContainerData = ref.watch(homeContainerDataProvider);
-    final uiConfig = HomeSectionResponsiveConfig.getHomeSectionBannerConfig(context);
+    final uiConfig =
+        HomeSectionResponsiveConfig.getHomeSectionBannerConfig(context);
 
     return SizedBox(
       height: uiConfig.bannerHeight,
@@ -33,8 +33,9 @@ class HomeContainer extends ConsumerWidget {
         children: [
           Positioned.fill(
             child: Opacity(
-              opacity: 0.5,
-              child: Image.asset('${Constants.imagesPath}/topbanner.jpg',
+              opacity: 0.9,
+              child: Image.asset(
+                '${Constants.imagesPath}/topbanner.jpg',
                 fit: BoxFit.cover,
               ),
             ),
@@ -52,16 +53,22 @@ class HomeContainer extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: uiConfig.titleAlignment,
                     children: [
-                      Text(homeContainerData.title,
-                      textAlign: uiConfig.textAlign,
-                      style: TextStyle(
-                        height: 1,
-                        color: FlutterLatamColors.blueText,
-                        fontSize: uiConfig.titleSize, fontWeight: FontWeight.bold),),
-                      Text(homeContainerData.content, textAlign: uiConfig.textAlign, style: TextStyle(
-                          color: FlutterLatamColors.blueText,
-                          fontSize: uiConfig.subtitleSize
-                        )
+                      Text(
+                        homeContainerData.title,
+                        textAlign: uiConfig.textAlign,
+                        style: TextStyle(
+                            height: 1,
+                            color: FlutterLatamColors.white,
+                            fontSize: uiConfig.titleSize,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        homeContainerData.content,
+                        textAlign: uiConfig.textAlign,
+                        style: TextStyle(
+                          color: FlutterLatamColors.white,
+                          fontSize: uiConfig.subtitleSize,
+                        ),
                       )
                     ],
                   ),
@@ -85,12 +92,12 @@ class HomeContainer extends ConsumerWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ],
-      )
-      );
+      ),
+    );
   }
 
   void clickCFP(String url) {

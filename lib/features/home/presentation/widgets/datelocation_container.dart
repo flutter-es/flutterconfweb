@@ -10,29 +10,42 @@ class DateLocationContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final dateLocData = ref.watch(dateLocationProvider);
-    final uiConfig = DateLocationResponsiveConfig.getDateLocationBannerConfig(context);
+    final uiConfig =
+        DateLocationResponsiveConfig.getDateLocationBannerConfig(context);
 
     return Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('${Constants.imagesPath}/medellin.jpg'),
-              fit: BoxFit.cover,
-            ),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('${Constants.imagesPath}/bannerperu.jpg'),
+          fit: BoxFit.cover,
         ),
-        padding: FlutterConfLatamStyles.bannerPadding,
-        child: Padding(
-          padding: EdgeInsets.all(uiConfig.padding),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(dateLocData.date, textAlign: TextAlign.center, style: TextStyle(fontSize: uiConfig.dateSize, color: Colors.white, fontWeight: FontWeight.bold)),
-              Text(dateLocData.location, textAlign: TextAlign.center, style: TextStyle(fontSize: uiConfig.locationSize, color: Colors.white, fontWeight: FontWeight.bold)),
-              Text(dateLocData.address, textAlign: TextAlign.center, style: TextStyle(fontSize: uiConfig.addressSize, color: Colors.white))
-            ],
-          ),
+      ),
+      padding: FlutterConfLatamStyles.bannerPadding,
+      child: Padding(
+        padding: EdgeInsets.all(uiConfig.padding),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(dateLocData.date,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: uiConfig.dateSize,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
+            Text(dateLocData.location,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: uiConfig.locationSize,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
+            Text(dateLocData.address,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: uiConfig.addressSize, color: Colors.white))
+          ],
         ),
-      );
+      ),
+    );
   }
 }

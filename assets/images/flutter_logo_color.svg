@@ -14,8 +14,8 @@
 <stop offset="1" stop-color="#B0B1B5"/>
 </linearGradient>
 <linearGradient id="paint2_linear_20_16" x1="3021" y1="-9.47976e-05" x2="3.98388e-05" y2="1921" gradientUnits="userSpaceOnUse">
-<stop stop-color="#1B6D41"/>
-<stop offset="1" stop-color="#67AD57"/>
+<stop stop-color="#D75654"/>
+<stop offset="1" stop-color="#BE0805"/>
 </linearGradient>
 <radialGradient id="paint3_radial_20_16" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(635.182 2667.24) rotate(41.4542) scale(1875.59 1876.57)">
 <stop stop-color="#FBFBF6"/>
