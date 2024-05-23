@@ -20,7 +20,7 @@ class WipContainer extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             FlutterLatamColors.ticketBgTopColor,
-            FlutterLatamColors.ticketBgBottomColor
+            FlutterLatamColors.ticketBgBottomColor,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -31,10 +31,10 @@ class WipContainer extends StatelessWidget {
           Transform(
             alignment: Alignment.center,
             transform: Matrix4.rotationY(math.pi),
-            child: SizedBox(
+            child: const SizedBox(
               width: 500.0,
               height: 500.0,
-              child: const FlutterDashAnimation(
+              child: FlutterDashAnimation(
                 animation: FlutterDashAnimations.flutterdashconst,
               ),
             ),

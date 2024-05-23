@@ -12,25 +12,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ShellPage extends ConsumerWidget {
+  const ShellPage({required this.child, super.key});
 
   static const String route = '/main';
   final Widget child;
-  
-  const ShellPage({
-    required this.child,
-    super.key
-  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final isMobile = getValueForScreenType(
       context: context,
       mobile: true,
       tablet: true,
       desktop: false,
     );
-    
+
     return Scaffold(
       key: Utils.mainScaffold,
       appBar: isMobile
@@ -39,7 +34,9 @@ class ShellPage extends ConsumerWidget {
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () {
-                    ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(HomePage.route);
+                    ref
+                        .read(navigationItemsProvider.notifier)
+                        .selectNavItemFromRoute(HomePage.route);
                   },
                   child: SvgPicture.asset(
                     '${Constants.imagesPath}/flutter_logo_color.svg',
@@ -49,28 +46,26 @@ class ShellPage extends ConsumerWidget {
                 ),
               ),
               actions: const [
-                LanguageButton()
+                LanguageButton(),
               ],
             )
           : null,
-      drawer: isMobile
-          ? MobileDrawer()
-          : null,
-      
+      drawer: isMobile ? const MobileDrawer() : null,
       body: Column(
         children: [
           Expanded(
             child: NestedScrollView(
-              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                return [ if (!isMobile) const Header()];
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return [if (!isMobile) const Header()];
               },
               body: Column(
                 children: [
                   Expanded(child: child),
-                  Footer()
+                  const Footer(),
                 ],
-              )
-            )
+              ),
+            ),
           ),
         ],
       ),

@@ -13,7 +13,7 @@ class ContactContainer extends StatelessWidget {
       height: height,
       color: Colors.red[400],
       alignment: Alignment.center,
-      child: Text(
+      child: const Text(
         title,
       ),
     );

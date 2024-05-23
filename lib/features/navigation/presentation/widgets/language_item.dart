@@ -23,11 +23,13 @@ class LanguageItem extends StatelessWidget {
         onTap: () {
           onTap(locale);
         },
-        child: Text(title.toUpperCase(),
+        child: Text(
+          title.toUpperCase(),
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: isActive ? Colors.white : FlutterLatamColors.darkBlue)
+            color: isActive ? Colors.white : FlutterLatamColors.darkBlue,
+          ),
         ),
       ),
     );

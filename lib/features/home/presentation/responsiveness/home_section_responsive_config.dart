@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeSectionResponsiveConfig {
-
   const HomeSectionResponsiveConfig({
     required this.dashBottomOffset,
     required this.titleSize,
@@ -45,9 +44,10 @@ class HomeSectionResponsiveConfig {
   final double buttonBottomGap;
   final CrossAxisAlignment titleAlignment;
 
-  static HomeSectionResponsiveConfig getHomeSectionBannerConfig(BuildContext ctxt) {
-
-    final config = getValueForScreenType(context: ctxt,
+  static HomeSectionResponsiveConfig getHomeSectionBannerConfig(
+      BuildContext ctxt) {
+    final config = getValueForScreenType(
+      context: ctxt,
       mobile: const HomeSectionResponsiveConfig(
         titleAlignment: CrossAxisAlignment.center,
         titleSize: 40,
@@ -108,7 +108,8 @@ class HomeSectionResponsiveConfig {
         bannerHeight: 600,
         buttonRowAlignment: MainAxisAlignment.start,
         dateCountryRowAlignment: MainAxisAlignment.start,
-        dashBottomOffset: HomeSectionResponsiveConfig.dashOffsetSize(ctxt, -300.0),
+        dashBottomOffset:
+            HomeSectionResponsiveConfig.dashOffsetSize(ctxt, -300.0),
         buttonBottomGap: 60,
       ),
     );
@@ -117,7 +118,6 @@ class HomeSectionResponsiveConfig {
   }
 
   static double titleDesktopSize(BuildContext context, double originalValue) {
-
     final width = MediaQuery.of(context).size.width;
     var fontSize = originalValue;
 
@@ -131,8 +131,8 @@ class HomeSectionResponsiveConfig {
     return fontSize;
   }
 
-  static double subtitleDesktopSize(BuildContext context, double originalValue) {
-
+  static double subtitleDesktopSize(
+      BuildContext context, double originalValue) {
     final width = MediaQuery.of(context).size.width;
     var fontSize = originalValue;
 
@@ -148,9 +148,8 @@ class HomeSectionResponsiveConfig {
   }
 
   static double dashOffsetSize(BuildContext context, double originalValue) {
-
     final width = MediaQuery.of(context).size.width;
-    var offset = originalValue;
+    final offset = originalValue;
 
     if (width > 1500) {
       return -300;

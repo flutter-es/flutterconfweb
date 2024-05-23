@@ -11,10 +11,10 @@ class CommunitiesContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final appLoc = ref.watch(appLocalizationsProvider);
-    final config = CommunitiesBannerResonsiveConfig.getCommunitiesBannerConfig(context);
-    
+    final config =
+        CommunitiesBannerResonsiveConfig.getCommunitiesBannerConfig(context);
+
     return Container(
       margin: config.bannerMargin,
       padding: config.bannerPadding,
@@ -37,7 +37,7 @@ class CommunitiesContainer extends ConsumerWidget {
             ),
           ),
           FlutterConfLatamStyles.mediumVGap,
-          const CommunitiesList()
+          const CommunitiesList(),
         ],
       ),
     );

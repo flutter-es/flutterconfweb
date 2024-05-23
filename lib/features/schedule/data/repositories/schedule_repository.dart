@@ -4,12 +4,11 @@ import 'package:flutter_conf_colombia/features/speakers/presentation/providers/s
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ScheduleRepository {
-
-  final Ref ref;
   ScheduleRepository(this.ref);
 
-  Future<List<ScheduleDayModel>> getEventSchedule() async {
+  final Ref ref;
 
+  Future<List<ScheduleDayModel>> getEventSchedule() async {
     final speakers = await ref.watch(speakersProvider.future);
     final sessions = await ref.watch(sessionsProvider.future);
 
@@ -17,13 +16,19 @@ class ScheduleRepository {
       ScheduleDayModel(
         dayIndex: 1,
         date: DateTime.parse('2023-10-25T00:00:00Z'),
-        sessions: sessions.where((s) => s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('1')).toList(),
-        speakers:  speakers,
+        sessions: sessions
+            .where((s) =>
+                s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('1'))
+            .toList(),
+        speakers: speakers,
       ),
       ScheduleDayModel(
         dayIndex: 2,
         date: DateTime.parse('2023-10-26T00:00:00Z'),
-        sessions: sessions.where((s) => s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('2')).toList(),
+        sessions: sessions
+            .where((s) =>
+                s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('2'))
+            .toList(),
         speakers: speakers,
       ),
     ];

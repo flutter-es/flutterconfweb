@@ -9,7 +9,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Utils {
-
   static GlobalKey<NavigatorState> mainNav = GlobalKey();
   static GlobalKey<NavigatorState> tabNav = GlobalKey();
   static GlobalKey<ScaffoldState> mainScaffold = GlobalKey();
@@ -19,7 +18,7 @@ class Utils {
   }
 
   static Color getColorFromSponsorshipLevel(SponsorshipLevels level) {
-    switch(level) {
+    switch (level) {
       case SponsorshipLevels.platinum:
         return FlutterLatamColors.platinum;
       case SponsorshipLevels.gold:
@@ -35,8 +34,9 @@ class Utils {
     }
   }
 
-  static String getTitleFromSponsorshipLevel(AppLocalizations loc, SponsorshipLevels level) {
-    switch(level) {
+  static String getTitleFromSponsorshipLevel(
+      AppLocalizations loc, SponsorshipLevels level) {
+    switch (level) {
       case SponsorshipLevels.platinum:
         return loc.sponsorshipPlatinum;
       case SponsorshipLevels.gold:
@@ -51,26 +51,37 @@ class Utils {
         return '';
     }
   }
-  
+
   static bool isMobile() {
-    return getDeviceType(MediaQuery.sizeOf(Utils.mainNav.currentContext!)) == DeviceScreenType.mobile;
+    return getDeviceType(MediaQuery.sizeOf(Utils.mainNav.currentContext!)) ==
+        DeviceScreenType.mobile;
   }
 
   static void showSessionInfo(Widget sessionContent) {
-    showUIModal(Utils.mainNav.currentContext!,
+    showUIModal(
+      Utils.mainNav.currentContext!,
       Container(
-        margin: isMobile() ? FlutterConfLatamStyles.xLargeMargin.copyWith(
-          left: 0, right: 0, bottom: 0,
-        ) : FlutterConfLatamStyles.largeMargin,
-        padding: isMobile() ? const EdgeInsets.symmetric(
-          horizontal: FlutterConfLatamStyles.mediumSize, vertical: FlutterConfLatamStyles.largeSize
-        ) : FlutterConfLatamStyles.bannerPadding,
+        margin: isMobile()
+            ? FlutterConfLatamStyles.xLargeMargin.copyWith(
+                left: 0,
+                right: 0,
+                bottom: 0,
+              )
+            : FlutterConfLatamStyles.largeMargin,
+        padding: isMobile()
+            ? const EdgeInsets.symmetric(
+                horizontal: FlutterConfLatamStyles.mediumSize,
+                vertical: FlutterConfLatamStyles.largeSize,
+              )
+            : FlutterConfLatamStyles.bannerPadding,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: isMobile() ? const BorderRadius.only(
-            topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
-            topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
-          ) : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+          borderRadius: isMobile()
+              ? const BorderRadius.only(
+                  topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
+                  topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
+                )
+              : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
         ),
         child: sessionContent,
       ),
@@ -79,20 +90,30 @@ class Utils {
   }
 
   static void showSpeakerInfo(Widget speakerContent) {
-    showUIModal(Utils.mainNav.currentContext!,
+    showUIModal(
+      Utils.mainNav.currentContext!,
       Container(
-        margin: isMobile() ? FlutterConfLatamStyles.xLargeMargin.copyWith(
-          left: 0, right: 0, bottom: 0,
-        ) : FlutterConfLatamStyles.largeMargin,
-        padding: isMobile() ? const EdgeInsets.symmetric(
-          horizontal: FlutterConfLatamStyles.mediumSize, vertical: FlutterConfLatamStyles.largeSize
-        ) : FlutterConfLatamStyles.bannerPadding,
+        margin: isMobile()
+            ? FlutterConfLatamStyles.xLargeMargin.copyWith(
+                left: 0,
+                right: 0,
+                bottom: 0,
+              )
+            : FlutterConfLatamStyles.largeMargin,
+        padding: isMobile()
+            ? const EdgeInsets.symmetric(
+                horizontal: FlutterConfLatamStyles.mediumSize,
+                vertical: FlutterConfLatamStyles.largeSize,
+              )
+            : FlutterConfLatamStyles.bannerPadding,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: isMobile() ? const BorderRadius.only(
-            topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
-            topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
-          ) : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+          borderRadius: isMobile()
+              ? const BorderRadius.only(
+                  topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
+                  topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
+                )
+              : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
         ),
         child: speakerContent,
       ),
@@ -101,10 +122,11 @@ class Utils {
   }
 
   static void showUIModal(
-    BuildContext context, 
-    Widget child,
-    { bool dismissible = false, Function? onDismissed, }) {
-   
+    BuildContext context,
+    Widget child, {
+    bool dismissible = false,
+    Function? onDismissed,
+  }) {
     if (isMobile()) {
       showModalBottomSheet(
         isDismissible: dismissible,
@@ -113,41 +135,41 @@ class Utils {
         backgroundColor: Colors.transparent,
         builder: (ctxt) {
           return child;
-        }
+        },
       ).whenComplete(() {
         onDismissed!();
       });
-    }
-    else {
+    } else {
       showDialog(
         context: context,
         builder: (ctxt) {
           return FractionallySizedBox(
             widthFactor: 0.7,
             heightFactor: 0.8,
-            child: child
+            child: child,
           );
-        }
+        },
       ).whenComplete(() {
         onDismissed!();
       });
     }
-    
   }
 
-  static SessionModel? getSessionFromSlotId(List<SessionModel> sessions, int id) {
-
+  static SessionModel? getSessionFromSlotId(
+      List<SessionModel> sessions, int id) {
     SessionModel? session;
 
-     if (sessions.any((SessionModel s) => s.scheduleSlot == 1)) {
+    if (sessions.any((SessionModel s) => s.scheduleSlot == 1)) {
       session = sessions.firstWhere((s) => s.scheduleSlot == id);
-     }
+    }
 
-     return session;
+    return session;
   }
 
-  static Widget getTimeLabelHeader(String label, { MainAxisAlignment alignment = MainAxisAlignment.end }) {
-    final timeLabelStyle = isMobile() ? FlutterConfLatamStyles.h6 : FlutterConfLatamStyles.h7;
+  static Widget getTimeLabelHeader(String label,
+      {MainAxisAlignment alignment = MainAxisAlignment.end}) {
+    final timeLabelStyle =
+        isMobile() ? FlutterConfLatamStyles.h6 : FlutterConfLatamStyles.h7;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -161,31 +183,32 @@ class Utils {
 
   static List<SessionMetadataModel> buildMetadataListFromSession(
     AppLocalizations appLoc,
-    SessionModel session) {
+    SessionModel session,
+  ) {
     return [
       SessionMetadataModel(
-        label: appLoc.sessionLang, 
-        value: session.language, 
+        label: appLoc.sessionLang,
+        value: session.language,
         bgColor: Colors.blueAccent,
         labelColor: Colors.white,
       ),
       SessionMetadataModel(
-        label: appLoc.sessionFormat, 
-        value: session.format, 
+        label: appLoc.sessionFormat,
+        value: session.format,
         bgColor: Colors.greenAccent,
         labelColor: Colors.black,
       ),
       SessionMetadataModel(
-        label: appLoc.sessionLevel, 
-        value: session.level, 
+        label: appLoc.sessionLevel,
+        value: session.level,
         bgColor: Colors.orangeAccent,
         labelColor: Colors.black,
-      )
+      ),
     ];
   }
 
   static Color getColorFromSessionType(SessionType sessionType) {
-    switch(sessionType) {
+    switch (sessionType) {
       case SessionType.eventSession:
         return Colors.lightBlue.withOpacity(0.5);
       case SessionType.panel:

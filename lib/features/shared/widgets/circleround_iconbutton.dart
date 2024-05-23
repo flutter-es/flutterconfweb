@@ -67,7 +67,7 @@ class CircleRoundIconButton extends StatelessWidget {
                     fontWeight: labelWeight,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

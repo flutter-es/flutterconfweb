@@ -14,10 +14,9 @@ class SpeakersContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final appLoc = ref.watch(appLocalizationsProvider);
     final config = SpeakersResponsiveConfig.getSpeakersBannerConfig(context);
-    
+
     return Container(
       margin: config.bannerMargin,
       padding: config.bannerPadding,
@@ -40,7 +39,7 @@ class SpeakersContainer extends ConsumerWidget {
             ),
           ),
           FlutterConfLatamStyles.largeVGap,
-          const SpeakersList()
+          const SpeakersList(),
         ],
       ),
     );

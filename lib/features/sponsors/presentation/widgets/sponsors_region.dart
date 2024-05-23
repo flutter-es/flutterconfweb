@@ -8,9 +8,8 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SponsorsRegion extends ConsumerWidget {
-
   const SponsorsRegion({
-    required this.level, 
+    required this.level,
     super.key,
   });
 
@@ -18,44 +17,48 @@ class SponsorsRegion extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final sponsorsData = ref.watch(filterSponsorsProvider(level));
 
     return sponsorsData.when(
-        data: (sponsors) {
-
-          return sponsors.isNotEmpty ? Column(
-            children: [
-              SponsorsRegionHeader(level: level),
-              FlutterConfLatamStyles.mediumVGap,
+      data: (sponsors) {
+        return sponsors.isNotEmpty
+            ? Column(
+                children: [
+                  SponsorsRegionHeader(level: level),
+                  FlutterConfLatamStyles.mediumVGap,
                   Wrap(
                     alignment: WrapAlignment.center,
                     runAlignment: WrapAlignment.center,
                     children: List.generate(sponsors.length, (index) {
-
                       final singleSponsor = sponsors[index];
                       return SponsorWidget(sponsor: singleSponsor);
-                    }).animate(
-                      interval: 100.ms,
-                    ).scaleXY(
-                      begin: 0.5, end: 1,
-                      curve: Curves.easeInOut,
-                    )
-                    .fadeIn(),
+                    })
+                        .animate(
+                          interval: 100.ms,
+                        )
+                        .scaleXY(
+                          begin: 0.5,
+                          end: 1,
+                          curve: Curves.easeInOut,
+                        )
+                        .fadeIn(),
                   ),
                   FlutterConfLatamStyles.mediumVGap,
-            ],
-          ) : const SizedBox.shrink();
-        }, 
-        error: (error, stackTrace) {
-          return Center(child: Text(error.toString()));
-        },
-        loading: () {
-          return const Center(child: Padding(
+                ],
+              )
+            : const SizedBox.shrink();
+      },
+      error: (error, stackTrace) {
+        return Center(child: Text(error.toString()));
+      },
+      loading: () {
+        return const Center(
+          child: Padding(
             padding: FlutterConfLatamStyles.mediumPadding,
             child: CircularProgressIndicator(),
-          ));
-        },
-      );
+          ),
+        );
+      },
+    );
   }
 }

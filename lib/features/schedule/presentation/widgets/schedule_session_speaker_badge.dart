@@ -3,7 +3,6 @@ import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.mode
 import 'package:flutter_conf_colombia/styles/styles.dart';
 
 class ScheduleSessionSpeakerBadge extends StatelessWidget {
-
   const ScheduleSessionSpeakerBadge({
     required this.speakerInfo,
     super.key,
@@ -18,18 +17,18 @@ class ScheduleSessionSpeakerBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CircleAvatar( 
+          CircleAvatar(
             backgroundImage: NetworkImage(
-              speakerInfo.photo!,  
+              speakerInfo.photo!,
             ),
           ),
           FlutterConfLatamStyles.xsmallHGap,
           Text(
-            speakerInfo.name!, 
+            speakerInfo.name!,
             style: FlutterConfLatamStyles.h7.copyWith(color: Colors.black),
           ),
           FlutterConfLatamStyles.mediumHGap,
-        ]
+        ],
       ),
     );
   }

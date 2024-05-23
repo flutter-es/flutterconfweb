@@ -14,10 +14,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
 
   static const String route = '/home';
-
-  const HomePage({super.key});
 
   @override
   ConsumerState<HomePage> createState() => _HomePageState();
@@ -48,11 +47,11 @@ class _HomePageState extends ConsumerState<HomePage>
 
     return CustomScrollView(
       slivers: [
-          SliverList(
-            delegate: SliverChildListDelegate([
-              ...sections.map((e) => e.builder(context)),
-            ]),
-          )
+        SliverList(
+          delegate: SliverChildListDelegate([
+            ...sections.map((e) => e.builder(context)),
+          ]),
+        ),
       ],
     );
   }

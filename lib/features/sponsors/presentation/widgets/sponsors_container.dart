@@ -63,7 +63,9 @@ class SponsorsContainer extends ConsumerWidget {
           FlutterConfLatamStyles.smallVGap,
           ElevatedButton(
             onPressed: () {
-              ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(SponsorsPage.route);
+              ref
+                  .read(navigationItemsProvider.notifier)
+                  .selectNavItemFromRoute(SponsorsPage.route);
             },
             style: ElevatedButton.styleFrom(
               elevation: 0,
@@ -80,7 +82,7 @@ class SponsorsContainer extends ConsumerWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

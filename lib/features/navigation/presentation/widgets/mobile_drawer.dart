@@ -20,7 +20,6 @@ class MobileDrawer extends ConsumerStatefulWidget {
 }
 
 class MobileDrawerState extends ConsumerState<MobileDrawer> {
-
   @override
   void initState() {
     super.initState();
@@ -32,7 +31,6 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
 
   @override
   Widget build(BuildContext context) {
-
     final tabItems = ref.watch(navigationItemsProvider);
     final visibleTabItems = tabItems.where((t) => t.display!).toList();
 
@@ -53,11 +51,14 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).pop();
-                      ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(HomePage.route);
+                      ref
+                          .read(navigationItemsProvider.notifier)
+                          .selectNavItemFromRoute(HomePage.route);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset('${Constants.imagesPath}/FlutterLogo_White.svg',
+                      child: SvgPicture.asset(
+                        '${Constants.imagesPath}/FlutterLogo_White.svg',
                         width: 80,
                         height: 80,
                       ),
@@ -70,22 +71,24 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
               child: Column(
                 children: [
                   for (var i = 0; i < visibleTabItems.length; i++)
-
                     ItemDrawer(
                       item: visibleTabItems[i],
                       onTap: () {
                         Navigator.of(context).pop();
-                        ref.read(navigationItemsProvider.notifier).selectNavItem(visibleTabItems[i]);
+                        ref
+                            .read(navigationItemsProvider.notifier)
+                            .selectNavItem(visibleTabItems[i]);
                       },
                     ),
                 ],
               ),
             ),
-            Row(
-              children: const [
-                Icon(FlutterConfLatamIcons.flutteconflatam_text, size: 80, color: Colors.white),
+            const Row(
+              children: [
+                Icon(FlutterConfLatamIcons.flutteconflatam_text,
+                    size: 80, color: Colors.white),
               ],
-            )
+            ),
           ],
         ),
       ),

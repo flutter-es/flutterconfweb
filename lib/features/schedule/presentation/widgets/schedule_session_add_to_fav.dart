@@ -21,16 +21,18 @@ class ScheduleSessionAddToFavorite extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Add To My Favorites',
+            Text(
+              'Add To My Favorites',
               style: FlutterConfLatamStyles.h7.copyWith(
                 color: FlutterLatamColors.lightBlue,
               ),
             ),
             FlutterConfLatamStyles.xsmallHGap,
-            const Icon(Icons.favorite_border_outlined, color: FlutterLatamColors.lightBlue),
+            const Icon(Icons.favorite_border_outlined,
+                color: FlutterLatamColors.lightBlue),
           ],
         ),
-      )
+      ),
     );
   }
 }

@@ -4,12 +4,9 @@ import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SponsorWidget extends StatelessWidget {
+  const SponsorWidget({required this.sponsor, super.key});
 
   final SponsorModel sponsor;
-  const SponsorWidget({
-    required this.sponsor,
-    super.key
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +16,10 @@ class SponsorWidget extends StatelessWidget {
         onTap: () {
           Utils.launchUrlLink(sponsor.url);
         },
-        child: SvgPicture.network(sponsor.logo,
-          width: 100, height: 100,
+        child: SvgPicture.network(
+          sponsor.logo,
+          width: 100,
+          height: 100,
         ),
       ),
     );

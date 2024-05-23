@@ -15,6 +15,6 @@ extension BuildContextTranslateExtension on BuildContext {
 
 extension CleanBreakLines on String {
   String cleanBreakLines() {
-    return replaceAll('\\n', '\n');
+    return replaceAll(r'\n', '\n');
   }
 }

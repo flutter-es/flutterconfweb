@@ -3,20 +3,19 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SponsorsResponsiveConfig {
-
   SponsorsResponsiveConfig({
     required this.titleSize,
     required this.buttonLabelSize,
-    required this.buttonPadding
+    required this.buttonPadding,
   });
 
   final double titleSize;
   final double buttonLabelSize;
   final EdgeInsets buttonPadding;
-  
-  static SponsorsResponsiveConfig getSponsorsBannerConfig(BuildContext ctxt) {
 
-    final config = getValueForScreenType(context: ctxt,
+  static SponsorsResponsiveConfig getSponsorsBannerConfig(BuildContext ctxt) {
+    final config = getValueForScreenType(
+      context: ctxt,
       mobile: SponsorsResponsiveConfig(
         titleSize: 15,
         buttonLabelSize: 20,

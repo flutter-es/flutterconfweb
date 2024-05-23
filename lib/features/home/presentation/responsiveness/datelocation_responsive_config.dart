@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class DateLocationResponsiveConfig {
-
-  final double dateSize;
-  final double locationSize;
-  final double addressSize;
-  final double padding;
-
   DateLocationResponsiveConfig({
     required this.dateSize,
     required this.addressSize,
@@ -15,9 +9,15 @@ class DateLocationResponsiveConfig {
     required this.padding,
   });
 
-   static DateLocationResponsiveConfig getDateLocationBannerConfig(BuildContext ctxt) {
+  final double dateSize;
+  final double locationSize;
+  final double addressSize;
+  final double padding;
 
-    final config = getValueForScreenType(context: ctxt,
+  static DateLocationResponsiveConfig getDateLocationBannerConfig(
+      BuildContext ctxt) {
+    final config = getValueForScreenType(
+      context: ctxt,
       mobile: DateLocationResponsiveConfig(
         dateSize: 30,
         locationSize: 50,

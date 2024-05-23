@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class FlutterLatamColors {
   static const Color burnedYellow = Color(0xFF8D7207);
   static const Color cfpColor = Color(0xFFFFCD00);
-  static const Color eventFeaturesColor = Color(0xFFC8102E);
+  static const Color eventFeaturesColor = Color.fromRGBO(218, 65, 74, 1);
   static const Color ticketBgTopColor = Color(0xFFB2D571);
   static const Color ticketBgBottomColor = Color(0xFF668330);
   static const Color lightBlue = Color(0xFF3B9ED8);

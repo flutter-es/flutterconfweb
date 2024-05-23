@@ -32,7 +32,7 @@ class TicketsContainer extends ConsumerWidget {
         gradient: LinearGradient(
           colors: [
             FlutterLatamColors.ticketBgTopColor,
-            FlutterLatamColors.ticketBgBottomColor
+            FlutterLatamColors.ticketBgBottomColor,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -55,7 +55,6 @@ class TicketsContainer extends ConsumerWidget {
               ),
             ),
           ),
-          
           Positioned(
             bottom: config.dashOffset,
             left: 0,
@@ -72,7 +71,6 @@ class TicketsContainer extends ConsumerWidget {
               ),
             ),
           ),
-          
           Align(
             alignment: config.ticketButtonAlignment,
             child: Container(
@@ -102,7 +100,6 @@ class TicketsContainer extends ConsumerWidget {
               ),
             ),
           ),
-          
         ],
       ),
     );

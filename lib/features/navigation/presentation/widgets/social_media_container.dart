@@ -8,17 +8,16 @@ class SocialMediaContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final socialMediaList = ref.read(socialMediaProvider);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        for(final social in socialMediaList)
+        for (final social in socialMediaList)
           IconButton(
-            onPressed: () => Utils.launchUrlLink(social.link), 
+            onPressed: () => Utils.launchUrlLink(social.link),
             icon: Icon(social.icon, color: Colors.white.withOpacity(0.5)),
-          )
+          ),
       ],
     );
   }

@@ -16,8 +16,7 @@ class SpeakersRepository {
   List<SpeakerModel> cachedSpeakers = [];
 
   Future<List<SpeakerModel>> getSpeakers() {
-
-    Completer<List<SpeakerModel>> speakersCompleter = Completer();
+    var speakersCompleter = Completer<List<SpeakerModel>>();
 
     if (cachedSpeakers.isNotEmpty) {
       return Future.value(cachedSpeakers);
@@ -25,22 +24,23 @@ class SpeakersRepository {
 
     final dbInstance = ref.read(dbProvider);
     dbInstance.collection('speakers').get().then((snapshot) {
-      List<SpeakerModel> speakers = snapshot.docs.map((speakerDoc) => 
-        SpeakerModel.fromFirestore(
-          speakerDoc.id,
-          speakerDoc.data() as Map<String, dynamic>)
-      ).toList();
+      var speakers = snapshot.docs
+          .map(
+            (speakerDoc) => SpeakerModel.fromFirestore(
+              speakerDoc.id,
+              speakerDoc.data(),
+            ),
+          )
+          .toList();
 
       cachedSpeakers = speakers;
 
       speakersCompleter.complete(cachedSpeakers);
-
     }).catchError((error) {
       speakersCompleter.completeError(error.toString());
     }).onError((error, stackTrace) {
       speakersCompleter.completeError(error.toString());
     });
-    
 
     return speakersCompleter.future;
   }

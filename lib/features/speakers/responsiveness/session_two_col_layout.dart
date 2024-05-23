@@ -5,13 +5,12 @@ import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/spe
 import 'package:flutter_conf_colombia/styles/styles.dart';
 
 class SpeakerSessionTwoColumnLayout extends StatelessWidget {
-
-  final SpeakerModel speaker;
   const SpeakerSessionTwoColumnLayout({
     required this.speaker,
     super.key,
-    }
-  );
+  });
+
+  final SpeakerModel speaker;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,8 @@ class SpeakerSessionTwoColumnLayout extends StatelessWidget {
           FlutterConfLatamStyles.mediumHGap,
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(right: FlutterConfLatamStyles.largeSize),
+              padding: const EdgeInsets.only(
+                  right: FlutterConfLatamStyles.largeSize),
               child: SessionContainer(speakerId: speaker.id!),
             ),
           ),

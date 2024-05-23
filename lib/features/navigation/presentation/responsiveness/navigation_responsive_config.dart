@@ -3,7 +3,6 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class NavigationResponsiveConfig {
-
   const NavigationResponsiveConfig({
     required this.languageButtonWidth,
     required this.footerLayoutDirection,
@@ -23,8 +22,8 @@ class NavigationResponsiveConfig {
   final double footerPadding;
 
   static NavigationResponsiveConfig getNavigationConfig(BuildContext ctxt) {
-
-    final config = getValueForScreenType(context: ctxt,
+    final config = getValueForScreenType(
+      context: ctxt,
       mobile: const NavigationResponsiveConfig(
         logoHeight: 120,
         maxHeaderHeight: 120,
@@ -50,7 +49,7 @@ class NavigationResponsiveConfig {
         footerLayoutDirection: Axis.horizontal,
         footerItemsGap: FlutterConfLatamStyles.smallHGap,
         showLogoOnFooter: true,
-        footerPadding: 30
+        footerPadding: 30,
       ),
     );
 

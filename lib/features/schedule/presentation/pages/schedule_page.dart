@@ -9,16 +9,16 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SchedulePage extends ConsumerWidget {
+  const SchedulePage({super.key});
 
   static const String route = '/schedule';
 
-  const SchedulePage({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
+    final uiConfig =
+        ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(
+            context);
     final schedule = ref.watch(scheduleFutureProvider);
 
     return SingleChildScrollView(
@@ -34,11 +34,13 @@ class SchedulePage extends ConsumerWidget {
                 children: [
                   Icon(
                     Icons.calendar_today,
-                    size: uiConfig.headerIconSize, color: FlutterLatamColors.blueText,
+                    size: uiConfig.headerIconSize,
+                    color: FlutterLatamColors.blueText,
                   ),
                   uiConfig.headerGap,
-                  Text(appLoc.schedule, 
-                    textAlign: TextAlign.center, 
+                  Text(
+                    appLoc.schedule,
+                    textAlign: TextAlign.center,
                     style: uiConfig.headerStyle,
                   ),
                 ],
@@ -46,10 +48,14 @@ class SchedulePage extends ConsumerWidget {
               uiConfig.pageVerticalGap,
               schedule.when(
                 data: (scheduleData) {
+                  final scheduleSelectedDate =
+                      ref.watch(scheduleDaySelectionProvider);
+                  final scheduleDayForSelection = scheduleSelectedDate != null
+                      ? scheduleData
+                          .where((s) => s.date == scheduleSelectedDate)
+                          .first
+                      : scheduleData.first;
 
-                  final scheduleSelectedDate = ref.watch(scheduleDaySelectionProvider);
-                  final scheduleDayForSelection = scheduleSelectedDate != null ? scheduleData.where((s) => s.date == scheduleSelectedDate).first : scheduleData.first;
-                  
                   return Column(
                     children: [
                       ScheduleDateSelector(
@@ -66,14 +72,17 @@ class SchedulePage extends ConsumerWidget {
                 error: (error, stackTrace) {
                   return const Text('Error');
                 },
-              )
-              
-            ].animate(
-              interval: 50.ms,
-            ).slideY(
-              begin: 1, end: 0,
-              curve: Curves.easeInOut,
-            ).fadeIn(),
+              ),
+            ]
+                .animate(
+                  interval: 50.ms,
+                )
+                .slideY(
+                  begin: 1,
+                  end: 0,
+                  curve: Curves.easeInOut,
+                )
+                .fadeIn(),
           ),
         ),
       ),

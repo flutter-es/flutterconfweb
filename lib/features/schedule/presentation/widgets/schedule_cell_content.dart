@@ -8,63 +8,67 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleCellContent extends StatelessWidget {
+  const ScheduleCellContent(
+      {required this.session,
+      required this.speakers,
+      required this.onScheduleTap,
+      super.key});
 
   final SessionModel session;
   final List<SpeakerModel> speakers;
   final VoidCallback onScheduleTap;
 
-  const ScheduleCellContent({
-    required this.session,
-    required this.speakers,
-    required this.onScheduleTap,
-    super.key
-  });
-
   @override
   Widget build(BuildContext context) {
-
     final sessionColor = Utils.getColorFromSessionType(session.sessionType);
 
-    final showSpeakerImage = getValueForScreenType(context: context,
+    final showSpeakerImage = getValueForScreenType(
+      context: context,
       mobile: true,
       tablet: true,
       desktop: true,
     );
 
-    final showSpeakerName = getValueForScreenType(context: context,
+    final showSpeakerName = getValueForScreenType(
+      context: context,
       mobile: true,
       tablet: true,
       desktop: true,
     );
 
-    final double cellPadding = getValueForScreenType(context: context,
+    final double cellPadding = getValueForScreenType(
+      context: context,
       mobile: 18,
       tablet: 18,
       desktop: 16,
     );
 
-    final double cellRadius = getValueForScreenType(context: context,
+    final double cellRadius = getValueForScreenType(
+      context: context,
       mobile: 10,
       tablet: 10,
       desktop: 0,
     );
 
-    final double bottomMargin = getValueForScreenType(context: context,
+    final double bottomMargin = getValueForScreenType(
+      context: context,
       mobile: 20,
       tablet: 20,
       desktop: 0,
     );
 
-    final SizedBox speakerGap = getValueForScreenType(context: context,
+    final SizedBox speakerGap = getValueForScreenType(
+      context: context,
       mobile: FlutterConfLatamStyles.smallVGap,
       tablet: FlutterConfLatamStyles.smallVGap,
-      desktop: null,
     );
 
     final enableTabOnSession = session.sessionType != SessionType.eventSession;
 
     return MouseRegion(
-      cursor: enableTabOnSession ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      cursor: enableTabOnSession
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
       child: GestureDetector(
         onTap: () {
           if (enableTabOnSession) {
@@ -86,10 +90,12 @@ class ScheduleCellContent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(session.title,
+                  Text(
+                    session.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: FlutterConfLatamStyles.getStylesFromSessionType(session.sessionType, context),
+                    style: FlutterConfLatamStyles.getStylesFromSessionType(
+                        session.sessionType, context),
                   ),
                 ],
               ),
@@ -98,13 +104,13 @@ class ScheduleCellContent extends StatelessWidget {
                 Wrap(
                   clipBehavior: Clip.antiAlias,
                   children: [
-                    for(final speaker in speakers)
+                    for (final speaker in speakers)
                       Visibility(
                         visible: showSpeakerImage,
                         child: Container(
                           margin: const EdgeInsets.only(
                             right: FlutterConfLatamStyles.mediumSize,
-                            bottom: FlutterConfLatamStyles.mediumSize,  
+                            bottom: FlutterConfLatamStyles.mediumSize,
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -115,7 +121,8 @@ class ScheduleCellContent extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    width: 3, color: sessionColor,
+                                    width: 3,
+                                    color: sessionColor,
                                     strokeAlign: BorderSide.strokeAlignOutside,
                                   ),
                                   image: DecorationImage(
@@ -123,21 +130,22 @@ class ScheduleCellContent extends StatelessWidget {
                                       speaker.photo!,
                                     ),
                                     fit: BoxFit.cover,
-                                  )
+                                  ),
                                 ),
                               ),
                               FlutterConfLatamStyles.xsmallHGap,
                               Visibility(
                                 visible: showSpeakerName,
-                                child: Text(speaker.name!, style: 
-                                  FlutterConfLatamStyles.label6,
+                                child: Text(
+                                  speaker.name!,
+                                  style: FlutterConfLatamStyles.label6,
                                 ),
                               ),
                               FlutterConfLatamStyles.xsmallHGap,
                             ],
                           ),
                         ),
-                      )
+                      ),
                   ],
                 ),
             ],

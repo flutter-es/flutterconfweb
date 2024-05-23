@@ -4,16 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WebLocalStorageService {
-  
-  final Ref ref;
   WebLocalStorageService(this.ref);
+
+  final Ref ref;
 
   static const String menuSelection = 'menuSelection';
   late SharedPreferences prefs;
 
   Future<bool> initLocalStorage() {
-
-    Completer<bool> localStorageCompleter = Completer();
+    var localStorageCompleter = Completer<bool>();
 
     ref.read(sharedPrefsInstanceProvider).then((sp) {
       prefs = sp;

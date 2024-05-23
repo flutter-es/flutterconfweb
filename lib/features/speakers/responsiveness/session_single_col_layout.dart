@@ -5,7 +5,6 @@ import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/spe
 import 'package:flutter_conf_colombia/styles/styles.dart';
 
 class SpeakerSessionSingleColumnLayout extends StatelessWidget {
-
   const SpeakerSessionSingleColumnLayout({
     required this.speaker,
     super.key,
@@ -23,7 +22,7 @@ class SpeakerSessionSingleColumnLayout extends StatelessWidget {
             SpeakerContent(
               speaker: speaker,
             ),
-            SessionContainer(speakerId: speaker.id!)
+            SessionContainer(speakerId: speaker.id!),
           ],
         ),
       ),

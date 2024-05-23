@@ -9,16 +9,15 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ContactPage extends ConsumerWidget {
+  const ContactPage({super.key});
 
   static const String route = '/contact';
 
-  const ContactPage({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = ContactPageResponsiveConfig.getContactPageResponsiveConfig(context);
+    final uiConfig =
+        ContactPageResponsiveConfig.getContactPageResponsiveConfig(context);
 
     return SingleChildScrollView(
       child: Center(
@@ -32,21 +31,26 @@ class ContactPage extends ConsumerWidget {
                 children: [
                   Icon(
                     Icons.account_circle,
-                    size: uiConfig.headerIconSize, color: FlutterLatamColors.blueText,
+                    size: uiConfig.headerIconSize,
+                    color: FlutterLatamColors.blueText,
                   ),
                   uiConfig.headerGap,
-                  Text(appLoc.contact, 
-                    textAlign: TextAlign.center, 
+                  Text(
+                    appLoc.contact,
+                    textAlign: TextAlign.center,
                     style: uiConfig.headerStyle,
                   ),
                 ],
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.contactPageTitle, textAlign: TextAlign.center,
-                style: uiConfig.subheaderStyle
+              Text(
+                appLoc.contactPageTitle,
+                textAlign: TextAlign.center,
+                style: uiConfig.subheaderStyle,
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.contactPageMainContent,
+              Text(
+                appLoc.contactPageMainContent,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
@@ -64,46 +68,61 @@ class ContactPage extends ConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.email, color: FlutterLatamColors.lightBlue, size: uiConfig.contactInfoIconSize),
+                        Icon(Icons.email,
+                            color: FlutterLatamColors.lightBlue,
+                            size: uiConfig.contactInfoIconSize),
                         FlutterConfLatamStyles.smallHGap,
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: uiConfig.contactInfoAlignment,
                           children: [
-                            Text(appLoc.contactInfoTitle, style: uiConfig.contactInfoStyle.copyWith(color: FlutterLatamColors.lightBlue, fontWeight: FontWeight.normal)),
-                            Text(Constants.conferenceEmail, style: uiConfig.contactInfoStyle.copyWith(color: FlutterLatamColors.lightBlue)),
+                            Text(appLoc.contactInfoTitle,
+                                style: uiConfig.contactInfoStyle.copyWith(
+                                    color: FlutterLatamColors.lightBlue,
+                                    fontWeight: FontWeight.normal)),
+                            Text(Constants.conferenceEmail,
+                                style: uiConfig.contactInfoStyle.copyWith(
+                                    color: FlutterLatamColors.lightBlue)),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.contactPageSocialMediaTitle,
+              Text(
+                appLoc.contactPageSocialMediaTitle,
                 style: FlutterConfLatamStyles.h5,
                 textAlign: TextAlign.center,
               ),
               FlutterConfLatamStyles.smallVGap,
-              Text(appLoc.contactPageSubcontent,
+              Text(
+                appLoc.contactPageSubcontent,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.contactPageSubtitle,
+              Text(
+                appLoc.contactPageSubtitle,
                 style: FlutterConfLatamStyles.h5,
                 textAlign: TextAlign.center,
               ),
               FlutterConfLatamStyles.smallVGap,
-              Text(appLoc.contactPageBottomContent,
+              Text(
+                appLoc.contactPageBottomContent,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-            ].animate(
-              interval: 50.ms,
-            ).slideY(
-              begin: 1, end: 0,
-              curve: Curves.easeInOut,
-            ).fadeIn(),
+            ]
+                .animate(
+                  interval: 50.ms,
+                )
+                .slideY(
+                  begin: 1,
+                  end: 0,
+                  curve: Curves.easeInOut,
+                )
+                .fadeIn(),
           ),
         ),
       ),

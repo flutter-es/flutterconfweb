@@ -7,8 +7,8 @@ import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/l
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/l10n/support_locale.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LanguageButton extends ConsumerWidget {
   const LanguageButton({super.key});
@@ -40,12 +40,13 @@ class LanguageButton extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
-          ).animate()
-          .slideX(
-            begin: state.languageCode == SupportLocale.en.languageCode ? 1 : 0,
-            end: state.languageCode == SupportLocale.en.languageCode ? 0 : 1,
-            duration: 0.seconds,
-          ),
+          ).animate().slideX(
+                begin:
+                    state.languageCode == SupportLocale.en.languageCode ? 1 : 0,
+                end:
+                    state.languageCode == SupportLocale.en.languageCode ? 0 : 1,
+                duration: 0.seconds,
+              ),
           Center(
             child: Row(
               children: [

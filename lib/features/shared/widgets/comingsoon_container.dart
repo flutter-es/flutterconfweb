@@ -8,53 +8,55 @@ class ComingSoonContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final appLoc = ref.watch(appLocalizationsProvider);
 
-    double comingSoonFontSize = getValueForScreenType(
+    final double comingSoonFontSize = getValueForScreenType(
       context: context,
       mobile: 20,
       tablet: 20,
-      desktop: 30
+      desktop: 30,
     );
 
-    double comingSoonIconSize = getValueForScreenType(
+    final double comingSoonIconSize = getValueForScreenType(
       context: context,
       mobile: 40,
       tablet: 40,
-      desktop: 40
+      desktop: 40,
     );
 
-    EdgeInsets comingSoonPadding = getValueForScreenType(
+    final EdgeInsets comingSoonPadding = getValueForScreenType(
       context: context,
       mobile: const EdgeInsets.symmetric(
         vertical: 10,
-        horizontal: 20
+        horizontal: 20,
       ),
       tablet: const EdgeInsets.symmetric(
         vertical: 15,
-        horizontal: 30
+        horizontal: 30,
       ),
       desktop: const EdgeInsets.symmetric(
         vertical: 20,
-        horizontal: 40
+        horizontal: 40,
       ),
     );
 
     return Container(
-        padding: comingSoonPadding,
-        decoration: BoxDecoration(
-          color: Colors.yellow,
-          borderRadius: BorderRadius.circular(40),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.construction, color: Colors.black, size: comingSoonIconSize),
-            const SizedBox(width: 20),
-            Text(appLoc.comingSoon, style: TextStyle(fontSize: comingSoonFontSize, fontWeight: FontWeight.bold)),
-          ],
-        ),
-      );
+      padding: comingSoonPadding,
+      decoration: BoxDecoration(
+        color: Colors.yellow,
+        borderRadius: BorderRadius.circular(40),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.construction,
+              color: Colors.black, size: comingSoonIconSize),
+          const SizedBox(width: 20),
+          Text(appLoc.comingSoon,
+              style: TextStyle(
+                  fontSize: comingSoonFontSize, fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
   }
 }

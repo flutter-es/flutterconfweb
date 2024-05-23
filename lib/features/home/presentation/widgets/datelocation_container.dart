@@ -27,22 +27,32 @@ class DateLocationContainer extends ConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(dateLocData.date,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: uiConfig.dateSize,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold)),
-            Text(dateLocData.location,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: uiConfig.locationSize,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold)),
-            Text(dateLocData.address,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: uiConfig.addressSize, color: Colors.white))
+            Text(
+              dateLocData.date,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: uiConfig.dateSize,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              dateLocData.location,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: uiConfig.locationSize,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              dateLocData.address,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: uiConfig.addressSize,
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),

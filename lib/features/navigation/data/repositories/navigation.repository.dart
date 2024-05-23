@@ -11,9 +11,8 @@ import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NavigationRepository {
-  final Ref ref;
-
   const NavigationRepository(this.ref);
+  final Ref ref;
 
   List<TabNavigationItem> getNavigation() {
     final appLoc = ref.watch(appLocalizationsProvider);
@@ -29,11 +28,10 @@ class NavigationRepository {
         label: appLoc.cfp,
         route: CFPPage.route,
       ),*/
-      //TODO: Uncomment this when the tickets are ready
-      /*TabNavigationItem(
+      TabNavigationItem(
         label: appLoc.tickets,
         route: TicketsPage.route,
-      ),*/
+      ),
       TabNavigationItem(
         label: appLoc.speakers,
         route: SpeakersPage.route,
@@ -50,7 +48,7 @@ class NavigationRepository {
       TabNavigationItem(
         label: appLoc.contact,
         route: ContactPage.route,
-      )
+      ),
     ];
   }
 }

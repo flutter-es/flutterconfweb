@@ -4,7 +4,6 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class FlutterConfLatamStyles {
-
   static const double xsmallSize = 4;
   static const double smallSize = 8;
   static const double mediumSize = 16;
@@ -43,32 +42,65 @@ class FlutterConfLatamStyles {
   static const EdgeInsets xLargeMargin = EdgeInsets.all(64);
   static const EdgeInsets xxLargeMargin = EdgeInsets.all(128);
 
-  static const TextStyle h1 = TextStyle(fontSize: 64, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-  static const TextStyle h2 = TextStyle(fontSize: 56, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-  static const TextStyle h3 = TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-  static const TextStyle h4 = TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-  static const TextStyle h5 = TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-  static const TextStyle h6 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-  static const TextStyle h7 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
-  static const TextStyle h8 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: FlutterLatamColors.blueText);
+  static const TextStyle h1 = TextStyle(
+      fontSize: 64,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
+  static const TextStyle h2 = TextStyle(
+      fontSize: 56,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
+  static const TextStyle h3 = TextStyle(
+      fontSize: 48,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
+  static const TextStyle h4 = TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
+  static const TextStyle h5 = TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
+  static const TextStyle h6 = TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
+  static const TextStyle h7 = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
+  static const TextStyle h8 = TextStyle(
+      fontSize: 8,
+      fontWeight: FontWeight.bold,
+      color: FlutterLatamColors.blueText);
 
-  static const TextStyle label1 = TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black);
-  static const TextStyle label2 = TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black);
-  static const TextStyle label3 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black);
-  static const TextStyle label4 = TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black);
-  static const TextStyle label5 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black);
-  static const TextStyle label6 = TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black);
-  static const TextStyle label7 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: Colors.black);
-  static const TextStyle label8 = TextStyle(fontSize: 4, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label1 =
+      TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label2 =
+      TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label3 =
+      TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label4 =
+      TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label5 =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label6 =
+      TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label7 =
+      TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: Colors.black);
+  static const TextStyle label8 =
+      TextStyle(fontSize: 4, fontWeight: FontWeight.bold, color: Colors.black);
 
-
-  static TextStyle getStylesFromSessionType(SessionType sessionType, BuildContext context) {
-    switch(sessionType) {
+  static TextStyle getStylesFromSessionType(
+      SessionType sessionType, BuildContext context) {
+    switch (sessionType) {
       case SessionType.eventSession:
-        return getValueForScreenType(context: context,
+        return getValueForScreenType(
+          context: context,
           mobile: h7,
           tablet: h6,
-          desktop: h6
+          desktop: h6,
         );
       default:
         return h7.copyWith(color: Colors.black);

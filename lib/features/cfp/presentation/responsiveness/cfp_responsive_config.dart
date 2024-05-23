@@ -4,20 +4,20 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class CFPBannerResponsiveConfig {
   const CFPBannerResponsiveConfig({
-    required this.bannerHeight, 
-    required this.logoAlignment, 
-    required this.dashAlignment, 
-    required this.dashSize, 
-    required this.dashBottomOffset, 
-    required this.flutterLogoSize, 
-    required this.flutterLogoLeftMargin, 
-    required this.cfpButtonAlignment, 
-    required this.cfpButtonIconSize, 
-    required this.cfpButtonLabelSize, 
-    required this.cfpButtonIconPadding, 
-    required this.cfpButtonMargin, 
-    required this.bannerGradient
-});
+    required this.bannerHeight,
+    required this.logoAlignment,
+    required this.dashAlignment,
+    required this.dashSize,
+    required this.dashBottomOffset,
+    required this.flutterLogoSize,
+    required this.flutterLogoLeftMargin,
+    required this.cfpButtonAlignment,
+    required this.cfpButtonIconSize,
+    required this.cfpButtonLabelSize,
+    required this.cfpButtonIconPadding,
+    required this.cfpButtonMargin,
+    required this.bannerGradient,
+  });
 
   final double bannerHeight;
   final Alignment logoAlignment;
@@ -34,7 +34,8 @@ class CFPBannerResponsiveConfig {
   final LinearGradient bannerGradient;
 
   static CFPBannerResponsiveConfig getCFPBannerConfig(BuildContext ctxt) {
-    final config = getValueForScreenType(context: ctxt,
+    final config = getValueForScreenType(
+      context: ctxt,
       mobile: const CFPBannerResponsiveConfig(
         bannerHeight: 700,
         logoAlignment: Alignment.topCenter,
@@ -45,15 +46,15 @@ class CFPBannerResponsiveConfig {
         flutterLogoLeftMargin: 0.0,
         cfpButtonAlignment: Alignment.center,
         cfpButtonIconSize: 20.0,
-        cfpButtonLabelSize: 20.0, 
+        cfpButtonLabelSize: 20.0,
         cfpButtonIconPadding: 10.0,
         cfpButtonMargin: 0.0,
         bannerGradient: LinearGradient(
           colors: [Colors.white, FlutterLatamColors.cfpColor],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
+      ),
       tablet: const CFPBannerResponsiveConfig(
         bannerHeight: 600,
         logoAlignment: Alignment.topLeft,
@@ -64,12 +65,13 @@ class CFPBannerResponsiveConfig {
         flutterLogoLeftMargin: 60.0,
         cfpButtonAlignment: Alignment.bottomLeft,
         cfpButtonIconSize: 20.0,
-        cfpButtonLabelSize: 30.0, 
+        cfpButtonLabelSize: 30.0,
         cfpButtonIconPadding: 20.0,
         cfpButtonMargin: 60.0,
         bannerGradient: LinearGradient(
           colors: [Colors.white, FlutterLatamColors.cfpColor],
-      ),),
+        ),
+      ),
       desktop: const CFPBannerResponsiveConfig(
         bannerHeight: 600,
         logoAlignment: Alignment.topLeft,
@@ -80,7 +82,7 @@ class CFPBannerResponsiveConfig {
         flutterLogoLeftMargin: 80.0,
         cfpButtonAlignment: Alignment.bottomLeft,
         cfpButtonIconSize: 20.0,
-        cfpButtonLabelSize: 30.0, 
+        cfpButtonLabelSize: 30.0,
         cfpButtonIconPadding: 20.0,
         cfpButtonMargin: 80.0,
         bannerGradient: LinearGradient(

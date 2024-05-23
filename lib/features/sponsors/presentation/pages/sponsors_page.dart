@@ -14,16 +14,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class SponsorsPage extends ConsumerWidget {
+  const SponsorsPage({super.key});
 
   static const String route = '/sponsors';
 
-  const SponsorsPage({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = SponsorsPageResponsiveConfig.getSponsorsPageResponsiveConfig(context);
+    final uiConfig =
+        SponsorsPageResponsiveConfig.getSponsorsPageResponsiveConfig(context);
 
     return SingleChildScrollView(
       child: Center(
@@ -44,19 +43,22 @@ class SponsorsPage extends ConsumerWidget {
                         color: FlutterLatamColors.blueText,
                       ),
                       uiConfig.headerGap,
-                      Text(appLoc.sponsorsTitle, 
-                        textAlign: TextAlign.center, 
+                      Text(
+                        appLoc.sponsorsTitle,
+                        textAlign: TextAlign.center,
                         style: uiConfig.headerStyle,
                       ),
                     ],
                   ),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.sponsorsSubTitle,
+                  Text(
+                    appLoc.sponsorsSubTitle,
                     textAlign: TextAlign.center,
                     style: uiConfig.subheaderStyle,
                   ),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.sponsorsParagraphTop, textAlign: TextAlign.center),
+                  Text(appLoc.sponsorsParagraphTop,
+                      textAlign: TextAlign.center),
                   uiConfig.pageVerticalGap,
                   CircleRoundIconButton(
                     icon: Icons.picture_as_pdf,
@@ -87,9 +89,11 @@ class SponsorsPage extends ConsumerWidget {
               padding: uiConfig.pagePadding,
               child: Column(
                 children: [
-                  Text(appLoc.sponsorsParagraphBottom, textAlign: TextAlign.center),
+                  Text(appLoc.sponsorsParagraphBottom,
+                      textAlign: TextAlign.center),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.sponsorsInterestTitle,
+                  Text(
+                    appLoc.sponsorsInterestTitle,
                     textAlign: TextAlign.center,
                     style: uiConfig.subheaderStyle,
                   ),
@@ -106,20 +110,25 @@ class SponsorsPage extends ConsumerWidget {
                     fontSize: uiConfig.ticketButtonLabelSize,
                     iconPadding: uiConfig.ticketButtonIconPadding,
                     onTap: () {
-                      Utils.launchUrlLink('');
+                      Utils.launchUrlLink(appLoc.sponsorshipPackageLink);
                     },
                   ),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.sponsorsInterestContent, textAlign: TextAlign.center),
+                  Text(appLoc.sponsorsInterestContent,
+                      textAlign: TextAlign.center),
                 ],
               ),
-            )
-          ].animate(
-            interval: 50.ms,
-          ).slideY(
-            begin: 1, end: 0,
-            curve: Curves.easeInOut,
-          ).fadeIn(),
+            ),
+          ]
+              .animate(
+                interval: 50.ms,
+              )
+              .slideY(
+                begin: 1,
+                end: 0,
+                curve: Curves.easeInOut,
+              )
+              .fadeIn(),
         ),
       ),
     );

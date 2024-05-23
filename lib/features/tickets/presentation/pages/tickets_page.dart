@@ -12,17 +12,16 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TicketsPage extends ConsumerWidget {
+  const TicketsPage({super.key});
 
   static const String route = '/tickets';
 
-  const TicketsPage({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final ticketSectionData = ref.watch(ticketSectionProvider);
     final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = TicketPageResponsiveConfig.getTicketPageResponsiveConfig(context);
+    final uiConfig =
+        TicketPageResponsiveConfig.getTicketPageResponsiveConfig(context);
 
     return SingleChildScrollView(
       child: Center(
@@ -36,11 +35,13 @@ class TicketsPage extends ConsumerWidget {
                 children: [
                   Icon(
                     FlutterConfLatamIcons.ticket,
-                    size: uiConfig.headerIconSize, color: FlutterLatamColors.blueText,
+                    size: uiConfig.headerIconSize,
+                    color: FlutterLatamColors.blueText,
                   ),
                   uiConfig.headerGap,
-                  Text(appLoc.tickets, 
-                    textAlign: TextAlign.center, 
+                  Text(
+                    appLoc.tickets,
+                    textAlign: TextAlign.center,
                     style: uiConfig.headerStyle,
                   ),
                 ],
@@ -63,58 +64,73 @@ class TicketsPage extends ConsumerWidget {
               ),
               FlutterConfLatamStyles.mediumVGap,
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageTitle1, textAlign: TextAlign.center, style: uiConfig.subheaderStyle),
+              Text(appLoc.ticketsPageTitle1,
+                  textAlign: TextAlign.center, style: uiConfig.subheaderStyle),
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageParagraph1,
+              Text(
+                appLoc.ticketsPageParagraph1,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageTitle2,
+              Text(
+                appLoc.ticketsPageTitle2,
                 textAlign: TextAlign.center,
                 style: uiConfig.subheaderStyle,
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageSubtitleExpert,
+              Text(
+                appLoc.ticketsPageSubtitleExpert,
                 textAlign: TextAlign.center,
                 style: uiConfig.paragraphHeaderStyle,
               ),
               FlutterConfLatamStyles.smallVGap,
-              Text(appLoc.ticketsPageParagraphExperts,
+              Text(
+                appLoc.ticketsPageParagraphExperts,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageSubtitleNetworking,
+              Text(
+                appLoc.ticketsPageSubtitleNetworking,
                 textAlign: TextAlign.center,
                 style: uiConfig.paragraphHeaderStyle,
               ),
               FlutterConfLatamStyles.smallVGap,
-              Text(appLoc.ticketsPageParagraphNetworking,
+              Text(
+                appLoc.ticketsPageParagraphNetworking,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageSubtitleSwag,
+              Text(
+                appLoc.ticketsPageSubtitleSwag,
                 textAlign: TextAlign.center,
                 style: uiConfig.paragraphHeaderStyle,
               ),
               FlutterConfLatamStyles.smallVGap,
-              Text(appLoc.ticketsPageParagraphSwag,
+              Text(
+                appLoc.ticketsPageParagraphSwag,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageTitle3,
+              Text(
+                appLoc.ticketsPageTitle3,
                 textAlign: TextAlign.center,
                 style: uiConfig.paragraphHeaderStyle,
               ),
-              Text(appLoc.ticketsPageBottomParagraph,
+              Text(
+                appLoc.ticketsPageBottomParagraph,
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-            ].animate(
-              interval: 50.ms,
-            ).slideY(
-              begin: 1, end: 0,
-              curve: Curves.easeInOut,
-            ).fadeIn(),
+            ]
+                .animate(
+                  interval: 50.ms,
+                )
+                .slideY(
+                  begin: 1,
+                  end: 0,
+                  curve: Curves.easeInOut,
+                )
+                .fadeIn(),
           ),
         ),
       ),

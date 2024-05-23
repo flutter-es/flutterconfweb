@@ -8,11 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class Tile extends StatelessWidget {
+  const Tile({required this.index, super.key});
 
   final String index;
-  const Tile({
-    required this.index,
-    super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,6 @@ class Tile extends StatelessWidget {
 }
 
 class ScheduleDayBlock extends ConsumerWidget {
-
   const ScheduleDayBlock({
     required this.scheduleDay,
     super.key,
@@ -33,32 +30,35 @@ class ScheduleDayBlock extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
-    final isMobile = getValueForScreenType(context: context,
+    final isMobile = getValueForScreenType(
+      context: context,
       mobile: true,
       tablet: true,
-      desktop: false
+      desktop: false,
     );
 
     Widget returningWidget;
 
     if (scheduleDay.dayIndex == 1) {
-      returningWidget = isMobile ? ScheduleDay1MobileTabletLayout(
-        speakers: scheduleDay.speakers,
-        sessions: scheduleDay.sessions,
-      ) : ScheduleDay1LargeLayout(
-        speakers: scheduleDay.speakers,
-        sessions: scheduleDay.sessions,
-      );
-    }
-    else {
-      returningWidget = isMobile ? ScheduleDay2MobileTabletLayout(
-        speakers: scheduleDay.speakers,
-        sessions: scheduleDay.sessions,
-      ) : ScheduleDay2LargeLayout(
-        speakers: scheduleDay.speakers,
-        sessions: scheduleDay.sessions,
-      );
+      returningWidget = isMobile
+          ? ScheduleDay1MobileTabletLayout(
+              speakers: scheduleDay.speakers,
+              sessions: scheduleDay.sessions,
+            )
+          : ScheduleDay1LargeLayout(
+              speakers: scheduleDay.speakers,
+              sessions: scheduleDay.sessions,
+            );
+    } else {
+      returningWidget = isMobile
+          ? ScheduleDay2MobileTabletLayout(
+              speakers: scheduleDay.speakers,
+              sessions: scheduleDay.sessions,
+            )
+          : ScheduleDay2LargeLayout(
+              speakers: scheduleDay.speakers,
+              sessions: scheduleDay.sessions,
+            );
     }
 
     return returningWidget;

@@ -10,7 +10,6 @@ import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Header extends ConsumerStatefulWidget {
-
   const Header({
     super.key,
   });
@@ -20,7 +19,6 @@ class Header extends ConsumerStatefulWidget {
 }
 
 class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
-
   @override
   void initState() {
     super.initState();
@@ -32,7 +30,6 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    
     final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
     final tabItems = ref.watch(navigationItemsProvider);
     final visibleTabItems = tabItems.where((t) => t.display!).toList();
@@ -52,7 +49,9 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
             child: LayoutBuilder(
               builder: (_, constraint) {
                 final currentHeight = constraint.maxHeight;
-                final currentWidth = currentHeight * uiConfig.logoHeight / uiConfig.maxHeaderHeight;
+                final currentWidth = currentHeight *
+                    uiConfig.logoHeight /
+                    uiConfig.maxHeaderHeight;
 
                 const maxPadding = 20.8;
 
@@ -72,7 +71,9 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () {
-                        ref.read(navigationItemsProvider.notifier).selectNavItemFromRoute(HomePage.route);
+                        ref
+                            .read(navigationItemsProvider.notifier)
+                            .selectNavItemFromRoute(HomePage.route);
                       },
                       child: const FlutterLogoAnimated(),
                     ),
@@ -86,9 +87,13 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
             child: TabBar(
               onTap: (index) {
                 final navItem = visibleTabItems[index];
-                ref.read(navigationItemsProvider.notifier).selectNavItem(navItem);
+                ref
+                    .read(navigationItemsProvider.notifier)
+                    .selectNavItem(navItem);
               },
-              controller: CustomTabController(length: visibleTabItems.length, vsync: this).build(),
+              controller: CustomTabController(
+                      length: visibleTabItems.length, vsync: this)
+                  .build(),
               isScrollable: true,
               indicatorWeight: 1.0,
               indicatorColor: Colors.white,
@@ -100,16 +105,19 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                     child: Text(
                       tabItem.label,
                       style: TextStyle(
-                        color: tabItem.isSelected! ? FlutterLatamColors.darkBlue : Colors.grey),
+                        color: tabItem.isSelected!
+                            ? FlutterLatamColors.darkBlue
+                            : Colors.grey,
+                      ),
                     ),
                   ),
               ],
             ),
           ),
-           const Align(
+          const Align(
             alignment: Alignment.topRight,
             child: LanguageButton(),
-          )
+          ),
         ],
       ),
     );

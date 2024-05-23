@@ -84,9 +84,10 @@ class CfpContainer extends ConsumerWidget {
                   Text(
                     cfpSectionData.cfpSubmitLabel,
                     style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: FlutterLatamColors.darkBlue),
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: FlutterLatamColors.darkBlue,
+                    ),
                   ),
                 ],
               ),

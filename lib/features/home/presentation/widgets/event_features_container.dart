@@ -15,10 +15,10 @@ class EventFeaturesContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final eventFeatures = ref.watch(eventFeaturesListProvider);
 
-    final config = EventFeatureResponsiveConfig.getEventFeatureBannerConfig(context);
+    final config =
+        EventFeatureResponsiveConfig.getEventFeatureBannerConfig(context);
 
     EventFeaturesContainer.height = config.bannerHeight;
 
@@ -27,7 +27,8 @@ class EventFeaturesContainer extends ConsumerWidget {
       padding: EdgeInsets.all(config.bannerPadding),
       color: FlutterLatamColors.eventFeaturesColor,
       alignment: Alignment.center,
-      child: EventFeaturesWrapper(axis: config.childrenAxis,
+      child: EventFeaturesWrapper(
+        axis: config.childrenAxis,
         children: [
           for (final eventFeature in eventFeatures)
             Column(
@@ -37,16 +38,17 @@ class EventFeaturesContainer extends ConsumerWidget {
                 const SizedBox(height: 20),
                 SizedBox(
                   width: 200,
-                  child: Text(eventFeature.description,
+                  child: Text(
+                    eventFeature.description,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: config.labelSize,
                       color: Colors.white,
                     ),
                   ),
-                )
+                ),
               ],
-            )
+            ),
         ],
       ),
     );

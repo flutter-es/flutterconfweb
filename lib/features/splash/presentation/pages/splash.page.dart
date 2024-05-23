@@ -8,17 +8,15 @@ import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   static const String route = '/';
-
-  const SplashPage({super.key});
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   Timer timer = Timer(Duration.zero, () {});
 
   @override
@@ -26,7 +24,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     timer = Timer(2.seconds, () {
-      Router.neglect(context, () => GoRouter.of(context).go(HomePage.route)); 
+      Router.neglect(context, () => GoRouter.of(context).go(HomePage.route));
     });
   }
 
@@ -38,11 +36,11 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return const Scaffold(
       body: Center(
         child: SizedBox(
-          width: 200, height: 200,
+          width: 200,
+          height: 200,
           child: FlutterLogoAnimated(
             animation: FlutterLogoAnimations.flutterlogo,
           ),

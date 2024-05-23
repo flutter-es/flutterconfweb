@@ -25,10 +25,9 @@ class HomeSectionsRepository {
       HomeSection(
         builder: (_) => const CfpContainer(),
       ),
-      //TODO: Uncomment this when the tickets are ready
-      /*HomeSection(
+      HomeSection(
         builder: (_) => const TicketsContainer(),
-      ),*/
+      ),
       HomeSection(
         builder: (_) => const EventFeaturesContainer(),
       ),

@@ -13,7 +13,6 @@ class SpeakersList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final speakers = ref.watch(speakersProvider);
 
     return Container(
@@ -24,24 +23,28 @@ class SpeakersList extends ConsumerWidget {
             spacing: 10,
             runSpacing: 64,
             children: [
-              for (var speaker in speakersList.where((s) => s.display! == true))
+              for (final speaker
+                  in speakersList.where((s) => s.display! == true))
                 SpeakerBadge(
                   speaker: speaker,
                   onSpeakerTap: (SpeakerModel speakerModel) {
                     Utils.showSpeakerInfo(
                       SpeakerContentWindow(
                         speaker: speakerModel,
-                      )
+                      ),
                     );
-                  },  
+                  },
+                ),
+            ]
+                .animate(
+                  interval: 100.ms,
                 )
-            ].animate(
-              interval: 100.ms,
-            ).scaleXY(
-              begin: 0.5, end: 1,
-              curve: Curves.easeInOut,
-            )
-            .fadeIn(),
+                .scaleXY(
+                  begin: 0.5,
+                  end: 1,
+                  curve: Curves.easeInOut,
+                )
+                .fadeIn(),
           );
         },
         error: (error, stackTrace) {

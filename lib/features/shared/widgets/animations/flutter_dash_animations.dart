@@ -3,7 +3,6 @@ import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterDashAnimation extends StatefulWidget {
-
   const FlutterDashAnimation({
     super.key,
     this.animation = FlutterDashAnimations.flutterdashwave,
@@ -16,7 +15,6 @@ class FlutterDashAnimation extends StatefulWidget {
 }
 
 class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
-
   late rive.StateMachineController smController;
   late rive.RiveAnimation animation;
 
@@ -33,7 +31,6 @@ class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
   }
 
   void onRiveInit(rive.Artboard artboard) {
-    
     smController = rive.StateMachineController.fromArtboard(
       artboard,
       widget.animation.name,
@@ -45,7 +42,7 @@ class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
   void dispose() {
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -55,7 +52,7 @@ class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
           height: constraints.maxHeight,
           child: animation,
         );
-      }
+      },
     );
   }
 }

@@ -57,10 +57,11 @@ class HomeContainer extends ConsumerWidget {
                         homeContainerData.title,
                         textAlign: uiConfig.textAlign,
                         style: TextStyle(
-                            height: 1,
-                            color: FlutterLatamColors.white,
-                            fontSize: uiConfig.titleSize,
-                            fontWeight: FontWeight.bold),
+                          height: 1,
+                          color: FlutterLatamColors.white,
+                          fontSize: uiConfig.titleSize,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
                         homeContainerData.content,
@@ -69,7 +70,7 @@ class HomeContainer extends ConsumerWidget {
                           color: FlutterLatamColors.white,
                           fontSize: uiConfig.subtitleSize,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -85,9 +86,7 @@ class HomeContainer extends ConsumerWidget {
                       child: SizedBox(
                         height: uiConfig.dashSize,
                         width: uiConfig.dashSize,
-                        child: const FlutterDashAnimation(
-                          animation: FlutterDashAnimations.flutterdashwave,
-                        ),
+                        child: const FlutterDashAnimation(),
                       ),
                     ),
                   ],

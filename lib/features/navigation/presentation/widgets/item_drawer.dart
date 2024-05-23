@@ -6,15 +6,15 @@ import 'package:flutter_conf_colombia/helpers/ui_extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ItemDrawer extends ConsumerWidget {
-
   const ItemDrawer({
+    super.key,
     required this.item,
-    required this.onTap
+    required this.onTap,
   });
 
   final Function onTap;
   final TabNavigationItem item;
-  
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const borderRaidus = BorderRadius.all(
@@ -31,6 +31,7 @@ class ItemDrawer extends ConsumerWidget {
           height: 60.0,
           child: InkWell(
             onTap: () {
+              Navigator.of(context).pop();
               onTap();
             },
             borderRadius: borderRaidus,

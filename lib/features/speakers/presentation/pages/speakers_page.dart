@@ -10,16 +10,15 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SpeakersPage extends ConsumerWidget {
+  const SpeakersPage({super.key});
 
   static const String route = '/speakers';
 
-  const SpeakersPage({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = SpeakersPageResponsiveConfig.getSpeakersPageResponsiveConfig(context);
+    final uiConfig =
+        SpeakersPageResponsiveConfig.getSpeakersPageResponsiveConfig(context);
 
     return SingleChildScrollView(
       child: Center(
@@ -35,12 +34,13 @@ class SpeakersPage extends ConsumerWidget {
                     children: [
                       Icon(
                         FlutterConfLatamIcons.speaker,
-                          size: uiConfig.headerIconSize,
-                          color: FlutterLatamColors.blueText,
+                        size: uiConfig.headerIconSize,
+                        color: FlutterLatamColors.blueText,
                       ),
                       uiConfig.headerGap,
-                      Text(appLoc.speakers, 
-                        textAlign: TextAlign.center, 
+                      Text(
+                        appLoc.speakers,
+                        textAlign: TextAlign.center,
                         style: uiConfig.headerStyle,
                       ),
                     ],
@@ -52,24 +52,30 @@ class SpeakersPage extends ConsumerWidget {
                     style: uiConfig.subheaderStyle,
                   ),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.speakersPageTopParagraph, textAlign: uiConfig.textAlignment),
+                  Text(appLoc.speakersPageTopParagraph,
+                      textAlign: uiConfig.textAlignment),
                   uiConfig.pageVerticalGap,
-                ].animate(
-                  interval: 100.ms,
-                ).slideY(
-                  begin: 1, end: 0,
-                  curve: Curves.easeInOut,
-                ).fadeIn(),
+                ]
+                    .animate(
+                      interval: 100.ms,
+                    )
+                    .slideY(
+                      begin: 1,
+                      end: 0,
+                      curve: Curves.easeInOut,
+                    )
+                    .fadeIn(),
               ),
               const SpeakersList(),
               FlutterConfLatamStyles.largeVGap,
               Text(appLoc.speakersPageNote, textAlign: uiConfig.textAlignment),
               FlutterConfLatamStyles.smallVGap,
-              Text(appLoc.speakersPageBottomParagraph, textAlign: uiConfig.textAlignment),
+              Text(appLoc.speakersPageBottomParagraph,
+                  textAlign: uiConfig.textAlignment),
             ],
-          )
-        )
-      )
+          ),
+        ),
+      ),
     );
   }
 }

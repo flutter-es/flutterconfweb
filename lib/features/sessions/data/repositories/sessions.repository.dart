@@ -11,22 +11,24 @@ class SessionsRepository {
   final Ref ref;
 
   Future<List<SessionModel>> getSessions() {
-    Completer<List<SessionModel>> sessionsCompleter = Completer();
+    var sessionsCompleter = Completer<List<SessionModel>>();
 
     final dbInstance = ref.read(dbProvider);
     dbInstance.collection('sessions').get().then((snapshot) {
-      final sessions = snapshot.docs.map((sessionDoc) => 
-      SessionModel.fromFirestore(
-        sessionDoc.data(),),).toList();
+      final sessions = snapshot.docs
+          .map(
+            (sessionDoc) => SessionModel.fromFirestore(
+              sessionDoc.data(),
+            ),
+          )
+          .toList();
 
       sessionsCompleter.complete(sessions);
-
     }).catchError((dynamic error) {
       sessionsCompleter.completeError(error.toString());
     }).onError((error, stackTrace) {
       sessionsCompleter.completeError(error.toString());
     });
-    
 
     return sessionsCompleter.future;
   }
