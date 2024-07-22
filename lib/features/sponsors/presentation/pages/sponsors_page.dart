@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/responsiveness/sponsors_page_responsive.config.dart';
 import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/sponsors_list.dart';
-import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/sponsors_region.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class SponsorsPage extends ConsumerWidget {
   const SponsorsPage({super.key});
@@ -57,8 +53,10 @@ class SponsorsPage extends ConsumerWidget {
                     style: uiConfig.subheaderStyle,
                   ),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.sponsorsParagraphTop,
-                      textAlign: TextAlign.center),
+                  Text(
+                    appLoc.sponsorsParagraphTop,
+                    textAlign: TextAlign.center,
+                  ),
                   uiConfig.pageVerticalGap,
                   CircleRoundIconButton(
                     icon: Icons.picture_as_pdf,
@@ -89,8 +87,10 @@ class SponsorsPage extends ConsumerWidget {
               padding: uiConfig.pagePadding,
               child: Column(
                 children: [
-                  Text(appLoc.sponsorsParagraphBottom,
-                      textAlign: TextAlign.center),
+                  Text(
+                    appLoc.sponsorsParagraphBottom,
+                    textAlign: TextAlign.center,
+                  ),
                   uiConfig.pageVerticalGap,
                   Text(
                     appLoc.sponsorsInterestTitle,
@@ -114,8 +114,10 @@ class SponsorsPage extends ConsumerWidget {
                     },
                   ),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.sponsorsInterestContent,
-                      textAlign: TextAlign.center),
+                  Text(
+                    appLoc.sponsorsInterestContent,
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
             ),

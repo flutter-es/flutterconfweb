@@ -32,23 +32,31 @@ class ErrorPage extends ConsumerWidget {
               height: uiConfig.dashDimensions,
               child: const FlutterWarningAnimated(),
             ),
-            Text(appLoc.errorPageTitle,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: uiConfig.titleSize,
-                    fontWeight: FontWeight.bold)),
-            Text(appLoc.errorPageSubtitle,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: uiConfig.subtitleSize,
-                    fontWeight: FontWeight.bold)),
+            Text(
+              appLoc.errorPageTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: uiConfig.titleSize,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              appLoc.errorPageSubtitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: uiConfig.subtitleSize,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(
               width: uiConfig.textContainerWidth,
-              child: Text(errorMessage,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.grey)),
+              child: Text(
+                errorMessage,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.grey),
+              ),
             ),
             FlutterConfLatamStyles.mediumVGap,
             ElevatedButton(

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/cfp/presentation/responsiveness/cfp_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/cfp/presentation/providers/cfpfeature_providers.dart';
+import 'package:flutter_conf_colombia/features/cfp/presentation/responsiveness/cfp_responsive_config.dart';
+import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class CfpContainer extends ConsumerWidget {
   const CfpContainer({super.key});

@@ -5,7 +5,6 @@ import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbu
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CFPPage extends ConsumerWidget {
@@ -47,12 +46,17 @@ class CFPPage extends ConsumerWidget {
                 textAlign: TextAlign.center,
               ),
               uiConfig.pageVerticalGap,
-              Text('Call for Papers Deadline',
-                  textAlign: TextAlign.center,
-                  style: uiConfig.deadlineHeaderStyle
-                      .copyWith(color: FlutterLatamColors.lightBlue)),
-              Text('October 25th & 26th, 2023',
-                  textAlign: TextAlign.center, style: uiConfig.subheaderStyle),
+              Text(
+                'Call for Papers Deadline',
+                textAlign: TextAlign.center,
+                style: uiConfig.deadlineHeaderStyle
+                    .copyWith(color: FlutterLatamColors.lightBlue),
+              ),
+              Text(
+                'October 25th & 26th, 2023',
+                textAlign: TextAlign.center,
+                style: uiConfig.subheaderStyle,
+              ),
               uiConfig.pageVerticalGap,
               CircleRoundIconButton(
                 icon: FlutterConfLatamIcons.speaker,

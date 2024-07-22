@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker_social.model.dart';
 
 class SpeakerModel {
@@ -27,8 +25,10 @@ class SpeakerModel {
       display: bool.parse(json['display'].toString()),
       socialMediaLinks: json.containsKey('social_media_links')
           ? (json['social_media_links'] as List<dynamic>)
-              .map((social) =>
-                  SpeakerSocial.fromFirestore(social as Map<String, dynamic>))
+              .map(
+                (social) =>
+                    SpeakerSocial.fromFirestore(social as Map<String, dynamic>),
+              )
               .toList()
           : [],
     );

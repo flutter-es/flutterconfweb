@@ -15,7 +15,8 @@ class DateLocationResponsiveConfig {
   final double padding;
 
   static DateLocationResponsiveConfig getDateLocationBannerConfig(
-      BuildContext ctxt) {
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: DateLocationResponsiveConfig(

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +15,7 @@ class SpeakersRepository {
   List<SpeakerModel> cachedSpeakers = [];
 
   Future<List<SpeakerModel>> getSpeakers() {
-    var speakersCompleter = Completer<List<SpeakerModel>>();
+    final speakersCompleter = Completer<List<SpeakerModel>>();
 
     if (cachedSpeakers.isNotEmpty) {
       return Future.value(cachedSpeakers);
@@ -24,7 +23,7 @@ class SpeakersRepository {
 
     final dbInstance = ref.read(dbProvider);
     dbInstance.collection('speakers').get().then((snapshot) {
-      var speakers = snapshot.docs
+      final speakers = snapshot.docs
           .map(
             (speakerDoc) => SpeakerModel.fromFirestore(
               speakerDoc.id,

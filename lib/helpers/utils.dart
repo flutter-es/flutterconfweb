@@ -4,9 +4,9 @@ import 'package:flutter_conf_colombia/features/sessions/data/models/session.mode
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Utils {
   static GlobalKey<NavigatorState> mainNav = GlobalKey();
@@ -35,7 +35,9 @@ class Utils {
   }
 
   static String getTitleFromSponsorshipLevel(
-      AppLocalizations loc, SponsorshipLevels level) {
+    AppLocalizations loc,
+    SponsorshipLevels level,
+  ) {
     switch (level) {
       case SponsorshipLevels.platinum:
         return loc.sponsorshipPlatinum;
@@ -156,7 +158,9 @@ class Utils {
   }
 
   static SessionModel? getSessionFromSlotId(
-      List<SessionModel> sessions, int id) {
+    List<SessionModel> sessions,
+    int id,
+  ) {
     SessionModel? session;
 
     if (sessions.any((SessionModel s) => s.scheduleSlot == 1)) {
@@ -166,8 +170,10 @@ class Utils {
     return session;
   }
 
-  static Widget getTimeLabelHeader(String label,
-      {MainAxisAlignment alignment = MainAxisAlignment.end}) {
+  static Widget getTimeLabelHeader(
+    String label, {
+    MainAxisAlignment alignment = MainAxisAlignment.end,
+  }) {
     final timeLabelStyle =
         isMobile() ? FlutterConfLatamStyles.h6 : FlutterConfLatamStyles.h7;
 

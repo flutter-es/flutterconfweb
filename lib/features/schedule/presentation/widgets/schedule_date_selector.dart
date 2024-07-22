@@ -20,7 +20,8 @@ class ScheduleDateSelector extends ConsumerWidget {
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig =
         ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(
-            context);
+      context,
+    );
 
     return Row(
       children: [
@@ -63,12 +64,16 @@ class ScheduleDateSelector extends ConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('${appLoc.scheduleDay} ${index + 1}',
-                          style: uiConfig.tabDayLabelStyle
-                              .copyWith(color: Colors.white)),
-                      Text(ref.read(shortDateFormatterProvider(currentDate)),
-                          style: uiConfig.tabDateLabelStyle
-                              .copyWith(color: Colors.white)),
+                      Text(
+                        '${appLoc.scheduleDay} ${index + 1}',
+                        style: uiConfig.tabDayLabelStyle
+                            .copyWith(color: Colors.white),
+                      ),
+                      Text(
+                        ref.read(shortDateFormatterProvider(currentDate)),
+                        style: uiConfig.tabDateLabelStyle
+                            .copyWith(color: Colors.white),
+                      ),
                     ],
                   ),
                 ),

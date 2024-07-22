@@ -68,21 +68,29 @@ class ContactPage extends ConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.email,
-                            color: FlutterLatamColors.lightBlue,
-                            size: uiConfig.contactInfoIconSize),
+                        Icon(
+                          Icons.email,
+                          color: FlutterLatamColors.lightBlue,
+                          size: uiConfig.contactInfoIconSize,
+                        ),
                         FlutterConfLatamStyles.smallHGap,
                         Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: uiConfig.contactInfoAlignment,
                           children: [
-                            Text(appLoc.contactInfoTitle,
-                                style: uiConfig.contactInfoStyle.copyWith(
-                                    color: FlutterLatamColors.lightBlue,
-                                    fontWeight: FontWeight.normal)),
-                            Text(Constants.conferenceEmail,
-                                style: uiConfig.contactInfoStyle.copyWith(
-                                    color: FlutterLatamColors.lightBlue)),
+                            Text(
+                              appLoc.contactInfoTitle,
+                              style: uiConfig.contactInfoStyle.copyWith(
+                                color: FlutterLatamColors.lightBlue,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            Text(
+                              Constants.conferenceEmail,
+                              style: uiConfig.contactInfoStyle.copyWith(
+                                color: FlutterLatamColors.lightBlue,
+                              ),
+                            ),
                           ],
                         ),
                       ],

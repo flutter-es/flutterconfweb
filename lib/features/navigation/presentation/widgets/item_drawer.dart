@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
 import 'package:flutter_conf_colombia/features/navigation/data/models/tab_navigation_item.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
-import 'package:flutter_conf_colombia/helpers/ui_extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ItemDrawer extends ConsumerWidget {
   const ItemDrawer({
-    super.key,
     required this.item,
     required this.onTap,
+    super.key,
   });
 
   final Function onTap;

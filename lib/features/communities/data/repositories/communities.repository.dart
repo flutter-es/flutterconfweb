@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_conf_colombia/features/communities/data/models/community_collab.model.dart';
 import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
-import 'package:flutter_conf_colombia/features/sponsors/data/models/sponsor.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CommunitiesRepository {

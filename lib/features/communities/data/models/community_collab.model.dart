@@ -1,4 +1,9 @@
 class CommunityCollabModel {
+  const CommunityCollabModel({
+    required this.image,
+    required this.url,
+    required this.name,
+  });
   factory CommunityCollabModel.fromFirestore(Map<String, dynamic> json) {
     return CommunityCollabModel(
       image: json['image'].toString(),
@@ -6,12 +11,6 @@ class CommunityCollabModel {
       url: json['url'].toString(),
     );
   }
-
-  const CommunityCollabModel({
-    required this.image,
-    required this.url,
-    required this.name,
-  });
 
   final String image;
   final String url;

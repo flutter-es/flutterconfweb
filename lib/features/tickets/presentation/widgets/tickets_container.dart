@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/comingsoon_container.dart';
-import 'package:flutter_conf_colombia/features/tickets/presentation/responsiveness/ticket_banner_responsive_config.dart';
 import 'package:flutter_conf_colombia/features/tickets/presentation/providers/ticketfeature_providers.dart';
+import 'package:flutter_conf_colombia/features/tickets/presentation/responsiveness/ticket_banner_responsive_config.dart';
 import 'package:flutter_conf_colombia/helpers/enums.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class TicketsContainer extends ConsumerWidget {
   const TicketsContainer({super.key});

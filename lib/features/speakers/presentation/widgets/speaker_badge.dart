@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/speaker_content.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -79,7 +76,8 @@ class _SpeakerBadgeState extends ConsumerState<SpeakerBadge> {
                       decoration: BoxDecoration(
                         color: FlutterLatamColors.lightBlue.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(
-                            FlutterConfLatamStyles.largeRadius),
+                          FlutterConfLatamStyles.largeRadius,
+                        ),
                       ),
                       padding: const EdgeInsets.symmetric(
                         horizontal: FlutterConfLatamStyles.largeSize,

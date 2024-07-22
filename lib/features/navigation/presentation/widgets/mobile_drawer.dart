@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/home/data/models/home_section.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_colombia/features/navigation/data/models/tab_navigation_item.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/item_drawer.dart';
 import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
@@ -85,8 +83,11 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
             ),
             const Row(
               children: [
-                Icon(FlutterConfLatamIcons.flutteconflatam_text,
-                    size: 80, color: Colors.white),
+                Icon(
+                  FlutterConfLatamIcons.flutteconflatam_text,
+                  size: 80,
+                  color: Colors.white,
+                ),
               ],
             ),
           ],

@@ -49,12 +49,19 @@ class ComingSoonContainer extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.construction,
-              color: Colors.black, size: comingSoonIconSize),
+          Icon(
+            Icons.construction,
+            color: Colors.black,
+            size: comingSoonIconSize,
+          ),
           const SizedBox(width: 20),
-          Text(appLoc.comingSoon,
-              style: TextStyle(
-                  fontSize: comingSoonFontSize, fontWeight: FontWeight.bold)),
+          Text(
+            appLoc.comingSoon,
+            style: TextStyle(
+              fontSize: comingSoonFontSize,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

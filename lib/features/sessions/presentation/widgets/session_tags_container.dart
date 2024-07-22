@@ -40,12 +40,16 @@ class SessionTagsContainer extends ConsumerWidget {
                       decoration: BoxDecoration(
                         color: Colors.blueAccent.withOpacity(0.25),
                         borderRadius: BorderRadius.circular(
-                            FlutterConfLatamStyles.smallRadius),
+                          FlutterConfLatamStyles.smallRadius,
+                        ),
                       ),
-                      child: Text(tags[index],
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold)),
+                      child: Text(
+                        tags[index],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     )
                   : const SizedBox.shrink();
             }),

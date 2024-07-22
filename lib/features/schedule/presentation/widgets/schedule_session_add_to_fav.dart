@@ -28,8 +28,10 @@ class ScheduleSessionAddToFavorite extends StatelessWidget {
               ),
             ),
             FlutterConfLatamStyles.xsmallHGap,
-            const Icon(Icons.favorite_border_outlined,
-                color: FlutterLatamColors.lightBlue),
+            const Icon(
+              Icons.favorite_border_outlined,
+              color: FlutterLatamColors.lightBlue,
+            ),
           ],
         ),
       ),

@@ -4,14 +4,7 @@ import 'package:flutter_conf_colombia/features/home/data/models/home_section.dar
 import 'package:flutter_conf_colombia/features/home/data/models/tab_section.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/providers/home_providers.dart';
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/custom_tab_controller.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/footer.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/header.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/language_button.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/mobile_drawer.dart';
-import 'package:flutter_conf_colombia/helpers/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});

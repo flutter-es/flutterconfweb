@@ -18,7 +18,8 @@ class SchedulePage extends ConsumerWidget {
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig =
         ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(
-            context);
+      context,
+    );
     final schedule = ref.watch(scheduleFutureProvider);
 
     return SingleChildScrollView(

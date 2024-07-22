@@ -8,11 +8,12 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SessionMainContent extends StatelessWidget {
-  const SessionMainContent(
-      {required this.session,
-      this.additionalTopContent,
-      this.additionalBottomContent,
-      super.key});
+  const SessionMainContent({
+    required this.session,
+    this.additionalTopContent,
+    this.additionalBottomContent,
+    super.key,
+  });
 
   final SessionModel session;
   final Widget? additionalTopContent;

@@ -43,37 +43,45 @@ class FlutterConfLatamStyles {
   static const EdgeInsets xxLargeMargin = EdgeInsets.all(128);
 
   static const TextStyle h1 = TextStyle(
-      fontSize: 64,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 64,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
   static const TextStyle h2 = TextStyle(
-      fontSize: 56,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 56,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
   static const TextStyle h3 = TextStyle(
-      fontSize: 48,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 48,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
   static const TextStyle h4 = TextStyle(
-      fontSize: 40,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 40,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
   static const TextStyle h5 = TextStyle(
-      fontSize: 32,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 32,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
   static const TextStyle h6 = TextStyle(
-      fontSize: 24,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
   static const TextStyle h7 = TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
   static const TextStyle h8 = TextStyle(
-      fontSize: 8,
-      fontWeight: FontWeight.bold,
-      color: FlutterLatamColors.blueText);
+    fontSize: 8,
+    fontWeight: FontWeight.bold,
+    color: FlutterLatamColors.blueText,
+  );
 
   static const TextStyle label1 =
       TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black);
@@ -93,7 +101,9 @@ class FlutterConfLatamStyles {
       TextStyle(fontSize: 4, fontWeight: FontWeight.bold, color: Colors.black);
 
   static TextStyle getStylesFromSessionType(
-      SessionType sessionType, BuildContext context) {
+    SessionType sessionType,
+    BuildContext context,
+  ) {
     switch (sessionType) {
       case SessionType.eventSession:
         return getValueForScreenType(

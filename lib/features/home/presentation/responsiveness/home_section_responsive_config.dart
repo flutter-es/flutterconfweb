@@ -45,7 +45,8 @@ class HomeSectionResponsiveConfig {
   final CrossAxisAlignment titleAlignment;
 
   static HomeSectionResponsiveConfig getHomeSectionBannerConfig(
-      BuildContext ctxt) {
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: const HomeSectionResponsiveConfig(
@@ -132,7 +133,9 @@ class HomeSectionResponsiveConfig {
   }
 
   static double subtitleDesktopSize(
-      BuildContext context, double originalValue) {
+    BuildContext context,
+    double originalValue,
+  ) {
     final width = MediaQuery.of(context).size.width;
     var fontSize = originalValue;
 

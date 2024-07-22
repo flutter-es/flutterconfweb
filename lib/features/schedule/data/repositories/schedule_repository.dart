@@ -17,8 +17,10 @@ class ScheduleRepository {
         dayIndex: 1,
         date: DateTime.parse('2023-10-25T00:00:00Z'),
         sessions: sessions
-            .where((s) =>
-                s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('1'))
+            .where(
+              (s) =>
+                  s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('1'),
+            )
             .toList(),
         speakers: speakers,
       ),
@@ -26,8 +28,10 @@ class ScheduleRepository {
         dayIndex: 2,
         date: DateTime.parse('2023-10-26T00:00:00Z'),
         sessions: sessions
-            .where((s) =>
-                s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('2'))
+            .where(
+              (s) =>
+                  s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('2'),
+            )
             .toList(),
         speakers: speakers,
       ),

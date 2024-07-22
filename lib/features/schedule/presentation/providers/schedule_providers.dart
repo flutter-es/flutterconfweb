@@ -25,8 +25,15 @@ final scheduleDaySelectionProvider = StateProvider<DateTime?>(
 
 final timeFormatterProvider = Provider.family((ref, DateTime time) {
   final loc = tz.getLocation('America/Bogota');
-  final date = tz.TZDateTime(loc, time.year, time.month, time.day, time.hour,
-      time.minute, time.second);
+  final date = tz.TZDateTime(
+    loc,
+    time.year,
+    time.month,
+    time.day,
+    time.hour,
+    time.minute,
+    time.second,
+  );
   final formatter = DateFormat('h:mm a', 'es_CO');
   final formatted = formatter.format(date);
   return formatted;
@@ -35,8 +42,15 @@ final timeFormatterProvider = Provider.family((ref, DateTime time) {
 final shortDateFormatterProvider = Provider.family((ref, DateTime time) {
   final appLoc = ref.watch(appLocalizationsProvider);
   final loc = tz.getLocation('America/Bogota');
-  final date = tz.TZDateTime(loc, time.year, time.month, time.day, time.hour,
-      time.minute, time.second);
+  final date = tz.TZDateTime(
+    loc,
+    time.year,
+    time.month,
+    time.day,
+    time.hour,
+    time.minute,
+    time.second,
+  );
   final formatter = DateFormat('EEE, MMM d', appLoc.localeName);
   final formatted = formatter.format(date);
   return formatted;

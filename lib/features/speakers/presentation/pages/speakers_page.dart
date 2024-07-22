@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_colombia/features/speakers/presentation/providers/speakers_providers.dart';
 import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/speakers_list.dart';
 import 'package:flutter_conf_colombia/features/speakers/responsiveness/speakers_page_responsive.config.dart';
 import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
@@ -52,8 +51,10 @@ class SpeakersPage extends ConsumerWidget {
                     style: uiConfig.subheaderStyle,
                   ),
                   uiConfig.pageVerticalGap,
-                  Text(appLoc.speakersPageTopParagraph,
-                      textAlign: uiConfig.textAlignment),
+                  Text(
+                    appLoc.speakersPageTopParagraph,
+                    textAlign: uiConfig.textAlignment,
+                  ),
                   uiConfig.pageVerticalGap,
                 ]
                     .animate(
@@ -70,8 +71,10 @@ class SpeakersPage extends ConsumerWidget {
               FlutterConfLatamStyles.largeVGap,
               Text(appLoc.speakersPageNote, textAlign: uiConfig.textAlignment),
               FlutterConfLatamStyles.smallVGap,
-              Text(appLoc.speakersPageBottomParagraph,
-                  textAlign: uiConfig.textAlignment),
+              Text(
+                appLoc.speakersPageBottomParagraph,
+                textAlign: uiConfig.textAlignment,
+              ),
             ],
           ),
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/comingsoon_container.dart';
 import 'package:flutter_conf_colombia/features/tickets/presentation/providers/ticketfeature_providers.dart';
 import 'package:flutter_conf_colombia/features/tickets/presentation/responsiveness/ticket_page_responsive_config.dart';
 import 'package:flutter_conf_colombia/helpers/utils.dart';
@@ -64,8 +63,11 @@ class TicketsPage extends ConsumerWidget {
               ),
               FlutterConfLatamStyles.mediumVGap,
               uiConfig.pageVerticalGap,
-              Text(appLoc.ticketsPageTitle1,
-                  textAlign: TextAlign.center, style: uiConfig.subheaderStyle),
+              Text(
+                appLoc.ticketsPageTitle1,
+                textAlign: TextAlign.center,
+                style: uiConfig.subheaderStyle,
+              ),
               uiConfig.pageVerticalGap,
               Text(
                 appLoc.ticketsPageParagraph1,

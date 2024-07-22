@@ -12,7 +12,7 @@ class WebLocalStorageService {
   late SharedPreferences prefs;
 
   Future<bool> initLocalStorage() {
-    var localStorageCompleter = Completer<bool>();
+    final localStorageCompleter = Completer<bool>();
 
     ref.read(sharedPrefsInstanceProvider).then((sp) {
       prefs = sp;

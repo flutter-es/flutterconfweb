@@ -89,9 +89,11 @@ class SpeakerContent extends StatelessWidget {
           FlutterConfLatamStyles.smallVGap
         else
           const SizedBox.shrink(),
-        Text(speaker.company!,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.bold)),
+        Text(
+          speaker.company!,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 200),
           child: Text(speaker.title!, textAlign: TextAlign.center),

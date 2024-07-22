@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SessionsRepository {
@@ -11,7 +9,7 @@ class SessionsRepository {
   final Ref ref;
 
   Future<List<SessionModel>> getSessions() {
-    var sessionsCompleter = Completer<List<SessionModel>>();
+    final sessionsCompleter = Completer<List<SessionModel>>();
 
     final dbInstance = ref.read(dbProvider);
     dbInstance.collection('sessions').get().then((snapshot) {

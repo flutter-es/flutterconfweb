@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ErrorPageResponsiveConfig {
-  ErrorPageResponsiveConfig(
-      {required this.titleSize,
-      required this.subtitleSize,
-      required this.dashDimensions,
-      required this.textContainerWidth});
+  ErrorPageResponsiveConfig({
+    required this.titleSize,
+    required this.subtitleSize,
+    required this.dashDimensions,
+    required this.textContainerWidth,
+  });
 
   final double titleSize;
   final double subtitleSize;

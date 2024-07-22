@@ -8,11 +8,12 @@ import 'package:flutter_conf_colombia/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleCellContent extends StatelessWidget {
-  const ScheduleCellContent(
-      {required this.session,
-      required this.speakers,
-      required this.onScheduleTap,
-      super.key});
+  const ScheduleCellContent({
+    required this.session,
+    required this.speakers,
+    required this.onScheduleTap,
+    super.key,
+  });
 
   final SessionModel session;
   final List<SpeakerModel> speakers;
@@ -95,7 +96,9 @@ class ScheduleCellContent extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: FlutterConfLatamStyles.getStylesFromSessionType(
-                        session.sessionType, context),
+                      session.sessionType,
+                      context,
+                    ),
                   ),
                 ],
               ),

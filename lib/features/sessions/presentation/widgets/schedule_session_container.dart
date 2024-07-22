@@ -11,8 +11,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleSessionContainer extends ConsumerWidget {
-  const ScheduleSessionContainer(
-      {required this.session, required this.speakers, super.key});
+  const ScheduleSessionContainer({
+    required this.session,
+    required this.speakers,
+    super.key,
+  });
 
   final SessionModel session;
   final List<SpeakerModel> speakers;
@@ -47,9 +50,12 @@ class ScheduleSessionContainer extends ConsumerWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(
-                                bottom: FlutterConfLatamStyles.smallSize),
-                            child: Text(appLoc.scheduleRoomLabel,
-                                style: const TextStyle(color: Colors.black)),
+                              bottom: FlutterConfLatamStyles.smallSize,
+                            ),
+                            child: Text(
+                              appLoc.scheduleRoomLabel,
+                              style: const TextStyle(color: Colors.black),
+                            ),
                           ),
                           Container(
                             margin: FlutterConfLatamStyles.smallMargin.copyWith(
@@ -65,17 +71,22 @@ class ScheduleSessionContainer extends ConsumerWidget {
                             decoration: BoxDecoration(
                               color: FlutterLatamColors.brightYellow,
                               borderRadius: BorderRadius.circular(
-                                  FlutterConfLatamStyles.largeRadius),
+                                FlutterConfLatamStyles.largeRadius,
+                              ),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.door_back_door_outlined,
-                                    color: Colors.black),
+                                const Icon(
+                                  Icons.door_back_door_outlined,
+                                  color: Colors.black,
+                                ),
                                 FlutterConfLatamStyles.xsmallHGap,
-                                Text(session.room,
-                                    style: FlutterConfLatamStyles.h7
-                                        .copyWith(color: Colors.black)),
+                                Text(
+                                  session.room,
+                                  style: FlutterConfLatamStyles.h7
+                                      .copyWith(color: Colors.black),
+                                ),
                               ],
                             ),
                           ),
@@ -87,8 +98,10 @@ class ScheduleSessionContainer extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     FlutterConfLatamStyles.smallVGap,
-                    Text(appLoc.sessionSpeakerLabel,
-                        style: FlutterConfLatamStyles.h7),
+                    Text(
+                      appLoc.sessionSpeakerLabel,
+                      style: FlutterConfLatamStyles.h7,
+                    ),
                     FlutterConfLatamStyles.smallVGap,
                     Wrap(
                       children: [

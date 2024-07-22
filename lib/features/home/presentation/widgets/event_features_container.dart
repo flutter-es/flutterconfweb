@@ -4,7 +4,6 @@ import 'package:flutter_conf_colombia/features/home/presentation/responsiveness/
 import 'package:flutter_conf_colombia/features/home/presentation/widgets/event_features_wrapper.dart';
 import 'package:flutter_conf_colombia/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class EventFeaturesContainer extends ConsumerWidget {
   const EventFeaturesContainer({super.key});

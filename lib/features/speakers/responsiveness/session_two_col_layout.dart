@@ -29,7 +29,8 @@ class SpeakerSessionTwoColumnLayout extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(
-                  right: FlutterConfLatamStyles.largeSize),
+                right: FlutterConfLatamStyles.largeSize,
+              ),
               child: SessionContainer(speakerId: speaker.id!),
             ),
           ),

@@ -10,8 +10,11 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleDay2LargeLayout extends ConsumerWidget {
-  ScheduleDay2LargeLayout(
-      {required this.speakers, required this.sessions, super.key});
+  ScheduleDay2LargeLayout({
+    required this.speakers,
+    required this.sessions,
+    super.key,
+  });
 
   List<SessionModel> sessions;
   List<SpeakerModel> speakers;
@@ -25,7 +28,8 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig =
         ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(
-            context);
+      context,
+    );
     final headerCellCount = getValueForScreenType(
       context: context,
       mobile: 0.75,

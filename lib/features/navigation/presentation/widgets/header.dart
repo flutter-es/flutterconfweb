@@ -92,8 +92,9 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                     .selectNavItem(navItem);
               },
               controller: CustomTabController(
-                      length: visibleTabItems.length, vsync: this)
-                  .build(),
+                length: visibleTabItems.length,
+                vsync: this,
+              ).build(),
               isScrollable: true,
               indicatorWeight: 1.0,
               indicatorColor: Colors.white,
