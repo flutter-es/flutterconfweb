@@ -22,9 +22,10 @@ class HomeSectionsRepository {
       HomeSection(
         builder: (_) => const DateLocationContainer(),
       ),
-      HomeSection(
+      //TODO: Uncomment when CFP is ready
+      /*HomeSection(
         builder: (_) => const CfpContainer(),
-      ),
+      ),*/
       HomeSection(
         builder: (_) => const TicketsContainer(),
       ),
