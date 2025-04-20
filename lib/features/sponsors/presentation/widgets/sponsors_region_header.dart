@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

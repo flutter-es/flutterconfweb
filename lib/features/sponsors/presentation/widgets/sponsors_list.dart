@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/sponsors/presentation/widgets/sponsors_region.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 
 class SponsorsList extends StatelessWidget {
   const SponsorsList({super.key});
@@ -13,7 +13,7 @@ class SponsorsList extends StatelessWidget {
         SponsorsRegion(level: SponsorshipLevels.gold),
         SponsorsRegion(level: SponsorshipLevels.silver),
         SponsorsRegion(level: SponsorshipLevels.bronze),
-        SponsorsRegion(level: SponsorshipLevels.inkind),
+        SponsorsRegion(level: SponsorshipLevels.inKind),
       ],
     );
   }

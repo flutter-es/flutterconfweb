@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

@@ -1,8 +1,8 @@
-import 'dart:math' as math; // import this
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_dash_animations.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 
 class WipContainer extends StatelessWidget {
@@ -34,7 +34,7 @@ class WipContainer extends StatelessWidget {
               width: 500,
               height: 500,
               child: FlutterDashAnimation(
-                animation: FlutterDashAnimations.flutterdashconst,
+                animation: FlutterDashAnimations.flutterDashConst,
               ),
             ),
           ),

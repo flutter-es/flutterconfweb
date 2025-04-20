@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_dash_animations.dart';
 import 'package:flutter_conf_latam/features/shared/widgets/circleround_iconbutton.dart';
 import 'package:flutter_conf_latam/features/tickets/presentation/providers/ticketfeature_providers.dart';
 import 'package:flutter_conf_latam/features/tickets/presentation/responsiveness/ticket_banner_responsive_config.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
@@ -66,7 +66,7 @@ class TicketsContainer extends ConsumerWidget {
                 width: config.dashSize,
                 height: config.dashSize,
                 child: const FlutterDashAnimation(
-                  animation: FlutterDashAnimations.flutterdashticket,
+                  animation: FlutterDashAnimations.flutterDashTicket,
                 ),
               ),
             ),

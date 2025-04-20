@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterWarningAnimated extends StatefulWidget {
   const FlutterWarningAnimated({
     super.key,
-    this.animation = FlutterWarningAnimations.flutterwarning,
+    this.animation = FlutterWarningAnimations.flutterWarning,
   });
 
   final FlutterWarningAnimations animation;

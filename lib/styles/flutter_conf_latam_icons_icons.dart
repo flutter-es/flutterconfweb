@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 
 class FlutterConfLatamIcons {
   FlutterConfLatamIcons._();

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterLogoAnimated extends StatefulWidget {
   const FlutterLogoAnimated({
     super.key,
-    this.animation = FlutterLogoAnimations.flutterconflogo,
+    this.animation = FlutterLogoAnimations.flutterConfLogo,
   });
 
   final FlutterLogoAnimations animation;

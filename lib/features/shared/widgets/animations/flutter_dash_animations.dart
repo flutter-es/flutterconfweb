@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterDashAnimation extends StatefulWidget {
   const FlutterDashAnimation({
     super.key,
-    this.animation = FlutterDashAnimations.flutterdashwave,
+    this.animation = FlutterDashAnimations.flutterDashWave,
   });
 
   final FlutterDashAnimations animation;

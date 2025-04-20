@@ -1,4 +1,4 @@
-import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 
 class SponsorModel {
   const SponsorModel({

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/sponsors/presentation/pages/sponsors_page.dart';
 import 'package:flutter_conf_latam/features/sponsors/presentation/responsiveness/sponsors_responsive.config.dart';
 import 'package:flutter_conf_latam/features/sponsors/presentation/widgets/sponsors_region.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
@@ -51,7 +51,7 @@ class SponsorsContainer extends ConsumerWidget {
           const SponsorsRegion(level: SponsorshipLevels.gold),
           const SponsorsRegion(level: SponsorshipLevels.silver),
           const SponsorsRegion(level: SponsorshipLevels.bronze),
-          const SponsorsRegion(level: SponsorshipLevels.inkind),
+          const SponsorsRegion(level: SponsorshipLevels.inKind),
           FlutterConfLatamStyles.smallVGap,
           ElevatedButton(
             onPressed: () {

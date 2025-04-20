@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_logo_animated.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -42,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
           width: 200,
           height: 200,
           child: FlutterLogoAnimated(
-            animation: FlutterLogoAnimations.flutterlogo,
+            animation: FlutterLogoAnimations.flutterLogo,
           ),
         ),
       ),

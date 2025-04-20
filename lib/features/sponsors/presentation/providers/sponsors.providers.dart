@@ -1,6 +1,6 @@
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/sponsors/data/models/sponsor.model.dart';
 import 'package:flutter_conf_latam/features/sponsors/data/repositories/sponsors.repository.dart';
-import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final sponsorsRepositoryProvider = Provider((ref) {
