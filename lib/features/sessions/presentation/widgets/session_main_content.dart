@@ -31,7 +31,7 @@ class SessionMainContent extends StatelessWidget {
     final colChildren = [
       Text(session.title, textAlign: TextAlign.center, style: sessionHeader),
       FlutterConfLatamStyles.smallVGap,
-      Text(session.description.cleanBreakLines(), textAlign: TextAlign.center),
+      Text(session.description.cleanBreakLines, textAlign: TextAlign.center),
       FlutterConfLatamStyles.smallVGap,
       Container(
         padding: FlutterConfLatamStyles.largePadding,

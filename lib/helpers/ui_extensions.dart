@@ -5,16 +5,11 @@ extension BuildContextTranslateExtension on BuildContext {
   String menu(String key) {
     final instance = AppLocalizations.of(this);
 
-    if (instance == null) {
-      return key;
-    }
-
+    if (instance == null) return key;
     return instance.menu(key);
   }
 }
 
 extension CleanBreakLines on String {
-  String cleanBreakLines() {
-    return replaceAll(r'\n', '\n');
-  }
+  String get cleanBreakLines => replaceAll(r'\n', '\n');
 }
