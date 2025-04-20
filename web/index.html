@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <base href="$FLUTTER_BASE_HREF">
 
@@ -19,24 +19,20 @@
 
   <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js" as="script" crossorigin />
   <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js" as="script" crossorigin />
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
-  <script src="flutter.js" defer></script>
 </head>
 <body>
   <script>
+    {{flutter_bootstrap_js}}
+
     window.initTime = Date.now()
 
     window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
+      {{flutter_js}}
+
+      _flutter.loader.load({
         serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
+          serviceWorkerVersion: {{flutter_service_worker_version}},
         },
-        entrypointUrl: "main.dart.js?v=" + serviceWorkerVersion,
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
             appRunner.runApp();
