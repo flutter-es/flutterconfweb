@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/session_container.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
-import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/speaker_content.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/sessions/presentation/widgets/session_container.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/features/speakers/presentation/widgets/speaker_content.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 
 class SpeakerSessionTwoColumnLayout extends StatelessWidget {
-  const SpeakerSessionTwoColumnLayout({
-    required this.speaker,
-    super.key,
-  });
+  const SpeakerSessionTwoColumnLayout({required this.speaker, super.key});
 
   final SpeakerModel speaker;
 
@@ -19,12 +16,7 @@ class SpeakerSessionTwoColumnLayout extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 250,
-            child: SpeakerContent(
-              speaker: speaker,
-            ),
-          ),
+          SizedBox(width: 250, child: SpeakerContent(speaker: speaker)),
           FlutterConfLatamStyles.mediumHGap,
           Expanded(
             child: SingleChildScrollView(

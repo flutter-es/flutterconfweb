@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class EventFeatureResponsiveConfig {
-  
   const EventFeatureResponsiveConfig({
-    required this.childrenAxis, 
-    required this.bannerHeight, 
-    required this.bannerPadding, 
+    required this.childrenAxis,
+    required this.bannerHeight,
+    required this.bannerPadding,
     required this.labelSize,
   });
 
@@ -15,9 +14,11 @@ class EventFeatureResponsiveConfig {
   final double bannerPadding;
   final double labelSize;
 
-  static EventFeatureResponsiveConfig getEventFeatureBannerConfig(BuildContext ctxt) {
-
-    final config = getValueForScreenType(context: ctxt,
+  static EventFeatureResponsiveConfig getEventFeatureBannerConfig(
+    BuildContext ctxt,
+  ) {
+    final config = getValueForScreenType(
+      context: ctxt,
       mobile: const EventFeatureResponsiveConfig(
         childrenAxis: Axis.vertical,
         bannerHeight: 900,

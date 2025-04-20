@@ -1,4 +1,4 @@
-import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
 
 class SessionModel {
   const SessionModel({
@@ -26,13 +26,15 @@ class SessionModel {
       speakerId: json['speakerId'].toString(),
       title: json['title'].toString(),
       tags: (json['tags'] as List<dynamic>).map((e) => e.toString()).toList(),
-      sessionType:
-          SessionType.values.firstWhere((s) => s.name == json['sessionType']),
+      sessionType: SessionType.values.firstWhere(
+        (s) => s.name == json['sessionType'],
+      ),
       speakers:
           (json['speakers'] as List<dynamic>).map((e) => e.toString()).toList(),
-      scheduleSlot: json.containsKey('scheduleSlot')
-          ? json['scheduleSlot'].toString()
-          : '',
+      scheduleSlot:
+          json.containsKey('scheduleSlot')
+              ? json['scheduleSlot'].toString()
+              : '',
       room: json.containsKey('room') ? json['room'].toString() : '',
     );
   }
@@ -61,7 +63,7 @@ class SessionModel {
     String? scheduleSlot,
   }) {
     return SessionModel(
-      isAnnounced: isAnnounced ?? isAnnounced,
+      isAnnounced: isAnnounced,
       description: description ?? this.description,
       format: format ?? this.format,
       language: language ?? this.language,
@@ -69,10 +71,10 @@ class SessionModel {
       speakerId: speakerID ?? speakerId,
       title: title ?? this.title,
       tags: tags ?? this.tags,
-      sessionType: sessionType ?? sessionType,
-      speakers: speakers ?? speakers,
+      sessionType: sessionType,
+      speakers: speakers,
       scheduleSlot: scheduleSlot ?? this.scheduleSlot,
-      room: room ?? room,
+      room: room,
     );
   }
 }

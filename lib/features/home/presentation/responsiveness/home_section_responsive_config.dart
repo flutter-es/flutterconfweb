@@ -88,7 +88,7 @@ class HomeSectionResponsiveConfig {
         bannerHeight: 700,
         buttonRowAlignment: MainAxisAlignment.center,
         dateCountryRowAlignment: MainAxisAlignment.center,
-        dashBottomOffset: -150.0,
+        dashBottomOffset: -150,
         buttonBottomGap: 40,
       ),
       desktop: HomeSectionResponsiveConfig(
@@ -109,8 +109,10 @@ class HomeSectionResponsiveConfig {
         bannerHeight: 600,
         buttonRowAlignment: MainAxisAlignment.start,
         dateCountryRowAlignment: MainAxisAlignment.start,
-        dashBottomOffset:
-            HomeSectionResponsiveConfig.dashOffsetSize(ctxt, -300.0),
+        dashBottomOffset: HomeSectionResponsiveConfig.dashOffsetSize(
+          ctxt,
+          -300,
+        ),
         buttonBottomGap: 60,
       ),
     );

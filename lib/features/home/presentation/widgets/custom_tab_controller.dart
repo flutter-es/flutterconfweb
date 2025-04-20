@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTabController {
-  CustomTabController({
-    required this.vsync,
-    required this.length,
-  });
+  CustomTabController({required this.vsync, required this.length});
 
   final TickerProvider vsync;
   final int length;

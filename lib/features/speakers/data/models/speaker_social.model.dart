@@ -1,4 +1,4 @@
-import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
 
 class SpeakerSocial {
   const SpeakerSocial({required this.type, required this.link});
@@ -9,6 +9,7 @@ class SpeakerSocial {
       type: SocialMediaLinks.values.where((s) => s.name == json['type']).first,
     );
   }
+
   final SocialMediaLinks type;
   final String link;
 }

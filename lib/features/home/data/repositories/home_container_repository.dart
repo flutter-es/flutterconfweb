@@ -1,5 +1,5 @@
-import 'package:flutter_conf_colombia/features/home/data/models/home_container.model.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/features/home/data/models/home_container.model.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeContainerRepository {
@@ -16,7 +16,8 @@ class HomeContainerRepository {
       buttonLabel: appLoc.cfpOpen,
       dateLabel: appLoc.homeContainerDateLabel,
       countryLabel: appLoc.homeContainerCountryLabel,
-      cfpUrlLink: 'https://forms.gle/oQPB3g7Ln7GTcpdq6',
+      cfpUrlLink:
+          'https://docs.google.com/forms/d/e/1FAIpQLSd9DRutDGzKcKUcwLh103oRIBQw3cppEqBYAR5IfAmbAage9g/viewform',
     );
   }
 }

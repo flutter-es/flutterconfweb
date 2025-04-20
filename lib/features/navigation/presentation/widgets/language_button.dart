@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/widgets/language_item.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/l10n/support_locale.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/widgets/language_item.dart';
+import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/l10n/support_locale.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LanguageButton extends ConsumerWidget {
@@ -23,9 +23,7 @@ class LanguageButton extends ConsumerWidget {
       height: 50,
       decoration: const BoxDecoration(
         color: Color(0xffCBECFF),
-        borderRadius: BorderRadius.all(
-          Radius.circular(60.0),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(60)),
       ),
       child: Stack(
         children: [
@@ -39,12 +37,10 @@ class LanguageButton extends ConsumerWidget {
               ),
             ),
           ).animate().slideX(
-                begin:
-                    state.languageCode == SupportLocale.en.languageCode ? 1 : 0,
-                end:
-                    state.languageCode == SupportLocale.en.languageCode ? 0 : 1,
-                duration: 0.seconds,
-              ),
+            begin: state.languageCode == SupportLocale.en.languageCode ? 1 : 0,
+            end: state.languageCode == SupportLocale.en.languageCode ? 0 : 1,
+            duration: 0.seconds,
+          ),
           Center(
             child: Row(
               children: [

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
+import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

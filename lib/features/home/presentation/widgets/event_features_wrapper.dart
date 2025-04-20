@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class EventFeaturesWrapper extends StatelessWidget {
-  
   const EventFeaturesWrapper({
     required this.children,
     required this.axis,
@@ -13,14 +12,14 @@ class EventFeaturesWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return axis == Axis.horizontal ? 
-    Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: children,
-    ) : 
-    Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: children,
-    );
+    return axis == Axis.horizontal
+        ? Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: children,
+        )
+        : Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: children,
+        );
   }
 }

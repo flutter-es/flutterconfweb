@@ -1,5 +1,4 @@
 class TicketSectionModel {
-
   TicketSectionModel({
     required this.slogan,
     required this.ticketBtnLabel,

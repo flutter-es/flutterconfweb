@@ -1,4 +1,4 @@
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker_social.model.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker_social.model.dart';
 
 class SpeakerModel {
   SpeakerModel({
@@ -23,16 +23,19 @@ class SpeakerModel {
       description: json['description'].toString(),
       country: json['country_flag'].toString(),
       display: bool.parse(json['display'].toString()),
-      socialMediaLinks: json.containsKey('social_media_links')
-          ? (json['social_media_links'] as List<dynamic>)
-              .map(
-                (social) =>
-                    SpeakerSocial.fromFirestore(social as Map<String, dynamic>),
-              )
-              .toList()
-          : [],
+      socialMediaLinks:
+          json.containsKey('social_media_links')
+              ? (json['social_media_links'] as List<dynamic>)
+                  .map(
+                    (social) => SpeakerSocial.fromFirestore(
+                      social as Map<String, dynamic>,
+                    ),
+                  )
+                  .toList()
+              : [],
     );
   }
+
   final String? name;
   final String? company;
   final String? photo;

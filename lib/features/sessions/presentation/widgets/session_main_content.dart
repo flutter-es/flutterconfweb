@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/session_metadata_container.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/session_tags_container.dart';
-import 'package:flutter_conf_colombia/helpers/ui_extensions.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
+import 'package:flutter_conf_latam/features/sessions/presentation/widgets/session_metadata_container.dart';
+import 'package:flutter_conf_latam/features/sessions/presentation/widgets/session_tags_container.dart';
+import 'package:flutter_conf_latam/helpers/ui_extensions.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SessionMainContent extends StatelessWidget {
@@ -36,8 +36,9 @@ class SessionMainContent extends StatelessWidget {
       Container(
         padding: FlutterConfLatamStyles.largePadding,
         decoration: BoxDecoration(
-          borderRadius:
-              BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+          borderRadius: BorderRadius.circular(
+            FlutterConfLatamStyles.smallRadius,
+          ),
           color: Colors.grey[100],
         ),
         child: Column(
@@ -45,13 +46,9 @@ class SessionMainContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (additionalTopContent != null) additionalTopContent!,
-            SessionMetadataContainer(
-              session: session,
-            ),
+            SessionMetadataContainer(session: session),
             FlutterConfLatamStyles.smallVGap,
-            SessionTagsContainer(
-              tags: session.tags,
-            ),
+            SessionTagsContainer(tags: session.tags),
             if (additionalBottomContent != null) additionalBottomContent!,
           ],
         ),
@@ -61,19 +58,14 @@ class SessionMainContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: colChildren
-          .animate(
-            interval: 150.ms,
-          )
+          .animate(interval: 150.ms)
           .slideY(
             begin: 0.25,
             end: 0,
             curve: Curves.easeInOut,
             duration: 0.5.seconds,
           )
-          .fadeIn(
-            curve: Curves.easeInOut,
-            duration: 0.5.seconds,
-          ),
+          .fadeIn(curve: Curves.easeInOut, duration: 0.5.seconds),
     );
   }
 }

@@ -1,52 +1,45 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
+import 'dart:js_interop';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/firebase_options.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/routes/app_routes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_conf_latam/firebase_options.dart';
+import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/routes/app_routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
+@JS('window')
+external JSWindow get window;
+
+extension type JSWindow._(JSObject _) implements JSObject {
+  external int get initTime;
+}
+
 void main() async {
-  initializeDateFormatting('es_CO');
+  await initializeDateFormatting('es_CO');
+
   tz.initializeTimeZones();
   WidgetsFlutterBinding.ensureInitialized();
 
   //usePathUrlStrategy();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(
-    ProviderScope(
-      child: FlutterConf(),
-    ),
-  );
+  runApp(ProviderScope(child: FlutterConf()));
 }
 
 class FlutterConf extends ConsumerWidget {
   FlutterConf({super.key}) {
     analytics.logAppOpen();
 
-    final initTime = js.context['initTime'] as int;
-
+    final initTime = window.initTime;
     final currentTime = DateTime.now().millisecondsSinceEpoch;
 
     final diff = (currentTime - initTime) / 1000;
-
-    print('diff $diff');
-    analytics.logEvent(
-      name: 'render_time',
-      parameters: {
-        'diff': diff,
-      },
-    );
+    analytics.logEvent(name: 'render_time', parameters: {'diff': diff});
   }
 
   final analytics = FirebaseAnalytics.instance;

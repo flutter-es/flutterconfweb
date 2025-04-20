@@ -1,11 +1,11 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/providers/home_providers.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/responsiveness/home_section_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
-import 'package:flutter_conf_colombia/helpers/constants.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
+import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
+import 'package:flutter_conf_latam/features/home/presentation/responsiveness/home_section_responsive_config.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_dash_animations.dart';
+import 'package:flutter_conf_latam/helpers/constants.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeContainer extends ConsumerWidget {
@@ -20,8 +20,9 @@ class HomeContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final homeContainerData = ref.watch(homeContainerDataProvider);
-    final uiConfig =
-        HomeSectionResponsiveConfig.getHomeSectionBannerConfig(context);
+    final uiConfig = HomeSectionResponsiveConfig.getHomeSectionBannerConfig(
+      context,
+    );
 
     return SizedBox(
       height: uiConfig.bannerHeight,
@@ -29,7 +30,7 @@ class HomeContainer extends ConsumerWidget {
         children: [
           Positioned.fill(
             child: Opacity(
-              opacity: 0.9,
+              opacity: 0.5,
               child: Image.asset(
                 '${Constants.imagesPath}/topbanner.jpg',
                 fit: BoxFit.cover,
@@ -54,7 +55,7 @@ class HomeContainer extends ConsumerWidget {
                         textAlign: uiConfig.textAlign,
                         style: TextStyle(
                           height: 1,
-                          color: FlutterLatamColors.white,
+                          color: FlutterLatamColors.blueText,
                           fontSize: uiConfig.titleSize,
                           fontWeight: FontWeight.bold,
                         ),
@@ -63,7 +64,7 @@ class HomeContainer extends ConsumerWidget {
                         homeContainerData.content,
                         textAlign: uiConfig.textAlign,
                         style: TextStyle(
-                          color: FlutterLatamColors.white,
+                          color: FlutterLatamColors.blueText,
                           fontSize: uiConfig.subtitleSize,
                         ),
                       ),
@@ -75,7 +76,7 @@ class HomeContainer extends ConsumerWidget {
                 child: Stack(
                   children: [
                     Positioned(
-                      right: 0.0,
+                      right: 0,
                       bottom: uiConfig.dashBottomOffset,
                       left: 0,
                       top: 0,

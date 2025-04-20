@@ -1,8 +1,4 @@
-enum FlutterLogoAnimations {
-  flutterconflogo,
-  fluttername,
-  flutterlogo,
-}
+enum FlutterLogoAnimations { flutterconflogo, fluttername, flutterlogo }
 
 enum FlutterWarningAnimations { flutterwarning }
 
@@ -14,22 +10,11 @@ enum FlutterDashAnimations {
   flutterdashconst,
 }
 
-enum SponsorshipLevels {
-  platinum,
-  gold,
-  silver,
-  bronze,
-  inkind,
-  other,
-}
+enum SponsorshipLevels { platinum, gold, silver, bronze, inkind, other }
 
 enum SponsorshipFilter { platinum, gold, silver, bronze, other, all }
 
-enum SocialMediaLinks {
-  twitter,
-  linkedin,
-  github,
-}
+enum SocialMediaLinks { twitter, linkedin, github }
 
 enum SessionType {
   singleSpeaker,
@@ -37,5 +22,5 @@ enum SessionType {
   panel,
   keynote,
   eventSession,
-  workshop
+  workshop,
 }

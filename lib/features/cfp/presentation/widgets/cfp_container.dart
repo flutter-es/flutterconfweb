@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/cfp/presentation/providers/cfpfeature_providers.dart';
-import 'package:flutter_conf_colombia/features/cfp/presentation/responsiveness/cfp_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_dash_animations.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/circleround_iconbutton.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
+import 'package:flutter_conf_latam/features/cfp/presentation/providers/cfpfeature_providers.dart';
+import 'package:flutter_conf_latam/features/cfp/presentation/responsiveness/cfp_responsive_config.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_dash_animations.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_logo_animated.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/circleround_iconbutton.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CfpContainer extends ConsumerWidget {
   const CfpContainer({super.key});
 
-  static double height = 700.0;
+  static double height = 700;
 
   static const title = 'cfp_container';
 
@@ -26,9 +26,7 @@ class CfpContainer extends ConsumerWidget {
 
     return Container(
       height: height,
-      decoration: BoxDecoration(
-        gradient: config.bannerGradient,
-      ),
+      decoration: BoxDecoration(gradient: config.bannerGradient),
       alignment: Alignment.center,
       child: Stack(
         children: [

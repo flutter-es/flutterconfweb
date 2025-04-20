@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/sponsors/data/models/sponsor.model.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
+import 'package:flutter_conf_latam/features/sponsors/data/models/sponsor.model.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SponsorWidget extends StatelessWidget {
@@ -16,11 +16,7 @@ class SponsorWidget extends StatelessWidget {
         onTap: () {
           Utils.launchUrlLink(sponsor.url);
         },
-        child: SvgPicture.network(
-          sponsor.logo,
-          width: 100,
-          height: 100,
-        ),
+        child: SvgPicture.network(sponsor.logo, width: 100, height: 100),
       ),
     );
   }

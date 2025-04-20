@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
 
 class LanguageItem extends StatelessWidget {
   const LanguageItem({
@@ -12,7 +12,7 @@ class LanguageItem extends StatelessWidget {
 
   final String title;
   final bool isActive;
-  final Function onTap;
+  final ValueSetter<Locale> onTap;
   final Locale locale;
 
   @override
@@ -20,9 +20,7 @@ class LanguageItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: InkWell(
-        onTap: () {
-          onTap(locale);
-        },
+        onTap: () => onTap(locale),
         child: Text(
           title.toUpperCase(),
           textAlign: TextAlign.center,

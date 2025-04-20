@@ -1,5 +1,5 @@
-import 'package:flutter_conf_colombia/features/tickets/data/models/ticketsection.model.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/features/tickets/data/models/ticketsection.model.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TicketSectionRepository {

@@ -1,5 +1,5 @@
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/repositories/speakers.repository.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/features/speakers/data/repositories/speakers.repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final speakersRepositoryProvider = Provider((ref) {

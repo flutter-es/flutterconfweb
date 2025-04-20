@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleContentResponsiveConfig {
@@ -20,8 +20,7 @@ class ScheduleContentResponsiveConfig {
     required this.contentFlexValue,
     required this.contentBottomRowOrientation,
     required this.contentBottomLeftFlex,
-});
-
+  });
 
   final EdgeInsets pagePadding;
   final EdgeInsets trackTabPadding;
@@ -41,19 +40,19 @@ class ScheduleContentResponsiveConfig {
   final int contentBottomLeftFlex;
   final TextStyle trackLabelStyle;
 
-
-
-  static ScheduleContentResponsiveConfig getSchedulePageResponsiveConfig(BuildContext ctxt) {
+  static ScheduleContentResponsiveConfig getSchedulePageResponsiveConfig(
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: const ScheduleContentResponsiveConfig(
         pagePadding: FlutterConfLatamStyles.largePadding,
-        headerGap: FlutterConfLatamStyles.xsmallVGap,
+        headerGap: FlutterConfLatamStyles.xSmallVGap,
         headerStyle: FlutterConfLatamStyles.h5,
         subheaderStyle: FlutterConfLatamStyles.h7,
         headerDirection: Axis.vertical,
         headerIconSize: 40,
-        pageVerticalGap: FlutterConfLatamStyles.xsmallVGap,
+        pageVerticalGap: FlutterConfLatamStyles.xSmallVGap,
         tabDayLabelStyle: FlutterConfLatamStyles.h6,
         tabDateLabelStyle: FlutterConfLatamStyles.h7,
         timeContentOrientation: Axis.vertical,

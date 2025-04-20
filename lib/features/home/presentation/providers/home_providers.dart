@@ -1,7 +1,7 @@
-import 'package:flutter_conf_colombia/features/home/data/repositories/datelocation_container.repository.dart';
-import 'package:flutter_conf_colombia/features/home/data/repositories/event_feature.repository.dart';
-import 'package:flutter_conf_colombia/features/home/data/repositories/home_container_repository.dart';
-import 'package:flutter_conf_colombia/features/home/data/repositories/home_sections.repository.dart';
+import 'package:flutter_conf_latam/features/home/data/repositories/datelocation_container.repository.dart';
+import 'package:flutter_conf_latam/features/home/data/repositories/event_feature.repository.dart';
+import 'package:flutter_conf_latam/features/home/data/repositories/home_container_repository.dart';
+import 'package:flutter_conf_latam/features/home/data/repositories/home_sections.repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final eventFeaturesRepositoryProvider = Provider((ref) {
@@ -33,5 +33,7 @@ final dateLocationRepositoryProvider = Provider((ref) {
 });
 
 final dateLocationProvider = Provider((ref) {
-  return ref.watch(dateLocationRepositoryProvider).getDateLocationContainerContent();
+  return ref
+      .watch(dateLocationRepositoryProvider)
+      .getDateLocationContainerContent();
 });

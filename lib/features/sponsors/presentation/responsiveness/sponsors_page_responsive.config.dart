@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SponsorsPageResponsiveConfig {
@@ -11,15 +11,14 @@ class SponsorsPageResponsiveConfig {
     required this.headerGap,
     required this.headerIconSize,
     required this.pageVerticalGap,
-    required this.ticketButtonIconSize, 
-    required this.ticketButtonLabelSize, 
-    required this.ticketButtonIconPadding, 
-    required this.ticketButtonMargin, 
-    required this.ticketButtonAlignment, 
-    required this.ticketButtonColumnCrossAxis, 
+    required this.ticketButtonIconSize,
+    required this.ticketButtonLabelSize,
+    required this.ticketButtonIconPadding,
+    required this.ticketButtonMargin,
+    required this.ticketButtonAlignment,
+    required this.ticketButtonColumnCrossAxis,
     required this.ticketButtonColumnMainAxis,
-});
-
+  });
 
   final EdgeInsets pagePadding;
   final TextStyle headerStyle;
@@ -36,8 +35,9 @@ class SponsorsPageResponsiveConfig {
   final CrossAxisAlignment ticketButtonColumnCrossAxis;
   final MainAxisAlignment ticketButtonColumnMainAxis;
 
-
-  static SponsorsPageResponsiveConfig getSponsorsPageResponsiveConfig(BuildContext ctxt) {
+  static SponsorsPageResponsiveConfig getSponsorsPageResponsiveConfig(
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: const SponsorsPageResponsiveConfig(
@@ -48,10 +48,10 @@ class SponsorsPageResponsiveConfig {
         headerDirection: Axis.vertical,
         headerIconSize: 60,
         pageVerticalGap: FlutterConfLatamStyles.mediumVGap,
-        ticketButtonIconSize: 20.0,
-        ticketButtonLabelSize: 15.0,
-        ticketButtonIconPadding: 10.0,
-        ticketButtonMargin: 0.0,
+        ticketButtonIconSize: 20,
+        ticketButtonLabelSize: 15,
+        ticketButtonIconPadding: 10,
+        ticketButtonMargin: 0,
         ticketButtonAlignment: Alignment.center,
         ticketButtonColumnCrossAxis: CrossAxisAlignment.center,
         ticketButtonColumnMainAxis: MainAxisAlignment.center,
@@ -64,10 +64,10 @@ class SponsorsPageResponsiveConfig {
         headerDirection: Axis.horizontal,
         headerIconSize: 60,
         pageVerticalGap: FlutterConfLatamStyles.mediumVGap,
-        ticketButtonIconSize: 20.0,
-        ticketButtonLabelSize: 30.0,
-        ticketButtonIconPadding: 20.0,
-        ticketButtonMargin: 30.0,
+        ticketButtonIconSize: 20,
+        ticketButtonLabelSize: 30,
+        ticketButtonIconPadding: 20,
+        ticketButtonMargin: 30,
         ticketButtonAlignment: Alignment.bottomRight,
         ticketButtonColumnCrossAxis: CrossAxisAlignment.end,
         ticketButtonColumnMainAxis: MainAxisAlignment.end,
@@ -80,10 +80,10 @@ class SponsorsPageResponsiveConfig {
         headerDirection: Axis.horizontal,
         headerIconSize: 80,
         pageVerticalGap: FlutterConfLatamStyles.mediumVGap,
-        ticketButtonIconSize: 20.0,
-        ticketButtonLabelSize: 30.0,
-        ticketButtonIconPadding: 20.0,
-        ticketButtonMargin: 40.0,
+        ticketButtonIconSize: 20,
+        ticketButtonLabelSize: 30,
+        ticketButtonIconPadding: 20,
+        ticketButtonMargin: 40,
         ticketButtonAlignment: Alignment.bottomRight,
         ticketButtonColumnCrossAxis: CrossAxisAlignment.end,
         ticketButtonColumnMainAxis: MainAxisAlignment.end,

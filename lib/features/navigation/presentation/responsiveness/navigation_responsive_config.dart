@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class NavigationResponsiveConfig {
@@ -29,7 +29,7 @@ class NavigationResponsiveConfig {
         maxHeaderHeight: 120,
         languageButtonWidth: 100,
         footerLayoutDirection: Axis.vertical,
-        footerItemsGap: FlutterConfLatamStyles.xsmallVGap,
+        footerItemsGap: FlutterConfLatamStyles.xSmallVGap,
         showLogoOnFooter: false,
         footerPadding: 10,
       ),

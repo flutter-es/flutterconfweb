@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/features/schedule/presentation/providers/schedule_providers.dart';
+import 'package:flutter_conf_latam/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
+import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleDay2LargeLayout extends ConsumerWidget {
-  ScheduleDay2LargeLayout({
+  const ScheduleDay2LargeLayout({
     required this.speakers,
     required this.sessions,
     super.key,
   });
 
-  List<SessionModel> sessions;
-  List<SpeakerModel> speakers;
+  final List<SessionModel> sessions;
+  final List<SpeakerModel> speakers;
 
   Widget getSessionFromSlotId(String id, WidgetRef ref) {
     return ref.read(scheduleSlotProvider(id));
@@ -28,8 +28,8 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig =
         ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(
-      context,
-    );
+          context,
+        );
     final headerCellCount = getValueForScreenType(
       context: context,
       mobile: 0.75,
@@ -105,6 +105,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
             ],
           ),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -115,6 +116,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-1', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -125,6 +127,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-2', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -140,21 +143,25 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-4', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
           mainAxisCellCount: 2,
           child: getSessionFromSlotId('2-5', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
           child: Utils.getTimeLabelHeader('10:40 - 11:00 AM'),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 4,
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-6', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -175,6 +182,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-9', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -195,6 +203,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 2,
           child: getSessionFromSlotId('2-12', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -210,6 +219,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-14', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -220,6 +230,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-15', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -240,6 +251,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-18', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -260,6 +272,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 2,
           child: getSessionFromSlotId('2-21', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -270,16 +283,19 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-22', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
           child: Utils.getTimeLabelHeader('15:20 - 16:00 PM'),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-23', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
           mainAxisCellCount: 1,
@@ -290,6 +306,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-25', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -305,6 +322,7 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 2,
           child: getSessionFromSlotId('2-27', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
@@ -320,31 +338,37 @@ class ScheduleDay2LargeLayout extends ConsumerWidget {
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-29', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
           child: Utils.getTimeLabelHeader('17:00 - 17:40 PM'),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-30', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-31', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
           mainAxisCellCount: 1,
           child: getSessionFromSlotId('2-32', ref),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
           child: Utils.getTimeLabelHeader('17:40 - 18:00 PM'),
         ),
+
         StaggeredGridTile.count(
           crossAxisCellCount: 6,
           mainAxisCellCount: 1,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterDashAnimation extends StatefulWidget {
@@ -31,10 +31,11 @@ class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
   }
 
   void onRiveInit(rive.Artboard artboard) {
-    smController = rive.StateMachineController.fromArtboard(
-      artboard,
-      widget.animation.name,
-    )!;
+    smController =
+        rive.StateMachineController.fromArtboard(
+          artboard,
+          widget.animation.name,
+        )!;
     artboard.addController(smController);
   }
 

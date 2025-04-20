@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/providers/home_providers.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/responsiveness/event_feature_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/widgets/event_features_wrapper.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
+import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
+import 'package:flutter_conf_latam/features/home/presentation/responsiveness/event_feature_responsive_config.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/event_features_wrapper.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EventFeaturesContainer extends ConsumerWidget {
   const EventFeaturesContainer({super.key});
 
-  static double height = 500.0;
+  static double height = 500;
 
   static const title = 'event_features';
 
@@ -16,8 +16,9 @@ class EventFeaturesContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final eventFeatures = ref.watch(eventFeaturesListProvider);
 
-    final config =
-        EventFeatureResponsiveConfig.getEventFeatureBannerConfig(context);
+    final config = EventFeatureResponsiveConfig.getEventFeatureBannerConfig(
+      context,
+    );
 
     EventFeaturesContainer.height = config.bannerHeight;
 

@@ -4,6 +4,7 @@ class CommunityCollabModel {
     required this.url,
     required this.name,
   });
+
   factory CommunityCollabModel.fromFirestore(Map<String, dynamic> json) {
     return CommunityCollabModel(
       image: json['image'].toString(),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SchedulePageResponsiveConfig {
@@ -11,8 +11,7 @@ class SchedulePageResponsiveConfig {
     required this.headerGap,
     required this.headerIconSize,
     required this.pageVerticalGap,
-});
-
+  });
 
   final EdgeInsets pagePadding;
   final TextStyle headerStyle;
@@ -22,8 +21,9 @@ class SchedulePageResponsiveConfig {
   final SizedBox headerGap;
   final SizedBox pageVerticalGap;
 
-
-  static SchedulePageResponsiveConfig getSchedulePageResponsiveConfig(BuildContext ctxt) {
+  static SchedulePageResponsiveConfig getSchedulePageResponsiveConfig(
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: const SchedulePageResponsiveConfig(

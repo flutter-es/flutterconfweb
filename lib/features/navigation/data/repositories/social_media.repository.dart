@@ -1,11 +1,8 @@
-import 'package:flutter_conf_colombia/features/navigation/data/models/social_media.model.dart';
-import 'package:flutter_conf_colombia/styles/flutter_conf_latam_icons_icons.dart';
+import 'package:flutter_conf_latam/features/navigation/data/models/social_media.model.dart';
+import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 
 class SocialMediaRepository {
-
-
   List<SocialMediaModel> getSocialMedia() {
-
     return const [
       SocialMediaModel(
         icon: FlutterConfLatamIcons.facebook,

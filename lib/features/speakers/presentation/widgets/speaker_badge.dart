@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
-import 'package:flutter_conf_colombia/features/speakers/presentation/widgets/speaker_content.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/features/speakers/presentation/widgets/speaker_content.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SpeakerBadge extends ConsumerStatefulWidget {
-  SpeakerBadge({
-    required this.speaker,
-    this.onSpeakerTap,
-    super.key,
-  });
+  const SpeakerBadge({required this.speaker, this.onSpeakerTap, super.key});
 
-  Function? onSpeakerTap;
+  final VoidCallback? onSpeakerTap;
   final SpeakerModel speaker;
 
   @override
@@ -22,7 +18,7 @@ class SpeakerBadge extends ConsumerStatefulWidget {
 
 class _SpeakerBadgeState extends ConsumerState<SpeakerBadge> {
   Color hoverColor = Colors.transparent;
-  Color inkWellBg = FlutterLatamColors.darkBlue.withOpacity(0.05);
+  Color inkWellBg = FlutterLatamColors.darkBlue.withValues(alpha: .05);
   bool isSpeakerHovered = false;
 
   @override
@@ -34,23 +30,26 @@ class _SpeakerBadgeState extends ConsumerState<SpeakerBadge> {
       borderRadius: BorderRadius.circular(FlutterConfLatamStyles.mediumRadius),
       clipBehavior: Clip.antiAlias,
       child: MouseRegion(
-        cursor: widget.onSpeakerTap != null
-            ? SystemMouseCursors.click
-            : SystemMouseCursors.basic,
+        cursor:
+            widget.onSpeakerTap != null
+                ? SystemMouseCursors.click
+                : SystemMouseCursors.basic,
         child: InkWell(
           highlightColor: inkWellBg,
           splashColor: inkWellBg,
-          onHover: widget.onSpeakerTap != null
-              ? (value) {
-                  setState(() {
-                    isSpeakerHovered = value;
-                    hoverColor = value ? inkWellBg : Colors.transparent;
-                  });
-                }
-              : null,
-          onTap: widget.onSpeakerTap != null
-              ? () => widget.onSpeakerTap!(widget.speaker)
-              : null,
+          onHover:
+              widget.onSpeakerTap != null
+                  ? (value) {
+                    setState(() {
+                      isSpeakerHovered = value;
+                      hoverColor = value ? inkWellBg : Colors.transparent;
+                    });
+                  }
+                  : null,
+          onTap:
+              widget.onSpeakerTap != null
+                  ? () => widget.onSpeakerTap?.call()
+                  : null,
           child: Container(
             color: Colors.transparent,
             width: 300,
@@ -70,11 +69,14 @@ class _SpeakerBadgeState extends ConsumerState<SpeakerBadge> {
                     speaker: widget.speaker,
                   ),
                   FlutterConfLatamStyles.smallVGap,
+
                   Opacity(
                     opacity: isSpeakerHovered ? 1 : 0,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: FlutterLatamColors.lightBlue.withOpacity(0.8),
+                        color: FlutterLatamColors.lightBlue.withValues(
+                          alpha: .8,
+                        ),
                         borderRadius: BorderRadius.circular(
                           FlutterConfLatamStyles.largeRadius,
                         ),
@@ -91,8 +93,9 @@ class _SpeakerBadgeState extends ConsumerState<SpeakerBadge> {
                             child: Text(
                               appLoc.speakerBadgeMoreInfo,
                               textAlign: TextAlign.center,
-                              style: FlutterConfLatamStyles.h7
-                                  .copyWith(color: Colors.white),
+                              style: FlutterConfLatamStyles.h7.copyWith(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],

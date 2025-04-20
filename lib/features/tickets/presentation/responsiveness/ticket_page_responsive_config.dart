@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class TicketPageResponsiveConfig {
@@ -16,8 +16,7 @@ class TicketPageResponsiveConfig {
     required this.ticketButtonLabelSize,
     required this.ticketButtonIconPadding,
     required this.ticketButtonMargin,
-});
-
+  });
 
   final EdgeInsets pagePadding;
   final TextStyle headerStyle;
@@ -32,7 +31,9 @@ class TicketPageResponsiveConfig {
   final double ticketButtonIconPadding;
   final double ticketButtonMargin;
 
-  static TicketPageResponsiveConfig getTicketPageResponsiveConfig(BuildContext ctxt) {
+  static TicketPageResponsiveConfig getTicketPageResponsiveConfig(
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: const TicketPageResponsiveConfig(

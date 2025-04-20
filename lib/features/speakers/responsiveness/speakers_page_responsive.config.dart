@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SpeakersPageResponsiveConfig {
@@ -12,8 +12,7 @@ class SpeakersPageResponsiveConfig {
     required this.headerIconSize,
     required this.pageVerticalGap,
     required this.textAlignment,
-});
-
+  });
 
   final EdgeInsets pagePadding;
   final TextStyle headerStyle;
@@ -24,8 +23,9 @@ class SpeakersPageResponsiveConfig {
   final SizedBox headerGap;
   final SizedBox pageVerticalGap;
 
-
-  static SpeakersPageResponsiveConfig getSpeakersPageResponsiveConfig(BuildContext ctxt) {
+  static SpeakersPageResponsiveConfig getSpeakersPageResponsiveConfig(
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: const SpeakersPageResponsiveConfig(

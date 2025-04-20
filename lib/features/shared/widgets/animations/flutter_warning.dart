@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterWarningAnimated extends StatefulWidget {
-
   const FlutterWarningAnimated({
     super.key,
     this.animation = FlutterWarningAnimations.flutterwarning,
@@ -16,7 +15,6 @@ class FlutterWarningAnimated extends StatefulWidget {
 }
 
 class _FlutterWarningAnimatedState extends State<FlutterWarningAnimated> {
-
   late rive.StateMachineController smController;
   late rive.RiveAnimation animation;
 
@@ -33,11 +31,11 @@ class _FlutterWarningAnimatedState extends State<FlutterWarningAnimated> {
   }
 
   void onRiveInit(rive.Artboard artboard) {
-    
-    smController = rive.StateMachineController.fromArtboard(
-      artboard,
-      widget.animation.name,
-    )!;
+    smController =
+        rive.StateMachineController.fromArtboard(
+          artboard,
+          widget.animation.name,
+        )!;
     artboard.addController(smController);
   }
 
@@ -45,7 +43,7 @@ class _FlutterWarningAnimatedState extends State<FlutterWarningAnimated> {
   void dispose() {
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(

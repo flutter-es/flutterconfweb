@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
-import 'package:flutter_conf_colombia/features/sponsors/presentation/pages/sponsors_page.dart';
-import 'package:flutter_conf_colombia/features/sponsors/presentation/responsiveness/sponsors_responsive.config.dart';
-import 'package:flutter_conf_colombia/features/sponsors/presentation/widgets/sponsors_region.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
+import 'package:flutter_conf_latam/features/sponsors/presentation/pages/sponsors_page.dart';
+import 'package:flutter_conf_latam/features/sponsors/presentation/responsiveness/sponsors_responsive.config.dart';
+import 'package:flutter_conf_latam/features/sponsors/presentation/widgets/sponsors_region.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SponsorsContainer extends ConsumerWidget {
@@ -28,10 +28,12 @@ class SponsorsContainer extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 40,
+                ),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: Text(
@@ -45,21 +47,11 @@ class SponsorsContainer extends ConsumerWidget {
             ],
           ),
           FlutterConfLatamStyles.smallVGap,
-          const SponsorsRegion(
-            level: SponsorshipLevels.platinum,
-          ),
-          const SponsorsRegion(
-            level: SponsorshipLevels.gold,
-          ),
-          const SponsorsRegion(
-            level: SponsorshipLevels.silver,
-          ),
-          const SponsorsRegion(
-            level: SponsorshipLevels.bronze,
-          ),
-          const SponsorsRegion(
-            level: SponsorshipLevels.inkind,
-          ),
+          const SponsorsRegion(level: SponsorshipLevels.platinum),
+          const SponsorsRegion(level: SponsorshipLevels.gold),
+          const SponsorsRegion(level: SponsorshipLevels.silver),
+          const SponsorsRegion(level: SponsorshipLevels.bronze),
+          const SponsorsRegion(level: SponsorshipLevels.inkind),
           FlutterConfLatamStyles.smallVGap,
           ElevatedButton(
             onPressed: () {

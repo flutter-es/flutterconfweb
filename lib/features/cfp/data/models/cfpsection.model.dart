@@ -1,5 +1,4 @@
 class CFPSectionModel {
-
   const CFPSectionModel({
     required this.cfpSubmitLabel,
     required this.cfpButtonLabel,

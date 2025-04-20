@@ -48,17 +48,10 @@ class CircleRoundIconButton extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: circleColor,
                 ),
-                child: Icon(
-                  icon,
-                  color: iconColor,
-                  size: iconSize,
-                ),
+                child: Icon(icon, color: iconColor, size: iconSize),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  right: 40.0,
-                  left: 10.0,
-                ),
+                padding: const EdgeInsets.only(right: 40, left: 10),
                 child: Text(
                   label,
                   style: TextStyle(

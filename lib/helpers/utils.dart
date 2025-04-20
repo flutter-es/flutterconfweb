@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.metadata.model.dart';
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_conf_latam/features/sessions/data/models/session.metadata.model.dart';
+import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -63,27 +63,34 @@ class Utils {
     showUIModal(
       Utils.mainNav.currentContext!,
       Container(
-        margin: isMobile()
-            ? FlutterConfLatamStyles.xLargeMargin.copyWith(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              )
-            : FlutterConfLatamStyles.largeMargin,
-        padding: isMobile()
-            ? const EdgeInsets.symmetric(
-                horizontal: FlutterConfLatamStyles.mediumSize,
-                vertical: FlutterConfLatamStyles.largeSize,
-              )
-            : FlutterConfLatamStyles.bannerPadding,
+        margin:
+            isMobile()
+                ? FlutterConfLatamStyles.xLargeMargin.copyWith(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                )
+                : FlutterConfLatamStyles.largeMargin,
+        padding:
+            isMobile()
+                ? const EdgeInsets.symmetric(
+                  horizontal: FlutterConfLatamStyles.mediumSize,
+                  vertical: FlutterConfLatamStyles.largeSize,
+                )
+                : FlutterConfLatamStyles.bannerPadding,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: isMobile()
-              ? const BorderRadius.only(
-                  topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
-                  topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
-                )
-              : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+          borderRadius:
+              isMobile()
+                  ? const BorderRadius.only(
+                    topLeft: Radius.circular(
+                      FlutterConfLatamStyles.smallRadius,
+                    ),
+                    topRight: Radius.circular(
+                      FlutterConfLatamStyles.smallRadius,
+                    ),
+                  )
+                  : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
         ),
         child: sessionContent,
       ),
@@ -95,27 +102,34 @@ class Utils {
     showUIModal(
       Utils.mainNav.currentContext!,
       Container(
-        margin: isMobile()
-            ? FlutterConfLatamStyles.xLargeMargin.copyWith(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              )
-            : FlutterConfLatamStyles.largeMargin,
-        padding: isMobile()
-            ? const EdgeInsets.symmetric(
-                horizontal: FlutterConfLatamStyles.mediumSize,
-                vertical: FlutterConfLatamStyles.largeSize,
-              )
-            : FlutterConfLatamStyles.bannerPadding,
+        margin:
+            isMobile()
+                ? FlutterConfLatamStyles.xLargeMargin.copyWith(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                )
+                : FlutterConfLatamStyles.largeMargin,
+        padding:
+            isMobile()
+                ? const EdgeInsets.symmetric(
+                  horizontal: FlutterConfLatamStyles.mediumSize,
+                  vertical: FlutterConfLatamStyles.largeSize,
+                )
+                : FlutterConfLatamStyles.bannerPadding,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: isMobile()
-              ? const BorderRadius.only(
-                  topLeft: Radius.circular(FlutterConfLatamStyles.smallRadius),
-                  topRight: Radius.circular(FlutterConfLatamStyles.smallRadius),
-                )
-              : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
+          borderRadius:
+              isMobile()
+                  ? const BorderRadius.only(
+                    topLeft: Radius.circular(
+                      FlutterConfLatamStyles.smallRadius,
+                    ),
+                    topRight: Radius.circular(
+                      FlutterConfLatamStyles.smallRadius,
+                    ),
+                  )
+                  : BorderRadius.circular(FlutterConfLatamStyles.smallRadius),
         ),
         child: speakerContent,
       ),
@@ -127,24 +141,22 @@ class Utils {
     BuildContext context,
     Widget child, {
     bool dismissible = false,
-    Function? onDismissed,
+    VoidCallback? onDismissed,
   }) {
     if (isMobile()) {
-      showModalBottomSheet(
+      showModalBottomSheet<void>(
         isDismissible: dismissible,
         isScrollControlled: true,
         context: context,
         backgroundColor: Colors.transparent,
-        builder: (ctxt) {
+        builder: (_) {
           return child;
         },
-      ).whenComplete(() {
-        onDismissed!();
-      });
+      ).whenComplete(() => onDismissed?.call());
     } else {
-      showDialog(
+      showDialog<void>(
         context: context,
-        builder: (ctxt) {
+        builder: (_) {
           return FractionallySizedBox(
             widthFactor: 0.7,
             heightFactor: 0.8,
@@ -152,7 +164,7 @@ class Utils {
           );
         },
       ).whenComplete(() {
-        onDismissed!();
+        onDismissed?.call();
       });
     }
   }
@@ -163,8 +175,8 @@ class Utils {
   ) {
     SessionModel? session;
 
-    if (sessions.any((SessionModel s) => s.scheduleSlot == 1)) {
-      session = sessions.firstWhere((s) => s.scheduleSlot == id);
+    if (sessions.any((SessionModel s) => s.scheduleSlot == '1')) {
+      session = sessions.firstWhere((s) => s.scheduleSlot == id.toString());
     }
 
     return session;
@@ -181,9 +193,7 @@ class Utils {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: alignment,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: timeLabelStyle),
-      ],
+      children: [Text(label, style: timeLabelStyle)],
     );
   }
 
@@ -216,17 +226,17 @@ class Utils {
   static Color getColorFromSessionType(SessionType sessionType) {
     switch (sessionType) {
       case SessionType.eventSession:
-        return Colors.lightBlue.withOpacity(0.5);
+        return Colors.lightBlue.withValues(alpha: 0.5);
       case SessionType.panel:
-        return Colors.lightBlue.withOpacity(0.25);
+        return Colors.lightBlue.withValues(alpha: 0.25);
       case SessionType.keynote:
-        return Colors.blue.withOpacity(0.25);
+        return Colors.blue.withValues(alpha: 0.25);
       case SessionType.workshop:
-        return Colors.greenAccent.withOpacity(0.5);
+        return Colors.greenAccent.withValues(alpha: 0.5);
       case SessionType.singleSpeaker:
-        return Colors.orangeAccent.withOpacity(0.25);
+        return Colors.orangeAccent.withValues(alpha: 0.25);
       default:
-        return Colors.grey.withOpacity(0.25);
+        return Colors.grey.withValues(alpha: 0.25);
     }
   }
 }

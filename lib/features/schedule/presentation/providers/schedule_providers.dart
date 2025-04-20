@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/schedule/data/models/schedule_day.model.dart';
-import 'package:flutter_conf_colombia/features/schedule/data/repositories/schedule_repository.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_cell_content.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/providers/sessions_provider.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/widgets/schedule_session_container.dart';
-import 'package:flutter_conf_colombia/features/speakers/presentation/providers/speakers_providers.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/features/schedule/data/models/schedule_day.model.dart';
+import 'package:flutter_conf_latam/features/schedule/data/repositories/schedule_repository.dart';
+import 'package:flutter_conf_latam/features/schedule/presentation/widgets/schedule_cell_content.dart';
+import 'package:flutter_conf_latam/features/sessions/presentation/providers/sessions_provider.dart';
+import 'package:flutter_conf_latam/features/sessions/presentation/widgets/schedule_session_container.dart';
+import 'package:flutter_conf_latam/features/speakers/presentation/providers/speakers_providers.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -19,9 +19,7 @@ final scheduleFutureProvider = FutureProvider<List<ScheduleDayModel>>((ref) {
   return ref.read(scheduleRepositoryProvider).getEventSchedule();
 });
 
-final scheduleDaySelectionProvider = StateProvider<DateTime?>(
-  (ref) => null,
-);
+final scheduleDaySelectionProvider = StateProvider<DateTime?>((ref) => null);
 
 final timeFormatterProvider = Provider.family((ref, DateTime time) {
   final loc = tz.getLocation('America/Bogota');
@@ -56,8 +54,10 @@ final shortDateFormatterProvider = Provider.family((ref, DateTime time) {
   return formatted;
 });
 
-final currentEventLocationTimeProvider =
-    Provider.family((ref, DateTime sessionTime) {
+final currentEventLocationTimeProvider = Provider.family((
+  ref,
+  DateTime sessionTime,
+) {
   final detroit = tz.getLocation('America/Bogota');
   final now = tz.TZDateTime.now(detroit);
   return now.minute > sessionTime.minute;
@@ -86,7 +86,5 @@ final scheduleSlotProvider = Provider.family((ref, String id) {
     );
   }
 
-  return Container(
-    color: Colors.grey.withOpacity(0.125),
-  );
+  return Container(color: Colors.grey.withValues(alpha: 0.125));
 });

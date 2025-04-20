@@ -1,8 +1,7 @@
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
 
 class ScheduleSessionModel {
-
   const ScheduleSessionModel({
     required this.id,
     required this.slotIndex,

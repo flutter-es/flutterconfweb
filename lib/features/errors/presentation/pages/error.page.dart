@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/errors/presentation/responsiveness/errorpage_responsive.config.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_warning.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/errors/presentation/responsiveness/errorpage_responsive.config.dart';
+import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_warning.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class ErrorPage extends ConsumerWidget {
-  const ErrorPage({
-    required this.errorMessage,
-    super.key,
-  });
+  const ErrorPage({required this.errorMessage, super.key});
 
   final String errorMessage;
 

@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SponsorsRegionHeader extends ConsumerWidget {
-
-  const SponsorsRegionHeader({
-    required this.level,
-    super.key,
-  });
+  const SponsorsRegionHeader({required this.level, super.key});
 
   final SponsorshipLevels level;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final loc = ref.watch(appLocalizationsProvider);
 
     return Container(
@@ -31,18 +26,20 @@ class SponsorsRegionHeader extends ConsumerWidget {
         children: [
           ClipOval(
             child: Container(
-              width: 20, height: 20,
+              width: 20,
+              height: 20,
               color: Utils.getColorFromSponsorshipLevel(level),
             ),
           ),
           FlutterConfLatamStyles.smallHGap,
-          Text(Utils.getTitleFromSponsorshipLevel(loc, level), 
+          Text(
+            Utils.getTitleFromSponsorshipLevel(loc, level),
             style: const TextStyle(
-              fontWeight: FontWeight.bold, 
-              fontSize: 20, 
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
               color: Colors.black,
-              ),
             ),
+          ),
         ],
       ),
     );

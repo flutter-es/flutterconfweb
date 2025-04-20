@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SpeakersResponsiveConfig {
-  SpeakersResponsiveConfig(
-      {required this.titleSize,
-      required this.buttonLabelSize,
-      required this.buttonPadding,
-      required this.bannerMargin,
-      required this.bannerPadding,
-    }
-  );
+  SpeakersResponsiveConfig({
+    required this.titleSize,
+    required this.buttonLabelSize,
+    required this.buttonPadding,
+    required this.bannerMargin,
+    required this.bannerPadding,
+  });
 
   final double titleSize;
   final double buttonLabelSize;

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final speakersRepositoryProvider = Provider((ref) {
@@ -22,24 +22,26 @@ class SpeakersRepository {
     }
 
     final dbInstance = ref.read(dbProvider);
-    dbInstance.collection('speakers').get().then((snapshot) {
-      final speakers = snapshot.docs
-          .map(
-            (speakerDoc) => SpeakerModel.fromFirestore(
-              speakerDoc.id,
-              speakerDoc.data(),
-            ),
-          )
-          .toList();
+    dbInstance
+        .collection('speakers')
+        .get()
+        .then((snapshot) {
+          cachedSpeakers =
+              snapshot.docs.map((speakerDoc) {
+                return SpeakerModel.fromFirestore(
+                  speakerDoc.id,
+                  speakerDoc.data(),
+                );
+              }).toList();
 
-      cachedSpeakers = speakers;
-
-      speakersCompleter.complete(cachedSpeakers);
-    }).catchError((error) {
-      speakersCompleter.completeError(error.toString());
-    }).onError((error, stackTrace) {
-      speakersCompleter.completeError(error.toString());
-    });
+          speakersCompleter.complete(cachedSpeakers);
+        })
+        .catchError((Object error) {
+          speakersCompleter.completeError(error.toString());
+        })
+        .onError((error, stackTrace) {
+          speakersCompleter.completeError(error.toString());
+        });
 
     return speakersCompleter.future;
   }

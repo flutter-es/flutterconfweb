@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScheduleCellContent extends StatelessWidget {
@@ -67,9 +67,10 @@ class ScheduleCellContent extends StatelessWidget {
     final enableTabOnSession = session.sessionType != SessionType.eventSession;
 
     return MouseRegion(
-      cursor: enableTabOnSession
-          ? SystemMouseCursors.click
-          : SystemMouseCursors.basic,
+      cursor:
+          enableTabOnSession
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.basic,
       child: GestureDetector(
         onTap: () {
           if (enableTabOnSession) {
@@ -96,8 +97,8 @@ class ScheduleCellContent extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: FlutterConfLatamStyles.getStylesFromSessionType(
-                      session.sessionType,
                       context,
+                      session.sessionType,
                     ),
                   ),
                 ],
@@ -129,14 +130,12 @@ class ScheduleCellContent extends StatelessWidget {
                                     strokeAlign: BorderSide.strokeAlignOutside,
                                   ),
                                   image: DecorationImage(
-                                    image: NetworkImage(
-                                      speaker.photo!,
-                                    ),
+                                    image: NetworkImage(speaker.photo!),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                              FlutterConfLatamStyles.xsmallHGap,
+                              FlutterConfLatamStyles.xSmallHGap,
                               Visibility(
                                 visible: showSpeakerName,
                                 child: Text(
@@ -144,7 +143,7 @@ class ScheduleCellContent extends StatelessWidget {
                                   style: FlutterConfLatamStyles.label6,
                                 ),
                               ),
-                              FlutterConfLatamStyles.xsmallHGap,
+                              FlutterConfLatamStyles.xSmallHGap,
                             ],
                           ),
                         ),

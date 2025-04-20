@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -26,18 +26,9 @@ class ComingSoonContainer extends ConsumerWidget {
 
     final EdgeInsets comingSoonPadding = getValueForScreenType(
       context: context,
-      mobile: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 20,
-      ),
-      tablet: const EdgeInsets.symmetric(
-        vertical: 15,
-        horizontal: 30,
-      ),
-      desktop: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 40,
-      ),
+      mobile: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      tablet: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+      desktop: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
     );
 
     return Container(

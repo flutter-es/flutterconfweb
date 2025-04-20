@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/communities/presentation/responsiveness/communities_banner.config.dart';
-import 'package:flutter_conf_colombia/features/communities/presentation/widgets/communities_list.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/communities/presentation/responsiveness/communities_banner.config.dart';
+import 'package:flutter_conf_latam/features/communities/presentation/widgets/communities_list.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CommunitiesContainer extends ConsumerWidget {
   const CommunitiesContainer({super.key});
+
   static const title = 'speakers_container';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appLoc = ref.watch(appLocalizationsProvider);
-    final config =
-        CommunitiesBannerResonsiveConfig.getCommunitiesBannerConfig(context);
+    final config = CommunitiesBannerResponsiveConfig.getCommunitiesBannerConfig(
+      context,
+    );
 
     return Container(
       margin: config.bannerMargin,

@@ -1,7 +1,6 @@
-import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
 
 class SponsorModel {
-
   const SponsorModel({
     required this.logo,
     required this.name,
@@ -11,9 +10,11 @@ class SponsorModel {
 
   factory SponsorModel.fromFirestore(Map<String, dynamic> json) {
     return SponsorModel(
-      logo: json['logo'].toString(), 
-      name: json['name'].toString(), 
-      level: SponsorshipLevels.values.firstWhere((e) => e.name == json['level']), 
+      logo: json['logo'].toString(),
+      name: json['name'].toString(),
+      level: SponsorshipLevels.values.firstWhere(
+        (e) => e.name == json['level'],
+      ),
       url: json['url'].toString(),
     );
   }

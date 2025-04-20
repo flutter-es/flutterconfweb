@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_latam/helpers/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
 class FlutterLogoAnimated extends StatefulWidget {
@@ -15,7 +15,7 @@ class FlutterLogoAnimated extends StatefulWidget {
 }
 
 class _FlutterLogoAnimatedState extends State<FlutterLogoAnimated> {
-  late rive.StateMachineController smController;
+  late rive.StateMachineController? smController;
   late rive.RiveAnimation animation;
 
   @override
@@ -34,8 +34,8 @@ class _FlutterLogoAnimatedState extends State<FlutterLogoAnimated> {
     smController = rive.StateMachineController.fromArtboard(
       artboard,
       widget.animation.name,
-    )!;
-    artboard.addController(smController);
+    );
+    if (smController != null) artboard.addController(smController!);
   }
 
   @override

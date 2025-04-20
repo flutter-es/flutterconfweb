@@ -1,6 +1,6 @@
-import 'package:flutter_conf_colombia/features/schedule/data/models/schedule_day.model.dart';
-import 'package:flutter_conf_colombia/features/sessions/presentation/providers/sessions_provider.dart';
-import 'package:flutter_conf_colombia/features/speakers/presentation/providers/speakers_providers.dart';
+import 'package:flutter_conf_latam/features/schedule/data/models/schedule_day.model.dart';
+import 'package:flutter_conf_latam/features/sessions/presentation/providers/sessions_provider.dart';
+import 'package:flutter_conf_latam/features/speakers/presentation/providers/speakers_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ScheduleRepository {
@@ -16,23 +16,27 @@ class ScheduleRepository {
       ScheduleDayModel(
         dayIndex: 1,
         date: DateTime.parse('2023-10-25T00:00:00Z'),
-        sessions: sessions
-            .where(
-              (s) =>
-                  s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('1'),
-            )
-            .toList(),
+        sessions:
+            sessions
+                .where(
+                  (s) =>
+                      s.scheduleSlot.isNotEmpty &&
+                      s.scheduleSlot.startsWith('1'),
+                )
+                .toList(),
         speakers: speakers,
       ),
       ScheduleDayModel(
         dayIndex: 2,
         date: DateTime.parse('2023-10-26T00:00:00Z'),
-        sessions: sessions
-            .where(
-              (s) =>
-                  s.scheduleSlot.isNotEmpty && s.scheduleSlot.startsWith('2'),
-            )
-            .toList(),
+        sessions:
+            sessions
+                .where(
+                  (s) =>
+                      s.scheduleSlot.isNotEmpty &&
+                      s.scheduleSlot.startsWith('2'),
+                )
+                .toList(),
         speakers: speakers,
       ),
     ];

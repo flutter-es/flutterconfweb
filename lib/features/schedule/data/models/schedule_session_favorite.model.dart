@@ -1,5 +1,4 @@
 class ScheduleSessionFavoriteModel {
-
   const ScheduleSessionFavoriteModel({
     required this.isFavorite,
     required this.sessionId,

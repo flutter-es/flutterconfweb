@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 
 class ScheduleSessionAddToFavorite extends StatelessWidget {
   const ScheduleSessionAddToFavorite({super.key});
@@ -13,7 +13,7 @@ class ScheduleSessionAddToFavorite extends StatelessWidget {
         elevation: 0,
         shadowColor: Colors.transparent,
         foregroundColor: FlutterLatamColors.lightBlue,
-        backgroundColor: FlutterLatamColors.lightBlue.withOpacity(0.1),
+        backgroundColor: FlutterLatamColors.lightBlue.withValues(alpha: 0.1),
       ),
       onPressed: () {},
       child: Padding(
@@ -27,7 +27,7 @@ class ScheduleSessionAddToFavorite extends StatelessWidget {
                 color: FlutterLatamColors.lightBlue,
               ),
             ),
-            FlutterConfLatamStyles.xsmallHGap,
+            FlutterConfLatamStyles.xSmallHGap,
             const Icon(
               Icons.favorite_border_outlined,
               color: FlutterLatamColors.lightBlue,

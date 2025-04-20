@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ContactPageResponsiveConfig {
@@ -17,8 +17,7 @@ class ContactPageResponsiveConfig {
     required this.contactInfoPadding,
     required this.contactInfoMargin,
     required this.contactInfoAlignment,
-});
-
+  });
 
   final EdgeInsets pagePadding;
   final TextStyle headerStyle;
@@ -34,8 +33,9 @@ class ContactPageResponsiveConfig {
   final EdgeInsets contactInfoMargin;
   final CrossAxisAlignment contactInfoAlignment;
 
-
-  static ContactPageResponsiveConfig getContactPageResponsiveConfig(BuildContext ctxt) {
+  static ContactPageResponsiveConfig getContactPageResponsiveConfig(
+    BuildContext ctxt,
+  ) {
     final config = getValueForScreenType(
       context: ctxt,
       mobile: const ContactPageResponsiveConfig(

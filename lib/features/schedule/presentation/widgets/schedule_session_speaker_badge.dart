@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/speakers/data/models/speaker.model.dart';
-import 'package:flutter_conf_colombia/styles/styles.dart';
+import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 
 class ScheduleSessionSpeakerBadge extends StatelessWidget {
-  const ScheduleSessionSpeakerBadge({
-    required this.speakerInfo,
-    super.key,
-  });
+  const ScheduleSessionSpeakerBadge({required this.speakerInfo, super.key});
 
   final SpeakerModel speakerInfo;
 
@@ -17,12 +14,8 @@ class ScheduleSessionSpeakerBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(
-              speakerInfo.photo!,
-            ),
-          ),
-          FlutterConfLatamStyles.xsmallHGap,
+          CircleAvatar(backgroundImage: NetworkImage(speakerInfo.photo!)),
+          FlutterConfLatamStyles.xSmallHGap,
           Text(
             speakerInfo.name!,
             style: FlutterConfLatamStyles.h7.copyWith(color: Colors.black),

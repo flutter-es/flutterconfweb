@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_colombia/features/navigation/presentation/providers/navigation_providers.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SocialMediaContainer extends ConsumerWidget {
@@ -16,7 +16,7 @@ class SocialMediaContainer extends ConsumerWidget {
         for (final social in socialMediaList)
           IconButton(
             onPressed: () => Utils.launchUrlLink(social.link),
-            icon: Icon(social.icon, color: Colors.white.withOpacity(0.5)),
+            icon: Icon(social.icon, color: Colors.white.withValues(alpha: 0.5)),
           ),
       ],
     );

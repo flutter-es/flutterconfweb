@@ -1,4 +1,4 @@
-import 'package:flutter_conf_colombia/features/cfp/data/repositories/cfpsection.repository.dart';
+import 'package:flutter_conf_latam/features/cfp/data/repositories/cfpsection.repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final cfpSectionRepositoryProvider = Provider((ref) {

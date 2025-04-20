@@ -1,5 +1,5 @@
-import 'package:flutter_conf_colombia/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_colombia/features/sessions/data/repositories/sessions.repository.dart';
+import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
+import 'package:flutter_conf_latam/features/sessions/data/repositories/sessions.repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final sessionsRepositoryProvider = Provider((ref) {

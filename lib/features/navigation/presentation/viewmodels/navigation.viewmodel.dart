@@ -1,6 +1,6 @@
-import 'package:flutter_conf_colombia/features/navigation/data/models/tab_navigation_item.dart';
-import 'package:flutter_conf_colombia/features/shared/providers/shared_providers.dart';
-import 'package:flutter_conf_colombia/helpers/utils.dart';
+import 'package:flutter_conf_latam/features/navigation/data/models/tab_navigation_item.dart';
+import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
+import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,9 +31,7 @@ class NavigationViewModel extends StateNotifier<List<TabNavigationItem>> {
 
     state = [
       for (final element in state)
-        element.copyWith(
-          isSelected: item == element,
-        ),
+        element.copyWith(isSelected: item == element),
     ];
   }
 
