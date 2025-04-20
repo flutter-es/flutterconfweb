@@ -1,6 +1,6 @@
+import 'package:flutter_conf_latam/core/routes/app_routes_keys.dart';
 import 'package:flutter_conf_latam/features/navigation/data/models/tab_navigation_item.dart';
 import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
-import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,7 +24,7 @@ class NavigationViewModel extends StateNotifier<List<TabNavigationItem>> {
 
   void selectNavItem(TabNavigationItem item) {
     if (item.route.isNotEmpty) {
-      GoRouter.of(Utils.tabNav.currentContext!).go(item.route);
+      GoRouter.of(tabRoutesKeys.currentContext!).go(item.route);
     }
 
     ref.read(webLocalStorageProvider).storeSelectedNav(item.route);

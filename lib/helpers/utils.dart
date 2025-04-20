@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/routes/app_routes_keys.dart';
 import 'package:flutter_conf_latam/features/sessions/data/models/session.metadata.model.dart';
 import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_latam/helpers/enums.dart';
@@ -9,12 +10,9 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
-  static GlobalKey<NavigatorState> mainNav = GlobalKey();
-  static GlobalKey<NavigatorState> tabNav = GlobalKey();
-  static GlobalKey<ScaffoldState> mainScaffold = GlobalKey();
-
   static Future<void> launchUrlLink(String url) async {
-    await launchUrl(Uri.parse(url));
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) await launchUrl(Uri.parse(url));
   }
 
   static Color getColorFromSponsorshipLevel(SponsorshipLevels level) {
@@ -55,13 +53,13 @@ class Utils {
   }
 
   static bool isMobile() {
-    return getDeviceType(MediaQuery.sizeOf(Utils.mainNav.currentContext!)) ==
+    return getDeviceType(MediaQuery.sizeOf(mainRoutesKey.currentContext!)) ==
         DeviceScreenType.mobile;
   }
 
   static void showSessionInfo(Widget sessionContent) {
     showUIModal(
-      Utils.mainNav.currentContext!,
+      mainRoutesKey.currentContext!,
       Container(
         margin:
             isMobile()
@@ -100,7 +98,7 @@ class Utils {
 
   static void showSpeakerInfo(Widget speakerContent) {
     showUIModal(
-      Utils.mainNav.currentContext!,
+      mainRoutesKey.currentContext!,
       Container(
         margin:
             isMobile()
@@ -141,7 +139,6 @@ class Utils {
     BuildContext context,
     Widget child, {
     bool dismissible = false,
-    VoidCallback? onDismissed,
   }) {
     if (isMobile()) {
       showModalBottomSheet<void>(
@@ -152,7 +149,7 @@ class Utils {
         builder: (_) {
           return child;
         },
-      ).whenComplete(() => onDismissed?.call());
+      );
     } else {
       showDialog<void>(
         context: context,
@@ -163,9 +160,7 @@ class Utils {
             child: child,
           );
         },
-      ).whenComplete(() {
-        onDismissed?.call();
-      });
+      );
     }
   }
 

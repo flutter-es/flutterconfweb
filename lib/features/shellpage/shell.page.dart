@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/routes/app_routes_keys.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/footer.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_conf_latam/features/navigation/presentation/widgets/head
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/mobile_drawer.dart';
 import 'package:flutter_conf_latam/helpers/constants.dart';
-import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -27,7 +27,7 @@ class ShellPage extends ConsumerWidget {
     );
 
     return Scaffold(
-      key: Utils.mainScaffold,
+      key: mainScaffoldKey,
       appBar:
           isMobile
               ? AppBar(
