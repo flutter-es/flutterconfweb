@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/helpers/enums.dart';
-import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,15 +25,14 @@ class SponsorsRegionHeader extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ClipOval(
-            child: Container(
-              width: 20,
-              height: 20,
-              color: Utils.getColorFromSponsorshipLevel(level),
+            child: SizedBox.square(
+              dimension: 20,
+              child: ColoredBox(color: level.color),
             ),
           ),
           FlutterConfLatamStyles.smallHGap,
           Text(
-            Utils.getTitleFromSponsorshipLevel(loc, level),
+            level.title(loc),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,

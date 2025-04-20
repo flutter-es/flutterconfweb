@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_latam/features/sessions/presentation/widgets/session_metadata_container.dart';
 import 'package:flutter_conf_latam/features/sessions/presentation/widgets/session_tags_container.dart';
-import 'package:flutter_conf_latam/helpers/ui_extensions.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

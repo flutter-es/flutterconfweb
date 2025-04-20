@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_latam/features/speakers/data/models/speaker.model.dart';
 import 'package:flutter_conf_latam/helpers/enums.dart';
-import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -21,8 +21,6 @@ class ScheduleCellContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sessionColor = Utils.getColorFromSessionType(session.sessionType);
-
     final showSpeakerImage = getValueForScreenType(
       context: context,
       mobile: true,
@@ -81,7 +79,7 @@ class ScheduleCellContent extends StatelessWidget {
           margin: EdgeInsets.only(bottom: bottomMargin),
           padding: EdgeInsets.all(cellPadding),
           decoration: BoxDecoration(
-            color: Utils.getColorFromSessionType(session.sessionType),
+            color: session.sessionType.color,
             borderRadius: BorderRadius.circular(cellRadius),
           ),
           child: Column(
@@ -126,7 +124,7 @@ class ScheduleCellContent extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     width: 3,
-                                    color: sessionColor,
+                                    color: session.sessionType.color,
                                     strokeAlign: BorderSide.strokeAlignOutside,
                                   ),
                                   image: DecorationImage(
