@@ -5,7 +5,6 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/custom_tab
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/language_button.dart';
-import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
 import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +21,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    ref.read(webLocalStorageProvider).initLocalStorage().then((value) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(navigationItemsProvider.notifier).init();
     });
   }
@@ -31,7 +30,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
     final tabItems = ref.watch(navigationItemsProvider);
-    final visibleTabItems = tabItems.where((t) => t.display!).toList();
+    final visibleTabItems = tabItems.where((t) => t.display ?? false).toList();
 
     return SliverAppBar(
       backgroundColor: Colors.white,

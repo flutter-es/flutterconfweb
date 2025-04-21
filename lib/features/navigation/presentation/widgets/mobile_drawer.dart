@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/item_drawer.dart';
-import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
 import 'package:flutter_conf_latam/helpers/constants.dart';
 import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,7 +19,7 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
   void initState() {
     super.initState();
 
-    ref.read(webLocalStorageProvider).initLocalStorage().then((value) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(navigationItemsProvider.notifier).init();
     });
   }
@@ -28,7 +27,7 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
   @override
   Widget build(BuildContext context) {
     final tabItems = ref.watch(navigationItemsProvider);
-    final visibleTabItems = tabItems.where((t) => t.display!).toList();
+    final visibleTabItems = tabItems.where((t) => t.display ?? false).toList();
 
     return Drawer(
       backgroundColor: Colors.blue,
