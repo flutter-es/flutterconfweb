@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes_keys.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes_pages.dart';
+import 'package:flutter_conf_latam/core/widgets/navigation/shell_navigator_page.dart';
 import 'package:flutter_conf_latam/features/cfp/presentation/pages/cfp_page.dart';
 import 'package:flutter_conf_latam/features/contact/presentation/pages/contact.page.dart';
 import 'package:flutter_conf_latam/features/errors/presentation/pages/error.page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/schedule/presentation/pages/schedule_page.dart';
-import 'package:flutter_conf_latam/features/shellpage/shell.page.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/pages/speakers_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/sponsors/presentation/pages/sponsors_page.dart';
@@ -32,7 +32,7 @@ class AppRoutes {
             pageBuilder: (_, state, child) {
               return ScreenPage(
                 key: state.pageKey,
-                child: ShellPage(child: child),
+                child: ShellNavigatorPage(child: child),
               );
             },
             routes: <RouteBase>[

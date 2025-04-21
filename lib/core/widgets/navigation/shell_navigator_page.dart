@@ -11,10 +11,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class ShellPage extends ConsumerWidget {
-  const ShellPage({required this.child, super.key});
+class ShellNavigatorPage extends ConsumerWidget {
+  const ShellNavigatorPage({required this.child, super.key});
 
   static const String route = '/main';
+
   final Widget child;
 
   @override
@@ -28,40 +29,39 @@ class ShellPage extends ConsumerWidget {
 
     return Scaffold(
       key: mainScaffoldKey,
-      appBar:
-          isMobile
-              ? AppBar(
-                title: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () {
-                      ref
-                          .read(navigationItemsProvider.notifier)
-                          .selectNavItemFromRoute(HomePage.route);
-                    },
-                    child: SvgPicture.asset(
-                      '${Constants.imagesPath}/flutter_logo_color.svg',
-                      width: 40,
-                      height: 40,
-                    ),
-                  ),
+      appBar: switch (isMobile) {
+        true => AppBar(
+          title: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: InkWell(
+              onTap: () {
+                ref
+                    .read(navigationItemsProvider.notifier)
+                    .selectNavItemFromRoute(HomePage.route);
+              },
+              child: SizedBox.square(
+                dimension: 40,
+                child: SvgPicture.asset(
+                  '${Constants.imagesPath}/flutter_logo_color.svg',
                 ),
-                actions: const [LanguageButton()],
-              )
-              : null,
+              ),
+            ),
+          ),
+          actions: const [LanguageButton()],
+        ),
+        false => null,
+      },
       drawer: isMobile ? const MobileDrawer() : null,
-
       body: Column(
-        children: [
+        children: <Widget>[
           Expanded(
             child: NestedScrollView(
-              headerSliverBuilder: (
-                BuildContext context,
-                bool innerBoxIsScrolled,
-              ) {
+              headerSliverBuilder: (_, __) {
                 return [if (!isMobile) const Header()];
               },
-              body: Column(children: [Expanded(child: child), const Footer()]),
+              body: Column(
+                children: <Widget>[Expanded(child: child), const Footer()],
+              ),
             ),
           ),
         ],
