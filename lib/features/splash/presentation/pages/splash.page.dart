@@ -17,20 +17,20 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  Timer timer = Timer(Duration.zero, () {});
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
 
-    timer = Timer(2.seconds, () {
-      Router.neglect(context, () => GoRouter.of(context).go(HomePage.route));
+    _timer = Timer(2.seconds, () {
+      Router.neglect(context, () => context.go(HomePage.route));
     });
   }
 
   @override
   void dispose() {
-    timer.cancel();
+    _timer.cancel();
     super.dispose();
   }
 
