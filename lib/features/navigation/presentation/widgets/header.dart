@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/custom_tab_controller.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
-import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_logo_animated.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -73,7 +74,10 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                             .read(navigationItemsProvider.notifier)
                             .selectNavItemFromRoute(HomePage.route);
                       },
-                      child: const FlutterLogoAnimated(),
+                      child: const FlutterRiveAnimated(
+                        path: './assets/anims/flutterconflogo.riv',
+                        animation: FlutterConfAnimations.flutterConfLogo,
+                      ),
                     ),
                   ),
                 );

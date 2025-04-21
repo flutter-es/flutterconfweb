@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:rive/rive.dart' as rive;
 
-class FlutterDashAnimation extends StatefulWidget {
-  const FlutterDashAnimation({
+class FlutterRiveAnimated extends StatefulWidget {
+  const FlutterRiveAnimated({
+    required this.path,
+    required this.animation,
     super.key,
-    this.animation = FlutterDashAnimations.flutterDashWave,
   });
 
-  final FlutterDashAnimations animation;
+  final String path;
+  final FlutterConfAnimations animation;
 
   @override
-  State<FlutterDashAnimation> createState() => _FlutterDashAnimationState();
+  State<FlutterRiveAnimated> createState() => _FlutterRiveAnimatedState();
 }
 
-class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
-  late rive.StateMachineController smController;
+class _FlutterRiveAnimatedState extends State<FlutterRiveAnimated> {
+  late rive.StateMachineController? stateMachineController;
   late rive.RiveAnimation animation;
 
   @override
@@ -23,7 +25,7 @@ class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
     super.initState();
 
     animation = rive.RiveAnimation.asset(
-      './assets/anims/flutterdash.riv',
+      widget.path,
       artboard: widget.animation.name,
       fit: BoxFit.contain,
       onInit: onRiveInit,
@@ -31,23 +33,26 @@ class _FlutterDashAnimationState extends State<FlutterDashAnimation> {
   }
 
   void onRiveInit(rive.Artboard artboard) {
-    smController =
-        rive.StateMachineController.fromArtboard(
-          artboard,
-          widget.animation.name,
-        )!;
-    artboard.addController(smController);
+    stateMachineController = rive.StateMachineController.fromArtboard(
+      artboard,
+      widget.animation.name,
+    );
+
+    if (stateMachineController != null) {
+      artboard.addController(stateMachineController!);
+    }
   }
 
   @override
   void dispose() {
+    stateMachineController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) {
+      builder: (_, constraints) {
         return SizedBox(
           width: constraints.maxWidth,
           height: constraints.maxHeight,

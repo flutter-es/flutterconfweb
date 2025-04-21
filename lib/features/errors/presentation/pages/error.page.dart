@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/errors/presentation/responsiveness/errorpage_responsive.config.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_warning.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
@@ -27,7 +28,10 @@ class ErrorPage extends ConsumerWidget {
             SizedBox(
               width: uiConfig.dashDimensions,
               height: uiConfig.dashDimensions,
-              child: const FlutterWarningAnimated(),
+              child: const FlutterRiveAnimated(
+                path: './assets/anims/flutter_warning.riv',
+                animation: FlutterConfAnimations.flutterWarning,
+              ),
             ),
             Text(
               appLoc.errorPageTitle,

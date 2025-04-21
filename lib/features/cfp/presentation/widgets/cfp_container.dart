@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/features/cfp/presentation/providers/cfpfeature_providers.dart';
 import 'package:flutter_conf_latam/features/cfp/presentation/responsiveness/cfp_responsive_config.dart';
-import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_dash_animations.dart';
-import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_logo_animated.dart';
+import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/features/shared/widgets/circleround_iconbutton.dart';
 import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
@@ -36,7 +35,10 @@ class CfpContainer extends ConsumerWidget {
               margin: EdgeInsets.only(left: config.flutterLogoLeftMargin),
               width: config.flutterLogoSize,
               height: config.flutterLogoSize,
-              child: const FlutterLogoAnimated(),
+              child: const FlutterRiveAnimated(
+                path: './assets/anims/flutterconflogo.riv',
+                animation: FlutterConfAnimations.flutterConfLogo,
+              ),
             ),
           ),
           Positioned(
@@ -49,8 +51,9 @@ class CfpContainer extends ConsumerWidget {
               child: SizedBox(
                 width: config.dashSize,
                 height: config.dashSize,
-                child: const FlutterDashAnimation(
-                  animation: FlutterDashAnimations.flutterDashFlag,
+                child: const FlutterRiveAnimated(
+                  path: './assets/anims/flutterdash.riv',
+                  animation: FlutterConfAnimations.flutterDashFlag,
                 ),
               ),
             ),

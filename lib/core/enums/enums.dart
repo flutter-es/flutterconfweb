@@ -1,13 +1,17 @@
-enum FlutterLogoAnimations { flutterConfLogo, flutterName, flutterLogo }
+enum FlutterConfAnimations {
+  flutterConfLogo('flutterconflogo'),
+  flutterName('fluttername'),
+  flutterLogo('flutterlogo'),
+  flutterWarning('flutterwarning'),
+  flutterDashWave('flutterdashwave'),
+  flutterDashTicket('flutterdashticket'),
+  flutterDashFlag('flutterdashflag'),
+  flutterConfConstruction('flutterconfconstruction'),
+  flutterDashConst('flutterdashconst');
 
-enum FlutterWarningAnimations { flutterWarning }
+  const FlutterConfAnimations(this.name);
 
-enum FlutterDashAnimations {
-  flutterDashWave,
-  flutterDashTicket,
-  flutterDashFlag,
-  flutterConfConstruction,
-  flutterDashConst,
+  final String name;
 }
 
 enum SponsorshipLevels { platinum, gold, silver, bronze, inKind, other }
