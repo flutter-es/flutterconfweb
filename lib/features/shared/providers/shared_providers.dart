@@ -3,14 +3,14 @@ import 'package:flutter_conf_latam/services/weblocalstorage.service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final sharedPrefsInstanceProvider = Provider((ref) {
-  return SharedPreferences.getInstance();
+final sharedPrefsInstanceProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError('You must implement shared preferences');
 });
 
-final dbProvider = Provider((ref) {
-  return FirebaseFirestore.instance;
-});
+final dbProvider = Provider((_) => FirebaseFirestore.instance);
 
 final webLocalStorageProvider = Provider((ref) {
-  return WebLocalStorageService(ref);
+  return WebLocalStorageService(
+    preferences: ref.watch(sharedPrefsInstanceProvider),
+  );
 });
