@@ -1,5 +1,5 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/routes/app_routes_keys.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/footer.dart';
@@ -9,6 +9,7 @@ import 'package:flutter_conf_latam/features/navigation/presentation/widgets/mobi
 import 'package:flutter_conf_latam/helpers/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ShellNavigatorPage extends ConsumerWidget {
@@ -27,8 +28,19 @@ class ShellNavigatorPage extends ConsumerWidget {
       desktop: false,
     );
 
+    ref.listen(navigationItemsProvider, (_, value) {
+      if (value.isNotEmpty) {
+        final itemRoute = value.singleWhereOrNull(
+          (item) => item.isSelected ?? false,
+        );
+
+        if (itemRoute != null && itemRoute.route.isNotEmpty) {
+          GoRouter.of(context).go(itemRoute.route);
+        }
+      }
+    });
+
     return Scaffold(
-      key: mainScaffoldKey,
       appBar: switch (isMobile) {
         true => AppBar(
           title: MouseRegion(
