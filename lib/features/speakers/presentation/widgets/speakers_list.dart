@@ -29,6 +29,7 @@ class SpeakersList extends ConsumerWidget {
                           speaker: speaker,
                           onSpeakerTap: () {
                             Utils.showSpeakerInfo(
+                              context,
                               SpeakerContentWindow(speaker: speaker),
                             );
                           },

@@ -17,7 +17,7 @@ class ScheduleCellContent extends StatelessWidget {
 
   final SessionModel session;
   final List<SpeakerModel> speakers;
-  final VoidCallback onScheduleTap;
+  final ValueSetter<BuildContext> onScheduleTap;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class ScheduleCellContent extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (enableTabOnSession) {
-            onScheduleTap();
+            onScheduleTap(context);
           }
         },
         child: Container(

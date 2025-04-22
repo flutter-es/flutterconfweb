@@ -75,8 +75,9 @@ final scheduleSlotProvider = Provider.family((ref, String id) {
     return ScheduleCellContent(
       session: foundSession,
       speakers: speakersList,
-      onScheduleTap: () {
+      onScheduleTap: (context) {
         Utils.showSessionInfo(
+          context,
           ScheduleSessionContainer(
             session: foundSession,
             speakers: speakersList,

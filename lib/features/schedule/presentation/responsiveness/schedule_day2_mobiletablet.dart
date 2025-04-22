@@ -28,18 +28,21 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Utils.getTimeLabelHeader(
+            context,
             '7:00 - 9:00 AM',
             alignment: MainAxisAlignment.start,
           ),
           getSessionFromSlotId('2-1', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '9:00 AM - 10:00 AM',
             alignment: MainAxisAlignment.start,
           ),
           getSessionFromSlotId('2-2', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '10:00 - 10:40 AM',
             alignment: MainAxisAlignment.start,
           ),
@@ -48,12 +51,14 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-5', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '10:40 - 11:00 AM',
             alignment: MainAxisAlignment.start,
           ),
           getSessionFromSlotId('2-6', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '11:00 - 11:40 AM',
             alignment: MainAxisAlignment.start,
           ),
@@ -61,6 +66,7 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-8', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '11:40 - 12:00 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -69,6 +75,7 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-12', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '12:00 - 12:40 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -76,12 +83,14 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-14', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '12:40 - 14:00 PM',
             alignment: MainAxisAlignment.start,
           ),
           getSessionFromSlotId('2-15', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '14:00 - 14:20 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -89,6 +98,7 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-17', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '14:20 - 15:00 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -97,12 +107,14 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-21', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '15:00 - 15:20 PM',
             alignment: MainAxisAlignment.start,
           ),
           getSessionFromSlotId('2-22', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '15:20 - 16:00 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -111,6 +123,7 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-25', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '16:00 - 16:20 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -118,6 +131,7 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-27', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '16:20 - 17:00 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -125,6 +139,7 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-29', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '17:00 - 17:40 PM',
             alignment: MainAxisAlignment.start,
           ),
@@ -132,6 +147,7 @@ class ScheduleDay2MobileTabletLayout extends ConsumerWidget {
           getSessionFromSlotId('2-31', ref),
 
           Utils.getTimeLabelHeader(
+            context,
             '17:40 - 18:00 PM',
             alignment: MainAxisAlignment.start,
           ),

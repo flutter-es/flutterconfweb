@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/routes/app_routes_keys.dart';
 import 'package:flutter_conf_latam/features/sessions/data/models/session.metadata.model.dart';
 import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
 import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
@@ -13,25 +12,16 @@ class Utils {
     if (await canLaunchUrl(uri)) await launchUrl(Uri.parse(url));
   }
 
-  static bool isMobile() {
-    return getDeviceType(MediaQuery.sizeOf(mainRoutesKey.currentContext!)) ==
-        DeviceScreenType.mobile;
+  static bool isMobile(BuildContext context) {
+    return getDeviceType(MediaQuery.sizeOf(context)) == DeviceScreenType.mobile;
   }
 
-  static void showSessionInfo(Widget sessionContent) {
-    showUIModal(
-      mainRoutesKey.currentContext!,
-      sessionContent,
-      dismissible: true,
-    );
+  static void showSessionInfo(BuildContext context, Widget sessionContent) {
+    showUIModal(context, sessionContent, dismissible: true);
   }
 
-  static void showSpeakerInfo(Widget speakerContent) {
-    showUIModal(
-      mainRoutesKey.currentContext!,
-      speakerContent,
-      dismissible: true,
-    );
+  static void showSpeakerInfo(BuildContext context, Widget speakerContent) {
+    showUIModal(context, speakerContent, dismissible: true);
   }
 
   static void showUIModal(
@@ -39,7 +29,7 @@ class Utils {
     Widget child, {
     bool dismissible = false,
   }) {
-    if (isMobile()) {
+    if (isMobile(context)) {
       showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
@@ -104,6 +94,7 @@ class Utils {
   }
 
   static Widget getTimeLabelHeader(
+    BuildContext context,
     String label, {
     MainAxisAlignment alignment = MainAxisAlignment.end,
   }) {
@@ -115,7 +106,7 @@ class Utils {
         Text(
           label,
           style:
-              isMobile()
+              isMobile(context)
                   ? FlutterConfLatamStyles.h6
                   : FlutterConfLatamStyles.h7,
         ),

@@ -109,7 +109,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('7:00 - 9:00 AM'),
+          child: Utils.getTimeLabelHeader(context, '7:00 - 9:00 AM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 6,
@@ -120,7 +120,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('9:00 AM - 10:00 AM'),
+          child: Utils.getTimeLabelHeader(context, '9:00 AM - 10:00 AM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 6,
@@ -131,7 +131,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('10:00 - 10:40 AM'),
+          child: Utils.getTimeLabelHeader(context, '10:00 - 10:40 AM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -153,7 +153,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('10:40 - 11:00 AM'),
+          child: Utils.getTimeLabelHeader(context, '10:40 - 11:00 AM'),
         ),
 
         StaggeredGridTile.count(
@@ -165,7 +165,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('11:00 - 11:40 AM'),
+          child: Utils.getTimeLabelHeader(context, '11:00 - 11:40 AM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -186,7 +186,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('11:40 - 12:00 PM'),
+          child: Utils.getTimeLabelHeader(context, '11:40 - 12:00 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -207,7 +207,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('12:00 - 12:40 PM'),
+          child: Utils.getTimeLabelHeader(context, '12:00 - 12:40 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -223,7 +223,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('12:40 - 14:00 PM'),
+          child: Utils.getTimeLabelHeader(context, '12:40 - 14:00 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 6,
@@ -234,7 +234,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('14:00 - 14:20 PM'),
+          child: Utils.getTimeLabelHeader(context, '14:00 - 14:20 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -255,7 +255,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('14:20 - 15:00 PM'),
+          child: Utils.getTimeLabelHeader(context, '14:20 - 15:00 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -271,7 +271,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('15:00 - 15:20 PM'),
+          child: Utils.getTimeLabelHeader(context, '15:00 - 15:20 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 4,
@@ -287,7 +287,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('15:20 - 16:00 PM'),
+          child: Utils.getTimeLabelHeader(context, '15:20 - 16:00 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -303,7 +303,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('16:00 - 16:20 PM'),
+          child: Utils.getTimeLabelHeader(context, '16:00 - 16:20 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 4,
@@ -319,7 +319,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('16:20 - 17:00 PM'),
+          child: Utils.getTimeLabelHeader(context, '16:20 - 17:00 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -340,7 +340,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('17:00 - 17:20 PM'),
+          child: Utils.getTimeLabelHeader(context, '17:00 - 17:20 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 4,
@@ -351,7 +351,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('17:20 - 18:00 PM'),
+          child: Utils.getTimeLabelHeader(context, '17:20 - 18:00 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 2,
@@ -372,7 +372,7 @@ class ScheduleDay1LargeLayout extends ConsumerWidget {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: Utils.getTimeLabelHeader('18:00 - 18:20 PM'),
+          child: Utils.getTimeLabelHeader(context, '18:00 - 18:20 PM'),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 6,
