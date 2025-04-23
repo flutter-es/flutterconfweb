@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
-import 'package:rive/rive.dart' as rive;
+import 'package:rive/rive.dart';
 
 class FlutterRiveAnimated extends StatefulWidget {
   const FlutterRiveAnimated({
@@ -17,35 +17,24 @@ class FlutterRiveAnimated extends StatefulWidget {
 }
 
 class _FlutterRiveAnimatedState extends State<FlutterRiveAnimated> {
-  late rive.StateMachineController? stateMachineController;
-  late rive.RiveAnimation animation;
+  late StateMachineController? _stateMachineController;
+  late RiveAnimation _animation;
 
   @override
   void initState() {
     super.initState();
 
-    animation = rive.RiveAnimation.asset(
+    _animation = RiveAnimation.asset(
       widget.path,
       artboard: widget.animation.name,
       fit: BoxFit.contain,
-      onInit: onRiveInit,
+      onInit: _onRiveInit,
     );
-  }
-
-  void onRiveInit(rive.Artboard artboard) {
-    stateMachineController = rive.StateMachineController.fromArtboard(
-      artboard,
-      widget.animation.name,
-    );
-
-    if (stateMachineController != null) {
-      artboard.addController(stateMachineController!);
-    }
   }
 
   @override
   void dispose() {
-    stateMachineController?.dispose();
+    _stateMachineController?.dispose();
     super.dispose();
   }
 
@@ -56,9 +45,20 @@ class _FlutterRiveAnimatedState extends State<FlutterRiveAnimated> {
         return SizedBox(
           width: constraints.maxWidth,
           height: constraints.maxHeight,
-          child: animation,
+          child: _animation,
         );
       },
     );
+  }
+
+  void _onRiveInit(Artboard artboard) {
+    _stateMachineController = StateMachineController.fromArtboard(
+      artboard,
+      widget.animation.name,
+    );
+
+    if (_stateMachineController != null) {
+      artboard.addController(_stateMachineController!);
+    }
   }
 }

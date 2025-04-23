@@ -1,9 +1,9 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
+import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
 import 'package:flutter_conf_latam/features/home/presentation/responsiveness/home_section_responsive_config.dart';
-import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/helpers/constants.dart';
 import 'package:flutter_conf_latam/helpers/utils.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
