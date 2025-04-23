@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes_pages.dart';
 import 'package:flutter_conf_latam/core/widgets/navigation/shell_navigator_page.dart';
-import 'package:flutter_conf_latam/features/errors/presentation/pages/error.page.dart';
+import 'package:flutter_conf_latam/features/errors/presentation/pages/error_page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:go_router/go_router.dart';
@@ -38,10 +38,8 @@ class AppRoutes {
             ],
           ),
         ],
-        errorPageBuilder: (_, state) {
-          return NoTransitionPage(
-            child: ErrorPage(errorMessage: state.error.toString()),
-          );
+        errorPageBuilder: (_, __) {
+          return const NoTransitionPage(child: ErrorPage());
         },
         debugLogDiagnostics: kDebugMode,
       );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
-import 'package:flutter_conf_latam/features/errors/presentation/responsiveness/errorpage_responsive.config.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/shared/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -8,71 +7,60 @@ import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+
+part '../responsiveness/error_page_responsive.dart';
 
 class ErrorPage extends ConsumerWidget {
-  const ErrorPage({required this.errorMessage, super.key});
-
-  final String errorMessage;
+  const ErrorPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = ErrorPageResponsiveConfig.getSponsorsBannerConfig(context);
+    final l10n = ref.watch(appLocalizationsProvider);
+    final responsiveConfig = _responsiveConfig(context);
 
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              width: uiConfig.dashDimensions,
-              height: uiConfig.dashDimensions,
+          children: <Widget>[
+            SizedBox.square(
+              dimension: responsiveConfig.dashDimensions,
               child: const FlutterRiveAnimated(
                 path: './assets/anims/flutter_warning.riv',
                 animation: FlutterConfAnimations.flutterWarning,
               ),
             ),
             Text(
-              appLoc.errorPageTitle,
+              l10n.errorPageTitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey,
-                fontSize: uiConfig.titleSize,
+                fontSize: responsiveConfig.titleSize,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              appLoc.errorPageSubtitle,
+              l10n.errorPageSubtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey,
-                fontSize: uiConfig.subtitleSize,
+                fontSize: responsiveConfig.subtitleSize,
                 fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              width: uiConfig.textContainerWidth,
-              child: Text(
-                errorMessage,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.grey),
               ),
             ),
             FlutterConfLatamStyles.mediumVGap,
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
                 elevation: 0,
+                shape: const StadiumBorder(),
                 backgroundColor: FlutterLatamColors.darkBlue,
-              ),
-              onPressed: () {
-                GoRouter.of(context).go(HomePage.route);
-              },
-              child: Padding(
+                foregroundColor: FlutterLatamColors.white,
                 padding: FlutterConfLatamStyles.mediumPadding,
-                child: Text(appLoc.errorReturHomeButton),
               ),
+              onPressed: () => context.go(HomePage.route),
+              child: Text(l10n.errorReturHomeButton),
             ),
           ],
         ),
