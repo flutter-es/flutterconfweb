@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 extension BuildContextX on BuildContext {
   String menu(String key) {
@@ -9,6 +10,15 @@ extension BuildContextX on BuildContext {
 
     if (l10n == null) return key;
     return l10n.menu(key);
+  }
+
+  bool get isMobileFromResponsive {
+    return getValueForScreenType(
+      context: this,
+      mobile: true,
+      tablet: true,
+      desktop: false,
+    );
   }
 }
 

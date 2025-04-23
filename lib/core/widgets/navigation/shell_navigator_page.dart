@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/footer.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_conf_latam/helpers/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class ShellNavigatorPage extends ConsumerWidget {
   const ShellNavigatorPage({required this.child, super.key});
@@ -21,13 +21,6 @@ class ShellNavigatorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = getValueForScreenType(
-      context: context,
-      mobile: true,
-      tablet: true,
-      desktop: false,
-    );
-
     ref.listen(navigationItemsProvider, (_, value) {
       if (value.isNotEmpty) {
         final itemRoute = value.singleWhereOrNull(
@@ -41,7 +34,7 @@ class ShellNavigatorPage extends ConsumerWidget {
     });
 
     return Scaffold(
-      appBar: switch (isMobile) {
+      appBar: switch (context.isMobileFromResponsive) {
         true => AppBar(
           title: MouseRegion(
             cursor: SystemMouseCursors.click,
@@ -63,13 +56,13 @@ class ShellNavigatorPage extends ConsumerWidget {
         ),
         false => null,
       },
-      drawer: isMobile ? const MobileDrawer() : null,
+      drawer: context.isMobileFromResponsive ? const MobileDrawer() : null,
       body: Column(
         children: <Widget>[
           Expanded(
             child: NestedScrollView(
               headerSliverBuilder: (_, __) {
-                return [if (!isMobile) const Header()];
+                return [if (!context.isMobileFromResponsive) const Header()];
               },
               body: Column(
                 children: <Widget>[Expanded(child: child), const Footer()],
