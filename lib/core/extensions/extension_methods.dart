@@ -20,6 +20,10 @@ extension BuildContextX on BuildContext {
       desktop: false,
     );
   }
+
+  bool get isMobileDevice {
+    return getDeviceType(MediaQuery.sizeOf(this)) == DeviceScreenType.mobile;
+  }
 }
 
 extension StringX on String {
