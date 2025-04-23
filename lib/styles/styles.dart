@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class FlutterConfLatamStyles {
   static const double xSmallSize = 4;
@@ -86,58 +84,41 @@ class FlutterConfLatamStyles {
   static const label1 = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
   static const label2 = TextStyle(
     fontSize: 28,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
   static const label3 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
   static const label4 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
   static const label5 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
   static const label6 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
   static const label7 = TextStyle(
     fontSize: 8,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
   static const label8 = TextStyle(
     fontSize: 4,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: FlutterLatamColors.black,
   );
-
-  static TextStyle getStylesFromSessionType(
-    BuildContext context,
-    SessionType sessionType,
-  ) {
-    switch (sessionType) {
-      case SessionType.eventSession:
-        return getValueForScreenType(
-          context: context,
-          mobile: h7,
-          tablet: h6,
-          desktop: h6,
-        );
-      default:
-        return h7.copyWith(color: Colors.black);
-    }
-  }
 }

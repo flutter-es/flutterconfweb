@@ -1,11 +1,9 @@
-// let's add all the colors here
-
 import 'package:flutter/material.dart';
 
 class FlutterLatamColors {
   static const Color burnedYellow = Color(0xFF8D7207);
   static const Color cfpColor = Color(0xFFFFCD00);
-  static const Color eventFeaturesColor = Color.fromRGBO(218, 65, 74, 1);
+  static const Color eventFeaturesColor = Color(0xFFDA414A);
   static const Color ticketBgTopColor = Color(0xFFB2D571);
   static const Color ticketBgBottomColor = Color(0xFF668330);
   static const Color lightBlue = Color(0xFF3B9ED8);
@@ -15,7 +13,7 @@ class FlutterLatamColors {
   static const Color brightYellow = Color(0xFFFCCE19);
   static const Color blueText = Color(0xFF324AA6);
   static const Color white = Color(0xFFFFFFFF);
-  // sponsorship level colors
+  static const Color black = Color(0xFF000000);
   static const Color platinum = Color(0xFF939393);
   static const Color gold = Color(0xFFF7B900);
   static const Color silver = Color(0xFFBABABA);
