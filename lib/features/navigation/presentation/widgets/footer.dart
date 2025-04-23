@@ -40,7 +40,7 @@ class Footer extends ConsumerWidget {
             ),
             const SizedBox(width: 15),
             SvgPicture.asset(
-              '${Constants.imagesPath}/FlutterLogo_White.svg',
+              '${Constants.imagesPath}/flutter_logo_white.svg',
               width: 40,
               height: 40,
             ),

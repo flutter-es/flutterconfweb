@@ -50,7 +50,7 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: SvgPicture.asset(
-                        '${Constants.imagesPath}/FlutterLogo_White.svg',
+                        '${Constants.imagesPath}/flutter_logo_white.svg',
                         width: 80,
                         height: 80,
                       ),
