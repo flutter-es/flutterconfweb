@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/styles.dart';
 
 class ScreenPage<T> extends Page<T> {
   const ScreenPage({required super.key, required this.child});
@@ -15,6 +17,7 @@ class ModalBottomPage<T> extends Page<T> {
   const ModalBottomPage({
     required super.key,
     required this.child,
+    this.isDismissible = true,
     this.showDragHandle = true,
     this.isScrollControlled = false,
     this.initialChildSize = .5,
@@ -25,6 +28,7 @@ class ModalBottomPage<T> extends Page<T> {
   });
 
   final Widget child;
+  final bool isDismissible;
   final bool showDragHandle;
   final bool isScrollControlled;
   final double initialChildSize;
@@ -36,6 +40,7 @@ class ModalBottomPage<T> extends Page<T> {
       settings: this,
       useSafeArea: true,
       clipBehavior: Clip.hardEdge,
+      isDismissible: isDismissible,
       showDragHandle: showDragHandle,
       backgroundColor: Colors.transparent,
       isScrollControlled: isScrollControlled,
@@ -44,9 +49,11 @@ class ModalBottomPage<T> extends Page<T> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (_) {
+        final Widget newChild;
+
         if (heightFactor == null) {
           if (isScrollControlled) {
-            return DraggableScrollableSheet(
+            newChild = DraggableScrollableSheet(
               expand: false,
               initialChildSize: initialChildSize,
               builder: (_, controller) {
@@ -56,10 +63,34 @@ class ModalBottomPage<T> extends Page<T> {
                 );
               },
             );
+          } else {
+            newChild = child;
           }
-          return child;
+        } else {
+          newChild = FractionallySizedBox(
+            heightFactor: heightFactor,
+            child: child,
+          );
         }
-        return FractionallySizedBox(heightFactor: heightFactor, child: child);
+
+        return Container(
+          margin: FlutterConfLatamStyles.xLargeMargin.copyWith(
+            left: 0,
+            right: 0,
+            bottom: 0,
+          ),
+          padding: const EdgeInsets.symmetric(
+            vertical: FlutterConfLatamStyles.largeSize,
+            horizontal: FlutterConfLatamStyles.mediumSize,
+          ),
+          decoration: const BoxDecoration(
+            color: FlutterLatamColors.white,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(FlutterConfLatamStyles.smallRadius),
+            ),
+          ),
+          child: newChild,
+        );
       },
     );
   }
@@ -86,7 +117,17 @@ class DialogPage<T> extends Page<T> {
         return FractionallySizedBox(
           widthFactor: 0.7,
           heightFactor: heightFactor,
-          child: child,
+          child: Container(
+            margin: FlutterConfLatamStyles.largeMargin,
+            padding: FlutterConfLatamStyles.bannerPadding,
+            decoration: BoxDecoration(
+              color: FlutterLatamColors.white,
+              borderRadius: BorderRadius.circular(
+                FlutterConfLatamStyles.smallRadius,
+              ),
+            ),
+            child: child,
+          ),
         );
       },
     );
