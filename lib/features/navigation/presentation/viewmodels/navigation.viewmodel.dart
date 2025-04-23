@@ -1,5 +1,5 @@
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/navigation/data/models/tab_navigation_item.dart';
-import 'package:flutter_conf_latam/features/shared/providers/shared_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NavigationViewModel extends StateNotifier<List<TabNavigationItem>> {
