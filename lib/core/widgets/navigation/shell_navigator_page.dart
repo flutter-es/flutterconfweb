@@ -28,7 +28,7 @@ class ShellNavigatorPage extends ConsumerWidget {
         );
 
         if (itemRoute != null && itemRoute.route.isNotEmpty) {
-          GoRouter.of(context).go(itemRoute.route);
+          context.go(itemRoute.route);
         }
       }
     });
