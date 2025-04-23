@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/features/sessions/data/models/session.metadata.model.dart';
-import 'package:flutter_conf_latam/features/sessions/data/models/session.model.dart';
-import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -80,19 +77,6 @@ class Utils {
     }
   }
 
-  static SessionModel? getSessionFromSlotId(
-    List<SessionModel> sessions,
-    int id,
-  ) {
-    SessionModel? session;
-
-    if (sessions.any((SessionModel s) => s.scheduleSlot == '1')) {
-      session = sessions.firstWhere((s) => s.scheduleSlot == id.toString());
-    }
-
-    return session;
-  }
-
   static Widget getTimeLabelHeader(
     BuildContext context,
     String label, {
@@ -112,31 +96,5 @@ class Utils {
         ),
       ],
     );
-  }
-
-  static List<SessionMetadataModel> buildMetadataListFromSession(
-    AppLocalizations appLoc,
-    SessionModel session,
-  ) {
-    return [
-      SessionMetadataModel(
-        label: appLoc.sessionLang,
-        value: session.language,
-        bgColor: Colors.blueAccent,
-        labelColor: Colors.white,
-      ),
-      SessionMetadataModel(
-        label: appLoc.sessionFormat,
-        value: session.format,
-        bgColor: Colors.greenAccent,
-        labelColor: Colors.black,
-      ),
-      SessionMetadataModel(
-        label: appLoc.sessionLevel,
-        value: session.level,
-        bgColor: Colors.orangeAccent,
-        labelColor: Colors.black,
-      ),
-    ];
   }
 }
