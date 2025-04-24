@@ -9,25 +9,11 @@ import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class MobileDrawerMenu extends ConsumerStatefulWidget {
+class MobileDrawerMenu extends ConsumerWidget {
   const MobileDrawerMenu({super.key});
 
   @override
-  MobileDrawerState createState() => MobileDrawerState();
-}
-
-class MobileDrawerState extends ConsumerState<MobileDrawerMenu> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(navigationViewmodelProvider.notifier).init();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final tabItems = ref.watch(navigationViewmodelProvider);
     final visibleTabItems = tabItems.where((item) => item.display).toList();
 
