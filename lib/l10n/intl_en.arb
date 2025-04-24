@@ -8,7 +8,14 @@
       }
     }
   },
-  "copyright": "© 2024 Flutter Conf Latam",
+  "copyright": "© {year} Flutter Conf Latam",
+  "@copyright": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
   "comingSoon": "COMING SOON!",
   "homeContainerMainTitle": "Asu mare! ¡FlutterConf Latam will be in Perú!",
   "homeContainerSubtitle": "Oe! Be ready for the largest Flutter conference in Latin America",
@@ -74,8 +81,7 @@
   "sponsorshipInKind": "In-Kind",
   "errorPageTitle": "Uh-oh, sorry!",
   "errorPageSubtitle": "It wasn't Dash's fault - I swear!",
-  "errorReturHomeButton": "Return Home",
-  "speakers": "Speakers",
+  "errorReturnHomeButton": "Return Home",
   "firstSpeakers": "Meet our first speakers!",
   "speakersSubtitle": "Introducing Our Stellar Lineup of Speakers!",
   "speakersPageTopParagraph": "We are thrilled to present the exceptional speakers who will be gracing the stage at Flutter Conf Latam 2024. Get ready to be inspired, educated, and entertained by these industry leaders and Flutter enthusiasts. Discover their expertise, topics, and the insightful talks they will be delivering at the event.",

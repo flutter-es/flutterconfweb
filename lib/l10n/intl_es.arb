@@ -8,7 +8,14 @@
       }
     }
   },
-  "copyright": "© 2024 Flutter Conf Latam",
+  "copyright": "© {year} Flutter Conf Latam",
+  "@copyright": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
   "comingSoon": "!VIENE PRONTO!",
   "homeContainerMainTitle": "¡Asu mare! ¡FlutterConf Latam en Perú!",
   "homeContainerSubtitle": "¡Oe! prepárate para la conferencia de Flutter más grande de Latinoamérica",
@@ -74,8 +81,7 @@
   "sponsorshipPackageLink": "https://firebasestorage.googleapis.com/v0/b/flutterconflatam-45e1f.appspot.com/o/documents%2FFlutter%20Conf%20LATAM%202024%20-%20Sponsorship%20Package.pdf?alt=media&token=3830b58d-a023-4301-bf50-41745c5251c0",
   "errorPageTitle": "¡Oh, disculpa!",
   "errorPageSubtitle": "¡No fue culpa de Dash, en serio!",
-  "errorReturHomeButton": "Volver al inicio",
-  "speakers": "Expositores",
+  "errorReturnHomeButton": "Volver al inicio",
   "firstSpeakers": "¡Conoce a nuestros primeros expositores!",
   "speakersSubtitle": "¡Presentamos nuestra línea estelar de expositores!",
   "speakersPageTopParagraph": "Estamos encantados de presentar a los expositores excepcionales que subirán al escenario en Flutter Conf Latam 2024. Prepárate para inspirarte, educarte y entretenerte con estos líderes de la industria y entusiastas de Flutter. Descubra su experiencia, temas y las charlas perspicaces que ofrecerán en el evento.",
