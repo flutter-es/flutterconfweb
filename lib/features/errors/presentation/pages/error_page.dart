@@ -62,7 +62,7 @@ class ErrorPage extends ConsumerWidget {
               onPressed: () => context.go(HomePage.route),
               child: Padding(
                 padding: FlutterConfLatamStyles.mediumPadding,
-                child: Text(l10n.errorReturHomeButton),
+                child: Text(l10n.errorReturnHomeButton),
               ),
             ),
           ],
