@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SocialMediaContainer extends ConsumerWidget {

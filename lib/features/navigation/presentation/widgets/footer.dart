@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/social_media_container.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -16,37 +16,6 @@ class Footer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appLoc = ref.watch(appLocalizationsProvider);
     final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
-    Widget socialNetworks() => const SocialMediaContainer();
-
-    Widget copyright() => Center(
-      child: Text(appLoc.copyright, style: const TextStyle(color: Colors.grey)),
-    );
-
-    Widget flutterConfLogo() => MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () {
-          ref
-              .read(navigationItemsProvider.notifier)
-              .selectNavItemFromRoute(HomePage.route);
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              FlutterConfLatamIcons.flutterConfLatamText,
-              size: 40,
-              color: Colors.white,
-            ),
-            const SizedBox(width: 15),
-            SizedBox.square(
-              dimension: 40,
-              child: SvgPicture.asset(Assets.images.flutterLogoWhite),
-            ),
-          ],
-        ),
-      ),
-    );
 
     return ColoredBox(
       color: Colors.black,
@@ -59,11 +28,41 @@ class Footer extends ConsumerWidget {
           direction: uiConfig.footerLayoutDirection,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (uiConfig.showLogoOnFooter) flutterConfLogo(),
+            if (uiConfig.showLogoOnFooter)
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () {
+                    ref
+                        .read(navigationViewmodelProvider.notifier)
+                        .selectNavItemFromRoute(HomePage.route);
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        FlutterConfLatamIcons.flutterConfLatamText,
+                        size: 40,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(width: 15),
+                      SizedBox.square(
+                        dimension: 40,
+                        child: SvgPicture.asset(Assets.images.flutterLogoWhite),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             uiConfig.footerItemsGap,
-            socialNetworks(),
+            const SocialMediaContainer(),
             uiConfig.footerItemsGap,
-            copyright(),
+            Center(
+              child: Text(
+                appLoc.copyright,
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ),
           ],
         ),
       ),

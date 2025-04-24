@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/item_drawer.dart';
 import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -20,13 +20,13 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(navigationItemsProvider.notifier).init();
+      ref.read(navigationViewmodelProvider.notifier).init();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final tabItems = ref.watch(navigationItemsProvider);
+    final tabItems = ref.watch(navigationViewmodelProvider);
     final visibleTabItems = tabItems.where((t) => t.display ?? false).toList();
 
     return Drawer(
@@ -44,7 +44,7 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
                     onTap: () {
                       Navigator.of(context).pop();
                       ref
-                          .read(navigationItemsProvider.notifier)
+                          .read(navigationViewmodelProvider.notifier)
                           .selectNavItemFromRoute(HomePage.route);
                     },
                     child: Padding(
@@ -67,7 +67,7 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
                       onTap: () {
                         Navigator.of(context).pop();
                         ref
-                            .read(navigationItemsProvider.notifier)
+                            .read(navigationViewmodelProvider.notifier)
                             .selectNavItem(visibleTabItems[i]);
                       },
                     ),

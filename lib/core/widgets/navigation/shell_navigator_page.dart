@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
+import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/footer.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/header.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/language_button.dart';
@@ -15,13 +15,11 @@ import 'package:go_router/go_router.dart';
 class ShellNavigatorPage extends ConsumerWidget {
   const ShellNavigatorPage({required this.child, super.key});
 
-  static const String route = '/main';
-
   final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(navigationItemsProvider, (_, value) {
+    ref.listen(navigationViewmodelProvider, (_, value) {
       if (value.isNotEmpty) {
         final itemRoute = value.singleWhereOrNull(
           (item) => item.isSelected ?? false,
@@ -41,7 +39,7 @@ class ShellNavigatorPage extends ConsumerWidget {
             child: InkWell(
               onTap: () {
                 ref
-                    .read(navigationItemsProvider.notifier)
+                    .read(navigationViewmodelProvider.notifier)
                     .selectNavItemFromRoute(HomePage.route);
               },
               child: SizedBox.square(
