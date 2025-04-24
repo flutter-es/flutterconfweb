@@ -1,8 +1,8 @@
 import 'package:flutter_conf_latam/core/services/web_local_storage_service.dart';
-import 'package:flutter_conf_latam/features/navigation/data/models/tab_navigation_item.dart';
+import 'package:flutter_conf_latam/features/navigation/data/models/navigation_item_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NavigationViewModel extends StateNotifier<List<TabNavigationItem>> {
+class NavigationViewModel extends StateNotifier<List<NavigationItemModel>> {
   NavigationViewModel(this.localStorageService, super.items);
 
   final WebLocalStorageService localStorageService;
@@ -25,7 +25,7 @@ class NavigationViewModel extends StateNotifier<List<TabNavigationItem>> {
     );
   }
 
-  void selectNavItem(TabNavigationItem item) {
+  void selectNavItem(NavigationItemModel item) {
     state = [
       for (final element in state)
         element.copyWith(isSelected: item == element),

@@ -1,5 +1,5 @@
-class TabNavigationItem {
-  const TabNavigationItem({
+class NavigationItemModel {
+  const NavigationItemModel({
     required this.label,
     required this.route,
     this.isSelected = false,
@@ -8,16 +8,16 @@ class TabNavigationItem {
 
   final String label;
   final String route;
-  final bool? isSelected;
-  final bool? display;
+  final bool isSelected;
+  final bool display;
 
-  TabNavigationItem copyWith({
+  NavigationItemModel copyWith({
     String? label,
     String? route,
     bool? isSelected,
     bool? display,
   }) {
-    return TabNavigationItem(
+    return NavigationItemModel(
       label: label ?? this.label,
       route: route ?? this.route,
       isSelected: isSelected ?? this.isSelected,

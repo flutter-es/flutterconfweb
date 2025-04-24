@@ -1,4 +1,4 @@
-import 'package:flutter_conf_latam/features/navigation/data/models/social_media.model.dart';
+import 'package:flutter_conf_latam/features/navigation/data/models/social_media_model.dart';
 import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 
 class SocialMediaRepository {

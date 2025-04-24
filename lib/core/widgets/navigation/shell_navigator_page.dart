@@ -21,10 +21,7 @@ class ShellNavigatorPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(navigationViewmodelProvider, (_, value) {
       if (value.isNotEmpty) {
-        final itemRoute = value.singleWhereOrNull(
-          (item) => item.isSelected ?? false,
-        );
-
+        final itemRoute = value.singleWhereOrNull((item) => item.isSelected);
         if (itemRoute != null && itemRoute.route.isNotEmpty) {
           context.go(itemRoute.route);
         }

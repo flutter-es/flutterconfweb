@@ -32,7 +32,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
     final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
 
     final tabItems = ref.watch(navigationViewmodelProvider);
-    final visibleTabItems = tabItems.where((t) => t.display ?? false).toList();
+    final visibleTabItems = tabItems.where((item) => item.display).toList();
 
     return SliverAppBar(
       backgroundColor: Colors.white,
@@ -110,7 +110,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                       tabItem.label,
                       style: TextStyle(
                         color:
-                            tabItem.isSelected!
+                            tabItem.isSelected
                                 ? FlutterLatamColors.darkBlue
                                 : Colors.grey,
                       ),
