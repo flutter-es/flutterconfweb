@@ -33,20 +33,37 @@ dependencies:
   shared_preferences: ^2.5.3
   timezone: ^0.10.0
   url_launcher: ^6.1.11
+  vector_graphics: ^1.1.18
 
 dev_dependencies:
+  build_runner: ^2.4.15
+  flutter_gen_runner: ^5.10.0
   flutter_test:
     sdk: flutter
+  vector_graphics_compiler: ^1.1.16
   very_good_analysis: ^7.0.0
 
+flutter_gen:
+  output: lib/styles/generated/
+  line_length: 80
+
+  integrations:
+    flutter_svg: false
+    image: false
+    rive: false
+
+  fonts:
+    enabled: false
+
 flutter:
-  generate: true
   uses-material-design: true
+  generate: true
+
   assets:
-    - assets/
+    - assets/animations/
     - assets/images/
     - assets/images/sponsors/
-    - assets/animations/
+
   fonts:
     - family: FlutterConfLatamIcons
       fonts:
