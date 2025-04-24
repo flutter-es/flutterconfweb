@@ -19,15 +19,6 @@ class Header extends ConsumerStatefulWidget {
 
 class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
   @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(navigationViewmodelProvider.notifier).init();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
 
