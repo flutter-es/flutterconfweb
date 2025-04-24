@@ -74,7 +74,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                             .selectNavItemFromRoute(HomePage.route);
                       },
                       child: const FlutterRiveAnimated(
-                        path: './assets/anims/flutterconflogo.riv',
+                        path: './assets/animations/flutterconflogo.riv',
                         animation: FlutterConfAnimations.flutterConfLogo,
                       ),
                     ),

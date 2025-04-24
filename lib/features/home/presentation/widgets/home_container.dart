@@ -85,7 +85,7 @@ class HomeContainer extends ConsumerWidget {
                         height: uiConfig.dashSize,
                         width: uiConfig.dashSize,
                         child: const FlutterRiveAnimated(
-                          path: './assets/anims/flutterdash.riv',
+                          path: './assets/animations/flutterdash.riv',
                           animation: FlutterConfAnimations.flutterDashWave,
                         ),
                       ),

@@ -28,7 +28,7 @@ class ErrorPage extends ConsumerWidget {
             SizedBox.square(
               dimension: responsiveConfig.dashDimensions,
               child: const FlutterRiveAnimated(
-                path: './assets/anims/flutter_warning.riv',
+                path: './assets/animations/flutter_warning.riv',
                 animation: FlutterConfAnimations.flutterWarning,
               ),
             ),

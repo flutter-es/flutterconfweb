@@ -34,7 +34,7 @@ class WipContainer extends StatelessWidget {
               width: 500,
               height: 500,
               child: FlutterRiveAnimated(
-                path: './assets/anims/flutterdash.riv',
+                path: './assets/animations/flutterdash.riv',
                 animation: FlutterConfAnimations.flutterDashConst,
               ),
             ),

@@ -41,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
         child: SizedBox.square(
           dimension: 200,
           child: FlutterRiveAnimated(
-            path: './assets/anims/flutterconflogo.riv',
+            path: './assets/animations/flutterconflogo.riv',
             animation: FlutterConfAnimations.flutterLogo,
           ),
         ),
