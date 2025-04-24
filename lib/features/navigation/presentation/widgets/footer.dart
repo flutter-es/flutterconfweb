@@ -3,9 +3,9 @@ import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.da
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/social_media_container.dart';
-import 'package:flutter_conf_latam/helpers/constants.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -39,10 +39,9 @@ class Footer extends ConsumerWidget {
               color: Colors.white,
             ),
             const SizedBox(width: 15),
-            SvgPicture.asset(
-              '${Constants.imagesPath}/flutter_logo_white.svg',
-              width: 40,
-              height: 40,
+            SizedBox.square(
+              dimension: 40,
+              child: SvgPicture.asset(Assets.images.flutterLogoWhite),
             ),
           ],
         ),

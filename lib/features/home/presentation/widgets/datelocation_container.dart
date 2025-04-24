@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
 import 'package:flutter_conf_latam/features/home/presentation/responsiveness/datelocation_responsive_config.dart';
-import 'package:flutter_conf_latam/helpers/constants.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,9 +16,9 @@ class DateLocationContainer extends ConsumerWidget {
     );
 
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('${Constants.imagesPath}/medellin.jpg'),
+          image: AssetImage(Assets.images.medellin),
           fit: BoxFit.cover,
         ),
       ),

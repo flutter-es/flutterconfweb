@@ -7,7 +7,7 @@ import 'package:flutter_conf_latam/features/navigation/presentation/widgets/foot
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/header.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/mobile_drawer.dart';
-import 'package:flutter_conf_latam/helpers/constants.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -46,9 +46,7 @@ class ShellNavigatorPage extends ConsumerWidget {
               },
               child: SizedBox.square(
                 dimension: 40,
-                child: SvgPicture.asset(
-                  '${Constants.imagesPath}/flutter_logo_color.svg',
-                ),
+                child: SvgPicture.asset(Assets.images.flutterLogoColor),
               ),
             ),
           ),

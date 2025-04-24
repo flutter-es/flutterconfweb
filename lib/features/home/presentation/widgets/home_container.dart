@@ -5,8 +5,8 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
 import 'package:flutter_conf_latam/features/home/presentation/responsiveness/home_section_responsive_config.dart';
-import 'package:flutter_conf_latam/helpers/constants.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeContainer extends ConsumerWidget {
@@ -33,7 +33,7 @@ class HomeContainer extends ConsumerWidget {
             child: Opacity(
               opacity: 0.5,
               child: Image.asset(
-                '${Constants.imagesPath}/topbanner.jpg',
+                Assets.images.topbanner,
                 fit: BoxFit.cover,
               ),
             ),
@@ -77,15 +77,14 @@ class HomeContainer extends ConsumerWidget {
                 child: Stack(
                   children: [
                     Positioned(
+                      top: 0,
+                      left: 0,
                       right: 0,
                       bottom: uiConfig.dashBottomOffset,
-                      left: 0,
-                      top: 0,
-                      child: SizedBox(
-                        height: uiConfig.dashSize,
-                        width: uiConfig.dashSize,
-                        child: const FlutterRiveAnimated(
-                          path: './assets/animations/flutterdash.riv',
+                      child: SizedBox.square(
+                        dimension: uiConfig.dashSize,
+                        child: FlutterRiveAnimated(
+                          path: Assets.animations.flutterdash,
                           animation: FlutterConfAnimations.flutterDashWave,
                         ),
                       ),

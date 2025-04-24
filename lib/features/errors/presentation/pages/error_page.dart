@@ -4,6 +4,7 @@ import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -27,8 +28,8 @@ class ErrorPage extends ConsumerWidget {
           children: <Widget>[
             SizedBox.square(
               dimension: responsiveConfig.dashDimensions,
-              child: const FlutterRiveAnimated(
-                path: './assets/animations/flutter_warning.riv',
+              child: FlutterRiveAnimated(
+                path: Assets.animations.flutterWarning,
                 animation: FlutterConfAnimations.flutterWarning,
               ),
             ),

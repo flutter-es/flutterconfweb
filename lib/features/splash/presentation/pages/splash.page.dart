@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -36,12 +37,12 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: SizedBox.square(
           dimension: 200,
           child: FlutterRiveAnimated(
-            path: './assets/animations/flutterconflogo.riv',
+            path: Assets.animations.flutterconflogo,
             animation: FlutterConfAnimations.flutterLogo,
           ),
         ),

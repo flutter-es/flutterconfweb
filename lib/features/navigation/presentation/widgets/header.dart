@@ -7,6 +7,7 @@ import 'package:flutter_conf_latam/features/navigation/presentation/providers/na
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/language_button.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Header extends ConsumerStatefulWidget {
@@ -73,8 +74,8 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                             .read(navigationItemsProvider.notifier)
                             .selectNavItemFromRoute(HomePage.route);
                       },
-                      child: const FlutterRiveAnimated(
-                        path: './assets/animations/flutterconflogo.riv',
+                      child: FlutterRiveAnimated(
+                        path: Assets.animations.flutterconflogo,
                         animation: FlutterConfAnimations.flutterConfLogo,
                       ),
                     ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 
 class WipContainer extends StatelessWidget {
   const WipContainer({super.key});
@@ -30,11 +31,10 @@ class WipContainer extends StatelessWidget {
           Transform(
             alignment: Alignment.center,
             transform: Matrix4.rotationY(math.pi),
-            child: const SizedBox(
-              width: 500,
-              height: 500,
+            child: SizedBox.square(
+              dimension: 500,
               child: FlutterRiveAnimated(
-                path: './assets/animations/flutterdash.riv',
+                path: Assets.animations.flutterdash,
                 animation: FlutterConfAnimations.flutterDashConst,
               ),
             ),

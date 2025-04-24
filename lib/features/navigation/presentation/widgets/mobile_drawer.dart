@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_providers.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/widgets/item_drawer.dart';
-import 'package:flutter_conf_latam/helpers/constants.dart';
 import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -49,10 +49,9 @@ class MobileDrawerState extends ConsumerState<MobileDrawer> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8),
-                      child: SvgPicture.asset(
-                        '${Constants.imagesPath}/flutter_logo_white.svg',
-                        width: 80,
-                        height: 80,
+                      child: SizedBox.square(
+                        dimension: 80,
+                        child: SvgPicture.asset(Assets.images.flutterLogoWhite),
                       ),
                     ),
                   ),
