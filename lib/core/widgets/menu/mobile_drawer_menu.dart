@@ -9,14 +9,14 @@ import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class MobileDrawer extends ConsumerStatefulWidget {
-  const MobileDrawer({super.key});
+class MobileDrawerMenu extends ConsumerStatefulWidget {
+  const MobileDrawerMenu({super.key});
 
   @override
   MobileDrawerState createState() => MobileDrawerState();
 }
 
-class MobileDrawerState extends ConsumerState<MobileDrawer> {
+class MobileDrawerState extends ConsumerState<MobileDrawerMenu> {
   @override
   void initState() {
     super.initState();
