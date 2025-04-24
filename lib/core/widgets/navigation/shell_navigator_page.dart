@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
@@ -10,15 +9,30 @@ import 'package:flutter_conf_latam/features/navigation/presentation/widgets/head
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
-class ShellNavigatorPage extends ConsumerWidget {
+class ShellNavigatorPage extends ConsumerStatefulWidget {
   const ShellNavigatorPage({required this.child, super.key});
 
   final Widget child;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ShellNavigatorPage> createState() => _ShellNavigatorPageState();
+}
+
+class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(navigationViewmodelProvider.notifier).init();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO(FV): Review this
+    /*
     ref.listen(navigationViewmodelProvider, (_, value) {
       if (value.isNotEmpty) {
         final itemRoute = value.singleWhereOrNull((item) => item.isSelected);
@@ -27,6 +41,7 @@ class ShellNavigatorPage extends ConsumerWidget {
         }
       }
     });
+    */
 
     return Scaffold(
       appBar: switch (context.isMobileFromResponsive) {
@@ -58,7 +73,10 @@ class ShellNavigatorPage extends ConsumerWidget {
                 return [if (!context.isMobileFromResponsive) const Header()];
               },
               body: Column(
-                children: <Widget>[Expanded(child: child), const Footer()],
+                children: <Widget>[
+                  Expanded(child: widget.child),
+                  const Footer(),
+                ],
               ),
             ),
           ),
