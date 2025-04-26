@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/datelocation_container.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/event_features_container.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_container.dart';
-import 'package:flutter_conf_latam/core/widgets/container/wip_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
