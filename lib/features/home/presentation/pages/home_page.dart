@@ -33,7 +33,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             HomeContainer(),
             const DateLocationContainer(),
             const EventFeaturesContainer(),
-            const WipContainer(),
           ]),
         ),
       ],
