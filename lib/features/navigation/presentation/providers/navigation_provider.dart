@@ -5,22 +5,14 @@ import 'package:flutter_conf_latam/features/navigation/data/repositories/social_
 import 'package:flutter_conf_latam/features/navigation/presentation/view_model/navigation_viewmodel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final socialMediaRepositoryProvider = Provider((ref) {
-  return SocialMediaRepository();
-});
-
-final socialMediaProvider = Provider((ref) {
-  return ref.read(socialMediaRepositoryProvider).getSocialMedia();
-});
-
-final navigationRepositoryProvider = Provider((ref) {
-  return NavigationRepository(ref);
+final socialMediaProvider = Provider((_) {
+  return SocialMediaRepository().getSocialMedia();
 });
 
 final navigationViewmodelProvider =
     StateNotifierProvider<NavigationViewModel, List<NavigationItemModel>>((
       ref,
     ) {
-      final items = ref.watch(navigationRepositoryProvider).getNavigation();
+      final items = NavigationRepository(ref).getNavigation();
       return NavigationViewModel(ref.watch(webLocalStorageProvider), items);
     });
