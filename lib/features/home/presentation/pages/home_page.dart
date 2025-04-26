@@ -1,6 +1,9 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/datelocation_container.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/event_features_container.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_container.dart';
+import 'package:flutter_conf_latam/core/widgets/container/wip_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -23,13 +26,14 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final sections = ref.watch(homeSectionsProvider);
-
     return CustomScrollView(
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
-            ...sections.map((e) => e.builder(context)),
+            HomeContainer(),
+            const DateLocationContainer(),
+            const EventFeaturesContainer(),
+            const WipContainer(),
           ]),
         ),
       ],

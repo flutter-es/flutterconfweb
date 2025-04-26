@@ -12,11 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class HomeContainer extends ConsumerWidget {
   HomeContainer({super.key});
 
-  static double height = 700;
-
-  static const title = 'home_container';
-
-  final analytics = FirebaseAnalytics.instance;
+  final _analytics = FirebaseAnalytics.instance;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,19 +24,16 @@ class HomeContainer extends ConsumerWidget {
     return SizedBox(
       height: uiConfig.bannerHeight,
       child: Stack(
-        children: [
+        children: <Widget>[
           Positioned.fill(
             child: Opacity(
-              opacity: 0.5,
-              child: Image.asset(
-                Assets.images.topbanner,
-                fit: BoxFit.cover,
-              ),
+              opacity: .5,
+              child: Image.asset(Assets.images.topbanner, fit: BoxFit.cover),
             ),
           ),
           Flex(
             direction: uiConfig.layoutDirection,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -50,7 +43,7 @@ class HomeContainer extends ConsumerWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: uiConfig.titleAlignment,
-                    children: [
+                    children: <Widget>[
                       Text(
                         homeContainerData.title,
                         textAlign: uiConfig.textAlign,
@@ -75,11 +68,8 @@ class HomeContainer extends ConsumerWidget {
               ),
               Expanded(
                 child: Stack(
-                  children: [
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
+                  children: <Widget>[
+                    Positioned.fill(
                       bottom: uiConfig.dashBottomOffset,
                       child: SizedBox.square(
                         dimension: uiConfig.dashSize,
@@ -100,7 +90,7 @@ class HomeContainer extends ConsumerWidget {
   }
 
   void clickCFP(String url) {
-    analytics.logEvent(name: 'click_cfp');
+    _analytics.logEvent(name: 'click_cfp');
     Utils.launchUrlLink(url);
   }
 }

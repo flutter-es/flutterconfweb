@@ -9,16 +9,13 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 class WipContainer extends StatelessWidget {
   const WipContainer({super.key});
 
-  static double height = 600;
-  static const title = 'tickets_container';
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      height: 600,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [
+          colors: <Color>[
             FlutterLatamColors.ticketBgTopColor,
             FlutterLatamColors.ticketBgBottomColor,
           ],
@@ -27,7 +24,8 @@ class WipContainer extends StatelessWidget {
         ),
       ),
       child: Row(
-        children: [
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
           Transform(
             alignment: Alignment.center,
             transform: Matrix4.rotationY(math.pi),
