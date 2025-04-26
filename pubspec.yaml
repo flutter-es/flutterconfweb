@@ -68,6 +68,22 @@ flutter:
     - family: FlutterConfLatamIcons
       fonts:
         - asset: assets/iconfonts/FlutterConfLatamIcons.ttf
+    - family: Recoleta
+      fonts:
+        - asset: assets/fonts/Recoleta/Recoleta-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Recoleta/Recoleta-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Recoleta/Recoleta-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Recoleta/Recoleta-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Recoleta/Recoleta-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Recoleta/Recoleta-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Recoleta/Recoleta-Thin.ttf
+          weight: 100
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins/Poppins-Black.ttf
