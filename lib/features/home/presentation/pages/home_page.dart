@@ -1,9 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/features/home/data/models/home_section.dart';
-import 'package:flutter_conf_latam/features/home/data/models/tab_section.dart';
 import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/custom_tab_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -15,29 +12,21 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage>
-    with TickerProviderStateMixin {
-  late CustomTabController tabController;
-  late List<HomeSection> sections;
-  late List<TabSection> tabSections;
-
-  bool isScrolled = false;
-
+class _HomePageState extends ConsumerState<HomePage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override
   void initState() {
-    analytics.logScreenView(screenName: 'home_page');
-
     super.initState();
+    analytics.logScreenView(screenName: 'home_page');
   }
 
   @override
   Widget build(BuildContext context) {
-    sections = ref.watch(homeSectionsProvider);
+    final sections = ref.watch(homeSectionsProvider);
 
     return CustomScrollView(
-      slivers: [
+      slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
             ...sections.map((e) => e.builder(context)),
