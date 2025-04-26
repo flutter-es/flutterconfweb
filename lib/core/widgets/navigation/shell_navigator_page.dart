@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
+import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/core/widgets/container/header.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/widgets/footer.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/widgets/header.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';

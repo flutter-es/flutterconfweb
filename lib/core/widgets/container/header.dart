@@ -3,7 +3,6 @@ import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/custom_tab_controller.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
@@ -26,38 +25,33 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
     final visibleTabItems = tabItems.where((item) => item.display).toList();
 
     return SliverAppBar(
-      backgroundColor: Colors.white,
       pinned: true,
       elevation: 0,
-      expandedHeight: uiConfig.maxHeaderHeight,
       collapsedHeight: kToolbarHeight,
-      flexibleSpace: Stack(
-        children: [
-          Positioned(
-            left: 50,
-            top: 0,
-            bottom: 0,
+      expandedHeight: uiConfig.maxHeaderHeight,
+      flexibleSpace: Row(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 50),
             child: LayoutBuilder(
               builder: (_, constraint) {
-                final currentHeight = constraint.maxHeight;
+                const maxPadding = 20.8;
                 final currentWidth =
-                    currentHeight *
+                    constraint.maxHeight *
                     uiConfig.logoHeight /
                     uiConfig.maxHeaderHeight;
 
-                const maxPadding = 20.8;
-
                 final percent =
-                    (currentHeight - kToolbarHeight) *
+                    (constraint.maxHeight - kToolbarHeight) *
                     100 /
                     (uiConfig.maxHeaderHeight - kToolbarHeight);
 
-                final left = maxPadding - (maxPadding * percent / 100);
-
                 return Container(
-                  margin: EdgeInsets.only(left: left.abs()),
+                  margin: EdgeInsets.only(
+                    left: (maxPadding - (maxPadding * percent / 100)).abs(),
+                  ),
                   width: currentWidth,
-                  height: currentHeight,
+                  height: constraint.maxHeight,
                   child: MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
@@ -76,41 +70,41 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
               },
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
+          Expanded(
             child: TabBar(
               onTap: (index) {
                 ref
                     .read(navigationViewmodelProvider.notifier)
                     .selectNavItem(visibleTabItems[index]);
               },
-              controller:
-                  CustomTabController(
-                    length: visibleTabItems.length,
-                    vsync: this,
-                  ).build(),
+              controller: TabController(
+                length: visibleTabItems.length,
+                vsync: this,
+              ),
+              tabAlignment: TabAlignment.start,
               isScrollable: true,
               indicatorWeight: 1,
-              indicatorColor: Colors.white,
+              dividerColor: Colors.transparent,
               labelColor: FlutterLatamColors.darkBlue,
-              unselectedLabelColor: Colors.grey,
-              tabs: [
+              indicatorColor: FlutterLatamColors.white,
+              unselectedLabelColor: FlutterLatamColors.silver,
+              tabs: <Widget>[
                 for (final tabItem in visibleTabItems)
                   Tab(
                     child: Text(
                       tabItem.label,
                       style: TextStyle(
-                        color:
-                            tabItem.isSelected
-                                ? FlutterLatamColors.darkBlue
-                                : Colors.grey,
+                        color: switch (tabItem.isSelected) {
+                          true => FlutterLatamColors.darkBlue,
+                          false => FlutterLatamColors.silver,
+                        },
                       ),
                     ),
                   ),
               ],
             ),
           ),
-          const Align(alignment: Alignment.topRight, child: LanguageButton()),
+          const LanguageButton(),
         ],
       ),
     );
