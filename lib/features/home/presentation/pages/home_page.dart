@@ -1,8 +1,8 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/datelocation_container.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/event_features_container.dart';
+import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_container.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -30,8 +30,12 @@ class _HomePageState extends ConsumerState<HomePage> {
         SliverList(
           delegate: SliverChildListDelegate([
             HomeContainer(),
-            const DateLocationContainer(),
-            const EventFeaturesContainer(),
+            const Divider(
+              indent: 120,
+              endIndent: 120,
+              color: FlutterLatamColors.white,
+            ),
+            const Footer(),
           ]),
         ),
       ],

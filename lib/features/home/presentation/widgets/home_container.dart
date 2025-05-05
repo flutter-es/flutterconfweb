@@ -1,10 +1,8 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
-import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
-import 'package:flutter_conf_latam/features/home/presentation/providers/home_providers.dart';
-import 'package:flutter_conf_latam/features/home/presentation/responsiveness/home_section_responsive_config.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/count_down_text.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,75 +14,89 @@ class HomeContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final homeContainerData = ref.watch(homeContainerDataProvider);
-    final uiConfig = HomeSectionResponsiveConfig.getHomeSectionBannerConfig(
-      context,
-    );
+    // final homeContainerData = ref.watch(homeContainerDataProvider);
+    // final uiConfig = HomeSectionResponsiveConfig.getHomeSectionBannerConfig(
+    //   context,
+    // );
 
-    return SizedBox(
-      height: uiConfig.bannerHeight,
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-            child: Opacity(
-              opacity: .5,
-              child: Image.asset(Assets.images.topbanner, fit: BoxFit.cover),
-            ),
-          ),
-          Flex(
-            direction: uiConfig.layoutDirection,
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: uiConfig.sectionPadding,
-                    vertical: uiConfig.sectionPadding,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: uiConfig.titleAlignment,
-                    children: <Widget>[
-                      Text(
-                        homeContainerData.title,
-                        textAlign: uiConfig.textAlign,
-                        style: TextStyle(
-                          height: 1,
-                          color: FlutterLatamColors.blueText,
-                          fontSize: uiConfig.titleSize,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        homeContainerData.content,
-                        textAlign: uiConfig.textAlign,
-                        style: TextStyle(
-                          color: FlutterLatamColors.blueText,
-                          fontSize: uiConfig.subtitleSize,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      bottom: uiConfig.dashBottomOffset,
-                      child: SizedBox.square(
-                        dimension: uiConfig.dashSize,
-                        child: FlutterRiveAnimated(
-                          path: Assets.animations.flutterdash,
-                          animation: FlutterConfAnimations.flutterDashWave,
-                        ),
-                      ),
+    return ColoredBox(
+      color: FlutterLatamColors.mainBlue,
+      child: SizedBox(
+        height: 1550,
+        child: Column(
+          spacing: 96,
+          children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.only(top: 48),
+              child: Column(
+                spacing: 24,
+                children: <Widget>[
+                  Text(
+                    'FlutterConfLatam 2025\nQuito - Ecuador',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      height: 1,
+                      color: FlutterLatamColors.white,
+                      fontFamily: 'Recoleta',
+                      fontSize: 64,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
+                  ),
+                  Text(
+                    '9 y 10 de Septiembre',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w400,
+                      color: FlutterLatamColors.white,
+                      fontSize: 40,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Center(
+              child: SizedBox.fromSize(
+                size: const Size(760, 750),
+                child: DecoratedBox(
+                  decoration: const BoxDecoration(
+                    gradient: RadialGradient(
+                      colors: [Color(0xFF2582C4), FlutterLatamColors.mainBlue],
+                      stops: [0.4, 1],
+                    ),
+                  ),
+                  child: Image.asset(Assets.images.ecuaDash),
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+            RichText(
+              text: TextSpan(
+                text: '¡La experiencia Flutter te espera en la ',
+                children: <InlineSpan>[
+                  TextSpan(
+                    text: 'Mitad del Mundo',
+                    style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                      decorationColor: FlutterLatamColors.white,
+                    ),
+                    recognizer: TapGestureRecognizer()..onTap = () {},
+                  ),
+                  const TextSpan(text: '!'),
+                ],
+                style: const TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400,
+                  color: FlutterLatamColors.white,
+                  fontSize: 40,
+                ),
+              ),
+            ),
+            CountDownText(
+              startDate: DateTime.now(),
+              endDate: DateTime(2025, 9, 10),
+            ),
+          ],
+        ),
       ),
     );
   }
