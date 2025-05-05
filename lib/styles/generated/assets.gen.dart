@@ -26,31 +26,35 @@ class $AssetsAnimationsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/ecua_dash.png
+  String get ecuaDash => 'assets/images/ecua_dash.png';
+
+  /// File path: assets/images/fcl_ec_footer_logo.png
+  String get fclEcFooterLogo => 'assets/images/fcl_ec_footer_logo.png';
+
+  /// File path: assets/images/fcl_ec_logo.svg
+  String get fclEcLogo => 'assets/images/fcl_ec_logo.svg';
+
+  /// File path: assets/images/fcl_ec_main_logo.png
+  String get fclEcMainLogo => 'assets/images/fcl_ec_main_logo.png';
+
   /// File path: assets/images/fcl_text_white.svg
   String get fclTextWhite => 'assets/images/fcl_text_white.svg';
-
-  /// File path: assets/images/flutter_logo_color.svg
-  String get flutterLogoColor => 'assets/images/flutter_logo_color.svg';
 
   /// File path: assets/images/flutter_logo_white.svg
   String get flutterLogoWhite => 'assets/images/flutter_logo_white.svg';
 
-  /// File path: assets/images/medellin.jpg
-  String get medellin => 'assets/images/medellin.jpg';
-
   /// Directory path: assets/images/sponsors
   $AssetsImagesSponsorsGen get sponsors => const $AssetsImagesSponsorsGen();
 
-  /// File path: assets/images/topbanner.jpg
-  String get topbanner => 'assets/images/topbanner.jpg';
-
   /// List of all assets
   List<String> get values => [
+    ecuaDash,
+    fclEcFooterLogo,
+    fclEcLogo,
+    fclEcMainLogo,
     fclTextWhite,
-    flutterLogoColor,
     flutterLogoWhite,
-    medellin,
-    topbanner,
   ];
 }
 
