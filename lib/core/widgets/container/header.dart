@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/enums/enums.dart';
-import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
-import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
@@ -29,46 +26,27 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
       elevation: 0,
       collapsedHeight: kToolbarHeight,
       expandedHeight: uiConfig.maxHeaderHeight,
+      backgroundColor: FlutterLatamColors.mainBlue,
       flexibleSpace: Row(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 50),
-            child: LayoutBuilder(
-              builder: (_, constraint) {
-                const maxPadding = 20.8;
-                final currentWidth =
-                    constraint.maxHeight *
-                    uiConfig.logoHeight /
-                    uiConfig.maxHeaderHeight;
-
-                final percent =
-                    (constraint.maxHeight - kToolbarHeight) *
-                    100 /
-                    (uiConfig.maxHeaderHeight - kToolbarHeight);
-
-                return Container(
-                  margin: EdgeInsets.only(
-                    left: (maxPadding - (maxPadding * percent / 100)).abs(),
+          LayoutBuilder(
+            builder: (_, constraint) {
+              return Container(
+                margin: const EdgeInsets.only(left: 20),
+                height: constraint.maxHeight,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      ref
+                          .read(navigationViewmodelProvider.notifier)
+                          .selectNavItemFromRoute(HomePage.route);
+                    },
+                    child: Image.asset(Assets.images.fclEcMainLogo),
                   ),
-                  width: currentWidth,
-                  height: constraint.maxHeight,
-                  child: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        ref
-                            .read(navigationViewmodelProvider.notifier)
-                            .selectNavItemFromRoute(HomePage.route);
-                      },
-                      child: FlutterRiveAnimated(
-                        path: Assets.animations.flutterconflogo,
-                        animation: FlutterConfAnimations.flutterConfLogo,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
           Expanded(
             child: TabBar(
@@ -104,7 +82,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
               ],
             ),
           ),
-          const LanguageButton(),
+          // const LanguageButton(),
         ],
       ),
     );

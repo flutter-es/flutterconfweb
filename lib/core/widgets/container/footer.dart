@@ -5,11 +5,9 @@ import 'package:flutter_conf_latam/features/navigation/presentation/providers/na
 import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
-import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Footer extends ConsumerWidget {
   const Footer({super.key});
@@ -22,12 +20,9 @@ class Footer extends ConsumerWidget {
     final socialMediaList = ref.watch(socialMediaProvider);
 
     return ColoredBox(
-      color: FlutterLatamColors.black,
+      color: FlutterLatamColors.mainBlue,
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: uiConfig.footerPadding,
-          vertical: uiConfig.footerPadding,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 64),
         child: Flex(
           direction: uiConfig.footerLayoutDirection,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,29 +34,13 @@ class Footer extends ConsumerWidget {
               children: <Widget>[
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
+                  child: InkWell(
                     onTap: () {
                       ref
                           .read(navigationViewmodelProvider.notifier)
                           .selectNavItemFromRoute(HomePage.route);
                     },
-                    child: Row(
-                      spacing: 15,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        const Icon(
-                          FlutterConfLatamIcons.flutterConfLatamText,
-                          color: FlutterLatamColors.white,
-                          size: 40,
-                        ),
-                        SizedBox.square(
-                          dimension: 40,
-                          child: SvgPicture.asset(
-                            Assets.images.flutterLogoWhite,
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: Image.asset(Assets.images.fclEcFooterLogo),
                   ),
                 ),
                 Row(
@@ -74,7 +53,7 @@ class Footer extends ConsumerWidget {
                         child: Icon(
                           social.icon,
                           size: 20,
-                          color: FlutterLatamColors.white.withValues(alpha: .5),
+                          color: FlutterLatamColors.white,
                         ),
                       ),
                   ],
