@@ -7,7 +7,6 @@ import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 
 class MobileDrawerMenu extends ConsumerWidget {
   const MobileDrawerMenu({super.key});
@@ -18,7 +17,7 @@ class MobileDrawerMenu extends ConsumerWidget {
     final visibleTabItems = tabItems.where((item) => item.display).toList();
 
     return Drawer(
-      backgroundColor: FlutterLatamColors.lightBlue,
+      backgroundColor: FlutterLatamColors.mainBlue,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
         child: Column(
@@ -37,10 +36,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                           .read(navigationViewmodelProvider.notifier)
                           .selectNavItemFromRoute(HomePage.route);
                     },
-                    child: SizedBox.square(
-                      dimension: 80,
-                      child: SvgPicture.asset(Assets.images.flutterLogoWhite),
-                    ),
+                    child: Image.asset(Assets.images.fclEcMainLogo),
                   ),
                 ),
               ),
