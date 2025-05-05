@@ -18,4 +18,8 @@ class FlutterLatamColors {
   static const Color gold = Color(0xFFF7B900);
   static const Color silver = Color(0xFFBABABA);
   static const Color bronze = Color(0xFFA03913);
+
+  // NEW
+
+  static const Color mainBlue = Color(0xFF042B59);
 }
