@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
-import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/core/widgets/container/header.dart';
-import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ShellNavigatorPage extends ConsumerStatefulWidget {
   const ShellNavigatorPage({required this.child, super.key});
@@ -44,27 +42,32 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
     */
 
     return Scaffold(
+      backgroundColor: FlutterLatamColors.mainBlue,
       appBar: switch (context.isMobileFromResponsive) {
         true => AppBar(
-          title: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: InkWell(
-              onTap: () {
-                ref
-                    .read(navigationViewmodelProvider.notifier)
-                    .selectNavItemFromRoute(HomePage.route);
-              },
-              child: SizedBox.square(
-                dimension: 40,
-                child: SvgPicture.asset(Assets.images.flutterLogoColor),
+          backgroundColor: FlutterLatamColors.mainBlue,
+          leadingWidth: 90,
+          leading: Padding(
+            padding: const EdgeInsets.all(8),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: InkWell(
+                onTap: () {
+                  ref
+                      .read(navigationViewmodelProvider.notifier)
+                      .selectNavItemFromRoute(HomePage.route);
+                },
+                child: Image.asset(Assets.images.fclEcMainLogo),
               ),
             ),
           ),
-          actions: const [LanguageButton()],
         ),
         false => null,
       },
-      drawer: context.isMobileFromResponsive ? const MobileDrawerMenu() : null,
+      endDrawer: switch (context.isMobileFromResponsive) {
+        true => const MobileDrawerMenu(),
+        false => null,
+      },
       body: Column(
         children: <Widget>[
           Expanded(
@@ -72,12 +75,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
               headerSliverBuilder: (_, __) {
                 return [if (!context.isMobileFromResponsive) const Header()];
               },
-              body: Column(
-                children: <Widget>[
-                  Expanded(child: widget.child),
-                  const Footer(),
-                ],
-              ),
+              body: widget.child,
             ),
           ),
         ],
