@@ -1,16 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-enum ScreenType { desktop, tablet, handset, watch }
+enum ScreenSize {
+  small(300),
+  normal(400),
+  large(600),
+  extraLarge(1200);
+
+  const ScreenSize(this.size);
+
+  final double size;
+}
 
 enum DeviceSegment { mobileWeb, desktopWeb, other }
-
-List<DeviceSegment> desktopSegments = [DeviceSegment.desktopWeb];
-
-List<DeviceSegment> webSegments = [
-  DeviceSegment.mobileWeb,
-  DeviceSegment.desktopWeb,
-];
 
 DeviceSegment get currentDevice {
   return switch (defaultTargetPlatform) {
@@ -26,12 +28,21 @@ DeviceSegment get currentDevice {
 extension AdaptiveLayoutContext on BuildContext {
   bool get isPortrait => MediaQuery.orientationOf(this) == Orientation.portrait;
 
-  ScreenType get formFactor {
-    return switch (MediaQuery.sizeOf(this).shortestSide) {
-      >= 840 => ScreenType.desktop,
-      >= 600 => ScreenType.tablet,
-      >= 300 => ScreenType.handset,
-      _ => ScreenType.watch,
+  ScreenSize get screenSize {
+    final currentSize = switch (currentDevice) {
+      DeviceSegment.mobileWeb ||
+      DeviceSegment.desktopWeb => MediaQuery.sizeOf(this).width,
+      _ => MediaQuery.sizeOf(this).shortestSide,
+    };
+    if (kDebugMode) print('CURRENT SIZE: $currentSize');
+
+    return switch (currentSize) {
+      _ when currentSize > ScreenSize.extraLarge.size => ScreenSize.extraLarge,
+      _ when currentSize > ScreenSize.large.size => ScreenSize.large,
+      _ when currentSize > ScreenSize.normal.size => ScreenSize.normal,
+      _ => ScreenSize.small,
     };
   }
+
+  bool get isMobileFromResponsive => screenSize != ScreenSize.extraLarge;
 }
