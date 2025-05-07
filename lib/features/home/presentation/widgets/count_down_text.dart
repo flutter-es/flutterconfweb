@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 
 class CountDownText extends StatefulWidget {
   const CountDownText({
@@ -40,35 +40,22 @@ class _CountDownTextState extends State<CountDownText> {
   Widget build(BuildContext context) {
     final items = <Widget>[
       for (final item in _formatDuration(_duration))
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              item.value,
-              style: TextStyle(
-                fontFamily: 'Recoleta',
-                fontSize: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 84,
-                  ScreenSize.large => 64,
-                  ScreenSize.normal || ScreenSize.small => 24,
-                },
-                fontWeight: FontWeight.w900,
-                color: FlutterLatamColors.white,
-              ),
-            ),
-            Text(
-              item.text,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 20,
-                },
-                fontWeight: FontWeight.w400,
-                color: FlutterLatamColors.white,
-              ),
-            ),
-          ],
+        TitleSubtitleText(
+          title: (
+            text: item.value,
+            size: switch (context.screenSize) {
+              ScreenSize.extraLarge => 84,
+              ScreenSize.large => 64,
+              ScreenSize.normal || ScreenSize.small => 24,
+            },
+          ),
+          subtitle: (
+            text: item.text,
+            size: switch (context.screenSize) {
+              ScreenSize.extraLarge || ScreenSize.large => 24,
+              ScreenSize.normal || ScreenSize.small => 20,
+            },
+          ),
         ),
     ];
 

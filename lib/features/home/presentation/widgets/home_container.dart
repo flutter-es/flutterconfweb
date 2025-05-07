@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
+import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/count_down_text.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -42,42 +43,27 @@ class HomeContainer extends ConsumerWidget {
                   ScreenSize.normal || ScreenSize.small => 24,
                 },
               ),
-              child: Column(
+              child: TitleSubtitleText(
+                title: (
+                  text: 'FlutterConfLatam 2025\nQuito - Ecuador',
+                  size: switch (context.screenSize) {
+                    ScreenSize.extraLarge => 64,
+                    ScreenSize.large => 48,
+                    ScreenSize.normal || ScreenSize.small => 24,
+                  },
+                ),
+                subtitle: (
+                  text: '9 y 10 de Septiembre',
+                  size: switch (context.screenSize) {
+                    ScreenSize.extraLarge => 40,
+                    ScreenSize.large => 36,
+                    ScreenSize.normal || ScreenSize.small => 16,
+                  },
+                ),
                 spacing: switch (context.screenSize) {
                   ScreenSize.extraLarge || ScreenSize.large => 24,
                   ScreenSize.normal || ScreenSize.small => 12,
                 },
-                children: <Widget>[
-                  Text(
-                    'FlutterConfLatam 2025\nQuito - Ecuador',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      height: 1,
-                      color: FlutterLatamColors.white,
-                      fontFamily: 'Recoleta',
-                      fontSize: switch (context.screenSize) {
-                        ScreenSize.extraLarge => 64,
-                        ScreenSize.large => 48,
-                        ScreenSize.normal || ScreenSize.small => 24,
-                      },
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '9 y 10 de Septiembre',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: FlutterLatamColors.white,
-                      fontFamily: 'Poppins',
-                      fontSize: switch (context.screenSize) {
-                        ScreenSize.extraLarge => 40,
-                        ScreenSize.large => 36,
-                        ScreenSize.normal || ScreenSize.small => 16,
-                      },
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
               ),
             ),
             Center(
