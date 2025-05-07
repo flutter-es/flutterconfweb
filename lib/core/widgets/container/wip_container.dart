@@ -16,28 +16,26 @@ class WipContainer extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
-            FlutterLatamColors.ticketBgTopColor,
-            FlutterLatamColors.ticketBgBottomColor,
+            FlutterLatamColors.mainBlue,
+            FlutterLatamColors.blueText,
+            FlutterLatamColors.mainBlue,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.rotationY(math.pi),
-            child: SizedBox.square(
-              dimension: 500,
-              child: FlutterRiveAnimated(
-                path: Assets.animations.flutterdash,
-                animation: FlutterConfAnimations.flutterDashConst,
-              ),
+      child: Center(
+        child: Transform(
+          alignment: Alignment.center,
+          transform: Matrix4.rotationY(math.pi),
+          child: SizedBox.square(
+            dimension: 500,
+            child: FlutterRiveAnimated(
+              path: Assets.animations.flutterdash,
+              animation: FlutterConfAnimations.flutterDashConst,
             ),
           ),
-        ],
+        ),
       ),
     );
   }
