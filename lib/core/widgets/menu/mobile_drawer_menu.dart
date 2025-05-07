@@ -3,7 +3,6 @@ import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.da
 import 'package:flutter_conf_latam/features/navigation/data/models/navigation_item_model.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
-import 'package:flutter_conf_latam/styles/flutter_conf_latam_icons_icons.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,14 +54,6 @@ class MobileDrawerMenu extends ConsumerWidget {
                       },
                     ),
                 ],
-              ),
-            ),
-            const Align(
-              alignment: Alignment.bottomLeft,
-              child: Icon(
-                FlutterConfLatamIcons.flutterConfLatamText,
-                color: FlutterLatamColors.white,
-                size: 80,
               ),
             ),
           ],
