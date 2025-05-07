@@ -34,7 +34,6 @@ extension AdaptiveLayoutContext on BuildContext {
       DeviceSegment.desktopWeb => MediaQuery.sizeOf(this).width,
       _ => MediaQuery.sizeOf(this).shortestSide,
     };
-    if (kDebugMode) print('CURRENT SIZE: $currentSize');
 
     return switch (currentSize) {
       _ when currentSize > ScreenSize.extraLarge.size => ScreenSize.extraLarge,
