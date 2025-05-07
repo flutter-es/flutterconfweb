@@ -44,6 +44,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/flutter_logo_white.svg
   String get flutterLogoWhite => 'assets/images/flutter_logo_white.svg';
 
+  /// Directory path: assets/images/icons
+  $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
+
   /// Directory path: assets/images/sponsors
   $AssetsImagesSponsorsGen get sponsors => const $AssetsImagesSponsorsGen();
 
@@ -55,6 +58,38 @@ class $AssetsImagesGen {
     fclEcMainLogo,
     fclTextWhite,
     flutterLogoWhite,
+  ];
+}
+
+class $AssetsImagesIconsGen {
+  const $AssetsImagesIconsGen();
+
+  /// File path: assets/images/icons/facebook.svg
+  String get facebook => 'assets/images/icons/facebook.svg';
+
+  /// File path: assets/images/icons/instagram.svg
+  String get instagram => 'assets/images/icons/instagram.svg';
+
+  /// File path: assets/images/icons/linked_in.svg
+  String get linkedIn => 'assets/images/icons/linked_in.svg';
+
+  /// File path: assets/images/icons/tik_tok.svg
+  String get tikTok => 'assets/images/icons/tik_tok.svg';
+
+  /// File path: assets/images/icons/twitter.svg
+  String get twitter => 'assets/images/icons/twitter.svg';
+
+  /// File path: assets/images/icons/youtube.svg
+  String get youtube => 'assets/images/icons/youtube.svg';
+
+  /// List of all assets
+  List<String> get values => [
+    facebook,
+    instagram,
+    linkedIn,
+    tikTok,
+    twitter,
+    youtube,
   ];
 }
 

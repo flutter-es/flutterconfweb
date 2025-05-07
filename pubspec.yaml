@@ -61,12 +61,10 @@ flutter:
   assets:
     - assets/animations/
     - assets/images/
+    - assets/images/icons/
     - assets/images/sponsors/
 
   fonts:
-    - family: FlutterConfLatamIcons
-      fonts:
-        - asset: assets/iconfonts/FlutterConfLatamIcons.ttf
     - family: Recoleta
       fonts:
         - asset: assets/fonts/Recoleta/Recoleta-Black.ttf
