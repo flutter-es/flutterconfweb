@@ -1,6 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_container.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,17 +25,24 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final dividerIndent = switch (context.screenSize) {
+      ScreenSize.extraLarge => 120.0,
+      ScreenSize.large => 72.0,
+      ScreenSize.normal || ScreenSize.small => 48.0,
+    };
+
     return CustomScrollView(
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
             HomeContainer(),
-            const Divider(
-              indent: 120,
-              endIndent: 120,
+            Divider(
+              indent: dividerIndent,
+              endIndent: dividerIndent,
               color: FlutterLatamColors.white,
             ),
-            const Footer(),
+            // TODO(FV): Enable later
+            // const Footer(),
           ]),
         ),
       ],

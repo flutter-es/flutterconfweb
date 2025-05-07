@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -8,9 +9,6 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
-part '../responsiveness/error_page_responsive.dart';
 
 class ErrorPage extends ConsumerWidget {
   const ErrorPage({super.key});
@@ -18,7 +16,6 @@ class ErrorPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final responsiveConfig = _responsiveConfig(context);
 
     return Scaffold(
       body: Center(
@@ -27,7 +24,11 @@ class ErrorPage extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             SizedBox.square(
-              dimension: responsiveConfig.dashDimensions,
+              dimension: switch (context.screenSize) {
+                ScreenSize.extraLarge => 400,
+                ScreenSize.large => 300,
+                _ => 250,
+              },
               child: FlutterRiveAnimated(
                 path: Assets.animations.flutterWarning,
                 animation: FlutterConfAnimations.flutterWarning,
@@ -38,7 +39,11 @@ class ErrorPage extends ConsumerWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey,
-                fontSize: responsiveConfig.titleSize,
+                fontSize: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 60,
+                  ScreenSize.large => 50,
+                  _ => 40,
+                },
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -47,7 +52,10 @@ class ErrorPage extends ConsumerWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey,
-                fontSize: responsiveConfig.subtitleSize,
+                fontSize: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 30,
+                  _ => 20,
+                },
                 fontWeight: FontWeight.bold,
               ),
             ),

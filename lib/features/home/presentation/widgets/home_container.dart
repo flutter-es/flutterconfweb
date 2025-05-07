@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/count_down_text.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
@@ -14,22 +15,38 @@ class HomeContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final homeContainerData = ref.watch(homeContainerDataProvider);
-    // final uiConfig = HomeSectionResponsiveConfig.getHomeSectionBannerConfig(
-    //   context,
-    // );
-
-    return ColoredBox(
-      color: FlutterLatamColors.mainBlue,
-      child: SizedBox(
-        height: 1550,
+    return SizedBox(
+      height: switch (context.screenSize) {
+        ScreenSize.extraLarge => 1650,
+        ScreenSize.large => 1500,
+        ScreenSize.normal || ScreenSize.small => 800,
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: switch (context.screenSize) {
+            ScreenSize.extraLarge => 122,
+            ScreenSize.large => 72,
+            ScreenSize.normal || ScreenSize.small => 28,
+          },
+        ),
         child: Column(
-          spacing: 96,
+          spacing: switch (context.screenSize) {
+            ScreenSize.extraLarge || ScreenSize.large => 96,
+            ScreenSize.normal || ScreenSize.small => 48,
+          },
           children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.only(top: 48),
+            Padding(
+              padding: EdgeInsets.only(
+                top: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 48,
+                  ScreenSize.normal || ScreenSize.small => 24,
+                },
+              ),
               child: Column(
-                spacing: 24,
+                spacing: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 24,
+                  ScreenSize.normal || ScreenSize.small => 12,
+                },
                 children: <Widget>[
                   Text(
                     'FlutterConfLatam 2025\nQuito - Ecuador',
@@ -38,7 +55,11 @@ class HomeContainer extends ConsumerWidget {
                       height: 1,
                       color: FlutterLatamColors.white,
                       fontFamily: 'Recoleta',
-                      fontSize: 64,
+                      fontSize: switch (context.screenSize) {
+                        ScreenSize.extraLarge => 64,
+                        ScreenSize.large => 48,
+                        ScreenSize.normal || ScreenSize.small => 24,
+                      },
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -46,10 +67,14 @@ class HomeContainer extends ConsumerWidget {
                     '9 y 10 de Septiembre',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
                       color: FlutterLatamColors.white,
-                      fontSize: 40,
+                      fontFamily: 'Poppins',
+                      fontSize: switch (context.screenSize) {
+                        ScreenSize.extraLarge => 40,
+                        ScreenSize.large => 36,
+                        ScreenSize.normal || ScreenSize.small => 16,
+                      },
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
@@ -57,11 +82,18 @@ class HomeContainer extends ConsumerWidget {
             ),
             Center(
               child: SizedBox.fromSize(
-                size: const Size(760, 750),
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge => const Size(760, 750),
+                  ScreenSize.large => const Size(520, 513),
+                  ScreenSize.normal || ScreenSize.small => const Size(300, 296),
+                },
                 child: DecoratedBox(
                   decoration: const BoxDecoration(
                     gradient: RadialGradient(
-                      colors: [Color(0xFF2582C4), FlutterLatamColors.mainBlue],
+                      colors: [
+                        FlutterLatamColors.lightBlue,
+                        FlutterLatamColors.mainBlue,
+                      ],
                       stops: [0.4, 1],
                     ),
                   ),
@@ -70,6 +102,7 @@ class HomeContainer extends ConsumerWidget {
               ),
             ),
             RichText(
+              textAlign: TextAlign.center,
               text: TextSpan(
                 text: '¡La experiencia Flutter te espera en la ',
                 children: <InlineSpan>[
@@ -83,17 +116,22 @@ class HomeContainer extends ConsumerWidget {
                   ),
                   const TextSpan(text: '!'),
                 ],
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w400,
                   color: FlutterLatamColors.white,
-                  fontSize: 40,
+                  fontSize: switch (context.screenSize) {
+                    ScreenSize.extraLarge || ScreenSize.large => 40,
+                    ScreenSize.normal || ScreenSize.small => 16,
+                  },
                 ),
               ),
             ),
-            CountDownText(
-              startDate: DateTime.now(),
-              endDate: DateTime(2025, 9, 10),
+            Expanded(
+              child: CountDownText(
+                startDate: DateTime.now(),
+                endDate: DateTime(2025, 9, 10),
+              ),
             ),
           ],
         ),

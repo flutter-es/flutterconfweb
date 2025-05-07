@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 
 class CountDownText extends StatefulWidget {
@@ -37,36 +38,59 @@ class _CountDownTextState extends State<CountDownText> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 100,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        for (final item in _formatDuration(_duration))
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                item.value,
-                style: const TextStyle(
-                  fontFamily: 'Recoleta',
-                  fontSize: 84,
-                  fontWeight: FontWeight.w900,
-                  color: FlutterLatamColors.white,
-                ),
+    final items = <Widget>[
+      for (final item in _formatDuration(_duration))
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              item.value,
+              style: TextStyle(
+                fontFamily: 'Recoleta',
+                fontSize: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 84,
+                  ScreenSize.large => 64,
+                  ScreenSize.normal || ScreenSize.small => 24,
+                },
+                fontWeight: FontWeight.w900,
+                color: FlutterLatamColors.white,
               ),
-              Text(
-                item.text,
-                style: const TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w400,
-                  color: FlutterLatamColors.white,
-                ),
+            ),
+            Text(
+              item.text,
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 24,
+                  ScreenSize.normal || ScreenSize.small => 20,
+                },
+                fontWeight: FontWeight.w400,
+                color: FlutterLatamColors.white,
               ),
-            ],
-          ),
-      ],
-    );
+            ),
+          ],
+        ),
+    ];
+
+    return switch (context.screenSize) {
+      ScreenSize.extraLarge => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: items,
+      ),
+      ScreenSize.large ||
+      ScreenSize.small ||
+      ScreenSize.normal => GridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        childAspectRatio: switch (context.screenSize) {
+          ScreenSize.large => 2,
+          ScreenSize.normal || ScreenSize.small => 1.5,
+          _ => 1,
+        },
+        physics: const NeverScrollableScrollPhysics(),
+        children: items,
+      ),
+    };
   }
 
   void _startTimer() {

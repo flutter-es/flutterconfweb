@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,16 +16,14 @@ class Header extends ConsumerStatefulWidget {
 class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
-
     final tabItems = ref.watch(navigationViewmodelProvider);
     final visibleTabItems = tabItems.where((item) => item.display).toList();
 
     return SliverAppBar(
       pinned: true,
       elevation: 0,
-      collapsedHeight: kToolbarHeight,
-      expandedHeight: uiConfig.maxHeaderHeight,
+      collapsedHeight: 100,
+      expandedHeight: 120,
       backgroundColor: FlutterLatamColors.mainBlue,
       flexibleSpace: Row(
         children: <Widget>[
@@ -82,7 +80,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
               ],
             ),
           ),
-          // const LanguageButton(),
+          const LanguageButton(),
         ],
       ),
     );

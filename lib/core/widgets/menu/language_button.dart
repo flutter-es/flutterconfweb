@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/responsiveness/navigation_responsive_config.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/l10n/support_locale.dart';
@@ -13,11 +13,13 @@ class LanguageButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final languageCode = ref.watch(currentLocalizationProvider).languageCode;
-    final uiConfig = NavigationResponsiveConfig.getNavigationConfig(context);
 
     return Container(
       height: 50,
-      width: uiConfig.languageButtonWidth,
+      width: switch (context.screenSize) {
+        ScreenSize.extraLarge || ScreenSize.large => 160,
+        ScreenSize.normal || ScreenSize.small => 100,
+      },
       margin: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
         color: FlutterLatamColors.lightBlue,
@@ -26,7 +28,7 @@ class LanguageButton extends ConsumerWidget {
       child: Stack(
         children: <Widget>[
           FractionallySizedBox(
-            widthFactor: 0.5,
+            widthFactor: .5,
             child: Container(
               margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
