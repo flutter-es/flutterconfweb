@@ -1,7 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_container.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main_container.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -35,7 +35,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
-            HomeContainer(),
+            HomeMainContainer(),
             Divider(
               indent: dividerIndent,
               endIndent: dividerIndent,

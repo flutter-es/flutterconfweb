@@ -9,8 +9,8 @@ import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeContainer extends ConsumerWidget {
-  HomeContainer({super.key});
+class HomeMainContainer extends ConsumerWidget {
+  HomeMainContainer({super.key});
 
   final _analytics = FirebaseAnalytics.instance;
 
