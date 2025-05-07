@@ -8,6 +8,7 @@ import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Footer extends ConsumerWidget {
   const Footer({super.key});
@@ -51,10 +52,15 @@ class Footer extends ConsumerWidget {
                     for (final social in socialMediaList)
                       InkWell(
                         onTap: () => Utils.launchUrlLink(social.link),
-                        child: Icon(
-                          social.icon,
-                          size: 24,
-                          color: FlutterLatamColors.white,
+                        child: SizedBox.square(
+                          dimension: 24,
+                          child: SvgPicture.asset(
+                            social.iconPath,
+                            colorFilter: const ColorFilter.mode(
+                              FlutterLatamColors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                         ),
                       ),
                   ],
