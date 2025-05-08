@@ -41,6 +41,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/fcl_text_white.svg
   String get fclTextWhite => 'assets/images/fcl_text_white.svg';
 
+  /// Directory path: assets/images/features
+  $AssetsImagesFeaturesGen get features => const $AssetsImagesFeaturesGen();
+
   /// File path: assets/images/flutter_logo_white.svg
   String get flutterLogoWhite => 'assets/images/flutter_logo_white.svg';
 
@@ -59,6 +62,28 @@ class $AssetsImagesGen {
     fclTextWhite,
     flutterLogoWhite,
   ];
+}
+
+class $AssetsImagesFeaturesGen {
+  const $AssetsImagesFeaturesGen();
+
+  /// File path: assets/images/features/four.png
+  String get four => 'assets/images/features/four.png';
+
+  /// File path: assets/images/features/one.png
+  String get one => 'assets/images/features/one.png';
+
+  /// File path: assets/images/features/three.png
+  String get three => 'assets/images/features/three.png';
+
+  /// File path: assets/images/features/tickets.png
+  String get tickets => 'assets/images/features/tickets.png';
+
+  /// File path: assets/images/features/two.png
+  String get two => 'assets/images/features/two.png';
+
+  /// List of all assets
+  List<String> get values => [four, one, three, tickets, two];
 }
 
 class $AssetsImagesIconsGen {
