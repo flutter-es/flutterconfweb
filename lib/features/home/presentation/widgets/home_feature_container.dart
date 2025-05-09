@@ -39,118 +39,115 @@ class HomeFeatureContainer extends StatelessWidget {
       ),
     ];
 
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: switch (context.screenSize) {
-            ScreenSize.extraLarge => 122,
-            ScreenSize.large => 72,
-            ScreenSize.normal || ScreenSize.small => 28,
-          },
-          vertical: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => 96,
-            ScreenSize.normal || ScreenSize.small => 48,
-          },
-        ),
-        child: Column(
-          spacing: 30,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: '¿Amas Flutter?',
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 64,
-                  ScreenSize.large => 48,
-                  ScreenSize.normal || ScreenSize.small => 24,
-                },
-              ),
-              subtitle: (
-                text:
-                    'Entonces no puedes perderte FlutterConf Latam 2025 '
-                    'el evento donde aprendes, conectas y te inspiras.',
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 16,
-                },
-              ),
-              spacing: 12,
-            ),
-            Flex(
-              spacing: 30,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              direction: switch (context.screenSize) {
-                ScreenSize.extraLarge => Axis.horizontal,
-                _ => Axis.vertical,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: switch (context.screenSize) {
+          ScreenSize.extraLarge => 122,
+          ScreenSize.large => 72,
+          ScreenSize.normal || ScreenSize.small => 28,
+        },
+        vertical: switch (context.screenSize) {
+          ScreenSize.extraLarge || ScreenSize.large => 96,
+          ScreenSize.normal || ScreenSize.small => 48,
+        },
+      ),
+      child: Column(
+        spacing: 30,
+        children: <Widget>[
+          TitleSubtitleText(
+            title: (
+              text: '¿Amas Flutter?',
+              size: switch (context.screenSize) {
+                ScreenSize.extraLarge => 64,
+                ScreenSize.large => 48,
+                ScreenSize.normal || ScreenSize.small => 24,
               },
-              children: <Widget>[
-                Flexible(
-                  flex: 2,
-                  child: LayoutGrid(
-                    rowGap: 30,
-                    columnGap: 30,
-                    autoPlacement: AutoPlacement.rowDense,
-                    columnSizes: switch (context.screenSize) {
-                      ScreenSize.extraLarge || ScreenSize.large => [1.fr, 1.fr],
-                      ScreenSize.normal || ScreenSize.small => [1.fr],
-                    },
-                    rowSizes: switch (context.screenSize) {
-                      ScreenSize.extraLarge || ScreenSize.large => [auto, auto],
-                      ScreenSize.normal || ScreenSize.small => List.generate(
-                        features.length,
-                        (_) => auto,
+            ),
+            subtitle: (
+              text:
+                  'Entonces no puedes perderte FlutterConf Latam 2025 '
+                  'el evento donde aprendes, conectas y te inspiras.',
+              size: switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => 24,
+                ScreenSize.normal || ScreenSize.small => 16,
+              },
+            ),
+            spacing: 12,
+          ),
+          Flex(
+            spacing: 30,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            direction: switch (context.screenSize) {
+              ScreenSize.extraLarge => Axis.horizontal,
+              _ => Axis.vertical,
+            },
+            children: <Widget>[
+              Flexible(
+                flex: 2,
+                child: LayoutGrid(
+                  rowGap: 30,
+                  columnGap: 30,
+                  autoPlacement: AutoPlacement.rowDense,
+                  columnSizes: switch (context.screenSize) {
+                    ScreenSize.extraLarge || ScreenSize.large => [1.fr, 1.fr],
+                    ScreenSize.normal || ScreenSize.small => [1.fr],
+                  },
+                  rowSizes: switch (context.screenSize) {
+                    ScreenSize.extraLarge || ScreenSize.large => [auto, auto],
+                    ScreenSize.normal || ScreenSize.small => List.generate(
+                      features.length,
+                      (_) => auto,
+                    ),
+                  },
+                  children: <Widget>[
+                    for (final item in features)
+                      GridCardItem(
+                        title: item.title,
+                        description: item.description,
+                        imagePath: item.image,
                       ),
-                    },
-                    children: <Widget>[
-                      for (final item in features)
-                        GridCardItem(
-                          title: item.title,
-                          description: item.description,
-                          imagePath: item.image,
-                        ),
-                    ],
-                  ),
+                  ],
                 ),
-                Flexible(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: const Color(0xFF016EE8),
-                      child: Padding(
-                        padding: const EdgeInsets.all(30),
-                        child: Column(
-                          spacing: 30,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Align(
-                              child: SizedBox.square(
-                                dimension: 150,
-                                child: Image.asset(
-                                  Assets.images.features.tickets,
-                                ),
+              ),
+              Flexible(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: const Color(0xFF016EE8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(30),
+                      child: Column(
+                        spacing: 30,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Align(
+                            child: SizedBox.square(
+                              dimension: 150,
+                              child: Image.asset(
+                                Assets.images.features.tickets,
                               ),
                             ),
-                            const AdaptableText(
-                              r'¡Compra tu ticket desde $50 aquí!',
-                              style: TextStyle(
-                                fontFamily: 'Recoleta',
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: FlutterLatamColors.white,
-                              ),
+                          ),
+                          const AdaptableText(
+                            r'¡Compra tu ticket desde $50 aquí!',
+                            style: TextStyle(
+                              fontFamily: 'Recoleta',
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: FlutterLatamColors.white,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
