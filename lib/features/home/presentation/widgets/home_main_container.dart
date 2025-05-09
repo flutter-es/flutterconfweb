@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/widgets/text/count_down_text.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/count_down_text.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
