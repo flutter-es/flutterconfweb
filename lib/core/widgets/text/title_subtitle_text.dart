@@ -7,12 +7,16 @@ class TitleSubtitleText extends StatelessWidget {
   const TitleSubtitleText({
     required this.title,
     required this.subtitle,
+    this.textAlign = TextAlign.center,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
     this.spacing = 0,
     super.key,
   });
 
   final TextWithSize title;
   final TextWithSize subtitle;
+  final TextAlign textAlign;
+  final CrossAxisAlignment crossAxisAlignment;
   final double spacing;
 
   @override
@@ -20,10 +24,11 @@ class TitleSubtitleText extends StatelessWidget {
     return Column(
       spacing: spacing,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: crossAxisAlignment,
       children: <Widget>[
         Text(
           title.text,
-          textAlign: TextAlign.center,
+          textAlign: textAlign,
           style: TextStyle(
             fontFamily: 'Recoleta',
             fontSize: title.size,
@@ -33,7 +38,7 @@ class TitleSubtitleText extends StatelessWidget {
         ),
         Text(
           subtitle.text,
-          textAlign: TextAlign.center,
+          textAlign: textAlign,
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: subtitle.size,
