@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
+import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -24,145 +25,131 @@ class HomeNoveltiesContainer extends StatelessWidget {
       ),
     ];
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: switch (context.screenSize) {
-          ScreenSize.extraLarge => 122,
-          ScreenSize.large => 72,
-          ScreenSize.normal || ScreenSize.small => 28,
-        },
-        vertical: switch (context.screenSize) {
-          ScreenSize.extraLarge || ScreenSize.large => 96,
-          ScreenSize.normal || ScreenSize.small => 48,
-        },
-      ),
-      child: Column(
-        spacing: 60,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Column(
-            spacing: 30,
-            children: <Widget>[
-              TitleSubtitleText(
-                title: (
-                  text: 'Novedades para este 2025',
-                  size: switch (context.screenSize) {
-                    ScreenSize.extraLarge => 64,
-                    ScreenSize.large => 48,
-                    ScreenSize.normal || ScreenSize.small => 24,
-                  },
-                ),
-                subtitle: (
-                  text:
-                      'Siempre hemos dado lo mejor, pero ahora queremos '
-                      'ofrecerte una experiencia Flutter aún más completa.',
-                  size: switch (context.screenSize) {
-                    ScreenSize.extraLarge || ScreenSize.large => 24,
-                    ScreenSize.normal || ScreenSize.small => 16,
-                  },
-                ),
-                spacing: 12,
-              ),
-              ResponsiveGrid(
-                columnSizes: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 2,
-                  ScreenSize.normal || ScreenSize.small => 1,
+    return SectionContainer(
+      spacing: 60,
+      children: <Widget>[
+        Column(
+          spacing: 30,
+          children: <Widget>[
+            TitleSubtitleText(
+              title: (
+                text: 'Novedades para este 2025',
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 64,
+                  ScreenSize.large => 48,
+                  ScreenSize.normal || ScreenSize.small => 24,
                 },
-                rowSizes: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 2,
-                  ScreenSize.normal || ScreenSize.small => novelties.length,
+              ),
+              subtitle: (
+                text:
+                    'Siempre hemos dado lo mejor, pero ahora queremos '
+                    'ofrecerte una experiencia Flutter aún más completa.',
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 24,
+                  ScreenSize.normal || ScreenSize.small => 16,
+                },
+              ),
+              spacing: 12,
+            ),
+            ResponsiveGrid(
+              columnSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => 2,
+                ScreenSize.normal || ScreenSize.small => 1,
+              },
+              rowSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => 2,
+                ScreenSize.normal || ScreenSize.small => novelties.length,
+              },
+              children: <Widget>[
+                for (final item in novelties)
+                  GridCardItem(
+                    title: item.title,
+                    description: item.description,
+                    imagePath: item.image,
+                  ),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(
+          width: double.infinity,
+          height: switch (context.screenSize) {
+            ScreenSize.extraLarge => 530,
+            ScreenSize.large => 1040,
+            ScreenSize.normal || ScreenSize.small => 760,
+          },
+          child: Card(
+            color: const Color(0xFF016EE8),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(48),
+              child: Flex(
+                spacing: 10,
+                direction: switch (context.screenSize) {
+                  ScreenSize.extraLarge => Axis.horizontal,
+                  _ => Axis.vertical,
                 },
                 children: <Widget>[
-                  for (final item in novelties)
-                    GridCardItem(
-                      title: item.title,
-                      description: item.description,
-                      imagePath: item.image,
-                    ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: switch (context.screenSize) {
-              ScreenSize.extraLarge => 530,
-              ScreenSize.large => 1040,
-              ScreenSize.normal || ScreenSize.small => 760,
-            },
-            child: Card(
-              color: const Color(0xFF016EE8),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(48),
-                child: Flex(
-                  spacing: 10,
-                  direction: switch (context.screenSize) {
-                    ScreenSize.extraLarge => Axis.horizontal,
-                    _ => Axis.vertical,
-                  },
-                  children: <Widget>[
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        spacing: 60,
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: switch (context.screenSize) {
-                          ScreenSize.extraLarge => CrossAxisAlignment.start,
-                          _ => CrossAxisAlignment.center,
-                        },
-                        children: <Widget>[
-                          TitleSubtitleText(
-                            title: (
-                              text: '¡Este 2025 tendremos app oficial!',
-                              size: switch (context.screenSize) {
-                                ScreenSize.extraLarge => 48,
-                                ScreenSize.large => 40,
-                                ScreenSize.normal || ScreenSize.small => 24,
-                              },
-                            ),
-                            subtitle: (
-                              text:
-                                  'Todo lo que necesitas de FlutterConfLatam '
-                                  'ahora en la palma de tu mano.',
-                              size: switch (context.screenSize) {
-                                ScreenSize.extraLarge || ScreenSize.large => 24,
-                                ScreenSize.normal || ScreenSize.small => 16,
-                              },
-                            ),
-                            textAlign: switch (context.screenSize) {
-                              ScreenSize.extraLarge => TextAlign.start,
-                              _ => TextAlign.center,
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      spacing: 60,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: switch (context.screenSize) {
+                        ScreenSize.extraLarge => CrossAxisAlignment.start,
+                        _ => CrossAxisAlignment.center,
+                      },
+                      children: <Widget>[
+                        TitleSubtitleText(
+                          title: (
+                            text: '¡Este 2025 tendremos app oficial!',
+                            size: switch (context.screenSize) {
+                              ScreenSize.extraLarge => 48,
+                              ScreenSize.large => 40,
+                              ScreenSize.normal || ScreenSize.small => 24,
                             },
-                            crossAxisAlignment: switch (context.screenSize) {
-                              ScreenSize.extraLarge => CrossAxisAlignment.start,
-                              _ => CrossAxisAlignment.center,
-                            },
-                            spacing: 10,
                           ),
-                          const _AppStoreSection(),
-                        ],
-                      ),
+                          subtitle: (
+                            text:
+                                'Todo lo que necesitas de FlutterConfLatam '
+                                'ahora en la palma de tu mano.',
+                            size: switch (context.screenSize) {
+                              ScreenSize.extraLarge || ScreenSize.large => 24,
+                              ScreenSize.normal || ScreenSize.small => 16,
+                            },
+                          ),
+                          textAlign: switch (context.screenSize) {
+                            ScreenSize.extraLarge => TextAlign.start,
+                            _ => TextAlign.center,
+                          },
+                          crossAxisAlignment: switch (context.screenSize) {
+                            ScreenSize.extraLarge => CrossAxisAlignment.start,
+                            _ => CrossAxisAlignment.center,
+                          },
+                          spacing: 10,
+                        ),
+                        const _AppStoreSection(),
+                      ],
                     ),
-                    Expanded(
-                      child: SizedBox.square(
-                        dimension: switch (context.screenSize) {
-                          ScreenSize.extraLarge || ScreenSize.large => 390,
-                          ScreenSize.normal || ScreenSize.small => 220,
-                        },
-                        child: Image.asset(Assets.images.novelties.dashMobile),
-                      ),
+                  ),
+                  Expanded(
+                    child: SizedBox.square(
+                      dimension: switch (context.screenSize) {
+                        ScreenSize.extraLarge || ScreenSize.large => 390,
+                        ScreenSize.normal || ScreenSize.small => 220,
+                      },
+                      child: Image.asset(Assets.images.novelties.dashMobile),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
