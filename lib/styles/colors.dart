@@ -22,4 +22,6 @@ class FlutterLatamColors {
 
   static const Color mainBlue = Color(0xFF042B59);
   static const Color lightBlue = Color(0xFF2582C4);
+  static const Color blue = Color(0xFF2F6DE0);
+  static const Color green = Color(0xFF78B94A);
 }
