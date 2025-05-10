@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/animations/
     - assets/images/
+    - assets/images/collaborations/
     - assets/images/features/
     - assets/images/icons/
     - assets/images/novelties/

@@ -26,6 +26,10 @@ class $AssetsAnimationsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// Directory path: assets/images/collaborations
+  $AssetsImagesCollaborationsGen get collaborations =>
+      const $AssetsImagesCollaborationsGen();
+
   /// File path: assets/images/ecua_dash.png
   String get ecuaDash => 'assets/images/ecua_dash.png';
 
@@ -65,6 +69,19 @@ class $AssetsImagesGen {
     fclTextWhite,
     flutterLogoWhite,
   ];
+}
+
+class $AssetsImagesCollaborationsGen {
+  const $AssetsImagesCollaborationsGen();
+
+  /// File path: assets/images/collaborations/speaker.png
+  String get speaker => 'assets/images/collaborations/speaker.png';
+
+  /// File path: assets/images/collaborations/sponsor.png
+  String get sponsor => 'assets/images/collaborations/sponsor.png';
+
+  /// List of all assets
+  List<String> get values => [speaker, sponsor];
 }
 
 class $AssetsImagesFeaturesGen {
