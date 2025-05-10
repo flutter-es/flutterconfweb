@@ -50,6 +50,9 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
 
+  /// Directory path: assets/images/novelties
+  $AssetsImagesNoveltiesGen get novelties => const $AssetsImagesNoveltiesGen();
+
   /// Directory path: assets/images/sponsors
   $AssetsImagesSponsorsGen get sponsors => const $AssetsImagesSponsorsGen();
 
@@ -116,6 +119,28 @@ class $AssetsImagesIconsGen {
     twitter,
     youtube,
   ];
+}
+
+class $AssetsImagesNoveltiesGen {
+  const $AssetsImagesNoveltiesGen();
+
+  /// File path: assets/images/novelties/app_store.png
+  String get appStore => 'assets/images/novelties/app_store.png';
+
+  /// File path: assets/images/novelties/dash_mobile.png
+  String get dashMobile => 'assets/images/novelties/dash_mobile.png';
+
+  /// File path: assets/images/novelties/google_play.png
+  String get googlePlay => 'assets/images/novelties/google_play.png';
+
+  /// File path: assets/images/novelties/one.png
+  String get one => 'assets/images/novelties/one.png';
+
+  /// File path: assets/images/novelties/two.png
+  String get two => 'assets/images/novelties/two.png';
+
+  /// List of all assets
+  List<String> get values => [appStore, dashMobile, googlePlay, one, two];
 }
 
 class $AssetsImagesSponsorsGen {
