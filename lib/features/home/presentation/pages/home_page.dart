@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_collaborations.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_feature_container.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main_container.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties_container.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             const HomeMainContainer(),
             const HomeFeatureContainer(),
             const HomeNoveltiesContainer(),
+            const HomeCollaborations(),
             Divider(
               indent: dividerIndent,
               endIndent: dividerIndent,

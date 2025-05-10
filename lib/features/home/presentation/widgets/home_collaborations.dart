@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
+import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+
+typedef CollaborationItem =
+    ({String title, String description, String imagePath, Color color});
+
+class HomeCollaborations extends StatelessWidget {
+  const HomeCollaborations({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final collaborations = <CollaborationItem>[
+      (
+        title: '¿Quieres ser speaker?',
+        description: 'Si lo tuyo es inspirar y enseñar, súmate como speaker',
+        imagePath: Assets.images.collaborations.speaker,
+        color: FlutterLatamColors.blue,
+      ),
+      (
+        title: '¿Quieres colaborar como sponsor?',
+        description:
+            '¡Tu marca también puede ser parte de esta gran experiencia!',
+        imagePath: Assets.images.collaborations.sponsor,
+        color: FlutterLatamColors.green,
+      ),
+    ];
+
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: switch (context.screenSize) {
+          ScreenSize.extraLarge => 122,
+          ScreenSize.large => 72,
+          ScreenSize.normal || ScreenSize.small => 28,
+        },
+        vertical: switch (context.screenSize) {
+          ScreenSize.extraLarge || ScreenSize.large => 96,
+          ScreenSize.normal || ScreenSize.small => 48,
+        },
+      ),
+      child: Column(
+        spacing: 30,
+        children: <Widget>[
+          TitleSubtitleText(
+            title: (
+              text: '¿Quieres colaborar a otro nivel?',
+              size: switch (context.screenSize) {
+                ScreenSize.extraLarge => 64,
+                ScreenSize.large => 48,
+                ScreenSize.normal || ScreenSize.small => 24,
+              },
+            ),
+            subtitle: (
+              text:
+                  'Súmate como speaker o sponsor y forma parte del corazón '
+                  'de FlutterConf Latam 2025.',
+              size: switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => 24,
+                ScreenSize.normal || ScreenSize.small => 16,
+              },
+            ),
+            spacing: 12,
+          ),
+          ResponsiveGrid(
+            columnSizes: switch (context.screenSize) {
+              ScreenSize.extraLarge => 2,
+              _ => 1,
+            },
+            rowSizes: switch (context.screenSize) {
+              ScreenSize.extraLarge || ScreenSize.large => 2,
+              ScreenSize.normal || ScreenSize.small => collaborations.length,
+            },
+            children: <Widget>[
+              for (final item in collaborations)
+                Card(
+                  color: item.color,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(48),
+                    child: Flex(
+                      spacing: switch (context.screenSize) {
+                        ScreenSize.extraLarge || ScreenSize.large => 50,
+                        _ => 24,
+                      },
+                      direction: switch (context.screenSize) {
+                        ScreenSize.extraLarge ||
+                        ScreenSize.large => Axis.horizontal,
+                        _ => Axis.vertical,
+                      },
+                      children: <Widget>[
+                        Expanded(
+                          flex: switch (context.screenSize) {
+                            ScreenSize.extraLarge || ScreenSize.large => 2,
+                            ScreenSize.normal || ScreenSize.small => 1,
+                          },
+                          child: Column(
+                            spacing: 30,
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              TitleSubtitleText(
+                                title: (
+                                  text: item.title,
+                                  size: switch (context.screenSize) {
+                                    ScreenSize.extraLarge ||
+                                    ScreenSize.large => 32,
+                                    ScreenSize.normal || ScreenSize.small => 24,
+                                  },
+                                ),
+                                subtitle: (
+                                  text: item.description,
+                                  size: switch (context.screenSize) {
+                                    ScreenSize.extraLarge ||
+                                    ScreenSize.large => 18,
+                                    ScreenSize.normal || ScreenSize.small => 16,
+                                  },
+                                ),
+                                textAlign: TextAlign.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                spacing: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: SizedBox.square(
+                            dimension: 150,
+                            child: Image.asset(item.imagePath),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
