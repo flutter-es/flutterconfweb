@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 class CountDownText extends StatefulWidget {
   const CountDownText({
@@ -39,17 +39,14 @@ class _CountDownTextState extends State<CountDownText> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutGrid(
-      rowGap: 30,
-      columnGap: 30,
-      columnSizes: switch (context.screenSize) {
-        ScreenSize.extraLarge => [1.fr, 1.fr, 1.fr, 1.fr],
-        _ => [1.fr, 1.fr],
-      },
-      rowSizes: switch (context.screenSize) {
-        ScreenSize.extraLarge => [auto, auto, auto, auto],
-        _ => [auto, auto],
-      },
+    final columnRowSize = switch (context.screenSize) {
+      ScreenSize.extraLarge => 4,
+      _ => 2,
+    };
+
+    return ResponsiveGrid(
+      columnSizes: columnRowSize,
+      rowSizes: columnRowSize,
       children: <Widget>[
         for (final item in _formatDuration(_duration))
           Center(

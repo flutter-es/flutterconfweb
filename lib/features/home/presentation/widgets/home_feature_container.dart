@@ -86,6 +86,14 @@ class HomeFeatureContainer extends StatelessWidget {
               Flexible(
                 flex: 2,
                 child: ResponsiveGrid(
+                  columnSizes: switch (context.screenSize) {
+                    ScreenSize.extraLarge || ScreenSize.large => 2,
+                    ScreenSize.normal || ScreenSize.small => 1,
+                  },
+                  rowSizes: switch (context.screenSize) {
+                    ScreenSize.extraLarge || ScreenSize.large => 2,
+                    ScreenSize.normal || ScreenSize.small => features.length,
+                  },
                   children: <Widget>[
                     for (final item in features)
                       GridCardItem(
@@ -116,9 +124,14 @@ class HomeFeatureContainer extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const AdaptableText(
+                          AdaptableText(
                             r'¡Compra tu ticket desde $50 aquí!',
-                            style: TextStyle(
+                            textAlign: switch (context.screenSize) {
+                              ScreenSize.small ||
+                              ScreenSize.normal => TextAlign.center,
+                              _ => TextAlign.start,
+                            },
+                            style: const TextStyle(
                               fontFamily: 'Recoleta',
                               fontSize: 32,
                               fontWeight: FontWeight.bold,

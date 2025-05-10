@@ -64,6 +64,14 @@ class HomeNoveltiesContainer extends StatelessWidget {
                 spacing: 12,
               ),
               ResponsiveGrid(
+                columnSizes: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 2,
+                  ScreenSize.normal || ScreenSize.small => 1,
+                },
+                rowSizes: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 2,
+                  ScreenSize.normal || ScreenSize.small => novelties.length,
+                },
                 children: <Widget>[
                   for (final item in novelties)
                     GridCardItem(
@@ -83,8 +91,11 @@ class HomeNoveltiesContainer extends StatelessWidget {
               ScreenSize.normal || ScreenSize.small => 760,
             },
             child: Card(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
               color: const Color(0xFF016EE8),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(48),
                 child: Flex(
