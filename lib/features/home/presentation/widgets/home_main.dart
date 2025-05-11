@@ -8,8 +8,8 @@ import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeMainContainer extends ConsumerWidget {
-  const HomeMainContainer({super.key});
+class HomeMain extends ConsumerWidget {
+  const HomeMain({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

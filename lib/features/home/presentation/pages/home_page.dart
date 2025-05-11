@@ -2,9 +2,9 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_collaborations.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_feature_container.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main_container.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties_container.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,10 +38,13 @@ class _HomePageState extends ConsumerState<HomePage> {
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
-            const HomeMainContainer(),
-            const HomeFeatureContainer(),
-            const HomeNoveltiesContainer(),
+            const HomeMain(),
+            const HomeFeatures(),
+            const HomeNovelties(),
+            // const HomePricing(),
             const HomeCollaborations(),
+            // const HomeCommunities(),
+            // const HomeFaq(),
             Divider(
               indent: dividerIndent,
               endIndent: dividerIndent,

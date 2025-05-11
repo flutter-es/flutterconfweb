@@ -7,8 +7,8 @@ import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 
-class HomeNoveltiesContainer extends StatelessWidget {
-  const HomeNoveltiesContainer({super.key});
+class HomeNovelties extends StatelessWidget {
+  const HomeNovelties({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,78 +78,85 @@ class HomeNoveltiesContainer extends StatelessWidget {
             ScreenSize.large => 1040,
             ScreenSize.normal || ScreenSize.small => 760,
           },
-          child: Card(
-            color: const Color(0xFF016EE8),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(48),
-              child: Flex(
-                spacing: 10,
-                direction: switch (context.screenSize) {
-                  ScreenSize.extraLarge => Axis.horizontal,
-                  _ => Axis.vertical,
+          child: const _NoveltyAppCard(),
+        ),
+      ],
+    );
+  }
+}
+
+class _NoveltyAppCard extends StatelessWidget {
+  const _NoveltyAppCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: const Color(0xFF016EE8),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      child: Padding(
+        padding: const EdgeInsets.all(48),
+        child: Flex(
+          spacing: 10,
+          direction: switch (context.screenSize) {
+            ScreenSize.extraLarge => Axis.horizontal,
+            _ => Axis.vertical,
+          },
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: Column(
+                spacing: 60,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: switch (context.screenSize) {
+                  ScreenSize.extraLarge => CrossAxisAlignment.start,
+                  _ => CrossAxisAlignment.center,
                 },
                 children: <Widget>[
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      spacing: 60,
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: switch (context.screenSize) {
-                        ScreenSize.extraLarge => CrossAxisAlignment.start,
-                        _ => CrossAxisAlignment.center,
+                  TitleSubtitleText(
+                    title: (
+                      text: '¡Este 2025 tendremos app oficial!',
+                      size: switch (context.screenSize) {
+                        ScreenSize.extraLarge => 48,
+                        ScreenSize.large => 40,
+                        ScreenSize.normal || ScreenSize.small => 24,
                       },
-                      children: <Widget>[
-                        TitleSubtitleText(
-                          title: (
-                            text: '¡Este 2025 tendremos app oficial!',
-                            size: switch (context.screenSize) {
-                              ScreenSize.extraLarge => 48,
-                              ScreenSize.large => 40,
-                              ScreenSize.normal || ScreenSize.small => 24,
-                            },
-                          ),
-                          subtitle: (
-                            text:
-                                'Todo lo que necesitas de FlutterConfLatam '
-                                'ahora en la palma de tu mano.',
-                            size: switch (context.screenSize) {
-                              ScreenSize.extraLarge || ScreenSize.large => 24,
-                              ScreenSize.normal || ScreenSize.small => 16,
-                            },
-                          ),
-                          textAlign: switch (context.screenSize) {
-                            ScreenSize.extraLarge => TextAlign.start,
-                            _ => TextAlign.center,
-                          },
-                          crossAxisAlignment: switch (context.screenSize) {
-                            ScreenSize.extraLarge => CrossAxisAlignment.start,
-                            _ => CrossAxisAlignment.center,
-                          },
-                          spacing: 10,
-                        ),
-                        const _AppStoreSection(),
-                      ],
                     ),
-                  ),
-                  Expanded(
-                    child: SizedBox.square(
-                      dimension: switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => 390,
-                        ScreenSize.normal || ScreenSize.small => 220,
+                    subtitle: (
+                      text:
+                          'Todo lo que necesitas de FlutterConfLatam '
+                          'ahora en la palma de tu mano.',
+                      size: switch (context.screenSize) {
+                        ScreenSize.extraLarge || ScreenSize.large => 24,
+                        ScreenSize.normal || ScreenSize.small => 16,
                       },
-                      child: Image.asset(Assets.images.novelties.dashMobile),
                     ),
+                    textAlign: switch (context.screenSize) {
+                      ScreenSize.extraLarge => TextAlign.start,
+                      _ => TextAlign.center,
+                    },
+                    crossAxisAlignment: switch (context.screenSize) {
+                      ScreenSize.extraLarge => CrossAxisAlignment.start,
+                      _ => CrossAxisAlignment.center,
+                    },
+                    spacing: 10,
                   ),
+                  const _AppStoreSection(),
                 ],
               ),
             ),
-          ),
+            Expanded(
+              child: SizedBox.square(
+                dimension: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 390,
+                  ScreenSize.normal || ScreenSize.small => 220,
+                },
+                child: Image.asset(Assets.images.novelties.dashMobile),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

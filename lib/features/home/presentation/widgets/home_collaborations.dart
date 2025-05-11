@@ -64,72 +64,78 @@ class HomeCollaborations extends StatelessWidget {
           },
           children: <Widget>[
             for (final item in collaborations)
-              Card(
-                color: item.color,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(48),
-                  child: Flex(
-                    spacing: switch (context.screenSize) {
-                      ScreenSize.extraLarge || ScreenSize.large => 50,
-                      _ => 24,
-                    },
-                    direction: switch (context.screenSize) {
-                      ScreenSize.extraLarge ||
-                      ScreenSize.large => Axis.horizontal,
-                      _ => Axis.vertical,
-                    },
-                    children: <Widget>[
-                      Expanded(
-                        flex: switch (context.screenSize) {
-                          ScreenSize.extraLarge || ScreenSize.large => 2,
-                          ScreenSize.normal || ScreenSize.small => 1,
-                        },
-                        child: Column(
-                          spacing: 30,
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            TitleSubtitleText(
-                              title: (
-                                text: item.title,
-                                size: switch (context.screenSize) {
-                                  ScreenSize.extraLarge ||
-                                  ScreenSize.large => 32,
-                                  ScreenSize.normal || ScreenSize.small => 24,
-                                },
-                              ),
-                              subtitle: (
-                                text: item.description,
-                                size: switch (context.screenSize) {
-                                  ScreenSize.extraLarge ||
-                                  ScreenSize.large => 18,
-                                  ScreenSize.normal || ScreenSize.small => 16,
-                                },
-                              ),
-                              textAlign: TextAlign.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: SizedBox.square(
-                          dimension: 150,
-                          child: Image.asset(item.imagePath),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _CollaborationCardItem(item: item),
           ],
         ),
       ],
+    );
+  }
+}
+
+class _CollaborationCardItem extends StatelessWidget {
+  const _CollaborationCardItem({required this.item});
+
+  final CollaborationItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: item.color,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      child: Padding(
+        padding: const EdgeInsets.all(48),
+        child: Flex(
+          spacing: switch (context.screenSize) {
+            ScreenSize.extraLarge || ScreenSize.large => 50,
+            _ => 24,
+          },
+          direction: switch (context.screenSize) {
+            ScreenSize.extraLarge || ScreenSize.large => Axis.horizontal,
+            _ => Axis.vertical,
+          },
+          children: <Widget>[
+            Expanded(
+              flex: switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => 2,
+                ScreenSize.normal || ScreenSize.small => 1,
+              },
+              child: Column(
+                spacing: 30,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  TitleSubtitleText(
+                    title: (
+                      text: item.title,
+                      size: switch (context.screenSize) {
+                        ScreenSize.extraLarge || ScreenSize.large => 32,
+                        ScreenSize.normal || ScreenSize.small => 24,
+                      },
+                    ),
+                    subtitle: (
+                      text: item.description,
+                      size: switch (context.screenSize) {
+                        ScreenSize.extraLarge || ScreenSize.large => 18,
+                        ScreenSize.normal || ScreenSize.small => 16,
+                      },
+                    ),
+                    textAlign: TextAlign.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 10,
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: SizedBox.square(
+                dimension: 150,
+                child: Image.asset(item.imagePath),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

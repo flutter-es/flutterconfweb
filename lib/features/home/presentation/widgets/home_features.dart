@@ -8,8 +8,8 @@ import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 
-class HomeFeatureContainer extends StatelessWidget {
-  const HomeFeatureContainer({super.key});
+class HomeFeatures extends StatelessWidget {
+  const HomeFeatures({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -93,49 +93,55 @@ class HomeFeatureContainer extends StatelessWidget {
                 ],
               ),
             ),
-            Flexible(
+            const Flexible(
               child: SizedBox(
                 width: double.infinity,
-                child: Card(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: const Color(0xFF016EE8),
-                  child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Column(
-                      spacing: 30,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Align(
-                          child: SizedBox.square(
-                            dimension: 150,
-                            child: Image.asset(
-                              Assets.images.features.tickets,
-                            ),
-                          ),
-                        ),
-                        AdaptableText(
-                          r'¡Compra tu ticket desde $50 aquí!',
-                          textAlign: switch (context.screenSize) {
-                            ScreenSize.small ||
-                            ScreenSize.normal => TextAlign.center,
-                            _ => TextAlign.start,
-                          },
-                          style: const TextStyle(
-                            fontFamily: 'Recoleta',
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: FlutterLatamColors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                child: _BuyTicketFeature(),
               ),
             ),
           ],
         ),
       ],
+    );
+  }
+}
+
+class _BuyTicketFeature extends StatelessWidget {
+  const _BuyTicketFeature();
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      color: const Color(0xFF016EE8),
+      child: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          spacing: 30,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Align(
+              child: SizedBox.square(
+                dimension: 150,
+                child: Image.asset(Assets.images.features.tickets),
+              ),
+            ),
+            AdaptableText(
+              r'¡Compra tu ticket desde $50 aquí!',
+              textAlign: switch (context.screenSize) {
+                ScreenSize.small || ScreenSize.normal => TextAlign.center,
+                _ => TextAlign.start,
+              },
+              style: const TextStyle(
+                fontFamily: 'Recoleta',
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: FlutterLatamColors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
