@@ -109,6 +109,12 @@ class $AssetsImagesFeaturesGen {
 class $AssetsImagesIconsGen {
   const $AssetsImagesIconsGen();
 
+  /// File path: assets/images/icons/collapse.svg
+  String get collapse => 'assets/images/icons/collapse.svg';
+
+  /// File path: assets/images/icons/expand.svg
+  String get expand => 'assets/images/icons/expand.svg';
+
   /// File path: assets/images/icons/facebook.svg
   String get facebook => 'assets/images/icons/facebook.svg';
 
@@ -129,6 +135,8 @@ class $AssetsImagesIconsGen {
 
   /// List of all assets
   List<String> get values => [
+    collapse,
+    expand,
     facebook,
     instagram,
     linkedIn,
