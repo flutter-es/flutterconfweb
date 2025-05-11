@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
-import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
-
-extension BuildContextX on BuildContext {
-  String menu(String key) {
-    final l10n = AppLocalizations.of(this);
-
-    if (l10n == null) return key;
-    return l10n.menu(key);
-  }
-}
-
-extension StringX on String {
-  String get cleanBreakLines => replaceAll(r'\n', '\n');
-}
 
 extension SponsorshipLevelsX on SponsorshipLevels {
   Color get color {
@@ -28,6 +14,7 @@ extension SponsorshipLevelsX on SponsorshipLevels {
     };
   }
 
+  /*
   String title(AppLocalizations l10n) {
     return switch (this) {
       SponsorshipLevels.platinum => l10n.sponsorshipPlatinum,
@@ -38,6 +25,7 @@ extension SponsorshipLevelsX on SponsorshipLevels {
       SponsorshipLevels.other => '',
     };
   }
+  */
 }
 
 extension SessionTypeX on SessionType {
