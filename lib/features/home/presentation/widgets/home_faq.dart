@@ -122,7 +122,7 @@ class _FaqCardItem extends HookWidget {
                       child: DecoratedBox(
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: FlutterLatamColors.clearBlue,
+                          color: FlutterLatamColors.mediumBlue,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(4),
