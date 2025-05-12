@@ -7,6 +7,7 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/home_faq.d
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_pricing.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -36,7 +37,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             const HomeMain(),
             const HomeFeatures(),
             const HomeNovelties(),
-            // const HomePricing(),
+            const HomePricing(),
             const HomeCollaborations(),
             const HomeCommunities(),
             const HomeFaq(),
