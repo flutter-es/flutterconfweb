@@ -51,6 +51,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/flutter_logo_white.svg
   String get flutterLogoWhite => 'assets/images/flutter_logo_white.svg';
 
+  /// Directory path: assets/images/footer
+  $AssetsImagesFooterGen get footer => const $AssetsImagesFooterGen();
+
   /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
 
@@ -106,6 +109,22 @@ class $AssetsImagesFeaturesGen {
   List<String> get values => [four, one, three, tickets, two];
 }
 
+class $AssetsImagesFooterGen {
+  const $AssetsImagesFooterGen();
+
+  /// File path: assets/images/footer/one.png
+  String get one => 'assets/images/footer/one.png';
+
+  /// File path: assets/images/footer/three.png
+  String get three => 'assets/images/footer/three.png';
+
+  /// File path: assets/images/footer/two.png
+  String get two => 'assets/images/footer/two.png';
+
+  /// List of all assets
+  List<String> get values => [one, three, two];
+}
+
 class $AssetsImagesIconsGen {
   const $AssetsImagesIconsGen();
 
@@ -133,6 +152,9 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/youtube.svg
   String get youtube => 'assets/images/icons/youtube.svg';
 
+  /// File path: assets/images/icons/youtube_logo.svg
+  String get youtubeLogo => 'assets/images/icons/youtube_logo.svg';
+
   /// List of all assets
   List<String> get values => [
     collapse,
@@ -143,6 +165,7 @@ class $AssetsImagesIconsGen {
     tikTok,
     twitter,
     youtube,
+    youtubeLogo,
   ];
 }
 
