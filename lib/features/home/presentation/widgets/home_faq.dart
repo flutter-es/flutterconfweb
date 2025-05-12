@@ -91,7 +91,7 @@ class _FaqCardItem extends HookWidget {
 
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      color: FlutterLatamColors.faqBlue,
+      color: FlutterLatamColors.darkBlue,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(30),

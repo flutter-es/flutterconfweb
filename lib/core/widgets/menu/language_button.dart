@@ -22,7 +22,7 @@ class LanguageButton extends ConsumerWidget {
       },
       margin: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
-        color: FlutterLatamColors.lightBlue,
+        color: FlutterLatamColors.clearBlue,
         borderRadius: BorderRadius.all(Radius.circular(60)),
       ),
       child: Stack(

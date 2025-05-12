@@ -113,7 +113,7 @@ class _BuyTicketFeature extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      color: FlutterLatamColors.freshBlue,
+      color: FlutterLatamColors.blue,
       child: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(

@@ -17,7 +17,7 @@ class WipContainer extends StatelessWidget {
         gradient: LinearGradient(
           colors: <Color>[
             FlutterLatamColors.mainBlue,
-            FlutterLatamColors.blueText,
+            FlutterLatamColors.darkBlue,
             FlutterLatamColors.mainBlue,
           ],
           begin: Alignment.topCenter,

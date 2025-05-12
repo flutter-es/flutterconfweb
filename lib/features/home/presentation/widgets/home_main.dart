@@ -56,7 +56,7 @@ class HomeMain extends ConsumerWidget {
               decoration: const BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
-                    FlutterLatamColors.lightBlue,
+                    FlutterLatamColors.clearBlue,
                     FlutterLatamColors.mainBlue,
                   ],
                   stops: [0.4, 1],

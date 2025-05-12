@@ -91,7 +91,7 @@ class _NoveltyAppCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: FlutterLatamColors.freshBlue,
+      color: FlutterLatamColors.blue,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       child: Padding(

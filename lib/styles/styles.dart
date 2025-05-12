@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/styles/colors.dart';
 
 class FlutterConfLatamStyles {
   static const double xSmallSize = 4;
@@ -40,85 +39,21 @@ class FlutterConfLatamStyles {
   static const xLargeMargin = EdgeInsets.all(64);
   static const xxLargeMargin = EdgeInsets.all(128);
 
-  static const h1 = TextStyle(
-    fontSize: 64,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
-  static const h2 = TextStyle(
-    fontSize: 56,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
-  static const h3 = TextStyle(
-    fontSize: 48,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
-  static const h4 = TextStyle(
-    fontSize: 40,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
-  static const h5 = TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
-  static const h6 = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
-  static const h7 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
-  static const h8 = TextStyle(
-    fontSize: 8,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.blueText,
-  );
+  static const h1 = TextStyle(fontSize: 64, fontWeight: FontWeight.bold);
+  static const h2 = TextStyle(fontSize: 56, fontWeight: FontWeight.bold);
+  static const h3 = TextStyle(fontSize: 48, fontWeight: FontWeight.bold);
+  static const h4 = TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
+  static const h5 = TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
+  static const h6 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+  static const h7 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static const h8 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold);
 
-  static const label1 = TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
-  static const label2 = TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
-  static const label3 = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
-  static const label4 = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
-  static const label5 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
-  static const label6 = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
-  static const label7 = TextStyle(
-    fontSize: 8,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
-  static const label8 = TextStyle(
-    fontSize: 4,
-    fontWeight: FontWeight.bold,
-    color: FlutterLatamColors.black,
-  );
+  static const label1 = TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
+  static const label2 = TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
+  static const label3 = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+  static const label4 = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  static const label5 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static const label6 = TextStyle(fontSize: 12, fontWeight: FontWeight.bold);
+  static const label7 = TextStyle(fontSize: 8, fontWeight: FontWeight.bold);
+  static const label8 = TextStyle(fontSize: 4, fontWeight: FontWeight.bold);
 }
