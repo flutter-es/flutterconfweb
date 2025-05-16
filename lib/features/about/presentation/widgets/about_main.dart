@@ -2,9 +2,139 @@ import 'dart:async'; // Added for Timer
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
+import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
+import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
+import 'package:flutter_conf_latam/core/widgets/text/adaptable_text.dart';
+import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; 
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class AboutMain extends ConsumerWidget {
+  const AboutMain({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+    final carouselImageUrls = <String>[
+      Assets.images.udla.one,
+      Assets.images.udla.two,
+      Assets.images.udla.three,
+    ];
+
+    final venueInfoList = <({String text, String icon})>[
+      (text: l10n.aboutVenueAddress, icon: Assets.images.icons.pinMap),
+      (text: l10n.aboutVenueCapacity, icon: Assets.images.icons.people),
+    ];
+
+    return SectionContainer(
+      spacing: 48,
+      children: <Widget>[
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: SizedBox(
+            width: 1196,
+            child: _ImageCarouselWidget(
+              imageUrls: carouselImageUrls,
+              height: 673, // Set specific height for the carousel
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+        ),
+        Column(
+          spacing: 24,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            TitleSubtitleText(
+              title: (
+                text: l10n.aboutVenueName,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 64,
+                  ScreenSize.large => 48,
+                  ScreenSize.normal || ScreenSize.small => 24,
+                },
+              ),
+              subtitle: (
+                text: l10n.aboutVenueDescription,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 24,
+                  ScreenSize.normal || ScreenSize.small => 16,
+                },
+              ),
+              textAlign: TextAlign.start,
+            ),
+            Flex(
+              spacing: 24,
+              crossAxisAlignment: switch (context.screenSize) {
+                ScreenSize.extraLarge => CrossAxisAlignment.center,
+                _ => CrossAxisAlignment.start,
+              },
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              direction: switch (context.screenSize) {
+                ScreenSize.extraLarge => Axis.horizontal,
+                _ => Axis.vertical,
+              },
+              children: <Widget>[
+                Column(
+                  spacing: 16,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    for (final item in venueInfoList)
+                      Row(
+                        spacing: 10,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          SizedBox.square(
+                            dimension: switch (context.screenSize) {
+                              ScreenSize.extraLarge || ScreenSize.large => 32,
+                              ScreenSize.normal || ScreenSize.small => 24,
+                            },
+                            child: SvgPicture.asset(item.icon),
+                          ),
+                          AdaptableText(
+                            item.text,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: switch (context.screenSize) {
+                                ScreenSize.extraLarge || ScreenSize.large => 24,
+                                ScreenSize.normal || ScreenSize.small => 16,
+                              },
+                              fontWeight: FontWeight.w400,
+                              color: FlutterLatamColors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
+                FclButton.primary(
+                  label: l10n.aboutVenueHowToArrive,
+                  icon: SizedBox.square(
+                    dimension: switch (context.screenSize) {
+                      ScreenSize.extraLarge || ScreenSize.large => 24,
+                      ScreenSize.normal || ScreenSize.small => 20,
+                    },
+                    child: SvgPicture.asset(Assets.images.icons.arrowCurve),
+                  ),
+                  onPressed: () {
+                    Utils.launchUrlLink(
+                      'https://maps.app.goo.gl/RcQwVw8JGHLHF4jUA',
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
 
 class _ImageCarouselWidget extends StatefulWidget {
   const _ImageCarouselWidget({
@@ -12,6 +142,7 @@ class _ImageCarouselWidget extends StatefulWidget {
     required this.height,
     required this.borderRadius,
   });
+
   final List<String> imageUrls;
   final double height;
   final BorderRadius borderRadius;
@@ -158,271 +289,6 @@ class _ImageCarouselWidgetState extends State<_ImageCarouselWidget> {
             }),
           ),
         ],
-      ],
-    );
-  }
-}
-
-class AboutMain extends ConsumerWidget {
-  const AboutMain({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final carouselImageUrls = <String>[
-      'assets/images/udla/udla1.png',
-      'assets/images/udla/udla2.png',
-      'assets/images/udla/udla3.png',
-    ];
-
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.only(left: 122, right: 122, bottom: 48),
-          clipBehavior: Clip.antiAlias,
-          decoration: const BoxDecoration(color: FlutterLatamColors.darkBlue),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 1440,
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                decoration: const BoxDecoration(color: Color(0xFF042B59)),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1200),
-                      child: SizedBox(
-                        width: 1180,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    width: 90,
-                                    height: 68,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          'https://placehold.co/90x68',
-                                        ),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 20),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 48),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1200),
-                child: SizedBox(
-                  width: 1196, // Set specific width for the carousel container
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // Using the carousel widget
-                      _ImageCarouselWidget(
-                        imageUrls: carouselImageUrls,
-                        height: 673, // Set specific height for the carousel
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 48),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1200),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 1196,
-                        child: Text(
-                          l10n?.conctacUdla ?? '¡Nos vemos en la Universidad de las Américas!', // Replaced hardcoded string
-                          style: TextStyle(
-                            color: FlutterLatamColors.white,
-                            fontSize: switch (context.screenSize) {
-                              ScreenSize.extraLarge || ScreenSize.large => 40,
-                              ScreenSize.normal || ScreenSize.small => 16,
-                            },
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      SizedBox(
-                        width: 1196,
-                        child: Text(
-                          l10n?.conctactDescription ?? '',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: switch (context.screenSize) {
-                              ScreenSize.extraLarge || ScreenSize.large => 40,
-                              ScreenSize.normal || ScreenSize.small => 16,
-                            },
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 32,
-                                        height: 32,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(),
-                                        child: const Stack(),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        'Vía a Nayón, Quito',
-                                        style: TextStyle(
-                                          color: FlutterLatamColors.white,
-                                          fontSize: switch (context
-                                              .screenSize) {
-                                            ScreenSize.extraLarge ||
-                                            ScreenSize.large => 40,
-                                            ScreenSize.normal ||
-                                            ScreenSize.small => 16,
-                                          },
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 32,
-                                        height: 32,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(),
-                                        child: const Stack(),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        l10n?.contactCapacity ?? '',
-                                        style: TextStyle(
-                                          color: FlutterLatamColors.white,
-                                          fontSize: switch (context
-                                              .screenSize) {
-                                            ScreenSize.extraLarge ||
-                                            ScreenSize.large => 40,
-                                            ScreenSize.normal ||
-                                            ScreenSize.small => 16,
-                                          },
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 24),
-                            InkWell(
-                              onTap: () async {
-                                Uri.parse(
-                                  'https://maps.app.goo.gl/RcQwVw8JGHLHF4jUA',
-                                );
-                              },
-                              child: Container(
-                                height: 68,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 40,
-                                ),
-                                decoration: ShapeDecoration(
-                                  color: FlutterLatamColors.blue,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(80),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 24,
-                                      height: 24,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(),
-                                      child:
-                                          const Stack(),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    Text(
-                                      l10n?.howToGet ?? '¿Cómo llegar?',
-                                      style: TextStyle(
-                                        color: FlutterLatamColors.white,
-                                        fontSize: switch (context.screenSize) {
-                                          ScreenSize.extraLarge ||
-                                          ScreenSize.large =>
-                                            20,
-                                          ScreenSize.normal ||
-                                          ScreenSize.small => 16,
-                                        },
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }
