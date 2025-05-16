@@ -36,10 +36,6 @@ dependencies:
   url_launcher: ^6.1.11
   vector_graphics: ^1.1.18
 
-flutter_intl:
-  enabled: true
-  class_name: AppLocalizations
-
 dev_dependencies:
   build_runner: ^2.4.15
   flutter_gen_runner: ^5.10.0
@@ -67,6 +63,7 @@ flutter:
   assets:
     - assets/animations/
     - assets/images/
+    - assets/images/about/
     - assets/images/collaborations/
     - assets/images/features/
     - assets/images/footer/
