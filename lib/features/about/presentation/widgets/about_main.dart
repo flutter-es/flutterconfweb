@@ -163,8 +163,8 @@ class _ImageCarouselWidgetState extends State<_ImageCarouselWidget> {
   }
 }
 
-class ContactMain extends ConsumerWidget {
-  const ContactMain({super.key});
+class AboutMain extends ConsumerWidget {
+  const AboutMain({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

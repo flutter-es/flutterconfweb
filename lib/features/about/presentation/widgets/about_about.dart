@@ -8,8 +8,8 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Import AppLocalizations
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ContactExtra extends ConsumerWidget {
-  const ContactExtra({super.key});
+class AboutAbout extends ConsumerWidget {
+  const AboutAbout({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,24 +17,19 @@ class ContactExtra extends ConsumerWidget {
 
     final about = <({String title, String description, String image})>[
       (
-        title: l10n?.safety ?? '',
-        description: l10n?.safetyDesc ?? '',
-        image: Assets.images.features.security,
+        title: l10n?.aboutInstalations ?? '',
+        description: l10n?.aboutInstalacionsDesc ?? '',
+        image: Assets.images.features.university,
       ),
       (
-        title: l10n?.emergency ?? '',
-        description: l10n?.emergencyDesc ?? '',
-        image: Assets.images.features.phone,
+        title: l10n?.aboutFood ?? '',
+        description: l10n?.aboutFood ?? '',
+        image: Assets.images.features.food,
       ),
       (
-        title: l10n?.taxi ?? '',
-        description: l10n?.taxiDesc ?? '',
-        image: Assets.images.features.taxi,
-      ),
-      (
-        title: l10n?.deliveryApp ?? '',
-        description: l10n?.deliveryAppDesc ?? '',
-        image: Assets.images.features.delivery,
+        title: l10n?.aboutHowMove ?? '',
+        description: l10n?.aboutHowMoveDesc ?? '',
+        image: Assets.images.features.map,
       ),
     ];
 
@@ -43,7 +38,7 @@ class ContactExtra extends ConsumerWidget {
       children: <Widget>[
         TitleSubtitleText(
           title: (
-            text: l10n?.contactExtraInfo ?? '',
+            text: l10n?.aboutPlace ?? '',
             size: switch (context.screenSize) {
               ScreenSize.extraLarge => 64,
               ScreenSize.large => 48,
@@ -51,7 +46,7 @@ class ContactExtra extends ConsumerWidget {
             },
           ),
           subtitle: (
-            text: l10n?.contactExtraInfoDesc ?? '',
+            text: l10n?.aboutDesc ?? '',
             size: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,
@@ -69,10 +64,10 @@ class ContactExtra extends ConsumerWidget {
           },
           children: <Widget>[
             Flexible(
-              flex: 2,
+              flex: 3,
               child: ResponsiveGrid(
                 columnSizes: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 2,
+                  ScreenSize.extraLarge || ScreenSize.large => 3,
                   ScreenSize.normal || ScreenSize.small => 1,
                 },
                 rowSizes: switch (context.screenSize) {

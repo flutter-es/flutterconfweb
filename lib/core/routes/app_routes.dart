@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes_pages.dart';
 import 'package:flutter_conf_latam/core/widgets/navigation/shell_navigator_page.dart';
-import 'package:flutter_conf_latam/features/contact/presentation/pages/contact_page.dart';
+import 'package:flutter_conf_latam/features/about/presentation/pages/about_page.dart';
 import 'package:flutter_conf_latam/features/errors/presentation/pages/error_page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
@@ -37,10 +37,10 @@ class AppRoutes {
                 },
               ),
               GoRoute(
-                path: ContactPage.route,
+                path: AboutPage.route,
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, __) {
-                  return const NoTransitionPage(child: ContactPage());
+                  return const NoTransitionPage(child: AboutPage());
                 },
               ),
             ],
