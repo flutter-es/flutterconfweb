@@ -24,6 +24,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutVenueDescription => 'That\'s right! FlutterConf Latam 2025 will be held at the University of the Americas. Get ready for a unique experience on this incredible campus.';
 
   @override
+  String get aboutVenueAddress => 'Vía a Nayón, Quito';
+
+  @override
   String get aboutVenueCapacity => 'Capacity: 600 people';
 
   @override

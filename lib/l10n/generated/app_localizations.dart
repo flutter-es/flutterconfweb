@@ -125,6 +125,12 @@ abstract class AppLocalizations {
   /// **'That\'s right! FlutterConf Latam 2025 will be held at the University of the Americas. Get ready for a unique experience on this incredible campus.'**
   String get aboutVenueDescription;
 
+  /// No description provided for @aboutVenueAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Vía a Nayón, Quito'**
+  String get aboutVenueAddress;
+
   /// No description provided for @aboutVenueCapacity.
   ///
   /// In en, this message translates to:
