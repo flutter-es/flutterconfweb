@@ -12,8 +12,8 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class AboutMain extends ConsumerWidget {
-  const AboutMain({super.key});
+class VenueMain extends ConsumerWidget {
+  const VenueMain({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

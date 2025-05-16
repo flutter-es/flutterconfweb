@@ -8,32 +8,27 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AboutExtra extends ConsumerWidget {
-  const AboutExtra({super.key});
+class VenuePlace extends ConsumerWidget {
+  const VenuePlace({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
     final about = <({String title, String description, String image})>[
       (
-        title: l10n.aboutExtraSafetyTitle,
-        description: l10n.aboutExtraSafetyDescription,
-        image: Assets.images.about.security,
+        title: l10n.aboutPlaceInstallationTitle,
+        description: l10n.aboutPlaceInstallationDescription,
+        image: Assets.images.about.university,
       ),
       (
-        title: l10n.aboutExtraEmergencyTitle,
-        description: l10n.aboutExtraEmergencyDescription,
-        image: Assets.images.about.phone,
+        title: l10n.aboutPlaceFoodTitle,
+        description: l10n.aboutPlaceFoodDescription,
+        image: Assets.images.about.food,
       ),
       (
-        title: l10n.aboutExtraTransportTitle,
-        description: l10n.aboutExtraTransportDescription,
-        image: Assets.images.about.taxi,
-      ),
-      (
-        title: l10n.aboutExtraDeliveryAppTitle,
-        description: l10n.aboutExtraDeliveryAppDescription,
-        image: Assets.images.about.delivery,
+        title: l10n.aboutPlaceMoveTitle,
+        description: l10n.aboutPlaceMoveDescription,
+        image: Assets.images.about.map,
       ),
     ];
 
@@ -42,7 +37,7 @@ class AboutExtra extends ConsumerWidget {
       children: <Widget>[
         TitleSubtitleText(
           title: (
-            text: l10n.aboutExtraInfoTitle,
+            text: l10n.aboutPlaceTitle,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge => 64,
               ScreenSize.large => 48,
@@ -50,7 +45,7 @@ class AboutExtra extends ConsumerWidget {
             },
           ),
           subtitle: (
-            text: l10n.aboutExtraInfoDescription,
+            text: l10n.aboutPlaceDescription,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,
@@ -60,7 +55,7 @@ class AboutExtra extends ConsumerWidget {
         ),
         ResponsiveGrid(
           columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 2,
+            ScreenSize.extraLarge => 3,
             _ => 1,
           },
           rowSizes: switch (context.screenSize) {

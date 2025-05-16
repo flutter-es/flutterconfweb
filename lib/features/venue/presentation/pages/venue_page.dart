@@ -1,21 +1,21 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
-import 'package:flutter_conf_latam/features/about/presentation/widgets/about_main.dart';
-import 'package:flutter_conf_latam/features/about/presentation/widgets/about_place.dart';
-import 'package:flutter_conf_latam/features/about/presentation/widgets/about_tip_extra.dart';
+import 'package:flutter_conf_latam/features/venue/presentation/widgets/venue_main.dart';
+import 'package:flutter_conf_latam/features/venue/presentation/widgets/venue_place.dart';
+import 'package:flutter_conf_latam/features/venue/presentation/widgets/venue_tip_extra.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AboutPage extends ConsumerStatefulWidget {
-  const AboutPage({super.key});
+class VenuePage extends ConsumerStatefulWidget {
+  const VenuePage({super.key});
 
-  static const String route = '/about';
+  static const String route = '/venue';
 
   @override
-  ConsumerState<AboutPage> createState() => _AboutPageState();
+  ConsumerState<VenuePage> createState() => _VenuePageState();
 }
 
-class _AboutPageState extends ConsumerState<AboutPage> {
+class _VenuePageState extends ConsumerState<VenuePage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override
@@ -30,9 +30,9 @@ class _AboutPageState extends ConsumerState<AboutPage> {
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
-            const AboutMain(),
-            const AboutPlace(),
-            const AboutExtra(),
+            const VenueMain(),
+            const VenuePlace(),
+            const VenueTipExtra(),
             const Footer(),
           ]),
         ),
