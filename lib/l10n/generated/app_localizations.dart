@@ -18,7 +18,7 @@ import 'app_localizations_es.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'generated/app_localizations.dart';
+/// import 'gen_l10n/app_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -112,6 +112,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Return Home'**
   String get errorReturnHomeButton;
+
+  /// No description provided for @conctacUdla.
+  ///
+  /// In en, this message translates to:
+  /// **'See you at the University of the Americas!'**
+  String get conctacUdla;
+
+  /// No description provided for @conctactDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s right! FlutterConf Latam 2025 will be held at the University of the Americas. Get ready for a unique experience on this incredible campus.'**
+  String get conctactDescription;
+
+  /// No description provided for @contactCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Capacity: 600 people'**
+  String get contactCapacity;
+
+  /// No description provided for @aboutPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'About the place'**
+  String get aboutPlace;
+
+  /// No description provided for @aboutDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'We leave you three key facts so you can feel comfortable and enjoy the place to the fullest.'**
+  String get aboutDesc;
+
+  /// No description provided for @aboutInstalations.
+  ///
+  /// In en, this message translates to:
+  /// **'Campus facilities'**
+  String get aboutInstalations;
+
+  /// No description provided for @aboutInstalacionsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The facility features modern classrooms, auditoriums, and networking spaces, equipped with high-speed Wi-Fi throughout the campus.'**
+  String get aboutInstalacionsDesc;
+
+  /// No description provided for @aboutFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food and drinks'**
+  String get aboutFood;
+
+  /// No description provided for @aboutFoodDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'There are several cafeterias and food options available on campus, with special menus prepared for conference attendees.'**
+  String get aboutFoodDesc;
+
+  /// No description provided for @aboutHowMoveDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The campus is easy to navigate with clear signage. Event staff, wearing Flutter T-shirts, will be available to assist you.'**
+  String get aboutHowMoveDesc;
+
+  /// No description provided for @aboutHowMove.
+  ///
+  /// In en, this message translates to:
+  /// **'How to move?'**
+  String get aboutHowMove;
+
+  /// No description provided for @contactExtraInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra information and useful tips'**
+  String get contactExtraInfo;
+
+  /// No description provided for @contactExtraInfoDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'We share some recommendations so you can make the most of the event.'**
+  String get contactExtraInfoDesc;
+
+  /// No description provided for @safety.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety precautions'**
+  String get safety;
+
+  /// No description provided for @safetyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid carrying large amounts of cash and keep your valuables safe in crowded areas.'**
+  String get safetyDesc;
+
+  /// No description provided for @emergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contacts'**
+  String get emergency;
+
+  /// No description provided for @emergencyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call +593-123-AYUDA.'**
+  String get emergencyDesc;
+
+  /// No description provided for @taxi.
+  ///
+  /// In en, this message translates to:
+  /// **'Taxis and transportation'**
+  String get taxi;
+
+  /// No description provided for @taxiDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use licensed taxis or apps like Uber and Cabify. Avoid unregistered taxis.'**
+  String get taxiDesc;
+
+  /// No description provided for @deliveryApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery applications'**
+  String get deliveryApp;
+
+  /// No description provided for @deliveryAppDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular options include Rappi and Uber Eats for fast and reliable service.'**
+  String get deliveryAppDesc;
 
   /// No description provided for @copyright.
   ///

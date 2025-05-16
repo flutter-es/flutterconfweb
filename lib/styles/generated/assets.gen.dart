@@ -63,6 +63,9 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/sponsors
   $AssetsImagesSponsorsGen get sponsors => const $AssetsImagesSponsorsGen();
 
+  /// Directory path: assets/images/udla
+  $AssetsImagesUdlaGen get udla => const $AssetsImagesUdlaGen();
+
   /// List of all assets
   List<String> get values => [
     ecuaDash,
@@ -90,11 +93,29 @@ class $AssetsImagesCollaborationsGen {
 class $AssetsImagesFeaturesGen {
   const $AssetsImagesFeaturesGen();
 
+  /// File path: assets/images/features/delivery.png
+  String get delivery => 'assets/images/features/delivery.png';
+
+  /// File path: assets/images/features/food.png
+  String get food => 'assets/images/features/food.png';
+
   /// File path: assets/images/features/four.png
   String get four => 'assets/images/features/four.png';
 
+  /// File path: assets/images/features/map.png
+  String get map => 'assets/images/features/map.png';
+
   /// File path: assets/images/features/one.png
   String get one => 'assets/images/features/one.png';
+
+  /// File path: assets/images/features/phone.png
+  String get phone => 'assets/images/features/phone.png';
+
+  /// File path: assets/images/features/security.png
+  String get security => 'assets/images/features/security.png';
+
+  /// File path: assets/images/features/taxi.png
+  String get taxi => 'assets/images/features/taxi.png';
 
   /// File path: assets/images/features/three.png
   String get three => 'assets/images/features/three.png';
@@ -105,8 +126,24 @@ class $AssetsImagesFeaturesGen {
   /// File path: assets/images/features/two.png
   String get two => 'assets/images/features/two.png';
 
+  /// File path: assets/images/features/university.png
+  String get university => 'assets/images/features/university.png';
+
   /// List of all assets
-  List<String> get values => [four, one, three, tickets, two];
+  List<String> get values => [
+    delivery,
+    food,
+    four,
+    map,
+    one,
+    phone,
+    security,
+    taxi,
+    three,
+    tickets,
+    two,
+    university,
+  ];
 }
 
 class $AssetsImagesFooterGen {
@@ -199,6 +236,22 @@ class $AssetsImagesSponsorsGen {
 
   /// List of all assets
   List<String> get values => [flutterLogo];
+}
+
+class $AssetsImagesUdlaGen {
+  const $AssetsImagesUdlaGen();
+
+  /// File path: assets/images/udla/udla1.png
+  String get udla1 => 'assets/images/udla/udla1.png';
+
+  /// File path: assets/images/udla/udla2.png
+  String get udla2 => 'assets/images/udla/udla2.png';
+
+  /// File path: assets/images/udla/udla3.png
+  String get udla3 => 'assets/images/udla/udla3.png';
+
+  /// List of all assets
+  List<String> get values => [udla1, udla2, udla3];
 }
 
 class Assets {
