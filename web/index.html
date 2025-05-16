@@ -31,7 +31,7 @@
 
       _flutter.loader.load({
         serviceWorker: {
-          serviceWorkerVersion: "1.0.0",
+          serviceWorkerVersion: {{flutter_service_worker_version}},
         },
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
