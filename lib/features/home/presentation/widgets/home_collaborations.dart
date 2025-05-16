@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
@@ -18,7 +19,7 @@ class HomeCollaborations extends StatelessWidget {
         description: 'Si lo tuyo es inspirar y enseñar, súmate como speaker',
         imagePath: Assets.images.collaborations.speaker,
         color: FlutterLatamColors.blue,
-        button: (text: 'Ser speaker', function: () {}),
+        button: (text: 'Ser speaker', function: _goToCfp),
       ),
       CollaborationItem(
         title: '¿Quieres colaborar como sponsor?',
@@ -26,7 +27,7 @@ class HomeCollaborations extends StatelessWidget {
             '¡Tu marca también puede ser parte de esta gran experiencia!',
         imagePath: Assets.images.collaborations.sponsor,
         color: FlutterLatamColors.green,
-        button: (text: 'Contactar', function: () {}),
+        button: (text: 'Ser sponsor', function: () {}),
       ),
     ];
 
@@ -68,6 +69,12 @@ class HomeCollaborations extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  void _goToCfp() {
+    Utils.launchUrlLink(
+      'https://docs.google.com/forms/d/e/1FAIpQLSdXH_eT5yRm6-3TSr5gAZaQc57_jFLa0TmqGxPgWxrVE1uDBA/viewform',
     );
   }
 }

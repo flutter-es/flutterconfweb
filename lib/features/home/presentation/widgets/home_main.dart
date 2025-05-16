@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/count_down_text.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
@@ -77,7 +78,11 @@ class HomeMain extends ConsumerWidget {
                   decoration: TextDecoration.underline,
                   decorationColor: FlutterLatamColors.white,
                 ),
-                recognizer: TapGestureRecognizer()..onTap = () {},
+                recognizer:
+                    TapGestureRecognizer()
+                      ..onTap = () {
+                        Utils.launchUrlLink('https://mitaddelmundo.gob.ec/');
+                      },
               ),
               const TextSpan(text: '!'),
             ],
