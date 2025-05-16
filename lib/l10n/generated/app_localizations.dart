@@ -18,7 +18,7 @@ import 'app_localizations_es.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'gen_l10n/app_localizations.dart';
+/// import 'generated/app_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -238,6 +238,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Popular options include Rappi and Uber Eats for fast and reliable service.'**
   String get deliveryAppDesc;
+
+  /// No description provided for @howToGet.
+  ///
+  /// In en, this message translates to:
+  /// **'How to get there?'**
+  String get howToGet;
 
   /// No description provided for @copyright.
   ///

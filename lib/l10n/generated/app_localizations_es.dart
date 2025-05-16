@@ -81,6 +81,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deliveryAppDesc => 'Popular options include Rappi and Uber Eats for fast and reliable service.';
 
   @override
+  String get howToGet => '¿Cómo llegar?';
+
+  @override
   String copyright(int year) {
     return '© $year Flutter Conf Latam';
   }

@@ -26,6 +26,9 @@ class $AssetsAnimationsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// Directory path: assets/images/about
+  $AssetsImagesAboutGen get about => const $AssetsImagesAboutGen();
+
   /// Directory path: assets/images/collaborations
   $AssetsImagesCollaborationsGen get collaborations =>
       const $AssetsImagesCollaborationsGen();
@@ -77,6 +80,42 @@ class $AssetsImagesGen {
   ];
 }
 
+class $AssetsImagesAboutGen {
+  const $AssetsImagesAboutGen();
+
+  /// File path: assets/images/about/delivery.png
+  String get delivery => 'assets/images/about/delivery.png';
+
+  /// File path: assets/images/about/food.png
+  String get food => 'assets/images/about/food.png';
+
+  /// File path: assets/images/about/map.png
+  String get map => 'assets/images/about/map.png';
+
+  /// File path: assets/images/about/phone.png
+  String get phone => 'assets/images/about/phone.png';
+
+  /// File path: assets/images/about/security.png
+  String get security => 'assets/images/about/security.png';
+
+  /// File path: assets/images/about/taxi.png
+  String get taxi => 'assets/images/about/taxi.png';
+
+  /// File path: assets/images/about/university.png
+  String get university => 'assets/images/about/university.png';
+
+  /// List of all assets
+  List<String> get values => [
+    delivery,
+    food,
+    map,
+    phone,
+    security,
+    taxi,
+    university,
+  ];
+}
+
 class $AssetsImagesCollaborationsGen {
   const $AssetsImagesCollaborationsGen();
 
@@ -93,29 +132,11 @@ class $AssetsImagesCollaborationsGen {
 class $AssetsImagesFeaturesGen {
   const $AssetsImagesFeaturesGen();
 
-  /// File path: assets/images/features/delivery.png
-  String get delivery => 'assets/images/features/delivery.png';
-
-  /// File path: assets/images/features/food.png
-  String get food => 'assets/images/features/food.png';
-
   /// File path: assets/images/features/four.png
   String get four => 'assets/images/features/four.png';
 
-  /// File path: assets/images/features/map.png
-  String get map => 'assets/images/features/map.png';
-
   /// File path: assets/images/features/one.png
   String get one => 'assets/images/features/one.png';
-
-  /// File path: assets/images/features/phone.png
-  String get phone => 'assets/images/features/phone.png';
-
-  /// File path: assets/images/features/security.png
-  String get security => 'assets/images/features/security.png';
-
-  /// File path: assets/images/features/taxi.png
-  String get taxi => 'assets/images/features/taxi.png';
 
   /// File path: assets/images/features/three.png
   String get three => 'assets/images/features/three.png';
@@ -126,24 +147,8 @@ class $AssetsImagesFeaturesGen {
   /// File path: assets/images/features/two.png
   String get two => 'assets/images/features/two.png';
 
-  /// File path: assets/images/features/university.png
-  String get university => 'assets/images/features/university.png';
-
   /// List of all assets
-  List<String> get values => [
-    delivery,
-    food,
-    four,
-    map,
-    one,
-    phone,
-    security,
-    taxi,
-    three,
-    tickets,
-    two,
-    university,
-  ];
+  List<String> get values => [four, one, three, tickets, two];
 }
 
 class $AssetsImagesFooterGen {
@@ -241,17 +246,17 @@ class $AssetsImagesSponsorsGen {
 class $AssetsImagesUdlaGen {
   const $AssetsImagesUdlaGen();
 
-  /// File path: assets/images/udla/udla1.png
-  String get udla1 => 'assets/images/udla/udla1.png';
+  /// File path: assets/images/udla/one.png
+  String get one => 'assets/images/udla/one.png';
 
-  /// File path: assets/images/udla/udla2.png
-  String get udla2 => 'assets/images/udla/udla2.png';
+  /// File path: assets/images/udla/three.png
+  String get three => 'assets/images/udla/three.png';
 
-  /// File path: assets/images/udla/udla3.png
-  String get udla3 => 'assets/images/udla/udla3.png';
+  /// File path: assets/images/udla/two.png
+  String get two => 'assets/images/udla/two.png';
 
   /// List of all assets
-  List<String> get values => [udla1, udla2, udla3];
+  List<String> get values => [one, three, two];
 }
 
 class Assets {
