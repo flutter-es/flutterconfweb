@@ -18,73 +18,73 @@ class AppLocalizationsEs extends AppLocalizations {
   String get errorReturnHomeButton => 'Volver al inicio';
 
   @override
-  String get conctacUdla => 'See you at the University of the Americas!';
+  String get aboutVenueName => '¡Nos vemos en la Universidad de las Américas!';
 
   @override
-  String get conctactDescription => '¡Así es! FlutterConf Latam 2025 se llevará a cabo en la Universidad de las Américas. Prepárate para vivir una experiencia única en este increíble campus.';
+  String get aboutVenueDescription => '¡Así es! FlutterConf Latam 2025 se llevará a cabo en la Universidad de las Américas. Prepárate para vivir una experiencia única en este increíble campus.';
 
   @override
-  String get contactCapacity => 'Capacidad: 600 personas';
+  String get aboutVenueCapacity => 'Capacidad: 600 personas';
 
   @override
-  String get aboutPlace => 'Acerca del lugar';
+  String get aboutVenueHowToArrive => '¿Cómo llegar?';
 
   @override
-  String get aboutDesc => 'Te dejamos tres datos clave para que te sientas cómodo y disfrutes al máximo del lugar.';
+  String get aboutPlaceTitle => 'Acerca del lugar';
 
   @override
-  String get aboutInstalations => 'Instalaciones del campus';
+  String get aboutPlaceDescription => 'Te dejamos tres datos clave para que te sientas cómodo y disfrutes al máximo del lugar.';
 
   @override
-  String get aboutInstalacionsDesc => 'The facility features modern classrooms, auditoriums, and networking spaces, equipped with high-speed Wi-Fi throughout the campus.';
+  String get aboutPlaceInstallationTitle => 'Instalaciones del campus';
 
   @override
-  String get aboutFood => 'Comida y bebidas';
+  String get aboutPlaceInstallationDescription => 'El lugar cuenta con aulas modernas, auditorios y espacios para networking, equipados con Wi-Fi de alta velocidad en todo el campus.';
 
   @override
-  String get aboutFoodDesc => 'Hay varias cafeterías y opciones de comida disponibles en el campus, con menús especiales preparados para los asistentes de la conferencia';
+  String get aboutPlaceFoodTitle => 'Comida y bebidas';
 
   @override
-  String get aboutHowMoveDesc => 'El campus es fácil de navegar con una señalización clara. Personal del evento, con camisetas azules de Flutter, estará disponible para ayudarte.';
+  String get aboutPlaceFoodDescription => 'Hay varias cafeterías y opciones de comida disponibles en el campus, con menús especiales preparados para los asistentes de la conferencia';
 
   @override
-  String get aboutHowMove => '¿Cómo moverse?';
+  String get aboutPlaceMoveTitle => '¿Cómo moverse?';
 
   @override
-  String get contactExtraInfo => 'Datos extras y consejos útiles';
+  String get aboutPlaceMoveDescription => 'El campus es fácil de navegar con una señalización clara. Personal del evento, con camisetas azules de Flutter, estará disponible para ayudarte.';
 
   @override
-  String get contactExtraInfoDesc => 'Te compartimos algunas recomendaciones para que aproveches al máximo el evento.';
+  String get aboutExtraInfoTitle => 'Datos extras y consejos útiles';
 
   @override
-  String get safety => 'Precauciones de seguridad';
+  String get aboutExtraInfoDescription => 'Te compartimos algunas recomendaciones para que aproveches al máximo el evento.';
 
   @override
-  String get safetyDesc => 'Evita llevar grandes cantidades de dinero y mantén tus objetos de valor seguros en áreas concurridas.';
+  String get aboutExtraSafetyTitle => 'Precauciones de seguridad';
 
   @override
-  String get emergency => 'Contactos de emergencia';
+  String get aboutExtraSafetyDescription => 'Evita llevar grandes cantidades de dinero y mantén tus objetos de valor seguros en áreas concurridas.';
 
   @override
-  String get emergencyDesc => 'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call +593-123-AYUDA.';
+  String get aboutExtraEmergencyTitle => 'Contactos de emergencia';
 
   @override
-  String get taxi => 'Taxis y transportes';
+  String get aboutExtraEmergencyDescription => 'Marca 911 para la policía, ambulancia o bomberos. Para asistencia al turista, llama al +593-123-AYUDA.';
 
   @override
-  String get taxiDesc => 'Usa taxis autorizados o aplicaciones como Uber y Cabify. Evita tomar taxis no registrados.';
+  String get aboutExtraTransportTitle => 'Taxis y transportes';
 
   @override
-  String get deliveryApp => 'Delivery applications';
+  String get aboutExtraTransportDescription => 'Usa taxis autorizados o aplicaciones como Uber y Cabify. Evita tomar taxis no registrados.';
 
   @override
-  String get deliveryAppDesc => 'Popular options include Rappi and Uber Eats for fast and reliable service.';
+  String get aboutExtraDeliveryAppTitle => 'Aplicaciones de entrega';
 
   @override
-  String get howToGet => '¿Cómo llegar?';
+  String get aboutExtraDeliveryAppDescription => 'Las opciones populares incluyen Rappi y Uber Eats para un servicio rápido y confiable.';
 
   @override
   String copyright(int year) {
-    return '© $year Flutter Conf Latam';
+    return '© $year Flutter Conf Latam - Todos los derechos reservados';
   }
 }

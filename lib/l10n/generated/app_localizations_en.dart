@@ -18,73 +18,73 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorReturnHomeButton => 'Return Home';
 
   @override
-  String get conctacUdla => 'See you at the University of the Americas!';
+  String get aboutVenueName => 'See you at the University of the Americas!';
 
   @override
-  String get conctactDescription => 'That\'s right! FlutterConf Latam 2025 will be held at the University of the Americas. Get ready for a unique experience on this incredible campus.';
+  String get aboutVenueDescription => 'That\'s right! FlutterConf Latam 2025 will be held at the University of the Americas. Get ready for a unique experience on this incredible campus.';
 
   @override
-  String get contactCapacity => 'Capacity: 600 people';
+  String get aboutVenueCapacity => 'Capacity: 600 people';
 
   @override
-  String get aboutPlace => 'About the place';
+  String get aboutVenueHowToArrive => 'How to get there?';
 
   @override
-  String get aboutDesc => 'We leave you three key facts so you can feel comfortable and enjoy the place to the fullest.';
+  String get aboutPlaceTitle => 'About the place';
 
   @override
-  String get aboutInstalations => 'Campus facilities';
+  String get aboutPlaceDescription => 'We leave you three key facts so you can feel comfortable and enjoy the place to the fullest.';
 
   @override
-  String get aboutInstalacionsDesc => 'The facility features modern classrooms, auditoriums, and networking spaces, equipped with high-speed Wi-Fi throughout the campus.';
+  String get aboutPlaceInstallationTitle => 'Campus facilities';
 
   @override
-  String get aboutFood => 'Food and drinks';
+  String get aboutPlaceInstallationDescription => 'The facility features modern classrooms, auditoriums, and networking spaces, equipped with high-speed Wi-Fi throughout the campus.';
 
   @override
-  String get aboutFoodDesc => 'There are several cafeterias and food options available on campus, with special menus prepared for conference attendees.';
+  String get aboutPlaceFoodTitle => 'Food and drinks';
 
   @override
-  String get aboutHowMoveDesc => 'The campus is easy to navigate with clear signage. Event staff, wearing Flutter T-shirts, will be available to assist you.';
+  String get aboutPlaceFoodDescription => 'There are several cafeterias and food options available on campus, with special menus prepared for conference attendees.';
 
   @override
-  String get aboutHowMove => 'How to move?';
+  String get aboutPlaceMoveTitle => 'How to move?';
 
   @override
-  String get contactExtraInfo => 'Extra information and useful tips';
+  String get aboutPlaceMoveDescription => 'The campus is easy to navigate with clear signage. Event staff, wearing Flutter T-shirts, will be available to assist you.';
 
   @override
-  String get contactExtraInfoDesc => 'We share some recommendations so you can make the most of the event.';
+  String get aboutExtraInfoTitle => 'Extra information and useful tips';
 
   @override
-  String get safety => 'Safety precautions';
+  String get aboutExtraInfoDescription => 'We share some recommendations so you can make the most of the event.';
 
   @override
-  String get safetyDesc => 'Avoid carrying large amounts of cash and keep your valuables safe in crowded areas.';
+  String get aboutExtraSafetyTitle => 'Safety precautions';
 
   @override
-  String get emergency => 'Emergency contacts';
+  String get aboutExtraSafetyDescription => 'Avoid carrying large amounts of cash and keep your valuables safe in crowded areas.';
 
   @override
-  String get emergencyDesc => 'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call +593-123-AYUDA.';
+  String get aboutExtraEmergencyTitle => 'Emergency contacts';
 
   @override
-  String get taxi => 'Taxis and transportation';
+  String get aboutExtraEmergencyDescription => 'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call +593-123-AYUDA.';
 
   @override
-  String get taxiDesc => 'Use licensed taxis or apps like Uber and Cabify. Avoid unregistered taxis.';
+  String get aboutExtraTransportTitle => 'Taxis and transportation';
 
   @override
-  String get deliveryApp => 'Delivery applications';
+  String get aboutExtraTransportDescription => 'Use licensed taxis or apps like Uber and Cabify. Avoid unregistered taxis.';
 
   @override
-  String get deliveryAppDesc => 'Popular options include Rappi and Uber Eats for fast and reliable service.';
+  String get aboutExtraDeliveryAppTitle => 'Delivery applications';
 
   @override
-  String get howToGet => 'How to get there?';
+  String get aboutExtraDeliveryAppDescription => 'Popular options include Rappi and Uber Eats for fast and reliable service.';
 
   @override
   String copyright(int year) {
-    return '© $year Flutter Conf Latam';
+    return '© $year Flutter Conf Latam - All rights reserved';
   }
 }
