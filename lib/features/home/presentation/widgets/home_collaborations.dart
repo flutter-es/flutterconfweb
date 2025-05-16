@@ -27,7 +27,7 @@ class HomeCollaborations extends StatelessWidget {
             '¡Tu marca también puede ser parte de esta gran experiencia!',
         imagePath: Assets.images.collaborations.sponsor,
         color: FlutterLatamColors.green,
-        button: (text: 'Ser sponsor', function: () {}),
+        button: (text: 'Ser sponsor', function: _goToTicket),
       ),
     ];
 
@@ -75,6 +75,12 @@ class HomeCollaborations extends StatelessWidget {
   void _goToCfp() {
     Utils.launchUrlLink(
       'https://docs.google.com/forms/d/e/1FAIpQLSdXH_eT5yRm6-3TSr5gAZaQc57_jFLa0TmqGxPgWxrVE1uDBA/viewform',
+    );
+  }
+
+  void _goToTicket() {
+    Utils.launchUrlLink(
+      'https://ti.to/flutterconflatam/flutterconflatam2025/with/early-bird',
     );
   }
 }
