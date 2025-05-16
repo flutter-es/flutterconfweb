@@ -39,9 +39,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/fcl_ec_footer_logo.png
   String get fclEcFooterLogo => 'assets/images/fcl_ec_footer_logo.png';
 
-  /// File path: assets/images/fcl_ec_logo.svg
-  String get fclEcLogo => 'assets/images/fcl_ec_logo.svg';
-
   /// File path: assets/images/fcl_ec_main_logo.png
   String get fclEcMainLogo => 'assets/images/fcl_ec_main_logo.png';
 
@@ -73,7 +70,6 @@ class $AssetsImagesGen {
   List<String> get values => [
     ecuaDash,
     fclEcFooterLogo,
-    fclEcLogo,
     fclEcMainLogo,
     fclTextWhite,
     flutterLogoWhite,
@@ -170,11 +166,8 @@ class $AssetsImagesFooterGen {
 class $AssetsImagesIconsGen {
   const $AssetsImagesIconsGen();
 
-  /// File path: assets/images/icons/collapse.svg
-  String get collapse => 'assets/images/icons/collapse.svg';
-
-  /// File path: assets/images/icons/expand.svg
-  String get expand => 'assets/images/icons/expand.svg';
+  /// File path: assets/images/icons/arrow_curve.svg
+  String get arrowCurve => 'assets/images/icons/arrow_curve.svg';
 
   /// File path: assets/images/icons/facebook.svg
   String get facebook => 'assets/images/icons/facebook.svg';
@@ -184,6 +177,12 @@ class $AssetsImagesIconsGen {
 
   /// File path: assets/images/icons/linked_in.svg
   String get linkedIn => 'assets/images/icons/linked_in.svg';
+
+  /// File path: assets/images/icons/people.svg
+  String get people => 'assets/images/icons/people.svg';
+
+  /// File path: assets/images/icons/pin_map.svg
+  String get pinMap => 'assets/images/icons/pin_map.svg';
 
   /// File path: assets/images/icons/tik_tok.svg
   String get tikTok => 'assets/images/icons/tik_tok.svg';
@@ -199,11 +198,12 @@ class $AssetsImagesIconsGen {
 
   /// List of all assets
   List<String> get values => [
-    collapse,
-    expand,
+    arrowCurve,
     facebook,
     instagram,
     linkedIn,
+    people,
+    pinMap,
     tikTok,
     twitter,
     youtube,
