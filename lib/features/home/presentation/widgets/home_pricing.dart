@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
@@ -156,6 +157,14 @@ class _PricingCardItem extends StatelessWidget {
                           ],
                         ),
                     ],
+                    if (detail.type == _PricingType.early)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: FclButton.primary(
+                          label: 'Comprar tickets',
+                          onPressed: () {},
+                        ),
+                      ),
                   ],
                 ),
               ),
