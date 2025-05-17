@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/features/navigation/data/models/navigation_item_model.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
@@ -18,8 +19,9 @@ class MobileDrawerMenu extends ConsumerWidget {
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 20),
         child: Column(
+          spacing: 20,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
@@ -31,9 +33,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).pop();
-                      ref
-                          .read(navigationViewmodelProvider.notifier)
-                          .selectNavItemFromRoute(HomePage.route);
+                      _goToHome(ref);
                     },
                     child: Image.asset(Assets.images.fclEcMainLogo),
                   ),
@@ -56,10 +56,17 @@ class MobileDrawerMenu extends ConsumerWidget {
                 ],
               ),
             ),
+            const LanguageButton(),
           ],
         ),
       ),
     );
+  }
+
+  void _goToHome(WidgetRef ref) {
+    ref
+        .read(navigationViewmodelProvider.notifier)
+        .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
   }
 }
 

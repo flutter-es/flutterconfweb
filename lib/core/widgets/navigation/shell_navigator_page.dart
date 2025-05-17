@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/widgets/container/header.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
-import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -52,11 +52,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: InkWell(
-                onTap: () {
-                  ref
-                      .read(navigationViewmodelProvider.notifier)
-                      .selectNavItemFromRoute(HomePage.route);
-                },
+                onTap: _goToHome,
                 child: Image.asset(Assets.images.fclEcMainLogo),
               ),
             ),
@@ -81,5 +77,11 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
         ],
       ),
     );
+  }
+
+  void _goToHome() {
+    ref
+        .read(navigationViewmodelProvider.notifier)
+        .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
   }
 }
