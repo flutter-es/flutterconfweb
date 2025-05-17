@@ -4,18 +4,15 @@ import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/widgets/venue_main.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/widgets/venue_place.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/widgets/venue_tip_extra.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class VenuePage extends ConsumerStatefulWidget {
+class VenuePage extends StatefulWidget {
   const VenuePage({super.key});
 
-  static const String route = '/venue';
-
   @override
-  ConsumerState<VenuePage> createState() => _VenuePageState();
+  State<VenuePage> createState() => _VenuePageState();
 }
 
-class _VenuePageState extends ConsumerState<VenuePage> {
+class _VenuePageState extends State<VenuePage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override

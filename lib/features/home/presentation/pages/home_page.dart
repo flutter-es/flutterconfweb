@@ -13,8 +13,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
-  static const String route = '/home';
-
   @override
   ConsumerState<HomePage> createState() => _HomePageState();
 }

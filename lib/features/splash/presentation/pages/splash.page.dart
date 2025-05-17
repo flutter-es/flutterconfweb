@@ -11,8 +11,6 @@ import 'package:go_router/go_router.dart';
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
-  static const String route = '/';
-
   @override
   State<SplashPage> createState() => _SplashPageState();
 }

@@ -15,8 +15,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
 
-  static const String route = '/contact';
-
   @override
   State<ContactPage> createState() => _ContactPageState();
 }
