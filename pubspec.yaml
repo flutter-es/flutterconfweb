@@ -64,6 +64,7 @@ flutter:
     - assets/animations/
     - assets/images/
     - assets/images/about/
+    - assets/images/contact/
     - assets/images/collaborations/
     - assets/images/features/
     - assets/images/footer/

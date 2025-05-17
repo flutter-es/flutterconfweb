@@ -33,6 +33,9 @@ class $AssetsImagesGen {
   $AssetsImagesCollaborationsGen get collaborations =>
       const $AssetsImagesCollaborationsGen();
 
+  /// Directory path: assets/images/contact
+  $AssetsImagesContactGen get contact => const $AssetsImagesContactGen();
+
   /// File path: assets/images/ecua_dash.png
   String get ecuaDash => 'assets/images/ecua_dash.png';
 
@@ -125,6 +128,16 @@ class $AssetsImagesCollaborationsGen {
   List<String> get values => [speaker, sponsor];
 }
 
+class $AssetsImagesContactGen {
+  const $AssetsImagesContactGen();
+
+  /// File path: assets/images/contact/email.png
+  String get email => 'assets/images/contact/email.png';
+
+  /// List of all assets
+  List<String> get values => [email];
+}
+
 class $AssetsImagesFeaturesGen {
   const $AssetsImagesFeaturesGen();
 
@@ -169,6 +182,9 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/arrow_curve.svg
   String get arrowCurve => 'assets/images/icons/arrow_curve.svg';
 
+  /// File path: assets/images/icons/copy.svg
+  String get copy => 'assets/images/icons/copy.svg';
+
   /// File path: assets/images/icons/facebook.svg
   String get facebook => 'assets/images/icons/facebook.svg';
 
@@ -199,6 +215,7 @@ class $AssetsImagesIconsGen {
   /// List of all assets
   List<String> get values => [
     arrowCurve,
+    copy,
     facebook,
     instagram,
     linkedIn,
