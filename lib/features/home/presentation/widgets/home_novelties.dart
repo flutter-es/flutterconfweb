@@ -4,23 +4,26 @@ import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeNovelties extends StatelessWidget {
+class HomeNovelties extends ConsumerWidget {
   const HomeNovelties({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final novelties = <({String title, String description, String image})>[
       (
-        title: 'Merch edición Ecuador',
-        description: 'Swag único, stickers y más, solo para esta edición.',
+        title: l10n.homeNoveltiesMerchTitle,
+        description: l10n.homeNoveltiesMerchDescription,
         image: Assets.images.novelties.one,
       ),
       (
-        title: '¿Amante de la trivia?',
-        description: 'Estamos preparando algo que te va a encantar.',
+        title: l10n.homeNoveltiesTriviaTitle,
+        description: l10n.homeNoveltiesTriviaDescription,
         image: Assets.images.novelties.two,
       ),
     ];
@@ -33,7 +36,7 @@ class HomeNovelties extends StatelessWidget {
           children: <Widget>[
             TitleSubtitleText(
               title: (
-                text: 'Novedades para este 2025',
+                text: l10n.homeNoveltiesTitle,
                 size: switch (context.screenSize) {
                   ScreenSize.extraLarge => 64,
                   ScreenSize.large => 48,
@@ -41,9 +44,7 @@ class HomeNovelties extends StatelessWidget {
                 },
               ),
               subtitle: (
-                text:
-                    'Siempre hemos dado lo mejor, pero ahora queremos '
-                    'ofrecerte una experiencia Flutter aún más completa.',
+                text: l10n.homeNoveltiesDescription,
                 size: switch (context.screenSize) {
                   ScreenSize.extraLarge || ScreenSize.large => 24,
                   ScreenSize.normal || ScreenSize.small => 16,
@@ -85,11 +86,13 @@ class HomeNovelties extends StatelessWidget {
   }
 }
 
-class _NoveltyAppCard extends StatelessWidget {
+class _NoveltyAppCard extends ConsumerWidget {
   const _NoveltyAppCard();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+
     return Card(
       color: FlutterLatamColors.blue,
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -115,7 +118,7 @@ class _NoveltyAppCard extends StatelessWidget {
                 children: <Widget>[
                   TitleSubtitleText(
                     title: (
-                      text: '¡Este 2025 tendremos app oficial!',
+                      text: l10n.homeNoveltiesAppTitle,
                       size: switch (context.screenSize) {
                         ScreenSize.extraLarge => 48,
                         ScreenSize.large => 40,
@@ -123,9 +126,7 @@ class _NoveltyAppCard extends StatelessWidget {
                       },
                     ),
                     subtitle: (
-                      text:
-                          'Todo lo que necesitas de FlutterConfLatam '
-                          'ahora en la palma de tu mano.',
+                      text: l10n.homeNoveltiesAppDescription,
                       size: switch (context.screenSize) {
                         ScreenSize.extraLarge || ScreenSize.large => 24,
                         ScreenSize.normal || ScreenSize.small => 16,
@@ -161,11 +162,12 @@ class _NoveltyAppCard extends StatelessWidget {
   }
 }
 
-class _AppStoreSection extends StatelessWidget {
+class _AppStoreSection extends ConsumerWidget {
   const _AppStoreSection();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final appLogoUrls = <({String imagePath, String url})>[
       (imagePath: Assets.images.novelties.appStore, url: ''),
       (imagePath: Assets.images.novelties.googlePlay, url: ''),
@@ -180,7 +182,7 @@ class _AppStoreSection extends StatelessWidget {
       },
       children: <Widget>[
         Text(
-          'Próximamente:',
+          l10n.homeNoveltiesAppSoon,
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: switch (context.screenSize) {

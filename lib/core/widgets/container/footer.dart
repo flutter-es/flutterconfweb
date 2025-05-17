@@ -128,11 +128,12 @@ class _SocialFooter extends ConsumerWidget {
   }
 }
 
-class _SocialPlace extends StatelessWidget {
+class _SocialPlace extends ConsumerWidget {
   const _SocialPlace();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final footerImages = <String>[
       Assets.images.footer.one,
       Assets.images.footer.two,
@@ -143,13 +144,13 @@ class _SocialPlace extends StatelessWidget {
       spacing: 30,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Column(
+        Column(
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              '¡Nos vemos en Quito, Ecuador 🇪🇨 !',
-              style: TextStyle(
+              l10n.footerTitle,
+              style: const TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -157,9 +158,8 @@ class _SocialPlace extends StatelessWidget {
               ),
             ),
             Text(
-              'Aprovecha el evento y descubre la magia de Quito y sus '
-              'alrededores.',
-              style: TextStyle(
+              l10n.footerDescription,
+              style: const TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -181,9 +181,9 @@ class _SocialPlace extends StatelessWidget {
         ),
         InkWell(
           onTap: () {},
-          child: const Text(
-            'Saber más',
-            style: TextStyle(
+          child: Text(
+            l10n.footerSeeMore,
+            style: const TextStyle(
               fontFamily: 'Poppins',
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -198,18 +198,19 @@ class _SocialPlace extends StatelessWidget {
   }
 }
 
-class _SocialVideos extends StatelessWidget {
+class _SocialVideos extends ConsumerWidget {
   const _SocialVideos();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final videoList = <({String text, String url})>[
       (
-        text: 'FlutterConf Latam 2024, Arequipa, Perú',
+        text: l10n.footerMemoriesVideoOne,
         url: 'https://www.youtube.com/watch?v=AroSepWRDMw',
       ),
       (
-        text: 'FlutterConf Latam 2023, Medellín, Colombia',
+        text: l10n.footerMemoriesVideoTwo,
         url: 'https://www.youtube.com/watch?v=AQjO-V4xGis',
       ),
     ];
@@ -218,13 +219,13 @@ class _SocialVideos extends StatelessWidget {
       spacing: 30,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Column(
+        Column(
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              '¿Será tu primer FlutterConf?',
-              style: TextStyle(
+              l10n.footerMemoriesTitle,
+              style: const TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -232,8 +233,8 @@ class _SocialVideos extends StatelessWidget {
               ),
             ),
             Text(
-              'Mira cómo lo vivimos en ediciones anteriores.',
-              style: TextStyle(
+              l10n.footerMemoriesDescription,
+              style: const TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 16,
                 fontWeight: FontWeight.w400,

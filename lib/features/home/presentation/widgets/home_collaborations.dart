@@ -5,29 +5,34 @@ import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeCollaborations extends StatelessWidget {
+class HomeCollaborations extends ConsumerWidget {
   const HomeCollaborations({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final collaborations = <CollaborationItem>[
       CollaborationItem(
-        title: '¿Quieres ser speaker?',
-        description: 'Si lo tuyo es inspirar y enseñar, súmate como speaker',
+        title: l10n.homeCollaborationSpeakerTitle,
+        description: l10n.homeCollaborationSpeakerDescription,
         imagePath: Assets.images.collaborations.speaker,
         color: FlutterLatamColors.blue,
-        button: (text: 'Ser speaker', function: _goToCfp),
+        button: (text: l10n.homeCollaborationSpeakerButton, function: _goToCfp),
       ),
       CollaborationItem(
-        title: '¿Quieres colaborar como sponsor?',
-        description:
-            '¡Tu marca también puede ser parte de esta gran experiencia!',
+        title: l10n.homeCollaborationSponsorTitle,
+        description: l10n.homeCollaborationSponsorDescription,
         imagePath: Assets.images.collaborations.sponsor,
         color: FlutterLatamColors.green,
-        button: (text: 'Ser sponsor', function: _goToTicket),
+        button: (
+          text: l10n.homeCollaborationSponsorButton,
+          function: _goToTicket,
+        ),
       ),
     ];
 
@@ -36,7 +41,7 @@ class HomeCollaborations extends StatelessWidget {
       children: <Widget>[
         TitleSubtitleText(
           title: (
-            text: '¿Quieres colaborar a otro nivel?',
+            text: l10n.homeCollaborationTitle,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge => 64,
               ScreenSize.large => 48,
@@ -44,9 +49,7 @@ class HomeCollaborations extends StatelessWidget {
             },
           ),
           subtitle: (
-            text:
-                'Súmate como speaker o sponsor y forma parte del corazón '
-                'de FlutterConf Latam 2025.',
+            text: l10n.homeCollaborationDescription,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,

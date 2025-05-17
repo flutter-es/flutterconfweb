@@ -4,14 +4,17 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeCommunities extends StatelessWidget {
+class HomeCommunities extends ConsumerWidget {
   const HomeCommunities({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final communities = <({String image, String url})>[
       (image: Assets.images.sponsors.flutterLogo, url: ''),
       (image: Assets.images.sponsors.flutterLogo, url: ''),
@@ -26,7 +29,7 @@ class HomeCommunities extends StatelessWidget {
       children: <Widget>[
         TitleSubtitleText(
           title: (
-            text: 'Hecho con y para la comunidad',
+            text: l10n.homeCommunityTitle,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge => 64,
               ScreenSize.large => 48,
@@ -34,9 +37,7 @@ class HomeCommunities extends StatelessWidget {
             },
           ),
           subtitle: (
-            text:
-                'Este evento no sería lo mismo sin el corazón de Flutter: '
-                '¡las comunidades que lo hacen posible!',
+            text: l10n.homeCommunityDescription,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,

@@ -4,19 +4,23 @@ import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePricing extends StatelessWidget {
+class HomePricing extends ConsumerWidget {
   const HomePricing({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+
     return SectionContainer(
       spacing: 30,
       children: <Widget>[
         TitleSubtitleText(
           title: (
-            text: '¡La experiencia Flutter al alcance de todos!',
+            text: l10n.homePricingTitle,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge => 64,
               ScreenSize.large => 48,
@@ -24,7 +28,7 @@ class HomePricing extends StatelessWidget {
             },
           ),
           subtitle: (
-            text: 'Aprovecha el precio early bird y asegura tu lugar',
+            text: l10n.homePricingDescription,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,
@@ -50,13 +54,15 @@ class HomePricing extends StatelessWidget {
   }
 }
 
-class _PricingCardItem extends StatelessWidget {
+class _PricingCardItem extends ConsumerWidget {
   const _PricingCardItem({required this.detail});
 
   final _PricingDetail detail;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+
     return Card(
       color: switch (detail.type) {
         _PricingType.early => FlutterLatamColors.yellow,
@@ -161,7 +167,7 @@ class _PricingCardItem extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: FclButton.primary(
-                          label: 'Comprar tickets',
+                          label: l10n.homePricingBuyTicketsButton,
                           onPressed: () {},
                         ),
                       ),

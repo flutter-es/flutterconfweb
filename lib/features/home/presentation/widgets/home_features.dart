@@ -1,42 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/adaptable_text.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeFeatures extends StatelessWidget {
+class HomeFeatures extends ConsumerWidget {
   const HomeFeatures({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final features = <({String title, String description, String image})>[
       (
-        title: 'Aprende con expertos',
-        description: 'Disfruta de charlas y workshops sobre Flutter, y más.',
+        title: l10n.homeFeatureLearnTitle,
+        description: l10n.homeFeatureLearnDescription,
         image: Assets.images.features.one,
       ),
       (
-        title: 'Conecta con la comunidad',
-        description: 'Conecta con gente que vibra igual que tú.',
+        title: l10n.homeFeatureConnectTitle,
+        description: l10n.homeFeatureConnectDescription,
         image: Assets.images.features.two,
       ),
       (
-        title: 'Inspírate y crece',
-        description:
-            'Descubre ideas, herramientas y nuevas '
-            'perspectivas para tus proyectos.',
+        title: l10n.homeFeatureGrowthTitle,
+        description: l10n.homeFeatureGrowthDescription,
         image: Assets.images.features.three,
       ),
       (
-        title: 'Gana premios increíbles',
-        description:
-            'Participa en dinámicas, retos y sorteos... '
-            '¡y gana tu propio Dash!',
+        title: l10n.homeFeaturePrizeTitle,
+        description: l10n.homeFeaturePrizeDescription,
         image: Assets.images.features.four,
       ),
     ];
@@ -46,7 +46,7 @@ class HomeFeatures extends StatelessWidget {
       children: <Widget>[
         TitleSubtitleText(
           title: (
-            text: '¿Amas Flutter?',
+            text: l10n.homeFeatureTitle,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge => 64,
               ScreenSize.large => 48,
@@ -54,9 +54,7 @@ class HomeFeatures extends StatelessWidget {
             },
           ),
           subtitle: (
-            text:
-                'Entonces no puedes perderte FlutterConf Latam 2025 '
-                'el evento donde aprendes, conectas y te inspiras.',
+            text: l10n.homeFeatureDescription,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,
@@ -107,43 +105,78 @@ class HomeFeatures extends StatelessWidget {
   }
 }
 
-class _BuyTicketFeature extends StatelessWidget {
+class _BuyTicketFeature extends ConsumerWidget {
   const _BuyTicketFeature();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+
+    final children = <Widget>[
+      Align(
+        child: SizedBox.square(
+          dimension: 150,
+          child: Image.asset(Assets.images.features.tickets),
+        ),
+      ),
+      Column(
+        spacing: 30,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          AdaptableText(
+            l10n.homeFeatureBuyTicketTitle(50),
+            textAlign: switch (context.screenSize) {
+              ScreenSize.small || ScreenSize.normal => TextAlign.center,
+              _ => TextAlign.start,
+            },
+            style: const TextStyle(
+              fontFamily: 'Recoleta',
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: FlutterLatamColors.white,
+            ),
+          ),
+          Align(
+            alignment: switch (context.screenSize) {
+              ScreenSize.extraLarge || ScreenSize.large => Alignment.centerLeft,
+              ScreenSize.normal || ScreenSize.small => Alignment.center,
+            },
+            child: FclButton.secondary(
+              label: l10n.homeFeatureBuyTicketButton,
+              onPressed: _goToTicket,
+            ),
+          ),
+        ],
+      ),
+    ];
+
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       color: FlutterLatamColors.blue,
       child: Padding(
         padding: const EdgeInsets.all(30),
-        child: Column(
-          spacing: 30,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Align(
-              child: SizedBox.square(
-                dimension: 150,
-                child: Image.asset(Assets.images.features.tickets),
-              ),
-            ),
-            AdaptableText(
-              r'¡Compra tu ticket desde $50 aquí!',
-              textAlign: switch (context.screenSize) {
-                ScreenSize.small || ScreenSize.normal => TextAlign.center,
-                _ => TextAlign.start,
-              },
-              style: const TextStyle(
-                fontFamily: 'Recoleta',
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: FlutterLatamColors.white,
-              ),
-            ),
-            FclButton.secondary(label: 'Comprar tickets', onPressed: () {}),
-          ],
-        ),
+        child: switch (context.screenSize) {
+          ScreenSize.large => Row(
+            spacing: 30,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              for (final (index, item) in children.indexed)
+                Expanded(flex: index == 0 ? 1 : 2, child: item),
+            ],
+          ),
+          _ => Column(
+            spacing: 30,
+            mainAxisSize: MainAxisSize.min,
+            children: children,
+          ),
+        },
       ),
+    );
+  }
+
+  void _goToTicket() {
+    Utils.launchUrlLink(
+      'https://ti.to/flutterconflatam/flutterconflatam2025/with/early-bird',
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/count_down_text.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +15,8 @@ class HomeMain extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+
     return SectionContainer(
       children: <Widget>[
         Padding(
@@ -25,7 +28,7 @@ class HomeMain extends ConsumerWidget {
           ),
           child: TitleSubtitleText(
             title: (
-              text: 'FlutterConfLatam 2025\nQuito - Ecuador',
+              text: l10n.homeMainTitle,
               size: switch (context.screenSize) {
                 ScreenSize.extraLarge => 64,
                 ScreenSize.large => 48,
@@ -33,7 +36,7 @@ class HomeMain extends ConsumerWidget {
               },
             ),
             subtitle: (
-              text: '9 y 10 de Septiembre',
+              text: l10n.homeMainDescription,
               size: switch (context.screenSize) {
                 ScreenSize.extraLarge => 40,
                 ScreenSize.large => 36,
@@ -70,10 +73,10 @@ class HomeMain extends ConsumerWidget {
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            text: '¡La experiencia Flutter te espera en la ',
+            text: l10n.homeMainExperienceOne,
             children: <InlineSpan>[
               TextSpan(
-                text: 'Mitad del Mundo',
+                text: l10n.homeMainExperienceTwo,
                 style: const TextStyle(
                   decoration: TextDecoration.underline,
                   decorationColor: FlutterLatamColors.white,

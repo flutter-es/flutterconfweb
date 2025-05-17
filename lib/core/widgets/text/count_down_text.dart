@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CountDownText extends StatefulWidget {
+class CountDownText extends StatefulHookConsumerWidget {
   const CountDownText({
     required this.startDate,
     required this.endDate,
@@ -16,10 +19,10 @@ class CountDownText extends StatefulWidget {
   final DateTime endDate;
 
   @override
-  State<CountDownText> createState() => _CountDownTextState();
+  ConsumerState<CountDownText> createState() => _CountDownTextState();
 }
 
-class _CountDownTextState extends State<CountDownText> {
+class _CountDownTextState extends ConsumerState<CountDownText> {
   Duration _duration = Duration.zero;
   Timer? _timer;
 
@@ -39,6 +42,7 @@ class _CountDownTextState extends State<CountDownText> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final columnRowSize = switch (context.screenSize) {
       ScreenSize.extraLarge => 4,
       _ => 2,
@@ -48,7 +52,7 @@ class _CountDownTextState extends State<CountDownText> {
       columnSizes: columnRowSize,
       rowSizes: columnRowSize,
       children: <Widget>[
-        for (final item in _formatDuration(_duration))
+        for (final item in _formatDuration(_duration, l10n))
           Center(
             child: TitleSubtitleText(
               title: (
@@ -84,17 +88,20 @@ class _CountDownTextState extends State<CountDownText> {
     });
   }
 
-  List<({String value, String text})> _formatDuration(Duration duration) {
+  List<({String value, String text})> _formatDuration(
+    Duration duration,
+    AppLocalizations l10n,
+  ) {
     final days = duration.inDays.toString();
     final hours = _twoDigits(duration.inHours.remainder(24));
     final minutes = _twoDigits(duration.inMinutes.remainder(60));
     final seconds = _twoDigits(duration.inSeconds.remainder(60));
 
     return [
-      (value: days, text: 'días'),
-      (value: hours, text: 'horas'),
-      (value: minutes, text: 'minutos'),
-      (value: seconds, text: 'segundos'),
+      (value: days, text: l10n.homeCountDownDays),
+      (value: hours, text: l10n.homeCountDownHours),
+      (value: minutes, text: l10n.homeCountDownMinutes),
+      (value: seconds, text: l10n.homeCountDownSeconds),
     ];
   }
 

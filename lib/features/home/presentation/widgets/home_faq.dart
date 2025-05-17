@@ -4,41 +4,32 @@ import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dar
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 typedef FaqItem = ({String question, String answer});
 
-class HomeFaq extends StatelessWidget {
+class HomeFaq extends ConsumerWidget {
   const HomeFaq({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final faqList = <FaqItem>[
-      (
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+    final faqList = List.generate(4, (index) {
+      return (
         question: '¿Cuantas entradas de Early Bird están disponibles?',
         answer: 'Tenemos 150 entradas destinadas a Early Bird.',
-      ),
-      (
-        question: '¿Cuantas entradas de Early Bird están disponibles?',
-        answer: 'Tenemos 150 entradas destinadas a Early Bird.',
-      ),
-      (
-        question: '¿Cuantas entradas de Early Bird están disponibles?',
-        answer: 'Tenemos 150 entradas destinadas a Early Bird.',
-      ),
-      (
-        question: '¿Cuantas entradas de Early Bird están disponibles?',
-        answer: 'Tenemos 150 entradas destinadas a Early Bird.',
-      ),
-    ];
+      );
+    });
 
     return SectionContainer(
       spacing: 30,
       children: <Widget>[
         TitleSubtitleText(
           title: (
-            text: 'Preguntas frecuentes',
+            text: l10n.homeFaqTitle,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge => 64,
               ScreenSize.large => 48,
@@ -46,9 +37,7 @@ class HomeFaq extends StatelessWidget {
             },
           ),
           subtitle: (
-            text:
-                'Aquí respondemos las más comunes para que vivas la '
-                'experiencia Flutter sin complicaciones.',
+            text: l10n.homeFaqDescription,
             size: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,
