@@ -515,6 +515,18 @@ abstract class AppLocalizations {
   /// **'Popular options include Rappi and Uber Eats for fast and reliable service.'**
   String get aboutExtraDeliveryAppDescription;
 
+  /// No description provided for @contactMainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you have any questions? Write to us.'**
+  String get contactMainTitle;
+
+  /// No description provided for @contactMainDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Or if you prefer, contact us through our social media! We love staying in touch!'**
+  String get contactMainDescription;
+
   /// No description provided for @footerTitle.
   ///
   /// In en, this message translates to:

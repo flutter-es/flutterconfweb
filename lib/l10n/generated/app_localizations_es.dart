@@ -221,6 +221,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get aboutExtraDeliveryAppDescription => 'Las opciones populares incluyen Rappi y Uber Eats para un servicio rápido y confiable.';
 
   @override
+  String get contactMainTitle => '¿Tienes dudas? Escríbenos';
+
+  @override
+  String get contactMainDescription => '¡O si prefieres, contáctanos a través de nuestras redes sociales! ¡Nos encanta estar en contacto!';
+
+  @override
   String get footerTitle => '¡Nos vemos en Quito, Ecuador 🇪🇨 !';
 
   @override
