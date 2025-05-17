@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
@@ -18,6 +19,8 @@ class VenueMain extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final config = ref.watch(configProvider);
+
     final carouselImageUrls = <String>[
       Assets.images.udla.one,
       Assets.images.udla.two,
@@ -110,11 +113,7 @@ class VenueMain extends ConsumerWidget {
                     },
                     child: SvgPicture.asset(Assets.images.icons.arrowCurve),
                   ),
-                  onPressed: () {
-                    Utils.launchUrlLink(
-                      'https://maps.app.goo.gl/RcQwVw8JGHLHF4jUA',
-                    );
-                  },
+                  onPressed: () => Utils.launchUrlLink(config.venueMapUrl),
                 ),
               ],
             ),

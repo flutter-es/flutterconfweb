@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
@@ -168,9 +169,11 @@ class _AppStoreSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final config = ref.watch(configProvider);
+
     final appLogoUrls = <({String imagePath, String url})>[
-      (imagePath: Assets.images.novelties.appStore, url: ''),
-      (imagePath: Assets.images.novelties.googlePlay, url: ''),
+      (imagePath: Assets.images.novelties.appStore, url: config.appStoreUrl),
+      (imagePath: Assets.images.novelties.googlePlay, url: config.googleAppUrl),
     ];
 
     return Column(

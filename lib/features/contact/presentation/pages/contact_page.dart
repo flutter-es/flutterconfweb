@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
@@ -82,6 +83,8 @@ class _ContactEmailCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final config = ref.watch(configProvider);
+
     return DecoratedBox(
       decoration: BoxDecoration(
         color: FlutterLatamColors.darkBlue,
@@ -110,7 +113,7 @@ class _ContactEmailCard extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'prueba@prueba.com',
+                  config.contactEmail,
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: switch (context.screenSize) {
@@ -125,7 +128,7 @@ class _ContactEmailCard extends ConsumerWidget {
                 InkWell(
                   onTap: () async {
                     await Clipboard.setData(
-                      const ClipboardData(text: 'prueba@prueba.com'),
+                      ClipboardData(text: config.contactEmail),
                     );
                   },
                   child: SizedBox.square(

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
@@ -16,6 +17,7 @@ class HomeMain extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final config = ref.watch(configProvider);
 
     return SectionContainer(
       children: <Widget>[
@@ -84,7 +86,7 @@ class HomeMain extends ConsumerWidget {
                 recognizer:
                     TapGestureRecognizer()
                       ..onTap = () {
-                        Utils.launchUrlLink('https://mitaddelmundo.gob.ec/');
+                        Utils.launchUrlLink(config.countryPageUrl);
                       },
               ),
               const TextSpan(text: '!'),

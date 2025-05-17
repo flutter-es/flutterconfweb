@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/features/contact/presentation/pages/contact_page.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeCollaborations extends ConsumerWidget {
   const HomeCollaborations({super.key});
@@ -16,13 +19,18 @@ class HomeCollaborations extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final config = ref.watch(configProvider);
+
     final collaborations = <CollaborationItem>[
       CollaborationItem(
         title: l10n.homeCollaborationSpeakerTitle,
         description: l10n.homeCollaborationSpeakerDescription,
         imagePath: Assets.images.collaborations.speaker,
         color: FlutterLatamColors.blue,
-        button: (text: l10n.homeCollaborationSpeakerButton, function: _goToCfp),
+        button: (
+          text: l10n.homeCollaborationSpeakerButton,
+          function: () => _goToUrl(config.cfpFormUrl),
+        ),
       ),
       CollaborationItem(
         title: l10n.homeCollaborationSponsorTitle,
@@ -31,7 +39,7 @@ class HomeCollaborations extends ConsumerWidget {
         color: FlutterLatamColors.green,
         button: (
           text: l10n.homeCollaborationSponsorButton,
-          function: _goToTicket,
+          function: () => context.go(ContactPage.route),
         ),
       ),
     ];
@@ -75,17 +83,7 @@ class HomeCollaborations extends ConsumerWidget {
     );
   }
 
-  void _goToCfp() {
-    Utils.launchUrlLink(
-      'https://docs.google.com/forms/d/e/1FAIpQLSdXH_eT5yRm6-3TSr5gAZaQc57_jFLa0TmqGxPgWxrVE1uDBA/viewform',
-    );
-  }
-
-  void _goToTicket() {
-    Utils.launchUrlLink(
-      'https://ti.to/flutterconflatam/flutterconflatam2025/with/early-bird',
-    );
-  }
+  void _goToUrl(String url) => Utils.launchUrlLink(url);
 }
 
 class _CollaborationCardItem extends StatelessWidget {

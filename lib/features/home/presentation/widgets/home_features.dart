@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
@@ -111,6 +112,7 @@ class _BuyTicketFeature extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final config = ref.watch(configProvider);
 
     final children = <Widget>[
       Align(
@@ -143,7 +145,7 @@ class _BuyTicketFeature extends ConsumerWidget {
             },
             child: FclButton.secondary(
               label: l10n.homeFeatureBuyTicketButton,
-              onPressed: _goToTicket,
+              onPressed: () => Utils.launchUrlLink(config.ticketPageUrl),
             ),
           ),
         ],
@@ -171,12 +173,6 @@ class _BuyTicketFeature extends ConsumerWidget {
           ),
         },
       ),
-    );
-  }
-
-  void _goToTicket() {
-    Utils.launchUrlLink(
-      'https://ti.to/flutterconflatam/flutterconflatam2025/with/early-bird',
     );
   }
 }
