@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes_pages.dart';
 import 'package:flutter_conf_latam/core/widgets/navigation/shell_navigator_page.dart';
 import 'package:flutter_conf_latam/features/contact/presentation/pages/contact_page.dart';
@@ -15,12 +16,12 @@ final _tabRoutesKeys = GlobalKey<NavigatorState>(debugLabel: 'tabShell');
 class AppRoutes {
   AppRoutes()
     : _router = GoRouter(
-        initialLocation: SplashPage.route,
+        initialLocation: '/${AppRoutePath.splash.pathName}',
         routerNeglect: true,
         navigatorKey: _mainRoutesKey,
         routes: <RouteBase>[
           GoRoute(
-            path: SplashPage.route,
+            path: '/${AppRoutePath.splash.pathName}',
             parentNavigatorKey: _mainRoutesKey,
             pageBuilder: (_, state) {
               return ScreenPage(key: state.pageKey, child: const SplashPage());
@@ -31,21 +32,21 @@ class AppRoutes {
             builder: (_, __, child) => ShellNavigatorPage(child: child),
             routes: <RouteBase>[
               GoRoute(
-                path: HomePage.route,
+                path: '/${AppRoutePath.home.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, __) {
                   return const NoTransitionPage(child: HomePage());
                 },
               ),
               GoRoute(
-                path: VenuePage.route,
+                path: '/${AppRoutePath.venue.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, __) {
                   return const NoTransitionPage(child: VenuePage());
                 },
               ),
               GoRoute(
-                path: ContactPage.route,
+                path: '/${AppRoutePath.contact.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, __) {
                   return const NoTransitionPage(child: ContactPage());
