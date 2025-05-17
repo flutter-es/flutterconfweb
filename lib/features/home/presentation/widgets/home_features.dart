@@ -124,7 +124,7 @@ class _BuyTicketFeature extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AdaptableText(
-            l10n.homeFeatureBuyTicketTitle(50),
+            l10n.homeFeatureBuyTicketTitle(100),
             textAlign: switch (context.screenSize) {
               ScreenSize.small || ScreenSize.normal => TextAlign.center,
               _ => TextAlign.start,

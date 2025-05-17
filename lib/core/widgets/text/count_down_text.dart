@@ -8,7 +8,7 @@ import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CountDownText extends StatefulHookConsumerWidget {
+class CountDownText extends ConsumerStatefulWidget {
   const CountDownText({
     required this.startDate,
     required this.endDate,

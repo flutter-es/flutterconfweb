@@ -21,7 +21,7 @@ class _VenuePageState extends ConsumerState<VenuePage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(screenName: 'about_page');
+    analytics.logScreenView(screenName: 'venue_page');
   }
 
   @override
