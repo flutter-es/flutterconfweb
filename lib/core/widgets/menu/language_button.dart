@@ -84,7 +84,8 @@ class _LanguageItem extends StatelessWidget {
             title.toUpperCase(),
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontWeight: FontWeight.bold,
+              fontFamily: 'Recoleta',
+              fontWeight: FontWeight.w600,
               color: switch (isActive) {
                 true => FlutterLatamColors.white,
                 false => FlutterLatamColors.darkBlue,

@@ -5,7 +5,6 @@ import 'package:flutter_conf_latam/features/navigation/data/models/navigation_it
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MobileDrawerMenu extends ConsumerWidget {
@@ -88,7 +87,7 @@ class _ItemDrawer extends StatelessWidget {
             onTap: onTap,
             borderRadius: const BorderRadius.all(Radius.circular(60)),
             child: Container(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: switch (item.isSelected) {
                 true => BoxDecoration(
@@ -98,10 +97,13 @@ class _ItemDrawer extends StatelessWidget {
               },
               child: Text(
                 item.label,
-                style: FlutterConfLatamStyles.label4.copyWith(
-                  color: switch (item.isSelected) {
-                    true => FlutterLatamColors.white,
-                    false => FlutterLatamColors.black,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 16,
+                  color: FlutterLatamColors.white,
+                  fontWeight: switch (item.isSelected) {
+                    true => FontWeight.w600,
+                    false => FontWeight.w400,
                   },
                 ),
               ),

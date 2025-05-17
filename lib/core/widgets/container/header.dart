@@ -66,9 +66,12 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                     child: Text(
                       tabItem.label,
                       style: TextStyle(
-                        color: switch (tabItem.isSelected) {
-                          true => FlutterLatamColors.darkBlue,
-                          false => FlutterLatamColors.silver,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        color: FlutterLatamColors.white,
+                        fontWeight: switch (tabItem.isSelected) {
+                          true => FontWeight.w600,
+                          false => FontWeight.w400,
                         },
                       ),
                     ),
