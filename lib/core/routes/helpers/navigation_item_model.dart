@@ -13,17 +13,12 @@ class NavigationItemModel extends Equatable {
   final bool isSelected;
   final bool display;
 
-  NavigationItemModel copyWith({
-    String? label,
-    String? route,
-    bool? isSelected,
-    bool? display,
-  }) {
+  NavigationItemModel copyWith({bool? isSelected}) {
     return NavigationItemModel(
-      label: label ?? this.label,
-      route: route ?? this.route,
+      label: label,
+      route: route,
       isSelected: isSelected ?? this.isSelected,
-      display: display ?? this.display,
+      display: display,
     );
   }
 
