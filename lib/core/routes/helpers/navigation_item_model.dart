@@ -5,23 +5,23 @@ class NavigationItemModel extends Equatable {
     required this.label,
     required this.route,
     this.isSelected = false,
-    this.display = true,
+    this.visible = true,
   });
 
   final String label;
   final String route;
   final bool isSelected;
-  final bool display;
+  final bool visible;
 
   NavigationItemModel copyWith({bool? isSelected}) {
     return NavigationItemModel(
       label: label,
       route: route,
       isSelected: isSelected ?? this.isSelected,
-      display: display,
+      visible: visible,
     );
   }
 
   @override
-  List<Object?> get props => [route, isSelected, display];
+  List<Object?> get props => [route, isSelected, visible];
 }

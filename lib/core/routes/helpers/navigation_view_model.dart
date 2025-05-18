@@ -13,7 +13,6 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
         label: '',
         route: '/${AppRoutePath.home.pathName}',
         isSelected: true,
-        display: false,
       ),
       NavigationItemModel(
         label: l10n.menuVenueText,
