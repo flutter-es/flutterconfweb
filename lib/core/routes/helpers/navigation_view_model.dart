@@ -8,7 +8,7 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
   @override
   List<NavigationItemModel> build() {
     final l10n = ref.watch(appLocalizationsProvider);
-    return <NavigationItemModel>[
+    final navigationItemList = <NavigationItemModel>[
       NavigationItemModel(
         label: '',
         route: '/${AppRoutePath.home.pathName}',
@@ -24,12 +24,17 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
         route: '/${AppRoutePath.contact.pathName}',
       ),
     ];
+
+    if (_selectedNav.isEmpty) return navigationItemList;
+    return navigationItemList.map((item) {
+      if (item.route == _selectedNav) return item.copyWith(isSelected: true);
+      return item;
+    }).toList();
   }
 
   void init() {
-    final selectedNavRoute = ref.read(webLocalStorageProvider).getSelectedNav();
-    if (selectedNavRoute.isNotEmpty) {
-      selectNavItemFromRoute(selectedNavRoute);
+    if (_selectedNav.isNotEmpty) {
+      selectNavItemFromRoute(_selectedNav);
     } else {
       selectNavItem(state.first);
     }
@@ -51,6 +56,8 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
     ];
     ref.read(webLocalStorageProvider).storeSelectedNav(item.route);
   }
+
+  String get _selectedNav => ref.read(webLocalStorageProvider).getSelectedNav();
 }
 
 final navigationViewModelProvider =
