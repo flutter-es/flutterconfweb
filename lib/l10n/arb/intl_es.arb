@@ -1,5 +1,7 @@
 {
   "@@locale": "es",
+  "menuVenueText": "Venue",
+  "menuContactText": "Contacto",
   "menuBeSpeakerButton": "Ser speaker",
   "menuBuyTicketsButton": "Comprar tickets",
   "errorPageTitle": "¡Oh, disculpa!",
