@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
+import 'package:flutter_conf_latam/core/social/models/social_media_model.dart';
+import 'package:flutter_conf_latam/core/social/providers/social_media_provider.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -86,7 +87,9 @@ class _SocialFooter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final socialMediaList = ref.watch(socialMediaProvider);
+    final socialMediaList = ref.watch(
+      socialMediaProvider.select((value) => value.value ?? []),
+    );
 
     return Column(
       spacing: 10,
@@ -110,7 +113,15 @@ class _SocialFooter extends ConsumerWidget {
                 child: SizedBox.square(
                   dimension: 24,
                   child: SvgPicture.asset(
-                    social.iconPath,
+                    switch (social.type) {
+                      SocialMediaType.youtube => Assets.images.icons.youtube,
+                      SocialMediaType.linkedIn => Assets.images.icons.linkedIn,
+                      SocialMediaType.tikTok => Assets.images.icons.tikTok,
+                      SocialMediaType.twitter => Assets.images.icons.twitter,
+                      SocialMediaType.facebook => Assets.images.icons.facebook,
+                      SocialMediaType.instagram =>
+                        Assets.images.icons.instagram,
+                    },
                     colorFilter: const ColorFilter.mode(
                       FlutterLatamColors.white,
                       BlendMode.srcIn,
