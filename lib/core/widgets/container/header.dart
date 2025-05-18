@@ -4,20 +4,16 @@ import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Header extends ConsumerStatefulWidget {
+class Header extends HookConsumerWidget {
   const Header({super.key});
 
   @override
-  HeaderState createState() => HeaderState();
-}
-
-class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final tabItems = ref.watch(navigationViewmodelProvider);
-    final visibleTabItems = tabItems.where((item) => item.display).toList();
+    final tabController = useTabController(initialLength: tabItems.length);
 
     return SliverAppBar(
       pinned: true,
@@ -35,7 +31,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: _goToHome,
+                    onTap: () => _goToHome(ref),
                     child: Image.asset(Assets.images.fclEcMainLogo),
                   ),
                 ),
@@ -47,12 +43,9 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
               onTap: (index) {
                 ref
                     .read(navigationViewmodelProvider.notifier)
-                    .selectNavItem(visibleTabItems[index]);
+                    .selectNavItem(tabItems[index]);
               },
-              controller: TabController(
-                length: visibleTabItems.length,
-                vsync: this,
-              ),
+              controller: tabController,
               tabAlignment: TabAlignment.start,
               isScrollable: true,
               indicatorWeight: 1,
@@ -61,21 +54,24 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
               indicatorColor: FlutterLatamColors.white,
               unselectedLabelColor: FlutterLatamColors.silver,
               tabs: <Widget>[
-                for (final tabItem in visibleTabItems)
-                  Tab(
-                    child: Text(
-                      tabItem.label,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        color: FlutterLatamColors.white,
-                        fontWeight: switch (tabItem.isSelected) {
-                          true => FontWeight.w600,
-                          false => FontWeight.w400,
-                        },
+                for (final tabItem in tabItems)
+                  if (tabItem.display)
+                    Tab(
+                      child: Text(
+                        tabItem.label,
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                          color: FlutterLatamColors.white,
+                          fontWeight: switch (tabItem.isSelected) {
+                            true => FontWeight.w600,
+                            false => FontWeight.w400,
+                          },
+                        ),
                       ),
-                    ),
-                  ),
+                    )
+                  else
+                    const Offstage(),
               ],
             ),
           ),
@@ -85,7 +81,7 @@ class HeaderState extends ConsumerState<Header> with TickerProviderStateMixin {
     );
   }
 
-  void _goToHome() {
+  void _goToHome(WidgetRef ref) {
     ref
         .read(navigationViewmodelProvider.notifier)
         .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
