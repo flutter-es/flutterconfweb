@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Header extends HookConsumerWidget {
-  const Header({super.key});
+class Header extends HookWidget {
+  const Header({required this.tabItems, required this.onSelect, super.key});
+
+  final List<NavigationItemModel> tabItems;
+  final ValueSetter<NavigationItemModel> onSelect;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final tabItems = ref.watch(
-      navigationViewModelProvider.select(
-        (value) => value.where((item) => item.visible).toList(),
-      ),
+  Widget build(BuildContext context) {
+    final tabController = useTabController(
+      initialLength: tabItems.length,
+      initialIndex: tabItems.indexWhere((item) => item.isSelected),
     );
-    final tabController = useTabController(initialLength: tabItems.length);
 
     return SliverAppBar(
       pinned: true,
@@ -31,11 +31,7 @@ class Header extends HookConsumerWidget {
           children: <Widget>[
             Expanded(
               child: TabBar(
-                onTap: (index) {
-                  ref
-                      .read(navigationViewModelProvider.notifier)
-                      .selectNavItem(tabItems[index]);
-                },
+                onTap: (index) => onSelect(tabItems[index]),
                 controller: tabController,
                 tabAlignment: TabAlignment.start,
                 isScrollable: true,

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/container/header.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
@@ -32,6 +32,12 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
 
   @override
   Widget build(BuildContext context) {
+    final tabItems = ref.watch(
+      navigationViewModelProvider.select(
+        (value) => value.where((item) => item.visible).toList(),
+      ),
+    );
+
     ref.listen(navigationViewModelProvider, (previous, next) {
       if (listEquals(previous, next)) return;
 
@@ -52,7 +58,10 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: InkWell(
-                onTap: _goToHome,
+                onTap: switch (tabItems.isNotEmpty) {
+                  true => () => _goToRoute(tabItems.first),
+                  false => null,
+                },
                 child: Image.asset(Assets.images.fclEcMainLogo),
               ),
             ),
@@ -61,7 +70,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
         false => null,
       },
       endDrawer: switch (context.isMobileFromResponsive) {
-        true => const MobileDrawerMenu(),
+        true => MobileDrawerMenu(tabItems: tabItems, onSelect: _goToRoute),
         false => null,
       },
       body: Column(
@@ -69,7 +78,10 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
           Expanded(
             child: NestedScrollView(
               headerSliverBuilder: (_, __) {
-                return [if (!context.isMobileFromResponsive) const Header()];
+                return [
+                  if (!context.isMobileFromResponsive)
+                    Header(tabItems: tabItems, onSelect: _goToRoute),
+                ];
               },
               body: widget.child,
             ),
@@ -79,9 +91,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
     );
   }
 
-  void _goToHome() {
-    ref
-        .read(navigationViewModelProvider.notifier)
-        .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
+  void _goToRoute(NavigationItemModel item) {
+    ref.read(navigationViewModelProvider.notifier).selectNavItem(item);
   }
 }

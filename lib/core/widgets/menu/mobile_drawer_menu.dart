@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
-import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MobileDrawerMenu extends ConsumerWidget {
-  const MobileDrawerMenu({super.key});
+class MobileDrawerMenu extends StatelessWidget {
+  const MobileDrawerMenu({
+    required this.tabItems,
+    required this.onSelect,
+    super.key,
+  });
+
+  final List<NavigationItemModel> tabItems;
+  final ValueSetter<NavigationItemModel> onSelect;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final tabItems = ref.watch(
-      navigationViewModelProvider.select(
-        (value) => value.where((item) => item.visible).toList(),
-      ),
-    );
-
+  Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,
       child: Padding(
@@ -40,9 +39,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                             child: InkWell(
                               onTap: () {
                                 Navigator.of(context).pop();
-                                ref
-                                    .read(navigationViewModelProvider.notifier)
-                                    .selectNavItem(item);
+                                onSelect(item);
                               },
                               child: Image.asset(Assets.images.fclEcMainLogo),
                             ),
@@ -54,9 +51,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                         item: item,
                         onTap: () {
                           Navigator.of(context).pop();
-                          ref
-                              .read(navigationViewModelProvider.notifier)
-                              .selectNavItem(item);
+                          onSelect(item);
                         },
                       ),
                 ],
