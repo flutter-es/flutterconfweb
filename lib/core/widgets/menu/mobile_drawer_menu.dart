@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/features/navigation/data/models/navigation_item_model.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
@@ -55,6 +56,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                 ],
               ),
             ),
+            const ExtraButtons(position: ButtonPosition.column),
             const LanguageButton(),
           ],
         ),
