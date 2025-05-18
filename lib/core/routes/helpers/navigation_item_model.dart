@@ -23,5 +23,5 @@ class NavigationItemModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [label, route, isSelected, display];
+  List<Object?> get props => [route, isSelected, display];
 }
