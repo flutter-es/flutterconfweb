@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/container/header.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,13 +26,13 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(navigationViewmodelProvider.notifier).init();
+      ref.read(navigationViewModelProvider.notifier).init();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(navigationViewmodelProvider, (previous, next) {
+    ref.listen(navigationViewModelProvider, (previous, next) {
       if (listEquals(previous, next)) return;
 
       final itemRoute = next.singleWhereOrNull((item) => item.isSelected);
@@ -81,7 +81,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
 
   void _goToHome() {
     ref
-        .read(navigationViewmodelProvider.notifier)
+        .read(navigationViewModelProvider.notifier)
         .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -125,7 +126,7 @@ class _SocialFooter extends ConsumerWidget {
 
   void _goToHome(WidgetRef ref) {
     ref
-        .read(navigationViewmodelProvider.notifier)
+        .read(navigationViewModelProvider.notifier)
         .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
   }
 }

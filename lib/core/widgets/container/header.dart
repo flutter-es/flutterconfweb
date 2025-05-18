@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,7 +13,7 @@ class Header extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tabItems = ref.watch(navigationViewmodelProvider);
+    final tabItems = ref.watch(navigationViewModelProvider);
     final tabController = useTabController(initialLength: tabItems.length);
 
     return SliverAppBar(
@@ -43,7 +43,7 @@ class Header extends HookConsumerWidget {
             child: TabBar(
               onTap: (index) {
                 ref
-                    .read(navigationViewmodelProvider.notifier)
+                    .read(navigationViewModelProvider.notifier)
                     .selectNavItem(tabItems[index]);
               },
               controller: tabController,
@@ -85,7 +85,7 @@ class Header extends HookConsumerWidget {
 
   void _goToHome(WidgetRef ref) {
     ref
-        .read(navigationViewmodelProvider.notifier)
+        .read(navigationViewModelProvider.notifier)
         .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
   }
 }

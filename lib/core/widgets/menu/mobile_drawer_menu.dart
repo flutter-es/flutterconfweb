@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
-import 'package:flutter_conf_latam/features/navigation/data/models/navigation_item_model.dart';
-import 'package:flutter_conf_latam/features/navigation/presentation/providers/navigation_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +13,7 @@ class MobileDrawerMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tabItems = ref.watch(navigationViewmodelProvider);
+    final tabItems = ref.watch(navigationViewModelProvider);
     final visibleTabItems = tabItems.where((item) => item.display).toList();
 
     return Drawer(
@@ -49,7 +49,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                       onTap: () {
                         Navigator.of(context).pop();
                         ref
-                            .read(navigationViewmodelProvider.notifier)
+                            .read(navigationViewModelProvider.notifier)
                             .selectNavItem(visibleTabItems[i]);
                       },
                     ),
@@ -66,7 +66,7 @@ class MobileDrawerMenu extends ConsumerWidget {
 
   void _goToHome(WidgetRef ref) {
     ref
-        .read(navigationViewmodelProvider.notifier)
+        .read(navigationViewModelProvider.notifier)
         .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
   }
 }
