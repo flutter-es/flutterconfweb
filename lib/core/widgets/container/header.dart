@@ -12,7 +12,11 @@ class Header extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tabItems = ref.watch(navigationViewModelProvider);
+    final tabItems = ref.watch(
+      navigationViewModelProvider.select(
+        (value) => value.where((item) => item.visible).toList(),
+      ),
+    );
     final tabController = useTabController(initialLength: tabItems.length);
 
     return SliverAppBar(
@@ -44,23 +48,8 @@ class Header extends HookConsumerWidget {
                 },
                 unselectedLabelColor: FlutterLatamColors.silver,
                 tabs: <Widget>[
-                  for (final tabItem in tabItems)
-                    if (tabItem.display)
-                      Tab(
-                        child: Text(
-                          tabItem.label,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16,
-                            color: FlutterLatamColors.white,
-                            fontWeight: switch (tabItem.isSelected) {
-                              true => FontWeight.w600,
-                              false => FontWeight.w400,
-                            },
-                          ),
-                        ),
-                      )
-                    else
+                  for (final (index, item) in tabItems.indexed)
+                    if (index == 0)
                       LayoutBuilder(
                         builder: (_, constraint) {
                           return SizedBox(
@@ -68,6 +57,21 @@ class Header extends HookConsumerWidget {
                             child: Image.asset(Assets.images.fclEcMainLogo),
                           );
                         },
+                      )
+                    else
+                      Tab(
+                        child: Text(
+                          item.label,
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 16,
+                            color: FlutterLatamColors.white,
+                            fontWeight: switch (item.isSelected) {
+                              true => FontWeight.w600,
+                              false => FontWeight.w400,
+                            },
+                          ),
+                        ),
                       ),
                 ],
               ),

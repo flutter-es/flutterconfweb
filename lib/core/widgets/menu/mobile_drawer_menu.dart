@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
@@ -13,8 +12,11 @@ class MobileDrawerMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tabItems = ref.watch(navigationViewModelProvider);
-    final visibleTabItems = tabItems.where((item) => item.display).toList();
+    final tabItems = ref.watch(
+      navigationViewModelProvider.select(
+        (value) => value.where((item) => item.visible).toList(),
+      ),
+    );
 
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,
@@ -24,35 +26,39 @@ class MobileDrawerMenu extends ConsumerWidget {
           spacing: 20,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  height: 80,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      _goToHome(ref);
-                    },
-                    child: Image.asset(Assets.images.fclEcMainLogo),
-                  ),
-                ),
-              ),
-            ),
             Expanded(
               child: Column(
                 children: <Widget>[
-                  for (var i = 0; i < visibleTabItems.length; i++)
-                    _ItemDrawer(
-                      item: visibleTabItems[i],
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        ref
-                            .read(navigationViewModelProvider.notifier)
-                            .selectNavItem(visibleTabItems[i]);
-                      },
-                    ),
+                  for (final (index, item) in tabItems.indexed)
+                    if (index == 0)
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: SizedBox(
+                            height: 80,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                                ref
+                                    .read(navigationViewModelProvider.notifier)
+                                    .selectNavItem(item);
+                              },
+                              child: Image.asset(Assets.images.fclEcMainLogo),
+                            ),
+                          ),
+                        ),
+                      )
+                    else
+                      _ItemDrawer(
+                        item: item,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          ref
+                              .read(navigationViewModelProvider.notifier)
+                              .selectNavItem(item);
+                        },
+                      ),
                 ],
               ),
             ),
@@ -62,12 +68,6 @@ class MobileDrawerMenu extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  void _goToHome(WidgetRef ref) {
-    ref
-        .read(navigationViewModelProvider.notifier)
-        .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
   }
 }
 
