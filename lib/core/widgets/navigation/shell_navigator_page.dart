@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_conf_latam/features/navigation/presentation/providers/na
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ShellNavigatorPage extends ConsumerStatefulWidget {
   const ShellNavigatorPage({required this.child, super.key});
@@ -29,17 +32,14 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(FV): Review this
-    /*
-    ref.listen(navigationViewmodelProvider, (_, value) {
-      if (value.isNotEmpty) {
-        final itemRoute = value.singleWhereOrNull((item) => item.isSelected);
-        if (itemRoute != null && itemRoute.route.isNotEmpty) {
-          context.go(itemRoute.route);
-        }
+    ref.listen(navigationViewmodelProvider, (previous, next) {
+      if (listEquals(previous, next)) return;
+
+      final itemRoute = next.singleWhereOrNull((item) => item.isSelected);
+      if (itemRoute != null && itemRoute.route.isNotEmpty) {
+        context.go(itemRoute.route);
       }
     });
-    */
 
     return Scaffold(
       backgroundColor: FlutterLatamColors.mainBlue,
