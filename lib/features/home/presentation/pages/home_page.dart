@@ -8,7 +8,7 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/home_featu
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_pricing.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});

@@ -8,8 +8,8 @@ import 'package:flutter_conf_latam/core/widgets/container/header.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ShellNavigatorPage extends ConsumerStatefulWidget {
   const ShellNavigatorPage({required this.child, super.key});

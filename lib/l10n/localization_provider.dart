@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/support_locale.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final currentLocalizationProvider = StateProvider<Locale>((ref) {
   return SupportLocale.es;
