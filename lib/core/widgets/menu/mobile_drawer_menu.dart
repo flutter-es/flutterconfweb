@@ -27,10 +27,10 @@ class MobileDrawerMenu extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: Align(
-                alignment: Alignment.topLeft,
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  height: 80,
+                  child: InkWell(
                     onTap: () {
                       Navigator.of(context).pop();
                       _goToHome(ref);
