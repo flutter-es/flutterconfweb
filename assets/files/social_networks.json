@@ -1,0 +1,32 @@
+[
+  {
+    "type": "youtube",
+    "label": "YouTube",
+    "link": "https://youtube.com/@flutterconflatam"
+  },
+  {
+    "type": "linkedIn",
+    "label": "LinkedIn",
+    "link": "https://www.linkedin.com/company/flutterconflatam/"
+  },
+  {
+    "type": "tikTok",
+    "label": "TikTok",
+    "link": "https://tiktok.com/@flutterconflatam"
+  },
+  {
+    "type": "twitter",
+    "label": "Twitter",
+    "link": "https://twitter.com/flutterconflat"
+  },
+  {
+    "type": "facebook",
+    "label": "Facebook",
+    "link": "https://facebook.com/flutterconflatam"
+  },
+  {
+    "type": "instagram",
+    "label": "Instagram",
+    "link": "https://www.instagram.com/flutterconflatam/"
+  }
+]

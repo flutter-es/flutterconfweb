@@ -23,6 +23,16 @@ class $AssetsAnimationsGen {
   List<String> get values => [flutterWarning, flutterconflogo, flutterdash];
 }
 
+class $AssetsFilesGen {
+  const $AssetsFilesGen();
+
+  /// File path: assets/files/social_networks.json
+  String get socialNetworks => 'assets/files/social_networks.json';
+
+  /// List of all assets
+  List<String> get values => [socialNetworks];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -280,5 +290,6 @@ class Assets {
   const Assets._();
 
   static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
+  static const $AssetsFilesGen files = $AssetsFilesGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
