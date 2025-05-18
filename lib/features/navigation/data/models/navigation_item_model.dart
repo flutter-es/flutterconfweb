@@ -1,4 +1,6 @@
-class NavigationItemModel {
+import 'package:equatable/equatable.dart';
+
+class NavigationItemModel extends Equatable {
   const NavigationItemModel({
     required this.label,
     required this.route,
@@ -24,4 +26,7 @@ class NavigationItemModel {
       display: display ?? this.display,
     );
   }
+
+  @override
+  List<Object?> get props => [label, route, isSelected, display];
 }
