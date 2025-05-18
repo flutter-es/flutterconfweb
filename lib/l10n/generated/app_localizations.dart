@@ -95,6 +95,18 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @menuBeSpeakerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Be a speaker'**
+  String get menuBeSpeakerButton;
+
+  /// No description provided for @menuBuyTicketsButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy tickets'**
+  String get menuBuyTicketsButton;
+
   /// No description provided for @errorPageTitle.
   ///
   /// In en, this message translates to:

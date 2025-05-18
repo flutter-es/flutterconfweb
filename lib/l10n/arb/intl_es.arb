@@ -1,5 +1,7 @@
 {
   "@@locale": "es",
+  "menuBeSpeakerButton": "Ser speaker",
+  "menuBuyTicketsButton": "Comprar tickets",
   "errorPageTitle": "¡Oh, disculpa!",
   "errorPageSubtitle": "¡No fue culpa de Dash, en serio!",
   "errorReturnHomeButton": "Volver al inicio",

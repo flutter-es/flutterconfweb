@@ -9,6 +9,12 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get menuBeSpeakerButton => 'Ser speaker';
+
+  @override
+  String get menuBuyTicketsButton => 'Comprar tickets';
+
+  @override
   String get errorPageTitle => '¡Oh, disculpa!';
 
   @override
