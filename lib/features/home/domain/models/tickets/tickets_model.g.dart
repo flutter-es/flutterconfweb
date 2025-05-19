@@ -10,10 +10,9 @@ TicketsModel _$TicketsModelFromJson(Map<String, dynamic> json) => TicketsModel(
   id: $enumDecode(_$TicketTypeEnumMap, json['id']),
   title: json['title'] as String,
   price: (json['price'] as num).toDouble(),
-  endDate: DateTime.parse(_setToDate(json, 'endDate') as String),
+  endDate: DateTime.parse(json['endDate'] as String),
   features:
       (json['features'] as List<dynamic>).map((e) => e as String).toList(),
-  isVisible: json['isVisible'] as bool,
 );
 
 const _$TicketTypeEnumMap = {
