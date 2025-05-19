@@ -4,9 +4,8 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeCommunities extends ConsumerWidget {
@@ -15,63 +14,64 @@ class HomeCommunities extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final communities = <({String image, String url})>[
-      (image: Assets.images.sponsors.flutterLogo, url: ''),
-      (image: Assets.images.sponsors.flutterLogo, url: ''),
-      (image: Assets.images.sponsors.flutterLogo, url: ''),
-      (image: Assets.images.sponsors.flutterLogo, url: ''),
-      (image: Assets.images.sponsors.flutterLogo, url: ''),
-      (image: Assets.images.sponsors.flutterLogo, url: ''),
-    ];
+    final communities = ref.watch(communitiesProvider);
 
-    return SectionContainer(
-      spacing: 30,
-      children: <Widget>[
-        TitleSubtitleText(
-          title: (
-            text: l10n.homeCommunityTitle,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
-            },
-          ),
-          subtitle: (
-            text: l10n.homeCommunityDescription,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
-            },
-          ),
-          spacing: 12,
-        ),
-        ResponsiveGrid(
-          columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 3,
-            ScreenSize.large => 2,
-            _ => 1,
-          },
-          rowSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 3,
-            ScreenSize.large => (communities.length / 2).toInt(),
-            _ => communities.length,
-          },
+    return communities.maybeWhen(
+      data: (data) {
+        return SectionContainer(
+          spacing: 30,
           children: <Widget>[
-            for (final item in communities)
-              InkWell(
-                onTap: () => Utils.launchUrlLink(item.url),
-                child: SizedBox.fromSize(
-                  size: switch (context.screenSize) {
-                    ScreenSize.extraLarge ||
-                    ScreenSize.large => const Size.fromHeight(105),
-                    _ => const Size.fromHeight(54),
-                  },
-                  child: SvgPicture.asset(item.image),
-                ),
+            TitleSubtitleText(
+              title: (
+                text: l10n.homeCommunityTitle,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 64,
+                  ScreenSize.large => 48,
+                  ScreenSize.normal || ScreenSize.small => 24,
+                },
               ),
+              subtitle: (
+                text: l10n.homeCommunityDescription,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 24,
+                  ScreenSize.normal || ScreenSize.small => 16,
+                },
+              ),
+              spacing: 12,
+            ),
+            ResponsiveGrid(
+              columnSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge => 3,
+                ScreenSize.large => 2,
+                _ => 1,
+              },
+              rowSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge => 3,
+                ScreenSize.large => (data.length / 2).toInt(),
+                _ => data.length,
+              },
+              children: <Widget>[
+                for (final item in data)
+                  InkWell(
+                    onTap: () => Utils.launchUrlLink(item.url),
+                    child: SizedBox.fromSize(
+                      size: switch (context.screenSize) {
+                        ScreenSize.extraLarge ||
+                        ScreenSize.large => const Size.fromHeight(105),
+                        _ => const Size.fromHeight(54),
+                      },
+                      child: Semantics(
+                        value: item.name,
+                        child: Image.network(item.image),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ],
-        ),
-      ],
+        );
+      },
+      orElse: Offstage.new,
     );
   }
 }

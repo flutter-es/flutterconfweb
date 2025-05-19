@@ -4,6 +4,8 @@ import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/features/home/domain/models/tickets_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,42 +16,48 @@ class HomePricing extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final pricingList = ref.watch(ticketsProvider);
 
-    return SectionContainer(
-      spacing: 30,
-      children: <Widget>[
-        TitleSubtitleText(
-          title: (
-            text: l10n.homePricingTitle,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
-            },
-          ),
-          subtitle: (
-            text: l10n.homePricingDescription,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
-            },
-          ),
-          spacing: 12,
-        ),
-        ResponsiveGrid(
-          columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 3,
-            _ => 1,
-          },
-          rowSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 3,
-            _ => _pricingList.length,
-          },
+    return pricingList.maybeWhen(
+      data: (data) {
+        return SectionContainer(
+          spacing: 30,
           children: <Widget>[
-            for (final item in _pricingList) _PricingCardItem(detail: item),
+            TitleSubtitleText(
+              title: (
+                text: l10n.homePricingTitle,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 64,
+                  ScreenSize.large => 48,
+                  ScreenSize.normal || ScreenSize.small => 24,
+                },
+              ),
+              subtitle: (
+                text: l10n.homePricingDescription,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 24,
+                  ScreenSize.normal || ScreenSize.small => 16,
+                },
+              ),
+              spacing: 12,
+            ),
+            ResponsiveGrid(
+              columnSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge => 3,
+                _ => 1,
+              },
+              rowSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge => 3,
+                _ => data.length,
+              },
+              children: <Widget>[
+                for (final item in data) _PricingCardItem(detail: item),
+              ],
+            ),
           ],
-        ),
-      ],
+        );
+      },
+      orElse: Offstage.new,
     );
   }
 }
@@ -57,17 +65,17 @@ class HomePricing extends ConsumerWidget {
 class _PricingCardItem extends ConsumerWidget {
   const _PricingCardItem({required this.detail});
 
-  final _PricingDetail detail;
+  final TicketsModel detail;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
 
     return Card(
-      color: switch (detail.type) {
-        _PricingType.early => FlutterLatamColors.yellow,
-        _PricingType.regular => FlutterLatamColors.blue,
-        _PricingType.late => FlutterLatamColors.red,
+      color: switch (detail.id) {
+        TicketType.early => FlutterLatamColors.yellow,
+        TicketType.regular => FlutterLatamColors.blue,
+        TicketType.late => FlutterLatamColors.red,
       },
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -83,8 +91,8 @@ class _PricingCardItem extends ConsumerWidget {
                   fontFamily: 'Poppins',
                   fontSize: 24,
                   fontWeight: FontWeight.w400,
-                  color: switch (detail.type) {
-                    _PricingType.early => FlutterLatamColors.darkBlue,
+                  color: switch (detail.id) {
+                    TicketType.early => FlutterLatamColors.darkBlue,
                     _ => FlutterLatamColors.white,
                   },
                 ),
@@ -92,8 +100,8 @@ class _PricingCardItem extends ConsumerWidget {
             ),
           ),
           Padding(
-            padding: switch (detail.type) {
-              _PricingType.early => const EdgeInsets.all(4),
+            padding: switch (detail.id) {
+              TicketType.early => const EdgeInsets.all(4),
               _ => EdgeInsets.zero,
             },
             child: DecoratedBox(
@@ -111,15 +119,15 @@ class _PricingCardItem extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      detail.date,
+                      l10n.homePricingEndDate(detail.endDate),
                       style: TextStyle(
                         fontFamily: 'Recoleta',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
-                        color: switch (detail.type) {
-                          _PricingType.early => FlutterLatamColors.lightYellow,
-                          _PricingType.regular => FlutterLatamColors.mediumBlue,
-                          _PricingType.late => FlutterLatamColors.lightRed,
+                        color: switch (detail.id) {
+                          TicketType.early => FlutterLatamColors.lightYellow,
+                          TicketType.regular => FlutterLatamColors.mediumBlue,
+                          TicketType.late => FlutterLatamColors.lightRed,
                         },
                       ),
                     ),
@@ -152,8 +160,8 @@ class _PricingCardItem extends ConsumerWidget {
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 18,
-                                  fontWeight: switch (detail.type) {
-                                    _PricingType.late => FontWeight.w700,
+                                  fontWeight: switch (detail.id) {
+                                    TicketType.late => FontWeight.w700,
                                     _ => FontWeight.w400,
                                   },
                                   color: FlutterLatamColors.white,
@@ -163,7 +171,7 @@ class _PricingCardItem extends ConsumerWidget {
                           ],
                         ),
                     ],
-                    if (detail.type == _PricingType.early)
+                    if (detail.id == TicketType.early)
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: FclButton.primary(
@@ -181,60 +189,3 @@ class _PricingCardItem extends ConsumerWidget {
     );
   }
 }
-
-enum _PricingType { early, regular, late }
-
-class _PricingDetail {
-  _PricingDetail({
-    required this.type,
-    required this.title,
-    required this.date,
-    required this.price,
-    required this.features,
-  });
-
-  final _PricingType type;
-  final String title;
-  final String date;
-  final double price;
-  final List<String> features;
-}
-
-final _pricingList = <_PricingDetail>[
-  _PricingDetail(
-    type: _PricingType.regular,
-    title: 'Regular',
-    date: 'Desde 1 Ago',
-    price: 80,
-    features: <String>[
-      'Entrada a los 2 días del evento',
-      'Swag del evento',
-      'Acceso a todos los talleres',
-    ],
-  ),
-  _PricingDetail(
-    type: _PricingType.early,
-    title: 'Early bird',
-    date: 'Hasta 31 Jul o agotar stock',
-    price: 50,
-    features: <String>[
-      'Todo lo que incluye Entrada Regular',
-      'Sorteo de una cena con speakers',
-      'Sorteo de un Dash oficial',
-      'Acceso prioritario a talleres',
-      '87% de descuento en el libro "Flutter Engineering"',
-      'Invitación al After party',
-    ],
-  ),
-  _PricingDetail(
-    type: _PricingType.late,
-    title: 'Late bird',
-    date: 'Desde 1 Sep',
-    price: 120,
-    features: <String>[
-      'Entrada a los 2 días del evento',
-      'Swag del evento',
-      'Acceso a todos los talleres',
-    ],
-  ),
-];
