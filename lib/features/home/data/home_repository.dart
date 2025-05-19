@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/home/domain/models/communities/communities_model.dart';
 import 'package:flutter_conf_latam/features/home/domain/models/faq/faq_model.dart';
@@ -6,13 +7,15 @@ import 'package:flutter_conf_latam/features/home/domain/models/tickets/tickets_m
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeRepository {
-  HomeRepository(this.database);
+  HomeRepository(this.database, this.functions);
 
   final FirebaseFirestore database;
+  final FirebaseFunctions functions;
 
   static const _communitiesCollection = 'communities';
-  static const _ticketsCollection = 'tickets';
-  static const _faqCollection = 'faq';
+
+  static const _ticketsFunction = 'getTickets';
+  static const _faqFunction = 'getFaqs';
 
   Future<List<CommunitiesModel>> getCommunities() async {
     final data = await database.collection(_communitiesCollection).get();
@@ -22,25 +25,34 @@ class HomeRepository {
     ];
   }
 
-  Future<List<TicketsModel>> getTickets() async {
-    final collection = database.collection(_ticketsCollection);
-    final data = await collection.where('isVisible', isEqualTo: true).get();
+  Future<List<TicketsModel>> getTickets({String language = 'es'}) async {
+    final callableMethod = functions.httpsCallable(_ticketsFunction);
+    final response = await callableMethod.call<List<dynamic>>({
+      'lang': language,
+    });
 
     return [
-      for (final item in data.docs)
-        TicketsModel.fromJson({'id': item.id, ...item.data()}),
+      for (final item in response.data)
+        TicketsModel.fromJson(item as Map<String, dynamic>),
     ];
   }
 
-  Future<List<FaqModel>> getFaqData() async {
-    final data = await database.collection(_faqCollection).get();
+  Future<List<FaqModel>> getFaqData({String language = 'es'}) async {
+    final callableMethod = functions.httpsCallable(_faqFunction);
+    final response = await callableMethod.call<List<dynamic>>({
+      'lang': language,
+    });
+
     return [
-      for (final item in data.docs)
-        FaqModel.fromJson({'id': item.id, ...item.data()}),
+      for (final item in response.data)
+        FaqModel.fromJson(item as Map<String, dynamic>),
     ];
   }
 }
 
 final homeRepositoryProvider = Provider(
-  (ref) => HomeRepository(ref.watch(firebaseFirestoreProvider)),
+  (ref) => HomeRepository(
+    ref.watch(firebaseFirestoreProvider),
+    ref.watch(firebaseFunctionsProvider),
+  ),
 );
