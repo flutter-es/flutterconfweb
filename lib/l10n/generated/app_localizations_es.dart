@@ -125,6 +125,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homePricingDescription => 'Aprovecha el precio early bird y asegura tu lugar';
 
   @override
+  String homePricingEndDate(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat('MMMM d', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Hasta $dateString';
+  }
+
+  @override
   String get homePricingBuyTicketsButton => 'Comprar tickets';
 
   @override

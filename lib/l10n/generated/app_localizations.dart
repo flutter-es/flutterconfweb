@@ -323,6 +323,12 @@ abstract class AppLocalizations {
   /// **'Take advantage of the early bird price and secure your spot'**
   String get homePricingDescription;
 
+  /// No description provided for @homePricingEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Until {date}'**
+  String homePricingEndDate(DateTime date);
+
   /// No description provided for @homePricingBuyTicketsButton.
   ///
   /// In en, this message translates to:

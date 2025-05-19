@@ -45,6 +45,16 @@
   "homeNoveltiesAppSoon": "Proximamente:",
   "homePricingTitle": "¡La experiencia Flutter al alcance de todos!",
   "homePricingDescription": "Aprovecha el precio early bird y asegura tu lugar",
+  "homePricingEndDate": "Hasta {date}",
+  "@homePricingEndDate": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "MMMM d",
+        "isCustomDateFormat": "true"
+      }
+    }
+  },
   "homePricingBuyTicketsButton": "Comprar tickets",
   "homeCollaborationTitle": "¿Quieres colaborar a otro nivel?",
   "homeCollaborationDescription": "Súmate como speaker o sponsor y forma parte del corazón de FlutterConf Latam 2025.",
