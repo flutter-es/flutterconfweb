@@ -60,9 +60,9 @@ class HomeCommunities extends ConsumerWidget {
                         ScreenSize.large => const Size.fromHeight(105),
                         _ => const Size.fromHeight(54),
                       },
-                      child: Semantics(
-                        value: item.name,
-                        child: Image.network(item.image),
+                      child: Image.network(
+                        item.image,
+                        semanticLabel: item.name,
                       ),
                     ),
                   ),
