@@ -8,3 +8,7 @@ final communitiesProvider = FutureProvider((ref) {
 final ticketsProvider = FutureProvider((ref) {
   return ref.watch(homeRepositoryProvider).getTickets();
 });
+
+final faqListProvider = FutureProvider((ref) {
+  return ref.watch(homeRepositoryProvider).getFaqData();
+});

@@ -4,12 +4,12 @@ import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dar
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/features/home/domain/models/faq/faq_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-typedef FaqItem = ({String question, String answer});
 
 class HomeFaq extends ConsumerWidget {
   const HomeFaq({super.key});
@@ -17,48 +17,48 @@ class HomeFaq extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final faqList = List.generate(4, (index) {
-      return (
-        question: '¿Cuantas entradas de Early Bird están disponibles?',
-        answer: 'Tenemos 150 entradas destinadas a Early Bird.',
-      );
-    });
+    final faqList = ref.watch(faqListProvider);
 
-    return SectionContainer(
-      spacing: 30,
-      children: <Widget>[
-        TitleSubtitleText(
-          title: (
-            text: l10n.homeFaqTitle,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
-            },
-          ),
-          subtitle: (
-            text: l10n.homeFaqDescription,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
-            },
-          ),
-          spacing: 12,
-        ),
-        ResponsiveGrid(
-          columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 2,
-            _ => 1,
-          },
-          rowSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 2,
-            _ => faqList.length,
-          },
+    return faqList.maybeWhen(
+      data: (data) {
+        return SectionContainer(
+          spacing: 30,
           children: <Widget>[
-            for (final item in faqList) _FaqCardItem(item: item),
+            TitleSubtitleText(
+              title: (
+                text: l10n.homeFaqTitle,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge => 64,
+                  ScreenSize.large => 48,
+                  ScreenSize.normal || ScreenSize.small => 24,
+                },
+              ),
+              subtitle: (
+                text: l10n.homeFaqDescription,
+                size: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 24,
+                  ScreenSize.normal || ScreenSize.small => 16,
+                },
+              ),
+              spacing: 12,
+            ),
+            ResponsiveGrid(
+              columnSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge => 2,
+                _ => 1,
+              },
+              rowSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge => 2,
+                _ => data.length,
+              },
+              children: <Widget>[
+                for (final item in data) _FaqCardItem(item: item),
+              ],
+            ),
           ],
-        ),
-      ],
+        );
+      },
+      orElse: Offstage.new,
     );
   }
 }
@@ -66,7 +66,7 @@ class HomeFaq extends ConsumerWidget {
 class _FaqCardItem extends HookWidget {
   const _FaqCardItem({required this.item});
 
-  final FaqItem item;
+  final FaqModel item;
 
   @override
   Widget build(BuildContext context) {
