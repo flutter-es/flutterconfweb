@@ -4,7 +4,7 @@ import 'package:flutter_conf_latam/core/services/web_local_storage_service.dart'
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final dbProvider = Provider((_) => FirebaseFirestore.instance);
+final firebaseFirestoreProvider = Provider((_) => FirebaseFirestore.instance);
 
 final sharedPrefsInstanceProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError('You must implement shared preferences');
