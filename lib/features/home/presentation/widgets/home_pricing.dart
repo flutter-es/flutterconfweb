@@ -16,7 +16,7 @@ class HomePricing extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final pricingList = ref.watch(ticketsProvider);
+    final pricingList = ref.watch(ticketsProvider(Locale(l10n.localeName)));
 
     return pricingList.maybeWhen(
       data: (data) {

@@ -17,7 +17,7 @@ class HomeFaq extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final faqList = ref.watch(faqListProvider);
+    final faqList = ref.watch(faqListProvider(Locale(l10n.localeName)));
 
     return faqList.maybeWhen(
       data: (data) {
