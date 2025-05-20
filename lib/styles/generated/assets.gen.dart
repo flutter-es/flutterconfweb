@@ -76,8 +76,8 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/sponsors
   $AssetsImagesSponsorsGen get sponsors => const $AssetsImagesSponsorsGen();
 
-  /// Directory path: assets/images/udla
-  $AssetsImagesUdlaGen get udla => const $AssetsImagesUdlaGen();
+  /// Directory path: assets/images/venue
+  $AssetsImagesVenueGen get venue => const $AssetsImagesVenueGen();
 
   /// List of all assets
   List<String> get values => [
@@ -270,17 +270,17 @@ class $AssetsImagesSponsorsGen {
   List<String> get values => [flutterLogo];
 }
 
-class $AssetsImagesUdlaGen {
-  const $AssetsImagesUdlaGen();
+class $AssetsImagesVenueGen {
+  const $AssetsImagesVenueGen();
 
-  /// File path: assets/images/udla/one.png
-  String get one => 'assets/images/udla/one.png';
+  /// File path: assets/images/venue/one.png
+  String get one => 'assets/images/venue/one.png';
 
-  /// File path: assets/images/udla/three.png
-  String get three => 'assets/images/udla/three.png';
+  /// File path: assets/images/venue/three.png
+  String get three => 'assets/images/venue/three.png';
 
-  /// File path: assets/images/udla/two.png
-  String get two => 'assets/images/udla/two.png';
+  /// File path: assets/images/venue/two.png
+  String get two => 'assets/images/venue/two.png';
 
   /// List of all assets
   List<String> get values => [one, three, two];

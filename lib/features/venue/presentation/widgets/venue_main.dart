@@ -22,9 +22,9 @@ class VenueMain extends ConsumerWidget {
     final config = ref.watch(configProvider);
 
     final carouselImageUrls = <String>[
-      Assets.images.udla.one,
-      Assets.images.udla.two,
-      Assets.images.udla.three,
+      Assets.images.venue.one,
+      Assets.images.venue.two,
+      Assets.images.venue.three,
     ];
 
     final venueInfoList = <({String text, String icon})>[

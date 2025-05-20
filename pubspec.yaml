@@ -75,7 +75,7 @@ flutter:
     - assets/images/icons/
     - assets/images/novelties/
     - assets/images/sponsors/
-    - assets/images/udla/
+    - assets/images/venue/
 
   fonts:
     - family: Recoleta
