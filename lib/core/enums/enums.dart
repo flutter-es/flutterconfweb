@@ -13,18 +13,3 @@ enum FlutterConfAnimations {
 
   final String name;
 }
-
-enum SponsorshipLevels { platinum, gold, silver, bronze, inKind, other }
-
-enum SponsorshipFilter { platinum, gold, silver, bronze, other, all }
-
-enum SocialMediaLinks { twitter, linkedin, github }
-
-enum SessionType {
-  singleSpeaker,
-  multiSpeaker,
-  panel,
-  keynote,
-  eventSession,
-  workshop,
-}
