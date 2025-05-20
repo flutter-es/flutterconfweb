@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
@@ -14,23 +15,29 @@ class VenueTipExtra extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final about = <({String title, String description, String image})>[
-      (
+    final config = ref.watch(configProvider);
+
+    final about = <VenueTipItem>[
+      VenueTipItem(
         title: l10n.aboutExtraSafetyTitle,
         description: l10n.aboutExtraSafetyDescription,
         image: Assets.images.about.security,
       ),
-      (
+      VenueTipItem(
         title: l10n.aboutExtraEmergencyTitle,
         description: l10n.aboutExtraEmergencyDescription,
         image: Assets.images.about.phone,
+        url: (
+          text: config.cityPhoneEmergency,
+          url: 'tel:${config.cityPhoneEmergency}',
+        ),
       ),
-      (
+      VenueTipItem(
         title: l10n.aboutExtraTransportTitle,
         description: l10n.aboutExtraTransportDescription,
         image: Assets.images.about.taxi,
       ),
-      (
+      VenueTipItem(
         title: l10n.aboutExtraDeliveryAppTitle,
         description: l10n.aboutExtraDeliveryAppDescription,
         image: Assets.images.about.delivery,
@@ -73,10 +80,25 @@ class VenueTipExtra extends ConsumerWidget {
                 title: item.title,
                 description: item.description,
                 imagePath: item.image,
+                url: item.url,
               ),
           ],
         ),
       ],
     );
   }
+}
+
+class VenueTipItem {
+  VenueTipItem({
+    required this.title,
+    required this.description,
+    required this.image,
+    this.url,
+  });
+
+  final String title;
+  final String description;
+  final String image;
+  final ({String url, String text})? url;
 }
