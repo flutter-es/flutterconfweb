@@ -1,7 +1,7 @@
 part of '../fcl_button.dart';
 
 class _FclButtonStyleSecondary extends _FclButtonStyle {
-  const _FclButtonStyleSecondary();
+  const _FclButtonStyleSecondary({required super.buttonSize});
 
   @override
   WidgetStateProperty<Color?>? get backgroundColor {

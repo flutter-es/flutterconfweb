@@ -1,7 +1,9 @@
 part of '../fcl_button.dart';
 
 class _FclButtonStyle extends ButtonStyle {
-  const _FclButtonStyle();
+  const _FclButtonStyle({required this.buttonSize});
+
+  final ButtonSize buttonSize;
 
   @override
   AlignmentGeometry? get alignment => Alignment.center;
@@ -17,17 +19,23 @@ class _FclButtonStyle extends ButtonStyle {
 
   @override
   WidgetStateProperty<EdgeInsetsGeometry?>? get padding {
-    return const WidgetStatePropertyAll(EdgeInsets.all(20));
+    return WidgetStatePropertyAll(switch (buttonSize) {
+      ButtonSize.small => const EdgeInsets.all(10),
+      ButtonSize.large => const EdgeInsets.all(20),
+    });
   }
 
   @override
   WidgetStateProperty<Size?>? get maximumSize {
-    return const WidgetStatePropertyAll(Size.fromHeight(56));
+    return const WidgetStatePropertyAll(Size.fromHeight(68));
   }
 
   @override
   WidgetStateProperty<Size?>? get fixedSize {
-    return const WidgetStatePropertyAll(Size.fromHeight(44));
+    return WidgetStatePropertyAll(switch (buttonSize) {
+      ButtonSize.small => const Size.fromHeight(44),
+      ButtonSize.large => const Size.fromHeight(68),
+    });
   }
 
   @override
@@ -48,7 +56,10 @@ class _FclButtonStyle extends ButtonStyle {
 
   @override
   WidgetStateProperty<double>? get iconSize {
-    return const WidgetStatePropertyAll(24);
+    return WidgetStatePropertyAll(switch (buttonSize) {
+      ButtonSize.small => 20,
+      ButtonSize.large => 24,
+    });
   }
 
   @override
@@ -58,10 +69,13 @@ class _FclButtonStyle extends ButtonStyle {
 
   @override
   WidgetStateProperty<TextStyle?>? get textStyle {
-    return const WidgetStatePropertyAll(
+    return WidgetStatePropertyAll(
       TextStyle(
         fontFamily: 'Poppins',
-        fontSize: 16,
+        fontSize: switch (buttonSize) {
+          ButtonSize.small => 16,
+          ButtonSize.large => 20,
+        },
         height: 1.2,
         fontWeight: FontWeight.w500,
         color: FlutterLatamColors.white,

@@ -9,10 +9,13 @@ part 'style/fcl_button_style_secondary.dart';
 
 enum ButtonVariant { primary, secondary }
 
+enum ButtonSize { small, large }
+
 class FclButton extends StatelessWidget {
   const FclButton.primary({
     required this.label,
     required this.onPressed,
+    required this.buttonSize,
     this.iconAlignment = IconAlignment.start,
     this.icon,
     super.key,
@@ -21,6 +24,7 @@ class FclButton extends StatelessWidget {
   const FclButton.secondary({
     required this.label,
     required this.onPressed,
+    required this.buttonSize,
     this.iconAlignment = IconAlignment.start,
     this.icon,
     super.key,
@@ -28,6 +32,7 @@ class FclButton extends StatelessWidget {
 
   final String label;
   final ButtonVariant variant;
+  final ButtonSize buttonSize;
   final IconAlignment iconAlignment;
   final VoidCallback? onPressed;
   final Widget? icon;
@@ -36,8 +41,10 @@ class FclButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: switch (variant) {
-        ButtonVariant.primary => const _FclButtonStylePrimary(),
-        ButtonVariant.secondary => const _FclButtonStyleSecondary(),
+        ButtonVariant.primary => _FclButtonStylePrimary(buttonSize: buttonSize),
+        ButtonVariant.secondary => _FclButtonStyleSecondary(
+          buttonSize: buttonSize,
+        ),
       },
       onPressed: onPressed,
       child: Row(
