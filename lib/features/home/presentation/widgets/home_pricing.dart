@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
@@ -70,6 +72,7 @@ class _PricingCardItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final config = ref.watch(configProvider);
 
     return Card(
       color: switch (detail.id) {
@@ -176,7 +179,9 @@ class _PricingCardItem extends ConsumerWidget {
                         padding: const EdgeInsets.only(top: 20),
                         child: FclButton.primary(
                           label: l10n.homePricingBuyTicketsButton,
-                          onPressed: () {},
+                          onPressed: () {
+                            Utils.launchUrlLink(config.ticketPageUrl);
+                          },
                         ),
                       ),
                   ],
