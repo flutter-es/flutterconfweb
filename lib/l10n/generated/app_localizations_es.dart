@@ -226,13 +226,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get aboutExtraEmergencyTitle => 'Contactos de emergencia';
 
   @override
-  String get aboutExtraEmergencyDescription => 'Marca 911 para la policía, ambulancia o bomberos. Para asistencia al turista, llama al +593-123-AYUDA.';
+  String get aboutExtraEmergencyDescription => 'Marca 911 para la policía, ambulancia o bomberos. Para asistencia al turista, llama al ';
 
   @override
   String get aboutExtraTransportTitle => 'Taxis y transportes';
 
   @override
-  String get aboutExtraTransportDescription => 'Usa taxis autorizados o aplicaciones como Uber y Cabify. Evita tomar taxis no registrados.';
+  String get aboutExtraTransportDescription => 'Usa taxis autorizados o aplicaciones como Uber y/o Didi. Evita tomar taxis no registrados.';
 
   @override
   String get aboutExtraDeliveryAppTitle => 'Aplicaciones de entrega';

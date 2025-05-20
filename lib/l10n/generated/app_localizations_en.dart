@@ -226,13 +226,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutExtraEmergencyTitle => 'Emergency contacts';
 
   @override
-  String get aboutExtraEmergencyDescription => 'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call +593-123-AYUDA.';
+  String get aboutExtraEmergencyDescription => 'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call ';
 
   @override
   String get aboutExtraTransportTitle => 'Taxis and transportation';
 
   @override
-  String get aboutExtraTransportDescription => 'Use licensed taxis or apps like Uber and Cabify. Avoid unregistered taxis.';
+  String get aboutExtraTransportDescription => 'Use licensed taxis or apps like Uber and/or Didi. Avoid unregistered taxis.';
 
   @override
   String get aboutExtraDeliveryAppTitle => 'Delivery applications';

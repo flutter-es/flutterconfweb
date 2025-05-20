@@ -518,7 +518,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutExtraEmergencyDescription.
   ///
   /// In en, this message translates to:
-  /// **'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call +593-123-AYUDA.'**
+  /// **'Dial 911 for police, ambulance, or firefighters. For tourist assistance, call '**
   String get aboutExtraEmergencyDescription;
 
   /// No description provided for @aboutExtraTransportTitle.
@@ -530,7 +530,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutExtraTransportDescription.
   ///
   /// In en, this message translates to:
-  /// **'Use licensed taxis or apps like Uber and Cabify. Avoid unregistered taxis.'**
+  /// **'Use licensed taxis or apps like Uber and/or Didi. Avoid unregistered taxis.'**
   String get aboutExtraTransportDescription;
 
   /// No description provided for @aboutExtraDeliveryAppTitle.
