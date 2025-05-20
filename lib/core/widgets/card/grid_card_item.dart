@@ -66,9 +66,8 @@ class GridCardItem extends StatelessWidget {
                         decoration: TextDecoration.underline,
                         decorationColor: FlutterLatamColors.white,
                       ),
-                      recognizer:
-                          TapGestureRecognizer()
-                            ..onTap = () => Utils.launchUrlLink(url!.url),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => Utils.launchUrlLink(url!.url),
                     ),
                 ],
               ),

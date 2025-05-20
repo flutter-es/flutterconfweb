@@ -83,11 +83,10 @@ class HomeMain extends ConsumerWidget {
                   decoration: TextDecoration.underline,
                   decorationColor: FlutterLatamColors.white,
                 ),
-                recognizer:
-                    TapGestureRecognizer()
-                      ..onTap = () {
-                        Utils.launchUrlLink(config.countryPageUrl);
-                      },
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Utils.launchUrlLink(config.countryPageUrl);
+                  },
               ),
               const TextSpan(text: '!'),
             ],
