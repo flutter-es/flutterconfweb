@@ -145,6 +145,7 @@ class _BuyTicketFeature extends ConsumerWidget {
             },
             child: FclButton.secondary(
               label: l10n.homeFeatureBuyTicketButton,
+              buttonSize: ButtonSize.small,
               onPressed: () => Utils.launchUrlLink(config.ticketPageUrl),
             ),
           ),

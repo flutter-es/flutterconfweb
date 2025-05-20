@@ -106,6 +106,10 @@ class VenueMain extends ConsumerWidget {
                 ),
                 FclButton.primary(
                   label: l10n.aboutVenueHowToArrive,
+                  buttonSize: switch (context.screenSize) {
+                    ScreenSize.normal || ScreenSize.small => ButtonSize.small,
+                    _ => ButtonSize.large,
+                  },
                   icon: SizedBox.square(
                     dimension: switch (context.screenSize) {
                       ScreenSize.extraLarge || ScreenSize.large => 24,

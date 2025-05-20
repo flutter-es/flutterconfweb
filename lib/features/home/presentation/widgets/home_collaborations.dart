@@ -144,6 +144,7 @@ class _CollaborationCardItem extends StatelessWidget {
                   ),
                   FclButton.secondary(
                     label: item.button.text,
+                    buttonSize: ButtonSize.small,
                     onPressed: item.button.function,
                   ),
                 ],

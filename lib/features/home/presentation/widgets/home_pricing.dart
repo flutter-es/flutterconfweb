@@ -179,6 +179,7 @@ class _PricingCardItem extends ConsumerWidget {
                         padding: const EdgeInsets.only(top: 20),
                         child: FclButton.primary(
                           label: l10n.homePricingBuyTicketsButton,
+                          buttonSize: ButtonSize.small,
                           onPressed: () {
                             Utils.launchUrlLink(config.ticketPageUrl);
                           },
