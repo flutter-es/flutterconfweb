@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 
 class CarouselImages extends StatefulWidget {
@@ -53,12 +54,16 @@ class _CarouselImagesState extends State<CarouselImages> {
                   _resetTimer();
                 },
                 itemBuilder: (_, index) {
+                  final imagePath = widget.images[index];
                   return AspectRatio(
                     aspectRatio: widget.aspectRatio,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(
-                        widget.images[index],
+                      child: Image(
+                        image: switch (imagePath.isValidUrl) {
+                          true => NetworkImage(imagePath),
+                          false => AssetImage(imagePath),
+                        },
                         fit: BoxFit.cover,
                         loadingBuilder: (_, child, loadingProgress) {
                           if (loadingProgress == null) return child;
