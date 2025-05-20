@@ -20,8 +20,8 @@ class _FclButtonStyle extends ButtonStyle {
   @override
   WidgetStateProperty<EdgeInsetsGeometry?>? get padding {
     return WidgetStatePropertyAll(switch (buttonSize) {
-      ButtonSize.small => const EdgeInsets.all(10),
-      ButtonSize.large => const EdgeInsets.all(20),
+      ButtonSize.small => const EdgeInsets.symmetric(horizontal: 20),
+      ButtonSize.large => const EdgeInsets.symmetric(horizontal: 40),
     });
   }
 
