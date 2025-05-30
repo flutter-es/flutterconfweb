@@ -5,6 +5,7 @@ import 'package:flutter_conf_latam/core/routes/app_routes_pages.dart';
 import 'package:flutter_conf_latam/core/widgets/navigation/shell_navigator_page.dart';
 import 'package:flutter_conf_latam/features/contact/presentation/pages/contact_page.dart';
 import 'package:flutter_conf_latam/features/errors/presentation/pages/error_page.dart';
+import 'package:flutter_conf_latam/features/gallery/presentation/pages/gallery_page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/pages/venue_page.dart';
@@ -29,33 +30,39 @@ class AppRoutes {
           ),
           ShellRoute(
             navigatorKey: _tabRoutesKeys,
-            builder: (_, __, child) => ShellNavigatorPage(child: child),
+            builder: (_, _, child) => ShellNavigatorPage(child: child),
             routes: <RouteBase>[
               GoRoute(
                 path: '/${AppRoutePath.home.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, __) {
+                pageBuilder: (_, _) {
                   return const NoTransitionPage(child: HomePage());
                 },
               ),
               GoRoute(
                 path: '/${AppRoutePath.venue.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, __) {
+                pageBuilder: (_, _) {
                   return const NoTransitionPage(child: VenuePage());
+                },
+              ),
+              GoRoute(
+                path: '/${AppRoutePath.gallery.pathName}',
+                pageBuilder: (_, _) {
+                  return const NoTransitionPage(child: GalleryPage());
                 },
               ),
               GoRoute(
                 path: '/${AppRoutePath.contact.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, __) {
+                pageBuilder: (_, _) {
                   return const NoTransitionPage(child: ContactPage());
                 },
               ),
             ],
           ),
         ],
-        errorPageBuilder: (_, __) {
+        errorPageBuilder: (_, _) {
           return const NoTransitionPage(child: ErrorPage());
         },
         debugLogDiagnostics: kDebugMode,
