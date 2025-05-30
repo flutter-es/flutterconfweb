@@ -44,8 +44,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.9.5
-  vector_graphics_compiler: ^1.1.16
-  very_good_analysis: ^7.0.0
+  vector_graphics_compiler: ^1.1.17
+  very_good_analysis: ^8.0.0
 
 flutter_gen:
   output: lib/styles/generated/
