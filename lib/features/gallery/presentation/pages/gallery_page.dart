@@ -1,6 +1,8 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/features/gallery/presentation/widgets/gallery_list.dart';
+import 'package:flutter_conf_latam/features/gallery/presentation/widgets/gallery_main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class GalleryPage extends ConsumerStatefulWidget {
@@ -23,7 +25,12 @@ class _GalleryPageState extends ConsumerState<GalleryPage> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverList(delegate: SliverChildListDelegate([const Footer()])),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            const GalleryMain(),
+            const Footer(),
+          ]),
+        ),
       ],
     );
   }
