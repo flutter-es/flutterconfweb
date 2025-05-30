@@ -77,7 +77,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
         children: <Widget>[
           Expanded(
             child: NestedScrollView(
-              headerSliverBuilder: (_, __) {
+              headerSliverBuilder: (_, _) {
                 return [
                   if (!context.isMobileFromResponsive)
                     Header(tabItems: tabItems, onSelect: _goToRoute),

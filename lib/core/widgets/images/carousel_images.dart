@@ -78,7 +78,7 @@ class _CarouselImagesState extends State<CarouselImages> {
                             ),
                           );
                         },
-                        errorBuilder: (_, __, ___) {
+                        errorBuilder: (_, _, _) {
                           return const Center(
                             child: Text('Error al cargar la imagen'),
                           );

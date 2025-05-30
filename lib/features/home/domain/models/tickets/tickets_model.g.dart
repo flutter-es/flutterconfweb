@@ -11,8 +11,9 @@ TicketsModel _$TicketsModelFromJson(Map<String, dynamic> json) => TicketsModel(
   title: json['title'] as String,
   price: (json['price'] as num).toDouble(),
   endDate: DateTime.parse(json['endDate'] as String),
-  features:
-      (json['features'] as List<dynamic>).map((e) => e as String).toList(),
+  features: (json['features'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
 );
 
 const _$TicketTypeEnumMap = {
