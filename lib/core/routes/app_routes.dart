@@ -48,6 +48,7 @@ class AppRoutes {
               ),
               GoRoute(
                 path: '/${AppRoutePath.gallery.pathName}',
+                parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: GalleryPage());
                 },
