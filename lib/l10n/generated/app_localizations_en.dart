@@ -12,6 +12,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get menuVenueText => 'Venue';
 
   @override
+  String get menuGalleryText => 'Gallery';
+
+  @override
   String get menuContactText => 'Contact';
 
   @override
@@ -271,6 +274,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get aboutExtraDeliveryAppDescription =>
       'Popular options include Rappi and Uber Eats for fast and reliable service.';
+
+  @override
+  String get galleryMainTitle => 'Remember is to live again...';
+
+  @override
+  String get galleryMainMessage =>
+      'We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.';
 
   @override
   String get contactMainTitle => 'Do you have any questions? Write to us.';

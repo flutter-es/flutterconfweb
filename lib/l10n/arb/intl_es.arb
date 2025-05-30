@@ -1,6 +1,7 @@
 {
   "@@locale": "es",
   "menuVenueText": "Venue",
+  "menuGalleryText": "Galería",
   "menuContactText": "Contacto",
   "menuBeSpeakerButton": "Ser speaker",
   "menuBuyTicketsButton": "Comprar tickets",
@@ -91,6 +92,8 @@
   "aboutExtraTransportDescription":"Usa taxis autorizados o aplicaciones como Uber y/o Didi. Evita tomar taxis no registrados.",
   "aboutExtraDeliveryAppTitle":"Aplicaciones de entrega",
   "aboutExtraDeliveryAppDescription":"Las opciones populares incluyen Rappi y Uber Eats para un servicio rápido y confiable.",
+  "galleryMainTitle": "Recordar es volver a vivir...",
+  "galleryMainMessage": "Capturamos lo mejor de cada momento. ¡La próxima foto épica podría ser la tuya! Mira algunos recuerdos de ediciones pasadas.",
   "contactMainTitle": "¿Tienes dudas? Escríbenos",
   "contactMainDescription": "¡O si prefieres, contáctanos a través de nuestras redes sociales! ¡Nos encanta estar en contacto!",
   "footerTitle": "¡Nos vemos en Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",

@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// **'Venue'**
   String get menuVenueText;
 
+  /// No description provided for @menuGalleryText.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get menuGalleryText;
+
   /// No description provided for @menuContactText.
   ///
   /// In en, this message translates to:
@@ -547,6 +553,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Popular options include Rappi and Uber Eats for fast and reliable service.'**
   String get aboutExtraDeliveryAppDescription;
+
+  /// No description provided for @galleryMainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember is to live again...'**
+  String get galleryMainTitle;
+
+  /// No description provided for @galleryMainMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.'**
+  String get galleryMainMessage;
 
   /// No description provided for @contactMainTitle.
   ///

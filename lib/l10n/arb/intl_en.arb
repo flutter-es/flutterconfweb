@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "menuVenueText": "Venue",
+  "menuGalleryText": "Gallery",
   "menuContactText": "Contact",
   "menuBeSpeakerButton": "Be a speaker",
   "menuBuyTicketsButton": "Buy tickets",
@@ -91,6 +92,8 @@
   "aboutExtraTransportDescription":"Use licensed taxis or apps like Uber and/or Didi. Avoid unregistered taxis.",
   "aboutExtraDeliveryAppTitle":"Delivery applications",
   "aboutExtraDeliveryAppDescription":"Popular options include Rappi and Uber Eats for fast and reliable service.",
+  "galleryMainTitle": "Remember is to live again...",
+  "galleryMainMessage": "We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.",
   "contactMainTitle": "Do you have any questions? Write to us.",
   "contactMainDescription": "Or if you prefer, contact us through our social media! We love staying in touch!",
   "footerTitle": "See you in Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",
