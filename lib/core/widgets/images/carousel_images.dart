@@ -78,6 +78,17 @@ class _CarouselImagesState extends State<CarouselImages> {
                             ),
                           );
                         },
+                        frameBuilder: (_, child, frame, synchronouslyLoaded) {
+                          if (synchronouslyLoaded || frame != null) {
+                            return child;
+                          }
+
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: FlutterLatamColors.white,
+                            ),
+                          );
+                        },
                         errorBuilder: (_, _, _) {
                           return const Center(
                             child: Text('Error al cargar la imagen'),
