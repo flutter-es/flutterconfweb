@@ -67,6 +67,9 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/footer
   $AssetsImagesFooterGen get footer => const $AssetsImagesFooterGen();
 
+  /// Directory path: assets/images/gallery
+  $AssetsImagesGalleryGen get gallery => const $AssetsImagesGalleryGen();
+
   /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
 
@@ -181,6 +184,22 @@ class $AssetsImagesFooterGen {
 
   /// File path: assets/images/footer/two.png
   String get two => 'assets/images/footer/two.png';
+
+  /// List of all assets
+  List<String> get values => [one, three, two];
+}
+
+class $AssetsImagesGalleryGen {
+  const $AssetsImagesGalleryGen();
+
+  /// File path: assets/images/gallery/one.jpg
+  String get one => 'assets/images/gallery/one.jpg';
+
+  /// File path: assets/images/gallery/three.jpg
+  String get three => 'assets/images/gallery/three.jpg';
+
+  /// File path: assets/images/gallery/two.jpg
+  String get two => 'assets/images/gallery/two.jpg';
 
   /// List of all assets
   List<String> get values => [one, three, two];
