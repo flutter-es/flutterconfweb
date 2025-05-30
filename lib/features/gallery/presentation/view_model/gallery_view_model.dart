@@ -1,0 +1,6 @@
+import 'package:flutter_conf_latam/features/gallery/data/gallery_repository.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final galleryProvider = FutureProvider((ref) {
+  return ref.watch(galleryRepositoryProvider).getGallery();
+});
