@@ -24,6 +24,7 @@ class PaginationContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 30,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         child,

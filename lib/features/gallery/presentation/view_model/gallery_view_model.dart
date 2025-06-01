@@ -9,7 +9,7 @@ final galleryDataProvider = FutureProvider((ref) {
 typedef Pagination = ({int page, int pageSize});
 
 final paginationProvider = StateProvider<Pagination>(
-  (_) => (page: 1, pageSize: 6),
+  (_) => (page: 1, pageSize: 9),
 );
 
 typedef GalleryInfo = ({List<GalleryModel> galleryList, int totalList});
