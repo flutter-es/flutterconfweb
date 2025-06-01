@@ -15,10 +15,11 @@ class ErrorContainer extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
 
     return Column(
-      spacing: 20,
+      spacing: 40,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         TitleSubtitleText(
+          spacing: 20,
           title: (
             text: l10n.errorDataTitle,
             size: switch (context.screenSize) {
