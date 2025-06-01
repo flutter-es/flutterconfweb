@@ -28,6 +28,7 @@ class _GalleryPageState extends ConsumerState<GalleryPage> {
         SliverList(
           delegate: SliverChildListDelegate([
             const GalleryMain(),
+            const GalleryList(),
             const Footer(),
           ]),
         ),
