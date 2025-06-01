@@ -16,7 +16,9 @@ class CarouselImages extends StatefulWidget {
 }
 
 class _CarouselImagesState extends State<CarouselImages> {
-  late final PageController _pageController = PageController();
+  late final PageController _pageController = PageController(
+    viewportFraction: 1.1,
+  );
 
   int _currentPage = 0;
   Timer? _timer;
@@ -55,45 +57,48 @@ class _CarouselImagesState extends State<CarouselImages> {
                 },
                 itemBuilder: (_, index) {
                   final imagePath = widget.images[index];
-                  return AspectRatio(
-                    aspectRatio: widget.aspectRatio,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image(
-                        image: switch (imagePath.isValidUrl) {
-                          true => NetworkImage(imagePath),
-                          false => AssetImage(imagePath),
-                        },
-                        fit: BoxFit.cover,
-                        loadingBuilder: (_, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
+                  return FractionallySizedBox(
+                    widthFactor: 1 / _pageController.viewportFraction,
+                    child: AspectRatio(
+                      aspectRatio: widget.aspectRatio,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image(
+                          image: switch (imagePath.isValidUrl) {
+                            true => NetworkImage(imagePath),
+                            false => AssetImage(imagePath),
+                          },
+                          fit: BoxFit.cover,
+                          loadingBuilder: (_, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
 
-                          final value = loadingProgress.cumulativeBytesLoaded;
-                          final total = loadingProgress.expectedTotalBytes;
+                            final value = loadingProgress.cumulativeBytesLoaded;
+                            final total = loadingProgress.expectedTotalBytes;
 
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: FlutterLatamColors.white,
-                              value: total != null ? value / total : null,
-                            ),
-                          );
-                        },
-                        frameBuilder: (_, child, frame, synchronouslyLoaded) {
-                          if (synchronouslyLoaded || frame != null) {
-                            return child;
-                          }
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: FlutterLatamColors.white,
+                                value: total != null ? value / total : null,
+                              ),
+                            );
+                          },
+                          frameBuilder: (_, child, frame, synchronouslyLoaded) {
+                            if (synchronouslyLoaded || frame != null) {
+                              return child;
+                            }
 
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: FlutterLatamColors.white,
-                            ),
-                          );
-                        },
-                        errorBuilder: (_, _, _) {
-                          return const Center(
-                            child: Text('Error al cargar la imagen'),
-                          );
-                        },
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: FlutterLatamColors.white,
+                              ),
+                            );
+                          },
+                          errorBuilder: (_, _, _) {
+                            return const Center(
+                              child: Text('Error al cargar la imagen'),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   );
