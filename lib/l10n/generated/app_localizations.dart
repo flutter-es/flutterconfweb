@@ -146,6 +146,24 @@ abstract class AppLocalizations {
   /// **'Return Home'**
   String get errorReturnHomeButton;
 
+  /// No description provided for @errorDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops!'**
+  String get errorDataTitle;
+
+  /// No description provided for @errorDataMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'An error happened, try again'**
+  String get errorDataMessage;
+
+  /// No description provided for @errorDataRetryButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get errorDataRetryButton;
+
   /// No description provided for @homeMainTitle.
   ///
   /// In en, this message translates to:

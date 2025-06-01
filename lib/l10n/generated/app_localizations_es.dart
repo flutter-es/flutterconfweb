@@ -33,6 +33,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get errorReturnHomeButton => 'Volver al inicio';
 
   @override
+  String get errorDataTitle => 'Oops!';
+
+  @override
+  String get errorDataMessage => 'Ocurrió un error, intenta de nuevo';
+
+  @override
+  String get errorDataRetryButton => 'Reintentar';
+
+  @override
   String get homeMainTitle => 'FlutterConfLatam 2025\nQuito - Ecuador';
 
   @override
