@@ -23,30 +23,23 @@ class GalleryMain extends ConsumerWidget {
       spacing: 48,
       children: <Widget>[
         CarouselImages(images: carouselImageUrls),
-        Column(
-          spacing: 24,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.galleryMainTitle,
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 64,
-                  ScreenSize.large => 48,
-                  ScreenSize.normal || ScreenSize.small => 24,
-                },
-              ),
-              subtitle: (
-                text: l10n.galleryMainMessage,
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 16,
-                },
-              ),
-              textAlign: TextAlign.start,
-            ),
-          ],
+        TitleSubtitleText(
+          title: (
+            text: l10n.galleryMainTitle,
+            size: switch (context.screenSize) {
+              ScreenSize.extraLarge => 64,
+              ScreenSize.large => 48,
+              ScreenSize.normal || ScreenSize.small => 24,
+            },
+          ),
+          subtitle: (
+            text: l10n.galleryMainMessage,
+            size: switch (context.screenSize) {
+              ScreenSize.extraLarge || ScreenSize.large => 24,
+              ScreenSize.normal || ScreenSize.small => 16,
+            },
+          ),
+          textAlign: TextAlign.start,
         ),
       ],
     );
