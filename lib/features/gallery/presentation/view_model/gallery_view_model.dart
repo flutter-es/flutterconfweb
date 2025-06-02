@@ -16,6 +16,10 @@ typedef GalleryInfo = ({List<GalleryModel> galleryList, int totalList});
 
 final galleryProvider = FutureProvider<GalleryInfo>((ref) async {
   final pagination = ref.watch(paginationProvider);
+
+  if (pagination.page != 1) {
+    await Future<void>.delayed(const Duration(seconds: 1));
+  }
   final list = await ref.watch(galleryDataProvider.future);
 
   final startIndex = (pagination.page - 1) * pagination.pageSize;
