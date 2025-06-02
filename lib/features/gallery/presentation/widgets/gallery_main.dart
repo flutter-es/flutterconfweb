@@ -7,11 +7,19 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class GalleryMain extends ConsumerWidget {
+class GalleryMain extends ConsumerStatefulWidget {
   const GalleryMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<GalleryMain> createState() => _GalleryMainState();
+}
+
+class _GalleryMainState extends ConsumerState<GalleryMain>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+
     final l10n = ref.watch(appLocalizationsProvider);
     final carouselImageUrls = <String>[
       Assets.images.gallery.one,
@@ -44,4 +52,7 @@ class GalleryMain extends ConsumerWidget {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

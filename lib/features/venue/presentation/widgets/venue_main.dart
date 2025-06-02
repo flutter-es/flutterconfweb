@@ -13,11 +13,19 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class VenueMain extends ConsumerWidget {
+class VenueMain extends ConsumerStatefulWidget {
   const VenueMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<VenueMain> createState() => _VenueMainState();
+}
+
+class _VenueMainState extends ConsumerState<VenueMain>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
@@ -126,4 +134,7 @@ class VenueMain extends ConsumerWidget {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
