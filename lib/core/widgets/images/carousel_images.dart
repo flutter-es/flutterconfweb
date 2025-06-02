@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
+import 'package:flutter_conf_latam/core/widgets/container/shimmer_container.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 
 class CarouselImages extends StatefulWidget {
@@ -20,13 +21,18 @@ class _CarouselImagesState extends State<CarouselImages> {
     viewportFraction: 1.1,
   );
 
+  bool _isLoading = true;
   int _currentPage = 0;
   Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    if (widget.images.length > 1) _startAutoScroll();
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() => _isLoading = false);
+      if (widget.images.length > 1) _startAutoScroll();
+    });
   }
 
   @override
@@ -48,61 +54,23 @@ class _CarouselImagesState extends State<CarouselImages> {
           children: <Widget>[
             SizedBox.fromSize(
               size: Size(width, width / widget.aspectRatio),
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: widget.images.length,
-                onPageChanged: (page) {
-                  setState(() => _currentPage = page);
-                  _resetTimer();
-                },
-                itemBuilder: (_, index) {
-                  final imagePath = widget.images[index];
-                  return FractionallySizedBox(
-                    widthFactor: 1 / _pageController.viewportFraction,
-                    child: AspectRatio(
+              child: Shimmer(
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: widget.images.length,
+                  onPageChanged: (page) {
+                    setState(() => _currentPage = page);
+                    _resetTimer();
+                  },
+                  itemBuilder: (_, index) => ShimmerLoading(
+                    isLoading: _isLoading,
+                    child: _CarouselImageItem(
+                      imagePath: widget.images[index],
+                      widthFactor: 1 / _pageController.viewportFraction,
                       aspectRatio: widget.aspectRatio,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image(
-                          image: switch (imagePath.isValidUrl) {
-                            true => NetworkImage(imagePath),
-                            false => AssetImage(imagePath),
-                          },
-                          fit: BoxFit.cover,
-                          loadingBuilder: (_, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-
-                            final value = loadingProgress.cumulativeBytesLoaded;
-                            final total = loadingProgress.expectedTotalBytes;
-
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: FlutterLatamColors.white,
-                                value: total != null ? value / total : null,
-                              ),
-                            );
-                          },
-                          frameBuilder: (_, child, frame, synchronouslyLoaded) {
-                            if (synchronouslyLoaded || frame != null) {
-                              return child;
-                            }
-
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: FlutterLatamColors.white,
-                              ),
-                            );
-                          },
-                          errorBuilder: (_, _, _) {
-                            return const Center(
-                              child: Text('Error al cargar la imagen'),
-                            );
-                          },
-                        ),
-                      ),
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
             ),
             if (widget.images.length > 1)
@@ -161,5 +129,68 @@ class _CarouselImagesState extends State<CarouselImages> {
 
   void _resetTimer() {
     if (widget.images.length > 1) _startAutoScroll();
+  }
+}
+
+class _CarouselImageItem extends StatelessWidget {
+  const _CarouselImageItem({
+    required this.imagePath,
+    required this.widthFactor,
+    required this.aspectRatio,
+  });
+
+  final String imagePath;
+  final double widthFactor;
+  final double aspectRatio;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image(
+      image: switch (imagePath.isValidUrl) {
+        true => NetworkImage(imagePath),
+        false => AssetImage(imagePath),
+      },
+      fit: BoxFit.cover,
+      loadingBuilder: (_, child, loadingProgress) {
+        return _CarouselImageContainer(
+          widthFactor: widthFactor,
+          aspectRatio: aspectRatio,
+          child: loadingProgress == null ? child : null,
+        );
+      },
+      frameBuilder: (_, child, frame, synchronouslyLoaded) {
+        return _CarouselImageContainer(
+          widthFactor: widthFactor,
+          aspectRatio: aspectRatio,
+          child: synchronouslyLoaded || frame != null ? child : null,
+        );
+      },
+      errorBuilder: (_, _, _) {
+        return const Center(child: Text('Error al cargar la imagen'));
+      },
+    );
+  }
+}
+
+class _CarouselImageContainer extends StatelessWidget {
+  const _CarouselImageContainer({
+    required this.widthFactor,
+    required this.aspectRatio,
+    this.child,
+  });
+
+  final double widthFactor;
+  final double aspectRatio;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      widthFactor: widthFactor,
+      child: AspectRatio(
+        aspectRatio: aspectRatio,
+        child: ClipRRect(borderRadius: BorderRadius.circular(15), child: child),
+      ),
+    );
   }
 }
