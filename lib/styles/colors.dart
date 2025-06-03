@@ -12,11 +12,6 @@ class FlutterLatamColors {
   static const Color green = Color(0xFF78B94A);
   static const Color red = Color(0xFFD30D19);
   static const Color lightRed = Color(0xFFFB8A91);
-
-  // Sponsors
-
-  static const Color platinum = Color(0xFF939393);
-  static const Color gold = Color(0xFFF7B900);
+  static const Color purple = Color(0xFFB86EEE);
   static const Color silver = Color(0xFFBABABA);
-  static const Color bronze = Color(0xFFA03913);
 }
