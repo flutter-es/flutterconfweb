@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
+import 'package:flutter_conf_latam/core/widgets/menu/sub_menu_button.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 
@@ -49,9 +50,9 @@ class MobileDrawerMenu extends StatelessWidget {
                     else
                       _ItemDrawer(
                         item: item,
-                        onTap: () {
+                        onSelect: (value) {
                           Navigator.of(context).pop();
-                          onSelect(item);
+                          onSelect(value);
                         },
                       ),
                 ],
@@ -67,46 +68,47 @@ class MobileDrawerMenu extends StatelessWidget {
 }
 
 class _ItemDrawer extends StatelessWidget {
-  const _ItemDrawer({required this.item, required this.onTap});
+  const _ItemDrawer({required this.item, required this.onSelect});
 
   final NavigationItemModel item;
-  final VoidCallback onTap;
+  final ValueSetter<NavigationItemModel> onSelect;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(60)),
-        child: SizedBox(
-          height: 60,
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: const BorderRadius.all(Radius.circular(60)),
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: switch (item.isSelected) {
-                true => BoxDecoration(
-                  color: FlutterLatamColors.white.withValues(alpha: .12),
-                ),
-                false => null,
-              },
-              child: Text(
-                item.label,
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
-                  color: FlutterLatamColors.white,
-                  fontWeight: switch (item.isSelected) {
-                    true => FontWeight.w600,
-                    false => FontWeight.w400,
+      child: SizedBox(
+        height: 60,
+        child: item.route != null
+            ? InkWell(
+                onTap: () => onSelect(item),
+                borderRadius: const BorderRadius.all(Radius.circular(60)),
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: switch (item.isSelected) {
+                    true => BoxDecoration(
+                      color: FlutterLatamColors.white.withValues(alpha: .12),
+                    ),
+                    false => null,
                   },
+                  child: Text(
+                    item.label,
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 16,
+                      color: FlutterLatamColors.white,
+                      fontWeight: switch (item.isSelected) {
+                        true => FontWeight.w600,
+                        false => FontWeight.w400,
+                      },
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-        ),
+              )
+            : item.subMenus != null
+            ? SubMenuButton(tabItem: item, onSelect: onSelect)
+            : const Offstage(),
       ),
     );
   }

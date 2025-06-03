@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
-import 'package:flutter_conf_latam/core/widgets/container/header.dart';
+import 'package:flutter_conf_latam/core/widgets/menu/header_menu.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -42,8 +42,17 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
       if (listEquals(previous, next)) return;
 
       final itemRoute = next.singleWhereOrNull((item) => item.isSelected);
-      if (itemRoute != null && itemRoute.route.isNotEmpty) {
-        context.go(itemRoute.route);
+      if (itemRoute != null) {
+        if ((itemRoute.route ?? '').isNotEmpty) {
+          context.go(itemRoute.route!);
+        } else if ((itemRoute.subMenus ?? []).isNotEmpty) {
+          final subItemRoute = itemRoute.subMenus?.singleWhereOrNull(
+            (item) => item.isSelected,
+          );
+          if (subItemRoute != null && subItemRoute.route.isNotEmpty) {
+            context.go(subItemRoute.route);
+          }
+        }
       }
     });
 
@@ -80,7 +89,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
               headerSliverBuilder: (_, _) {
                 return [
                   if (!context.isMobileFromResponsive)
-                    Header(tabItems: tabItems, onSelect: _goToRoute),
+                    HeaderMenu(tabItems: tabItems, onSelect: _goToRoute),
                 ];
               },
               body: widget.child,

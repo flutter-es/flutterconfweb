@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
+import 'package:flutter_conf_latam/core/widgets/menu/sub_menu_button.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Header extends HookWidget {
-  const Header({required this.tabItems, required this.onSelect, super.key});
+class HeaderMenu extends HookWidget {
+  const HeaderMenu({required this.tabItems, required this.onSelect, super.key});
 
   final List<NavigationItemModel> tabItems;
   final ValueSetter<NavigationItemModel> onSelect;
@@ -31,7 +32,10 @@ class Header extends HookWidget {
           children: <Widget>[
             Expanded(
               child: TabBar(
-                onTap: (index) => onSelect(tabItems[index]),
+                onTap: (index) {
+                  final item = tabItems[index];
+                  if (item.route != null) onSelect(item);
+                },
                 controller: tabController,
                 tabAlignment: TabAlignment.start,
                 isScrollable: true,
@@ -54,7 +58,7 @@ class Header extends HookWidget {
                           );
                         },
                       )
-                    else
+                    else if (item.route != null)
                       Tab(
                         child: Text(
                           item.label,
@@ -67,6 +71,16 @@ class Header extends HookWidget {
                               false => FontWeight.w400,
                             },
                           ),
+                        ),
+                      )
+                    else if (item.subMenus != null)
+                      Tab(
+                        child: SubMenuButton(
+                          tabItem: item,
+                          onSelect: (value) {
+                            tabController.index = index;
+                            onSelect(value);
+                          },
                         ),
                       ),
                 ],
