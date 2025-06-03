@@ -22,6 +22,10 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
             label: l10n.menuVenueText,
             route: '/${AppRoutePath.venue.pathName}',
           ),
+          SubNavigationItemModel(
+            label: l10n.menuOrganizersText,
+            route: '/${AppRoutePath.organizers.pathName}',
+          ),
         ],
       ),
       NavigationItemModel(

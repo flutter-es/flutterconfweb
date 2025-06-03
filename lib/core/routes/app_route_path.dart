@@ -2,6 +2,7 @@ enum AppRoutePath {
   splash(''),
   home('home'),
   venue('venue'),
+  organizers('organizers'),
   gallery('gallery'),
   contact('contact');
 

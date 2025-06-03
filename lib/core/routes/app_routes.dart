@@ -7,6 +7,7 @@ import 'package:flutter_conf_latam/features/contact/presentation/pages/contact_p
 import 'package:flutter_conf_latam/features/errors/presentation/pages/error_page.dart';
 import 'package:flutter_conf_latam/features/gallery/presentation/pages/gallery_page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_latam/features/organizers/presentation/pages/organizers_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/pages/venue_page.dart';
 import 'package:go_router/go_router.dart';
@@ -44,6 +45,13 @@ class AppRoutes {
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: VenuePage());
+                },
+              ),
+              GoRoute(
+                path: '/${AppRoutePath.organizers.pathName}',
+                parentNavigatorKey: _tabRoutesKeys,
+                pageBuilder: (context, state) {
+                  return const NoTransitionPage(child: OrganizersPage());
                 },
               ),
               GoRoute(
