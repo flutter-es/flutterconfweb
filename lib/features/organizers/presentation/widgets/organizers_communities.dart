@@ -4,12 +4,12 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
+import 'package:flutter_conf_latam/features/organizers/presentation/view_model/organizers_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeCommunities extends ConsumerWidget {
-  const HomeCommunities({super.key});
+class OrganizersCommunities extends ConsumerWidget {
+  const OrganizersCommunities({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +23,7 @@ class HomeCommunities extends ConsumerWidget {
           children: <Widget>[
             TitleSubtitleText(
               title: (
-                text: l10n.homeCommunityTitle,
+                text: l10n.organizersCommunityTitle,
                 size: switch (context.screenSize) {
                   ScreenSize.extraLarge => 64,
                   ScreenSize.large => 48,
@@ -31,7 +31,7 @@ class HomeCommunities extends ConsumerWidget {
                 },
               ),
               subtitle: (
-                text: l10n.homeCommunityDescription,
+                text: l10n.organizersCommunityDescription,
                 size: switch (context.screenSize) {
                   ScreenSize.extraLarge || ScreenSize.large => 24,
                   ScreenSize.normal || ScreenSize.small => 16,
