@@ -27,9 +27,9 @@ class SubMenuButton extends HookWidget {
       position: PopupMenuPosition.under,
       color: FlutterLatamColors.darkBlue,
       offset: context.isMobileFromResponsive
-          ? const Offset(20, 0)
-          : const Offset(-30, 0),
-      constraints: const BoxConstraints(maxWidth: 160),
+          ? const Offset(40, 0)
+          : const Offset(-40, 0),
+      constraints: const BoxConstraints(maxWidth: 200),
       menuPadding: const EdgeInsets.symmetric(horizontal: 24),
       onOpened: () => isOpened.value = true,
       onCanceled: () => isOpened.value = false,
@@ -61,9 +61,11 @@ class SubMenuButton extends HookWidget {
         spacing: 4,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(
-            tabItem.label,
-            style: _setMenuTextStyle(isSelected: tabItem.isSelected),
+          FittedBox(
+            child: Text(
+              tabItem.label,
+              style: _setMenuTextStyle(isSelected: tabItem.isSelected),
+            ),
           ),
           SvgPicture.asset(
             isOpened.value
