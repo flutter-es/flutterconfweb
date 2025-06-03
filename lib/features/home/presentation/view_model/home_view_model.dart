@@ -9,6 +9,10 @@ final ticketsProvider = FutureProvider.family((ref, Locale locale) {
       .getTickets(language: locale.languageCode);
 });
 
+final sponsorsProvider = FutureProvider((ref) {
+  return ref.watch(homeRepositoryProvider).getSponsors();
+});
+
 final faqListProvider = FutureProvider.family((ref, Locale locale) {
   return ref
       .watch(homeRepositoryProvider)
