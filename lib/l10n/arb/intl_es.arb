@@ -1,6 +1,7 @@
 {
   "@@locale": "es",
-  "menuVenueText": "Venue",
+  "menuAboutText": "Acerca de",
+  "menuVenueText": "Sede",
   "menuGalleryText": "Galería",
   "menuContactText": "Contacto",
   "menuBeSpeakerButton": "Ser speaker",

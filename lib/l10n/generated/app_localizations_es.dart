@@ -9,7 +9,10 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get menuVenueText => 'Venue';
+  String get menuAboutText => 'Acerca de';
+
+  @override
+  String get menuVenueText => 'Sede';
 
   @override
   String get menuGalleryText => 'Galería';

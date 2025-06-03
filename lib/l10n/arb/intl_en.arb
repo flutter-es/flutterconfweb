@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+  "menuAboutText": "About",
   "menuVenueText": "Venue",
   "menuGalleryText": "Gallery",
   "menuContactText": "Contact",

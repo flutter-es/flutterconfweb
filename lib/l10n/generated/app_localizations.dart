@@ -98,6 +98,12 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
+  /// No description provided for @menuAboutText.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get menuAboutText;
+
   /// No description provided for @menuVenueText.
   ///
   /// In en, this message translates to:
