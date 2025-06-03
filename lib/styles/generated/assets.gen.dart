@@ -211,6 +211,12 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/arrow_curve.svg
   String get arrowCurve => 'assets/images/icons/arrow_curve.svg';
 
+  /// File path: assets/images/icons/arrow_down.svg
+  String get arrowDown => 'assets/images/icons/arrow_down.svg';
+
+  /// File path: assets/images/icons/arrow_up.svg
+  String get arrowUp => 'assets/images/icons/arrow_up.svg';
+
   /// File path: assets/images/icons/copy.svg
   String get copy => 'assets/images/icons/copy.svg';
 
@@ -244,6 +250,8 @@ class $AssetsImagesIconsGen {
   /// List of all assets
   List<String> get values => [
     arrowCurve,
+    arrowDown,
+    arrowUp,
     copy,
     facebook,
     instagram,
