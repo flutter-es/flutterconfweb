@@ -22,5 +22,5 @@ class TicketsModel {
   final List<String> features;
 }
 
-@JsonEnum(fieldRename: FieldRename.kebab)
+@JsonEnum()
 enum TicketType { early, regular, late }
