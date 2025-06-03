@@ -110,6 +110,12 @@ abstract class AppLocalizations {
   /// **'Venue'**
   String get menuVenueText;
 
+  /// No description provided for @menuOrganizersText.
+  ///
+  /// In en, this message translates to:
+  /// **'Organizers'**
+  String get menuOrganizersText;
+
   /// No description provided for @menuGalleryText.
   ///
   /// In en, this message translates to:

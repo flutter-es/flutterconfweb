@@ -15,6 +15,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get menuVenueText => 'Sede';
 
   @override
+  String get menuOrganizersText => 'Organizadores';
+
+  @override
   String get menuGalleryText => 'Galería';
 
   @override

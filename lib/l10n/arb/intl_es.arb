@@ -2,6 +2,7 @@
   "@@locale": "es",
   "menuAboutText": "Acerca de",
   "menuVenueText": "Sede",
+  "menuOrganizersText": "Organizadores",
   "menuGalleryText": "Galería",
   "menuContactText": "Contacto",
   "menuBeSpeakerButton": "Ser speaker",
