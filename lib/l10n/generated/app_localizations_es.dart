@@ -196,6 +196,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeCollaborationSponsorButton => 'Ser sponsor';
 
   @override
+  String get homeSponsorsTitle => 'Sponsors 2025';
+
+  @override
+  String get homeSponsorsMessage =>
+      'Su apoyo hace realidad FlutterConf 2025. ¡Gracias por confiar en nosotros!';
+
+  @override
   String get homeFaqTitle => 'Preguntas frecuentes';
 
   @override

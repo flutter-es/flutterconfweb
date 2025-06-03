@@ -422,6 +422,18 @@ abstract class AppLocalizations {
   /// **'Be a sponsor'**
   String get homeCollaborationSponsorButton;
 
+  /// No description provided for @homeSponsorsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sponsors 2025'**
+  String get homeSponsorsTitle;
+
+  /// No description provided for @homeSponsorsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your support makes FlutterConf 2025 a reality. Thank you for trusting us!'**
+  String get homeSponsorsMessage;
+
   /// No description provided for @homeFaqTitle.
   ///
   /// In en, this message translates to:
