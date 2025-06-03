@@ -17,6 +17,6 @@ SponsorModel _$SponsorModelFromJson(Map<String, dynamic> json) => SponsorModel(
 const _$SponsorLevelEnumMap = {
   SponsorLevel.platinum: 'platinum',
   SponsorLevel.gold: 'gold',
-  SponsorLevel.solver: 'solver',
+  SponsorLevel.silver: 'silver',
   SponsorLevel.inKind: 'inKind',
 };
