@@ -203,6 +203,18 @@ class AppLocalizationsEs extends AppLocalizations {
       'Su apoyo hace realidad FlutterConf 2025. ¡Gracias por confiar en nosotros!';
 
   @override
+  String get homeSponsorPlatinum => 'Platinum';
+
+  @override
+  String get homeSponsorGold => 'Gold';
+
+  @override
+  String get homeSponsorSilver => 'Silver';
+
+  @override
+  String get homeSponsorInKind => 'In kind';
+
+  @override
   String get homeFaqTitle => 'Preguntas frecuentes';
 
   @override

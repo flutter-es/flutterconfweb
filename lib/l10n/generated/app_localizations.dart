@@ -434,6 +434,30 @@ abstract class AppLocalizations {
   /// **'Your support makes FlutterConf 2025 a reality. Thank you for trusting us!'**
   String get homeSponsorsMessage;
 
+  /// No description provided for @homeSponsorPlatinum.
+  ///
+  /// In en, this message translates to:
+  /// **'Platinum'**
+  String get homeSponsorPlatinum;
+
+  /// No description provided for @homeSponsorGold.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold'**
+  String get homeSponsorGold;
+
+  /// No description provided for @homeSponsorSilver.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver'**
+  String get homeSponsorSilver;
+
+  /// No description provided for @homeSponsorInKind.
+  ///
+  /// In en, this message translates to:
+  /// **'In kind'**
+  String get homeSponsorInKind;
+
   /// No description provided for @homeFaqTitle.
   ///
   /// In en, this message translates to:
