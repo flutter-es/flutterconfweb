@@ -193,13 +193,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeCollaborationSponsorButton => 'Ser sponsor';
 
   @override
-  String get homeCommunityTitle => 'Hecho con y para la comunidad';
-
-  @override
-  String get homeCommunityDescription =>
-      'Este evento no sería lo mismo sin el corazón de Flutter: ¡las comunidades que lo hacen posible!';
-
-  @override
   String get homeFaqTitle => 'Preguntas frecuentes';
 
   @override
@@ -284,6 +277,13 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get aboutExtraDeliveryAppDescription =>
       'Las opciones populares incluyen Rappi y Uber Eats para un servicio rápido y confiable.';
+
+  @override
+  String get organizersCommunityTitle => 'Comunidades aliadas';
+
+  @override
+  String get organizersCommunityDescription =>
+      'Este evento no sería lo mismo sin el corazón de Flutter: ¡las comunidades que lo hacen posible!';
 
   @override
   String get galleryMainTitle => 'Recordar es volver a vivir...';

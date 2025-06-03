@@ -416,18 +416,6 @@ abstract class AppLocalizations {
   /// **'Be a sponsor'**
   String get homeCollaborationSponsorButton;
 
-  /// No description provided for @homeCommunityTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Made with and for the community'**
-  String get homeCommunityTitle;
-
-  /// No description provided for @homeCommunityDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'This event wouldn\'t be the same without the heart of Flutter: The communities that make it possible!'**
-  String get homeCommunityDescription;
-
   /// No description provided for @homeFaqTitle.
   ///
   /// In en, this message translates to:
@@ -577,6 +565,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Popular options include Rappi and Uber Eats for fast and reliable service.'**
   String get aboutExtraDeliveryAppDescription;
+
+  /// No description provided for @organizersCommunityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allied communities'**
+  String get organizersCommunityTitle;
+
+  /// No description provided for @organizersCommunityDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This event wouldn\'t be the same without the heart of Flutter: The communities that make it possible!'**
+  String get organizersCommunityDescription;
 
   /// No description provided for @galleryMainTitle.
   ///
