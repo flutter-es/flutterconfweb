@@ -15,7 +15,7 @@ class OrganizersModel {
   factory OrganizersModel.fromJson(Map<String, dynamic> json) =>
       _$OrganizersModelFromJson(json);
 
-  final int id;
+  final String id;
   final String name;
   final String countryFlag;
   final String imageUrl;

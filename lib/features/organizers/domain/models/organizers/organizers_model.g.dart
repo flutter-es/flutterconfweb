@@ -8,7 +8,7 @@ part of 'organizers_model.dart';
 
 OrganizersModel _$OrganizersModelFromJson(Map<String, dynamic> json) =>
     OrganizersModel(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       name: json['name'] as String,
       countryFlag: json['country_flag'] as String,
       imageUrl: json['image_url'] as String,
