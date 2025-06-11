@@ -301,6 +301,13 @@ class AppLocalizationsEs extends AppLocalizations {
       'Las opciones populares incluyen Rappi y Uber Eats para un servicio rápido y confiable.';
 
   @override
+  String get organizersPeopleTitle => 'Organizadores';
+
+  @override
+  String get organizersPeopleDescription =>
+      'Detrás de cada detalle hay organizadores y comunidades tech comprometidas con brindar una buena experiencia.';
+
+  @override
   String get organizersCommunityTitle => 'Comunidades aliadas';
 
   @override

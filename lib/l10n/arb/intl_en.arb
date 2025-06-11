@@ -101,6 +101,8 @@
   "aboutExtraTransportDescription":"Use licensed taxis or apps like Uber and/or Didi. Avoid unregistered taxis.",
   "aboutExtraDeliveryAppTitle":"Delivery applications",
   "aboutExtraDeliveryAppDescription":"Popular options include Rappi and Uber Eats for fast and reliable service.",
+  "organizersPeopleTitle": "Organizers",
+  "organizersPeopleDescription": "Behind every detail are organizers and tech communities committed to providing a great experience.",
   "organizersCommunityTitle": "Allied communities",
   "organizersCommunityDescription": "This event wouldn't be the same without the heart of Flutter: The communities that make it possible!",
   "galleryMainTitle": "Remember is to live again...",
