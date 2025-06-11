@@ -50,3 +50,23 @@ class TitleSubtitleText extends StatelessWidget {
     );
   }
 }
+
+class TitleSubtitleTextContainer extends StatelessWidget {
+  const TitleSubtitleTextContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final decoration = BoxDecoration(
+      color: FlutterLatamColors.darkBlue,
+      borderRadius: BorderRadius.circular(16),
+    );
+
+    return Column(
+      spacing: 16,
+      children: <Widget>[
+        Container(width: 200, height: 24, decoration: decoration),
+        Container(width: 100, height: 24, decoration: decoration),
+      ],
+    );
+  }
+}
