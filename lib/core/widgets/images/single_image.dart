@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 
 class SingleImage extends StatelessWidget {
-  const SingleImage({required this.imageUrl, required this.size, super.key});
+  const SingleImage({
+    required this.imageUrl,
+    required this.size,
+    required this.borderRadius,
+    super.key,
+  });
 
   final String imageUrl;
   final Size size;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +20,12 @@ class SingleImage extends StatelessWidget {
       imageUrl: imageUrl,
       imageBuilder: (_, imageProvider) => SingleImageContainer(
         size: size,
+        borderRadius: borderRadius,
         image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
       ),
-      progressIndicatorBuilder: (_, _, _) => SingleImageContainer(size: size),
+      progressIndicatorBuilder: (_, _, _) {
+        return SingleImageContainer(size: size, borderRadius: borderRadius);
+      },
       errorWidget: (_, _, _) {
         return const Center(child: Text('Error al cargar la imagen'));
       },
@@ -25,10 +34,16 @@ class SingleImage extends StatelessWidget {
 }
 
 class SingleImageContainer extends StatelessWidget {
-  const SingleImageContainer({required this.size, this.image, super.key});
+  const SingleImageContainer({
+    required this.size,
+    required this.borderRadius,
+    this.image,
+    super.key,
+  });
 
   final DecorationImage? image;
   final Size size;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +52,7 @@ class SingleImageContainer extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: image == null ? FlutterLatamColors.darkBlue : null,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(borderRadius),
           image: image,
         ),
         child: image == null ? const SizedBox() : null,

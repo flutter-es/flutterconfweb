@@ -36,7 +36,11 @@ class GalleryList extends ConsumerWidget {
           children: <Widget>[
             for (final item in data.galleryList)
               Center(
-                child: SingleImage(imageUrl: item.imageUrl, size: size),
+                child: SingleImage(
+                  imageUrl: item.imageUrl,
+                  size: size,
+                  borderRadius: 12,
+                ),
               ),
           ],
         ),
@@ -47,7 +51,7 @@ class GalleryList extends ConsumerWidget {
             return Center(
               child: ShimmerLoading(
                 isLoading: true,
-                child: SingleImageContainer(size: size),
+                child: SingleImageContainer(size: size, borderRadius: 12),
               ),
             );
           }),
