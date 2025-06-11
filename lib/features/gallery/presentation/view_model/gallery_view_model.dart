@@ -1,3 +1,4 @@
+import 'package:flutter_conf_latam/core/providers/shared_providers.dart';
 import 'package:flutter_conf_latam/features/gallery/data/gallery_repository.dart';
 import 'package:flutter_conf_latam/features/gallery/domain/models/gallery_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -5,12 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final galleryDataProvider = FutureProvider((ref) {
   return ref.watch(galleryRepositoryProvider).getGallery();
 });
-
-typedef Pagination = ({int page, int pageSize});
-
-final paginationProvider = StateProvider<Pagination>(
-  (_) => (page: 1, pageSize: 9),
-);
 
 typedef GalleryInfo = ({List<GalleryModel> galleryList, int totalList});
 
