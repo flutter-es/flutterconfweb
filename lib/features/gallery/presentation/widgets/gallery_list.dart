@@ -17,6 +17,11 @@ class GalleryList extends ConsumerWidget {
     final paginationInfo = ref.watch(paginationProvider);
     final galleryList = ref.watch(galleryProvider);
 
+    final size = switch (context.screenSize) {
+      ScreenSize.extraLarge => const Size.square(378),
+      _ => const Size.square(264),
+    };
+
     return galleryList.when(
       data: (data) => PaginationContainer(
         totalSize: data.totalList,
@@ -30,17 +35,19 @@ class GalleryList extends ConsumerWidget {
         child: _GalleryListContainer(
           children: <Widget>[
             for (final item in data.galleryList)
-              Center(child: SingleImage(imageUrl: item.imageUrl)),
+              Center(
+                child: SingleImage(imageUrl: item.imageUrl, size: size),
+              ),
           ],
         ),
       ),
       loading: () => Shimmer(
         child: _GalleryListContainer(
           children: List.generate(9, (_) {
-            return const Center(
+            return Center(
               child: ShimmerLoading(
                 isLoading: true,
-                child: SingleImageContainer(),
+                child: SingleImageContainer(size: size),
               ),
             );
           }),
