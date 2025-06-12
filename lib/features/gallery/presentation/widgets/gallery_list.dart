@@ -71,6 +71,12 @@ class _GalleryListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colSize = switch (context.screenSize) {
+      ScreenSize.extraLarge => 3,
+      ScreenSize.large => 2,
+      _ => 1,
+    };
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: switch (context.screenSize) {
@@ -80,12 +86,8 @@ class _GalleryListContainer extends StatelessWidget {
         },
       ),
       child: ResponsiveGrid(
-        columnSizes: switch (context.screenSize) {
-          ScreenSize.extraLarge => 3,
-          ScreenSize.large => 2,
-          _ => 1,
-        },
-        rowSizes: children.length,
+        columnSizes: colSize,
+        rowSizes: (children.length / colSize).ceil(),
         children: children,
       ),
     );
