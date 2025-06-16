@@ -18,11 +18,13 @@ class ExtraButtons extends ConsumerWidget {
     final config = ref.watch(configProvider);
 
     final children = <Widget>[
+      /*
       FclButton.secondary(
         label: l10n.menuBeSpeakerButton,
         buttonSize: ButtonSize.small,
         onPressed: () => Utils.launchUrlLink(config.cfpFormUrl),
       ),
+      */
       FclButton.primary(
         label: l10n.menuBuyTicketsButton,
         buttonSize: ButtonSize.small,
