@@ -83,17 +83,15 @@ class _CommunityListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colSize = switch (context.screenSize) {
+      ScreenSize.extraLarge => 3,
+      ScreenSize.large => 2,
+      _ => 1,
+    };
+
     return ResponsiveGrid(
-      columnSizes: switch (context.screenSize) {
-        ScreenSize.extraLarge => 3,
-        ScreenSize.large => 2,
-        _ => 1,
-      },
-      rowSizes: switch (context.screenSize) {
-        ScreenSize.extraLarge => 3,
-        ScreenSize.large => (children.length / 2).toInt(),
-        _ => children.length,
-      },
+      columnSizes: colSize,
+      rowSizes: (children.length / colSize).ceil(),
       children: children,
     );
   }
