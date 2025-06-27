@@ -7,7 +7,8 @@ part of 'tickets_model.dart';
 // **************************************************************************
 
 TicketsModel _$TicketsModelFromJson(Map<String, dynamic> json) => TicketsModel(
-  id: $enumDecode(_$TicketTypeEnumMap, json['id']),
+  id: json['id'] as String,
+  type: $enumDecode(_$TicketTypeEnumMap, json['type']),
   title: json['title'] as String,
   price: (json['price'] as num).toDouble(),
   endDate: DateTime.parse(json['endDate'] as String),

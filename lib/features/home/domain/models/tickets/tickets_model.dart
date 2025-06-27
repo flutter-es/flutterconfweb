@@ -6,6 +6,7 @@ part 'tickets_model.g.dart';
 class TicketsModel {
   TicketsModel({
     required this.id,
+    required this.type,
     required this.title,
     required this.price,
     required this.endDate,
@@ -15,7 +16,8 @@ class TicketsModel {
   factory TicketsModel.fromJson(Map<String, dynamic> json) =>
       _$TicketsModelFromJson(json);
 
-  final TicketType id;
+  final String id;
+  final TicketType type;
   final String title;
   final double price;
   final DateTime endDate;
