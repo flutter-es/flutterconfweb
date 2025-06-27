@@ -74,14 +74,24 @@ class _PricingCardItem extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
-    return Card(
-      color: switch (detail.id) {
+    return Card.filled(
+      margin: EdgeInsets.zero,
+      color: switch (detail.type) {
         TicketType.early => FlutterLatamColors.yellow,
         TicketType.regular => FlutterLatamColors.blue,
         TicketType.late => FlutterLatamColors.red,
       },
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: switch (detail.type) {
+          TicketType.early => const BorderSide(
+            color: FlutterLatamColors.yellow,
+            width: 4,
+          ),
+          _ => BorderSide.none,
+        },
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -94,7 +104,7 @@ class _PricingCardItem extends ConsumerWidget {
                   fontFamily: 'Poppins',
                   fontSize: 24,
                   fontWeight: FontWeight.w400,
-                  color: switch (detail.id) {
+                  color: switch (detail.type) {
                     TicketType.early => FlutterLatamColors.darkBlue,
                     _ => FlutterLatamColors.white,
                   },
@@ -102,23 +112,17 @@ class _PricingCardItem extends ConsumerWidget {
               ),
             ),
           ),
-          Padding(
-            padding: switch (detail.id) {
-              TicketType.early => const EdgeInsets.all(4),
-              _ => EdgeInsets.zero,
-            },
+          SizedBox(
+            width: double.infinity,
             child: DecoratedBox(
               decoration: const BoxDecoration(
                 color: FlutterLatamColors.darkBlue,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: Column(
                   spacing: 5,
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
@@ -127,7 +131,7 @@ class _PricingCardItem extends ConsumerWidget {
                         fontFamily: 'Recoleta',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
-                        color: switch (detail.id) {
+                        color: switch (detail.type) {
                           TicketType.early => FlutterLatamColors.lightYellow,
                           TicketType.regular => FlutterLatamColors.mediumBlue,
                           TicketType.late => FlutterLatamColors.lightRed,
@@ -149,6 +153,8 @@ class _PricingCardItem extends ConsumerWidget {
                     ...[
                       for (final item in detail.features)
                         Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             const Text(
                               '\u2022 ',
@@ -162,11 +168,12 @@ class _PricingCardItem extends ConsumerWidget {
                                 item,
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
-                                  fontSize: 18,
-                                  fontWeight: switch (detail.id) {
-                                    TicketType.late => FontWeight.w700,
-                                    _ => FontWeight.w400,
+                                  fontSize: switch (context.screenSize) {
+                                    ScreenSize.extraLarge ||
+                                    ScreenSize.large => 18,
+                                    ScreenSize.normal || ScreenSize.small => 16,
                                   },
+                                  fontWeight: FontWeight.w400,
                                   color: FlutterLatamColors.white,
                                 ),
                               ),
@@ -174,7 +181,7 @@ class _PricingCardItem extends ConsumerWidget {
                           ],
                         ),
                     ],
-                    if (detail.id == TicketType.early)
+                    if (detail.type == TicketType.early)
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: FclButton.primary(
