@@ -644,6 +644,36 @@ abstract class AppLocalizations {
   /// **'We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.'**
   String get galleryMainMessage;
 
+  /// No description provided for @sessionsMainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get sessionsMainTitle;
+
+  /// No description provided for @sessionsMainMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Get ready for two days of inspiration, talks, debates, and plenty of networking! Discover everything about the speakers, their topics, and the full program of the event.'**
+  String get sessionsMainMessage;
+
+  /// No description provided for @sessionOptionDayOne.
+  ///
+  /// In en, this message translates to:
+  /// **'September 9th'**
+  String get sessionOptionDayOne;
+
+  /// No description provided for @sessionOptionDayTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'September 10th'**
+  String get sessionOptionDayTwo;
+
+  /// No description provided for @sessionOptionDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day} - {date}'**
+  String sessionOptionDayTitle(int day, String date);
+
   /// No description provided for @contactMainTitle.
   ///
   /// In en, this message translates to:

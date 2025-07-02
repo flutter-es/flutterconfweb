@@ -107,6 +107,21 @@
   "organizersCommunityDescription": "This event wouldn't be the same without the heart of Flutter: The communities that make it possible!",
   "galleryMainTitle": "Remember is to live again...",
   "galleryMainMessage": "We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.",
+  "sessionsMainTitle": "Schedule",
+  "sessionsMainMessage": "Get ready for two days of inspiration, talks, debates, and plenty of networking! Discover everything about the speakers, their topics, and the full program of the event.",
+  "sessionOptionDayOne": "September 9th",
+  "sessionOptionDayTwo": "September 10th",
+  "sessionOptionDayTitle": "Day {day} - {date}",
+  "@sessionOptionDayTitle": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "contactMainTitle": "Do you have any questions? Write to us.",
   "contactMainDescription": "Or if you prefer, contact us through our social media! We love staying in touch!",
   "footerTitle": "See you in Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",

@@ -324,6 +324,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.';
 
   @override
+  String get sessionsMainTitle => 'Schedule';
+
+  @override
+  String get sessionsMainMessage =>
+      'Get ready for two days of inspiration, talks, debates, and plenty of networking! Discover everything about the speakers, their topics, and the full program of the event.';
+
+  @override
+  String get sessionOptionDayOne => 'September 9th';
+
+  @override
+  String get sessionOptionDayTwo => 'September 10th';
+
+  @override
+  String sessionOptionDayTitle(int day, String date) {
+    return 'Day $day - $date';
+  }
+
+  @override
   String get contactMainTitle => 'Do you have any questions? Write to us.';
 
   @override
