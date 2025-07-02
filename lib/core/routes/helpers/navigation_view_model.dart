@@ -33,6 +33,10 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
         route: '/${AppRoutePath.gallery.pathName}',
       ),
       NavigationItemModel(
+        label: l10n.menuScheduleText,
+        route: '/${AppRoutePath.sessions.pathName}',
+      ),
+      NavigationItemModel(
         label: l10n.menuContactText,
         route: '/${AppRoutePath.contact.pathName}',
       ),

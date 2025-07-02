@@ -8,6 +8,7 @@ import 'package:flutter_conf_latam/features/errors/presentation/pages/error_page
 import 'package:flutter_conf_latam/features/gallery/presentation/pages/gallery_page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/pages/organizers_page.dart';
+import 'package:flutter_conf_latam/features/sessions/presentation/pages/sessions_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/pages/venue_page.dart';
 import 'package:go_router/go_router.dart';
@@ -50,7 +51,7 @@ class AppRoutes {
               GoRoute(
                 path: '/${AppRoutePath.organizers.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (context, state) {
+                pageBuilder: (_, _) {
                   return const NoTransitionPage(child: OrganizersPage());
                 },
               ),
@@ -59,6 +60,13 @@ class AppRoutes {
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: GalleryPage());
+                },
+              ),
+              GoRoute(
+                path: '/${AppRoutePath.sessions.pathName}',
+                parentNavigatorKey: _tabRoutesKeys,
+                pageBuilder: (_, _) {
+                  return const NoTransitionPage(child: SessionsPage());
                 },
               ),
               GoRoute(
