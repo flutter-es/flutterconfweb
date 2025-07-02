@@ -107,13 +107,13 @@ extension SessionSlotModelX on SessionSlotModel {
 }
 
 extension MapSlotSessionsX on MapSlotSessions {
-  List<SessionTrackModel> get otherSessions => <SessionTrackModel>[
+  MapSlotSessions get otherSessions => {
     for (final item in entries)
-      if (item.key.type != SessionType.workshop) ...item.value,
-  ];
+      if (item.key.type != SessionType.workshop) item.key: item.value,
+  };
 
-  List<SessionTrackModel> get workshopSessions => <SessionTrackModel>[
+  MapSlotSessions get workshopSessions => {
     for (final item in entries)
-      if (item.key.type == SessionType.workshop) ...item.value,
-  ];
+      if (item.key.type == SessionType.workshop) item.key: item.value,
+  };
 }
