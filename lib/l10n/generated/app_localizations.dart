@@ -116,6 +116,12 @@ abstract class AppLocalizations {
   /// **'Organizers'**
   String get menuOrganizersText;
 
+  /// No description provided for @menuScheduleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get menuScheduleText;
+
   /// No description provided for @menuGalleryText.
   ///
   /// In en, this message translates to:
