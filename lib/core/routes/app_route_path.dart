@@ -3,7 +3,7 @@ enum AppRoutePath {
   home('home'),
   venue('venue'),
   organizers('organizers'),
-  sessions('sessions'),
+  schedule('schedule'),
   gallery('gallery'),
   contact('contact');
 

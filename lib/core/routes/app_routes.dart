@@ -63,7 +63,7 @@ class AppRoutes {
                 },
               ),
               GoRoute(
-                path: '/${AppRoutePath.sessions.pathName}',
+                path: '/${AppRoutePath.schedule.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: SessionsPage());
