@@ -121,3 +121,11 @@ extension MapSlotSessionsX on MapSlotSessions {
       if (item.key.type == ScheduleType.workshop) item.key: item.value,
   };
 }
+
+extension ScheduleTrackModelX on ScheduleTrackModel {
+  bool get isTalkingTrack {
+    return type == ScheduleType.session ||
+        type == ScheduleType.workshop ||
+        type == ScheduleType.lighting;
+  }
+}
