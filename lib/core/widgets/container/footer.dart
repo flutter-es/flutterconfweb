@@ -40,7 +40,7 @@ class Footer extends ConsumerWidget {
       child: Column(
         spacing: 64,
         children: <Widget>[
-          const Divider(color: FlutterLatamColors.white),
+          const Divider(),
           Flex(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: switch (context.screenSize) {
