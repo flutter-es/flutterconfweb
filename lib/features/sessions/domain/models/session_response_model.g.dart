@@ -47,6 +47,7 @@ const _$SessionTypeEnumMap = {
   SessionType.register: 'register',
   SessionType.keynote: 'keynote',
   SessionType.breaks: 'breaks',
+  SessionType.lunch: 'lunch',
   SessionType.lighting: 'lighting',
   SessionType.session: 'session',
   SessionType.workshop: 'workshop',

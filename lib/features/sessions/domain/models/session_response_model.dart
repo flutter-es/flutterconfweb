@@ -86,6 +86,7 @@ enum SessionType {
   register,
   keynote,
   breaks,
+  lunch,
   lighting,
   session,
   workshop,
