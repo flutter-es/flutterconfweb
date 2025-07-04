@@ -345,6 +345,34 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get sessionRegisterTitle => 'Register & check-in';
+
+  @override
+  String get sessionKeynoteTitle => 'Keynote';
+
+  @override
+  String get sessionBreakTitle => 'Break';
+
+  @override
+  String get sessionLunchTitle => 'Lunch';
+
+  @override
+  String sessionLightingTitle(int track) {
+    return 'Lighting talk - Track $track';
+  }
+
+  @override
+  String sessionSessionTitle(int track) {
+    return 'Session - Track $track';
+  }
+
+  @override
+  String get sessionWorkshopTitle => 'Workshop';
+
+  @override
+  String get sessionFinishTitle => 'End of the event';
+
+  @override
   String get contactMainTitle => 'Do you have any questions? Write to us.';
 
   @override

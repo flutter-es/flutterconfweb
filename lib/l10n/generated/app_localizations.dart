@@ -680,6 +680,54 @@ abstract class AppLocalizations {
   /// **'Day {day} - {date}'**
   String sessionOptionDayTitle(int day, String date);
 
+  /// No description provided for @sessionRegisterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Register & check-in'**
+  String get sessionRegisterTitle;
+
+  /// No description provided for @sessionKeynoteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keynote'**
+  String get sessionKeynoteTitle;
+
+  /// No description provided for @sessionBreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Break'**
+  String get sessionBreakTitle;
+
+  /// No description provided for @sessionLunchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lunch'**
+  String get sessionLunchTitle;
+
+  /// No description provided for @sessionLightingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lighting talk - Track {track}'**
+  String sessionLightingTitle(int track);
+
+  /// No description provided for @sessionSessionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Session - Track {track}'**
+  String sessionSessionTitle(int track);
+
+  /// No description provided for @sessionWorkshopTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Workshop'**
+  String get sessionWorkshopTitle;
+
+  /// No description provided for @sessionFinishTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End of the event'**
+  String get sessionFinishTitle;
+
   /// No description provided for @contactMainTitle.
   ///
   /// In en, this message translates to:

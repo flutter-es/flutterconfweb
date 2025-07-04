@@ -123,6 +123,28 @@
       }
     }
   },
+  "sessionRegisterTitle": "Register & check-in",
+  "sessionKeynoteTitle": "Keynote",
+  "sessionBreakTitle": "Break",
+  "sessionLunchTitle": "Lunch",
+  "sessionLightingTitle": "Lighting talk - Track {track}",
+  "@sessionLightingTitle": {
+    "placeholders": {
+      "track": {
+        "type": "int"
+      }
+    }
+  },
+  "sessionSessionTitle": "Session - Track {track}",
+  "@sessionSessionTitle": {
+    "placeholders": {
+      "track": {
+        "type": "int"
+      }
+    }
+  },
+  "sessionWorkshopTitle": "Workshop",
+  "sessionFinishTitle": "End of the event",
   "contactMainTitle": "Do you have any questions? Write to us.",
   "contactMainDescription": "Or if you prefer, contact us through our social media! We love staying in touch!",
   "footerTitle": "See you in Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",

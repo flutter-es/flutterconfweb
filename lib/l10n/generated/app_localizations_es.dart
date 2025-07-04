@@ -343,6 +343,34 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get sessionRegisterTitle => 'Registro & check-in';
+
+  @override
+  String get sessionKeynoteTitle => 'Keynote';
+
+  @override
+  String get sessionBreakTitle => 'Descanso';
+
+  @override
+  String get sessionLunchTitle => 'Almuerzo';
+
+  @override
+  String sessionLightingTitle(int track) {
+    return 'Charla ligera - Track $track';
+  }
+
+  @override
+  String sessionSessionTitle(int track) {
+    return 'Sesión - Track $track';
+  }
+
+  @override
+  String get sessionWorkshopTitle => 'Taller';
+
+  @override
+  String get sessionFinishTitle => 'Fin del evento';
+
+  @override
   String get contactMainTitle => '¿Tienes dudas? Escríbenos';
 
   @override

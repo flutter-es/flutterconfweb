@@ -123,6 +123,28 @@
       }
     }
   },
+  "sessionRegisterTitle": "Registro & check-in",
+  "sessionKeynoteTitle": "Keynote",
+  "sessionBreakTitle": "Descanso",
+  "sessionLunchTitle": "Almuerzo",
+  "sessionLightingTitle": "Charla ligera - Track {track}",
+  "@sessionLightingTitle": {
+    "placeholders": {
+      "track": {
+        "type": "int"
+      }
+    }
+  },
+  "sessionSessionTitle": "Sesión - Track {track}",
+  "@sessionSessionTitle": {
+    "placeholders": {
+      "track": {
+        "type": "int"
+      }
+    }
+  },
+  "sessionWorkshopTitle": "Taller",
+  "sessionFinishTitle": "Fin del evento",
   "contactMainTitle": "¿Tienes dudas? Escríbenos",
   "contactMainDescription": "¡O si prefieres, contáctanos a través de nuestras redes sociales! ¡Nos encanta estar en contacto!",
   "footerTitle": "¡Nos vemos en Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",
