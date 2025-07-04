@@ -40,6 +40,7 @@ class SessionTrackModel {
   SessionTrackModel({
     required this.id,
     required this.title,
+    required this.description,
     required this.type,
     required this.track,
     required this.speakers,
@@ -54,6 +55,7 @@ class SessionTrackModel {
 
   final String id;
   final String title;
+  final String description;
   final SessionType type;
   final int track;
   final List<SessionSpeakerModel> speakers;

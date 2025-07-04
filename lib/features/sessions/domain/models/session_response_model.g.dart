@@ -29,6 +29,7 @@ SessionTrackModel _$SessionTrackModelFromJson(Map<String, dynamic> json) =>
     SessionTrackModel(
       id: json['id'] as String,
       title: json['title'] as String,
+      description: json['description'] as String,
       type: $enumDecode(_$SessionTypeEnumMap, json['type']),
       track: (json['track'] as num).toInt(),
       speakers: (json['speakers'] as List<dynamic>)
