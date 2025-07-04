@@ -108,12 +108,12 @@
   "organizersCommunityDescription": "Este evento no sería lo mismo sin el corazón de Flutter: ¡las comunidades que lo hacen posible!",
   "galleryMainTitle": "Recordar es volver a vivir...",
   "galleryMainMessage": "Capturamos lo mejor de cada momento. ¡La próxima foto épica podría ser la tuya! Mira algunos recuerdos de ediciones pasadas.",
-  "sessionsMainTitle": "Agenda",
-  "sessionsMainMessage": "¡Prepárate para dos días de inspiración, charlas, debates y mucho networking! Descubre todo sobre los speakers, sus temas y el programa completo del evento.",
-  "sessionOptionDayOne": "Septiembre 9",
-  "sessionOptionDayTwo": "Septiembre 10",
-  "sessionOptionDayTitle": "Día {day} - {date}",
-  "@sessionOptionDayTitle": {
+  "scheduleMainTitle": "Agenda",
+  "scheduleMainMessage": "¡Prepárate para dos días de inspiración, charlas, debates y mucho networking! Descubre todo sobre los speakers, sus temas y el programa completo del evento.",
+  "scheduleOptionDayOne": "Septiembre 9",
+  "scheduleOptionDayTwo": "Septiembre 10",
+  "scheduleOptionDayTitle": "Día {day} - {date}",
+  "@scheduleOptionDayTitle": {
     "placeholders": {
       "day": {
         "type": "int"
@@ -123,28 +123,28 @@
       }
     }
   },
-  "sessionRegisterTitle": "Registro & check-in",
-  "sessionKeynoteTitle": "Keynote",
-  "sessionBreakTitle": "Descanso",
-  "sessionLunchTitle": "Almuerzo",
-  "sessionLightingTitle": "Charla ligera - Track {track}",
-  "@sessionLightingTitle": {
+  "scheduleRegisterTitle": "Registro & check-in",
+  "scheduleKeynoteTitle": "Keynote",
+  "scheduleBreakTitle": "Descanso",
+  "scheduleLunchTitle": "Almuerzo",
+  "scheduleLightingTitle": "Charla ligera - Track {track}",
+  "@scheduleLightingTitle": {
     "placeholders": {
       "track": {
         "type": "int"
       }
     }
   },
-  "sessionSessionTitle": "Sesión - Track {track}",
-  "@sessionSessionTitle": {
+  "scheduleSessionTitle": "Sesión - Track {track}",
+  "@scheduleSessionTitle": {
     "placeholders": {
       "track": {
         "type": "int"
       }
     }
   },
-  "sessionWorkshopTitle": "Taller",
-  "sessionFinishTitle": "Fin del evento",
+  "scheduleWorkshopTitle": "Taller",
+  "scheduleFinishTitle": "Fin del evento",
   "contactMainTitle": "¿Tienes dudas? Escríbenos",
   "contactMainDescription": "¡O si prefieres, contáctanos a través de nuestras redes sociales! ¡Nos encanta estar en contacto!",
   "footerTitle": "¡Nos vemos en Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",

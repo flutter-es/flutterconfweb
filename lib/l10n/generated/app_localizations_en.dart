@@ -327,50 +327,50 @@ class AppLocalizationsEn extends AppLocalizations {
       'We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.';
 
   @override
-  String get sessionsMainTitle => 'Schedule';
+  String get scheduleMainTitle => 'Schedule';
 
   @override
-  String get sessionsMainMessage =>
+  String get scheduleMainMessage =>
       'Get ready for two days of inspiration, talks, debates, and plenty of networking! Discover everything about the speakers, their topics, and the full program of the event.';
 
   @override
-  String get sessionOptionDayOne => 'September 9th';
+  String get scheduleOptionDayOne => 'September 9th';
 
   @override
-  String get sessionOptionDayTwo => 'September 10th';
+  String get scheduleOptionDayTwo => 'September 10th';
 
   @override
-  String sessionOptionDayTitle(int day, String date) {
+  String scheduleOptionDayTitle(int day, String date) {
     return 'Day $day - $date';
   }
 
   @override
-  String get sessionRegisterTitle => 'Register & check-in';
+  String get scheduleRegisterTitle => 'Register & check-in';
 
   @override
-  String get sessionKeynoteTitle => 'Keynote';
+  String get scheduleKeynoteTitle => 'Keynote';
 
   @override
-  String get sessionBreakTitle => 'Break';
+  String get scheduleBreakTitle => 'Break';
 
   @override
-  String get sessionLunchTitle => 'Lunch';
+  String get scheduleLunchTitle => 'Lunch';
 
   @override
-  String sessionLightingTitle(int track) {
+  String scheduleLightingTitle(int track) {
     return 'Lighting talk - Track $track';
   }
 
   @override
-  String sessionSessionTitle(int track) {
+  String scheduleSessionTitle(int track) {
     return 'Session - Track $track';
   }
 
   @override
-  String get sessionWorkshopTitle => 'Workshop';
+  String get scheduleWorkshopTitle => 'Workshop';
 
   @override
-  String get sessionFinishTitle => 'End of the event';
+  String get scheduleFinishTitle => 'End of the event';
 
   @override
   String get contactMainTitle => 'Do you have any questions? Write to us.';

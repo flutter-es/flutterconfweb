@@ -650,83 +650,83 @@ abstract class AppLocalizations {
   /// **'We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.'**
   String get galleryMainMessage;
 
-  /// No description provided for @sessionsMainTitle.
+  /// No description provided for @scheduleMainTitle.
   ///
   /// In en, this message translates to:
   /// **'Schedule'**
-  String get sessionsMainTitle;
+  String get scheduleMainTitle;
 
-  /// No description provided for @sessionsMainMessage.
+  /// No description provided for @scheduleMainMessage.
   ///
   /// In en, this message translates to:
   /// **'Get ready for two days of inspiration, talks, debates, and plenty of networking! Discover everything about the speakers, their topics, and the full program of the event.'**
-  String get sessionsMainMessage;
+  String get scheduleMainMessage;
 
-  /// No description provided for @sessionOptionDayOne.
+  /// No description provided for @scheduleOptionDayOne.
   ///
   /// In en, this message translates to:
   /// **'September 9th'**
-  String get sessionOptionDayOne;
+  String get scheduleOptionDayOne;
 
-  /// No description provided for @sessionOptionDayTwo.
+  /// No description provided for @scheduleOptionDayTwo.
   ///
   /// In en, this message translates to:
   /// **'September 10th'**
-  String get sessionOptionDayTwo;
+  String get scheduleOptionDayTwo;
 
-  /// No description provided for @sessionOptionDayTitle.
+  /// No description provided for @scheduleOptionDayTitle.
   ///
   /// In en, this message translates to:
   /// **'Day {day} - {date}'**
-  String sessionOptionDayTitle(int day, String date);
+  String scheduleOptionDayTitle(int day, String date);
 
-  /// No description provided for @sessionRegisterTitle.
+  /// No description provided for @scheduleRegisterTitle.
   ///
   /// In en, this message translates to:
   /// **'Register & check-in'**
-  String get sessionRegisterTitle;
+  String get scheduleRegisterTitle;
 
-  /// No description provided for @sessionKeynoteTitle.
+  /// No description provided for @scheduleKeynoteTitle.
   ///
   /// In en, this message translates to:
   /// **'Keynote'**
-  String get sessionKeynoteTitle;
+  String get scheduleKeynoteTitle;
 
-  /// No description provided for @sessionBreakTitle.
+  /// No description provided for @scheduleBreakTitle.
   ///
   /// In en, this message translates to:
   /// **'Break'**
-  String get sessionBreakTitle;
+  String get scheduleBreakTitle;
 
-  /// No description provided for @sessionLunchTitle.
+  /// No description provided for @scheduleLunchTitle.
   ///
   /// In en, this message translates to:
   /// **'Lunch'**
-  String get sessionLunchTitle;
+  String get scheduleLunchTitle;
 
-  /// No description provided for @sessionLightingTitle.
+  /// No description provided for @scheduleLightingTitle.
   ///
   /// In en, this message translates to:
   /// **'Lighting talk - Track {track}'**
-  String sessionLightingTitle(int track);
+  String scheduleLightingTitle(int track);
 
-  /// No description provided for @sessionSessionTitle.
+  /// No description provided for @scheduleSessionTitle.
   ///
   /// In en, this message translates to:
   /// **'Session - Track {track}'**
-  String sessionSessionTitle(int track);
+  String scheduleSessionTitle(int track);
 
-  /// No description provided for @sessionWorkshopTitle.
+  /// No description provided for @scheduleWorkshopTitle.
   ///
   /// In en, this message translates to:
   /// **'Workshop'**
-  String get sessionWorkshopTitle;
+  String get scheduleWorkshopTitle;
 
-  /// No description provided for @sessionFinishTitle.
+  /// No description provided for @scheduleFinishTitle.
   ///
   /// In en, this message translates to:
   /// **'End of the event'**
-  String get sessionFinishTitle;
+  String get scheduleFinishTitle;
 
   /// No description provided for @contactMainTitle.
   ///

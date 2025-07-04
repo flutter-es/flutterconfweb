@@ -325,50 +325,50 @@ class AppLocalizationsEs extends AppLocalizations {
       'Capturamos lo mejor de cada momento. ¡La próxima foto épica podría ser la tuya! Mira algunos recuerdos de ediciones pasadas.';
 
   @override
-  String get sessionsMainTitle => 'Agenda';
+  String get scheduleMainTitle => 'Agenda';
 
   @override
-  String get sessionsMainMessage =>
+  String get scheduleMainMessage =>
       '¡Prepárate para dos días de inspiración, charlas, debates y mucho networking! Descubre todo sobre los speakers, sus temas y el programa completo del evento.';
 
   @override
-  String get sessionOptionDayOne => 'Septiembre 9';
+  String get scheduleOptionDayOne => 'Septiembre 9';
 
   @override
-  String get sessionOptionDayTwo => 'Septiembre 10';
+  String get scheduleOptionDayTwo => 'Septiembre 10';
 
   @override
-  String sessionOptionDayTitle(int day, String date) {
+  String scheduleOptionDayTitle(int day, String date) {
     return 'Día $day - $date';
   }
 
   @override
-  String get sessionRegisterTitle => 'Registro & check-in';
+  String get scheduleRegisterTitle => 'Registro & check-in';
 
   @override
-  String get sessionKeynoteTitle => 'Keynote';
+  String get scheduleKeynoteTitle => 'Keynote';
 
   @override
-  String get sessionBreakTitle => 'Descanso';
+  String get scheduleBreakTitle => 'Descanso';
 
   @override
-  String get sessionLunchTitle => 'Almuerzo';
+  String get scheduleLunchTitle => 'Almuerzo';
 
   @override
-  String sessionLightingTitle(int track) {
+  String scheduleLightingTitle(int track) {
     return 'Charla ligera - Track $track';
   }
 
   @override
-  String sessionSessionTitle(int track) {
+  String scheduleSessionTitle(int track) {
     return 'Sesión - Track $track';
   }
 
   @override
-  String get sessionWorkshopTitle => 'Taller';
+  String get scheduleWorkshopTitle => 'Taller';
 
   @override
-  String get sessionFinishTitle => 'Fin del evento';
+  String get scheduleFinishTitle => 'Fin del evento';
 
   @override
   String get contactMainTitle => '¿Tienes dudas? Escríbenos';
