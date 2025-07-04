@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/features/schedule/presentation/widgets/schedule_main.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
@@ -24,6 +25,7 @@ class _SchedulePageState extends State<SchedulePage> {
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
+            const ScheduleMain(),
             const Footer(),
           ]),
         ),
