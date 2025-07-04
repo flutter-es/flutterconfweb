@@ -11,26 +11,14 @@ final sessionsProvider = FutureProvider.family((ref, Locale locale) {
       .getSessions(language: locale.languageCode);
 });
 
-enum SessionDay {
-  one(1),
-  two(2);
-
-  const SessionDay(this.value);
-
-  final int value;
-}
-
-final sessionDayFilterProvider = StateProvider((ref) => SessionDay.one);
-
-final filterSessionsProvider = FutureProvider((ref) async {
+final daysSessionsProvider = FutureProvider((ref) async {
   final l10n = ref.watch(appLocalizationsProvider);
-  final filter = ref.watch(sessionDayFilterProvider);
 
   final locale = Locale(l10n.localeName);
   final sessions = await ref.watch(sessionsProvider(locale).future);
 
-  return switch (filter) {
-    SessionDay.one => sessions.firstWhereOrNull((item) => item.day == 1),
-    SessionDay.two => sessions.firstWhereOrNull((item) => item.day == 2),
-  };
+  return [
+    sessions.firstWhereOrNull((item) => item.day == 1),
+    sessions.firstWhereOrNull((item) => item.day == 2),
+  ];
 });
