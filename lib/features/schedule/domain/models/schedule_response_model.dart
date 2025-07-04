@@ -39,14 +39,14 @@ class ScheduleSlotModel {
 class ScheduleTrackModel {
   ScheduleTrackModel({
     required this.id,
-    required this.title,
-    required this.description,
     required this.type,
     required this.track,
-    required this.speakers,
-    required this.tags,
     required this.startDate,
     required this.endDate,
+    this.title,
+    this.description,
+    this.speakers,
+    this.tags,
     this.requirements,
   });
 
@@ -54,14 +54,14 @@ class ScheduleTrackModel {
       _$ScheduleTrackModelFromJson(json);
 
   final String id;
-  final String title;
-  final String description;
   final ScheduleType type;
   final int track;
-  final List<SessionSpeakerModel> speakers;
-  final List<String> tags;
   final DateTime startDate;
   final DateTime endDate;
+  final String? title;
+  final String? description;
+  final List<SessionSpeakerModel>? speakers;
+  final List<String>? tags;
   final List<String>? requirements;
 }
 
@@ -85,6 +85,7 @@ class SessionSpeakerModel {
 enum ScheduleType {
   register,
   keynote,
+  panel,
   breaks,
   lunch,
   lighting,

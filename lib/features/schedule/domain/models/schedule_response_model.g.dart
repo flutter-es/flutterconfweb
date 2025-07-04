@@ -28,16 +28,16 @@ ScheduleSlotModel _$ScheduleSlotModelFromJson(Map<String, dynamic> json) =>
 ScheduleTrackModel _$ScheduleTrackModelFromJson(Map<String, dynamic> json) =>
     ScheduleTrackModel(
       id: json['id'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
       type: $enumDecode(_$ScheduleTypeEnumMap, json['type']),
       track: (json['track'] as num).toInt(),
-      speakers: (json['speakers'] as List<dynamic>)
-          .map((e) => SessionSpeakerModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
       startDate: DateTime.parse(json['startDate'] as String),
       endDate: DateTime.parse(json['endDate'] as String),
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      speakers: (json['speakers'] as List<dynamic>?)
+          ?.map((e) => SessionSpeakerModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
       requirements: (json['requirements'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -46,6 +46,7 @@ ScheduleTrackModel _$ScheduleTrackModelFromJson(Map<String, dynamic> json) =>
 const _$ScheduleTypeEnumMap = {
   ScheduleType.register: 'register',
   ScheduleType.keynote: 'keynote',
+  ScheduleType.panel: 'panel',
   ScheduleType.breaks: 'breaks',
   ScheduleType.lunch: 'lunch',
   ScheduleType.lighting: 'lighting',
