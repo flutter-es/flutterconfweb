@@ -390,6 +390,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get scheduleRequirementTitle => 'Requisitos';
+
+  @override
   String get contactMainTitle => '¿Tienes dudas? Escríbenos';
 
   @override

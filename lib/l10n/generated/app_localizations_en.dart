@@ -392,6 +392,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get scheduleRequirementTitle => 'Requirements';
+
+  @override
   String get contactMainTitle => 'Do you have any questions? Write to us.';
 
   @override

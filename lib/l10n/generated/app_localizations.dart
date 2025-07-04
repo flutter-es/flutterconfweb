@@ -740,6 +740,12 @@ abstract class AppLocalizations {
   /// **'{startHour} - {endHour}'**
   String scheduleStartEndHour(DateTime startHour, DateTime endHour);
 
+  /// No description provided for @scheduleRequirementTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Requirements'**
+  String get scheduleRequirementTitle;
+
   /// No description provided for @contactMainTitle.
   ///
   /// In en, this message translates to:
