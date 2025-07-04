@@ -114,8 +114,7 @@ class _ScheduleDetail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-
-    return Column(
+    final scheduleChild = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: (scheduleTrack.title ?? '').isNotEmpty ? 10 : 20,
@@ -190,7 +189,60 @@ class _ScheduleDetail extends ConsumerWidget {
                 ),
             ],
           ),
+        if ((scheduleTrack.requirements ?? []).isNotEmpty) ...[
+          Padding(
+            padding: const EdgeInsets.only(top: 3),
+            child: Text(
+              l10n.scheduleRequirementTitle,
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 14,
+                  ScreenSize.normal || ScreenSize.small => 12,
+                },
+                fontWeight: FontWeight.w600,
+                color: FlutterLatamColors.white,
+              ),
+            ),
+          ),
+          for (final item in scheduleTrack.requirements!)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  '\u2022 ',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: FlutterLatamColors.white,
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    item,
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: switch (context.screenSize) {
+                        ScreenSize.extraLarge || ScreenSize.large => 14,
+                        ScreenSize.normal || ScreenSize.small => 12,
+                      },
+                      fontWeight: FontWeight.w400,
+                      color: FlutterLatamColors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+        ],
       ],
     );
+
+    if (scheduleTrack.isTalkingTrack) {
+      return MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(child: scheduleChild),
+      );
+    }
+    return scheduleChild;
   }
 }
