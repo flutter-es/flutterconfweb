@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes.dart';
 import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @JS('window')
@@ -38,7 +39,8 @@ class FlutterConfApp extends ConsumerWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: FlutterLatamColors.white,
+        dividerColor: FlutterLatamColors.white,
       ),
       locale: appLocale,
       routerConfig: _appRoutes.router,
