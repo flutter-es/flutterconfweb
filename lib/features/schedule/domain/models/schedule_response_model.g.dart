@@ -1,36 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'session_response_model.dart';
+part of 'schedule_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SessionResponseModel _$SessionResponseModelFromJson(
+ScheduleResponseModel _$ScheduleResponseModelFromJson(
   Map<String, dynamic> json,
-) => SessionResponseModel(
+) => ScheduleResponseModel(
   id: json['id'] as String,
   day: (json['day'] as num).toInt(),
   slots: (json['slots'] as List<dynamic>)
-      .map((e) => SessionSlotModel.fromJson(e as Map<String, dynamic>))
+      .map((e) => ScheduleSlotModel.fromJson(e as Map<String, dynamic>))
       .toList(),
 );
 
-SessionSlotModel _$SessionSlotModelFromJson(Map<String, dynamic> json) =>
-    SessionSlotModel(
+ScheduleSlotModel _$ScheduleSlotModelFromJson(Map<String, dynamic> json) =>
+    ScheduleSlotModel(
       id: json['id'] as String,
       name: json['name'] as String,
-      sessions: (json['sessions'] as List<dynamic>)
-          .map((e) => SessionTrackModel.fromJson(e as Map<String, dynamic>))
+      scheduleTracks: (json['scheduleTracks'] as List<dynamic>)
+          .map((e) => ScheduleTrackModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-SessionTrackModel _$SessionTrackModelFromJson(Map<String, dynamic> json) =>
-    SessionTrackModel(
+ScheduleTrackModel _$ScheduleTrackModelFromJson(Map<String, dynamic> json) =>
+    ScheduleTrackModel(
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
-      type: $enumDecode(_$SessionTypeEnumMap, json['type']),
+      type: $enumDecode(_$ScheduleTypeEnumMap, json['type']),
       track: (json['track'] as num).toInt(),
       speakers: (json['speakers'] as List<dynamic>)
           .map((e) => SessionSpeakerModel.fromJson(e as Map<String, dynamic>))
@@ -43,15 +43,15 @@ SessionTrackModel _$SessionTrackModelFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-const _$SessionTypeEnumMap = {
-  SessionType.register: 'register',
-  SessionType.keynote: 'keynote',
-  SessionType.breaks: 'breaks',
-  SessionType.lunch: 'lunch',
-  SessionType.lighting: 'lighting',
-  SessionType.session: 'session',
-  SessionType.workshop: 'workshop',
-  SessionType.finish: 'finish',
+const _$ScheduleTypeEnumMap = {
+  ScheduleType.register: 'register',
+  ScheduleType.keynote: 'keynote',
+  ScheduleType.breaks: 'breaks',
+  ScheduleType.lunch: 'lunch',
+  ScheduleType.lighting: 'lighting',
+  ScheduleType.session: 'session',
+  ScheduleType.workshop: 'workshop',
+  ScheduleType.finish: 'finish',
 };
 
 SessionSpeakerModel _$SessionSpeakerModelFromJson(Map<String, dynamic> json) =>

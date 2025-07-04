@@ -2,14 +2,14 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 
-class SessionsPage extends StatefulWidget {
-  const SessionsPage({super.key});
+class SchedulePage extends StatefulWidget {
+  const SchedulePage({super.key});
 
   @override
-  State<SessionsPage> createState() => _SessionsPageState();
+  State<SchedulePage> createState() => _SchedulePageState();
 }
 
-class _SessionsPageState extends State<SessionsPage> {
+class _SchedulePageState extends State<SchedulePage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override
