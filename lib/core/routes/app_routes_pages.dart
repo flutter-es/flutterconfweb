@@ -44,7 +44,7 @@ class ModalBottomPage<T> extends Page<T> {
       showDragHandle: showDragHandle,
       backgroundColor: Colors.transparent,
       isScrollControlled: isScrollControlled,
-      modalBarrierColor: Colors.black.withValues(alpha: .25),
+      modalBarrierColor: FlutterLatamColors.black.withValues(alpha: .25),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),

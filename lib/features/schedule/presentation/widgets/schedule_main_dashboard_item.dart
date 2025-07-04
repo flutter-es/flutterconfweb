@@ -47,6 +47,8 @@ class _ScheduleCardItem extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: ResponsiveGrid(
+            // TODO(FV): Validate auto sizes.
+            // TODO(FV): Use text theme to avoid repeated code.
             rowSizes: switch (firstScheduleTrack?.type) {
               ScheduleType.workshop => 2,
               _ => switch (context.screenSize) {
@@ -170,7 +172,7 @@ class _ScheduleDetail extends ConsumerWidget {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 20,
-                      backgroundColor: Colors.grey[300],
+                      backgroundColor: FlutterLatamColors.white,
                       backgroundImage: NetworkImage(speaker.imageUrl),
                     ),
                     Text(

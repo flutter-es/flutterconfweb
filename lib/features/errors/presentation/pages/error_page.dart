@@ -38,7 +38,7 @@ class ErrorPage extends ConsumerWidget {
               l10n.errorPageTitle,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.grey,
+                color: FlutterLatamColors.grey,
                 fontSize: switch (context.screenSize) {
                   ScreenSize.extraLarge => 60,
                   ScreenSize.large => 50,
@@ -51,7 +51,7 @@ class ErrorPage extends ConsumerWidget {
               l10n.errorPageSubtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.grey,
+                color: FlutterLatamColors.grey,
                 fontSize: switch (context.screenSize) {
                   ScreenSize.extraLarge => 30,
                   _ => 20,

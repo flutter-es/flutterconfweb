@@ -77,14 +77,14 @@ class _ScheduleSlotItem extends StatelessWidget {
                 return _ScheduleCardItem(
                   scheduleTracks: item.value,
                   color: switch (item.key.type) {
-                    ScheduleType.register => const Color(0xFFB86EEE),
+                    ScheduleType.register => FlutterLatamColors.purple,
                     ScheduleType.keynote ||
-                    ScheduleType.panel => const Color(0xFF0CCB98),
+                    ScheduleType.panel => FlutterLatamColors.lightGreen,
                     ScheduleType.breaks ||
-                    ScheduleType.lunch => const Color(0xFFB86EEE),
-                    ScheduleType.lighting => const Color(0xFFF779E2),
-                    ScheduleType.session => const Color(0xFF147CE4),
-                    ScheduleType.finish => const Color(0xFFCA4D4F),
+                    ScheduleType.lunch => FlutterLatamColors.purple,
+                    ScheduleType.lighting => FlutterLatamColors.pink,
+                    ScheduleType.session => FlutterLatamColors.blue,
+                    ScheduleType.finish => FlutterLatamColors.mediumRed,
                     _ => Colors.transparent,
                   },
                   position: slot.scheduleSlots.workshops.isNotEmpty
@@ -108,7 +108,7 @@ class _ScheduleSlotItem extends StatelessWidget {
                     child: _ScheduleCardItem(
                       scheduleTracks: item.value,
                       color: switch (item.key.type) {
-                        ScheduleType.workshop => const Color(0xFFEDD079),
+                        ScheduleType.workshop => FlutterLatamColors.lightYellow,
                         _ => Colors.transparent,
                       },
                     ),
