@@ -692,6 +692,12 @@ abstract class AppLocalizations {
   /// **'Keynote'**
   String get scheduleKeynoteTitle;
 
+  /// No description provided for @schedulePanelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'GDE panel'**
+  String get schedulePanelTitle;
+
   /// No description provided for @scheduleBreakTitle.
   ///
   /// In en, this message translates to:
@@ -727,6 +733,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'End of the event'**
   String get scheduleFinishTitle;
+
+  /// No description provided for @scheduleStartEndHour.
+  ///
+  /// In en, this message translates to:
+  /// **'{startHour} - {endHour}'**
+  String scheduleStartEndHour(DateTime startHour, DateTime endHour);
 
   /// No description provided for @contactMainTitle.
   ///

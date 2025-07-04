@@ -349,6 +349,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scheduleKeynoteTitle => 'Keynote';
 
   @override
+  String get schedulePanelTitle => 'Panel GDE';
+
+  @override
   String get scheduleBreakTitle => 'Descanso';
 
   @override
@@ -369,6 +372,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get scheduleFinishTitle => 'Fin del evento';
+
+  @override
+  String scheduleStartEndHour(DateTime startHour, DateTime endHour) {
+    final intl.DateFormat startHourDateFormat = intl.DateFormat(
+      'HH:mm',
+      localeName,
+    );
+    final String startHourString = startHourDateFormat.format(startHour);
+    final intl.DateFormat endHourDateFormat = intl.DateFormat(
+      'HH:mm',
+      localeName,
+    );
+    final String endHourString = endHourDateFormat.format(endHour);
+
+    return '$startHourString - $endHourString';
+  }
 
   @override
   String get contactMainTitle => '¿Tienes dudas? Escríbenos';

@@ -125,6 +125,7 @@
   },
   "scheduleRegisterTitle": "Register & check-in",
   "scheduleKeynoteTitle": "Keynote",
+  "schedulePanelTitle": "GDE panel",
   "scheduleBreakTitle": "Break",
   "scheduleLunchTitle": "Lunch",
   "scheduleLightingTitle": "Lighting talk - Track {track}",
@@ -145,6 +146,21 @@
   },
   "scheduleWorkshopTitle": "Workshop",
   "scheduleFinishTitle": "End of the event",
+  "scheduleStartEndHour": "{startHour} - {endHour}",
+  "@scheduleStartEndHour": {
+    "placeholders": {
+      "startHour": {
+        "type": "DateTime",
+        "format": "HH:mm",
+        "isCustomDateFormat": "true"
+      },
+      "endHour": {
+        "type": "DateTime",
+        "format": "HH:mm",
+        "isCustomDateFormat": "true"
+      }
+    }
+  },
   "contactMainTitle": "Do you have any questions? Write to us.",
   "contactMainDescription": "Or if you prefer, contact us through our social media! We love staying in touch!",
   "footerTitle": "See you in Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",
