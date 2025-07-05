@@ -74,7 +74,7 @@ class _ScheduleSlotItem extends StatelessWidget {
             child: Column(
               spacing: 10,
               children: slot.scheduleSlots.others.entries.map((item) {
-                return _ScheduleCardItem(
+                return _ScheduleCard(
                   scheduleTracks: item.value,
                   color: switch (item.key.type) {
                     ScheduleType.register => FlutterLatamColors.purple,
@@ -87,7 +87,11 @@ class _ScheduleSlotItem extends StatelessWidget {
                     ScheduleType.finish => FlutterLatamColors.mediumRed,
                     _ => Colors.transparent,
                   },
-                  position: slot.scheduleSlots.workshops.isNotEmpty
+                  position: switch (context.screenSize) {
+                    ScreenSize.extraLarge => _ScheduleCardPosition.row,
+                    _ => _ScheduleCardPosition.column,
+                  },
+                  itemPosition: slot.scheduleSlots.workshops.isNotEmpty
                       ? _ScheduleCardItemPosition.column
                       : switch (context.screenSize) {
                           ScreenSize.extraLarge ||
@@ -105,12 +109,13 @@ class _ScheduleSlotItem extends StatelessWidget {
                 spacing: 10,
                 children: slot.scheduleSlots.workshops.entries.map((item) {
                   return Expanded(
-                    child: _ScheduleCardItem(
+                    child: _ScheduleCard(
                       scheduleTracks: item.value,
                       color: switch (item.key.type) {
                         ScheduleType.workshop => FlutterLatamColors.lightYellow,
                         _ => Colors.transparent,
                       },
+                      position: _ScheduleCardPosition.column,
                     ),
                   );
                 }).toList(),

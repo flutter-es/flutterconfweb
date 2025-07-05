@@ -1,107 +1,107 @@
 part of 'schedule_main.dart';
 
+enum _ScheduleCardPosition { row, column }
+
 enum _ScheduleCardItemPosition { row, column }
 
-class _ScheduleCardItem extends ConsumerWidget {
-  const _ScheduleCardItem({
+class _ScheduleCard extends ConsumerWidget {
+  const _ScheduleCard({
     required this.scheduleTracks,
     required this.color,
-    this.position = _ScheduleCardItemPosition.column,
+    required this.position,
+    this.itemPosition = _ScheduleCardItemPosition.column,
   });
 
   final List<ScheduleTrackModel> scheduleTracks;
   final Color color;
-  final _ScheduleCardItemPosition position;
+  final _ScheduleCardPosition position;
+  final _ScheduleCardItemPosition itemPosition;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final firstScheduleTrack = scheduleTracks.firstOrNull;
+    final scheduleTrack = scheduleTracks.firstOrNull;
 
     final scheduleChildren = <Widget>[
       for (final (index, item) in scheduleTracks.indexed) ...[
-        switch (position) {
+        switch (itemPosition) {
           _ScheduleCardItemPosition.column => _ScheduleDetail(
             scheduleTrack: item,
           ),
-          _ScheduleCardItemPosition.row => Expanded(
-            child: _ScheduleDetail(scheduleTrack: item),
-          ),
+          _ScheduleCardItemPosition.row => _ScheduleDetail(scheduleTrack: item),
         },
         if (index < scheduleTracks.length - 1)
-          switch (position) {
+          switch (itemPosition) {
             _ScheduleCardItemPosition.column => const Divider(height: 30),
             _ScheduleCardItemPosition.row => const VerticalDivider(width: 30),
           },
       ],
     ];
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: .2),
+    final scheduleCardChildren = <Widget>[
+      if (scheduleTrack != null)
+        Align(
+          alignment: switch (scheduleTrack.type) {
+            ScheduleType.workshop => Alignment.topLeft,
+            _ => switch (context.screenSize) {
+              ScreenSize.extraLarge || ScreenSize.large => Alignment.centerLeft,
+              ScreenSize.normal || ScreenSize.small => Alignment.topLeft,
+            },
+          },
+          child: Text(
+            l10n.scheduleStartEndHour(
+              scheduleTrack.startDate,
+              scheduleTrack.endDate,
+            ),
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => 18,
+                ScreenSize.normal || ScreenSize.small => 14,
+              },
+              fontWeight: FontWeight.w600,
+              color: FlutterLatamColors.white,
+            ),
+          ),
+        ),
+      switch (itemPosition) {
+        _ScheduleCardItemPosition.row => Row(
+          mainAxisSize: MainAxisSize.min,
+          children: scheduleChildren,
+        ),
+        _ScheduleCardItemPosition.column => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: scheduleChildren,
+        ),
+      },
+    ];
+
+    return Card(
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      color: color.withValues(alpha: .2),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color, width: 1.5),
+        side: BorderSide(color: color, width: 1.5),
       ),
       child: SizedBox(
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: ResponsiveGrid(
-            // TODO(FV): Validate auto sizes.
-            // TODO(FV): Use text theme to avoid repeated code.
-            rowSizes: switch (firstScheduleTrack?.type) {
-              ScheduleType.workshop => 2,
-              _ => switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 1,
-                ScreenSize.normal || ScreenSize.small => 2,
-              },
-            },
-            columnSizes: switch (firstScheduleTrack?.type) {
-              ScheduleType.workshop => 1,
-              _ => switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 2,
-                ScreenSize.normal || ScreenSize.small => 1,
-              },
-            },
-            children: <Widget>[
-              if (firstScheduleTrack != null)
-                Align(
-                  alignment: switch (firstScheduleTrack.type) {
-                    ScheduleType.workshop => Alignment.topLeft,
-                    _ => switch (context.screenSize) {
-                      ScreenSize.extraLarge ||
-                      ScreenSize.large => Alignment.centerLeft,
-                      ScreenSize.normal ||
-                      ScreenSize.small => Alignment.topLeft,
-                    },
-                  },
-                  child: Text(
-                    l10n.scheduleStartEndHour(
-                      firstScheduleTrack.startDate,
-                      firstScheduleTrack.endDate,
-                    ),
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => 18,
-                        ScreenSize.normal || ScreenSize.small => 14,
-                      },
-                      fontWeight: FontWeight.w600,
-                      color: FlutterLatamColors.white,
-                    ),
-                  ),
-                ),
-              switch (position) {
-                _ScheduleCardItemPosition.row => Row(
-                  children: scheduleChildren,
-                ),
-                _ScheduleCardItemPosition.column => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: scheduleChildren,
-                ),
-              },
-            ],
-          ),
+          child: switch (position) {
+            _ScheduleCardPosition.row => Row(
+              spacing: 40,
+              children: scheduleCardChildren.mapIndexed((index, item) {
+                return index == 0 ? item : Expanded(child: item);
+              }).toList(),
+            ),
+            _ScheduleCardPosition.column => Column(
+              spacing: 20,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: scheduleCardChildren,
+            ),
+          },
         ),
       ),
     );
@@ -154,12 +154,13 @@ class _ScheduleDetail extends ConsumerWidget {
               fontFamily: 'Poppins',
               fontSize: switch (context.screenSize) {
                 ScreenSize.extraLarge || ScreenSize.large => 16,
-                ScreenSize.normal || ScreenSize.small => 14,
+                ScreenSize.normal || ScreenSize.small => 12,
               },
               fontWeight: FontWeight.w300,
               color: FlutterLatamColors.white,
             ),
           ),
+        /*
         if ((scheduleTrack.speakers ?? []).isNotEmpty)
           Wrap(
             spacing: 30,
@@ -169,9 +170,10 @@ class _ScheduleDetail extends ConsumerWidget {
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: <Widget>[
                     CircleAvatar(
-                      radius: 20,
+                      radius: 18,
                       backgroundColor: FlutterLatamColors.white,
                       backgroundImage: NetworkImage(speaker.imageUrl),
                     ),
@@ -191,6 +193,7 @@ class _ScheduleDetail extends ConsumerWidget {
                 ),
             ],
           ),
+        */
         if ((scheduleTrack.requirements ?? []).isNotEmpty) ...[
           Padding(
             padding: const EdgeInsets.only(top: 3),
@@ -209,7 +212,6 @@ class _ScheduleDetail extends ConsumerWidget {
           ),
           for (final item in scheduleTrack.requirements!)
             Row(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text(
