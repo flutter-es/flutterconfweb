@@ -181,7 +181,7 @@ class _PricingCardItem extends ConsumerWidget {
                           ],
                         ),
                     ],
-                    if (detail.type == TicketType.early)
+                    if (detail.type == TicketType.regular)
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: FclButton.primary(
