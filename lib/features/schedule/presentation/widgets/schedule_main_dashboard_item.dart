@@ -25,15 +25,15 @@ class _ScheduleCard extends ConsumerWidget {
     final scheduleChildren = <Widget>[
       for (final (index, item) in scheduleTracks.indexed) ...[
         switch (itemPosition) {
+          _ScheduleCardItemPosition.row => _ScheduleDetail(scheduleTrack: item),
           _ScheduleCardItemPosition.column => _ScheduleDetail(
             scheduleTrack: item,
           ),
-          _ScheduleCardItemPosition.row => _ScheduleDetail(scheduleTrack: item),
         },
         if (index < scheduleTracks.length - 1)
           switch (itemPosition) {
-            _ScheduleCardItemPosition.column => const Divider(height: 30),
-            _ScheduleCardItemPosition.row => const VerticalDivider(width: 30),
+            _ScheduleCardItemPosition.row => const VerticalDivider(width: 40),
+            _ScheduleCardItemPosition.column => const Divider(height: 60),
           },
       ],
     ];
@@ -160,40 +160,44 @@ class _ScheduleDetail extends ConsumerWidget {
               color: FlutterLatamColors.white,
             ),
           ),
-        /*
         if ((scheduleTrack.speakers ?? []).isNotEmpty)
-          Wrap(
+          Row(
             spacing: 30,
-            runSpacing: 10,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               for (final speaker in scheduleTrack.speakers!)
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 18,
-                      backgroundColor: FlutterLatamColors.white,
-                      backgroundImage: NetworkImage(speaker.imageUrl),
-                    ),
-                    Text(
-                      speaker.name,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: switch (context.screenSize) {
-                          ScreenSize.extraLarge || ScreenSize.large => 16,
+                Flexible(
+                  child: Row(
+                    spacing: 8,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: switch (context.screenSize) {
+                          ScreenSize.extraLarge || ScreenSize.large => 18,
                           ScreenSize.normal || ScreenSize.small => 14,
                         },
-                        fontWeight: FontWeight.w300,
-                        color: FlutterLatamColors.white,
+                        backgroundColor: FlutterLatamColors.white,
+                        backgroundImage: NetworkImage(speaker.imageUrl),
                       ),
-                    ),
-                  ],
+                      Flexible(
+                        child: Text(
+                          speaker.name,
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: switch (context.screenSize) {
+                              ScreenSize.extraLarge => 16,
+                              _ => 14,
+                            },
+                            fontWeight: FontWeight.w300,
+                            color: FlutterLatamColors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
             ],
           ),
-        */
         if ((scheduleTrack.requirements ?? []).isNotEmpty) ...[
           Padding(
             padding: const EdgeInsets.only(top: 3),
