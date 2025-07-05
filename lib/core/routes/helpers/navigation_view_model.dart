@@ -35,6 +35,7 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
       NavigationItemModel(
         label: l10n.menuScheduleText,
         route: '/${AppRoutePath.schedule.pathName}',
+        visible: false,
       ),
       NavigationItemModel(
         label: l10n.menuContactText,
