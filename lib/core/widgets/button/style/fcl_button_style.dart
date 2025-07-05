@@ -73,10 +73,10 @@ class _FclButtonStyle extends ButtonStyle {
       TextStyle(
         fontFamily: 'Poppins',
         fontSize: switch (buttonSize) {
-          ButtonSize.small => 16,
-          ButtonSize.large => 20,
+          ButtonSize.small => 14,
+          ButtonSize.large => 18,
         },
-        height: 1.2,
+        height: 1.5,
         fontWeight: FontWeight.w500,
         color: FlutterLatamColors.white,
       ),
