@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 
 class OptionButtonList extends StatelessWidget {
@@ -15,9 +16,12 @@ class OptionButtonList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 20,
-      mainAxisSize: MainAxisSize.min,
+    return Wrap(
+      runSpacing: 10,
+      spacing: switch (context.screenSize) {
+        ScreenSize.extraLarge || ScreenSize.large => 20,
+        ScreenSize.normal || ScreenSize.small => 10,
+      },
       children: <Widget>[
         for (final (index, item) in options.indexed)
           if (index == selectedValue)
