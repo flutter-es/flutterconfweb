@@ -70,7 +70,10 @@ class _ScheduleSlotItem extends StatelessWidget {
         spacing: 10,
         children: <Widget>[
           Flexible(
-            flex: 2,
+            flex: switch (context.screenSize) {
+              ScreenSize.small || ScreenSize.normal => 4,
+              _ => 2,
+            },
             child: Column(
               spacing: 10,
               children: slot.scheduleSlots.others.entries.map((item) {
@@ -105,6 +108,10 @@ class _ScheduleSlotItem extends StatelessWidget {
           ),
           if (slot.scheduleSlots.workshops.isNotEmpty)
             Flexible(
+              flex: switch (context.screenSize) {
+                ScreenSize.small || ScreenSize.normal => 3,
+                _ => 1,
+              },
               child: Column(
                 spacing: 10,
                 children: slot.scheduleSlots.workshops.entries.map((item) {

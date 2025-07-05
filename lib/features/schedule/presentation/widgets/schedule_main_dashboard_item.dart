@@ -161,87 +161,7 @@ class _ScheduleDetail extends ConsumerWidget {
             ),
           ),
         if ((scheduleTrack.speakers ?? []).isNotEmpty)
-          Row(
-            spacing: 30,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              for (final speaker in scheduleTrack.speakers!)
-                Flexible(
-                  child: Row(
-                    spacing: 8,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: switch (context.screenSize) {
-                          ScreenSize.extraLarge || ScreenSize.large => 18,
-                          ScreenSize.normal || ScreenSize.small => 14,
-                        },
-                        backgroundColor: FlutterLatamColors.white,
-                        backgroundImage: NetworkImage(speaker.imageUrl),
-                      ),
-                      Flexible(
-                        child: Text(
-                          speaker.name,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: switch (context.screenSize) {
-                              ScreenSize.extraLarge => 16,
-                              _ => 14,
-                            },
-                            fontWeight: FontWeight.w300,
-                            color: FlutterLatamColors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-            ],
-          ),
-        if ((scheduleTrack.requirements ?? []).isNotEmpty) ...[
-          Padding(
-            padding: const EdgeInsets.only(top: 3),
-            child: Text(
-              l10n.scheduleRequirementTitle,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 14,
-                  ScreenSize.normal || ScreenSize.small => 12,
-                },
-                fontWeight: FontWeight.w600,
-                color: FlutterLatamColors.white,
-              ),
-            ),
-          ),
-          for (final item in scheduleTrack.requirements!)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const Text(
-                  '\u2022 ',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: FlutterLatamColors.white,
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    item,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => 14,
-                        ScreenSize.normal || ScreenSize.small => 12,
-                      },
-                      fontWeight: FontWeight.w400,
-                      color: FlutterLatamColors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-        ],
+          _ScheduleDetailSpeaker(speakers: scheduleTrack.speakers!),
       ],
     );
 
@@ -252,5 +172,69 @@ class _ScheduleDetail extends ConsumerWidget {
       );
     }
     return scheduleChild;
+  }
+}
+
+class _ScheduleDetailSpeaker extends StatelessWidget {
+  const _ScheduleDetailSpeaker({required this.speakers});
+
+  final List<SessionSpeakerModel> speakers;
+
+  @override
+  Widget build(BuildContext context) {
+    final children = speakers.map((item) {
+      final childrenItem = <Widget>[
+        CircleAvatar(
+          radius: switch (context.screenSize) {
+            ScreenSize.extraLarge || ScreenSize.large => 18,
+            ScreenSize.normal => 14,
+            ScreenSize.small => 10,
+          },
+          backgroundColor: FlutterLatamColors.white,
+          backgroundImage: NetworkImage(item.imageUrl),
+        ),
+        Text(
+          item.name,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: switch (context.screenSize) {
+              ScreenSize.extraLarge => 16,
+              _ => 14,
+            },
+            fontWeight: FontWeight.w300,
+            color: FlutterLatamColors.white,
+          ),
+        ),
+      ];
+
+      return switch (context.screenSize) {
+        ScreenSize.extraLarge || ScreenSize.large => Row(
+          spacing: 8,
+          mainAxisSize: MainAxisSize.min,
+          children: childrenItem.mapIndexed((index, item) {
+            return index == 1 ? Flexible(child: item) : item;
+          }).toList(),
+        ),
+        ScreenSize.normal || ScreenSize.small => Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: childrenItem,
+        ),
+      };
+    });
+
+    return switch (context.screenSize) {
+      ScreenSize.extraLarge => Row(
+        spacing: 30,
+        mainAxisSize: MainAxisSize.min,
+        children: children.toList(),
+      ),
+      _ => Column(
+        spacing: 20,
+        mainAxisSize: MainAxisSize.min,
+        children: children.toList(),
+      ),
+    };
   }
 }
