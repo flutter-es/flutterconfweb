@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes.dart';
 import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @JS('window')
@@ -36,12 +36,7 @@ class FlutterConfApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Flutter Conf LATAM',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Poppins',
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: FlutterLatamColors.white,
-        dividerColor: FlutterLatamColors.white,
-      ),
+      theme: FclTheme.light(),
       locale: appLocale,
       routerConfig: _appRoutes.router,
       supportedLocales: AppLocalizations.supportedLocales,
