@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FclTypography {
-  FclTypography._();
+class FlutterLatamTypography {
+  FlutterLatamTypography._();
 
   static const _headingFontFamily = 'Recoleta';
   static const _bodyFamily = 'Poppins';
