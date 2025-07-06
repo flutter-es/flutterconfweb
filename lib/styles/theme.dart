@@ -95,3 +95,11 @@ class FclTheme {
     );
   }
 }
+
+extension BuildContextX on BuildContext {
+  ThemeData get theme => Theme.of(this);
+}
+
+extension ThemeDataExtensionX on ThemeData {
+  FclThemeScheme get fclThemeScheme => extension<FclThemeScheme>()!;
+}
