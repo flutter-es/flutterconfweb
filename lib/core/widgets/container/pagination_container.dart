@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PaginationContainer extends ConsumerWidget {

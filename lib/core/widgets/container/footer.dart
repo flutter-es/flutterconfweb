@@ -6,7 +6,7 @@ import 'package:flutter_conf_latam/core/social/models/social_media_model.dart';
 import 'package:flutter_conf_latam/core/social/providers/social_media_provider.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

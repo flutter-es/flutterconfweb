@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
-import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 
 class WipContainer extends StatelessWidget {

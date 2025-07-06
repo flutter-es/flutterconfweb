@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
 
 class ScreenPage<T> extends Page<T> {
   const ScreenPage({required super.key, required this.child});

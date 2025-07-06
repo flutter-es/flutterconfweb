@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/extensions/extension_methods.dart';
 import 'package:flutter_conf_latam/core/widgets/container/shimmer_container.dart';
-import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
 
 class CarouselImages extends StatefulWidget {
   const CarouselImages({required this.images, this.aspectRatio = 2, super.key})
