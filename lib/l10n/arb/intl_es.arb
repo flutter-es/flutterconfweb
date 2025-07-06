@@ -1,5 +1,6 @@
 {
   "@@locale": "es",
+  "menuHomeText": "Home",
   "menuAboutText": "Acerca de",
   "menuVenueText": "Sede",
   "menuOrganizersText": "Organizadores",
@@ -14,6 +15,17 @@
   "errorDataTitle": "Oops!",
   "errorDataMessage": "Ocurrió un error, intenta de nuevo",
   "errorDataRetryButton": "Reintentar",
+  "previousPageText": "Página anterior",
+  "nextPageText": "Página siguiente",
+  "numberPageText": "Página {page}",
+  "@numberPageText": {
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "morePagesText": "Más páginas",
   "homeMainTitle": "FlutterConfLatam 2025\nQuito - Ecuador",
   "homeMainDescription": "9 y 10 de Septiembre",
   "homeMainExperienceOne": "¡La experiencia Flutter te espera en la ",
@@ -164,6 +176,7 @@
   "scheduleRequirementTitle": "Requisitos",
   "contactMainTitle": "¿Tienes dudas? Escríbenos",
   "contactMainDescription": "¡O si prefieres, contáctanos a través de nuestras redes sociales! ¡Nos encanta estar en contacto!",
+  "contactCopyEmail": "Copiar correo",
   "footerTitle": "¡Nos vemos en Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",
   "footerDescription": "Aprovecha el evento y descubre la magia de Quito y sus alrededores.",
   "footerSeeMore": "Saber más",

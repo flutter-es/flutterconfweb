@@ -98,6 +98,12 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
+  /// No description provided for @menuHomeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get menuHomeText;
+
   /// No description provided for @menuAboutText.
   ///
   /// In en, this message translates to:
@@ -181,6 +187,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retry'**
   String get errorDataRetryButton;
+
+  /// No description provided for @previousPageText.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous page'**
+  String get previousPageText;
+
+  /// No description provided for @nextPageText.
+  ///
+  /// In en, this message translates to:
+  /// **'Next page'**
+  String get nextPageText;
+
+  /// No description provided for @numberPageText.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {page}'**
+  String numberPageText(int page);
+
+  /// No description provided for @morePagesText.
+  ///
+  /// In en, this message translates to:
+  /// **'More pages'**
+  String get morePagesText;
 
   /// No description provided for @homeMainTitle.
   ///
@@ -757,6 +787,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Or if you prefer, contact us through our social media! We love staying in touch!'**
   String get contactMainDescription;
+
+  /// No description provided for @contactCopyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy email'**
+  String get contactCopyEmail;
 
   /// No description provided for @footerTitle.
   ///

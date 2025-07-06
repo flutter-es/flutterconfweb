@@ -9,6 +9,9 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get menuHomeText => 'Home';
+
+  @override
   String get menuAboutText => 'Acerca de';
 
   @override
@@ -49,6 +52,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorDataRetryButton => 'Reintentar';
+
+  @override
+  String get previousPageText => 'Página anterior';
+
+  @override
+  String get nextPageText => 'Página siguiente';
+
+  @override
+  String numberPageText(int page) {
+    return 'Página $page';
+  }
+
+  @override
+  String get morePagesText => 'Más páginas';
 
   @override
   String get homeMainTitle => 'FlutterConfLatam 2025\nQuito - Ecuador';
@@ -398,6 +415,9 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get contactMainDescription =>
       '¡O si prefieres, contáctanos a través de nuestras redes sociales! ¡Nos encanta estar en contacto!';
+
+  @override
+  String get contactCopyEmail => 'Copiar correo';
 
   @override
   String get footerTitle => '¡Nos vemos en Quito, Ecuador 🇪🇨 !';
