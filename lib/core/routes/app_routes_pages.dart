@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
-import 'package:flutter_conf_latam/styles/styles.dart';
 
 class ScreenPage<T> extends Page<T> {
   const ScreenPage({required super.key, required this.child});
@@ -74,19 +73,12 @@ class ModalBottomPage<T> extends Page<T> {
         }
 
         return Container(
-          margin: FlutterConfLatamStyles.xLargeMargin.copyWith(
-            left: 0,
-            right: 0,
-            bottom: 0,
-          ),
-          padding: const EdgeInsets.symmetric(
-            vertical: FlutterConfLatamStyles.largeSize,
-            horizontal: FlutterConfLatamStyles.mediumSize,
-          ),
+          margin: const EdgeInsets.only(top: 64),
+          padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
           decoration: const BoxDecoration(
             color: FlutterLatamColors.white,
             borderRadius: BorderRadius.vertical(
-              top: Radius.circular(FlutterConfLatamStyles.smallRadius),
+              top: Radius.circular(24),
             ),
           ),
           child: newChild,
@@ -118,13 +110,11 @@ class DialogPage<T> extends Page<T> {
           widthFactor: 0.7,
           heightFactor: heightFactor,
           child: Container(
-            margin: FlutterConfLatamStyles.largeMargin,
-            padding: FlutterConfLatamStyles.bannerPadding,
+            margin: const EdgeInsets.all(32),
+            padding: const EdgeInsets.all(40),
             decoration: BoxDecoration(
               color: FlutterLatamColors.white,
-              borderRadius: BorderRadius.circular(
-                FlutterConfLatamStyles.smallRadius,
-              ),
+              borderRadius: BorderRadius.circular(24),
             ),
             child: child,
           ),

@@ -6,7 +6,6 @@ import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:flutter_conf_latam/styles/styles.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -69,7 +68,7 @@ class ErrorPage extends ConsumerWidget {
               ),
               onPressed: () => context.go('/${AppRoutePath.home.pathName}'),
               child: Padding(
-                padding: FlutterConfLatamStyles.mediumPadding,
+                padding: const EdgeInsets.all(16),
                 child: Text(l10n.errorReturnHomeButton),
               ),
             ),
