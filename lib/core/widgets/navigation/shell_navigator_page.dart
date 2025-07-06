@@ -6,6 +6,7 @@ import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dar
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/header_menu.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +33,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final tabItems = ref.watch(
       navigationViewModelProvider.select(
         (value) => value.where((item) => item.visible).toList(),
@@ -64,14 +66,15 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
           leadingWidth: 90,
           leading: Padding(
             padding: const EdgeInsets.all(8),
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: InkWell(
-                onTap: switch (tabItems.isNotEmpty) {
-                  true => () => _goToRoute(tabItems.first),
-                  false => null,
-                },
-                child: Image.asset(Assets.images.fclEcMainLogo),
+            child: InkWell(
+              mouseCursor: SystemMouseCursors.click,
+              onTap: switch (tabItems.isNotEmpty) {
+                true => () => _goToRoute(tabItems.first),
+                false => null,
+              },
+              child: Image.asset(
+                Assets.images.fclEcMainLogo,
+                semanticLabel: l10n.menuHomeText,
               ),
             ),
           ),

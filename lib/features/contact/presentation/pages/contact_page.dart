@@ -81,6 +81,7 @@ class _ContactEmailCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
     return DecoratedBox(
@@ -124,6 +125,7 @@ class _ContactEmailCard extends ConsumerWidget {
                   ),
                 ),
                 InkWell(
+                  mouseCursor: SystemMouseCursors.click,
                   onTap: () async {
                     await Clipboard.setData(
                       ClipboardData(text: config.contactEmail),
@@ -134,7 +136,10 @@ class _ContactEmailCard extends ConsumerWidget {
                       ScreenSize.extraLarge || ScreenSize.large => 32,
                       ScreenSize.normal || ScreenSize.small => 24,
                     },
-                    child: SvgPicture.asset(Assets.images.icons.copy),
+                    child: SvgPicture.asset(
+                      Assets.images.icons.copy,
+                      semanticsLabel: l10n.contactCopyEmail,
+                    ),
                   ),
                 ),
               ],

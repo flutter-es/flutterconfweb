@@ -116,27 +116,29 @@ class _ScheduleDetail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
+    final scheduleTypeTitle = switch (scheduleTrack.type) {
+      ScheduleType.register => l10n.scheduleRegisterTitle,
+      ScheduleType.keynote => l10n.scheduleKeynoteTitle,
+      ScheduleType.panel => l10n.schedulePanelTitle,
+      ScheduleType.breaks => l10n.scheduleBreakTitle,
+      ScheduleType.lunch => l10n.scheduleLunchTitle,
+      ScheduleType.lighting => l10n.scheduleLightingTitle(
+        scheduleTrack.track,
+      ),
+      ScheduleType.session => l10n.scheduleSessionTitle(
+        scheduleTrack.track,
+      ),
+      ScheduleType.workshop => l10n.scheduleWorkshopTitle,
+      ScheduleType.finish => l10n.scheduleFinishTitle,
+    };
+
     final scheduleChild = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: (scheduleTrack.title ?? '').isNotEmpty ? 10 : 20,
       children: <Widget>[
         Text(
-          switch (scheduleTrack.type) {
-            ScheduleType.register => l10n.scheduleRegisterTitle,
-            ScheduleType.keynote => l10n.scheduleKeynoteTitle,
-            ScheduleType.panel => l10n.schedulePanelTitle,
-            ScheduleType.breaks => l10n.scheduleBreakTitle,
-            ScheduleType.lunch => l10n.scheduleLunchTitle,
-            ScheduleType.lighting => l10n.scheduleLightingTitle(
-              scheduleTrack.track,
-            ),
-            ScheduleType.session => l10n.scheduleSessionTitle(
-              scheduleTrack.track,
-            ),
-            ScheduleType.workshop => l10n.scheduleWorkshopTitle,
-            ScheduleType.finish => l10n.scheduleFinishTitle,
-          },
+          scheduleTypeTitle,
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: switch (context.screenSize) {
@@ -165,13 +167,17 @@ class _ScheduleDetail extends ConsumerWidget {
       ],
     );
 
-    if (scheduleTrack.isTalkingTrack) {
-      return MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(child: scheduleChild),
-      );
-    }
-    return scheduleChild;
+    return InkWell(
+      mouseCursor: SystemMouseCursors.click,
+      onTap: scheduleTrack.isTalkingTrack ? () {} : null,
+      child: Semantics(
+        label: scheduleTrack.title ?? scheduleTypeTitle,
+        role: scheduleTrack.isTalkingTrack
+            ? SemanticsRole.spinButton
+            : SemanticsRole.tooltip,
+        child: scheduleChild,
+      ),
+    );
   }
 }
 

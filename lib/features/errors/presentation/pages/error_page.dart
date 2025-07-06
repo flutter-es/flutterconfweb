@@ -59,7 +59,7 @@ class ErrorPage extends ConsumerWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            FlutterConfLatamStyles.mediumVGap,
+            const SizedBox(height: 40),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 0,

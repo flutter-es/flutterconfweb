@@ -1,9 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PaginationContainer extends StatelessWidget {
+class PaginationContainer extends ConsumerWidget {
   const PaginationContainer({
     required this.child,
     required this.totalSize,
@@ -22,7 +25,9 @@ class PaginationContainer extends StatelessWidget {
   final int maxButtons;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+
     return Column(
       spacing: 30,
       mainAxisSize: MainAxisSize.min,
@@ -38,6 +43,7 @@ class PaginationContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _PaginationButton(
+                  semanticLabel: l10n.previousPageText,
                   onPressed: currentPage > 1
                       ? () => onChangedPage(currentPage - 1)
                       : null,
@@ -50,6 +56,7 @@ class PaginationContainer extends StatelessWidget {
                   maxButtons: maxButtons,
                 ),
                 _PaginationButton(
+                  semanticLabel: l10n.nextPageText,
                   onPressed: currentPage < _totalPages
                       ? () => onChangedPage(currentPage + 1)
                       : null,
@@ -66,7 +73,7 @@ class PaginationContainer extends StatelessWidget {
   int get _totalPages => (totalSize / pageSize).ceil();
 }
 
-class _PaginationNumberButtons extends StatelessWidget {
+class _PaginationNumberButtons extends ConsumerWidget {
   const _PaginationNumberButtons({
     required this.currentPage,
     required this.totalPages,
@@ -80,8 +87,10 @@ class _PaginationNumberButtons extends StatelessWidget {
   final int maxButtons;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (totalPages <= 1) return const Offstage();
+
+    final l10n = ref.watch(appLocalizationsProvider);
 
     var startPage = max(1, currentPage - (maxButtons / 2).floor());
     final endPage = min(totalPages, startPage + maxButtons - 1);
@@ -95,14 +104,20 @@ class _PaginationNumberButtons extends StatelessWidget {
       children: <Widget>[
         if (startPage > 1) ...[
           _PaginationButton(
+            semanticLabel: l10n.numberPageText(1),
             onPressed: () => onSendPage(1),
             child: const Text('1'),
           ),
-          if (startPage > 2) const _PaginationButton(child: Text('...')),
+          if (startPage > 2)
+            _PaginationButton(
+              semanticLabel: l10n.morePagesText,
+              child: const Text('...'),
+            ),
         ],
         ...[
           for (var i = startPage; i <= endPage; i++)
             _PaginationButton(
+              semanticLabel: l10n.numberPageText(i),
               onPressed: () => onSendPage(i),
               isActive: currentPage == i,
               child: Text('$i'),
@@ -110,8 +125,12 @@ class _PaginationNumberButtons extends StatelessWidget {
         ],
         if (endPage < totalPages) ...[
           if (endPage < totalPages - 1)
-            const _PaginationButton(child: Text('...')),
+            _PaginationButton(
+              semanticLabel: l10n.morePagesText,
+              child: const Text('...'),
+            ),
           _PaginationButton(
+            semanticLabel: l10n.numberPageText(totalPages),
             onPressed: () => onSendPage(totalPages),
             child: Text('$totalPages'),
           ),
@@ -123,11 +142,13 @@ class _PaginationNumberButtons extends StatelessWidget {
 
 class _PaginationButton extends StatelessWidget {
   const _PaginationButton({
+    required this.semanticLabel,
     required this.child,
     this.onPressed,
     this.isActive = false,
   });
 
+  final String semanticLabel;
   final Widget child;
   final VoidCallback? onPressed;
   final bool isActive;
@@ -157,7 +178,11 @@ class _PaginationButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: child,
+      child: Semantics(
+        label: semanticLabel,
+        role: SemanticsRole.spinButton,
+        child: child,
+      ),
     );
   }
 }

@@ -3,10 +3,12 @@ import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dar
 import 'package:flutter_conf_latam/core/widgets/menu/extra_buttons.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/sub_menu_button.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MobileDrawerMenu extends StatelessWidget {
+class MobileDrawerMenu extends ConsumerWidget {
   const MobileDrawerMenu({
     required this.tabItems,
     required this.onSelect,
@@ -17,7 +19,9 @@ class MobileDrawerMenu extends StatelessWidget {
   final ValueSetter<NavigationItemModel> onSelect;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
+
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,
       child: Padding(
@@ -42,7 +46,10 @@ class MobileDrawerMenu extends StatelessWidget {
                                 Navigator.of(context).pop();
                                 onSelect(item);
                               },
-                              child: Image.asset(Assets.images.fclEcMainLogo),
+                              child: Image.asset(
+                                semanticLabel: l10n.menuHomeText,
+                                Assets.images.fclEcMainLogo,
+                              ),
                             ),
                           ),
                         ),

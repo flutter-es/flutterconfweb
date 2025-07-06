@@ -51,7 +51,7 @@ class GridCardItem extends StatelessWidget {
                 if (imagePath != null)
                   SizedBox.square(
                     dimension: 80,
-                    child: Image.asset(imagePath!),
+                    child: Image.asset(imagePath!, semanticLabel: title),
                   ),
               ],
             ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';

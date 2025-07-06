@@ -84,61 +84,59 @@ class _FaqCardItem extends HookWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(30),
-        child: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: InkWell(
-            onTap: () => isExpanded.value = !isExpanded.value,
-            child: Column(
-              spacing: 10,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  spacing: 12,
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        item.question,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: FlutterLatamColors.white,
-                        ),
+        child: InkWell(
+          mouseCursor: SystemMouseCursors.click,
+          onTap: () => isExpanded.value = !isExpanded.value,
+          child: Column(
+            spacing: 10,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                spacing: 12,
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      item.question,
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: FlutterLatamColors.white,
                       ),
                     ),
-                    SizedBox.square(
-                      dimension: 32,
-                      child: DecoratedBox(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: FlutterLatamColors.mediumBlue,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 500),
-                            child: expandedIcon,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                if (isExpanded.value)
-                  Text(
-                    item.answer,
-                    style: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                      color: FlutterLatamColors.white,
-                    ),
-                  ).animate().fade(
-                    duration: 2.seconds,
-                    curve: Curves.fastOutSlowIn,
                   ),
-              ],
-            ),
+                  SizedBox.square(
+                    dimension: 32,
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: FlutterLatamColors.mediumBlue,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 500),
+                          child: expandedIcon,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              if (isExpanded.value)
+                Text(
+                  item.answer,
+                  style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    color: FlutterLatamColors.white,
+                  ),
+                ).animate().fade(
+                  duration: 2.seconds,
+                  curve: Curves.fastOutSlowIn,
+                ),
+            ],
           ),
         ),
       ),

@@ -80,6 +80,7 @@ class _LanguageItem extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         child: InkWell(
           onTap: onTap,
+          mouseCursor: SystemMouseCursors.click,
           child: Text(
             title.toUpperCase(),
             textAlign: TextAlign.center,
