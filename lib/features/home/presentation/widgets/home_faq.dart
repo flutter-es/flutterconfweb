@@ -8,6 +8,7 @@ import 'package:flutter_conf_latam/features/home/domain/models/faq/faq_model.dar
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -70,6 +71,7 @@ class _FaqCardItem extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
     final isExpanded = useState(false);
 
     const iconColor = FlutterLatamColors.white;
@@ -97,12 +99,7 @@ class _FaqCardItem extends HookWidget {
                   Expanded(
                     child: Text(
                       item.question,
-                      style: const TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: FlutterLatamColors.white,
-                      ),
+                      style: theme.typography.subH2Semibold,
                     ),
                   ),
                   SizedBox.square(
@@ -126,12 +123,7 @@ class _FaqCardItem extends HookWidget {
               if (isExpanded.value)
                 Text(
                   item.answer,
-                  style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    color: FlutterLatamColors.white,
-                  ),
+                  style: theme.typography.subH3Regular,
                 ).animate().fade(
                   duration: 2.seconds,
                   curve: Curves.fastOutSlowIn,

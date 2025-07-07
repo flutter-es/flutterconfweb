@@ -1,9 +1,10 @@
 part of '../fcl_button.dart';
 
 class _FclButtonStyle extends ButtonStyle {
-  const _FclButtonStyle({required this.buttonSize});
+  const _FclButtonStyle({required this.buttonSize, required this.theme});
 
   final ButtonSize buttonSize;
+  final ThemeData theme;
 
   @override
   AlignmentGeometry? get alignment => Alignment.center;
@@ -70,16 +71,10 @@ class _FclButtonStyle extends ButtonStyle {
   @override
   WidgetStateProperty<TextStyle?>? get textStyle {
     return WidgetStatePropertyAll(
-      TextStyle(
-        fontFamily: 'Poppins',
-        fontSize: switch (buttonSize) {
-          ButtonSize.small => 14,
-          ButtonSize.large => 18,
-        },
-        height: 1.5,
-        fontWeight: FontWeight.w500,
-        color: FlutterLatamColors.white,
-      ),
+      switch (buttonSize) {
+        ButtonSize.small => theme.fclThemeScheme.typography.buttonSmallMedium,
+        ButtonSize.large => theme.fclThemeScheme.typography.buttonNormalMedium,
+      },
     );
   }
 

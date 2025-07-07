@@ -19,6 +19,8 @@ class _ScheduleCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final scheduleTrack = scheduleTracks.firstOrNull;
 
@@ -53,14 +55,11 @@ class _ScheduleCard extends ConsumerWidget {
               scheduleTrack.startDate,
               scheduleTrack.endDate,
             ),
-            style: TextStyle(
-              fontFamily: 'Poppins',
+            style: theme.typography.subH2Semibold.copyWith(
               fontSize: switch (context.screenSize) {
                 ScreenSize.extraLarge || ScreenSize.large => 18,
                 ScreenSize.normal || ScreenSize.small => 14,
               },
-              fontWeight: FontWeight.w600,
-              color: FlutterLatamColors.white,
             ),
           ),
         ),
@@ -115,7 +114,9 @@ class _ScheduleDetail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
     final l10n = ref.watch(appLocalizationsProvider);
+
     final scheduleTypeTitle = switch (scheduleTrack.type) {
       ScheduleType.register => l10n.scheduleRegisterTitle,
       ScheduleType.keynote => l10n.scheduleKeynoteTitle,
@@ -139,27 +140,22 @@ class _ScheduleDetail extends ConsumerWidget {
       children: <Widget>[
         Text(
           scheduleTypeTitle,
-          style: TextStyle(
-            fontFamily: 'Poppins',
+          style: theme.typography.body4Regular.copyWith(
             fontSize: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 14,
               ScreenSize.normal || ScreenSize.small => 12,
             },
             fontWeight: FontWeight.bold,
-            color: FlutterLatamColors.white,
           ),
         ),
         if ((scheduleTrack.title ?? '').isNotEmpty)
           Text(
             scheduleTrack.title!,
-            style: TextStyle(
-              fontFamily: 'Poppins',
+            style: theme.typography.body3Light.copyWith(
               fontSize: switch (context.screenSize) {
                 ScreenSize.extraLarge || ScreenSize.large => 16,
                 ScreenSize.normal || ScreenSize.small => 12,
               },
-              fontWeight: FontWeight.w300,
-              color: FlutterLatamColors.white,
             ),
           ),
         if ((scheduleTrack.speakers ?? []).isNotEmpty)
@@ -188,6 +184,8 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
     final children = speakers.map((item) {
       final childrenItem = <Widget>[
         CircleAvatar(
@@ -201,14 +199,11 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
         ),
         Text(
           item.name,
-          style: TextStyle(
-            fontFamily: 'Poppins',
+          style: theme.typography.body3Light.copyWith(
             fontSize: switch (context.screenSize) {
               ScreenSize.extraLarge => 16,
               _ => 14,
             },
-            fontWeight: FontWeight.w300,
-            color: FlutterLatamColors.white,
           ),
         ),
       ];

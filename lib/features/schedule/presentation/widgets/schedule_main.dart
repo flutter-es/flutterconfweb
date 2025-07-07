@@ -11,6 +11,7 @@ import 'package:flutter_conf_latam/features/schedule/domain/models/schedule_resp
 import 'package:flutter_conf_latam/features/schedule/presentation/view_model/schedule_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -68,6 +69,7 @@ class _ScheduleDashboardContainer extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
     final l10n = ref.watch(appLocalizationsProvider);
 
     final selectedSchedule = useState(0);
@@ -106,14 +108,11 @@ class _ScheduleDashboardContainer extends HookConsumerWidget {
                     selectedSchedule.value + 1,
                     scheduleDays[selectedSchedule.value],
                   ),
-                  style: TextStyle(
-                    fontFamily: 'Recoleta',
+                  style: theme.typography.h4Bold.copyWith(
                     fontSize: switch (context.screenSize) {
                       ScreenSize.extraLarge || ScreenSize.large => 24,
                       ScreenSize.normal || ScreenSize.small => 16,
                     },
-                    fontWeight: FontWeight.bold,
-                    color: FlutterLatamColors.white,
                   ),
                 ),
               ),

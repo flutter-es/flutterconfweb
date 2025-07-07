@@ -8,6 +8,7 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,6 +17,7 @@ class Footer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
     final l10n = ref.watch(appLocalizationsProvider);
 
     final paddingHorizontal = switch (context.screenSize) {
@@ -70,12 +72,7 @@ class Footer extends ConsumerWidget {
           Center(
             child: Text(
               l10n.copyright(DateTime.now().year),
-              style: const TextStyle(
-                fontFamily: 'Recoleta',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: FlutterLatamColors.white,
-              ),
+              style: theme.typography.h4Bold.copyWith(fontSize: 16),
             ),
           ),
         ],
@@ -149,6 +146,8 @@ class _SocialPlace extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final footerImages = <String>[
       Assets.images.footer.one,
@@ -166,21 +165,11 @@ class _SocialPlace extends ConsumerWidget {
           children: <Widget>[
             Text(
               l10n.footerTitle,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: FlutterLatamColors.white,
-              ),
+              style: theme.typography.subH2Semibold,
             ),
             Text(
               l10n.footerDescription,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: FlutterLatamColors.white,
-              ),
+              style: theme.typography.body3Regular,
             ),
           ],
         ),
@@ -199,10 +188,7 @@ class _SocialPlace extends ConsumerWidget {
           onTap: () {},
           child: Text(
             l10n.footerSeeMore,
-            style: const TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
+            style: theme.typography.buttonNormalMedium.copyWith(
               color: FlutterLatamColors.mediumBlue,
               decoration: TextDecoration.underline,
               decorationColor: FlutterLatamColors.mediumBlue,
@@ -219,6 +205,8 @@ class _SocialVideos extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final videoList = <({String text, String url})>[
       (
@@ -241,21 +229,11 @@ class _SocialVideos extends ConsumerWidget {
           children: <Widget>[
             Text(
               l10n.footerMemoriesTitle,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: FlutterLatamColors.white,
-              ),
+              style: theme.typography.subH2Semibold,
             ),
             Text(
               l10n.footerMemoriesDescription,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: FlutterLatamColors.white,
-              ),
+              style: theme.typography.body3Regular,
             ),
           ],
         ),
@@ -270,11 +248,7 @@ class _SocialVideos extends ConsumerWidget {
                     onTap: () => Utils.launchUrlLink(item.url),
                     child: Text(
                       item.text,
-                      style: const TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: FlutterLatamColors.white,
+                      style: theme.typography.body3Regular.copyWith(
                         decoration: TextDecoration.underline,
                         decorationColor: FlutterLatamColors.white,
                       ),

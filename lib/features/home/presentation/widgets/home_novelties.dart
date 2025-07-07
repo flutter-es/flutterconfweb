@@ -8,6 +8,7 @@ import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeNovelties extends ConsumerWidget {
@@ -168,6 +169,8 @@ class _AppStoreSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
@@ -186,14 +189,11 @@ class _AppStoreSection extends ConsumerWidget {
       children: <Widget>[
         Text(
           l10n.homeNoveltiesAppSoon,
-          style: TextStyle(
-            fontFamily: 'Poppins',
+          style: theme.typography.body1Regular.copyWith(
             fontSize: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 24,
               ScreenSize.normal || ScreenSize.small => 16,
             },
-            fontWeight: FontWeight.w400,
-            color: FlutterLatamColors.white,
           ),
         ),
         Flex(

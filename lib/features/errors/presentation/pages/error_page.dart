@@ -6,6 +6,7 @@ import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,6 +15,7 @@ class ErrorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
     final l10n = ref.watch(appLocalizationsProvider);
 
     return Scaffold(
@@ -36,26 +38,24 @@ class ErrorPage extends ConsumerWidget {
             Text(
               l10n.errorPageTitle,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: theme.typography.h1Bold.copyWith(
                 color: FlutterLatamColors.grey,
                 fontSize: switch (context.screenSize) {
                   ScreenSize.extraLarge => 60,
                   ScreenSize.large => 50,
                   _ => 40,
                 },
-                fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               l10n.errorPageSubtitle,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: theme.typography.subH2Semibold.copyWith(
                 color: FlutterLatamColors.grey,
                 fontSize: switch (context.screenSize) {
                   ScreenSize.extraLarge => 30,
                   _ => 20,
                 },
-                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 40),

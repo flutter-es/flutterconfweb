@@ -6,6 +6,7 @@ import 'package:flutter_conf_latam/core/widgets/menu/sub_menu_button.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MobileDrawerMenu extends ConsumerWidget {
@@ -82,6 +83,8 @@ class _ItemDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: SizedBox(
@@ -101,10 +104,7 @@ class _ItemDrawer extends StatelessWidget {
                   },
                   child: Text(
                     item.label,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      color: FlutterLatamColors.white,
+                    style: theme.typography.body3Regular.copyWith(
                       fontWeight: switch (item.isSelected) {
                         true => FontWeight.w600,
                         false => FontWeight.w400,

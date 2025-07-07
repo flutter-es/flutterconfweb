@@ -11,6 +11,7 @@ import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeFeatures extends ConsumerWidget {
@@ -111,6 +112,8 @@ class _BuyTicketFeature extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
@@ -131,12 +134,7 @@ class _BuyTicketFeature extends ConsumerWidget {
               ScreenSize.small || ScreenSize.normal => TextAlign.center,
               _ => TextAlign.start,
             },
-            style: const TextStyle(
-              fontFamily: 'Recoleta',
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: FlutterLatamColors.white,
-            ),
+            style: theme.typography.h3Bold,
           ),
           Align(
             alignment: switch (context.screenSize) {

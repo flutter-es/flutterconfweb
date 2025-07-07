@@ -3,6 +3,7 @@ import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dar
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -52,7 +53,7 @@ class SubMenuButton extends HookWidget {
             value: item,
             child: Text(
               item.label,
-              style: _setMenuTextStyle(isSelected: item.isSelected),
+              style: _setMenuTextStyle(context, isSelected: item.isSelected),
             ),
           );
         }).toList();
@@ -64,7 +65,7 @@ class SubMenuButton extends HookWidget {
           FittedBox(
             child: Text(
               tabItem.label,
-              style: _setMenuTextStyle(isSelected: tabItem.isSelected),
+              style: _setMenuTextStyle(context, isSelected: tabItem.isSelected),
             ),
           ),
           SvgPicture.asset(
@@ -77,11 +78,8 @@ class SubMenuButton extends HookWidget {
     );
   }
 
-  TextStyle _setMenuTextStyle({bool isSelected = false}) {
-    return TextStyle(
-      fontFamily: 'Poppins',
-      fontSize: 16,
-      color: FlutterLatamColors.white,
+  TextStyle _setMenuTextStyle(BuildContext context, {bool isSelected = false}) {
+    return context.theme.fclThemeScheme.typography.body3Regular.copyWith(
       fontWeight: switch (isSelected) {
         true => FontWeight.w600,
         false => FontWeight.w400,

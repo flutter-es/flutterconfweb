@@ -8,6 +8,7 @@ import 'package:flutter_conf_latam/features/home/domain/models/sponsors/sponsor_
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -91,6 +92,8 @@ class _SponsorCardContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
     return Card(
       color: FlutterLatamColors.darkBlue,
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -135,14 +138,11 @@ class _SponsorCardContainer extends StatelessWidget {
                             SponsorLevel.silver => l10n.homeSponsorSilver,
                             SponsorLevel.inKind => l10n.homeSponsorInKind,
                           },
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
+                          style: theme.typography.subH2Semibold.copyWith(
                             fontSize: switch (context.screenSize) {
                               ScreenSize.extraLarge => 32,
                               _ => 24,
                             },
-                            fontWeight: FontWeight.w600,
-                            color: FlutterLatamColors.white,
                           ),
                         );
                       },

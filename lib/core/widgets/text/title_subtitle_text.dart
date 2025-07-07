@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 
 typedef TextWithSize = ({String text, double size});
 
@@ -21,6 +22,8 @@ class TitleSubtitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
     return Column(
       spacing: spacing,
       mainAxisSize: MainAxisSize.min,
@@ -29,21 +32,13 @@ class TitleSubtitleText extends StatelessWidget {
         Text(
           title.text,
           textAlign: textAlign,
-          style: TextStyle(
-            fontFamily: 'Recoleta',
-            fontSize: title.size,
-            fontWeight: FontWeight.bold,
-            color: FlutterLatamColors.white,
-          ),
+          style: theme.typography.h1Bold.copyWith(fontSize: title.size),
         ),
         Text(
           subtitle.text,
           textAlign: textAlign,
-          style: TextStyle(
-            fontFamily: 'Poppins',
+          style: theme.typography.subH1Regular.copyWith(
             fontSize: subtitle.size,
-            fontWeight: FontWeight.w400,
-            color: FlutterLatamColors.white,
           ),
         ),
       ],

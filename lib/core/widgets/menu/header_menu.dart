@@ -5,6 +5,7 @@ import 'package:flutter_conf_latam/core/widgets/menu/language_button.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/sub_menu_button.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class HeaderMenu extends HookWidget {
@@ -15,6 +16,7 @@ class HeaderMenu extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
     final tabController = useTabController(
       initialLength: tabItems.length,
       initialIndex: tabItems.indexWhere((item) => item.isSelected),
@@ -62,10 +64,7 @@ class HeaderMenu extends HookWidget {
                       Tab(
                         child: Text(
                           item.label,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16,
-                            color: FlutterLatamColors.white,
+                          style: theme.typography.body3Regular.copyWith(
                             fontWeight: switch (item.isSelected) {
                               true => FontWeight.w600,
                               false => FontWeight.w400,

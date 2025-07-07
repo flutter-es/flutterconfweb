@@ -10,6 +10,7 @@ import 'package:flutter_conf_latam/features/home/domain/models/tickets/tickets_m
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePricing extends ConsumerWidget {
@@ -71,6 +72,8 @@ class _PricingCardItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
@@ -100,10 +103,7 @@ class _PricingCardItem extends ConsumerWidget {
             child: Center(
               child: Text(
                 detail.title,
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w400,
+                style: theme.typography.body1Regular.copyWith(
                   color: switch (detail.type) {
                     TicketType.early => FlutterLatamColors.darkBlue,
                     _ => FlutterLatamColors.white,
@@ -127,9 +127,7 @@ class _PricingCardItem extends ConsumerWidget {
                   children: <Widget>[
                     Text(
                       l10n.homePricingEndDate(detail.endDate),
-                      style: TextStyle(
-                        fontFamily: 'Recoleta',
-                        fontSize: 24,
+                      style: theme.typography.body1Regular.copyWith(
                         fontWeight: FontWeight.w700,
                         color: switch (detail.type) {
                           TicketType.early => FlutterLatamColors.lightYellow,
@@ -140,14 +138,11 @@ class _PricingCardItem extends ConsumerWidget {
                     ),
                     Text(
                       '\$ ${detail.price.toStringAsFixed(0)}',
-                      style: TextStyle(
-                        fontFamily: 'Recoleta',
+                      style: theme.typography.h1Bold.copyWith(
                         fontSize: switch (context.screenSize) {
                           ScreenSize.extraLarge || ScreenSize.large => 64,
                           _ => 32,
                         },
-                        fontWeight: FontWeight.w700,
-                        color: FlutterLatamColors.white,
                       ),
                     ),
                     ...[
@@ -156,26 +151,19 @@ class _PricingCardItem extends ConsumerWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const Text(
+                            Text(
                               '\u2022 ',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: FlutterLatamColors.white,
-                              ),
+                              style: theme.typography.body2Regular,
                             ),
                             Expanded(
                               child: Text(
                                 item,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: switch (context.screenSize) {
-                                    ScreenSize.extraLarge ||
-                                    ScreenSize.large => 18,
-                                    ScreenSize.normal || ScreenSize.small => 16,
-                                  },
-                                  fontWeight: FontWeight.w400,
-                                  color: FlutterLatamColors.white,
-                                ),
+                                style: switch (context.screenSize) {
+                                  ScreenSize.extraLarge || ScreenSize.large =>
+                                    theme.typography.body2Regular,
+                                  ScreenSize.normal || ScreenSize.small =>
+                                    theme.typography.body3Regular,
+                                },
                               ),
                             ),
                           ],

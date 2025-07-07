@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 
 part 'style/fcl_button_style.dart';
 
@@ -41,9 +42,13 @@ class FclButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: switch (variant) {
-        ButtonVariant.primary => _FclButtonStylePrimary(buttonSize: buttonSize),
+        ButtonVariant.primary => _FclButtonStylePrimary(
+          buttonSize: buttonSize,
+          theme: context.theme,
+        ),
         ButtonVariant.secondary => _FclButtonStyleSecondary(
           buttonSize: buttonSize,
+          theme: context.theme,
         ),
       },
       onPressed: onPressed,

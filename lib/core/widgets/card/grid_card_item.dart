@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 
 class GridCardItem extends StatelessWidget {
   const GridCardItem({
@@ -20,6 +21,8 @@ class GridCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
     return Card(
       color: const Color(0xFF2E5288),
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -37,15 +40,10 @@ class GridCardItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(
-                      fontFamily: 'Recoleta',
-                      fontSize: switch (context.screenSize) {
-                        ScreenSize.extraLarge => 32,
-                        _ => 24,
-                      },
-                      fontWeight: FontWeight.bold,
-                      color: FlutterLatamColors.white,
-                    ),
+                    style: switch (context.screenSize) {
+                      ScreenSize.extraLarge => theme.typography.h3Bold,
+                      _ => theme.typography.h4Bold,
+                    },
                   ),
                 ),
                 if (imagePath != null)
@@ -62,7 +60,7 @@ class GridCardItem extends StatelessWidget {
                   if (url != null)
                     TextSpan(
                       text: url!.text,
-                      style: const TextStyle(
+                      style: theme.typography.body3Regular.copyWith(
                         decoration: TextDecoration.underline,
                         decorationColor: FlutterLatamColors.white,
                       ),
@@ -71,12 +69,7 @@ class GridCardItem extends StatelessWidget {
                     ),
                 ],
               ),
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: FlutterLatamColors.white,
-              ),
+              style: theme.typography.body3Regular,
             ),
           ],
         ),

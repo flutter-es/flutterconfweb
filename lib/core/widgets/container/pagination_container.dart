@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PaginationContainer extends ConsumerWidget {
@@ -155,6 +156,7 @@ class _PaginationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
     final background = isActive ? FlutterLatamColors.blue : Colors.transparent;
 
     return OutlinedButton(
@@ -170,12 +172,7 @@ class _PaginationButton extends StatelessWidget {
               : const BorderSide(color: FlutterLatamColors.white, width: 1.5),
           borderRadius: const BorderRadius.all(Radius.circular(6)),
         ),
-        textStyle: const TextStyle(
-          fontFamily: 'Poppins',
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-          color: FlutterLatamColors.white,
-        ),
+        textStyle: theme.typography.body2Regular,
       ),
       onPressed: onPressed,
       child: Semantics(

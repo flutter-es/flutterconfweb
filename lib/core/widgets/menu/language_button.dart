@@ -5,6 +5,7 @@ import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/l10n/support_locale.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LanguageButton extends ConsumerWidget {
@@ -75,6 +76,8 @@ class _LanguageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
     return Center(
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -84,9 +87,8 @@ class _LanguageItem extends StatelessWidget {
           child: Text(
             title.toUpperCase(),
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'Recoleta',
-              fontWeight: FontWeight.w600,
+            style: theme.typography.h4Bold.copyWith(
+              fontSize: 16,
               color: switch (isActive) {
                 true => FlutterLatamColors.white,
                 false => FlutterLatamColors.darkBlue,

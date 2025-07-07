@@ -9,8 +9,8 @@ import 'package:flutter_conf_latam/core/widgets/images/carousel_images.dart';
 import 'package:flutter_conf_latam/core/widgets/text/adaptable_text.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -21,6 +21,8 @@ class VenueMain extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
+
+    final theme = context.theme.fclThemeScheme;
 
     final carouselImageUrls = <String>[
       Assets.images.venue.one,
@@ -92,16 +94,12 @@ class VenueMain extends ConsumerWidget {
                             ),
                             AdaptableText(
                               item.text,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: switch (context.screenSize) {
-                                  ScreenSize.extraLarge ||
-                                  ScreenSize.large => 24,
-                                  ScreenSize.normal || ScreenSize.small => 16,
-                                },
-                                fontWeight: FontWeight.w400,
-                                color: FlutterLatamColors.white,
-                              ),
+                              style: switch (context.screenSize) {
+                                ScreenSize.extraLarge || ScreenSize.large =>
+                                  theme.typography.body1Regular,
+                                ScreenSize.normal || ScreenSize.small =>
+                                  theme.typography.body3Regular,
+                              },
                             ),
                           ],
                         ),
