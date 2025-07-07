@@ -81,6 +81,10 @@ class FclTheme {
               fontWeight: FontWeight.w400,
               color: FlutterLatamColors.white,
             ),
+            body3Light: FlutterLatamTypography.body3.copyWith(
+              fontWeight: FontWeight.w300,
+              color: FlutterLatamColors.white,
+            ),
             body4Regular: FlutterLatamTypography.body4.copyWith(
               fontWeight: FontWeight.w400,
               color: FlutterLatamColors.white,

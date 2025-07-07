@@ -14,6 +14,7 @@ class FclTypographyScheme extends ThemeExtension<FclTypographyScheme> {
     required this.body1Regular,
     required this.body2Regular,
     required this.body3Regular,
+    required this.body3Light,
     required this.body4Regular,
     required this.captionRegular,
   });
@@ -33,6 +34,7 @@ class FclTypographyScheme extends ThemeExtension<FclTypographyScheme> {
   final TextStyle body1Regular;
   final TextStyle body2Regular;
   final TextStyle body3Regular;
+  final TextStyle body3Light;
   final TextStyle body4Regular;
 
   final TextStyle captionRegular;
@@ -51,6 +53,7 @@ class FclTypographyScheme extends ThemeExtension<FclTypographyScheme> {
     TextStyle? body1Regular,
     TextStyle? body2Regular,
     TextStyle? body3Regular,
+    TextStyle? body3Light,
     TextStyle? body4Regular,
     TextStyle? captionRegular,
   }) {
@@ -67,6 +70,7 @@ class FclTypographyScheme extends ThemeExtension<FclTypographyScheme> {
       body1Regular: body1Regular ?? this.body1Regular,
       body2Regular: body2Regular ?? this.body2Regular,
       body3Regular: body3Regular ?? this.body3Regular,
+      body3Light: body3Light ?? this.body3Light,
       body4Regular: body4Regular ?? this.body4Regular,
       captionRegular: captionRegular ?? this.captionRegular,
     );
@@ -100,6 +104,7 @@ class FclTypographyScheme extends ThemeExtension<FclTypographyScheme> {
       body1Regular: _lerpTextStyle(body1Regular, other.body1Regular, t),
       body2Regular: _lerpTextStyle(body2Regular, other.body2Regular, t),
       body3Regular: _lerpTextStyle(body3Regular, other.body3Regular, t),
+      body3Light: _lerpTextStyle(body3Light, other.body3Light, t),
       body4Regular: _lerpTextStyle(body4Regular, other.body4Regular, t),
       captionRegular: _lerpTextStyle(captionRegular, other.captionRegular, t),
     );
