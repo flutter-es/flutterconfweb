@@ -97,11 +97,14 @@ class $AssetsImagesGen {
 class $AssetsMarkdownGen {
   const $AssetsMarkdownGen();
 
-  /// File path: assets/markdown/privacy_policy.md
-  String get privacyPolicy => 'assets/markdown/privacy_policy.md';
+  /// File path: assets/markdown/privacy_policy_en.md
+  String get privacyPolicyEn => 'assets/markdown/privacy_policy_en.md';
+
+  /// File path: assets/markdown/privacy_policy_es.md
+  String get privacyPolicyEs => 'assets/markdown/privacy_policy_es.md';
 
   /// List of all assets
-  List<String> get values => [privacyPolicy];
+  List<String> get values => [privacyPolicyEn, privacyPolicyEs];
 }
 
 class $AssetsImagesAboutGen {
