@@ -29,13 +29,17 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
         ],
       ),
       NavigationItemModel(
-        label: l10n.menuGalleryText,
-        route: '/${AppRoutePath.gallery.pathName}',
+        label: l10n.menuPricingText,
+        route: '/${AppRoutePath.pricing.pathName}',
       ),
       NavigationItemModel(
         label: l10n.menuScheduleText,
         route: '/${AppRoutePath.schedule.pathName}',
         visible: false,
+      ),
+      NavigationItemModel(
+        label: l10n.menuGalleryText,
+        route: '/${AppRoutePath.gallery.pathName}',
       ),
       NavigationItemModel(
         label: l10n.menuContactText,
