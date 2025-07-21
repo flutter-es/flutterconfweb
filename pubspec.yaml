@@ -33,6 +33,7 @@ dependencies:
   hooks_riverpod: ^2.6.1
   intl: ^0.20.2
   json_annotation: ^4.9.0
+  markdown_widget: ^2.3.2+8
   rive: ^0.13.20
   shared_preferences: ^2.5.3
   timezone: ^0.10.1
@@ -78,6 +79,7 @@ flutter:
     - assets/images/novelties/
     - assets/images/sponsors/
     - assets/images/venue/
+    - assets/markdown/
 
   fonts:
     - family: Recoleta
