@@ -6,20 +6,20 @@ import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/home/domain/models/tickets/tickets_model.dart';
-import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
+import 'package:flutter_conf_latam/features/pricing/domain/models/tickets/tickets_model.dart';
+import 'package:flutter_conf_latam/features/pricing/presentation/view_model/pricing_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePricing extends ConsumerWidget {
-  const HomePricing({super.key});
+class PricingMain extends ConsumerWidget {
+  const PricingMain({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final pricingList = ref.watch(ticketsProvider(Locale(l10n.localeName)));
+    final pricingList = ref.watch(pricingProvider(Locale(l10n.localeName)));
 
     return pricingList.maybeWhen(
       data: (data) {
