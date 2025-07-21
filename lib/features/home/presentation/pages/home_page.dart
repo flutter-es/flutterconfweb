@@ -6,7 +6,6 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/home_faq.d
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_pricing.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_sponsors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,7 +34,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             const HomeMain(),
             const HomeFeatures(),
             const HomeNovelties(),
-            const HomePricing(),
             const HomeCollaborations(),
             const HomeSponsors(),
             const HomeFaq(),
