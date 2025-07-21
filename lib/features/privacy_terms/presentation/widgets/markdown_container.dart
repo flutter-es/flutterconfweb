@@ -89,7 +89,7 @@ class MarkdownContainer extends StatelessWidget {
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: theme.colorScheme.neutral,
+                          color: theme.colorScheme.inverseNeutral,
                         ),
                       ),
                     ),
