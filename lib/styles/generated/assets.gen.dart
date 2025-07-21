@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 class $AssetsAnimationsGen {
   const $AssetsAnimationsGen();
@@ -90,6 +92,16 @@ class $AssetsImagesGen {
     fclTextWhite,
     flutterLogoWhite,
   ];
+}
+
+class $AssetsMarkdownGen {
+  const $AssetsMarkdownGen();
+
+  /// File path: assets/markdown/privacy_policy.md
+  String get privacyPolicy => 'assets/markdown/privacy_policy.md';
+
+  /// List of all assets
+  List<String> get values => [privacyPolicy];
 }
 
 class $AssetsImagesAboutGen {
@@ -319,4 +331,5 @@ class Assets {
   static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
   static const $AssetsFilesGen files = $AssetsFilesGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsMarkdownGen markdown = $AssetsMarkdownGen();
 }
