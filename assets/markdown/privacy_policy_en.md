@@ -21,8 +21,6 @@ We may collect the following categories of data:
 * Usage data such as screen views, navigation patterns
 * Diagnostic and crash logs (via Firebase Crashlytics)
 
----
-
 ### **2. Legal Basis for Processing**
 
 We process personal data based on:
@@ -30,8 +28,6 @@ We process personal data based on:
 * **Consent**: for optional services such as notifications or personalized schedules
 * **Contractual necessity**: to provide core functionality of the app
 * **Legitimate interest**: to improve services, ensure security, and analyze anonymized usage patterns
-
----
 
 ### **3. How We Use Your Information**
 
@@ -45,8 +41,6 @@ We use the collected information to:
 
 We do **not** sell, rent, or share your personal data with third parties for commercial purposes.
 
----
-
 ### **4. Data Sharing and Processing**
 
 Your information may be shared with trusted third-party service providers solely for operational purposes, such as:
@@ -57,19 +51,13 @@ Your information may be shared with trusted third-party service providers solely
 All third-party vendors adhere to data protection standards, and data may be processed in compliance with international
 data transfer mechanisms such as SCCs or the Data Privacy Framework.
 
----
-
 ### **5. Data Storage and Location**
 
 Some data may be processed or stored on servers located outside your country. Core event operations are managed on-site at **UDLA Park, Quito, Ecuador**, during the Flutter Conf Latam 2025 event. Data is encrypted and securely stored in cloud environments with restricted access.
 
----
-
 ### **6. Data Retention**
 
 We retain user data only for as long as it is necessary to fulfill the purposes outlined in this Policy, or as required by law. You may request deletion of your personal data at any time by contacting us.
-
----
 
 ### **7. Your Rights**
 
@@ -85,13 +73,9 @@ You may exercise these rights by contacting us at:
 
 📧 **flutterconflatam@gmail.com**
 
----
-
 ### **8. Children’s Privacy**
 
 This app is not directed to individuals under the age of 13. We do not knowingly collect personal data from children. If such information is found to be collected unintentionally, it will be promptly deleted.
-
----
 
 ### **9. Data Security**
 
@@ -103,13 +87,9 @@ We implement industry-standard measures including:
 
 Despite our efforts, no digital platform can guarantee absolute security.
 
----
-
 ### **10. Changes to this Policy**
 
 We may update this Privacy Policy as needed to reflect legal, operational, or technological changes. If any significant changes are made, we will notify users within the app or via the event website.
-
----
 
 ### **11. Contact Us**
 
