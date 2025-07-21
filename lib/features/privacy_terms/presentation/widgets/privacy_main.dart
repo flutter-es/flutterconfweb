@@ -24,57 +24,86 @@ class TermsMain extends ConsumerWidget {
         final theme = context.theme.fclThemeScheme;
         final bodyTextStyle = switch (context.screenSize) {
           ScreenSize.extraLarge ||
-          ScreenSize.large => theme.typography.body1Regular,
+          ScreenSize.large => theme.typography.body1Regular.copyWith(
+            color: theme.colorScheme.inverseNeutral,
+          ),
           ScreenSize.normal ||
-          ScreenSize.small => theme.typography.body3Regular,
+          ScreenSize.small => theme.typography.body3Regular.copyWith(
+            color: theme.colorScheme.inverseNeutral,
+          ),
         };
 
-        return SectionContainer(
-          spacing: 30,
-          children: <Widget>[
-            MarkdownWidget(
-              data: data,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              config: MarkdownConfig(
-                configs: [
-                  H1Config(style: theme.typography.h1Bold),
-                  H2Config(style: theme.typography.h2Bold),
-                  H3Config(style: theme.typography.h3Bold),
-                  H4Config(style: theme.typography.h4Bold),
-                  H5Config(
-                    style: theme.typography.h4Bold.copyWith(fontSize: 20),
-                  ),
-                  H6Config(
-                    style: theme.typography.h4Bold.copyWith(fontSize: 18),
-                  ),
-                  PConfig(textStyle: bodyTextStyle),
-                  LinkConfig(
-                    style: bodyTextStyle.copyWith(
-                      color: FlutterLatamColors.mediumBlue,
-                      decoration: TextDecoration.underline,
-                      decorationColor: FlutterLatamColors.mediumBlue,
+        return ColoredBox(
+          color: theme.colorScheme.neutral,
+          child: SectionContainer(
+            spacing: 30,
+            children: <Widget>[
+              MarkdownWidget(
+                data: data,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                config: MarkdownConfig(
+                  configs: [
+                    H1Config(
+                      style: theme.typography.h1Bold.copyWith(
+                        color: theme.colorScheme.inverseNeutral,
+                      ),
                     ),
-                    onTap: Utils.launchUrlLink,
-                  ),
-                  ListConfig(
-                    marker: (_, _, _) => Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: SizedBox.square(
-                        dimension: 6,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: theme.colorScheme.neutral,
+                    H2Config(
+                      style: theme.typography.h2Bold.copyWith(
+                        color: theme.colorScheme.inverseNeutral,
+                      ),
+                    ),
+                    H3Config(
+                      style: theme.typography.h3Bold.copyWith(
+                        color: theme.colorScheme.inverseNeutral,
+                      ),
+                    ),
+                    H4Config(
+                      style: theme.typography.h4Bold.copyWith(
+                        color: theme.colorScheme.inverseNeutral,
+                      ),
+                    ),
+                    H5Config(
+                      style: theme.typography.h4Bold.copyWith(
+                        fontSize: 20,
+                        color: theme.colorScheme.inverseNeutral,
+                      ),
+                    ),
+                    H6Config(
+                      style: theme.typography.h4Bold.copyWith(
+                        fontSize: 18,
+                        color: theme.colorScheme.inverseNeutral,
+                      ),
+                    ),
+                    PConfig(textStyle: bodyTextStyle),
+                    LinkConfig(
+                      style: bodyTextStyle.copyWith(
+                        color: FlutterLatamColors.mediumBlue,
+                        decoration: TextDecoration.underline,
+                        decorationColor: FlutterLatamColors.mediumBlue,
+                      ),
+                      onTap: Utils.launchUrlLink,
+                    ),
+                    ListConfig(
+                      marker: (_, _, _) => Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: SizedBox.square(
+                          dimension: 6,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: theme.colorScheme.neutral,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
       orElse: Offstage.new,
