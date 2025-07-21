@@ -21,6 +21,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get menuOrganizersText => 'Organizers';
 
   @override
+  String get menuPricingText => 'Pricing';
+
+  @override
   String get menuScheduleText => 'Schedule';
 
   @override

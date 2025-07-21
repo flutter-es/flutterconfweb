@@ -122,6 +122,12 @@ abstract class AppLocalizations {
   /// **'Organizers'**
   String get menuOrganizersText;
 
+  /// No description provided for @menuPricingText.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing'**
+  String get menuPricingText;
+
   /// No description provided for @menuScheduleText.
   ///
   /// In en, this message translates to:
