@@ -3,6 +3,7 @@ import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dar
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/view_model/privacy_terms_view_model.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,11 +14,14 @@ class TermsMain extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = context.theme.fclThemeScheme;
-    final privacyPolicyData = ref.watch(privacyPolicyProvider);
+    final l10n = ref.watch(appLocalizationsProvider);
+    final privacyPolicyData = ref.watch(
+      privacyPolicyProvider(Locale(l10n.localeName)),
+    );
 
     return privacyPolicyData.maybeWhen(
       data: (data) {
+        final theme = context.theme.fclThemeScheme;
         final bodyTextStyle = switch (context.screenSize) {
           ScreenSize.extraLarge ||
           ScreenSize.large => theme.typography.body1Regular,
