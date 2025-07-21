@@ -11,3 +11,11 @@ final privacyPolicyProvider = FutureProvider.family((ref, Locale locale) async {
   };
   return rootBundle.loadString(filePath);
 });
+
+final termsProvider = FutureProvider.family((ref, Locale locale) async {
+  final filePath = switch (locale.languageCode) {
+    'en' => Assets.markdown.termsAndConditionsEn,
+    _ => Assets.markdown.termsAndConditionsEs,
+  };
+  return rootBundle.loadString(filePath);
+});
