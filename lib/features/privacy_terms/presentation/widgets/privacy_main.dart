@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
+import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
+import 'package:flutter_conf_latam/features/privacy_terms/presentation/view_model/privacy_terms_view_model.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:markdown_widget/markdown_widget.dart';
+
+class TermsMain extends ConsumerWidget {
+  const TermsMain({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = context.theme.fclThemeScheme;
+    final privacyPolicyData = ref.watch(privacyPolicyProvider);
+
+    return privacyPolicyData.maybeWhen(
+      data: (data) {
+        final bodyTextStyle = switch (context.screenSize) {
+          ScreenSize.extraLarge ||
+          ScreenSize.large => theme.typography.body1Regular,
+          ScreenSize.normal ||
+          ScreenSize.small => theme.typography.body3Regular,
+        };
+
+        return SectionContainer(
+          spacing: 30,
+          children: <Widget>[
+            MarkdownWidget(
+              data: data,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              config: MarkdownConfig(
+                configs: [
+                  H1Config(style: theme.typography.h1Bold),
+                  H2Config(style: theme.typography.h2Bold),
+                  H3Config(style: theme.typography.h3Bold),
+                  H4Config(style: theme.typography.h4Bold),
+                  H5Config(
+                    style: theme.typography.h4Bold.copyWith(fontSize: 20),
+                  ),
+                  H6Config(
+                    style: theme.typography.h4Bold.copyWith(fontSize: 18),
+                  ),
+                  PConfig(textStyle: bodyTextStyle),
+                  LinkConfig(
+                    style: bodyTextStyle.copyWith(
+                      color: FlutterLatamColors.mediumBlue,
+                      decoration: TextDecoration.underline,
+                      decorationColor: FlutterLatamColors.mediumBlue,
+                    ),
+                    onTap: Utils.launchUrlLink,
+                  ),
+                  ListConfig(
+                    marker: (_, _, _) => Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: SizedBox.square(
+                        dimension: 6,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: theme.colorScheme.neutral,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+      orElse: Offstage.new,
+    );
+  }
+}
