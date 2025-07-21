@@ -1,9 +1,6 @@
 **Effective Date:** July 17, 2025
 
-This Privacy Policy explains how **Flutter Conf Latam 2025** ("we", "our", or "us") collects, uses, discloses, and
-protects your personal data when you use our official mobile application (the "App"). We are committed to safeguarding
-your privacy and ensuring transparency in accordance with applicable data protection laws, including the General Data
-Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and similar frameworks.
+This Privacy Policy explains how **Flutter Conf Latam 2025** ("we", "our", or "us") collects, uses, discloses, and protects your personal data when you use our official mobile application (the "App"). We are committed to safeguarding your privacy and ensuring transparency in accordance with applicable data protection laws, including the General Data Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and similar frameworks.
 
 ### **1\. Information We Collect**
 
@@ -54,14 +51,11 @@ data transfer mechanisms such as SCCs or the Data Privacy Framework.
 
 ### **5\. Data Storage and Location**
 
-Some data may be processed or stored on servers located outside of your country. Core event operations are managed
-on-site at **UDLA Park, Quito, Ecuador**, during the Flutter Conf Latam 2025 event. Data is encrypted and securely stored
-in cloud environments with restricted access.
+Some data may be processed or stored on servers located outside your country. Core event operations are managed on-site at **UDLA Park, Quito, Ecuador**, during the Flutter Conf Latam 2025 event. Data is encrypted and securely stored in cloud environments with restricted access.
 
 ### **6\. Data Retention**
 
-We retain user data only for as long as it is necessary to fulfill the purposes outlined in this Policy, or as required
-by law. You may request deletion of your personal data at any time by contacting us.
+We retain user data only for as long as it is necessary to fulfill the purposes outlined in this Policy, or as required by law. You may request deletion of your personal data at any time by contacting us.
 
 ### **7\. Your Rights**
 
@@ -79,8 +73,7 @@ You may exercise these rights by contacting us at:
 
 ### **8\. Children’s Privacy**
 
-This app is not directed to individuals under the age of 13. We do not knowingly collect personal data from children. If
-such information is found to be collected unintentionally, it will be promptly deleted.
+This app is not directed to individuals under the age of 13. We do not knowingly collect personal data from children. If such information is found to be collected unintentionally, it will be promptly deleted.
 
 ### **9\. Data Security**
 
@@ -94,8 +87,7 @@ Despite our efforts, no digital platform can guarantee absolute security.
 
 ### **10\. Changes to this Policy**
 
-We may update this Privacy Policy as needed to reflect legal, operational, or technological changes. If any significant
-changes are made, we will notify users within the app or via the event website.
+We may update this Privacy Policy as needed to reflect legal, operational, or technological changes. If any significant changes are made, we will notify users within the app or via the event website.
 
 ### **11\. Contact Us**
 
