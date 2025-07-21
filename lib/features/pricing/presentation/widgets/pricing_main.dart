@@ -22,44 +22,42 @@ class PricingMain extends ConsumerWidget {
     final pricingList = ref.watch(pricingProvider(Locale(l10n.localeName)));
 
     return pricingList.maybeWhen(
-      data: (data) {
-        return SectionContainer(
-          spacing: 30,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.homePricingTitle,
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 64,
-                  ScreenSize.large => 48,
-                  ScreenSize.normal || ScreenSize.small => 24,
-                },
-              ),
-              subtitle: (
-                text: l10n.homePricingDescription,
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 16,
-                },
-              ),
-              spacing: 12,
-            ),
-            ResponsiveGrid(
-              columnSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge => 3,
-                _ => 1,
+      data: (data) => SectionContainer(
+        spacing: 30,
+        children: <Widget>[
+          TitleSubtitleText(
+            title: (
+              text: l10n.homePricingTitle,
+              size: switch (context.screenSize) {
+                ScreenSize.extraLarge => 64,
+                ScreenSize.large => 48,
+                ScreenSize.normal || ScreenSize.small => 24,
               },
-              rowSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge => 3,
-                _ => data.length,
-              },
-              children: <Widget>[
-                for (final item in data) _PricingCardItem(detail: item),
-              ],
             ),
-          ],
-        );
-      },
+            subtitle: (
+              text: l10n.homePricingDescription,
+              size: switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => 24,
+                ScreenSize.normal || ScreenSize.small => 16,
+              },
+            ),
+            spacing: 12,
+          ),
+          ResponsiveGrid(
+            columnSizes: switch (context.screenSize) {
+              ScreenSize.extraLarge => 3,
+              _ => 1,
+            },
+            rowSizes: switch (context.screenSize) {
+              ScreenSize.extraLarge => 3,
+              _ => data.length,
+            },
+            children: <Widget>[
+              for (final item in data) _PricingCardItem(detail: item),
+            ],
+          ),
+        ],
+      ),
       orElse: Offstage.new,
     );
   }
