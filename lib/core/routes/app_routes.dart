@@ -9,6 +9,7 @@ import 'package:flutter_conf_latam/features/gallery/presentation/pages/gallery_p
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/pages/organizers_page.dart';
 import 'package:flutter_conf_latam/features/pricing/presentation/pages/pricing_page.dart';
+import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/privacy_page.dart';
 import 'package:flutter_conf_latam/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/pages/venue_page.dart';
@@ -82,6 +83,13 @@ class AppRoutes {
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: ContactPage());
+                },
+              ),
+              GoRoute(
+                path: '/${AppRoutePath.privacyPolicy.pathName}',
+                parentNavigatorKey: _tabRoutesKeys,
+                pageBuilder: (_, _) {
+                  return const NoTransitionPage(child: PrivacyPage());
                 },
               ),
             ],

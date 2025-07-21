@@ -6,7 +6,8 @@ enum AppRoutePath {
   pricing('pricing'),
   schedule('schedule'),
   gallery('gallery'),
-  contact('contact');
+  contact('contact'),
+  privacyPolicy('privacy-policy');
 
   const AppRoutePath(this.pathName);
 
