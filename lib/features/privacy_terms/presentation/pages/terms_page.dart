@@ -43,11 +43,9 @@ class _TermsMain extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final privacyPolicyData = ref.watch(
-      privacyPolicyProvider(Locale(l10n.localeName)),
-    );
+    final termsData = ref.watch(termsProvider(Locale(l10n.localeName)));
 
-    return privacyPolicyData.maybeWhen(
+    return termsData.maybeWhen(
       data: (data) => MarkdownContainer(markdownData: data),
       orElse: Offstage.new,
     );
