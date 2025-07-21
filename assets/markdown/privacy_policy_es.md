@@ -2,6 +2,8 @@
 
 Esta Política de Privacidad explica cómo **Flutter Conf Latam 2025** ("nosotros", "nuestro" o "nos") recopila, utiliza, divulga y protege sus datos personales cuando utiliza nuestra aplicación móvil oficial (la "Aplicación"). Nos comprometemos a salvaguardar su privacidad y a garantizar la transparencia de acuerdo con las leyes de protección de datos aplicables, incluyendo el Reglamento General de Protección de Datos (GDPR), la Ley de Privacidad del Consumidor de California (CCPA) y marcos similares.
 
+---
+
 ### **1. Información que Recopilamos**
 
 Podemos recopilar las siguientes categorías de datos:
@@ -19,6 +21,8 @@ Podemos recopilar las siguientes categorías de datos:
 * Datos de uso, como vistas de pantalla, patrones de navegación
 * Registros de diagnóstico y fallos (a través de Firebase Crashlytics)
 
+---
+
 ### **2. Base Legal para el Procesamiento**
 
 Procesamos datos personales basándonos en:
@@ -26,6 +30,8 @@ Procesamos datos personales basándonos en:
 * **Consentimiento**: para servicios opcionales como notificaciones o horarios personalizados
 * **Necesidad contractual**: para proporcionar la funcionalidad principal de la aplicación
 * **Interés legítimo**: para mejorar los servicios, garantizar la seguridad y analizar patrones de uso anonimizados
+
+---
 
 ### **3. Cómo Usamos Su Información**
 
@@ -39,6 +45,8 @@ Utilizamos la información recopilada para:
 
 **No** vendemos, alquilamos ni compartimos sus datos personales con terceros para fines comerciales.
 
+---
+
 ### **4. Intercambio y Procesamiento de Datos**
 
 Su información puede ser compartida con proveedores de servicios externos de confianza únicamente para fines operativos, tales como:
@@ -48,13 +56,19 @@ Su información puede ser compartida con proveedores de servicios externos de co
 
 Todos los proveedores externos cumplen con los estándares de protección de datos, y los datos pueden procesarse de conformidad con mecanismos internacionales de transferencia de datos como las Cláusulas Contractuales Tipo (SCC) o el Marco de Privacidad de Datos.
 
+---
+
 ### **5. Almacenamiento y Ubicación de Datos**
 
 Algunos datos pueden ser procesados o almacenados en servidores ubicados fuera de su país. Las operaciones principales del evento se gestionan in situ en **UDLA Park, Quito, Ecuador**, durante el evento Flutter Conf Latam 2025. Los datos se cifran y almacenan de forma segura en entornos de la nube con acceso restringido.
 
+---
+
 ### **6. Retención de Datos**
 
 Retenemos los datos del usuario solo durante el tiempo que sea necesario para cumplir los fines descritos en esta Política, o según lo exija la ley. Puede solicitar la eliminación de sus datos personales en cualquier momento contactándonos.
+
+---
 
 ### **7. Sus Derechos**
 
@@ -70,9 +84,13 @@ Puede ejercer estos derechos contactándonos en:
 
 📧 **flutterconflatam@gmail.com**
 
+---
+
 ### **8. Privacidad de los Niños**
 
 Esta aplicación no está dirigida a personas menores de 13 años. No recopilamos a sabiendas datos personales de niños. Si se descubre que se ha recopilado dicha información de forma no intencional, se eliminará de inmediato.
+
+---
 
 ### **9. Seguridad de los Datos**
 
@@ -84,9 +102,13 @@ Implementamos medidas estándar de la industria, que incluyen:
 
 A pesar de nuestros esfuerzos, ninguna plataforma digital puede garantizar una seguridad absoluta.
 
+---
+
 ### **10. Cambios a esta Política**
 
 Podemos actualizar esta Política de Privacidad según sea necesario para reflejar cambios legales, operativos o tecnológicos. Si se realizan cambios significativos, lo notificaremos a los usuarios dentro de la aplicación o a través del sitio web del evento.
+
+---
 
 ### **11. Contáctenos**
 

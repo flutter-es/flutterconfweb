@@ -103,8 +103,21 @@ class $AssetsMarkdownGen {
   /// File path: assets/markdown/privacy_policy_es.md
   String get privacyPolicyEs => 'assets/markdown/privacy_policy_es.md';
 
+  /// File path: assets/markdown/terms_and_conditions_en.md
+  String get termsAndConditionsEn =>
+      'assets/markdown/terms_and_conditions_en.md';
+
+  /// File path: assets/markdown/terms_and_conditions_es.md
+  String get termsAndConditionsEs =>
+      'assets/markdown/terms_and_conditions_es.md';
+
   /// List of all assets
-  List<String> get values => [privacyPolicyEn, privacyPolicyEs];
+  List<String> get values => [
+    privacyPolicyEn,
+    privacyPolicyEs,
+    termsAndConditionsEn,
+    termsAndConditionsEs,
+  ];
 }
 
 class $AssetsImagesAboutGen {
