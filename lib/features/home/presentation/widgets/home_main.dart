@@ -85,6 +85,10 @@ class HomeMain extends ConsumerWidget {
                 style: theme.typography.subH1Regular.copyWith(
                   decoration: TextDecoration.underline,
                   decorationColor: FlutterLatamColors.white,
+                  fontSize: switch (context.screenSize) {
+                    ScreenSize.extraLarge || ScreenSize.large => 40,
+                    ScreenSize.normal || ScreenSize.small => 16,
+                  },
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
