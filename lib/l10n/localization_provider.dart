@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/l10n/generated/app_localizations.dart';
+import 'package:flutter_conf_latam/l10n/gen/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/support_locale.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

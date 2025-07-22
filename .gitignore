@@ -102,4 +102,8 @@ lib/firebase_options**.dart
 **/macos/**/GoogleService-Info.plist
 **/macos/firebase_app_id_file.json
 
+# Generated l10n files
+lib/l10n/gen/
+
+# Dart define file
 keys**.json
