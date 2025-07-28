@@ -13,8 +13,8 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PricingMain extends ConsumerWidget {
-  const PricingMain({super.key});
+class PricingContainer extends ConsumerWidget {
+  const PricingContainer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

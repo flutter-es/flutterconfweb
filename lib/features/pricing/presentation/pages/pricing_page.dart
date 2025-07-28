@@ -1,7 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
-import 'package:flutter_conf_latam/features/pricing/presentation/widgets/pricing_main.dart';
+import 'package:flutter_conf_latam/core/widgets/container/pricing_container.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PricingPage extends ConsumerStatefulWidget {
@@ -26,7 +26,7 @@ class _PricingPageState extends ConsumerState<PricingPage> {
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate([
-            const PricingMain(),
+            const PricingContainer(),
             const Footer(),
           ]),
         ),

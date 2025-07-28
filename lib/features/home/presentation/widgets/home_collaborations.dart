@@ -71,11 +71,11 @@ class HomeCollaborations extends ConsumerWidget {
         ),
         ResponsiveGrid(
           columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 2,
+            ScreenSize.extraLarge => 1, // Default 2
             _ => 1,
           },
           rowSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => 2,
+            ScreenSize.extraLarge || ScreenSize.large => 1, // Default 2
             ScreenSize.normal || ScreenSize.small => collaborations.length,
           },
           children: <Widget>[
