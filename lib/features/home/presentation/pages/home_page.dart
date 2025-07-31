@@ -2,7 +2,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/core/widgets/container/pricing_container.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_collaborations.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_faq.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
@@ -36,7 +35,8 @@ class _HomePageState extends ConsumerState<HomePage> {
             const HomeFeatures(),
             const HomeNovelties(),
             const PricingContainer(),
-            const HomeCollaborations(),
+            // TODO(FV): Temp
+            // const HomeCollaborations(),
             const HomeSponsors(),
             const HomeFaq(),
             const Footer(),

@@ -4,7 +4,6 @@ import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
-import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
@@ -48,8 +47,24 @@ class HomeCollaborations extends ConsumerWidget {
       ),
     ];
 
+    // TODO(FV): Temp
+    return ResponsiveGrid(
+      columnSizes: switch (context.screenSize) {
+        ScreenSize.extraLarge => 1,
+        _ => 1,
+      },
+      rowSizes: switch (context.screenSize) {
+        ScreenSize.extraLarge || ScreenSize.large => 1,
+        ScreenSize.normal || ScreenSize.small => collaborations.length,
+      },
+      children: <Widget>[
+        for (final item in collaborations) _CollaborationCardItem(item: item),
+      ],
+    );
+
+    /*
     return SectionContainer(
-      spacing: 30,
+      spacing: 0,
       children: <Widget>[
         TitleSubtitleText(
           title: (
@@ -85,6 +100,7 @@ class HomeCollaborations extends ConsumerWidget {
         ),
       ],
     );
+    */
   }
 
   // void _goToUrl(String url) => Utils.launchUrlLink(url);
