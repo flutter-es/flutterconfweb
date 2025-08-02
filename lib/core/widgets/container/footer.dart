@@ -5,6 +5,7 @@ import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dar
 import 'package:flutter_conf_latam/core/social/models/social_media_model.dart';
 import 'package:flutter_conf_latam/core/social/providers/social_media_provider.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
+import 'package:flutter_conf_latam/core/widgets/icons/social_media_row.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -102,33 +103,18 @@ class _SocialFooter extends ConsumerWidget {
             child: Image.asset(Assets.images.fclEcFooterLogo),
           ),
         ),
-        Row(
-          spacing: 20,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            for (final social in socialMediaList)
-              InkWell(
-                onTap: () => Utils.launchUrlLink(social.link),
-                child: SizedBox.square(
-                  dimension: 24,
-                  child: SvgPicture.asset(
-                    switch (social.type) {
-                      SocialMediaType.youtube => Assets.images.icons.youtube,
-                      SocialMediaType.linkedIn => Assets.images.icons.linkedIn,
-                      SocialMediaType.tikTok => Assets.images.icons.tikTok,
-                      SocialMediaType.twitter => Assets.images.icons.twitter,
-                      SocialMediaType.facebook => Assets.images.icons.facebook,
-                      SocialMediaType.instagram =>
-                        Assets.images.icons.instagram,
-                    },
-                    colorFilter: const ColorFilter.mode(
-                      FlutterLatamColors.white,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                ),
-              ),
-          ],
+        SocialMediaRow(
+          socialMediaList: socialMediaList.map((item) {
+            final iconPath = switch (item.type) {
+              SocialMediaType.youtube => Assets.images.icons.youtube,
+              SocialMediaType.linkedIn => Assets.images.icons.linkedIn,
+              SocialMediaType.tikTok => Assets.images.icons.tikTok,
+              SocialMediaType.twitter => Assets.images.icons.twitter,
+              SocialMediaType.facebook => Assets.images.icons.facebook,
+              SocialMediaType.instagram => Assets.images.icons.instagram,
+            };
+            return (iconPath: iconPath, linkUrl: item.link);
+          }).toList(),
         ),
       ],
     );
