@@ -124,7 +124,7 @@ class OrganizersPeople extends HookConsumerWidget {
                 }),
               ),
             ),
-            error: (e, s) => ErrorContainer(
+            error: (_, _) => ErrorContainer(
               onRetry: () => ref.invalidate(organizersProvider),
             ),
           ),
