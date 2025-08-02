@@ -251,6 +251,9 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/facebook.svg
   String get facebook => 'assets/images/icons/facebook.svg';
 
+  /// File path: assets/images/icons/github.svg
+  String get github => 'assets/images/icons/github.svg';
+
   /// File path: assets/images/icons/instagram.svg
   String get instagram => 'assets/images/icons/instagram.svg';
 
@@ -282,6 +285,7 @@ class $AssetsImagesIconsGen {
     arrowUp,
     copy,
     facebook,
+    github,
     instagram,
     linkedIn,
     people,
