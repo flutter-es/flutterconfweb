@@ -34,3 +34,26 @@ class SocialMediaRow extends StatelessWidget {
     );
   }
 }
+
+class SocialMediaRowContainer extends StatelessWidget {
+  const SocialMediaRowContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      spacing: 20,
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(3, (_) {
+        return const SizedBox.square(
+          dimension: 24,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: FlutterLatamColors.darkBlue,
+            ),
+          ),
+        );
+      }),
+    );
+  }
+}
