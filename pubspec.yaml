@@ -79,7 +79,6 @@ flutter:
     - assets/images/novelties/
     - assets/images/sponsors/
     - assets/images/venue/
-    - assets/json/
     - assets/markdown/
 
   fonts:
