@@ -60,17 +60,17 @@ class AppRoutes {
                 },
               ),
               GoRoute(
-                path: '/${AppRoutePath.speakers.pathName}',
-                parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, _) {
-                  return const NoTransitionPage(child: SpeakersPage());
-                },
-              ),
-              GoRoute(
                 path: '/${AppRoutePath.pricing.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: PricingPage());
+                },
+              ),
+              GoRoute(
+                path: '/${AppRoutePath.speakers.pathName}',
+                parentNavigatorKey: _tabRoutesKeys,
+                pageBuilder: (_, _) {
+                  return const NoTransitionPage(child: SpeakersPage());
                 },
               ),
               GoRoute(
