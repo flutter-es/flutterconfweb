@@ -12,6 +12,7 @@ import 'package:flutter_conf_latam/features/pricing/presentation/pages/pricing_p
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/privacy_page.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/terms_page.dart';
 import 'package:flutter_conf_latam/features/schedule/presentation/pages/schedule_page.dart';
+import 'package:flutter_conf_latam/features/speakers/presentation/pages/speakers_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/pages/venue_page.dart';
 import 'package:go_router/go_router.dart';
@@ -56,6 +57,13 @@ class AppRoutes {
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: OrganizersPage());
+                },
+              ),
+              GoRoute(
+                path: '/${AppRoutePath.speakers.pathName}',
+                parentNavigatorKey: _tabRoutesKeys,
+                pageBuilder: (_, _) {
+                  return const NoTransitionPage(child: SpeakersPage());
                 },
               ),
               GoRoute(
