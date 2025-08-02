@@ -76,6 +76,10 @@
     }
   },
   "homePricingBuyTicketsButton": "Comprar tickets",
+  "homeSpeakersTitle": "Expertos que vienen a compartirlo todo",
+  "homeSpeakersDescription": "Prepárate para aprender, sorprenderte y conectar con algunos de los mejores de la comunidad.",
+  "homeSpeakersRedirectTitle": "Ellos no son todos...",
+  "homeSpeakersRedirectDescription": "Ver más speakers",
   "homeCollaborationTitle": "¿Quieres colaborar a otro nivel?",
   "homeCollaborationDescription": "Súmate como speaker o sponsor y forma parte del corazón de FlutterConf Latam 2025.",
   "homeCollaborationSpeakerTitle": "¿Quieres ser speaker?",
