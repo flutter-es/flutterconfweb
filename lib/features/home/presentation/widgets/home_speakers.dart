@@ -84,27 +84,39 @@ class _RedirectSpeakersCard extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
     final theme = context.theme.fclThemeScheme;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: FlutterLatamColors.blue,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          spacing: 30,
-          children: <Widget>[
-            Text(
-              l10n.homeSpeakersRedirectTitle,
-              textAlign: TextAlign.center,
-              style: theme.typography.h3Bold,
+    return Center(
+      child: SizedBox.fromSize(
+        size: const Size.fromWidth(240),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: FlutterLatamColors.blue,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              spacing: 30,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  l10n.homeSpeakersRedirectTitle,
+                  textAlign: TextAlign.center,
+                  style: switch (context.screenSize) {
+                    ScreenSize.extraLarge ||
+                    ScreenSize.large => theme.typography.h3Bold,
+                    ScreenSize.normal ||
+                    ScreenSize.small => theme.typography.h4Bold,
+                  },
+                ),
+                FclButton.secondary(
+                  label: l10n.homeSpeakersSeeMoreSpeakers,
+                  buttonSize: ButtonSize.small,
+                  onPressed: () => _goToSpeakers(ref),
+                ),
+              ],
             ),
-            FclButton.secondary(
-              label: l10n.homeSpeakersRedirectDescription,
-              buttonSize: ButtonSize.small,
-              onPressed: () => _goToSpeakers(ref),
-            ),
-          ],
+          ),
         ),
       ),
     );
