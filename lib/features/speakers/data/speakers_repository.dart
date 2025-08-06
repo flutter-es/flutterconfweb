@@ -18,7 +18,7 @@ class SpeakersRepository {
     final callableMethod = functions.httpsCallable(_speakersFunction);
     final response = await callableMethod.call<List<dynamic>>({
       'lang': language,
-      if (isRandom) ...{'random': true, 'limit': 15},
+      if (isRandom) ...{'random': true, 'limit': 11},
     });
 
     return [
