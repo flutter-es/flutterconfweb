@@ -8,20 +8,16 @@ class ScheduleRepository {
 
   final FirebaseFunctions functions;
 
-  static const _scheduleFunction = 'getSchedule';
+  static const _scheduleFunction = 'getConferenceSchedule';
 
-  Future<List<ScheduleResponseModel>> getSchedules({
+  Future<ScheduleResponseModel> getSchedules({
     String language = 'es',
   }) async {
     final callableMethod = functions.httpsCallable(_scheduleFunction);
-    final response = await callableMethod.call<List<dynamic>>({
+    final response = await callableMethod.call<Map<String, dynamic>>({
       'lang': language,
     });
-
-    return [
-      for (final item in response.data)
-        ScheduleResponseModel.fromJson(item as Map<String, dynamic>),
-    ];
+    return ScheduleResponseModel.fromJson(response.data);
   }
 }
 
