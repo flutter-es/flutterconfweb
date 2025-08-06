@@ -18,8 +18,8 @@ final daysScheduleProvider = FutureProvider((ref) async {
   final locale = Locale(l10n.localeName);
   final schedule = await ref.watch(scheduleProvider(locale).future);
 
-  return <ScheduleResponseModel?>[
-    schedule.firstWhereOrNull((item) => item.day == 1),
-    schedule.firstWhereOrNull((item) => item.day == 2),
+  return <ScheduleDayModel?>[
+    schedule.days.firstWhereOrNull((item) => item.day == 1),
+    schedule.days.firstWhereOrNull((item) => item.day == 2),
   ];
 });
