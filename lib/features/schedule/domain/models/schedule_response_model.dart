@@ -5,17 +5,31 @@ part 'schedule_response_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class ScheduleResponseModel {
-  ScheduleResponseModel({
-    required this.id,
-    required this.day,
-    required this.slots,
-  });
+  ScheduleResponseModel({required this.id, required this.days});
 
   factory ScheduleResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ScheduleResponseModelFromJson(json);
 
+  @JsonKey(name: 'conferenceId')
+  final String id;
+  final List<ScheduleDayModel> days;
+}
+
+@JsonSerializable(createToJson: false)
+class ScheduleDayModel {
+  ScheduleDayModel({
+    required this.id,
+    required this.day,
+    required this.date,
+    required this.slots,
+  });
+
+  factory ScheduleDayModel.fromJson(Map<String, dynamic> json) =>
+      _$ScheduleDayModelFromJson(json);
+
   final String id;
   final int day;
+  final DateTime date;
   final List<ScheduleSlotModel> slots;
 }
 
@@ -24,7 +38,7 @@ class ScheduleSlotModel {
   ScheduleSlotModel({
     required this.id,
     required this.name,
-    required this.scheduleTracks,
+    required this.sessions,
   });
 
   factory ScheduleSlotModel.fromJson(Map<String, dynamic> json) =>
@@ -32,12 +46,12 @@ class ScheduleSlotModel {
 
   final String id;
   final String name;
-  final List<ScheduleTrackModel> scheduleTracks;
+  final List<ScheduleSessionModel> sessions;
 }
 
 @JsonSerializable(createToJson: false)
-class ScheduleTrackModel {
-  ScheduleTrackModel({
+class ScheduleSessionModel {
+  ScheduleSessionModel({
     required this.id,
     required this.type,
     required this.track,
@@ -50,8 +64,8 @@ class ScheduleTrackModel {
     this.requirements,
   });
 
-  factory ScheduleTrackModel.fromJson(Map<String, dynamic> json) =>
-      _$ScheduleTrackModelFromJson(json);
+  factory ScheduleSessionModel.fromJson(Map<String, dynamic> json) =>
+      _$ScheduleSessionModelFromJson(json);
 
   final String id;
   final ScheduleType type;
@@ -76,7 +90,7 @@ class SessionSpeakerModel {
   factory SessionSpeakerModel.fromJson(Map<String, dynamic> json) =>
       _$SessionSpeakerModelFromJson(json);
 
-  final int id;
+  final String id;
   final String name;
   final String imageUrl;
 }
@@ -95,12 +109,12 @@ enum ScheduleType {
 }
 
 typedef SlotSession = ({String slotId, ScheduleType type});
-typedef MapSlotSessions = Map<SlotSession, List<ScheduleTrackModel>>;
+typedef MapSlotSessions = Map<SlotSession, List<ScheduleSessionModel>>;
 
 extension ScheduleSlotModelX on ScheduleSlotModel {
   MapSlotSessions get scheduleSlots {
-    final sessionSlots = <SlotSession, List<ScheduleTrackModel>>{};
-    for (final session in scheduleTracks) {
+    final sessionSlots = <SlotSession, List<ScheduleSessionModel>>{};
+    for (final session in sessions) {
       final dateString = DateFormat('HH_mm').format(session.startDate);
       final key = (slotId: '${id}_$dateString', type: session.type);
 
@@ -122,7 +136,7 @@ extension MapSlotSessionsX on MapSlotSessions {
   };
 }
 
-extension ScheduleTrackModelX on ScheduleTrackModel {
+extension ScheduleTrackModelX on ScheduleSessionModel {
   bool get isTalkingTrack {
     return type == ScheduleType.session ||
         type == ScheduleType.workshop ||

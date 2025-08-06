@@ -9,39 +9,49 @@ part of 'schedule_response_model.dart';
 ScheduleResponseModel _$ScheduleResponseModelFromJson(
   Map<String, dynamic> json,
 ) => ScheduleResponseModel(
-  id: json['id'] as String,
-  day: (json['day'] as num).toInt(),
-  slots: (json['slots'] as List<dynamic>)
-      .map((e) => ScheduleSlotModel.fromJson(e as Map<String, dynamic>))
+  id: json['conferenceId'] as String,
+  days: (json['days'] as List<dynamic>)
+      .map((e) => ScheduleDayModel.fromJson(e as Map<String, dynamic>))
       .toList(),
 );
+
+ScheduleDayModel _$ScheduleDayModelFromJson(Map<String, dynamic> json) =>
+    ScheduleDayModel(
+      id: json['id'] as String,
+      day: (json['day'] as num).toInt(),
+      date: DateTime.parse(json['date'] as String),
+      slots: (json['slots'] as List<dynamic>)
+          .map((e) => ScheduleSlotModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 ScheduleSlotModel _$ScheduleSlotModelFromJson(Map<String, dynamic> json) =>
     ScheduleSlotModel(
       id: json['id'] as String,
       name: json['name'] as String,
-      scheduleTracks: (json['scheduleTracks'] as List<dynamic>)
-          .map((e) => ScheduleTrackModel.fromJson(e as Map<String, dynamic>))
+      sessions: (json['sessions'] as List<dynamic>)
+          .map((e) => ScheduleSessionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-ScheduleTrackModel _$ScheduleTrackModelFromJson(Map<String, dynamic> json) =>
-    ScheduleTrackModel(
-      id: json['id'] as String,
-      type: $enumDecode(_$ScheduleTypeEnumMap, json['type']),
-      track: (json['track'] as num).toInt(),
-      startDate: DateTime.parse(json['startDate'] as String),
-      endDate: DateTime.parse(json['endDate'] as String),
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      speakers: (json['speakers'] as List<dynamic>?)
-          ?.map((e) => SessionSpeakerModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      requirements: (json['requirements'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-    );
+ScheduleSessionModel _$ScheduleSessionModelFromJson(
+  Map<String, dynamic> json,
+) => ScheduleSessionModel(
+  id: json['id'] as String,
+  type: $enumDecode(_$ScheduleTypeEnumMap, json['type']),
+  track: (json['track'] as num).toInt(),
+  startDate: DateTime.parse(json['startDate'] as String),
+  endDate: DateTime.parse(json['endDate'] as String),
+  title: json['title'] as String?,
+  description: json['description'] as String?,
+  speakers: (json['speakers'] as List<dynamic>?)
+      ?.map((e) => SessionSpeakerModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  requirements: (json['requirements'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+);
 
 const _$ScheduleTypeEnumMap = {
   ScheduleType.register: 'register',
@@ -57,7 +67,7 @@ const _$ScheduleTypeEnumMap = {
 
 SessionSpeakerModel _$SessionSpeakerModelFromJson(Map<String, dynamic> json) =>
     SessionSpeakerModel(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String,
     );
