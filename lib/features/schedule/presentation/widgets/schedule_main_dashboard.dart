@@ -78,7 +78,7 @@ class _ScheduleSlotItem extends StatelessWidget {
               spacing: 10,
               children: slot.scheduleSlots.others.entries.map((item) {
                 return _ScheduleCard(
-                  scheduleTracks: item.value,
+                  sessions: item.value,
                   color: switch (item.key.type) {
                     ScheduleType.register => FlutterLatamColors.purple,
                     ScheduleType.keynote ||
@@ -117,7 +117,7 @@ class _ScheduleSlotItem extends StatelessWidget {
                 children: slot.scheduleSlots.workshops.entries.map((item) {
                   return Expanded(
                     child: _ScheduleCard(
-                      scheduleTracks: item.value,
+                      sessions: item.value,
                       color: switch (item.key.type) {
                         ScheduleType.workshop => FlutterLatamColors.lightYellow,
                         _ => Colors.transparent,

@@ -6,13 +6,13 @@ enum _ScheduleCardItemPosition { row, column }
 
 class _ScheduleCard extends ConsumerWidget {
   const _ScheduleCard({
-    required this.scheduleTracks,
+    required this.sessions,
     required this.color,
     required this.position,
     this.itemPosition = _ScheduleCardItemPosition.column,
   });
 
-  final List<ScheduleTrackModel> scheduleTracks;
+  final List<ScheduleSessionModel> sessions;
   final Color color;
   final _ScheduleCardPosition position;
   final _ScheduleCardItemPosition itemPosition;
@@ -22,17 +22,15 @@ class _ScheduleCard extends ConsumerWidget {
     final theme = context.theme.fclThemeScheme;
 
     final l10n = ref.watch(appLocalizationsProvider);
-    final scheduleTrack = scheduleTracks.firstOrNull;
+    final scheduleTrack = sessions.firstOrNull;
 
     final scheduleChildren = <Widget>[
-      for (final (index, item) in scheduleTracks.indexed) ...[
+      for (final (index, item) in sessions.indexed) ...[
         switch (itemPosition) {
-          _ScheduleCardItemPosition.row => _ScheduleDetail(scheduleTrack: item),
-          _ScheduleCardItemPosition.column => _ScheduleDetail(
-            scheduleTrack: item,
-          ),
+          _ScheduleCardItemPosition.row => _ScheduleDetail(session: item),
+          _ScheduleCardItemPosition.column => _ScheduleDetail(session: item),
         },
-        if (index < scheduleTracks.length - 1)
+        if (index < sessions.length - 1)
           switch (itemPosition) {
             _ScheduleCardItemPosition.row => const VerticalDivider(width: 40),
             _ScheduleCardItemPosition.column => const Divider(height: 60),
@@ -108,27 +106,23 @@ class _ScheduleCard extends ConsumerWidget {
 }
 
 class _ScheduleDetail extends ConsumerWidget {
-  const _ScheduleDetail({required this.scheduleTrack});
+  const _ScheduleDetail({required this.session});
 
-  final ScheduleTrackModel scheduleTrack;
+  final ScheduleSessionModel session;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = context.theme.fclThemeScheme;
     final l10n = ref.watch(appLocalizationsProvider);
 
-    final scheduleTypeTitle = switch (scheduleTrack.type) {
+    final scheduleTypeTitle = switch (session.type) {
       ScheduleType.register => l10n.scheduleRegisterTitle,
       ScheduleType.keynote => l10n.scheduleKeynoteTitle,
       ScheduleType.panel => l10n.schedulePanelTitle,
       ScheduleType.breaks => l10n.scheduleBreakTitle,
       ScheduleType.lunch => l10n.scheduleLunchTitle,
-      ScheduleType.lighting => l10n.scheduleLightingTitle(
-        scheduleTrack.track,
-      ),
-      ScheduleType.session => l10n.scheduleSessionTitle(
-        scheduleTrack.track,
-      ),
+      ScheduleType.lighting => l10n.scheduleLightingTitle(session.track),
+      ScheduleType.session => l10n.scheduleSessionTitle(session.track),
       ScheduleType.workshop => l10n.scheduleWorkshopTitle,
       ScheduleType.finish => l10n.scheduleFinishTitle,
     };
@@ -136,7 +130,7 @@ class _ScheduleDetail extends ConsumerWidget {
     final scheduleChild = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: (scheduleTrack.title ?? '').isNotEmpty ? 10 : 20,
+      spacing: (session.title ?? '').isNotEmpty ? 10 : 20,
       children: <Widget>[
         Text(
           scheduleTypeTitle,
@@ -148,9 +142,9 @@ class _ScheduleDetail extends ConsumerWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        if ((scheduleTrack.title ?? '').isNotEmpty)
+        if ((session.title ?? '').isNotEmpty)
           Text(
-            scheduleTrack.title!,
+            session.title!,
             style: theme.typography.body3Light.copyWith(
               fontSize: switch (context.screenSize) {
                 ScreenSize.extraLarge || ScreenSize.large => 16,
@@ -158,17 +152,17 @@ class _ScheduleDetail extends ConsumerWidget {
               },
             ),
           ),
-        if ((scheduleTrack.speakers ?? []).isNotEmpty)
-          _ScheduleDetailSpeaker(speakers: scheduleTrack.speakers!),
+        if ((session.speakers ?? []).isNotEmpty)
+          _ScheduleDetailSpeaker(speakers: session.speakers!),
       ],
     );
 
     return InkWell(
       mouseCursor: SystemMouseCursors.click,
-      onTap: scheduleTrack.isTalkingTrack ? () {} : null,
+      onTap: session.isTalkingTrack ? () {} : null,
       child: Semantics(
-        label: scheduleTrack.title ?? scheduleTypeTitle,
-        role: scheduleTrack.isTalkingTrack
+        label: session.title ?? scheduleTypeTitle,
+        role: session.isTalkingTrack
             ? SemanticsRole.spinButton
             : SemanticsRole.tooltip,
         child: scheduleChild,
