@@ -325,8 +325,11 @@ class $AssetsImagesSponsorsGen {
   /// File path: assets/images/sponsors/flutter_logo.svg
   String get flutterLogo => 'assets/images/sponsors/flutter_logo.svg';
 
+  /// File path: assets/images/sponsors/venue_logo.png
+  String get venueLogo => 'assets/images/sponsors/venue_logo.png';
+
   /// List of all assets
-  List<String> get values => [flutterLogo];
+  List<String> get values => [flutterLogo, venueLogo];
 }
 
 class $AssetsImagesVenueGen {
