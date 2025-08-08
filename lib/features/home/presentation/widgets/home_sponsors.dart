@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
+import 'package:flutter_conf_latam/core/widgets/container/card_container.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
@@ -105,83 +106,56 @@ class _SponsorCardContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    return Card(
-      color: FlutterLatamColors.darkBlue,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: 10,
-              decoration: BoxDecoration(
-                color: switch (level) {
-                  SponsorLevel.platinum => FlutterLatamColors.blue,
-                  SponsorLevel.gold => FlutterLatamColors.yellow,
-                  SponsorLevel.silver => FlutterLatamColors.green,
-                  SponsorLevel.bronze => FlutterLatamColors.bronze,
-                  SponsorLevel.inKind => FlutterLatamColors.purple,
-                  SponsorLevel.junior => FlutterLatamColors.lightBlue,
-                },
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: switch (context.screenSize) {
-                    ScreenSize.extraLarge => 64,
-                    ScreenSize.large => 48,
-                    ScreenSize.normal || ScreenSize.small => 24,
-                  },
-                  vertical: 32,
-                ),
-                child: Column(
-                  spacing: 30,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Consumer(
-                      builder: (_, ref, _) {
-                        final l10n = ref.watch(appLocalizationsProvider);
+    return CardContainer(
+      borderColor: switch (level) {
+        SponsorLevel.platinum => FlutterLatamColors.blue,
+        SponsorLevel.gold => FlutterLatamColors.yellow,
+        SponsorLevel.silver => FlutterLatamColors.green,
+        SponsorLevel.bronze => FlutterLatamColors.bronze,
+        SponsorLevel.inKind => FlutterLatamColors.purple,
+        SponsorLevel.junior => FlutterLatamColors.lightBlue,
+      },
+      child: Column(
+        spacing: 30,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Consumer(
+            builder: (_, ref, _) {
+              final l10n = ref.watch(appLocalizationsProvider);
 
-                        return Text(
-                          switch (level) {
-                            SponsorLevel.platinum => l10n.homeSponsorPlatinum,
-                            SponsorLevel.gold => l10n.homeSponsorGold,
-                            SponsorLevel.silver => l10n.homeSponsorSilver,
-                            SponsorLevel.bronze => l10n.homeSponsorsBronze,
-                            SponsorLevel.inKind => l10n.homeSponsorInKind,
-                            SponsorLevel.junior => l10n.homeSponsorJunior,
-                          },
-                          style: theme.typography.subH2Semibold.copyWith(
-                            fontSize: switch (context.screenSize) {
-                              ScreenSize.extraLarge => 32,
-                              _ => 24,
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                    if (sponsors.length == 1)
-                      _SponsorItem(item: sponsors.first)
-                    else
-                      ResponsiveGrid(
-                        columnSizes: switch (context.screenSize) {
-                          ScreenSize.extraLarge => 3,
-                          ScreenSize.large => 2,
-                          _ => 1,
-                        },
-                        rowSizes: sponsors.length,
-                        children: <Widget>[
-                          for (final item in sponsors) _SponsorItem(item: item),
-                        ],
-                      ),
-                  ],
+              return Text(
+                switch (level) {
+                  SponsorLevel.platinum => l10n.homeSponsorPlatinum,
+                  SponsorLevel.gold => l10n.homeSponsorGold,
+                  SponsorLevel.silver => l10n.homeSponsorSilver,
+                  SponsorLevel.bronze => l10n.homeSponsorsBronze,
+                  SponsorLevel.inKind => l10n.homeSponsorInKind,
+                  SponsorLevel.junior => l10n.homeSponsorJunior,
+                },
+                style: theme.typography.subH2Semibold.copyWith(
+                  fontSize: switch (context.screenSize) {
+                    ScreenSize.extraLarge => 32,
+                    _ => 24,
+                  },
                 ),
-              ),
+              );
+            },
+          ),
+          if (sponsors.length == 1)
+            _SponsorItem(item: sponsors.first)
+          else
+            ResponsiveGrid(
+              columnSizes: switch (context.screenSize) {
+                ScreenSize.extraLarge => 3,
+                ScreenSize.large => 2,
+                _ => 1,
+              },
+              rowSizes: sponsors.length,
+              children: <Widget>[
+                for (final item in sponsors) _SponsorItem(item: item),
+              ],
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
