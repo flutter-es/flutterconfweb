@@ -11,9 +11,5 @@ class Config {
 
   String get venueMapUrl => const String.fromEnvironment('VENUE_MAP_URL');
 
-  String get cityPhoneEmergency {
-    return const String.fromEnvironment('CITY_PHONE_EMERGENCY');
-  }
-
   String get contactEmail => const String.fromEnvironment('CONTACT_EMAIL');
 }
