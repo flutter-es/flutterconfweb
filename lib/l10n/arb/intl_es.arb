@@ -55,6 +55,8 @@
     }
   },
   "homeFeatureBuyTicketButton": "Comprar tickets",
+  "homeVenueGratitudeMessage": "Agradecemos a la Universidad de Las Américas (UDLA) por abrirnos las puertas de su campus y ser sede de FlutterConf Latam 2025.",
+  "homeVenueGratitudeName": "Universidad de Las Américas",
   "homeNoveltiesTitle": "Novedades para este 2025",
   "homeNoveltiesDescription": "Siempre hemos dado lo mejor, pero ahora queremos ofrecerte una experiencia Flutter aún más completa.",
   "homeNoveltiesMerchTitle": "Merch edición Ecuador",
