@@ -194,12 +194,13 @@
   "footerMemoriesDescription": "See how we experienced it in previous editions.",
   "footerMemoriesVideoOne": "FlutterConf Latam 2024, Arequipa, Peru",
   "footerMemoriesVideoTwo": "FlutterConf Latam 2023, Medellín, Colombia",
-  "copyright": "© {year} Flutter Conf Latam - All rights reserved",
-  "@copyright": {
+  "footerCopyright": "© {year} Flutter Conf Latam",
+  "@footerCopyright": {
     "placeholders": {
       "year": {
         "type": "int"
       }
     }
-  }
+  },
+  "footerTermsAndConditions": "Terms and conditions"
 }
