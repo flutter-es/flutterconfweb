@@ -11,6 +11,7 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Footer extends ConsumerWidget {
@@ -31,6 +32,23 @@ class Footer extends ConsumerWidget {
       ScreenSize.extraLarge || ScreenSize.large => 96.0,
       ScreenSize.normal || ScreenSize.small => 48.0,
     };
+
+    final footerChildren = <Widget>[
+      Text(
+        l10n.footerCopyright(DateTime.now().year),
+        style: theme.typography.body4Regular.copyWith(fontSize: 16),
+      ),
+      InkWell(
+        onTap: () => context.go('/${AppRoutePath.termsConditions.pathName}'),
+        child: Text(
+          l10n.footerTermsAndConditions,
+          style: theme.typography.body4Regular.copyWith(
+            decoration: TextDecoration.underline,
+            decorationColor: FlutterLatamColors.white,
+          ),
+        ),
+      ),
+    ];
 
     return Padding(
       padding: EdgeInsets.fromLTRB(
@@ -70,12 +88,17 @@ class Footer extends ConsumerWidget {
               ],
             ],
           ),
-          Center(
-            child: Text(
-              l10n.copyright(DateTime.now().year),
-              style: theme.typography.h4Bold.copyWith(fontSize: 16),
+          const Divider(),
+          switch (context.screenSize) {
+            ScreenSize.extraLarge || ScreenSize.large => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: footerChildren,
             ),
-          ),
+            ScreenSize.normal || ScreenSize.small => Column(
+              spacing: 16,
+              children: footerChildren,
+            ),
+          },
         ],
       ),
     );
