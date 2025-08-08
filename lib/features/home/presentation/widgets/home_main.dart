@@ -107,7 +107,7 @@ class HomeMain extends ConsumerWidget {
         ),
         CountDownText(
           startDate: DateTime.now(),
-          endDate: DateTime(2025, 9, 10),
+          endDate: DateTime(2025, 9, 9),
         ),
       ],
     );
