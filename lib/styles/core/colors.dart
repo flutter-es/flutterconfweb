@@ -7,6 +7,7 @@ class FlutterLatamColors {
   static const Color mainBlue = Color(0xFF042B59);
   static const Color blue = Color(0xFF016EE8);
   static const Color mediumBlue = Color(0xFF78B7FD);
+  static const Color lightBlue = Color(0xFFC9E3FF);
   static const Color yellow = Color(0xFFFAB92D);
   static const Color lightYellow = Color(0xFFFFEA96);
   static const Color green = Color(0xFF78B94A);
@@ -17,5 +18,6 @@ class FlutterLatamColors {
   static const Color purple = Color(0xFFB86EEE);
   static const Color pink = Color(0xFFF779E2);
   static const Color silver = Color(0xFFBABABA);
+  static const Color bronze = Color(0xFFFE904C);
   static const Color grey = Color(0xFF9E9E9E);
 }
