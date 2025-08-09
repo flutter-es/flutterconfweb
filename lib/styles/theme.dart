@@ -11,6 +11,7 @@ class FclTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: FlutterLatamColors.white,
       dividerColor: FlutterLatamColors.white,
+      iconTheme: const IconThemeData(color: FlutterLatamColors.white),
       extensions: <ThemeExtension<FclThemeScheme>>[
         FclThemeScheme(
           colorScheme: FclColorScheme(
