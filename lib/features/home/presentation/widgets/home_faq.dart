@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
+import 'package:flutter_conf_latam/core/widgets/icons/circle_icon.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/home/domain/models/faq/faq_model.dart';
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
@@ -102,20 +103,10 @@ class _FaqCardItem extends HookWidget {
                       style: theme.typography.subH2Semibold,
                     ),
                   ),
-                  SizedBox.square(
-                    dimension: 32,
-                    child: DecoratedBox(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: FlutterLatamColors.mediumBlue,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 500),
-                          child: expandedIcon,
-                        ),
-                      ),
+                  CircleIcon(
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 500),
+                      child: expandedIcon,
                     ),
                   ),
                 ],
