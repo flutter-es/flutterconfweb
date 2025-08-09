@@ -37,89 +37,68 @@ class ModalBottomPage<T> extends Page<T> {
   Route<T> createRoute(BuildContext context) {
     return ModalBottomSheetRoute<T>(
       settings: this,
-      useSafeArea: true,
       clipBehavior: Clip.hardEdge,
       isDismissible: isDismissible,
       showDragHandle: showDragHandle,
-      backgroundColor: Colors.transparent,
       isScrollControlled: isScrollControlled,
+      backgroundColor: FlutterLatamColors.darkBlue,
       modalBarrierColor: FlutterLatamColors.black.withValues(alpha: .25),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (_) {
-        final Widget newChild;
-
         if (heightFactor == null) {
-          if (isScrollControlled) {
-            newChild = DraggableScrollableSheet(
+          return switch (isScrollControlled) {
+            true => DraggableScrollableSheet(
               expand: false,
               initialChildSize: initialChildSize,
-              builder: (_, controller) {
-                return SingleChildScrollView(
-                  controller: controller,
-                  child: child,
-                );
-              },
-            );
-          } else {
-            newChild = child;
-          }
-        } else {
-          newChild = FractionallySizedBox(
-            heightFactor: heightFactor,
-            child: child,
-          );
-        }
-
-        return Container(
-          margin: const EdgeInsets.only(top: 64),
-          padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-          decoration: const BoxDecoration(
-            color: FlutterLatamColors.white,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(24),
+              builder: (_, controller) => SingleChildScrollView(
+                controller: controller,
+                child: child,
+              ),
             ),
-          ),
-          child: newChild,
-        );
+            false => child,
+          };
+        }
+        return FractionallySizedBox(heightFactor: heightFactor, child: child);
       },
     );
   }
 }
 
+typedef SizeFactor = ({double width, double height});
+
 class DialogPage<T> extends Page<T> {
   const DialogPage({
     required super.key,
     required this.child,
-    this.heightFactor = .8,
+    this.sizeFactor = (width: .6, height: .6),
     super.name,
     super.arguments,
     super.restorationId,
   });
 
   final Widget child;
-  final double heightFactor;
+  final SizeFactor sizeFactor;
 
   @override
   Route<T> createRoute(BuildContext context) {
     return DialogRoute<T>(
+      settings: this,
       context: context,
-      builder: (_) {
-        return FractionallySizedBox(
-          widthFactor: 0.7,
-          heightFactor: heightFactor,
-          child: Container(
-            margin: const EdgeInsets.all(32),
-            padding: const EdgeInsets.all(40),
-            decoration: BoxDecoration(
-              color: FlutterLatamColors.white,
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: child,
+      builder: (_) => FractionallySizedBox(
+        widthFactor: sizeFactor.width,
+        heightFactor: sizeFactor.height,
+        child: Container(
+          margin: const EdgeInsets.all(32),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          decoration: BoxDecoration(
+            color: FlutterLatamColors.darkBlue,
+            borderRadius: BorderRadius.circular(24),
           ),
-        );
-      },
+          child: child,
+        ),
+      ),
     );
   }
 }
