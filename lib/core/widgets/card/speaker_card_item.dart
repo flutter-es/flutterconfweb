@@ -26,7 +26,7 @@ class SpeakerCardItem extends StatelessWidget {
 
     final imageChild = CharacterImage(
       imageUrl: imageBackgroundColor != null
-          ? speaker.photoTransparent
+          ? speaker.photoTransparent ?? ''
           : speaker.photo,
       flagImageUrl: speaker.countryFlag,
       size: imageSize,
