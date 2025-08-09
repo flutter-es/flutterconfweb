@@ -48,8 +48,8 @@ class HomeSponsors extends ConsumerWidget {
             level: SponsorLevel.bronze,
           ),
           (
-            sponsors: data.where((item) => item.isJunior).toList(),
-            level: SponsorLevel.junior,
+            sponsors: data.where((item) => item.isSenior).toList(),
+            level: SponsorLevel.senior,
           ),
         ];
 
@@ -113,7 +113,7 @@ class _SponsorCardContainer extends StatelessWidget {
         SponsorLevel.silver => FlutterLatamColors.green,
         SponsorLevel.bronze => FlutterLatamColors.bronze,
         SponsorLevel.inKind => FlutterLatamColors.purple,
-        SponsorLevel.junior => FlutterLatamColors.lightBlue,
+        SponsorLevel.senior => FlutterLatamColors.lightBlue,
       },
       child: Column(
         spacing: 30,
@@ -130,7 +130,7 @@ class _SponsorCardContainer extends StatelessWidget {
                   SponsorLevel.silver => l10n.homeSponsorSilver,
                   SponsorLevel.bronze => l10n.homeSponsorsBronze,
                   SponsorLevel.inKind => l10n.homeSponsorInKind,
-                  SponsorLevel.junior => l10n.homeSponsorJunior,
+                  SponsorLevel.senior => l10n.homeSponsorSenior,
                 },
                 style: theme.typography.subH2Semibold.copyWith(
                   fontSize: switch (context.screenSize) {

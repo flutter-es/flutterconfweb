@@ -23,7 +23,7 @@ class SponsorModel {
 }
 
 @JsonEnum()
-enum SponsorLevel { platinum, gold, silver, bronze, inKind, junior }
+enum SponsorLevel { platinum, gold, silver, bronze, inKind, senior }
 
 extension SponsorModelX on SponsorModel {
   bool get isPlatinum => level == SponsorLevel.platinum;
@@ -36,5 +36,5 @@ extension SponsorModelX on SponsorModel {
 
   bool get isInKind => level == SponsorLevel.inKind;
 
-  bool get isJunior => level == SponsorLevel.junior;
+  bool get isSenior => level == SponsorLevel.senior;
 }
