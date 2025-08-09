@@ -32,12 +32,12 @@ class SpeakersRepository {
     String language = 'es',
   }) async {
     final callableMethod = functions.httpsCallable(_speakerFunction);
-    final response = await callableMethod.call<List<dynamic>>({
+    final response = await callableMethod.call<Map<String, dynamic>>({
       'lang': language,
       'speakerId': speakerId,
     });
 
-    return SpeakerModel.fromJson(response.data as Map<String, dynamic>);
+    return SpeakerModel.fromJson(response.data);
   }
 }
 
