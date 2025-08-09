@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes_pages.dart';
 import 'package:flutter_conf_latam/core/widgets/navigation/shell_navigator_page.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_conf_latam/features/pricing/presentation/pages/pricing_p
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/privacy_page.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/terms_page.dart';
 import 'package:flutter_conf_latam/features/schedule/presentation/pages/schedule_page.dart';
+import 'package:flutter_conf_latam/features/speakers/presentation/pages/speaker_detail_page.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/pages/speakers_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/pages/venue_page.dart';
@@ -72,6 +74,31 @@ class AppRoutes {
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: SpeakersPage());
                 },
+                routes: <RouteBase>[
+                  GoRoute(
+                    path: ':id',
+                    parentNavigatorKey: _mainRoutesKey,
+                    pageBuilder: (context, state) {
+                      final id = state.pathParameters['id']!;
+                      return switch (context.screenSize) {
+                        ScreenSize.extraLarge || ScreenSize.large => DialogPage(
+                          key: state.pageKey,
+                          sizeFactor: switch (context.screenSize) {
+                            ScreenSize.extraLarge => (width: .6, height: .6),
+                            _ => (width: .8, height: .7),
+                          },
+                          child: SpeakerDetailPage(id: id),
+                        ),
+                        ScreenSize.normal ||
+                        ScreenSize.small => ModalBottomPage(
+                          key: state.pageKey,
+                          isScrollControlled: true,
+                          child: SpeakerDetailPage(id: id),
+                        ),
+                      };
+                    },
+                  ),
+                ],
               ),
               GoRoute(
                 path: '/${AppRoutePath.schedule.pathName}',
