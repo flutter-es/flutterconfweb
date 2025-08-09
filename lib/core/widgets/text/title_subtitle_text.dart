@@ -47,7 +47,12 @@ class TitleSubtitleText extends StatelessWidget {
 }
 
 class TitleSubtitleTextContainer extends StatelessWidget {
-  const TitleSubtitleTextContainer({super.key});
+  const TitleSubtitleTextContainer({
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    super.key,
+  });
+
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +63,7 @@ class TitleSubtitleTextContainer extends StatelessWidget {
 
     return Column(
       spacing: 16,
+      crossAxisAlignment: crossAxisAlignment,
       children: <Widget>[
         Container(width: 200, height: 24, decoration: decoration),
         Container(width: 100, height: 24, decoration: decoration),
