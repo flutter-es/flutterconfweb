@@ -8,12 +8,12 @@ class SpeakerModel {
     required this.id,
     required this.name,
     required this.photo,
-    required this.photoTransparent,
     required this.country,
     required this.countryFlag,
     required this.title,
     this.company = '',
     this.socialMediaLinks = const [],
+    this.photoTransparent,
     this.description,
   });
 
@@ -23,12 +23,12 @@ class SpeakerModel {
   final String id;
   final String name;
   final String photo;
-  final String photoTransparent;
   final String country;
   final String countryFlag;
   final String title;
   final String company;
   final List<SocialMediaLinkModel> socialMediaLinks;
+  final String? photoTransparent;
   final String? description;
 }
 

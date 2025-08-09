@@ -10,7 +10,6 @@ SpeakerModel _$SpeakerModelFromJson(Map<String, dynamic> json) => SpeakerModel(
   id: json['id'] as String,
   name: json['name'] as String,
   photo: json['photo'] as String,
-  photoTransparent: json['photo_transparent'] as String,
   country: json['country'] as String,
   countryFlag: json['country_flag'] as String,
   title: json['title'] as String,
@@ -20,6 +19,7 @@ SpeakerModel _$SpeakerModelFromJson(Map<String, dynamic> json) => SpeakerModel(
           ?.map((e) => SocialMediaLinkModel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
+  photoTransparent: json['photo_transparent'] as String?,
   description: json['description'] as String?,
 );
 
