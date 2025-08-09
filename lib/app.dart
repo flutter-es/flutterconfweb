@@ -1,4 +1,5 @@
 import 'dart:js_interop';
+import 'dart:ui';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,14 @@ class FlutterConfApp extends ConsumerWidget {
       routerConfig: _appRoutes.router,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.unknown,
+        },
+      ),
     );
   }
 }
