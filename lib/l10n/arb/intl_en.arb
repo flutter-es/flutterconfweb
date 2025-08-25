@@ -203,5 +203,6 @@
       }
     }
   },
-  "footerTermsAndConditions": "Terms and conditions"
+  "footerTermsAndConditions": "Terms and conditions",
+  "footerTitoDisclaimer": "*The data you provide on the TITO platform will be used solely by FlutterConf Latam and UDLA for event-related purposes."
 }
