@@ -33,6 +33,11 @@ class Footer extends ConsumerWidget {
       ScreenSize.normal || ScreenSize.small => 48.0,
     };
 
+    final paddingBottom = switch (context.screenSize) {
+      ScreenSize.extraLarge || ScreenSize.large => 96.0,
+      ScreenSize.normal || ScreenSize.small => 28.0,
+    };
+
     final footerChildren = <Widget>[
       Text(
         l10n.footerCopyright(DateTime.now().year),
@@ -50,57 +55,78 @@ class Footer extends ConsumerWidget {
       ),
     ];
 
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-        paddingHorizontal,
-        paddingTop,
-        paddingHorizontal,
-        28,
-      ),
-      child: Column(
-        spacing: 64,
-        children: <Widget>[
-          const Divider(),
-          Flex(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: switch (context.screenSize) {
-              ScreenSize.extraLarge => MainAxisAlignment.spaceBetween,
-              _ => MainAxisAlignment.start,
-            },
-            spacing: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 100,
-              ScreenSize.normal || ScreenSize.small => 48,
-            },
-            crossAxisAlignment: CrossAxisAlignment.start,
-            direction: switch (context.screenSize) {
-              ScreenSize.extraLarge => Axis.horizontal,
-              _ => Axis.vertical,
-            },
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(
+            paddingHorizontal,
+            paddingTop,
+            paddingHorizontal,
+            paddingBottom,
+          ),
+          child: Column(
+            spacing: 64,
             children: <Widget>[
-              if (context.screenSize == ScreenSize.extraLarge) ...[
-                const Expanded(child: _SocialFooter()),
-                const Expanded(child: _SocialPlace()),
-                const Expanded(child: _SocialVideos()),
-              ] else ...[
-                const _SocialFooter(),
-                const _SocialPlace(),
-                const _SocialVideos(),
-              ],
+              const Divider(),
+              Flex(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: switch (context.screenSize) {
+                  ScreenSize.extraLarge => MainAxisAlignment.spaceBetween,
+                  _ => MainAxisAlignment.start,
+                },
+                spacing: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 100,
+                  ScreenSize.normal || ScreenSize.small => 48,
+                },
+                crossAxisAlignment: CrossAxisAlignment.start,
+                direction: switch (context.screenSize) {
+                  ScreenSize.extraLarge => Axis.horizontal,
+                  _ => Axis.vertical,
+                },
+                children: <Widget>[
+                  if (context.screenSize == ScreenSize.extraLarge) ...[
+                    const Expanded(child: _SocialFooter()),
+                    const Expanded(child: _SocialPlace()),
+                    const Expanded(child: _SocialVideos()),
+                  ] else ...[
+                    const _SocialFooter(),
+                    const _SocialPlace(),
+                    const _SocialVideos(),
+                  ],
+                ],
+              ),
+              const Divider(),
+              switch (context.screenSize) {
+                ScreenSize.extraLarge || ScreenSize.large => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: footerChildren,
+                ),
+                ScreenSize.normal || ScreenSize.small => Column(
+                  spacing: 16,
+                  children: footerChildren,
+                ),
+              },
             ],
           ),
-          const Divider(),
-          switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: footerChildren,
+        ),
+        ColoredBox(
+          color: FlutterLatamColors.darkBlue,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Center(
+              child: Text(
+                l10n.footerTitoDisclaimer,
+                textAlign: TextAlign.center,
+                style: switch (context.screenSize) {
+                  ScreenSize.extraLarge ||
+                  ScreenSize.large => theme.typography.body4Regular,
+                  _ => theme.typography.captionRegular,
+                },
+              ),
             ),
-            ScreenSize.normal || ScreenSize.small => Column(
-              spacing: 16,
-              children: footerChildren,
-            ),
-          },
-        ],
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
