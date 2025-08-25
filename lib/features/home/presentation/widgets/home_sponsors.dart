@@ -40,16 +40,20 @@ class HomeSponsors extends ConsumerWidget {
             level: SponsorLevel.silver,
           ),
           (
-            sponsors: data.where((item) => item.isInKind).toList(),
-            level: SponsorLevel.inKind,
-          ),
-          (
             sponsors: data.where((item) => item.isBronze).toList(),
             level: SponsorLevel.bronze,
           ),
           (
+            sponsors: data.where((item) => item.isInKind).toList(),
+            level: SponsorLevel.inKind,
+          ),
+          (
             sponsors: data.where((item) => item.isSenior).toList(),
             level: SponsorLevel.senior,
+          ),
+          (
+            sponsors: data.where((item) => item.isJunior).toList(),
+            level: SponsorLevel.junior,
           ),
         ];
 
@@ -114,6 +118,7 @@ class _SponsorCardContainer extends StatelessWidget {
         SponsorLevel.bronze => FlutterLatamColors.bronze,
         SponsorLevel.inKind => FlutterLatamColors.purple,
         SponsorLevel.senior => FlutterLatamColors.lightBlue,
+        SponsorLevel.junior => FlutterLatamColors.lightYellow,
       },
       child: Column(
         spacing: 30,
@@ -131,6 +136,7 @@ class _SponsorCardContainer extends StatelessWidget {
                   SponsorLevel.bronze => l10n.homeSponsorsBronze,
                   SponsorLevel.inKind => l10n.homeSponsorInKind,
                   SponsorLevel.senior => l10n.homeSponsorSenior,
+                  SponsorLevel.junior => l10n.homeSponsorJunior,
                 },
                 style: theme.typography.subH2Semibold.copyWith(
                   fontSize: switch (context.screenSize) {
@@ -146,8 +152,7 @@ class _SponsorCardContainer extends StatelessWidget {
           else
             ResponsiveGrid(
               columnSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge => 3,
-                ScreenSize.large => 2,
+                ScreenSize.extraLarge || ScreenSize.large => sponsors.length,
                 _ => 1,
               },
               rowSizes: sponsors.length,
