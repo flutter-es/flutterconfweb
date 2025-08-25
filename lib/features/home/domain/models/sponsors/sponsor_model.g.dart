@@ -21,4 +21,5 @@ const _$SponsorLevelEnumMap = {
   SponsorLevel.bronze: 'bronze',
   SponsorLevel.inKind: 'inKind',
   SponsorLevel.senior: 'senior',
+  SponsorLevel.junior: 'junior',
 };
