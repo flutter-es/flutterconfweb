@@ -99,6 +99,7 @@
   "homeSponsorsBronze": "Bronze",
   "homeSponsorInKind": "In kind",
   "homeSponsorSenior": "Startup Senior",
+  "homeSponsorJunior": "Startup Junior",
   "homeFaqTitle": "Frequently Asked Questions",
   "homeFaqDescription": "Here we answer the most common ones so you can enjoy the Flutter experience without complications.",
   "aboutVenueName":"See you at the University of the Americas!",
