@@ -59,6 +59,7 @@ class Footer extends ConsumerWidget {
         children: <Widget>[
           for (final item in footerLinks)
             InkWell(
+              mouseCursor: SystemMouseCursors.click,
               onTap: () => context.go('/${item.url}'),
               child: Text(
                 item.text,
