@@ -9,6 +9,7 @@ import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -33,6 +34,8 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final tabItems = ref.watch(
       navigationViewModelProvider.select(
@@ -97,6 +100,31 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
               },
               body: widget.child,
             ),
+          ),
+          Builder(
+            builder: (_) {
+              final textStyle = switch (context.screenSize) {
+                ScreenSize.extraLarge => theme.typography.body1Regular,
+                ScreenSize.large => theme.typography.body2Regular,
+                _ => theme.typography.body3Regular,
+              };
+
+              return ColoredBox(
+                color: FlutterLatamColors.yellow,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Center(
+                    child: Text(
+                      l10n.marqueeDisclaimer,
+                      textAlign: TextAlign.center,
+                      style: textStyle.copyWith(
+                        color: FlutterLatamColors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
