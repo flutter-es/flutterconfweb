@@ -38,20 +38,37 @@ class Footer extends ConsumerWidget {
       ScreenSize.normal || ScreenSize.small => 28.0,
     };
 
+    final footerLinks = <({String text, String url})>[
+      (
+        text: l10n.footerTermsAndConditions,
+        url: AppRoutePath.termsConditions.pathName,
+      ),
+      (
+        text: l10n.footerPrivacyPolicy,
+        url: AppRoutePath.privacyPolicy.pathName,
+      ),
+    ];
+
     final footerChildren = <Widget>[
       Text(
         l10n.footerCopyright(DateTime.now().year),
         style: theme.typography.body4Regular.copyWith(fontSize: 16),
       ),
-      InkWell(
-        onTap: () => context.go('/${AppRoutePath.termsConditions.pathName}'),
-        child: Text(
-          l10n.footerTermsAndConditions,
-          style: theme.typography.body4Regular.copyWith(
-            decoration: TextDecoration.underline,
-            decorationColor: FlutterLatamColors.white,
-          ),
-        ),
+      Column(
+        spacing: 10,
+        children: <Widget>[
+          for (final item in footerLinks)
+            InkWell(
+              onTap: () => context.go('/${item.url}'),
+              child: Text(
+                item.text,
+                style: theme.typography.body4Regular.copyWith(
+                  decoration: TextDecoration.underline,
+                  decorationColor: FlutterLatamColors.white,
+                ),
+              ),
+            ),
+        ],
       ),
     ];
 
