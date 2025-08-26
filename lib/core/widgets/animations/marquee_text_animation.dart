@@ -15,13 +15,20 @@ class MarqueeTextAnimation extends StatefulWidget {
 
 class _MarqueeTextAnimationState extends State<MarqueeTextAnimation>
     with SingleTickerProviderStateMixin {
-  late double _textWidth;
-  late double _screenWidth;
   late AnimationController _animationController;
+
+  double? _textWidth;
+  double? _screenWidth;
 
   @override
   void initState() {
     super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _calculateDimensions();
     });
@@ -35,19 +42,27 @@ class _MarqueeTextAnimationState extends State<MarqueeTextAnimation>
 
   @override
   Widget build(BuildContext context) {
-    if (!mounted) return const Offstage();
+    if (_textWidth == null || _screenWidth == null) return const Offstage();
+
+    final currentTextWidth = _textWidth!;
+    final currentScreenWidth = _screenWidth!;
+
     return ClipRect(
       child: AnimatedBuilder(
         animation: _animationController,
         builder: (_, child) {
-          final totalWidth = _textWidth + _screenWidth;
+          final totalWidth = currentTextWidth + currentScreenWidth;
           return Transform.translate(
             offset: Offset(-_animationController.value * totalWidth, 0),
-            child: child,
+            child: OverflowBox(
+              minWidth: 0,
+              maxWidth: double.infinity,
+              child: child,
+            ),
           );
         },
         child: Row(
-          spacing: _screenWidth,
+          spacing: currentScreenWidth,
           children: <Widget>[
             Text(widget.text, style: _currentStyle),
             Text(widget.text, style: _currentStyle),
@@ -68,24 +83,28 @@ class _MarqueeTextAnimationState extends State<MarqueeTextAnimation>
   }
 
   void _calculateDimensions() {
-    final textSpan = TextSpan(text: widget.text, style: _currentStyle);
+    if (!mounted) return;
+
     final textPainter = TextPainter(
-      text: textSpan,
+      text: TextSpan(text: widget.text, style: _currentStyle),
       maxLines: 1,
       textDirection: TextDirection.ltr,
     )..layout();
 
-    _textWidth = textPainter.size.width;
-    _screenWidth = MediaQuery.sizeOf(context).width;
+    setState(() {
+      _textWidth = textPainter.size.width;
+      _screenWidth = MediaQuery.sizeOf(context).width;
 
-    final totalWidth = _textWidth + _screenWidth;
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(
-        milliseconds: (totalWidth / widget.speed * 1000).toInt(),
-      ),
-    )..repeat();
+      if (_textWidth != null && _screenWidth != null) {
+        final totalWidth = _textWidth! + _screenWidth!;
+        _animationController.duration = Duration(
+          milliseconds: (totalWidth / widget.speed * 1000).toInt(),
+        );
 
-    setState(() {});
+        _animationController
+          ..forward(from: 0)
+          ..repeat();
+      }
+    });
   }
 }
