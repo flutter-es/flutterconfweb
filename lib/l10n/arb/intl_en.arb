@@ -204,5 +204,6 @@
     }
   },
   "footerTermsAndConditions": "Terms and conditions",
-  "footerTitoDisclaimer": "*The data you provide on the TITO platform will be used solely by FlutterConf Latam and UDLA for event-related purposes."
+  "footerTitoDisclaimer": "*The data you provide on the TITO platform will be used solely by FlutterConf Latam and UDLA for event-related purposes.",
+  "marqueeDisclaimer": "Get vaccinated against yellow fever! If you're coming from Colombia \uD83C\uDDE8\uD83C\uDDF4, Peru \uD83C\uDDF5\uD83C\uDDEA, Bolivia \uD83C\uDDE7\uD83C\uDDF4, or Brazil \uD83C\uDDE7\uD83C\uDDF7, don't forget to get vaccinated at least 10 days before traveling to Ecuador."
 }

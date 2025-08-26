@@ -204,5 +204,6 @@
     }
   },
   "footerTermsAndConditions": "Términos y condiciones",
-  "footerTitoDisclaimer": "*Los datos que proporciones en la plataforma TITO serán utilizados únicamente por FlutterConf Latam y la UDLA con fines relacionados al evento."
+  "footerTitoDisclaimer": "*Los datos que proporciones en la plataforma TITO serán utilizados únicamente por FlutterConf Latam y la UDLA con fines relacionados al evento.",
+  "marqueeDisclaimer": "¡Vacúnate contra la fiebre amarilla! Si vienes de Colombia \uD83C\uDDE8\uD83C\uDDF4, Perú \uD83C\uDDF5\uD83C\uDDEA, Bolivia \uD83C\uDDE7\uD83C\uDDF4 o Brasil \uD83C\uDDE7\uD83C\uDDF7, no olvides vacunarte mínimo 10 días antes de viajar a Ecuador."
 }
