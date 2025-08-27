@@ -27,7 +27,7 @@ class _ScheduleCard extends ConsumerWidget {
     final scheduleChildren = <Widget>[
       for (final (index, item) in sessions.indexed) ...[
         switch (itemPosition) {
-          _ScheduleCardItemPosition.row => Flexible(
+          _ScheduleCardItemPosition.row => Expanded(
             child: _ScheduleDetail(session: item),
           ),
           _ScheduleCardItemPosition.column => _ScheduleDetail(session: item),
@@ -64,9 +64,11 @@ class _ScheduleCard extends ConsumerWidget {
           ),
         ),
       switch (itemPosition) {
-        _ScheduleCardItemPosition.row => Row(
-          mainAxisSize: MainAxisSize.min,
-          children: scheduleChildren,
+        _ScheduleCardItemPosition.row => IntrinsicHeight(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: scheduleChildren,
+          ),
         ),
         _ScheduleCardItemPosition.column => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -229,12 +231,12 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
       ];
 
       return switch (context.screenSize) {
-        ScreenSize.extraLarge || ScreenSize.large => Row(
+        ScreenSize.extraLarge => Row(
           spacing: 8,
           mainAxisSize: MainAxisSize.min,
           children: childrenItem.map((item) => item).toList(),
         ),
-        ScreenSize.normal || ScreenSize.small => Wrap(
+        _ => Wrap(
           spacing: 8,
           runSpacing: 8,
           crossAxisAlignment: WrapCrossAlignment.center,
