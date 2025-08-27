@@ -38,11 +38,11 @@ ScheduleSessionModel _$ScheduleSessionModelFromJson(
   Map<String, dynamic> json,
 ) => ScheduleSessionModel(
   id: json['id'] as String,
+  title: json['title'] as String,
   type: $enumDecode(_$ScheduleTypeEnumMap, json['type']),
   track: (json['track'] as num).toInt(),
   startDate: DateTime.parse(json['startDate'] as String),
   endDate: DateTime.parse(json['endDate'] as String),
-  title: json['title'] as String?,
   description: json['description'] as String?,
   speakers: (json['speakers'] as List<dynamic>?)
       ?.map((e) => SessionSpeakerModel.fromJson(e as Map<String, dynamic>))
@@ -54,7 +54,7 @@ ScheduleSessionModel _$ScheduleSessionModelFromJson(
 );
 
 const _$ScheduleTypeEnumMap = {
-  ScheduleType.register: 'register',
+  ScheduleType.checkIn: 'checkIn',
   ScheduleType.keynote: 'keynote',
   ScheduleType.panel: 'panel',
   ScheduleType.breaks: 'breaks',

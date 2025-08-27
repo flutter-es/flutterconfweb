@@ -53,11 +53,11 @@ class ScheduleSlotModel {
 class ScheduleSessionModel {
   ScheduleSessionModel({
     required this.id,
+    required this.title,
     required this.type,
     required this.track,
     required this.startDate,
     required this.endDate,
-    this.title,
     this.description,
     this.speakers,
     this.tags,
@@ -68,11 +68,11 @@ class ScheduleSessionModel {
       _$ScheduleSessionModelFromJson(json);
 
   final String id;
+  final String title;
   final ScheduleType type;
   final int track;
   final DateTime startDate;
   final DateTime endDate;
-  final String? title;
   final String? description;
   final List<SessionSpeakerModel>? speakers;
   final List<String>? tags;
@@ -97,7 +97,7 @@ class SessionSpeakerModel {
 
 @JsonEnum()
 enum ScheduleType {
-  register,
+  checkIn,
   keynote,
   panel,
   breaks,
