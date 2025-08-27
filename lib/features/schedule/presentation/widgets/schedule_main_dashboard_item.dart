@@ -232,9 +232,7 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
         ScreenSize.extraLarge || ScreenSize.large => Row(
           spacing: 8,
           mainAxisSize: MainAxisSize.min,
-          children: childrenItem.mapIndexed((index, item) {
-            return index == 1 ? Flexible(child: item) : item;
-          }).toList(),
+          children: childrenItem.map((item) => item).toList(),
         ),
         ScreenSize.normal || ScreenSize.small => Wrap(
           spacing: 8,
@@ -246,9 +244,9 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
     });
 
     return switch (context.screenSize) {
-      ScreenSize.extraLarge => Row(
+      ScreenSize.extraLarge => Wrap(
         spacing: 30,
-        mainAxisSize: MainAxisSize.min,
+        runSpacing: 8,
         children: children.toList(),
       ),
       _ => Column(
