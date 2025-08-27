@@ -146,11 +146,6 @@
       }
     }
   },
-  "scheduleRegisterTitle": "Registro & check-in",
-  "scheduleKeynoteTitle": "Keynote",
-  "schedulePanelTitle": "Panel GDE",
-  "scheduleBreakTitle": "Descanso",
-  "scheduleLunchTitle": "Almuerzo",
   "scheduleLightingTitle": "Charla ligera - Track {track}",
   "@scheduleLightingTitle": {
     "placeholders": {
@@ -168,7 +163,6 @@
     }
   },
   "scheduleWorkshopTitle": "Taller",
-  "scheduleFinishTitle": "Fin del evento",
   "scheduleStartEndHour": "{startHour} - {endHour}",
   "@scheduleStartEndHour": {
     "placeholders": {

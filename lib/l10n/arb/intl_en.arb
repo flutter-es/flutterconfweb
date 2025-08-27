@@ -146,11 +146,6 @@
       }
     }
   },
-  "scheduleRegisterTitle": "Register & check-in",
-  "scheduleKeynoteTitle": "Keynote",
-  "schedulePanelTitle": "GDE panel",
-  "scheduleBreakTitle": "Break",
-  "scheduleLunchTitle": "Lunch",
   "scheduleLightingTitle": "Lighting talk - Track {track}",
   "@scheduleLightingTitle": {
     "placeholders": {
@@ -168,7 +163,6 @@
     }
   },
   "scheduleWorkshopTitle": "Workshop",
-  "scheduleFinishTitle": "End of the event",
   "scheduleStartEndHour": "{startHour} - {endHour}",
   "@scheduleStartEndHour": {
     "placeholders": {
