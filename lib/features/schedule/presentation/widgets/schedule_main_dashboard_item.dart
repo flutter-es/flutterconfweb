@@ -27,7 +27,9 @@ class _ScheduleCard extends ConsumerWidget {
     final scheduleChildren = <Widget>[
       for (final (index, item) in sessions.indexed) ...[
         switch (itemPosition) {
-          _ScheduleCardItemPosition.row => _ScheduleDetail(session: item),
+          _ScheduleCardItemPosition.row => Flexible(
+            child: _ScheduleDetail(session: item),
+          ),
           _ScheduleCardItemPosition.column => _ScheduleDetail(session: item),
         },
         if (index < sessions.length - 1)
@@ -116,24 +118,20 @@ class _ScheduleDetail extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
 
     final scheduleTypeTitle = switch (session.type) {
-      ScheduleType.register => l10n.scheduleRegisterTitle,
-      ScheduleType.keynote => l10n.scheduleKeynoteTitle,
-      ScheduleType.panel => l10n.schedulePanelTitle,
-      ScheduleType.breaks => l10n.scheduleBreakTitle,
-      ScheduleType.lunch => l10n.scheduleLunchTitle,
       ScheduleType.lighting => l10n.scheduleLightingTitle(session.track),
       ScheduleType.session => l10n.scheduleSessionTitle(session.track),
       ScheduleType.workshop => l10n.scheduleWorkshopTitle,
-      ScheduleType.finish => l10n.scheduleFinishTitle,
+      _ => null,
     };
+    final requirements = session.requirements ?? [];
 
     final scheduleChild = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: (session.title ?? '').isNotEmpty ? 10 : 20,
+      spacing: session.title.isNotEmpty ? 10 : 20,
       children: <Widget>[
         Text(
-          scheduleTypeTitle,
+          scheduleTypeTitle ?? session.title,
           style: theme.typography.body4Regular.copyWith(
             fontSize: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 14,
@@ -142,9 +140,9 @@ class _ScheduleDetail extends ConsumerWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        if ((session.title ?? '').isNotEmpty)
+        if (scheduleTypeTitle != null)
           Text(
-            session.title!,
+            session.title,
             style: theme.typography.body3Light.copyWith(
               fontSize: switch (context.screenSize) {
                 ScreenSize.extraLarge || ScreenSize.large => 16,
@@ -154,6 +152,32 @@ class _ScheduleDetail extends ConsumerWidget {
           ),
         if ((session.speakers ?? []).isNotEmpty)
           _ScheduleDetailSpeaker(speakers: session.speakers!),
+        if (requirements.isNotEmpty)
+          Column(
+            spacing: 4,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                l10n.scheduleRequirementTitle,
+                style: switch (context.screenSize) {
+                  ScreenSize.extraLarge ||
+                  ScreenSize.large => theme.typography.body3Regular,
+                  ScreenSize.normal ||
+                  ScreenSize.small => theme.typography.body4Regular,
+                },
+              ),
+              for (final item in requirements)
+                Text(
+                  '${'\u2022 '} $item',
+                  style: switch (context.screenSize) {
+                    ScreenSize.extraLarge ||
+                    ScreenSize.large => theme.typography.body4Regular,
+                    ScreenSize.normal ||
+                    ScreenSize.small => theme.typography.captionRegular,
+                  },
+                ),
+            ],
+          ),
       ],
     );
 
@@ -161,7 +185,9 @@ class _ScheduleDetail extends ConsumerWidget {
       mouseCursor: SystemMouseCursors.click,
       onTap: session.isTalkingTrack ? () {} : null,
       child: Semantics(
-        label: session.title ?? scheduleTypeTitle,
+        label: scheduleTypeTitle != null
+            ? '$scheduleTypeTitle: ${session.title}'
+            : session.title,
         role: session.isTalkingTrack
             ? SemanticsRole.spinButton
             : SemanticsRole.tooltip,

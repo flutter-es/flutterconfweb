@@ -80,7 +80,7 @@ class _ScheduleSlotItem extends StatelessWidget {
                 return _ScheduleCard(
                   sessions: item.value,
                   color: switch (item.key.type) {
-                    ScheduleType.register => FlutterLatamColors.purple,
+                    ScheduleType.checkIn => FlutterLatamColors.purple,
                     ScheduleType.keynote ||
                     ScheduleType.panel => FlutterLatamColors.lightGreen,
                     ScheduleType.breaks ||
