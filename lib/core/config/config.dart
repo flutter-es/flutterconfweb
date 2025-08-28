@@ -12,4 +12,8 @@ class Config {
   String get venueMapUrl => const String.fromEnvironment('VENUE_MAP_URL');
 
   String get contactEmail => const String.fromEnvironment('CONTACT_EMAIL');
+
+  String get privacyPolicyUrl {
+    return const String.fromEnvironment('FCL_PRIVACY_POLICY_URL');
+  }
 }
