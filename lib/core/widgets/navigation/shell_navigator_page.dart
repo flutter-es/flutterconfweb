@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
-import 'package:flutter_conf_latam/core/widgets/animations/marquee_text_animation.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/header_menu.dart';
 import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -99,6 +98,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
               body: widget.child,
             ),
           ),
+          /*
           SizedBox(
             height: switch (context.screenSize) {
               ScreenSize.extraLarge || ScreenSize.large => 56,
@@ -109,6 +109,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
               child: MarqueeTextAnimation(text: l10n.marqueeDisclaimer),
             ),
           ),
+          */
         ],
       ),
     );
