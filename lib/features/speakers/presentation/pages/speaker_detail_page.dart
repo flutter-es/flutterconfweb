@@ -1,6 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/widgets/dialog/dialog_container.dart';
+import 'package:flutter_conf_latam/core/widgets/container/dialog_container.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/widgets/speaker_detail_main.dart';
 
 class SpeakerDetailPage extends StatefulWidget {
