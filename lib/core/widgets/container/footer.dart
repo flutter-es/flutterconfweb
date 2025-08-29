@@ -6,6 +6,7 @@ import 'package:flutter_conf_latam/core/social/models/social_media_model.dart';
 import 'package:flutter_conf_latam/core/social/providers/social_media_provider.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/icons/social_media_row.dart';
+import 'package:flutter_conf_latam/core/widgets/text/data_protection_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -127,22 +128,45 @@ class Footer extends ConsumerWidget {
             ],
           ),
         ),
-        ColoredBox(
-          color: FlutterLatamColors.darkBlue,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Center(
-              child: Text(
-                l10n.footerTitoDisclaimer,
-                textAlign: TextAlign.center,
-                style: switch (context.screenSize) {
-                  ScreenSize.extraLarge ||
-                  ScreenSize.large => theme.typography.body4Regular,
-                  _ => theme.typography.captionRegular,
-                },
+        Builder(
+          builder: (_) {
+            final paddingHorizontal = switch (context.screenSize) {
+              ScreenSize.extraLarge || ScreenSize.large => 122.0,
+              ScreenSize.normal || ScreenSize.small => 40.0,
+            };
+
+            final textAlign = switch (context.screenSize) {
+              ScreenSize.extraLarge || ScreenSize.large => TextAlign.start,
+              ScreenSize.normal || ScreenSize.small => TextAlign.center,
+            };
+
+            return ColoredBox(
+              color: FlutterLatamColors.darkBlue,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: paddingHorizontal,
+                  vertical: 32,
+                ),
+                child: Column(
+                  spacing: 20,
+                  crossAxisAlignment: switch (context.screenSize) {
+                    ScreenSize.extraLarge ||
+                    ScreenSize.large => CrossAxisAlignment.start,
+                    ScreenSize.normal ||
+                    ScreenSize.small => CrossAxisAlignment.center,
+                  },
+                  children: <Widget>[
+                    Text(
+                      l10n.footerDataProtectionTitle,
+                      textAlign: textAlign,
+                      style: theme.typography.body4Regular,
+                    ),
+                    DataProtectionText(textSize: 14, textAlign: textAlign),
+                  ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ],
     );
