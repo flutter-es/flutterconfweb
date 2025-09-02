@@ -35,15 +35,18 @@ class _ScheduleDashboard extends HookConsumerWidget {
           index: currentIndex,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           children: <Widget>[
-            for (final daySchedule in data)
+            for (final (idx, daySchedule) in data.indexed)
               if (daySchedule != null)
-                Column(
-                  spacing: 10,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    for (final item in daySchedule.slots)
-                      _ScheduleSlotItem(slot: item),
-                  ],
+                Visibility(
+                  visible: currentIndex == idx,
+                  child: Column(
+                    spacing: 10,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      for (final item in daySchedule.slots)
+                        _ScheduleSlotItem(slot: item),
+                    ],
+                  ),
                 ),
           ],
         ),
