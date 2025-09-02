@@ -105,6 +105,7 @@ enum ScheduleType {
   lighting,
   session,
   workshop,
+  hackathon,
   finish,
 }
 
@@ -124,22 +125,29 @@ extension ScheduleSlotModelX on ScheduleSlotModel {
   }
 }
 
+extension SlotSessionX on SlotSession {
+  bool get isWorkshopOrHackathon {
+    return type == ScheduleType.workshop || type == ScheduleType.hackathon;
+  }
+}
+
 extension MapSlotSessionsX on MapSlotSessions {
   MapSlotSessions get others => {
     for (final item in entries)
-      if (item.key.type != ScheduleType.workshop) item.key: item.value,
+      if (!item.key.isWorkshopOrHackathon) item.key: item.value,
   };
 
-  MapSlotSessions get workshops => {
+  MapSlotSessions get workshopsHacks => {
     for (final item in entries)
-      if (item.key.type == ScheduleType.workshop) item.key: item.value,
+      if (item.key.isWorkshopOrHackathon) item.key: item.value,
   };
 }
 
 extension ScheduleTrackModelX on ScheduleSessionModel {
   bool get isTalkingTrack {
-    return type == ScheduleType.session ||
+    return type == ScheduleType.lighting ||
+        type == ScheduleType.session ||
         type == ScheduleType.workshop ||
-        type == ScheduleType.lighting;
+        type == ScheduleType.hackathon;
   }
 }

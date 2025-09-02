@@ -62,6 +62,7 @@ const _$ScheduleTypeEnumMap = {
   ScheduleType.lighting: 'lighting',
   ScheduleType.session: 'session',
   ScheduleType.workshop: 'workshop',
+  ScheduleType.hackathon: 'hackathon',
   ScheduleType.finish: 'finish',
 };
 

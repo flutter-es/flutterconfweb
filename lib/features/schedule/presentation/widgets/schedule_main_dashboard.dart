@@ -94,7 +94,7 @@ class _ScheduleSlotItem extends StatelessWidget {
                     ScreenSize.extraLarge => _ScheduleCardPosition.row,
                     _ => _ScheduleCardPosition.column,
                   },
-                  itemPosition: slot.scheduleSlots.workshops.isNotEmpty
+                  itemPosition: slot.scheduleSlots.workshopsHacks.isNotEmpty
                       ? _ScheduleCardItemPosition.column
                       : switch (context.screenSize) {
                           ScreenSize.extraLarge ||
@@ -106,7 +106,7 @@ class _ScheduleSlotItem extends StatelessWidget {
               }).toList(),
             ),
           ),
-          if (slot.scheduleSlots.workshops.isNotEmpty)
+          if (slot.scheduleSlots.workshopsHacks.isNotEmpty)
             Flexible(
               flex: switch (context.screenSize) {
                 ScreenSize.small || ScreenSize.normal => 3,
@@ -114,12 +114,13 @@ class _ScheduleSlotItem extends StatelessWidget {
               },
               child: Column(
                 spacing: 10,
-                children: slot.scheduleSlots.workshops.entries.map((item) {
+                children: slot.scheduleSlots.workshopsHacks.entries.map((item) {
                   return Expanded(
                     child: _ScheduleCard(
                       sessions: item.value,
                       color: switch (item.key.type) {
                         ScheduleType.workshop => FlutterLatamColors.lightYellow,
+                        ScheduleType.hackathon => FlutterLatamColors.bronze,
                         _ => Colors.transparent,
                       },
                       position: _ScheduleCardPosition.column,
