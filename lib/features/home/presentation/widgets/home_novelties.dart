@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
@@ -205,7 +206,7 @@ class _AppStoreSection extends ConsumerWidget {
           children: <Widget>[
             for (final item in appLogoUrls)
               InkWell(
-                onTap: () {},
+                onTap: () => Utils.launchUrlLink(item.url),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
                     maxWidth: 300,
