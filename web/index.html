@@ -8,8 +8,12 @@
     <meta name="description" content="Conferencia de Flutter para Latinoamérica">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Flutter Conf Latam">
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#042B59">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#042B59">
+
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <link rel="icon" type="image/png" href="favicon.ico"/>
@@ -19,6 +23,18 @@
 
     <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js" as="script" crossorigin/>
     <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js" as="script" crossorigin/>
+
+    <style>
+        html, body {
+        background-color: #042B59;
+        margin: 0;
+        height: 100%;
+      }
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    </style>
 </head>
 <body>
 <script>
