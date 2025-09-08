@@ -107,3 +107,6 @@ lib/l10n/gen/
 
 # Dart define file
 keys**.json
+
+# FVM Version Cache
+.fvm/
