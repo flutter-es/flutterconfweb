@@ -25,46 +25,44 @@ class MobileDrawerMenu extends ConsumerWidget {
 
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 20),
         child: Column(
           spacing: 20,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  for (final (index, item) in tabItems.indexed)
-                    if (index == 0)
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          child: SizedBox(
-                            height: 80,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).pop();
-                                onSelect(item);
-                              },
-                              child: Image.asset(
-                                semanticLabel: l10n.menuHomeText,
-                                Assets.images.fclEcMainLogo,
-                              ),
+            Column(
+              children: <Widget>[
+                for (final (index, item) in tabItems.indexed)
+                  if (index == 0)
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: SizedBox(
+                          height: 80,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              onSelect(item);
+                            },
+                            child: Image.asset(
+                              semanticLabel: l10n.menuHomeText,
+                              Assets.images.fclEcMainLogo,
                             ),
                           ),
                         ),
-                      )
-                    else
-                      _ItemDrawer(
-                        item: item,
-                        onSelect: (value) {
-                          Navigator.of(context).pop();
-                          onSelect(value);
-                        },
                       ),
-                ],
-              ),
+                    )
+                  else
+                    _ItemDrawer(
+                      item: item,
+                      onSelect: (value) {
+                        Navigator.of(context).pop();
+                        onSelect(value);
+                      },
+                    ),
+              ],
             ),
             const ExtraButtons(position: ButtonPosition.column),
             const LanguageButton(),
