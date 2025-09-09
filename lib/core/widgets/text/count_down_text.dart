@@ -48,6 +48,26 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
       _ => 2,
     };
 
+    final titleSize = switch (context.screenSize) {
+      ScreenSize.extraLarge => 84.0,
+      ScreenSize.large => 64.0,
+      ScreenSize.normal || ScreenSize.small => 24.0,
+    };
+
+    final subtitleSize = switch (context.screenSize) {
+      ScreenSize.extraLarge || ScreenSize.large => 24.0,
+      ScreenSize.normal || ScreenSize.small => 20.0,
+    };
+
+    if (_duration <= Duration.zero) {
+      return Center(
+        child: TitleSubtitleText(
+          title: (text: l10n.homeCountDownFinishTitle, size: titleSize),
+          subtitle: (text: l10n.homeCountDownFinishMessage, size: subtitleSize),
+        ),
+      );
+    }
+
     return ResponsiveGrid(
       columnSizes: columnRowSize,
       rowSizes: columnRowSize,
@@ -55,21 +75,8 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
         for (final item in _formatDuration(_duration, l10n))
           Center(
             child: TitleSubtitleText(
-              title: (
-                text: item.value,
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 84,
-                  ScreenSize.large => 64,
-                  ScreenSize.normal || ScreenSize.small => 24,
-                },
-              ),
-              subtitle: (
-                text: item.text,
-                size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 20,
-                },
-              ),
+              title: (text: item.value, size: titleSize),
+              subtitle: (text: item.text, size: subtitleSize),
             ),
           ),
       ],
