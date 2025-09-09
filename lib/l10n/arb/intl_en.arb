@@ -36,6 +36,8 @@
   "homeCountDownHours": "Hours",
   "homeCountDownMinutes": "Minutes",
   "homeCountDownSeconds": "Seconds",
+  "homeCountDownFinishTitle": "IT'S TODAY, IT'S TODAY!!!",
+  "homeCountDownFinishMessage": "Welcome to Flutter Conf Latam 2025",
   "homeFeatureTitle": "Do you love Flutter?",
   "homeFeatureDescription": "Then you can't miss FlutterConf Latam 2025, the event where you learn, connect, and get inspired.",
   "homeFeatureLearnTitle": "Learn from experts",
