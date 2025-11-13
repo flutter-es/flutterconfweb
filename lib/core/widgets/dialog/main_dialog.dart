@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
+
+class MainDialog extends StatelessWidget {
+  const MainDialog({required this.child, super.key});
+
+  final Widget child;
+
+  static Future<T?> show<T>(BuildContext context, {required Widget child}) {
+    return switch (context.screenSize) {
+      ScreenSize.extraLarge || ScreenSize.large => showDialog<T>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => FractionallySizedBox(
+          widthFactor: .6,
+          heightFactor: .6,
+          child: Container(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(24)),
+            child: MainDialog(child: child),
+          ),
+        ),
+      ),
+      ScreenSize.normal || ScreenSize.small => showModalBottomSheet<T>(
+        context: context,
+        isDismissible: false,
+        showDragHandle: true,
+        useRootNavigator: true,
+        isScrollControlled: true,
+        clipBehavior: Clip.hardEdge,
+        backgroundColor: FlutterLatamColors.darkBlue,
+        barrierColor: FlutterLatamColors.black.withValues(alpha: .3),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        builder: (_) => MainDialog(child: child),
+      ),
+    };
+  }
+
+  @override
+  Widget build(BuildContext context) => child;
+}

@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <base href="$FLUTTER_BASE_HREF">
+    <base href="$FLUTTER_BASE_HREF">
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Conferencia de Flutter para Latinoamérica">
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="description" content="Conferencia de Flutter para Latinoamérica">
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Flutter Conf Latam">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Flutter Conf Latam">
 
-  <link rel="icon" type="image/png" href="favicon.ico"/>
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#042B59">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#042B59">
 
-  <title>Flutter Conf Latam</title>
-  <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js" as="script" crossorigin />
-  <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js" as="script" crossorigin />
+    <link rel="icon" type="image/png" href="favicon.ico"/>
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
-  <script src="flutter.js" defer></script>
+    <title>Flutter Conf Latam</title>
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js" as="script" crossorigin/>
+    <link rel="preload" href="https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js" as="script" crossorigin/>
+
+    <style>
+        html, body {
+        background-color: #042B59;
+        margin: 0;
+        height: 100%;
+      }
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    </style>
 </head>
 <body>
-  <script>
+<script>
+    {{flutter_bootstrap_js}}
+
     window.initTime = Date.now()
 
     window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
+      {{flutter_js}}
+
+      _flutter.loader.load({
         serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
+          serviceWorkerVersion: {{flutter_service_worker_version}},
         },
-        entrypointUrl: "main.dart.js?v=" + serviceWorkerVersion,
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
             appRunner.runApp();
@@ -44,6 +56,6 @@
         }
       });
     });
-  </script>
+</script>
 </body>
 </html>

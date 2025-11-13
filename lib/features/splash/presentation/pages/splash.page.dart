@@ -2,15 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_colombia/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_conf_colombia/features/shared/widgets/animations/flutter_logo_animated.dart';
-import 'package:flutter_conf_colombia/helpers/enums.dart';
+import 'package:flutter_conf_latam/core/enums/enums.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
-
-  static const String route = '/';
-
   const SplashPage({super.key});
 
   @override
@@ -18,33 +16,34 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
-  Timer timer = Timer(Duration.zero, () {});
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
 
-    timer = Timer(2.seconds, () {
-      Router.neglect(context, () => GoRouter.of(context).go(HomePage.route)); 
+    _timer = Timer(2.seconds, () {
+      Router.neglect(context, () {
+        context.go('/${AppRoutePath.home.pathName}');
+      });
     });
   }
 
   @override
   void dispose() {
-    timer.cancel();
+    _timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: SizedBox(
-          width: 200, height: 200,
-          child: FlutterLogoAnimated(
-            animation: FlutterLogoAnimations.flutterlogo,
+        child: SizedBox.square(
+          dimension: 200,
+          child: FlutterRiveAnimated(
+            path: Assets.animations.flutterconflogo,
+            animation: FlutterConfAnimations.flutterLogo,
           ),
         ),
       ),

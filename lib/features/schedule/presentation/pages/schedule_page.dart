@@ -1,82 +1,35 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/providers/schedule_providers.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/responsiveness/schedule_content_responsive_config.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_date_selector.dart';
-import 'package:flutter_conf_colombia/features/schedule/presentation/widgets/schedule_day_block.dart';
-import 'package:flutter_conf_colombia/l10n/localization_provider.dart';
-import 'package:flutter_conf_colombia/styles/colors.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/features/schedule/presentation/widgets/schedule_main.dart';
 
-class SchedulePage extends ConsumerWidget {
-
-  static const String route = '/schedule';
-
+class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<SchedulePage> createState() => _SchedulePageState();
+}
 
-    final appLoc = ref.watch(appLocalizationsProvider);
-    final uiConfig = ScheduleContentResponsiveConfig.getSchedulePageResponsiveConfig(context);
-    final schedule = ref.watch(scheduleFutureProvider);
+class _SchedulePageState extends State<SchedulePage> {
+  final analytics = FirebaseAnalytics.instance;
 
-    return SingleChildScrollView(
-      child: Center(
-        child: Padding(
-          padding: uiConfig.pagePadding,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flex(
-                direction: uiConfig.headerDirection,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.calendar_today,
-                    size: uiConfig.headerIconSize, color: FlutterLatamColors.blueText,
-                  ),
-                  uiConfig.headerGap,
-                  Text(appLoc.schedule, 
-                    textAlign: TextAlign.center, 
-                    style: uiConfig.headerStyle,
-                  ),
-                ],
-              ),
-              uiConfig.pageVerticalGap,
-              schedule.when(
-                data: (scheduleData) {
+  @override
+  void initState() {
+    super.initState();
+    analytics.logScreenView(screenName: 'sessions_page');
+  }
 
-                  final scheduleSelectedDate = ref.watch(scheduleDaySelectionProvider);
-                  final scheduleDayForSelection = scheduleSelectedDate != null ? scheduleData.where((s) => s.date == scheduleSelectedDate).first : scheduleData.first;
-                  
-                  return Column(
-                    children: [
-                      ScheduleDateSelector(
-                        eventDates: scheduleData.map((s) => s.date).toList(),
-                      ),
-                      ScheduleDayBlock(
-                        key: ValueKey(scheduleSelectedDate),
-                        scheduleDay: scheduleDayForSelection,
-                      ),
-                    ],
-                  );
-                },
-                loading: () => const CircularProgressIndicator(),
-                error: (error, stackTrace) {
-                  return const Text('Error');
-                },
-              )
-              
-            ].animate(
-              interval: 50.ms,
-            ).slideY(
-              begin: 1, end: 0,
-              curve: Curves.easeInOut,
-            ).fadeIn(),
-          ),
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverList(
+          delegate: SliverChildListDelegate([
+            const ScheduleMain(),
+            const Footer(),
+          ]),
         ),
-      ),
+      ],
     );
   }
 }

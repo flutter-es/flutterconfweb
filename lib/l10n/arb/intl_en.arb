@@ -1,0 +1,216 @@
+{
+  "@@locale": "en",
+  "menuHomeText": "Home",
+  "menuAboutText": "About",
+  "menuVenueText": "Venue",
+  "menuOrganizersText": "Organizers",
+  "menuPricingText": "Pricing",
+  "menuSpeakersText": "Speakers",
+  "menuScheduleText": "Schedule",
+  "menuGalleryText": "Gallery",
+  "menuContactText": "Contact",
+  "menuBeSpeakerButton": "Be a speaker",
+  "menuBuyTicketsButton": "Buy tickets",
+  "errorPageTitle": "Uh-oh, sorry!",
+  "errorPageSubtitle": "It wasn't Dash's fault - I swear!",
+  "errorReturnHomeButton": "Return Home",
+  "errorDataTitle": "Oops!",
+  "errorDataMessage": "An error happened, try again",
+  "errorDataRetryButton": "Retry",
+  "previousPageText": "Previous page",
+  "nextPageText": "Next page",
+  "numberPageText": "Page {page}",
+  "@numberPageText": {
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "morePagesText": "More pages",
+  "homeMainTitle": "FlutterConfLatam 2025\nQuito - Ecuador",
+  "homeMainDescription": "September 9th and 10th",
+  "homeMainExperienceOne": "The Flutter experience awaits you in the ",
+  "homeMainExperienceTwo": "Middle of the World",
+  "homeCountDownDays": "Days",
+  "homeCountDownHours": "Hours",
+  "homeCountDownMinutes": "Minutes",
+  "homeCountDownSeconds": "Seconds",
+  "homeCountDownFinishTitle": "IT'S TODAY, IT'S TODAY!!!",
+  "homeCountDownFinishMessage": "Welcome to Flutter Conf Latam 2025",
+  "homeFeatureTitle": "Do you love Flutter?",
+  "homeFeatureDescription": "Then you can't miss FlutterConf Latam 2025, the event where you learn, connect, and get inspired.",
+  "homeFeatureLearnTitle": "Learn from experts",
+  "homeFeatureLearnDescription": "Enjoy talks and workshops on Flutter, and more.",
+  "homeFeatureConnectTitle": "Connect with the community",
+  "homeFeatureConnectDescription": "Connect with people who vibrate like you.",
+  "homeFeatureGrowthTitle": "Get inspired and grow",
+  "homeFeatureGrowthDescription": "Discover ideas, tools, and new perspectives for your projects.",
+  "homeFeaturePrizeTitle": "Win amazing prizes",
+  "homeFeaturePrizeDescription": "Participate in dynamics, challenges, and sweepstakes... and earn your very own Dash!",
+  "homeFeatureBuyTicketTitle": "Buy your ticket from ${value} here!",
+  "@homeFeatureBuyTicketTitle": {
+    "placeholders": {
+      "value": {
+        "type": "double"
+      }
+    }
+  },
+  "homeFeatureBuyTicketButton": "Buy tickets",
+  "homeVenueGratitudeMessage": "We thank the University of the Americas (UDLA) for opening the doors of its campus to us and hosting FlutterConf Latam 2025.",
+  "homeVenueGratitudeName": "University of the Americas",
+  "homeNoveltiesTitle": "News for 2025",
+  "homeNoveltiesDescription": "We've always given our best, but now we want to offer you an even more complete Flutter experience.",
+  "homeNoveltiesMerchTitle": "Ecuador edition merch",
+  "homeNoveltiesMerchDescription": "Unique swag, stickers, and more, just for this edition.",
+  "homeNoveltiesTriviaTitle": "Trivia lover?",
+  "homeNoveltiesTriviaDescription": "We're preparing something you'll love.",
+  "homeNoveltiesAppTitle": "We'll have an official app by 2025!",
+  "homeNoveltiesAppDescription": "Everything you need for FlutterConf Latam is now in the palm of your hand.",
+  "homeNoveltiesAppSoon": "Soon:",
+  "homePricingTitle": "The Flutter experience within everyone's reach!",
+  "homePricingDescription": "Take advantage of the early bird price and secure your spot",
+  "homePricingEndDate": "Until {date}",
+  "@homePricingEndDate": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "MMMM d",
+        "isCustomDateFormat": "true"
+      }
+    }
+  },
+  "homePricingBuyTicketsButton": "Buy tickets",
+  "homeSpeakersTitle": "Experts who come to share everything",
+  "homeSpeakersDescription": "Get ready to learn, be amazed, and connect with some of the best in the community.",
+  "homeSpeakersRedirectTitle": "They are not all...",
+  "homeSpeakersSeeMoreSpeakers": "More speakers",
+  "homeCollaborationTitle": "Do you want to collaborate on another level?",
+  "homeCollaborationDescription": "Join us as a speaker or sponsor and be part of the heart of FlutterConf Latam 2025.",
+  "homeCollaborationSpeakerTitle": "Do you want to be a speaker?",
+  "homeCollaborationSpeakerDescription": "If you are into inspiring and teaching, join us as a speaker.",
+  "homeCollaborationSpeakerButton": "Be a speaker",
+  "homeCollaborationSponsorTitle": "Do you want to collaborate as a sponsor?",
+  "homeCollaborationSponsorDescription": "Your brand can also be part of this great experience!",
+  "homeCollaborationSponsorButton": "Be a sponsor",
+  "homeSponsorsTitle": "Sponsors 2025",
+  "homeSponsorsMessage": "Your support makes FlutterConf 2025 a reality. Thank you for trusting us!",
+  "homeSponsorPlatinum": "Platinum",
+  "homeSponsorGold": "Gold",
+  "homeSponsorSilver": "Silver",
+  "homeSponsorsBronze": "Bronze",
+  "homeSponsorInKind": "In kind",
+  "homeSponsorSenior": "Startup Senior",
+  "homeSponsorJunior": "Startup Junior",
+  "homeFaqTitle": "Frequently Asked Questions",
+  "homeFaqDescription": "Here we answer the most common ones so you can enjoy the Flutter experience without complications.",
+  "aboutVenueName": "See you at the University of the Americas!",
+  "aboutVenueDescription": "That's right! FlutterConf Latam 2025 will be held at the University of the Americas. Get ready for a unique experience on this incredible campus.",
+  "aboutVenueAddress": "Vía a Nayón, Quito",
+  "aboutVenueCapacity": "Capacity: 600 people",
+  "aboutVenueHowToArrive": "How to get there?",
+  "aboutPlaceTitle": "About the place",
+  "aboutPlaceDescription": "We leave you three key facts so you can feel comfortable and enjoy the place to the fullest.",
+  "aboutPlaceInstallationTitle": "Campus facilities",
+  "aboutPlaceInstallationDescription": "The facility features modern classrooms, auditoriums, and networking spaces, equipped with high-speed Wi-Fi throughout the campus.",
+  "aboutPlaceFoodTitle": "Food and drinks",
+  "aboutPlaceFoodDescription": "There are several cafeterias and food options available on campus, with special menus prepared for conference attendees.",
+  "aboutPlaceMoveTitle": "How to move?",
+  "aboutPlaceMoveDescription": "The campus is easy to navigate with clear signage. Event staff, wearing Flutter T-shirts, will be available to assist you.",
+  "aboutExtraInfoTitle": "Extra information and useful tips",
+  "aboutExtraInfoDescription": "We share some recommendations so you can make the most of the event.",
+  "aboutExtraSafetyTitle": "Safety precautions",
+  "aboutExtraSafetyDescription": "Avoid carrying large amounts of cash and keep your valuables safe in crowded areas.",
+  "aboutExtraTransportTitle": "Taxis and transportation",
+  "aboutExtraTransportDescription": "Use licensed taxis or apps like Uber and Didi. Avoid unregistered taxis.",
+  "aboutExtraDeliveryAppTitle": "Delivery applications",
+  "aboutExtraDeliveryAppDescription": "Popular options include Rappi, PedidosYa and Uber Eats for fast and reliable service.",
+  "speakersTitle": "Speakers",
+  "speakersDescription": "Get ready to learn, be amazed, and connect with some of the best in the community.",
+  "organizersPeopleTitle": "Organizers",
+  "organizersPeopleDescription": "Behind every detail are organizers and tech communities committed to providing a great experience.",
+  "organizersCommunityTitle": "Allied communities",
+  "organizersCommunityDescription": "This event wouldn't be the same without the heart of Flutter: The communities that make it possible!",
+  "galleryMainTitle": "Remember is to live again...",
+  "galleryMainMessage": "We capture the best of every moment. The next epic photo could be yours! Check out some memories from past editions.",
+  "scheduleMainTitle": "Schedule",
+  "scheduleMainMessage": "Get ready for two days of inspiration, talks, debates, and plenty of networking! Discover everything about the speakers, their topics, and the full program of the event.",
+  "scheduleOptionDayOne": "September 9th",
+  "scheduleOptionDayTwo": "September 10th",
+  "scheduleOptionDayTitle": "Day {day} - {date}",
+  "@scheduleOptionDayTitle": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "scheduleLightingTitle": "Lighting talk - Track {track}",
+  "@scheduleLightingTitle": {
+    "placeholders": {
+      "track": {
+        "type": "int"
+      }
+    }
+  },
+  "scheduleSessionTitle": "Session - Track {track}",
+  "@scheduleSessionTitle": {
+    "placeholders": {
+      "track": {
+        "type": "int"
+      }
+    }
+  },
+  "scheduleWorkshopTitle": "Workshop",
+  "scheduleStartEndHour": "{startHour} - {endHour}",
+  "@scheduleStartEndHour": {
+    "placeholders": {
+      "startHour": {
+        "type": "DateTime",
+        "format": "HH:mm",
+        "isCustomDateFormat": "true"
+      },
+      "endHour": {
+        "type": "DateTime",
+        "format": "HH:mm",
+        "isCustomDateFormat": "true"
+      }
+    }
+  },
+  "scheduleRequirementTitle": "Requirements",
+  "contactMainTitle": "Do you have any questions? Write to us.",
+  "contactMainDescription": "Or if you prefer, contact us through our social media! We love staying in touch!",
+  "contactCopyEmail": "Copy email",
+  "footerTitle": "See you in Quito, Ecuador \uD83C\uDDEA\uD83C\uDDE8 !",
+  "footerDescription": "Take advantage of the event and discover the magic of Quito and its surroundings.",
+  "footerSeeMore": "Learn more",
+  "footerMemoriesTitle": "Will this be your first FlutterConf?",
+  "footerMemoriesDescription": "See how we experienced it in previous editions.",
+  "footerMemoriesVideoOne": "FlutterConf Latam 2024, Arequipa, Peru",
+  "footerMemoriesVideoTwo": "FlutterConf Latam 2023, Medellín, Colombia",
+  "footerCopyright": "© {year} Flutter Conf Latam",
+  "@footerCopyright": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "footerTermsAndConditions": "Terms and conditions",
+  "footerPrivacyPolicy": "Privacy policy",
+  "footerDataProtectionTitle": "By purchasing your ticket, you confirm that you have read the following:",
+  "dataProtectionDialogTitle": "Data protection notice",
+  "dataProtectionDialogParagraphOne": "\"The data provided will be used exclusively for the management of the FlutterConf Latam 2025 event, including related communications and the sending of relevant information about future activities organized by FlutterConf Latam, its sponsors, and strategic partners, such as the University of Las Américas.\nYour data may be shared with the event sponsors and the University of Las Américas to offer you opportunities, promotions, and content related to the technology and education sectors.\"\n\n",
+  "dataProtectionDialogParagraphTwo": "We guarantee the responsible and secure handling of your information in accordance with current personal data protection regulations. ",
+  "dataProtectionDialogParagraphTwoBold": "You can request the update, rectification, or deletion of your data at any time.\n\n",
+  "dataProtectionDialogParagraphThree": "To learn more, check out our ",
+  "dataProtectionDialogLinkText": "Personal Data Protection Policy.",
+  "dataProtectionDialogButtonMessageOne": "By clicking ",
+  "dataProtectionDialogButtonMessageBold": "\"Understood\"",
+  "dataProtectionDialogButtonMessageTwo": ", you will be redirected to the purchase page, and you agree that you have read the Data Protection Notice.",
+  "dataProtectionDialogAcceptButton": "Understood",
+  "marqueeDisclaimer": "Get vaccinated against yellow fever! If you're coming from Colombia \uD83C\uDDE8\uD83C\uDDF4, Peru \uD83C\uDDF5\uD83C\uDDEA, Bolivia \uD83C\uDDE7\uD83C\uDDF4, or Brazil \uD83C\uDDE7\uD83C\uDDF7, don't forget to get vaccinated at least 10 days before traveling to Ecuador."
+}
