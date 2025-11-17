@@ -30,9 +30,7 @@ class OrganizersPeople extends HookConsumerWidget {
     useEffect(() {
       unawaited(
         Future.microtask(() {
-          ref.read(paginationProvider.notifier).update((state) {
-            return (page: state.page, pageSize: 16);
-          });
+          ref.read(paginationProvider.notifier).update(pageSize: 16);
         }),
       );
       return null;
@@ -71,9 +69,7 @@ class OrganizersPeople extends HookConsumerWidget {
               pageSize: paginationInfo.pageSize,
               currentPage: paginationInfo.page,
               onChangedPage: (value) {
-                ref.read(paginationProvider.notifier).update((state) {
-                  return (page: value, pageSize: state.pageSize);
-                });
+                ref.read(paginationProvider.notifier).update(page: value);
               },
               child: _OrganizerListContainer(
                 children: <Widget>[

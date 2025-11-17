@@ -49,10 +49,9 @@ class LanguageButton extends ConsumerWidget {
                   child: _LanguageItem(
                     title: local.languageCode,
                     isActive: languageCode == local.languageCode,
-                    onTap: () {
-                      ref.read(currentLocalizationProvider.notifier).state =
-                          local;
-                    },
+                    onTap: () => ref
+                        .read(currentLocalizationProvider.notifier)
+                        .update(newLocale: local),
                   ),
                 ),
             ],

@@ -28,9 +28,7 @@ class GalleryList extends ConsumerWidget {
         pageSize: paginationInfo.pageSize,
         currentPage: paginationInfo.page,
         onChangedPage: (value) {
-          ref.read(paginationProvider.notifier).update((state) {
-            return (page: value, pageSize: state.pageSize);
-          });
+          ref.read(paginationProvider.notifier).update(page: value);
         },
         child: _GalleryListContainer(
           children: <Widget>[
