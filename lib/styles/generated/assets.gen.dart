@@ -48,14 +48,8 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/contact
   $AssetsImagesContactGen get contact => const $AssetsImagesContactGen();
 
-  /// File path: assets/images/ecua_dash.png
-  String get ecuaDash => 'assets/images/ecua_dash.png';
-
-  /// File path: assets/images/fcl_ec_footer_logo.png
-  String get fclEcFooterLogo => 'assets/images/fcl_ec_footer_logo.png';
-
-  /// File path: assets/images/fcl_ec_main_logo.png
-  String get fclEcMainLogo => 'assets/images/fcl_ec_main_logo.png';
+  /// File path: assets/images/fcl_mx_main_logo.png
+  String get fclMxMainLogo => 'assets/images/fcl_mx_main_logo.png';
 
   /// File path: assets/images/fcl_text_white.svg
   String get fclTextWhite => 'assets/images/fcl_text_white.svg';
@@ -66,14 +60,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/flutter_logo_white.svg
   String get flutterLogoWhite => 'assets/images/flutter_logo_white.svg';
 
-  /// Directory path: assets/images/footer
-  $AssetsImagesFooterGen get footer => const $AssetsImagesFooterGen();
-
   /// Directory path: assets/images/gallery
   $AssetsImagesGalleryGen get gallery => const $AssetsImagesGalleryGen();
 
   /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
+
+  /// File path: assets/images/mexi_dash.png
+  String get mexiDash => 'assets/images/mexi_dash.png';
 
   /// Directory path: assets/images/novelties
   $AssetsImagesNoveltiesGen get novelties => const $AssetsImagesNoveltiesGen();
@@ -86,11 +80,10 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<String> get values => [
-    ecuaDash,
-    fclEcFooterLogo,
-    fclEcMainLogo,
+    fclMxMainLogo,
     fclTextWhite,
     flutterLogoWhite,
+    mexiDash,
   ];
 }
 
@@ -199,22 +192,6 @@ class $AssetsImagesFeaturesGen {
 
   /// List of all assets
   List<String> get values => [four, one, three, tickets, two];
-}
-
-class $AssetsImagesFooterGen {
-  const $AssetsImagesFooterGen();
-
-  /// File path: assets/images/footer/one.png
-  String get one => 'assets/images/footer/one.png';
-
-  /// File path: assets/images/footer/three.png
-  String get three => 'assets/images/footer/three.png';
-
-  /// File path: assets/images/footer/two.png
-  String get two => 'assets/images/footer/two.png';
-
-  /// List of all assets
-  List<String> get values => [one, three, two];
 }
 
 class $AssetsImagesGalleryGen {
