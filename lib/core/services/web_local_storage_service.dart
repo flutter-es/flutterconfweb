@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WebLocalStorageService {
@@ -8,7 +10,9 @@ class WebLocalStorageService {
   static const String _menuSelection = 'menuSelection';
 
   void storeSelectedNav(String route) {
-    preferences.setString(WebLocalStorageService._menuSelection, route);
+    unawaited(
+      preferences.setString(WebLocalStorageService._menuSelection, route),
+    );
   }
 
   String getSelectedNav() {

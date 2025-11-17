@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
@@ -19,7 +21,7 @@ class _TermsPageState extends ConsumerState<TermsPage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(screenName: 'terms_page');
+    unawaited(analytics.logScreenView(screenName: 'terms_page'));
   }
 
   @override

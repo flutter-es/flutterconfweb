@@ -149,7 +149,7 @@ class _BuyTicketFeature extends ConsumerWidget {
               label: l10n.homeFeatureBuyTicketButton,
               buttonSize: ButtonSize.small,
               onPressed: () {
-                _showDisclaimerDialog(context, config.ticketPageUrl);
+                unawaited(_showDisclaimerDialog(context, config.ticketPageUrl));
               },
             ),
           ),

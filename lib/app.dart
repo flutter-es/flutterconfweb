@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:js_interop';
 import 'dart:ui';
 
@@ -18,13 +19,15 @@ extension type JSWindow._(JSObject _) implements JSObject {
 
 class FlutterConfApp extends ConsumerWidget {
   FlutterConfApp({super.key}) {
-    _analytics.logAppOpen();
+    unawaited(_analytics.logAppOpen());
 
     final initTime = window.initTime;
     final currentTime = DateTime.now().millisecondsSinceEpoch;
 
     final diff = (currentTime - initTime) / 1000;
-    _analytics.logEvent(name: 'render_time', parameters: {'diff': diff});
+    unawaited(
+      _analytics.logEvent(name: 'render_time', parameters: {'diff': diff}),
+    );
   }
 
   final _appRoutes = AppRoutes();

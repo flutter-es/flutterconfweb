@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
@@ -92,7 +94,7 @@ class HomeMain extends ConsumerWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Utils.launchUrlLink(config.countryPageUrl);
+                    unawaited(Utils.launchUrlLink(config.countryPageUrl));
                   },
               ),
               const TextSpan(text: '!'),

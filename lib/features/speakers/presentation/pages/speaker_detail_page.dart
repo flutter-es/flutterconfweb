@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/dialog_container.dart';
@@ -18,9 +20,11 @@ class _SpeakerDetailPageState extends State<SpeakerDetailPage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(
-      screenName: 'speakers_detail_page',
-      parameters: <String, Object>{'speakerId': widget.id},
+    unawaited(
+      analytics.logScreenView(
+        screenName: 'speakers_detail_page',
+        parameters: <String, Object>{'speakerId': widget.id},
+      ),
     );
   }
 

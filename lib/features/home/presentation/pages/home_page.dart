@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
@@ -23,7 +25,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(screenName: 'home_page');
+    unawaited(analytics.logScreenView(screenName: 'home_page'));
   }
 
   @override

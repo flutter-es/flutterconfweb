@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
@@ -17,7 +19,7 @@ class _PricingPageState extends ConsumerState<PricingPage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(screenName: 'pricing_page');
+    unawaited(analytics.logScreenView(screenName: 'pricing_page'));
   }
 
   @override

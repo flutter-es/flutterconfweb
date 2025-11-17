@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
@@ -16,7 +18,7 @@ class _SpeakersPageState extends State<SpeakersPage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(screenName: 'speakers_page');
+    unawaited(analytics.logScreenView(screenName: 'speakers_page'));
   }
 
   @override

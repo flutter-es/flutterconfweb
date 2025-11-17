@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
@@ -18,7 +20,7 @@ class _VenuePageState extends State<VenuePage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(screenName: 'venue_page');
+    unawaited(analytics.logScreenView(screenName: 'venue_page'));
   }
 
   @override

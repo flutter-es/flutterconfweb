@@ -15,14 +15,14 @@ class _ScheduleDashboard extends HookConsumerWidget {
     final controller = useAnimationController(duration: duration);
 
     useEffect(() {
-      controller.forward();
+      unawaited(controller.forward());
       return null;
     }, const []);
 
     useEffect(() {
       if (index.value != currentIndex) {
-        controller.forward(from: 0);
-        Future.microtask(() => index.value = currentIndex);
+        unawaited(controller.forward(from: 0));
+        unawaited(Future.microtask(() => index.value = currentIndex));
       }
       return null;
     }, [currentIndex]);

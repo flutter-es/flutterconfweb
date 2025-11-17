@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_conf_latam/core/providers/shared_providers.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
@@ -26,11 +28,13 @@ class OrganizersPeople extends HookConsumerWidget {
     final organizers = ref.watch(organizersProvider);
 
     useEffect(() {
-      Future.microtask(() {
-        ref.read(paginationProvider.notifier).update((state) {
-          return (page: state.page, pageSize: 16);
-        });
-      });
+      unawaited(
+        Future.microtask(() {
+          ref.read(paginationProvider.notifier).update((state) {
+            return (page: state.page, pageSize: 16);
+          });
+        }),
+      );
       return null;
     }, const []);
 

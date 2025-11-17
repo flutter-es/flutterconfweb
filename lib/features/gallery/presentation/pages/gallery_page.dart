@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
@@ -18,7 +20,7 @@ class _GalleryPageState extends ConsumerState<GalleryPage> {
   @override
   void initState() {
     super.initState();
-    analytics.logScreenView(screenName: 'gallery_page');
+    unawaited(analytics.logScreenView(screenName: 'gallery_page'));
   }
 
   @override

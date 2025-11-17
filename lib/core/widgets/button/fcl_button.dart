@@ -61,7 +61,7 @@ class FclButton extends StatelessWidget {
           IconAlignment.end => TextDirection.rtl,
         },
         children: <Widget>[
-          if (icon != null) icon!,
+          ?icon,
           Flexible(child: Text(label, textAlign: TextAlign.center)),
         ],
       ),
