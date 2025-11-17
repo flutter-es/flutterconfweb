@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
-import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
@@ -39,9 +37,7 @@ class HomeCollaborations extends ConsumerWidget {
         button: (
           text: l10n.homeCollaborationSponsorButton,
           function: () {
-            ref
-                .read(navigationViewModelProvider.notifier)
-                .selectNavItemFromRoute('/${AppRoutePath.contact.pathName}');
+            // .selectNavItemFromRoute('/${AppRoutePath.contact.pathName}');
           },
         ),
       ),

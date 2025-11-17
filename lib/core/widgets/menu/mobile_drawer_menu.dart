@@ -48,7 +48,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                             },
                             child: Image.asset(
                               semanticLabel: l10n.menuHomeText,
-                              Assets.images.fclEcMainLogo,
+                              Assets.images.fclMxMainLogo,
                             ),
                           ),
                         ),

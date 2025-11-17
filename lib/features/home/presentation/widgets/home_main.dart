@@ -73,7 +73,7 @@ class HomeMain extends ConsumerWidget {
                   stops: [0.4, 1],
                 ),
               ),
-              child: Image.asset(Assets.images.ecuaDash),
+              child: Image.asset(Assets.images.mexiDash),
             ),
           ),
         ),
@@ -109,7 +109,7 @@ class HomeMain extends ConsumerWidget {
         ),
         CountDownText(
           startDate: DateTime.now(),
-          endDate: DateTime(2025, 9, 9, 7, 30),
+          endDate: DateTime(2026, 9, 22, 7, 30),
         ),
       ],
     );

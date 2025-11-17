@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/widgets/icons/social_media_row.dart';
 import 'package:flutter_conf_latam/core/widgets/images/character_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/speakers/domain/models/speaker_model.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:go_router/go_router.dart';
 
 class SpeakerCardItem extends StatelessWidget {
   const SpeakerCardItem({
@@ -101,6 +99,6 @@ class SpeakerCardItem extends StatelessWidget {
   }
 
   void _goToDetail(BuildContext context) {
-    context.go('/${AppRoutePath.speakers.pathName}/${speaker.id}');
+    // context.go('/${AppRoutePath.speakers.pathName}/${speaker.id}');
   }
 }

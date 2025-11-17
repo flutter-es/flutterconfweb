@@ -2,19 +2,19 @@ import 'package:collection/collection.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
-import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
   @override
   List<NavigationItemModel> build() {
-    final l10n = ref.watch(appLocalizationsProvider);
+    // final l10n = ref.watch(appLocalizationsProvider);
     final navigationItemList = <NavigationItemModel>[
       NavigationItemModel(
         label: '',
         route: '/${AppRoutePath.home.pathName}',
         isSelected: true,
       ),
+      /*
       NavigationItemModel(
         label: l10n.menuAboutText,
         subMenus: <SubNavigationItemModel>[
@@ -48,6 +48,7 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
         label: l10n.menuContactText,
         route: '/${AppRoutePath.contact.pathName}',
       ),
+      */
     ];
 
     if (_selectedNav.isEmpty) return navigationItemList;

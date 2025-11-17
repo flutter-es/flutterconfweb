@@ -104,12 +104,10 @@ class Footer extends ConsumerWidget {
                 },
                 children: <Widget>[
                   if (context.screenSize == ScreenSize.extraLarge) ...[
-                    const Expanded(child: _SocialFooter()),
-                    const Expanded(child: _SocialPlace()),
+                    const Expanded(flex: 2, child: _SocialFooter()),
                     const Expanded(child: _SocialVideos()),
                   ] else ...[
                     const _SocialFooter(),
-                    const _SocialPlace(),
                     const _SocialVideos(),
                   ],
                 ],
@@ -186,12 +184,16 @@ class _SocialFooter extends ConsumerWidget {
       spacing: 10,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: InkWell(
-            onTap: () => _goToHome(ref),
-            child: Image.asset(Assets.images.fclEcFooterLogo),
+        SizedBox.fromSize(
+          size: const Size(222, 167),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: InkWell(
+              onTap: () => _goToHome(ref),
+              child: Image.asset(Assets.images.fclMxMainLogo),
+            ),
           ),
         ),
         SocialMediaRow(
@@ -215,65 +217,6 @@ class _SocialFooter extends ConsumerWidget {
     ref
         .read(navigationViewModelProvider.notifier)
         .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
-  }
-}
-
-class _SocialPlace extends ConsumerWidget {
-  const _SocialPlace();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = context.theme.fclThemeScheme;
-
-    final l10n = ref.watch(appLocalizationsProvider);
-    final footerImages = <String>[
-      Assets.images.footer.one,
-      Assets.images.footer.two,
-      Assets.images.footer.three,
-    ];
-
-    return Column(
-      spacing: 30,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Column(
-          spacing: 10,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              l10n.footerTitle,
-              style: theme.typography.subH2Semibold,
-            ),
-            Text(
-              l10n.footerDescription,
-              style: theme.typography.body3Regular,
-            ),
-          ],
-        ),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: <Widget>[
-            for (final item in footerImages)
-              SizedBox.fromSize(
-                size: const Size(102, 126),
-                child: Image.asset(item),
-              ),
-          ],
-        ),
-        InkWell(
-          onTap: () {},
-          child: Text(
-            l10n.footerSeeMore,
-            style: theme.typography.buttonNormalMedium.copyWith(
-              color: FlutterLatamColors.mediumBlue,
-              decoration: TextDecoration.underline,
-              decorationColor: FlutterLatamColors.mediumBlue,
-            ),
-          ),
-        ),
-      ],
-    );
   }
 }
 

@@ -3,13 +3,7 @@ import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
-import 'package:flutter_conf_latam/core/widgets/container/pricing_container.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_faq.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_speakers.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_sponsors.dart';
-import 'package:flutter_conf_latam/features/home/presentation/widgets/home_venue.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -35,6 +29,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         SliverList(
           delegate: SliverChildListDelegate([
             const HomeMain(),
+            /*
             // TODO(FV): Temp
             const HomeVenue(),
             // const HomeFeatures(),
@@ -45,6 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             // const HomeCollaborations(),
             const HomeSponsors(),
             const HomeFaq(),
+            */
             const Footer(),
           ]),
         ),

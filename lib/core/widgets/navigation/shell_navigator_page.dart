@@ -73,7 +73,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
                 false => null,
               },
               child: Image.asset(
-                Assets.images.fclEcMainLogo,
+                Assets.images.fclMxMainLogo,
                 semanticLabel: l10n.menuHomeText,
               ),
             ),

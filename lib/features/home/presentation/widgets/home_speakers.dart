@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
-import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/card/speaker_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
@@ -123,9 +121,7 @@ class _RedirectSpeakersCard extends ConsumerWidget {
   }
 
   void _goToSpeakers(WidgetRef ref) {
-    ref
-        .read(navigationViewModelProvider.notifier)
-        .selectNavItemFromRoute('/${AppRoutePath.speakers.pathName}');
+    // .selectNavItemFromRoute('/${AppRoutePath.speakers.pathName}');
   }
 }
 

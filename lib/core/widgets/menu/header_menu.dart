@@ -56,7 +56,7 @@ class HeaderMenu extends HookWidget {
                         builder: (_, constraint) {
                           return SizedBox(
                             height: constraint.maxHeight,
-                            child: Image.asset(Assets.images.fclEcMainLogo),
+                            child: Image.asset(Assets.images.fclMxMainLogo),
                           );
                         },
                       )
