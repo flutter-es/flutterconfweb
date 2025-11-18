@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    _timer = Timer(2.seconds, () {
+    _timer = Timer(3.seconds, () {
       Router.neglect(context, () {
         context.go('/${AppRoutePath.home.pathName}');
       });
