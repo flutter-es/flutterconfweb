@@ -1,7 +1,7 @@
 enum FlutterConfAnimations {
   flutterConfLogo('flutterconflogo'),
   flutterName('fluttername'),
-  flutterLogo('flutterlogo'),
+  flutterLogo('flutterlogomx'),
   flutterWarning('flutterwarning'),
   flutterDashWave('flutterdashwave'),
   flutterDashTicket('flutterdashticket'),
