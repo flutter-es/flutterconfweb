@@ -1,92 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
+import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+enum CollaborationType { speaker, sponsor }
+
 class HomeCollaborations extends ConsumerWidget {
-  const HomeCollaborations({super.key});
+  const HomeCollaborations({required this.type, super.key});
+
+  final CollaborationType type;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    // final config = ref.watch(configProvider);
+    final config = ref.watch(configProvider);
 
     final collaborations = <CollaborationItem>[
-      /*
-      CollaborationItem(
-        title: l10n.homeCollaborationSpeakerTitle,
-        description: l10n.homeCollaborationSpeakerDescription,
-        imagePath: Assets.images.collaborations.speaker,
-        color: FlutterLatamColors.blue,
-        button: (
-          text: l10n.homeCollaborationSpeakerButton,
-          function: () => _goToUrl(config.cfpFormUrl),
+      if (type == .speaker) ...[
+        CollaborationItem(
+          title: l10n.homeCollaborationSpeakerTitle,
+          description: l10n.homeCollaborationSpeakerDescription,
+          imagePath: Assets.images.collaborations.dashSpeaker,
+          button: (
+            text: l10n.homeCollaborationSpeakerButton,
+            function: () => _goToUrl(config.cfpFormUrl),
+          ),
         ),
-      ),
-      */
-      CollaborationItem(
-        title: l10n.homeCollaborationSponsorTitle,
-        description: l10n.homeCollaborationSponsorDescription,
-        imagePath: Assets.images.collaborations.sponsor,
-        color: FlutterLatamColors.green,
-        button: (
-          text: l10n.homeCollaborationSponsorButton,
-          function: () {
-            // .selectNavItemFromRoute('/${AppRoutePath.contact.pathName}');
-          },
+      ] else ...[
+        CollaborationItem(
+          title: l10n.homeCollaborationSponsorTitle,
+          description: l10n.homeCollaborationSponsorDescription,
+          imagePath: Assets.images.collaborations.dashSponsor,
+          button: (
+            text: l10n.homeCollaborationSponsorButton,
+            function: () => ref
+                .read(navigationViewModelProvider.notifier)
+                .selectNavItemFromRoute('/${AppRoutePath.home.pathName}'),
+          ),
         ),
-      ),
+      ],
     ];
 
-    // TODO(FV): Temp
-    return ResponsiveGrid(
-      columnSizes: switch (context.screenSize) {
-        ScreenSize.extraLarge => 1,
-        _ => 1,
-      },
-      rowSizes: switch (context.screenSize) {
-        ScreenSize.extraLarge || ScreenSize.large => 1,
-        ScreenSize.normal || ScreenSize.small => collaborations.length,
-      },
-      children: <Widget>[
-        for (final item in collaborations) _CollaborationCardItem(item: item),
-      ],
-    );
-
-    /*
     return SectionContainer(
       spacing: 0,
       children: <Widget>[
-        TitleSubtitleText(
-          title: (
-            text: l10n.homeCollaborationTitle,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
-            },
-          ),
-          subtitle: (
-            text: l10n.homeCollaborationDescription,
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
-            },
-          ),
-          spacing: 12,
-        ),
         ResponsiveGrid(
           columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 1, // Default 2
+            ScreenSize.extraLarge => 1,
             _ => 1,
           },
           rowSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => 1, // Default 2
+            ScreenSize.extraLarge || ScreenSize.large => 2,
             ScreenSize.normal || ScreenSize.small => collaborations.length,
           },
           children: <Widget>[
@@ -96,10 +71,9 @@ class HomeCollaborations extends ConsumerWidget {
         ),
       ],
     );
-    */
   }
 
-  // void _goToUrl(String url) => Utils.launchUrlLink(url);
+  void _goToUrl(String url) => Utils.launchUrlLink(url);
 }
 
 class _CollaborationCardItem extends StatelessWidget {
@@ -110,7 +84,7 @@ class _CollaborationCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: item.color,
+      color: FlutterLatamColors.blue,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
@@ -164,8 +138,11 @@ class _CollaborationCardItem extends StatelessWidget {
             ),
             Expanded(
               child: SizedBox.square(
-                dimension: 150,
-                child: Image.asset(item.imagePath),
+                dimension: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 370,
+                  ScreenSize.normal || ScreenSize.small => 180,
+                },
+                child: SvgPicture.asset(item.imagePath),
               ),
             ),
           ],
@@ -180,13 +157,11 @@ class CollaborationItem {
     required this.title,
     required this.description,
     required this.imagePath,
-    required this.color,
     required this.button,
   });
 
   final String title;
   final String description;
   final String imagePath;
-  final Color color;
   final ({String text, VoidCallback function}) button;
 }
