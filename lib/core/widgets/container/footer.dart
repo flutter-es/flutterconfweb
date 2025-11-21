@@ -192,7 +192,7 @@ class _SocialFooter extends ConsumerWidget {
             cursor: SystemMouseCursors.click,
             child: InkWell(
               onTap: () => _goToHome(ref),
-              child: Image.asset(Assets.images.fclMxMainLogo),
+              child: SvgPicture.asset(Assets.images.fclMxMainLogo),
             ),
           ),
         ),
@@ -226,17 +226,13 @@ class _SocialVideos extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = context.theme.fclThemeScheme;
-
     final l10n = ref.watch(appLocalizationsProvider);
+
+    const youtubeUrl = 'https://www.youtube.com/watch';
     final videoList = <({String text, String url})>[
-      (
-        text: l10n.footerMemoriesVideoOne,
-        url: 'https://www.youtube.com/watch?v=AroSepWRDMw',
-      ),
-      (
-        text: l10n.footerMemoriesVideoTwo,
-        url: 'https://www.youtube.com/watch?v=AQjO-V4xGis',
-      ),
+      (text: l10n.footerMemoriesVideoOne, url: '$youtubeUrl?v=FSRlBfMwoG8'),
+      (text: l10n.footerMemoriesVideoTwo, url: '$youtubeUrl?v=AroSepWRDMw'),
+      (text: l10n.footerMemoriesVideoThree, url: '$youtubeUrl?v=AQjO-V4xGis'),
     ];
 
     return Column(

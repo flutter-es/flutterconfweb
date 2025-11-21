@@ -7,6 +7,7 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HeaderMenu extends HookWidget {
   const HeaderMenu({required this.tabItems, required this.onSelect, super.key});
@@ -53,12 +54,10 @@ class HeaderMenu extends HookWidget {
                   for (final (index, item) in tabItems.indexed)
                     if (index == 0)
                       LayoutBuilder(
-                        builder: (_, constraint) {
-                          return SizedBox(
-                            height: constraint.maxHeight,
-                            child: Image.asset(Assets.images.fclMxMainLogo),
-                          );
-                        },
+                        builder: (_, constraint) => SizedBox(
+                          height: constraint.maxHeight,
+                          child: SvgPicture.asset(Assets.images.fclMxMainLogo),
+                        ),
                       )
                     else if (item.route != null)
                       Tab(

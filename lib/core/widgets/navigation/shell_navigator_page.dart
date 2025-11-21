@@ -9,6 +9,7 @@ import 'package:flutter_conf_latam/core/widgets/menu/mobile_drawer_menu.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -72,9 +73,9 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
                 true => () => _goToRoute(tabItems.first),
                 false => null,
               },
-              child: Image.asset(
+              child: SvgPicture.asset(
                 Assets.images.fclMxMainLogo,
-                semanticLabel: l10n.menuHomeText,
+                semanticsLabel: l10n.menuHomeText,
               ),
             ),
           ),
