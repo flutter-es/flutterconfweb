@@ -24,16 +24,28 @@ class HomeMain extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
-    return SectionContainer(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(
-            top: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
-            },
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [FlutterLatamColors.mainBlue, FlutterLatamColors.steelBlue],
+          stops: [0.77, 1.38],
+        ),
+      ),
+      child: SectionContainer(
+        children: <Widget>[
+          Center(
+            child: SizedBox.fromSize(
+              size: switch (context.screenSize) {
+                ScreenSize.extraLarge => const Size(760, 750),
+                ScreenSize.large => const Size(520, 513),
+                ScreenSize.normal || ScreenSize.small => const Size(300, 296),
+              },
+              child: Image.asset(Assets.images.surfDash),
+            ),
           ),
-          child: TitleSubtitleText(
+          TitleSubtitleText(
             title: (
               text: l10n.homeMainTitle,
               size: switch (context.screenSize) {
@@ -55,63 +67,42 @@ class HomeMain extends ConsumerWidget {
               ScreenSize.normal || ScreenSize.small => 12,
             },
           ),
-        ),
-        Center(
-          child: SizedBox.fromSize(
-            size: switch (context.screenSize) {
-              ScreenSize.extraLarge => const Size(760, 750),
-              ScreenSize.large => const Size(520, 513),
-              ScreenSize.normal || ScreenSize.small => const Size(300, 296),
-            },
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                gradient: RadialGradient(
-                  colors: [
-                    FlutterLatamColors.mediumBlue,
-                    FlutterLatamColors.mainBlue,
-                  ],
-                  stops: [0.4, 1],
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: l10n.homeMainExperienceOne,
+              children: <InlineSpan>[
+                TextSpan(
+                  text: l10n.homeMainExperienceTwo,
+                  style: theme.typography.subH1Regular.copyWith(
+                    decoration: TextDecoration.none,
+                    fontSize: switch (context.screenSize) {
+                      ScreenSize.extraLarge || ScreenSize.large => 40,
+                      ScreenSize.normal || ScreenSize.small => 16,
+                    },
+                  ),
                 ),
+              ],
+              style: theme.typography.subH1Regular.copyWith(
+                decoration: TextDecoration.underline,
+                decorationColor: FlutterLatamColors.white,
+                fontSize: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 40,
+                  ScreenSize.normal || ScreenSize.small => 16,
+                },
               ),
-              child: Image.asset(Assets.images.mexiDash),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => unawaited(
+                  Utils.launchUrlLink(config.countryPageUrl),
+                ),
             ),
           ),
-        ),
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            text: l10n.homeMainExperienceOne,
-            children: <InlineSpan>[
-              TextSpan(
-                text: l10n.homeMainExperienceTwo,
-                style: theme.typography.subH1Regular.copyWith(
-                  decoration: TextDecoration.underline,
-                  decorationColor: FlutterLatamColors.white,
-                  fontSize: switch (context.screenSize) {
-                    ScreenSize.extraLarge || ScreenSize.large => 40,
-                    ScreenSize.normal || ScreenSize.small => 16,
-                  },
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    unawaited(Utils.launchUrlLink(config.countryPageUrl));
-                  },
-              ),
-              const TextSpan(text: '!'),
-            ],
-            style: theme.typography.subH1Regular.copyWith(
-              fontSize: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 40,
-                ScreenSize.normal || ScreenSize.small => 16,
-              },
-            ),
+          CountDownText(
+            startDate: DateTime.now(),
+            endDate: DateTime(2026, 9, 22, 7, 30),
           ),
-        ),
-        CountDownText(
-          startDate: DateTime.now(),
-          endDate: DateTime(2026, 9, 22, 7, 30),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
