@@ -22,6 +22,11 @@ class ExtraButtons extends ConsumerWidget {
     final config = ref.watch(configProvider);
 
     final children = <Widget>[
+      FclButton.secondary(
+        label: l10n.menuBeSponsorButton,
+        buttonSize: ButtonSize.small,
+        onPressed: () {},
+      ),
       /*
       FclButton.secondary(
         label: l10n.menuBeSpeakerButton,

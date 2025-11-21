@@ -124,7 +124,7 @@ class _BuyTicketFeature extends ConsumerWidget {
     final children = <Widget>[
       Align(
         child: SizedBox.square(
-          dimension: 150,
+          dimension: 180,
           child: Image.asset(Assets.images.features.tickets),
         ),
       ),
@@ -133,7 +133,7 @@ class _BuyTicketFeature extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AdaptableText(
-            l10n.homeFeatureBuyTicketTitle(100),
+            l10n.homeFeatureBuyTicketTitle(120),
             textAlign: switch (context.screenSize) {
               ScreenSize.small || ScreenSize.normal => TextAlign.center,
               _ => TextAlign.start,
@@ -159,7 +159,7 @@ class _BuyTicketFeature extends ConsumerWidget {
 
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      color: FlutterLatamColors.blue,
+      color: FlutterLatamColors.fuchsia,
       child: Padding(
         padding: const EdgeInsets.all(30),
         child: switch (context.screenSize) {
@@ -172,7 +172,7 @@ class _BuyTicketFeature extends ConsumerWidget {
             ],
           ),
           _ => Column(
-            spacing: 30,
+            spacing: 40,
             mainAxisSize: MainAxisSize.min,
             children: children,
           ),
