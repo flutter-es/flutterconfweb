@@ -48,8 +48,8 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/contact
   $AssetsImagesContactGen get contact => const $AssetsImagesContactGen();
 
-  /// File path: assets/images/fcl_mx_main_logo.png
-  String get fclMxMainLogo => 'assets/images/fcl_mx_main_logo.png';
+  /// File path: assets/images/fcl_mx_main_logo.svg
+  String get fclMxMainLogo => 'assets/images/fcl_mx_main_logo.svg';
 
   /// File path: assets/images/fcl_text_white.svg
   String get fclTextWhite => 'assets/images/fcl_text_white.svg';
@@ -66,14 +66,14 @@ class $AssetsImagesGen {
   /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
 
-  /// File path: assets/images/mexi_dash.png
-  String get mexiDash => 'assets/images/mexi_dash.png';
-
   /// Directory path: assets/images/novelties
   $AssetsImagesNoveltiesGen get novelties => const $AssetsImagesNoveltiesGen();
 
   /// Directory path: assets/images/sponsors
   $AssetsImagesSponsorsGen get sponsors => const $AssetsImagesSponsorsGen();
+
+  /// File path: assets/images/surf_dash.png
+  String get surfDash => 'assets/images/surf_dash.png';
 
   /// Directory path: assets/images/venue
   $AssetsImagesVenueGen get venue => const $AssetsImagesVenueGen();
@@ -83,7 +83,7 @@ class $AssetsImagesGen {
     fclMxMainLogo,
     fclTextWhite,
     flutterLogoWhite,
-    mexiDash,
+    surfDash,
   ];
 }
 
@@ -152,14 +152,14 @@ class $AssetsImagesAboutGen {
 class $AssetsImagesCollaborationsGen {
   const $AssetsImagesCollaborationsGen();
 
-  /// File path: assets/images/collaborations/speaker.png
-  String get speaker => 'assets/images/collaborations/speaker.png';
+  /// File path: assets/images/collaborations/dash_speaker.svg
+  String get dashSpeaker => 'assets/images/collaborations/dash_speaker.svg';
 
-  /// File path: assets/images/collaborations/sponsor.png
-  String get sponsor => 'assets/images/collaborations/sponsor.png';
+  /// File path: assets/images/collaborations/dash_sponsor.svg
+  String get dashSponsor => 'assets/images/collaborations/dash_sponsor.svg';
 
   /// List of all assets
-  List<String> get values => [speaker, sponsor];
+  List<String> get values => [dashSpeaker, dashSponsor];
 }
 
 class $AssetsImagesContactGen {
