@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_collaborations.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_gallery.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -32,6 +33,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           delegate: SliverChildListDelegate([
             const HomeMain(),
             const HomeFeatures(),
+            const HomeGallery(),
             const HomeCollaborations(type: .sponsor),
             const HomeCollaborations(type: .speaker),
             /*
