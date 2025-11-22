@@ -27,19 +27,19 @@ class MobileDrawerMenu extends ConsumerWidget {
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 20),
+        padding: const .symmetric(horizontal: 48, vertical: 20),
         child: Column(
           spacing: 20,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: .stretch,
           children: <Widget>[
             Column(
               children: <Widget>[
                 for (final (index, item) in tabItems.indexed)
                   if (index == 0)
                     Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: const .all(8),
                       child: Align(
-                        alignment: Alignment.topCenter,
+                        alignment: .topCenter,
                         child: SizedBox(
                           height: 80,
                           child: InkWell(
@@ -65,7 +65,7 @@ class MobileDrawerMenu extends ConsumerWidget {
                     ),
               ],
             ),
-            const ExtraButtons(position: ButtonPosition.column),
+            const ExtraButtons(position: .column),
             const LanguageButton(),
           ],
         ),
@@ -85,16 +85,16 @@ class _ItemDrawer extends StatelessWidget {
     final theme = context.theme.fclThemeScheme;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const .only(top: 20),
       child: SizedBox(
         height: 60,
         child: item.route != null
             ? InkWell(
                 onTap: () => onSelect(item),
-                borderRadius: const BorderRadius.all(Radius.circular(60)),
+                borderRadius: const .all(.circular(60)),
                 child: Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  alignment: .center,
+                  padding: const .symmetric(horizontal: 20),
                   decoration: switch (item.isSelected) {
                     true => BoxDecoration(
                       color: FlutterLatamColors.white.withValues(alpha: .12),
@@ -105,8 +105,8 @@ class _ItemDrawer extends StatelessWidget {
                     item.label,
                     style: theme.typography.body3Regular.copyWith(
                       fontWeight: switch (item.isSelected) {
-                        true => FontWeight.w600,
-                        false => FontWeight.w400,
+                        true => .w600,
+                        false => .w400,
                       },
                     ),
                   ),

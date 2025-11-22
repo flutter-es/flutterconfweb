@@ -57,12 +57,12 @@ class HomeCollaborations extends ConsumerWidget {
       children: <Widget>[
         ResponsiveGrid(
           columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 1,
+            .extraLarge => 1,
             _ => 1,
           },
           rowSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => 2,
-            ScreenSize.normal || ScreenSize.small => collaborations.length,
+            .extraLarge || .large => 2,
+            .normal || .small => collaborations.length,
           },
           children: <Widget>[
             for (final item in collaborations)
@@ -85,52 +85,52 @@ class _CollaborationCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: FlutterLatamColors.blue,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      clipBehavior: .antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(borderRadius: .circular(20)),
       child: Padding(
-        padding: const EdgeInsets.all(48),
+        padding: const .all(48),
         child: Flex(
           spacing: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => 50,
+            .extraLarge || .large => 50,
             _ => 24,
           },
           direction: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => Axis.horizontal,
-            _ => Axis.vertical,
+            .extraLarge || .large => .horizontal,
+            _ => .vertical,
           },
           children: <Widget>[
             Expanded(
               flex: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 2,
-                ScreenSize.normal || ScreenSize.small => 1,
+                .extraLarge || .large => 2,
+                .normal || .small => 1,
               },
               child: Column(
                 spacing: 30,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: .min,
+                crossAxisAlignment: .start,
                 children: <Widget>[
                   TitleSubtitleText(
                     title: (
                       text: item.title,
                       size: switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => 32,
-                        ScreenSize.normal || ScreenSize.small => 24,
+                        .extraLarge || .large => 32,
+                        .normal || .small => 24,
                       },
                     ),
                     subtitle: (
                       text: item.description,
                       size: switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => 18,
-                        ScreenSize.normal || ScreenSize.small => 16,
+                        .extraLarge || .large => 18,
+                        .normal || .small => 16,
                       },
                     ),
-                    textAlign: TextAlign.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    textAlign: .start,
+                    crossAxisAlignment: .start,
                     spacing: 10,
                   ),
                   FclButton.secondary(
                     label: item.button.text,
-                    buttonSize: ButtonSize.small,
+                    buttonSize: .small,
                     onPressed: item.button.function,
                   ),
                 ],
@@ -139,8 +139,8 @@ class _CollaborationCardItem extends StatelessWidget {
             Expanded(
               child: SizedBox.square(
                 dimension: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 370,
-                  ScreenSize.normal || ScreenSize.small => 180,
+                  .extraLarge || .large => 370,
+                  .normal || .small => 180,
                 },
                 child: SvgPicture.asset(item.imagePath),
               ),

@@ -16,30 +16,30 @@ class ErrorContainer extends ConsumerWidget {
 
     return Column(
       spacing: 40,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: <Widget>[
         TitleSubtitleText(
           spacing: 20,
           title: (
             text: l10n.errorDataTitle,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 48,
-              ScreenSize.large => 32,
-              ScreenSize.normal || ScreenSize.small => 16,
+              .extraLarge => 48,
+              .large => 32,
+              .normal || ScreenSize.small => 16,
             },
           ),
           subtitle: (
             text: l10n.errorDataMessage,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 20,
-              ScreenSize.normal || ScreenSize.small => 12,
+              .extraLarge || .large => 20,
+              .normal || .small => 12,
             },
           ),
-          textAlign: TextAlign.start,
+          textAlign: .start,
         ),
         FclButton.primary(
           label: l10n.errorDataRetryButton,
-          buttonSize: ButtonSize.small,
+          buttonSize: .small,
           onPressed: onRetry,
         ),
       ],

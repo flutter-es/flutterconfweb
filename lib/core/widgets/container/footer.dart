@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
-import 'package:flutter_conf_latam/core/social/models/social_media_model.dart';
 import 'package:flutter_conf_latam/core/social/providers/social_media_provider.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/icons/social_media_row.dart';
@@ -24,19 +23,19 @@ class Footer extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
 
     final paddingHorizontal = switch (context.screenSize) {
-      ScreenSize.extraLarge => 122.0,
-      ScreenSize.large => 72.0,
-      ScreenSize.normal || ScreenSize.small => 28.0,
+      .extraLarge => 122.0,
+      .large => 72.0,
+      .normal || .small => 28.0,
     };
 
     final paddingTop = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => 96.0,
-      ScreenSize.normal || ScreenSize.small => 48.0,
+      .extraLarge || .large => 96.0,
+      .normal || .small => 48.0,
     };
 
     final paddingBottom = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => 96.0,
-      ScreenSize.normal || ScreenSize.small => 28.0,
+      .extraLarge || .large => 96.0,
+      .normal || .small => 28.0,
     };
 
     final footerLinks = <({String text, String url})>[
@@ -65,7 +64,7 @@ class Footer extends ConsumerWidget {
               child: Text(
                 item.text,
                 style: theme.typography.body4Regular.copyWith(
-                  decoration: TextDecoration.underline,
+                  decoration: .underline,
                   decorationColor: FlutterLatamColors.white,
                 ),
               ),
@@ -77,7 +76,7 @@ class Footer extends ConsumerWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.fromLTRB(
+          padding: .fromLTRB(
             paddingHorizontal,
             paddingTop,
             paddingHorizontal,
@@ -88,22 +87,22 @@ class Footer extends ConsumerWidget {
             children: <Widget>[
               const Divider(),
               Flex(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 mainAxisAlignment: switch (context.screenSize) {
-                  ScreenSize.extraLarge => MainAxisAlignment.spaceBetween,
-                  _ => MainAxisAlignment.start,
+                  .extraLarge => .spaceBetween,
+                  _ => .start,
                 },
                 spacing: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 100,
-                  ScreenSize.normal || ScreenSize.small => 48,
+                  .extraLarge || .large => 100,
+                  .normal || .small => 48,
                 },
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: .start,
                 direction: switch (context.screenSize) {
-                  ScreenSize.extraLarge => Axis.horizontal,
-                  _ => Axis.vertical,
+                  .extraLarge => .horizontal,
+                  _ => .vertical,
                 },
                 children: <Widget>[
-                  if (context.screenSize == ScreenSize.extraLarge) ...[
+                  if (context.screenSize == .extraLarge) ...[
                     const Expanded(flex: 2, child: _SocialFooter()),
                     const Expanded(child: _SocialVideos()),
                   ] else ...[
@@ -114,11 +113,11 @@ class Footer extends ConsumerWidget {
               ),
               const Divider(),
               switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                .extraLarge || .large => Row(
+                  mainAxisAlignment: .spaceBetween,
                   children: footerChildren,
                 ),
-                ScreenSize.normal || ScreenSize.small => Column(
+                .normal || .small => Column(
                   spacing: 16,
                   children: footerChildren,
                 ),
@@ -129,29 +128,27 @@ class Footer extends ConsumerWidget {
         Builder(
           builder: (_) {
             final paddingHorizontal = switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 122.0,
-              ScreenSize.normal || ScreenSize.small => 40.0,
+              .extraLarge || .large => 122.0,
+              .normal || .small => 40.0,
             };
 
             final textAlign = switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => TextAlign.start,
-              ScreenSize.normal || ScreenSize.small => TextAlign.center,
+              .extraLarge || .large => TextAlign.start,
+              .normal || .small => TextAlign.center,
             };
 
             return ColoredBox(
               color: FlutterLatamColors.darkBlue,
               child: Padding(
-                padding: EdgeInsets.symmetric(
+                padding: .symmetric(
                   horizontal: paddingHorizontal,
                   vertical: 32,
                 ),
                 child: Column(
                   spacing: 20,
                   crossAxisAlignment: switch (context.screenSize) {
-                    ScreenSize.extraLarge ||
-                    ScreenSize.large => CrossAxisAlignment.start,
-                    ScreenSize.normal ||
-                    ScreenSize.small => CrossAxisAlignment.center,
+                    .extraLarge || .large => .start,
+                    .normal || .small => .center,
                   },
                   children: <Widget>[
                     Text(
@@ -182,9 +179,9 @@ class _SocialFooter extends ConsumerWidget {
 
     return Column(
       spacing: 10,
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
+      mainAxisAlignment: .spaceBetween,
       children: <Widget>[
         SizedBox.fromSize(
           size: const Size(222, 167),
@@ -199,12 +196,12 @@ class _SocialFooter extends ConsumerWidget {
         SocialMediaRow(
           socialMediaList: socialMediaList.map((item) {
             final iconPath = switch (item.type) {
-              SocialMediaType.youtube => Assets.images.icons.youtube,
-              SocialMediaType.linkedIn => Assets.images.icons.linkedIn,
-              SocialMediaType.tikTok => Assets.images.icons.tikTok,
-              SocialMediaType.twitter => Assets.images.icons.twitter,
-              SocialMediaType.facebook => Assets.images.icons.facebook,
-              SocialMediaType.instagram => Assets.images.icons.instagram,
+              .youtube => Assets.images.icons.youtube,
+              .linkedIn => Assets.images.icons.linkedIn,
+              .tikTok => Assets.images.icons.tikTok,
+              .twitter => Assets.images.icons.twitter,
+              .facebook => Assets.images.icons.facebook,
+              .instagram => Assets.images.icons.instagram,
             };
             return (iconPath: iconPath, linkUrl: item.link);
           }).toList(),
@@ -237,11 +234,11 @@ class _SocialVideos extends ConsumerWidget {
 
     return Column(
       spacing: 30,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: <Widget>[
         Column(
           spacing: 10,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: <Widget>[
             Text(
               l10n.footerMemoriesTitle,
@@ -265,7 +262,7 @@ class _SocialVideos extends ConsumerWidget {
                     child: Text(
                       item.text,
                       style: theme.typography.body3Regular.copyWith(
-                        decoration: TextDecoration.underline,
+                        decoration: .underline,
                         decorationColor: FlutterLatamColors.white,
                       ),
                     ),

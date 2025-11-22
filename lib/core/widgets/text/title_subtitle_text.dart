@@ -8,8 +8,8 @@ class TitleSubtitleText extends StatelessWidget {
   const TitleSubtitleText({
     required this.title,
     required this.subtitle,
-    this.textAlign = TextAlign.center,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.textAlign = .center,
+    this.crossAxisAlignment = .center,
     this.spacing = 0,
     super.key,
   });
@@ -26,7 +26,7 @@ class TitleSubtitleText extends StatelessWidget {
 
     return Column(
       spacing: spacing,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       crossAxisAlignment: crossAxisAlignment,
       children: <Widget>[
         Text(
@@ -48,7 +48,7 @@ class TitleSubtitleText extends StatelessWidget {
 
 class TitleSubtitleTextContainer extends StatelessWidget {
   const TitleSubtitleTextContainer({
-    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.crossAxisAlignment = .center,
     super.key,
   });
 
@@ -58,7 +58,7 @@ class TitleSubtitleTextContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final decoration = BoxDecoration(
       color: FlutterLatamColors.darkBlue,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: .circular(16),
     );
 
     return Column(

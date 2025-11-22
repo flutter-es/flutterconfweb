@@ -14,7 +14,7 @@ class SocialMediaRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       spacing: 20,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: <Widget>[
         for (final social in socialMediaList)
           InkWell(
@@ -25,7 +25,7 @@ class SocialMediaRow extends StatelessWidget {
                 social.iconPath,
                 colorFilter: const ColorFilter.mode(
                   FlutterLatamColors.white,
-                  BlendMode.srcIn,
+                  .srcIn,
                 ),
               ),
             ),
@@ -42,13 +42,13 @@ class SocialMediaRowContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       spacing: 20,
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(3, (_) {
+      mainAxisSize: .min,
+      children: .generate(3, (_) {
         return const SizedBox.square(
           dimension: 24,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
+              shape: .circle,
               color: FlutterLatamColors.darkBlue,
             ),
           ),

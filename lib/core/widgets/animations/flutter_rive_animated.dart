@@ -24,10 +24,10 @@ class _FlutterRiveAnimatedState extends State<FlutterRiveAnimated> {
   void initState() {
     super.initState();
 
-    _animation = RiveAnimation.asset(
+    _animation = .asset(
       widget.path,
       artboard: widget.animation.name,
-      fit: BoxFit.contain,
+      fit: .contain,
       onInit: _onRiveInit,
     );
   }
@@ -41,13 +41,10 @@ class _FlutterRiveAnimatedState extends State<FlutterRiveAnimated> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (_, constraints) {
-        return SizedBox(
-          width: constraints.maxWidth,
-          height: constraints.maxHeight,
-          child: _animation,
-        );
-      },
+      builder: (_, constraints) => SizedBox.fromSize(
+        size: Size(constraints.maxWidth, constraints.maxHeight),
+        child: _animation,
+      ),
     );
   }
 

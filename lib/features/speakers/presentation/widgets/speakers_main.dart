@@ -22,8 +22,8 @@ class SpeakersMain extends ConsumerWidget {
     final speakers = ref.watch(speakersProvider(Locale(l10n.localeName)));
 
     final size = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => const Size.square(206),
-      ScreenSize.normal || ScreenSize.small => const Size.square(120),
+      .extraLarge || .large => const Size.square(206),
+      .normal || .small => const Size.square(120),
     };
 
     return KeepAliveContainer(
@@ -34,16 +34,16 @@ class SpeakersMain extends ConsumerWidget {
             title: (
               text: l10n.speakersTitle,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => 64,
-                ScreenSize.large => 48,
-                ScreenSize.normal || ScreenSize.small => 24,
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
               },
             ),
             subtitle: (
               text: l10n.speakersDescription,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 24,
-                ScreenSize.normal || ScreenSize.small => 16,
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
               },
             ),
             spacing: 12,
@@ -57,7 +57,7 @@ class SpeakersMain extends ConsumerWidget {
             ),
             loading: () => Shimmer(
               child: _SpeakerListContainer(
-                children: List.generate(12, (_) {
+                children: .generate(12, (_) {
                   return Center(
                     child: ShimmerLoading(
                       isLoading: true,
@@ -94,7 +94,7 @@ class _SpeakerListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colSize = switch (context.screenSize) {
-      ScreenSize.extraLarge => 4,
+      .extraLarge => 4,
       _ => 2,
     };
 

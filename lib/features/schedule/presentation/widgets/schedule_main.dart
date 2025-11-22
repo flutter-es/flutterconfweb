@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -31,31 +30,31 @@ class ScheduleMain extends HookConsumerWidget {
       spacing: 48,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(
+          padding: .only(
             top: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
+              .extraLarge || .large => 48,
+              .normal || .small => 24,
             },
           ),
           child: TitleSubtitleText(
             title: (
               text: l10n.scheduleMainTitle,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => 64,
-                ScreenSize.large => 48,
-                ScreenSize.normal || ScreenSize.small => 24,
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
               },
             ),
             subtitle: (
               text: l10n.scheduleMainMessage,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 24,
-                ScreenSize.normal || ScreenSize.small => 16,
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
               },
             ),
             spacing: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 12,
+              .extraLarge || .large => 24,
+              .normal || .small => 12,
             },
           ),
         ),
@@ -77,21 +76,20 @@ class _ScheduleDashboardContainer extends HookConsumerWidget {
     final scheduleDays = [l10n.scheduleOptionDayOne, l10n.scheduleOptionDayTwo];
 
     return SizedBox(
-      width: double.infinity,
+      width: .infinity,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: FlutterLatamColors.darkBlue,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: .circular(30),
         ),
         child: Padding(
           padding: switch (context.screenSize) {
-            ScreenSize.extraLarge ||
-            ScreenSize.large => const EdgeInsets.all(30),
-            ScreenSize.normal || ScreenSize.small => const EdgeInsets.all(20),
+            .extraLarge || .large => const .all(30),
+            .normal || ScreenSize.small => const .all(20),
           },
           child: Column(
             spacing: 30,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: <Widget>[
               OptionButtonList(
                 options: scheduleDays,
@@ -111,8 +109,8 @@ class _ScheduleDashboardContainer extends HookConsumerWidget {
                   ),
                   style: theme.typography.h4Bold.copyWith(
                     fontSize: switch (context.screenSize) {
-                      ScreenSize.extraLarge || ScreenSize.large => 24,
-                      ScreenSize.normal || ScreenSize.small => 16,
+                      .extraLarge || .large => 24,
+                      .normal || .small => 16,
                     },
                   ),
                 ),

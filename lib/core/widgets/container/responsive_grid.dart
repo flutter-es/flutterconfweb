@@ -18,8 +18,8 @@ class ResponsiveGrid extends StatelessWidget {
     return LayoutGrid(
       rowGap: 30,
       columnGap: 30,
-      columnSizes: List.generate(columnSizes, (_) => 1.fr),
-      rowSizes: List.generate(rowSizes, (_) => auto),
+      columnSizes: .generate(columnSizes, (_) => 1.fr),
+      rowSizes: .generate(rowSizes, (_) => auto),
       children: children,
     );
   }

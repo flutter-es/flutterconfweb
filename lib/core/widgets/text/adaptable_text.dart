@@ -4,10 +4,10 @@ class AdaptableText extends StatelessWidget {
   const AdaptableText(
     this.text, {
     required this.style,
-    this.textAlign = TextAlign.left,
-    this.textDirection = TextDirection.ltr,
+    this.textAlign = .left,
+    this.textDirection = .ltr,
     this.minimumFontScale = .5,
-    this.textOverflow = TextOverflow.ellipsis,
+    this.textOverflow = .ellipsis,
     super.key,
   });
 
@@ -34,7 +34,7 @@ class AdaptableText extends StatelessWidget {
 
         if (painter.height > constraints.maxHeight) {
           painter
-            ..textScaler = TextScaler.linear(minimumFontScale)
+            ..textScaler = .linear(minimumFontScale)
             ..layout(maxWidth: constraints.maxWidth);
 
           if (painter.height > constraints.maxHeight) {
@@ -48,7 +48,7 @@ class AdaptableText extends StatelessWidget {
               final newScale = mid.toDouble() / 100.0;
 
               painter
-                ..textScaler = TextScaler.linear(newScale)
+                ..textScaler = .linear(newScale)
                 ..layout(maxWidth: constraints.maxWidth);
 
               if (painter.height > constraints.maxHeight) {
@@ -60,7 +60,7 @@ class AdaptableText extends StatelessWidget {
               if (h <= l) {
                 textScaleFactor = newScale - .01;
                 painter
-                  ..textScaler = TextScaler.linear(newScale)
+                  ..textScaler = .linear(newScale)
                   ..layout(maxWidth: constraints.maxWidth);
 
                 break;
@@ -76,7 +76,7 @@ class AdaptableText extends StatelessWidget {
           textAlign: textAlign,
           overflow: textOverflow,
           textDirection: textDirection,
-          textScaler: TextScaler.linear(textScaleFactor),
+          textScaler: .linear(textScaleFactor),
         );
       },
     );

@@ -54,39 +54,39 @@ class HomeFeatures extends ConsumerWidget {
           title: (
             text: l10n.homeFeatureTitle,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 24,
             },
           ),
           subtitle: (
             text: l10n.homeFeatureDescription,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
             },
           ),
           spacing: 12,
         ),
         Flex(
           spacing: 30,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: .min,
+          crossAxisAlignment: .start,
           direction: switch (context.screenSize) {
-            ScreenSize.extraLarge => Axis.horizontal,
-            _ => Axis.vertical,
+            .extraLarge => .horizontal,
+            _ => .vertical,
           },
           children: <Widget>[
             Flexible(
               flex: 2,
               child: ResponsiveGrid(
                 columnSizes: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 2,
-                  ScreenSize.normal || ScreenSize.small => 1,
+                  .extraLarge || .large => 2,
+                  .normal || .small => 1,
                 },
                 rowSizes: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 2,
-                  ScreenSize.normal || ScreenSize.small => features.length,
+                  .extraLarge || .large => 2,
+                  .normal || .small => features.length,
                 },
                 children: <Widget>[
                   for (final item in features)
@@ -99,10 +99,7 @@ class HomeFeatures extends ConsumerWidget {
               ),
             ),
             const Flexible(
-              child: SizedBox(
-                width: double.infinity,
-                child: _BuyTicketFeature(),
-              ),
+              child: SizedBox(width: .infinity, child: _BuyTicketFeature()),
             ),
           ],
         ),
@@ -130,27 +127,27 @@ class _BuyTicketFeature extends ConsumerWidget {
       ),
       Column(
         spacing: 30,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         children: <Widget>[
           AdaptableText(
             l10n.homeFeatureBuyTicketTitle(120),
             textAlign: switch (context.screenSize) {
-              ScreenSize.small || ScreenSize.normal => TextAlign.center,
-              _ => TextAlign.start,
+              .small || .normal => .center,
+              _ => .start,
             },
             style: theme.typography.h3Bold,
           ),
           Align(
             alignment: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => Alignment.centerLeft,
-              ScreenSize.normal || ScreenSize.small => Alignment.center,
+              .extraLarge || .large => .centerLeft,
+              .normal || .small => .center,
             },
             child: FclButton.secondary(
               label: l10n.homeFeatureBuyTicketButton,
-              buttonSize: ButtonSize.small,
-              onPressed: () {
-                unawaited(_showDisclaimerDialog(context, config.ticketPageUrl));
-              },
+              buttonSize: .small,
+              onPressed: () => unawaited(
+                _showDisclaimerDialog(context, config.ticketPageUrl),
+              ),
             ),
           ),
         ],
@@ -158,24 +155,20 @@ class _BuyTicketFeature extends ConsumerWidget {
     ];
 
     return Card(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      clipBehavior: .antiAliasWithSaveLayer,
       color: FlutterLatamColors.fuchsia,
       child: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const .all(30),
         child: switch (context.screenSize) {
-          ScreenSize.large => Row(
+          .large => Row(
             spacing: 30,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: <Widget>[
               for (final (index, item) in children.indexed)
                 Expanded(flex: index == 0 ? 1 : 2, child: item),
             ],
           ),
-          _ => Column(
-            spacing: 40,
-            mainAxisSize: MainAxisSize.min,
-            children: children,
-          ),
+          _ => Column(spacing: 40, mainAxisSize: .min, children: children),
         },
       ),
     );

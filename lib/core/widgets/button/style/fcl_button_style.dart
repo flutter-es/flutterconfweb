@@ -7,7 +7,7 @@ class _FclButtonStyle extends ButtonStyle {
   final ThemeData theme;
 
   @override
-  AlignmentGeometry? get alignment => Alignment.center;
+  AlignmentGeometry? get alignment => .center;
 
   @override
   Duration? get animationDuration => const Duration(milliseconds: 200);
@@ -16,35 +16,35 @@ class _FclButtonStyle extends ButtonStyle {
   InteractiveInkFeatureFactory? get splashFactory => InkRipple.splashFactory;
 
   @override
-  MaterialTapTargetSize? get tapTargetSize => MaterialTapTargetSize.shrinkWrap;
+  MaterialTapTargetSize? get tapTargetSize => .shrinkWrap;
 
   @override
   WidgetStateProperty<EdgeInsetsGeometry?>? get padding {
     return WidgetStatePropertyAll(switch (buttonSize) {
-      ButtonSize.small => const EdgeInsets.symmetric(horizontal: 20),
-      ButtonSize.large => const EdgeInsets.symmetric(horizontal: 40),
+      .small => const .symmetric(horizontal: 20),
+      .large => const .symmetric(horizontal: 40),
     });
   }
 
   @override
   WidgetStateProperty<Size?>? get maximumSize {
-    return const WidgetStatePropertyAll(Size.fromHeight(68));
+    return const WidgetStatePropertyAll(.fromHeight(68));
   }
 
   @override
   WidgetStateProperty<Size?>? get fixedSize {
     return WidgetStatePropertyAll(switch (buttonSize) {
-      ButtonSize.small => const Size.fromHeight(44),
-      ButtonSize.large => const Size.fromHeight(68),
+      ButtonSize.small => const .fromHeight(44),
+      ButtonSize.large => const .fromHeight(68),
     });
   }
 
   @override
-  VisualDensity? get visualDensity => VisualDensity.adaptivePlatformDensity;
+  VisualDensity? get visualDensity => .adaptivePlatformDensity;
 
   @override
   WidgetStateProperty<double?>? get elevation {
-    return WidgetStateProperty.resolveWith((states) {
+    return .resolveWith((states) {
       if (states.contains(WidgetState.disabled)) return 0;
       return 2;
     });
@@ -72,15 +72,15 @@ class _FclButtonStyle extends ButtonStyle {
   WidgetStateProperty<TextStyle?>? get textStyle {
     return WidgetStatePropertyAll(
       switch (buttonSize) {
-        ButtonSize.small => theme.fclThemeScheme.typography.buttonSmallMedium,
-        ButtonSize.large => theme.fclThemeScheme.typography.buttonNormalMedium,
+        .small => theme.fclThemeScheme.typography.buttonSmallMedium,
+        .large => theme.fclThemeScheme.typography.buttonNormalMedium,
       },
     );
   }
 
   @override
   WidgetStateProperty<Color?>? get overlayColor {
-    return WidgetStateProperty.resolveWith((states) {
+    return .resolveWith((states) {
       if (states.contains(WidgetState.pressed)) {
         return FlutterLatamColors.white.withValues(alpha: .3);
       }

@@ -31,17 +31,17 @@ class PaginationContainer extends ConsumerWidget {
 
     return Column(
       spacing: 30,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: <Widget>[
         child,
         SizedBox(
           height: 84,
           child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: .horizontal,
             child: Row(
               spacing: 20,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: .min,
+              mainAxisAlignment: .center,
               children: <Widget>[
                 _PaginationButton(
                   semanticLabel: l10n.previousPageText,
@@ -100,8 +100,8 @@ class _PaginationNumberButtons extends ConsumerWidget {
 
     return Row(
       spacing: 20,
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: .min,
+      mainAxisAlignment: .center,
       children: <Widget>[
         if (startPage > 1) ...[
           _PaginationButton(
@@ -161,16 +161,16 @@ class _PaginationButton extends StatelessWidget {
 
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        fixedSize: const Size.square(64),
+        fixedSize: const .square(64),
         shadowColor: background,
         backgroundColor: background,
         foregroundColor: FlutterLatamColors.white,
         disabledForegroundColor: FlutterLatamColors.white.withValues(alpha: .5),
         shape: RoundedRectangleBorder(
           side: isActive
-              ? BorderSide.none
+              ? .none
               : const BorderSide(color: FlutterLatamColors.white, width: 1.5),
-          borderRadius: const BorderRadius.all(Radius.circular(6)),
+          borderRadius: const .all(.circular(6)),
         ),
         textStyle: theme.typography.body2Regular,
       ),

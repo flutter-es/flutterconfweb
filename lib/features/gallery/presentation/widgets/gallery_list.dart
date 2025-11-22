@@ -18,7 +18,7 @@ class GalleryList extends ConsumerWidget {
     final galleryList = ref.watch(galleryProvider);
 
     final size = switch (context.screenSize) {
-      ScreenSize.extraLarge => const Size.square(378),
+      .extraLarge => const Size.square(378),
       _ => const Size.square(264),
     };
 
@@ -45,7 +45,7 @@ class GalleryList extends ConsumerWidget {
       ),
       loading: () => Shimmer(
         child: _GalleryListContainer(
-          children: List.generate(9, (_) {
+          children: .generate(9, (_) {
             return Center(
               child: ShimmerLoading(
                 isLoading: true,
@@ -70,17 +70,17 @@ class _GalleryListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colSize = switch (context.screenSize) {
-      ScreenSize.extraLarge => 3,
-      ScreenSize.large => 2,
+      .extraLarge => 3,
+      .large => 2,
       _ => 1,
     };
 
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: .symmetric(
         horizontal: switch (context.screenSize) {
-          ScreenSize.extraLarge => 122,
-          ScreenSize.large => 72,
-          ScreenSize.normal || ScreenSize.small => 28,
+          .extraLarge => 122,
+          .large => 72,
+          .normal || .small => 28,
         },
       ),
       child: ResponsiveGrid(

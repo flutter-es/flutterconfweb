@@ -41,28 +41,28 @@ class HomeNovelties extends ConsumerWidget {
               title: (
                 text: l10n.homeNoveltiesTitle,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 64,
-                  ScreenSize.large => 48,
-                  ScreenSize.normal || ScreenSize.small => 24,
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
                 },
               ),
               subtitle: (
                 text: l10n.homeNoveltiesDescription,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 16,
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
                 },
               ),
               spacing: 12,
             ),
             ResponsiveGrid(
               columnSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 2,
-                ScreenSize.normal || ScreenSize.small => 1,
+                .extraLarge || .large => 2,
+                .normal || .small => 1,
               },
               rowSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 2,
-                ScreenSize.normal || ScreenSize.small => novelties.length,
+                .extraLarge || .large => 2,
+                .normal || .small => novelties.length,
               },
               children: <Widget>[
                 for (final item in novelties)
@@ -78,9 +78,9 @@ class HomeNovelties extends ConsumerWidget {
         SizedBox(
           width: double.infinity,
           height: switch (context.screenSize) {
-            ScreenSize.extraLarge => 530,
-            ScreenSize.large => 1040,
-            ScreenSize.normal || ScreenSize.small => 760,
+            .extraLarge => 530,
+            .large => 1040,
+            .normal || .small => 760,
           },
           child: const _NoveltyAppCard(),
         ),
@@ -98,50 +98,50 @@ class _NoveltyAppCard extends ConsumerWidget {
 
     return Card(
       color: FlutterLatamColors.blue,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      clipBehavior: .antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(borderRadius: .circular(30)),
       child: Padding(
-        padding: const EdgeInsets.all(48),
+        padding: const .all(48),
         child: Flex(
           spacing: 10,
           direction: switch (context.screenSize) {
-            ScreenSize.extraLarge => Axis.horizontal,
-            _ => Axis.vertical,
+            .extraLarge => .horizontal,
+            _ => .vertical,
           },
           children: <Widget>[
             Expanded(
               flex: 2,
               child: Column(
                 spacing: 60,
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 crossAxisAlignment: switch (context.screenSize) {
-                  ScreenSize.extraLarge => CrossAxisAlignment.start,
-                  _ => CrossAxisAlignment.center,
+                  .extraLarge => .start,
+                  _ => .center,
                 },
                 children: <Widget>[
                   TitleSubtitleText(
                     title: (
                       text: l10n.homeNoveltiesAppTitle,
                       size: switch (context.screenSize) {
-                        ScreenSize.extraLarge => 48,
-                        ScreenSize.large => 40,
-                        ScreenSize.normal || ScreenSize.small => 24,
+                        .extraLarge => 48,
+                        .large => 40,
+                        .normal || .small => 24,
                       },
                     ),
                     subtitle: (
                       text: l10n.homeNoveltiesAppDescription,
                       size: switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => 24,
-                        ScreenSize.normal || ScreenSize.small => 16,
+                        .extraLarge || .large => 24,
+                        .normal || .small => 16,
                       },
                     ),
                     textAlign: switch (context.screenSize) {
-                      ScreenSize.extraLarge => TextAlign.start,
-                      _ => TextAlign.center,
+                      .extraLarge => .start,
+                      _ => .center,
                     },
                     crossAxisAlignment: switch (context.screenSize) {
-                      ScreenSize.extraLarge => CrossAxisAlignment.start,
-                      _ => CrossAxisAlignment.center,
+                      .extraLarge => .start,
+                      _ => .center,
                     },
                     spacing: 10,
                   ),
@@ -152,8 +152,8 @@ class _NoveltyAppCard extends ConsumerWidget {
             Expanded(
               child: SizedBox.square(
                 dimension: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 390,
-                  ScreenSize.normal || ScreenSize.small => 220,
+                  .extraLarge || .large => 390,
+                  .normal || .small => 220,
                 },
                 child: Image.asset(Assets.images.novelties.dashMobile),
               ),
@@ -182,26 +182,26 @@ class _AppStoreSection extends ConsumerWidget {
 
     return Column(
       spacing: 20,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       crossAxisAlignment: switch (context.screenSize) {
-        ScreenSize.extraLarge => CrossAxisAlignment.start,
-        _ => CrossAxisAlignment.center,
+        .extraLarge => .start,
+        _ => .center,
       },
       children: <Widget>[
         Text(
           l10n.homeNoveltiesAppSoon,
           style: theme.typography.body1Regular.copyWith(
             fontSize: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
             },
           ),
         ),
         Flex(
           spacing: 20,
           direction: switch (context.screenSize) {
-            ScreenSize.extraLarge => Axis.horizontal,
-            _ => Axis.vertical,
+            .extraLarge => .horizontal,
+            _ => .vertical,
           },
           children: <Widget>[
             for (final item in appLogoUrls)
@@ -211,11 +211,11 @@ class _AppStoreSection extends ConsumerWidget {
                   constraints: BoxConstraints(
                     maxWidth: 300,
                     maxHeight: switch (context.screenSize) {
-                      ScreenSize.extraLarge || ScreenSize.large => 90,
-                      ScreenSize.normal || ScreenSize.small => 60,
+                      .extraLarge || .large => 90,
+                      .normal || .small => 60,
                     },
                   ),
-                  child: Image.asset(item.imagePath, fit: BoxFit.contain),
+                  child: Image.asset(item.imagePath, fit: .contain),
                 ),
               ),
           ],

@@ -16,36 +16,33 @@ class DataProtectionDialog extends ConsumerWidget {
     final theme = context.theme.fclThemeScheme;
 
     final paddingTop = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => 64.0,
-      ScreenSize.normal || ScreenSize.small => 60.0,
+      .extraLarge || .large => 64.0,
+      .normal || .small => 60.0,
     };
 
     final dialogMessageStyle = switch (context.screenSize) {
-      ScreenSize.extraLarge ||
-      ScreenSize.large => theme.typography.body2Regular,
-      ScreenSize.normal || ScreenSize.small => theme.typography.body3Regular,
+      .extraLarge || .large => theme.typography.body2Regular,
+      .normal || .small => theme.typography.body3Regular,
     };
 
     return SafeArea(
       bottom: false,
       child: DialogContainer(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(36, paddingTop, 36, 42),
+          padding: .fromLTRB(36, paddingTop, 36, 42),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: .min,
               spacing: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 26,
-                ScreenSize.normal || ScreenSize.small => 20,
+                .extraLarge || .large => 26,
+                .normal || .small => 20,
               },
               children: <Widget>[
                 Text(
                   l10n.dataProtectionDialogTitle,
                   style: switch (context.screenSize) {
-                    ScreenSize.extraLarge ||
-                    ScreenSize.large => theme.typography.h4Bold,
-                    ScreenSize.normal ||
-                    ScreenSize.small => theme.typography.subH2Semibold,
+                    .extraLarge || .large => theme.typography.h4Bold,
+                    .normal || .small => theme.typography.subH2Semibold,
                   },
                 ),
                 const DataProtectionText(),
@@ -55,9 +52,7 @@ class DataProtectionDialog extends ConsumerWidget {
                       TextSpan(text: l10n.dataProtectionDialogButtonMessageOne),
                       TextSpan(
                         text: l10n.dataProtectionDialogButtonMessageBold,
-                        style: dialogMessageStyle.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: dialogMessageStyle.copyWith(fontWeight: .bold),
                       ),
                       TextSpan(text: l10n.dataProtectionDialogButtonMessageTwo),
                     ],
@@ -66,7 +61,7 @@ class DataProtectionDialog extends ConsumerWidget {
                 ),
                 FclButton.primary(
                   label: l10n.dataProtectionDialogAcceptButton,
-                  buttonSize: ButtonSize.small,
+                  buttonSize: .small,
                   onPressed: () => Navigator.of(context).pop(true),
                 ),
               ],

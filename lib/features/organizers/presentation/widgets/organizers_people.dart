@@ -37,8 +37,8 @@ class OrganizersPeople extends HookConsumerWidget {
     }, const []);
 
     final size = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => const Size.square(206),
-      ScreenSize.normal || ScreenSize.small => const Size.square(120),
+      .extraLarge || .large => const Size.square(206),
+      .normal || .small => const Size.square(120),
     };
 
     return KeepAliveContainer(
@@ -49,16 +49,16 @@ class OrganizersPeople extends HookConsumerWidget {
             title: (
               text: l10n.organizersPeopleTitle,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => 64,
-                ScreenSize.large => 48,
-                ScreenSize.normal || ScreenSize.small => 24,
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
               },
             ),
             subtitle: (
               text: l10n.organizersPeopleDescription,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 24,
-                ScreenSize.normal || ScreenSize.small => 16,
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
               },
             ),
             spacing: 12,
@@ -87,15 +87,15 @@ class OrganizersPeople extends HookConsumerWidget {
                             title: (
                               text: item.name,
                               size: switch (context.screenSize) {
-                                ScreenSize.extraLarge || ScreenSize.large => 24,
-                                ScreenSize.normal || ScreenSize.small => 12,
+                                .extraLarge || .large => 24,
+                                .normal || .small => 12,
                               },
                             ),
                             subtitle: (
                               text: item.levels.join(' - '),
                               size: switch (context.screenSize) {
-                                ScreenSize.extraLarge || ScreenSize.large => 16,
-                                ScreenSize.normal || ScreenSize.small => 12,
+                                .extraLarge || .large => 16,
+                                .normal || .small => 12,
                               },
                             ),
                             spacing: 4,
@@ -108,7 +108,7 @@ class OrganizersPeople extends HookConsumerWidget {
             ),
             loading: () => Shimmer(
               child: _OrganizerListContainer(
-                children: List.generate(9, (_) {
+                children: .generate(9, (_) {
                   return Center(
                     child: ShimmerLoading(
                       isLoading: true,
@@ -142,7 +142,7 @@ class _OrganizerListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colSize = switch (context.screenSize) {
-      ScreenSize.extraLarge => 4,
+      .extraLarge => 4,
       _ => 2,
     };
 

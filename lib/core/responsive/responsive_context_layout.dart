@@ -5,7 +5,8 @@ enum ScreenSize {
   small(300),
   normal(400),
   large(600),
-  extraLarge(1200);
+  extraLarge(1200)
+  ;
 
   const ScreenSize(this.size);
 
@@ -16,32 +17,28 @@ enum DeviceSegment { mobileWeb, desktopWeb, other }
 
 DeviceSegment get currentDevice {
   return switch (defaultTargetPlatform) {
-    TargetPlatform.android ||
-    TargetPlatform.iOS when kIsWeb => DeviceSegment.mobileWeb,
-    TargetPlatform.windows ||
-    TargetPlatform.linux ||
-    TargetPlatform.macOS when kIsWeb => DeviceSegment.desktopWeb,
-    _ => DeviceSegment.other,
+    .android || .iOS when kIsWeb => .mobileWeb,
+    .windows || .linux || .macOS when kIsWeb => .desktopWeb,
+    _ => .other,
   };
 }
 
 extension AdaptiveLayoutContext on BuildContext {
-  bool get isPortrait => MediaQuery.orientationOf(this) == Orientation.portrait;
+  bool get isPortrait => MediaQuery.orientationOf(this) == .portrait;
 
   ScreenSize get screenSize {
     final currentSize = switch (currentDevice) {
-      DeviceSegment.mobileWeb ||
-      DeviceSegment.desktopWeb => MediaQuery.sizeOf(this).width,
+      .mobileWeb || .desktopWeb => MediaQuery.sizeOf(this).width,
       _ => MediaQuery.sizeOf(this).shortestSide,
     };
 
     return switch (currentSize) {
-      _ when currentSize > ScreenSize.extraLarge.size => ScreenSize.extraLarge,
-      _ when currentSize > ScreenSize.large.size => ScreenSize.large,
-      _ when currentSize > ScreenSize.normal.size => ScreenSize.normal,
-      _ => ScreenSize.small,
+      _ when currentSize > ScreenSize.extraLarge.size => .extraLarge,
+      _ when currentSize > ScreenSize.large.size => .large,
+      _ when currentSize > ScreenSize.normal.size => .normal,
+      _ => .small,
     };
   }
 
-  bool get isMobileFromResponsive => screenSize != ScreenSize.extraLarge;
+  bool get isMobileFromResponsive => screenSize != .extraLarge;
 }

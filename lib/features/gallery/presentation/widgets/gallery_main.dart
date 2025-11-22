@@ -29,19 +29,19 @@ class GalleryMain extends ConsumerWidget {
             title: (
               text: l10n.galleryMainTitle,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => 64,
-                ScreenSize.large => 48,
-                ScreenSize.normal || ScreenSize.small => 24,
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
               },
             ),
             subtitle: (
               text: l10n.galleryMainMessage,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 24,
-                ScreenSize.normal || ScreenSize.small => 16,
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
               },
             ),
-            textAlign: TextAlign.start,
+            textAlign: .start,
           ),
         ],
       ),

@@ -33,27 +33,27 @@ class PricingContainer extends ConsumerWidget {
             title: (
               text: l10n.homePricingTitle,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => 64,
-                ScreenSize.large => 48,
-                ScreenSize.normal || ScreenSize.small => 24,
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
               },
             ),
             subtitle: (
               text: l10n.homePricingDescription,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 24,
-                ScreenSize.normal || ScreenSize.small => 16,
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
               },
             ),
             spacing: 12,
           ),
           ResponsiveGrid(
             columnSizes: switch (context.screenSize) {
-              ScreenSize.extraLarge => 3,
+              .extraLarge => 3,
               _ => 1,
             },
             rowSizes: switch (context.screenSize) {
-              ScreenSize.extraLarge => 3,
+              .extraLarge => 3,
               _ => data.length,
             },
             children: <Widget>[
@@ -82,32 +82,32 @@ class _PricingCardItem extends ConsumerWidget {
     return Card.filled(
       margin: EdgeInsets.zero,
       color: switch (detail.type) {
-        TicketType.early => FlutterLatamColors.yellow,
-        TicketType.regular => FlutterLatamColors.blue,
-        TicketType.late => FlutterLatamColors.red,
+        .early => FlutterLatamColors.yellow,
+        .regular => FlutterLatamColors.blue,
+        .late => FlutterLatamColors.red,
       },
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      clipBehavior: .antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: .circular(20),
         side: switch (detail.type) {
           TicketType.early => const BorderSide(
             color: FlutterLatamColors.yellow,
             width: 4,
           ),
-          _ => BorderSide.none,
+          _ => .none,
         },
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 30),
+            padding: const .symmetric(vertical: 28, horizontal: 30),
             child: Center(
               child: Text(
                 detail.title,
                 style: theme.typography.body1Regular.copyWith(
                   color: switch (detail.type) {
-                    TicketType.early => FlutterLatamColors.darkBlue,
+                    .early => FlutterLatamColors.darkBlue,
                     _ => FlutterLatamColors.white,
                   },
                 ),
@@ -115,26 +115,26 @@ class _PricingCardItem extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            width: double.infinity,
+            width: .infinity,
             child: DecoratedBox(
               decoration: const BoxDecoration(
                 color: FlutterLatamColors.darkBlue,
               ),
               child: Padding(
-                padding: const EdgeInsets.all(30),
+                padding: const .all(30),
                 child: Column(
                   spacing: 5,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .start,
                   children: <Widget>[
                     Text(
                       l10n.homePricingEndDate(detail.endDate),
                       style: theme.typography.body1Regular.copyWith(
                         fontWeight: FontWeight.w700,
                         color: switch (detail.type) {
-                          TicketType.early => FlutterLatamColors.lightYellow,
-                          TicketType.regular => FlutterLatamColors.mediumBlue,
-                          TicketType.late => FlutterLatamColors.lightRed,
+                          .early => FlutterLatamColors.lightYellow,
+                          .regular => FlutterLatamColors.mediumBlue,
+                          .late => FlutterLatamColors.lightRed,
                         },
                       ),
                     ),
@@ -142,7 +142,7 @@ class _PricingCardItem extends ConsumerWidget {
                       '\$ ${detail.price.toStringAsFixed(0)}',
                       style: theme.typography.h1Bold.copyWith(
                         fontSize: switch (context.screenSize) {
-                          ScreenSize.extraLarge || ScreenSize.large => 64,
+                          .extraLarge || .large => 64,
                           _ => 32,
                         },
                       ),
@@ -150,8 +150,8 @@ class _PricingCardItem extends ConsumerWidget {
                     ...[
                       for (final item in detail.features)
                         Row(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: .min,
+                          crossAxisAlignment: .start,
                           children: <Widget>[
                             Text(
                               '\u2022 ',
@@ -161,22 +161,22 @@ class _PricingCardItem extends ConsumerWidget {
                               child: Text(
                                 item,
                                 style: switch (context.screenSize) {
-                                  ScreenSize.extraLarge || ScreenSize.large =>
-                                    theme.typography.body2Regular,
-                                  ScreenSize.normal || ScreenSize.small =>
-                                    theme.typography.body3Regular,
+                                  .extraLarge ||
+                                  .large => theme.typography.body2Regular,
+                                  .normal ||
+                                  .small => theme.typography.body3Regular,
                                 },
                               ),
                             ),
                           ],
                         ),
                     ],
-                    if (detail.type == TicketType.regular)
+                    if (detail.type == .regular)
                       Padding(
-                        padding: const EdgeInsets.only(top: 20),
+                        padding: const .only(top: 20),
                         child: FclButton.primary(
                           label: l10n.homePricingBuyTicketsButton,
-                          buttonSize: ButtonSize.small,
+                          buttonSize: .small,
                           onPressed: () => _showDisclaimerDialog(
                             context,
                             config.ticketPageUrl,

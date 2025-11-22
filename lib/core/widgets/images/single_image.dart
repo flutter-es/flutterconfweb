@@ -21,7 +21,7 @@ class SingleImage extends StatelessWidget {
       imageBuilder: (_, imageProvider) => SingleImageContainer(
         size: size,
         borderRadius: borderRadius,
-        image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+        image: DecorationImage(image: imageProvider, fit: .cover),
       ),
       progressIndicatorBuilder: (_, _, _) {
         return SingleImageContainer(size: size, borderRadius: borderRadius);
@@ -52,7 +52,7 @@ class SingleImageContainer extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: image == null ? FlutterLatamColors.darkBlue : null,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: .circular(borderRadius),
           image: image,
         ),
         child: image == null ? const SizedBox() : null,

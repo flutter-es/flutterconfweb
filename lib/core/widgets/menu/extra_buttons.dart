@@ -24,34 +24,26 @@ class ExtraButtons extends ConsumerWidget {
     final children = <Widget>[
       FclButton.secondary(
         label: l10n.menuBeSponsorButton,
-        buttonSize: ButtonSize.small,
+        buttonSize: .small,
         onPressed: () {},
       ),
       /*
       FclButton.secondary(
         label: l10n.menuBeSpeakerButton,
-        buttonSize: ButtonSize.small,
+        buttonSize: .small,
         onPressed: () => Utils.launchUrlLink(config.cfpFormUrl),
       ),
       */
       FclButton.primary(
         label: l10n.menuBuyTicketsButton,
-        buttonSize: ButtonSize.small,
+        buttonSize: .small,
         onPressed: () => _showDisclaimerDialog(context, config.ticketPageUrl),
       ),
     ];
 
     return switch (position) {
-      ButtonPosition.row => Row(
-        spacing: 20,
-        mainAxisSize: MainAxisSize.min,
-        children: children,
-      ),
-      ButtonPosition.column => Column(
-        spacing: 20,
-        mainAxisSize: MainAxisSize.min,
-        children: children,
-      ),
+      .row => Row(spacing: 20, mainAxisSize: .min, children: children),
+      .column => Column(spacing: 20, mainAxisSize: .min, children: children),
     };
   }
 

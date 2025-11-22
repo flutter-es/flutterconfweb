@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
@@ -21,39 +20,39 @@ class ErrorPage extends ConsumerWidget {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: .center,
+          mainAxisSize: .min,
           children: <Widget>[
             SizedBox.square(
               dimension: switch (context.screenSize) {
-                ScreenSize.extraLarge => 400,
-                ScreenSize.large => 300,
+                .extraLarge => 400,
+                .large => 300,
                 _ => 250,
               },
               child: FlutterRiveAnimated(
                 path: Assets.animations.flutterWarning,
-                animation: FlutterConfAnimations.flutterWarning,
+                animation: .flutterWarning,
               ),
             ),
             Text(
               l10n.errorPageTitle,
-              textAlign: TextAlign.center,
+              textAlign: .center,
               style: theme.typography.h1Bold.copyWith(
                 color: FlutterLatamColors.grey,
                 fontSize: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 60,
-                  ScreenSize.large => 50,
+                  .extraLarge => 60,
+                  .large => 50,
                   _ => 40,
                 },
               ),
             ),
             Text(
               l10n.errorPageSubtitle,
-              textAlign: TextAlign.center,
+              textAlign: .center,
               style: theme.typography.subH2Semibold.copyWith(
                 color: FlutterLatamColors.grey,
                 fontSize: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 30,
+                  .extraLarge => 30,
                   _ => 20,
                 },
               ),
@@ -68,7 +67,7 @@ class ErrorPage extends ConsumerWidget {
               ),
               onPressed: () => context.go('/${AppRoutePath.home.pathName}'),
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const .all(16),
                 child: Text(l10n.errorReturnHomeButton),
               ),
             ),

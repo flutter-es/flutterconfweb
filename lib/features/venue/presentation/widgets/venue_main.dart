@@ -42,63 +42,63 @@ class VenueMain extends ConsumerWidget {
           CarouselImages(images: carouselImageUrls),
           Column(
             spacing: 24,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: .min,
+            crossAxisAlignment: .start,
             children: <Widget>[
               TitleSubtitleText(
                 title: (
                   text: l10n.aboutVenueName,
                   size: switch (context.screenSize) {
-                    ScreenSize.extraLarge => 64,
-                    ScreenSize.large => 48,
-                    ScreenSize.normal || ScreenSize.small => 24,
+                    .extraLarge => 64,
+                    .large => 48,
+                    .normal || .small => 24,
                   },
                 ),
                 subtitle: (
                   text: l10n.aboutVenueDescription,
                   size: switch (context.screenSize) {
-                    ScreenSize.extraLarge || ScreenSize.large => 24,
-                    ScreenSize.normal || ScreenSize.small => 16,
+                    .extraLarge || .large => 24,
+                    .normal || .small => 16,
                   },
                 ),
-                textAlign: TextAlign.start,
+                textAlign: .start,
               ),
               Flex(
                 spacing: 24,
                 crossAxisAlignment: switch (context.screenSize) {
-                  ScreenSize.extraLarge => CrossAxisAlignment.center,
-                  _ => CrossAxisAlignment.start,
+                  .extraLarge => .center,
+                  _ => .start,
                 },
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: .spaceBetween,
                 direction: switch (context.screenSize) {
-                  ScreenSize.extraLarge => Axis.horizontal,
-                  _ => Axis.vertical,
+                  .extraLarge => .horizontal,
+                  _ => .vertical,
                 },
                 children: <Widget>[
                   Column(
                     spacing: 16,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: .min,
+                    crossAxisAlignment: .start,
                     children: <Widget>[
                       for (final item in venueInfoList)
                         Row(
                           spacing: 10,
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: .min,
                           children: <Widget>[
                             SizedBox.square(
                               dimension: switch (context.screenSize) {
-                                ScreenSize.extraLarge || ScreenSize.large => 32,
-                                ScreenSize.normal || ScreenSize.small => 24,
+                                .extraLarge || .large => 32,
+                                .normal || .small => 24,
                               },
                               child: SvgPicture.asset(item.icon),
                             ),
                             AdaptableText(
                               item.text,
                               style: switch (context.screenSize) {
-                                ScreenSize.extraLarge || ScreenSize.large =>
-                                  theme.typography.body1Regular,
-                                ScreenSize.normal || ScreenSize.small =>
-                                  theme.typography.body3Regular,
+                                .extraLarge ||
+                                .large => theme.typography.body1Regular,
+                                .normal ||
+                                .small => theme.typography.body3Regular,
                               },
                             ),
                           ],
@@ -108,13 +108,13 @@ class VenueMain extends ConsumerWidget {
                   FclButton.primary(
                     label: l10n.aboutVenueHowToArrive,
                     buttonSize: switch (context.screenSize) {
-                      ScreenSize.normal || ScreenSize.small => ButtonSize.small,
-                      _ => ButtonSize.large,
+                      .normal || .small => .small,
+                      _ => .large,
                     },
                     icon: SizedBox.square(
                       dimension: switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => 24,
-                        ScreenSize.normal || ScreenSize.small => 20,
+                        .extraLarge || .large => 24,
+                        .normal || .small => 20,
                       },
                       child: SvgPicture.asset(Assets.images.icons.arrowCurve),
                     ),

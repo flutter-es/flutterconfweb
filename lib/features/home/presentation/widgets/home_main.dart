@@ -27,8 +27,8 @@ class HomeMain extends ConsumerWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter,
+          begin: .bottomCenter,
+          end: .topCenter,
           colors: [FlutterLatamColors.mainBlue, FlutterLatamColors.steelBlue],
           stops: [0.77, 1.38],
         ),
@@ -38,9 +38,9 @@ class HomeMain extends ConsumerWidget {
           Center(
             child: SizedBox.fromSize(
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => const Size(760, 750),
-                ScreenSize.large => const Size(520, 513),
-                ScreenSize.normal || ScreenSize.small => const Size(300, 296),
+                .extraLarge => const Size(760, 750),
+                .large => const Size(520, 513),
+                .normal || .small => const Size(300, 296),
               },
               child: Image.asset(Assets.images.surfDash),
             ),
@@ -49,46 +49,46 @@ class HomeMain extends ConsumerWidget {
             title: (
               text: l10n.homeMainTitle,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => 64,
-                ScreenSize.large => 48,
-                ScreenSize.normal || ScreenSize.small => 24,
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
               },
             ),
             subtitle: (
               text: l10n.homeMainDescription,
               size: switch (context.screenSize) {
-                ScreenSize.extraLarge => 40,
-                ScreenSize.large => 36,
-                ScreenSize.normal || ScreenSize.small => 16,
+                .extraLarge => 40,
+                .large => 36,
+                .normal || .small => 16,
               },
             ),
             spacing: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 12,
+              .extraLarge || .large => 24,
+              .normal || .small => 12,
             },
           ),
           RichText(
-            textAlign: TextAlign.center,
+            textAlign: .center,
             text: TextSpan(
               text: l10n.homeMainExperienceOne,
               children: <InlineSpan>[
                 TextSpan(
                   text: l10n.homeMainExperienceTwo,
                   style: theme.typography.subH1Regular.copyWith(
-                    decoration: TextDecoration.none,
+                    decoration: .none,
                     fontSize: switch (context.screenSize) {
-                      ScreenSize.extraLarge || ScreenSize.large => 40,
-                      ScreenSize.normal || ScreenSize.small => 16,
+                      .extraLarge || .large => 40,
+                      .normal || .small => 16,
                     },
                   ),
                 ),
               ],
               style: theme.typography.subH1Regular.copyWith(
-                decoration: TextDecoration.underline,
+                decoration: .underline,
                 decorationColor: FlutterLatamColors.white,
                 fontSize: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 40,
-                  ScreenSize.normal || ScreenSize.small => 16,
+                  .extraLarge || .large => 40,
+                  .normal || .small => 16,
                 },
               ),
               recognizer: TapGestureRecognizer()
@@ -98,7 +98,7 @@ class HomeMain extends ConsumerWidget {
             ),
           ),
           CountDownText(
-            startDate: DateTime.now(),
+            startDate: .now(),
             endDate: DateTime(2026, 9, 22, 7, 30),
           ),
         ],

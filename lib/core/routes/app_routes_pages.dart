@@ -37,14 +37,14 @@ class ModalBottomPage<T> extends Page<T> {
   Route<T> createRoute(BuildContext context) {
     return ModalBottomSheetRoute<T>(
       settings: this,
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: .hardEdge,
       isDismissible: isDismissible,
       showDragHandle: showDragHandle,
       isScrollControlled: isScrollControlled,
       backgroundColor: FlutterLatamColors.darkBlue,
       modalBarrierColor: FlutterLatamColors.black.withValues(alpha: .25),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: .vertical(top: .circular(24)),
       ),
       builder: (_) {
         if (heightFactor == null) {
@@ -90,11 +90,11 @@ class DialogPage<T> extends Page<T> {
         widthFactor: sizeFactor.width,
         heightFactor: sizeFactor.height,
         child: Container(
-          margin: const EdgeInsets.all(32),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
+          margin: const .all(32),
+          clipBehavior: .antiAliasWithSaveLayer,
           decoration: BoxDecoration(
             color: FlutterLatamColors.darkBlue,
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: .circular(24),
           ),
           child: child,
         ),

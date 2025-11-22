@@ -25,23 +25,23 @@ class GridCardItem extends StatelessWidget {
 
     return Card(
       color: const Color(0xFF2E5288),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      clipBehavior: .antiAliasWithSaveLayer,
       child: Padding(
-        padding: const EdgeInsets.all(28),
+        padding: const .all(28),
         child: Column(
           spacing: 10,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: .min,
+          crossAxisAlignment: .start,
           children: <Widget>[
             Row(
               spacing: 8,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: <Widget>[
                 Expanded(
                   child: Text(
                     title,
                     style: switch (context.screenSize) {
-                      ScreenSize.extraLarge => theme.typography.h3Bold,
+                      .extraLarge => theme.typography.h3Bold,
                       _ => theme.typography.h4Bold,
                     },
                   ),

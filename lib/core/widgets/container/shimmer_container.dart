@@ -33,7 +33,7 @@ class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _shimmerController = AnimationController.unbounded(vsync: this);
+    _shimmerController = .unbounded(vsync: this);
     unawaited(
       _shimmerController.repeat(
         min: -.5,
@@ -133,7 +133,7 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
     );
 
     return ShaderMask(
-      blendMode: BlendMode.srcATop,
+      blendMode: .srcATop,
       shaderCallback: (bounds) {
         return gradient.createShader(
           Rect.fromLTWH(
@@ -160,6 +160,6 @@ class _SlidingGradientTransform extends GradientTransform {
 
   @override
   Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    return Matrix4.translationValues(bounds.width * slidePercent, 0, 0);
+    return .translationValues(bounds.width * slidePercent, 0, 0);
   }
 }

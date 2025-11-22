@@ -22,20 +22,20 @@ class HomeVenue extends ConsumerWidget {
           borderColor: FlutterLatamColors.red,
           child: Column(
             spacing: 30,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: <Widget>[
               Text(
                 l10n.homeVenueGratitudeMessage,
-                textAlign: TextAlign.center,
+                textAlign: .center,
                 style: switch (context.screenSize) {
-                  ScreenSize.extraLarge => theme.typography.body1Regular,
+                  .extraLarge => theme.typography.body1Regular,
                   _ => theme.typography.body3Regular,
                 },
               ),
               SizedBox.fromSize(
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => const Size(576, 192),
-                  ScreenSize.large => const Size(384, 128),
+                  .extraLarge => const Size(576, 192),
+                  .large => const Size(384, 128),
                   _ => const Size(216, 72),
                 },
                 child: Image.asset(

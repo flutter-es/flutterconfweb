@@ -19,8 +19,8 @@ class OptionButtonList extends StatelessWidget {
     return Wrap(
       runSpacing: 10,
       spacing: switch (context.screenSize) {
-        ScreenSize.extraLarge || ScreenSize.large => 20,
-        ScreenSize.normal || ScreenSize.small => 10,
+        .extraLarge || .large => 20,
+        .normal || .small => 10,
       },
       children: <Widget>[
         for (final (index, item) in options.indexed)
@@ -28,13 +28,13 @@ class OptionButtonList extends StatelessWidget {
             FclButton.primary(
               label: item,
               onPressed: () => onChanged(index),
-              buttonSize: ButtonSize.small,
+              buttonSize: .small,
             )
           else
             FclButton.secondary(
               label: item,
               onPressed: () => onChanged(index),
-              buttonSize: ButtonSize.small,
+              buttonSize: .small,
             ),
       ],
     );

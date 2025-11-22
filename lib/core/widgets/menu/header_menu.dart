@@ -30,7 +30,7 @@ class HeaderMenu extends HookWidget {
       expandedHeight: 120,
       backgroundColor: FlutterLatamColors.mainBlue,
       flexibleSpace: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 122),
+        padding: const .symmetric(vertical: 20, horizontal: 122),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -40,7 +40,7 @@ class HeaderMenu extends HookWidget {
                   if (item.route != null) onSelect(item);
                 },
                 controller: tabController,
-                tabAlignment: TabAlignment.start,
+                tabAlignment: .start,
                 isScrollable: true,
                 indicatorWeight: 1,
                 dividerColor: Colors.transparent,
@@ -65,8 +65,8 @@ class HeaderMenu extends HookWidget {
                           item.label,
                           style: theme.typography.body3Regular.copyWith(
                             fontWeight: switch (item.isSelected) {
-                              true => FontWeight.w600,
-                              false => FontWeight.w400,
+                              true => .w600,
+                              false => .w400,
                             },
                           ),
                         ),
@@ -84,7 +84,7 @@ class HeaderMenu extends HookWidget {
                 ],
               ),
             ),
-            const ExtraButtons(position: ButtonPosition.row),
+            const ExtraButtons(position: .row),
             const LanguageButton(),
           ],
         ),

@@ -33,7 +33,7 @@ class _ScheduleDashboard extends HookConsumerWidget {
         opacity: controller,
         child: IndexedStack(
           index: currentIndex,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
+          clipBehavior: .antiAliasWithSaveLayer,
           children: <Widget>[
             for (final (idx, daySchedule) in data.indexed)
               if (daySchedule != null)
@@ -41,7 +41,7 @@ class _ScheduleDashboard extends HookConsumerWidget {
                   visible: currentIndex == idx,
                   child: Column(
                     spacing: 10,
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: <Widget>[
                       for (final item in daySchedule.slots)
                         _ScheduleSlotItem(slot: item),
@@ -74,7 +74,7 @@ class _ScheduleSlotItem extends StatelessWidget {
         children: <Widget>[
           Flexible(
             flex: switch (context.screenSize) {
-              ScreenSize.small || ScreenSize.normal => 4,
+              .small || .normal => 4,
               _ => 2,
             },
             child: Column(
@@ -83,27 +83,23 @@ class _ScheduleSlotItem extends StatelessWidget {
                 return _ScheduleCard(
                   sessions: item.value,
                   color: switch (item.key.type) {
-                    ScheduleType.checkIn => FlutterLatamColors.purple,
-                    ScheduleType.keynote ||
-                    ScheduleType.panel => FlutterLatamColors.lightGreen,
-                    ScheduleType.breaks ||
-                    ScheduleType.lunch => FlutterLatamColors.purple,
-                    ScheduleType.lighting => FlutterLatamColors.pink,
-                    ScheduleType.session => FlutterLatamColors.blue,
-                    ScheduleType.finish => FlutterLatamColors.mediumRed,
+                    .checkIn => FlutterLatamColors.purple,
+                    .keynote || .panel => FlutterLatamColors.lightGreen,
+                    .breaks || .lunch => FlutterLatamColors.purple,
+                    .lighting => FlutterLatamColors.pink,
+                    .session => FlutterLatamColors.blue,
+                    .finish => FlutterLatamColors.mediumRed,
                     _ => Colors.transparent,
                   },
                   position: switch (context.screenSize) {
-                    ScreenSize.extraLarge => _ScheduleCardPosition.row,
-                    _ => _ScheduleCardPosition.column,
+                    .extraLarge => .row,
+                    _ => .column,
                   },
                   itemPosition: slot.scheduleSlots.workshopsHacks.isNotEmpty
-                      ? _ScheduleCardItemPosition.column
+                      ? .column
                       : switch (context.screenSize) {
-                          ScreenSize.extraLarge ||
-                          ScreenSize.large => _ScheduleCardItemPosition.row,
-                          ScreenSize.normal ||
-                          ScreenSize.small => _ScheduleCardItemPosition.column,
+                          .extraLarge || .large => .row,
+                          .normal || .small => .column,
                         },
                 );
               }).toList(),
@@ -112,7 +108,7 @@ class _ScheduleSlotItem extends StatelessWidget {
           if (slot.scheduleSlots.workshopsHacks.isNotEmpty)
             Flexible(
               flex: switch (context.screenSize) {
-                ScreenSize.small || ScreenSize.normal => 3,
+                .small || .normal => 3,
                 _ => 1,
               },
               child: Column(
@@ -122,11 +118,11 @@ class _ScheduleSlotItem extends StatelessWidget {
                     child: _ScheduleCard(
                       sessions: item.value,
                       color: switch (item.key.type) {
-                        ScheduleType.workshop => FlutterLatamColors.lightYellow,
-                        ScheduleType.hackathon => FlutterLatamColors.bronze,
+                        .workshop => FlutterLatamColors.lightYellow,
+                        .hackathon => FlutterLatamColors.bronze,
                         _ => Colors.transparent,
                       },
-                      position: _ScheduleCardPosition.column,
+                      position: .column,
                     ),
                   );
                 }).toList(),

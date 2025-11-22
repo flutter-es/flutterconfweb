@@ -10,25 +10,25 @@ class SectionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final defaultSpacing = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => 96.0,
-      ScreenSize.normal || ScreenSize.small => 48.0,
+      .extraLarge || .large => 96.0,
+      .normal || .small => 48.0,
     };
 
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: .symmetric(
         horizontal: switch (context.screenSize) {
-          ScreenSize.extraLarge => 122,
-          ScreenSize.large => 72,
-          ScreenSize.normal || ScreenSize.small => 28,
+          .extraLarge => 122,
+          .large => 72,
+          .normal || .small => 28,
         },
         vertical: switch (context.screenSize) {
-          ScreenSize.extraLarge || ScreenSize.large => 96,
-          ScreenSize.normal || ScreenSize.small => 48,
+          .extraLarge || .large => 96,
+          .normal || .small => 48,
         },
       ),
       child: Column(
         spacing: spacing ?? defaultSpacing,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: children,
       ),
     );

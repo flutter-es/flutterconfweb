@@ -19,12 +19,10 @@ class MarkdownContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
     final bodyTextStyle = switch (context.screenSize) {
-      ScreenSize.extraLarge ||
-      ScreenSize.large => theme.typography.body1Regular.copyWith(
+      .extraLarge || .large => theme.typography.body1Regular.copyWith(
         color: theme.colorScheme.inverseNeutral,
       ),
-      ScreenSize.normal ||
-      ScreenSize.small => theme.typography.body3Regular.copyWith(
+      .normal || .small => theme.typography.body3Regular.copyWith(
         color: theme.colorScheme.inverseNeutral,
       ),
     };
@@ -76,19 +74,19 @@ class MarkdownContainer extends StatelessWidget {
                 LinkConfig(
                   style: bodyTextStyle.copyWith(
                     color: theme.colorScheme.accentPrimary,
-                    decoration: TextDecoration.underline,
+                    decoration: .underline,
                     decorationColor: theme.colorScheme.accentPrimary,
                   ),
                   onTap: Utils.launchUrlLink,
                 ),
                 ListConfig(
                   marker: (_, _, _) => Padding(
-                    padding: const EdgeInsets.only(top: 15),
+                    padding: const .only(top: 15),
                     child: SizedBox.square(
                       dimension: 6,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
+                          shape: .circle,
                           color: theme.colorScheme.inverseNeutral,
                         ),
                       ),

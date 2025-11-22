@@ -17,9 +17,7 @@ class CarouselImages extends StatefulWidget {
 }
 
 class _CarouselImagesState extends State<CarouselImages> {
-  late final PageController _pageController = PageController(
-    viewportFraction: 1.1,
-  );
+  late final _pageController = PageController(viewportFraction: 1.1);
 
   bool _isLoading = true;
   int _currentPage = 0;
@@ -46,11 +44,11 @@ class _CarouselImagesState extends State<CarouselImages> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) {
+      builder: (_, constraints) {
         final width = constraints.maxWidth;
         return Column(
           spacing: 10,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: <Widget>[
             SizedBox.fromSize(
               size: Size(width, width / widget.aspectRatio),
@@ -76,9 +74,9 @@ class _CarouselImagesState extends State<CarouselImages> {
             if (widget.images.length > 1)
               Row(
                 spacing: 4,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(widget.images.length, (index) {
+                mainAxisSize: .min,
+                mainAxisAlignment: .center,
+                children: .generate(widget.images.length, (index) {
                   return MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
@@ -90,7 +88,7 @@ class _CarouselImagesState extends State<CarouselImages> {
                         dimension: 12,
                         child: DecoratedBox(
                           decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                            shape: .circle,
                             color: switch (_currentPage == index) {
                               true => FlutterLatamColors.white,
                               false => FlutterLatamColors.darkBlue,
@@ -152,7 +150,7 @@ class _CarouselImageItem extends StatelessWidget {
         true => NetworkImage(imagePath),
         false => AssetImage(imagePath),
       },
-      fit: BoxFit.cover,
+      fit: .cover,
       loadingBuilder: (_, child, loadingProgress) {
         return _CarouselImageContainer(
           widthFactor: widthFactor,
@@ -191,7 +189,7 @@ class _CarouselImageContainer extends StatelessWidget {
       widthFactor: widthFactor,
       child: AspectRatio(
         aspectRatio: aspectRatio,
-        child: ClipRRect(borderRadius: BorderRadius.circular(15), child: child),
+        child: ClipRRect(borderRadius: .circular(15), child: child),
       ),
     );
   }

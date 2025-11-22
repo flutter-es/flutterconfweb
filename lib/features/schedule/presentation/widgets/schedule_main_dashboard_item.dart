@@ -9,7 +9,7 @@ class _ScheduleCard extends ConsumerWidget {
     required this.sessions,
     required this.color,
     required this.position,
-    this.itemPosition = _ScheduleCardItemPosition.column,
+    this.itemPosition = .column,
   });
 
   final List<ScheduleSessionModel> sessions;
@@ -27,15 +27,13 @@ class _ScheduleCard extends ConsumerWidget {
     final scheduleChildren = <Widget>[
       for (final (index, item) in sessions.indexed) ...[
         switch (itemPosition) {
-          _ScheduleCardItemPosition.row => Expanded(
-            child: _ScheduleDetail(session: item),
-          ),
-          _ScheduleCardItemPosition.column => _ScheduleDetail(session: item),
+          .row => Expanded(child: _ScheduleDetail(session: item)),
+          .column => _ScheduleDetail(session: item),
         },
         if (index < sessions.length - 1)
           switch (itemPosition) {
-            _ScheduleCardItemPosition.row => const VerticalDivider(width: 40),
-            _ScheduleCardItemPosition.column => const Divider(height: 60),
+            .row => const VerticalDivider(width: 40),
+            .column => const Divider(height: 60),
           },
       ],
     ];
@@ -44,10 +42,10 @@ class _ScheduleCard extends ConsumerWidget {
       if (scheduleTrack != null)
         Align(
           alignment: switch (scheduleTrack.type) {
-            ScheduleType.workshop => Alignment.topLeft,
+            .workshop => .topLeft,
             _ => switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => Alignment.centerLeft,
-              ScreenSize.normal || ScreenSize.small => Alignment.topLeft,
+              .extraLarge || .large => .centerLeft,
+              .normal || .small => .topLeft,
             },
           },
           child: Text(
@@ -57,21 +55,18 @@ class _ScheduleCard extends ConsumerWidget {
             ),
             style: theme.typography.subH2Semibold.copyWith(
               fontSize: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 18,
-                ScreenSize.normal || ScreenSize.small => 14,
+                .extraLarge || .large => 18,
+                .normal || .small => 14,
               },
             ),
           ),
         ),
       switch (itemPosition) {
-        _ScheduleCardItemPosition.row => IntrinsicHeight(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: scheduleChildren,
-          ),
+        .row => IntrinsicHeight(
+          child: Row(mainAxisSize: .min, children: scheduleChildren),
         ),
-        _ScheduleCardItemPosition.column => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        .column => Column(
+          crossAxisAlignment: .start,
           children: scheduleChildren,
         ),
       },
@@ -79,27 +74,27 @@ class _ScheduleCard extends ConsumerWidget {
 
     return Card(
       elevation: 0,
-      margin: EdgeInsets.zero,
+      margin: .zero,
       color: color.withValues(alpha: .2),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      clipBehavior: .antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: .circular(12),
         side: BorderSide(color: color, width: 1.5),
       ),
       child: SizedBox(
-        width: double.infinity,
+        width: .infinity,
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const .all(20),
           child: switch (position) {
-            _ScheduleCardPosition.row => Row(
+            .row => Row(
               spacing: 40,
               children: scheduleCardChildren.mapIndexed((index, item) {
                 return index == 0 ? item : Expanded(child: item);
               }).toList(),
             ),
-            _ScheduleCardPosition.column => Column(
+            .column => Column(
               spacing: 20,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: scheduleCardChildren,
             ),
           },
@@ -120,26 +115,26 @@ class _ScheduleDetail extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
 
     final scheduleTypeTitle = switch (session.type) {
-      ScheduleType.lighting => l10n.scheduleLightingTitle(session.track),
-      ScheduleType.session => l10n.scheduleSessionTitle(session.track),
-      ScheduleType.workshop => l10n.scheduleWorkshopTitle,
+      .lighting => l10n.scheduleLightingTitle(session.track),
+      .session => l10n.scheduleSessionTitle(session.track),
+      .workshop => l10n.scheduleWorkshopTitle,
       _ => null,
     };
     final requirements = session.requirements ?? [];
 
     final scheduleChild = Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
       spacing: session.title.isNotEmpty ? 10 : 20,
       children: <Widget>[
         Text(
           scheduleTypeTitle ?? session.title,
           style: theme.typography.body4Regular.copyWith(
             fontSize: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 14,
-              ScreenSize.normal || ScreenSize.small => 12,
+              .extraLarge || .large => 14,
+              .normal || .small => 12,
             },
-            fontWeight: FontWeight.bold,
+            fontWeight: .bold,
           ),
         ),
         if (scheduleTypeTitle != null)
@@ -147,8 +142,8 @@ class _ScheduleDetail extends ConsumerWidget {
             session.title,
             style: theme.typography.body3Light.copyWith(
               fontSize: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => 16,
-                ScreenSize.normal || ScreenSize.small => 12,
+                .extraLarge || .large => 16,
+                .normal || .small => 12,
               },
             ),
           ),
@@ -157,25 +152,21 @@ class _ScheduleDetail extends ConsumerWidget {
         if (requirements.isNotEmpty)
           Column(
             spacing: 4,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: <Widget>[
               Text(
                 l10n.scheduleRequirementTitle,
                 style: switch (context.screenSize) {
-                  ScreenSize.extraLarge ||
-                  ScreenSize.large => theme.typography.body3Regular,
-                  ScreenSize.normal ||
-                  ScreenSize.small => theme.typography.body4Regular,
+                  .extraLarge || .large => theme.typography.body3Regular,
+                  .normal || .small => theme.typography.body4Regular,
                 },
               ),
               for (final item in requirements)
                 Text(
                   '${'\u2022 '} $item',
                   style: switch (context.screenSize) {
-                    ScreenSize.extraLarge ||
-                    ScreenSize.large => theme.typography.body4Regular,
-                    ScreenSize.normal ||
-                    ScreenSize.small => theme.typography.captionRegular,
+                    .extraLarge || .large => theme.typography.body4Regular,
+                    .normal || .small => theme.typography.captionRegular,
                   },
                 ),
             ],
@@ -190,9 +181,7 @@ class _ScheduleDetail extends ConsumerWidget {
         label: scheduleTypeTitle != null
             ? '$scheduleTypeTitle: ${session.title}'
             : session.title,
-        role: session.isTalkingTrack
-            ? SemanticsRole.spinButton
-            : SemanticsRole.tooltip,
+        role: session.isTalkingTrack ? .spinButton : .tooltip,
         child: scheduleChild,
       ),
     );
@@ -212,9 +201,9 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
       final childrenItem = <Widget>[
         CircleAvatar(
           radius: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => 18,
-            ScreenSize.normal => 14,
-            ScreenSize.small => 10,
+            .extraLarge || .large => 18,
+            .normal => 14,
+            .small => 10,
           },
           backgroundColor: FlutterLatamColors.white,
           backgroundImage: NetworkImage(item.imageUrl),
@@ -223,7 +212,7 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
           item.name,
           style: theme.typography.body3Light.copyWith(
             fontSize: switch (context.screenSize) {
-              ScreenSize.extraLarge => 16,
+              .extraLarge => 16,
               _ => 14,
             },
           ),
@@ -231,29 +220,29 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
       ];
 
       return switch (context.screenSize) {
-        ScreenSize.extraLarge => Row(
+        .extraLarge => Row(
           spacing: 8,
-          mainAxisSize: MainAxisSize.min,
-          children: childrenItem.map((item) => item).toList(),
+          mainAxisSize: .min,
+          children: childrenItem,
         ),
         _ => Wrap(
           spacing: 8,
           runSpacing: 8,
-          crossAxisAlignment: WrapCrossAlignment.center,
+          crossAxisAlignment: .center,
           children: childrenItem,
         ),
       };
     });
 
     return switch (context.screenSize) {
-      ScreenSize.extraLarge => Wrap(
+      .extraLarge => Wrap(
         spacing: 30,
         runSpacing: 8,
         children: children.toList(),
       ),
       _ => Column(
         spacing: 20,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: children.toList(),
       ),
     };

@@ -30,27 +30,27 @@ class HomeFaq extends ConsumerWidget {
               title: (
                 text: l10n.homeFaqTitle,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 64,
-                  ScreenSize.large => 48,
-                  ScreenSize.normal || ScreenSize.small => 24,
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
                 },
               ),
               subtitle: (
                 text: l10n.homeFaqDescription,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 16,
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
                 },
               ),
               spacing: 12,
             ),
             ResponsiveGrid(
               columnSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge => 2,
+                .extraLarge => 2,
                 _ => 1,
               },
               rowSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge => 2,
+                .extraLarge => 2,
                 _ => data.length,
               },
               children: <Widget>[
@@ -82,17 +82,17 @@ class _FaqCardItem extends HookWidget {
     };
 
     return Card(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
+      clipBehavior: .antiAliasWithSaveLayer,
       color: FlutterLatamColors.darkBlue,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: .circular(20)),
       child: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const .all(30),
         child: InkWell(
           mouseCursor: SystemMouseCursors.click,
           onTap: () => isExpanded.value = !isExpanded.value,
           child: Column(
             spacing: 10,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: <Widget>[
               Row(
                 spacing: 12,

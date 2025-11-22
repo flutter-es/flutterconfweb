@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -20,19 +19,19 @@ class WipContainer extends StatelessWidget {
             FlutterLatamColors.darkBlue,
             FlutterLatamColors.mainBlue,
           ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: .topCenter,
+          end: .bottomCenter,
         ),
       ),
       child: Center(
         child: Transform(
-          alignment: Alignment.center,
+          alignment: .center,
           transform: Matrix4.rotationY(math.pi),
           child: SizedBox.square(
             dimension: 500,
             child: FlutterRiveAnimated(
               path: Assets.animations.flutterdash,
-              animation: FlutterConfAnimations.flutterDashConst,
+              animation: .flutterDashConst,
             ),
           ),
         ),

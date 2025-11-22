@@ -8,7 +8,7 @@ class _FclButtonStylePrimary extends _FclButtonStyle {
 
   @override
   WidgetStateProperty<Color?>? get backgroundColor {
-    return WidgetStateProperty.resolveWith((states) {
+    return .resolveWith((states) {
       if (states.contains(WidgetState.disabled)) {
         return FlutterLatamColors.blue.withValues(alpha: .3);
       }
@@ -27,9 +27,7 @@ class _FclButtonStylePrimary extends _FclButtonStyle {
   @override
   WidgetStateProperty<OutlinedBorder?>? get shape {
     return const WidgetStatePropertyAll(
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(80)),
-      ),
+      RoundedRectangleBorder(borderRadius: .all(.circular(80))),
     );
   }
 }

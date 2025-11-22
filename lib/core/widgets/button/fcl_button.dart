@@ -17,19 +17,19 @@ class FclButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     required this.buttonSize,
-    this.iconAlignment = IconAlignment.start,
+    this.iconAlignment = .start,
     this.icon,
     super.key,
-  }) : variant = ButtonVariant.primary;
+  }) : variant = .primary;
 
   const FclButton.secondary({
     required this.label,
     required this.onPressed,
     required this.buttonSize,
-    this.iconAlignment = IconAlignment.start,
+    this.iconAlignment = .start,
     this.icon,
     super.key,
-  }) : variant = ButtonVariant.secondary;
+  }) : variant = .secondary;
 
   final String label;
   final ButtonVariant variant;
@@ -42,11 +42,11 @@ class FclButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: switch (variant) {
-        ButtonVariant.primary => _FclButtonStylePrimary(
+        .primary => _FclButtonStylePrimary(
           buttonSize: buttonSize,
           theme: context.theme,
         ),
-        ButtonVariant.secondary => _FclButtonStyleSecondary(
+        .secondary => _FclButtonStyleSecondary(
           buttonSize: buttonSize,
           theme: context.theme,
         ),
@@ -54,15 +54,15 @@ class FclButton extends StatelessWidget {
       onPressed: onPressed,
       child: Row(
         spacing: 12,
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: .min,
+        mainAxisAlignment: .center,
         textDirection: switch (iconAlignment) {
-          IconAlignment.start => TextDirection.ltr,
-          IconAlignment.end => TextDirection.rtl,
+          .start => .ltr,
+          .end => .rtl,
         },
         children: <Widget>[
           ?icon,
-          Flexible(child: Text(label, textAlign: TextAlign.center)),
+          Flexible(child: Text(label, textAlign: .center)),
         ],
       ),
     );

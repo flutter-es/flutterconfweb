@@ -92,20 +92,20 @@ class _ContactEmailCard extends ConsumerWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: FlutterLatamColors.darkBlue,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: .circular(20),
       ),
       child: Padding(
-        padding: EdgeInsets.all(switch (context.screenSize) {
+        padding: .all(switch (context.screenSize) {
           ScreenSize.extraLarge || ScreenSize.large => 28,
           ScreenSize.normal || ScreenSize.small => 12,
         }),
         child: Flex(
           spacing: 10,
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: .min,
+          mainAxisAlignment: .center,
           direction: switch (context.screenSize) {
-            ScreenSize.extraLarge || ScreenSize.large => Axis.horizontal,
-            ScreenSize.normal || ScreenSize.small => Axis.vertical,
+            .extraLarge || .large => .horizontal,
+            .normal || .small => .vertical,
           },
           children: <Widget>[
             SizedBox.square(
@@ -114,15 +114,15 @@ class _ContactEmailCard extends ConsumerWidget {
             ),
             Row(
               spacing: 10,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: .center,
               children: <Widget>[
                 Text(
                   config.contactEmail,
                   style: theme.typography.subH1Regular.copyWith(
                     fontSize: switch (context.screenSize) {
-                      ScreenSize.extraLarge => 32,
-                      ScreenSize.large => 24,
-                      ScreenSize.normal || ScreenSize.small => 16,
+                      .extraLarge => 32,
+                      .large => 24,
+                      .normal || .small => 16,
                     },
                   ),
                 ),
@@ -135,8 +135,8 @@ class _ContactEmailCard extends ConsumerWidget {
                   },
                   child: SizedBox.square(
                     dimension: switch (context.screenSize) {
-                      ScreenSize.extraLarge || ScreenSize.large => 32,
-                      ScreenSize.normal || ScreenSize.small => 24,
+                      .extraLarge || .large => 32,
+                      .normal || .small => 24,
                     },
                     child: SvgPicture.asset(
                       Assets.images.icons.copy,

@@ -77,8 +77,8 @@ class _MarqueeTextAnimationState extends State<MarqueeTextAnimation>
   TextStyle get _currentStyle {
     final theme = context.theme.fclThemeScheme;
     final textStyle = switch (context.screenSize) {
-      ScreenSize.extraLarge => theme.typography.body1Regular,
-      ScreenSize.large => theme.typography.body2Regular,
+      .extraLarge => theme.typography.body1Regular,
+      .large => theme.typography.body2Regular,
       _ => theme.typography.body3Regular,
     };
     return textStyle.copyWith(color: FlutterLatamColors.black);
@@ -90,7 +90,7 @@ class _MarqueeTextAnimationState extends State<MarqueeTextAnimation>
     final textPainter = TextPainter(
       text: TextSpan(text: widget.text, style: _currentStyle),
       maxLines: 1,
-      textDirection: TextDirection.ltr,
+      textDirection: .ltr,
     )..layout();
 
     setState(() {

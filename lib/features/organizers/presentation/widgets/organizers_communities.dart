@@ -26,16 +26,16 @@ class OrganizersCommunities extends ConsumerWidget {
           title: (
             text: l10n.organizersCommunityTitle,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 24,
             },
           ),
           subtitle: (
             text: l10n.organizersCommunityDescription,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
             },
           ),
           spacing: 12,
@@ -49,19 +49,19 @@ class OrganizersCommunities extends ConsumerWidget {
                   child: SingleImage(
                     imageUrl: item.image,
                     borderRadius: 20,
-                    size: const Size.fromHeight(180),
+                    size: const .fromHeight(180),
                   ),
                 ),
             ],
           ),
           loading: () => Shimmer(
             child: _CommunityListContainer(
-              children: List.generate(9, (_) {
+              children: .generate(9, (_) {
                 return const ShimmerLoading(
                   isLoading: true,
                   child: SingleImageContainer(
                     borderRadius: 20,
-                    size: Size.fromHeight(180),
+                    size: .fromHeight(180),
                   ),
                 );
               }),
@@ -84,8 +84,8 @@ class _CommunityListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colSize = switch (context.screenSize) {
-      ScreenSize.extraLarge => 3,
-      ScreenSize.large => 2,
+      .extraLarge => 3,
+      .large => 2,
       _ => 1,
     };
 

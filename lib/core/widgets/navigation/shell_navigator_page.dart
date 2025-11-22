@@ -66,7 +66,7 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
           backgroundColor: FlutterLatamColors.mainBlue,
           leadingWidth: 90,
           leading: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const .all(8),
             child: InkWell(
               mouseCursor: SystemMouseCursors.click,
               onTap: switch (tabItems.isNotEmpty) {
@@ -102,8 +102,8 @@ class _ShellNavigatorPageState extends ConsumerState<ShellNavigatorPage> {
           /*
           SizedBox(
             height: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 56,
-              ScreenSize.normal || ScreenSize.small => 40,
+              .extraLarge || .large => 56,
+              .normal || .small => 40,
             },
             child: ColoredBox(
               color: FlutterLatamColors.yellow,

@@ -44,19 +44,19 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
   Widget build(BuildContext context) {
     final l10n = ref.watch(appLocalizationsProvider);
     final columnRowSize = switch (context.screenSize) {
-      ScreenSize.extraLarge => 4,
+      .extraLarge => 4,
       _ => 2,
     };
 
     final titleSize = switch (context.screenSize) {
-      ScreenSize.extraLarge => 84.0,
-      ScreenSize.large => 64.0,
-      ScreenSize.normal || ScreenSize.small => 24.0,
+      .extraLarge => 84.0,
+      .large => 64.0,
+      .normal || .small => 24.0,
     };
 
     final subtitleSize = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => 24.0,
-      ScreenSize.normal || ScreenSize.small => 20.0,
+      .extraLarge || .large => 24.0,
+      .normal || .small => 20.0,
     };
 
     if (_duration <= Duration.zero) {
@@ -69,8 +69,8 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
     }
 
     return ResponsiveGrid(
-      columnSizes: columnRowSize,
       rowSizes: columnRowSize,
+      columnSizes: columnRowSize,
       children: <Widget>[
         for (final item in _formatDuration(_duration, l10n))
           Center(

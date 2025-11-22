@@ -29,36 +29,36 @@ class SpeakerDetailMain extends ConsumerWidget {
           CharacterImage(
             imageUrl: data.photo,
             flagImageUrl: data.countryFlag,
-            size: const Size.square(120),
+            size: const .square(120),
           ),
           Expanded(
             child: TitleSubtitleText(
               title: (
                 text: data.name,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 22,
+                  .extraLarge || .large => 24,
+                  .normal || .small => 22,
                 },
               ),
               subtitle: (
                 text: data.title,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 16,
-                  ScreenSize.normal || ScreenSize.small => 14,
+                  .extraLarge || .large => 16,
+                  .normal || .small => 14,
                 },
               ),
               spacing: 4,
-              textAlign: TextAlign.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              textAlign: .start,
+              crossAxisAlignment: .start,
             ),
           ),
         ],
         detailChild: switch (context.screenSize) {
-          ScreenSize.extraLarge || ScreenSize.large => _SpeakerDescription(
+          .extraLarge || .large => _SpeakerDescription(
             text: data.description ?? '',
             hasSize: true,
           ),
-          ScreenSize.normal || ScreenSize.small => _SpeakerDescription(
+          .normal || .small => _SpeakerDescription(
             text: data.description ?? '',
           ),
         },
@@ -69,15 +69,13 @@ class SpeakerDetailMain extends ConsumerWidget {
             ShimmerLoading(
               isLoading: true,
               child: SingleImageContainer(
-                size: Size.square(120),
+                size: .square(120),
                 borderRadius: 30,
               ),
             ),
             ShimmerLoading(
               isLoading: true,
-              child: TitleSubtitleTextContainer(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              ),
+              child: TitleSubtitleTextContainer(crossAxisAlignment: .start),
             ),
           ],
           detailChild: ShimmerLoading(
@@ -107,14 +105,14 @@ class _SpeakerDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     if (text == null) {
       final loadingSizes = <({double width, double height})>[
-        (width: double.infinity, height: 24),
-        (width: double.infinity, height: 24),
+        (width: .infinity, height: 24),
+        (width: .infinity, height: 24),
         (width: 250, height: 24),
       ];
 
       return Column(
         spacing: 16,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: .start,
         children: <Widget>[
           for (final item in loadingSizes)
             SizedBox.fromSize(
@@ -122,7 +120,7 @@ class _SpeakerDescription extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: FlutterLatamColors.darkBlue,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: .circular(16),
                 ),
               ),
             ),
@@ -153,10 +151,10 @@ class _SpeakerDetailContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(36),
+      padding: const .all(36),
       child: Column(
         spacing: 20,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: <Widget>[
           Row(spacing: 20, children: headerChildren),
           Flexible(child: detailChild),

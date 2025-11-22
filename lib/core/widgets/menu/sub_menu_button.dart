@@ -25,13 +25,13 @@ class SubMenuButton extends HookWidget {
     final isOpened = useState(false);
 
     return PopupMenuButton(
-      position: PopupMenuPosition.under,
+      position: .under,
       color: FlutterLatamColors.darkBlue,
       offset: context.isMobileFromResponsive
           ? const Offset(40, 0)
           : const Offset(-40, 0),
+      menuPadding: const .symmetric(horizontal: 24),
       constraints: const BoxConstraints(maxWidth: 200),
-      menuPadding: const EdgeInsets.symmetric(horizontal: 24),
       onOpened: () => isOpened.value = true,
       onCanceled: () => isOpened.value = false,
       popUpAnimationStyle: const AnimationStyle(
@@ -60,7 +60,7 @@ class SubMenuButton extends HookWidget {
       },
       child: Row(
         spacing: 4,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: <Widget>[
           FittedBox(
             child: Text(
@@ -81,8 +81,8 @@ class SubMenuButton extends HookWidget {
   TextStyle _setMenuTextStyle(BuildContext context, {bool isSelected = false}) {
     return context.theme.fclThemeScheme.typography.body3Regular.copyWith(
       fontWeight: switch (isSelected) {
-        true => FontWeight.w600,
-        false => FontWeight.w400,
+        true => .w600,
+        false => .w400,
       },
     );
   }

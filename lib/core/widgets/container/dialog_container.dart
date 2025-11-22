@@ -13,7 +13,7 @@ class DialogContainer extends StatelessWidget {
     return Material(
       color: FlutterLatamColors.darkBlue,
       child: SizedBox(
-        width: double.infinity,
+        width: .infinity,
         child: Stack(
           children: <Widget>[
             child,
@@ -35,8 +35,8 @@ class _CloseButton extends StatelessWidget {
     return Positioned(
       right: 20,
       top: switch (context.screenSize) {
-        ScreenSize.extraLarge || ScreenSize.large => 20,
-        ScreenSize.normal || ScreenSize.small => 0,
+        .extraLarge || .large => 20,
+        .normal || .small => 0,
       },
       child: InkWell(
         onTap: onClose,

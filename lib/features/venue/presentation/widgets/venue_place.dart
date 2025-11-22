@@ -39,27 +39,27 @@ class VenuePlace extends ConsumerWidget {
           title: (
             text: l10n.aboutPlaceTitle,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 24,
             },
           ),
           subtitle: (
             text: l10n.aboutPlaceDescription,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
             },
           ),
           spacing: 12,
         ),
         ResponsiveGrid(
           columnSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 3,
+            .extraLarge => 3,
             _ => 1,
           },
           rowSizes: switch (context.screenSize) {
-            ScreenSize.extraLarge => 2,
+            .extraLarge => 2,
             _ => about.length,
           },
           children: <Widget>[

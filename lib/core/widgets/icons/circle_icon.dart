@@ -12,13 +12,10 @@ class CircleIcon extends StatelessWidget {
       dimension: 32,
       child: DecoratedBox(
         decoration: const BoxDecoration(
-          shape: BoxShape.circle,
+          shape: .circle,
           color: FlutterLatamColors.mediumBlue,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(4),
-          child: child,
-        ),
+        child: Padding(padding: const .all(4), child: child),
       ),
     );
   }

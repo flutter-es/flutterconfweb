@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_conf_latam/core/enums/enums.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/widgets/animations/flutter_rive_animated.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -43,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
           dimension: 200,
           child: FlutterRiveAnimated(
             path: Assets.animations.flutterconflogo,
-            animation: FlutterConfAnimations.flutterLogo,
+            animation: .flutterLogo,
           ),
         ),
       ),

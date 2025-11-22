@@ -28,31 +28,31 @@ class HomeSponsors extends ConsumerWidget {
         final sponsorsLevelList = <SponsorLevelList>[
           (
             sponsors: data.where((item) => item.isPlatinum).toList(),
-            level: SponsorLevel.platinum,
+            level: .platinum,
           ),
           (
             sponsors: data.where((item) => item.isGold).toList(),
-            level: SponsorLevel.gold,
+            level: .gold,
           ),
           (
             sponsors: data.where((item) => item.isSilver).toList(),
-            level: SponsorLevel.silver,
+            level: .silver,
           ),
           (
             sponsors: data.where((item) => item.isBronze).toList(),
-            level: SponsorLevel.bronze,
+            level: .bronze,
           ),
           (
             sponsors: data.where((item) => item.isInKind).toList(),
-            level: SponsorLevel.inKind,
+            level: .inKind,
           ),
           (
             sponsors: data.where((item) => item.isSenior).toList(),
-            level: SponsorLevel.senior,
+            level: .senior,
           ),
           (
             sponsors: data.where((item) => item.isJunior).toList(),
-            level: SponsorLevel.junior,
+            level: .junior,
           ),
         ];
 
@@ -63,23 +63,23 @@ class HomeSponsors extends ConsumerWidget {
               title: (
                 text: l10n.homeSponsorsTitle,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 64,
-                  ScreenSize.large => 48,
-                  ScreenSize.normal || ScreenSize.small => 24,
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
                 },
               ),
               subtitle: (
                 text: l10n.homeSponsorsMessage,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 16,
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
                 },
               ),
               spacing: 12,
             ),
             Column(
               spacing: 30,
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: .min,
               children: <Widget>[
                 for (final item in sponsorsLevelList)
                   if (item.sponsors.isNotEmpty)
@@ -109,17 +109,17 @@ class _SponsorCardContainer extends StatelessWidget {
 
     return CardContainer(
       borderColor: switch (level) {
-        SponsorLevel.platinum => FlutterLatamColors.blue,
-        SponsorLevel.gold => FlutterLatamColors.yellow,
-        SponsorLevel.silver => FlutterLatamColors.green,
-        SponsorLevel.bronze => FlutterLatamColors.bronze,
-        SponsorLevel.inKind => FlutterLatamColors.purple,
-        SponsorLevel.senior => FlutterLatamColors.lightBlue,
-        SponsorLevel.junior => FlutterLatamColors.lightYellow,
+        .platinum => FlutterLatamColors.blue,
+        .gold => FlutterLatamColors.yellow,
+        .silver => FlutterLatamColors.green,
+        .bronze => FlutterLatamColors.bronze,
+        .inKind => FlutterLatamColors.purple,
+        .senior => FlutterLatamColors.lightBlue,
+        .junior => FlutterLatamColors.lightYellow,
       },
       child: Column(
         spacing: 30,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: <Widget>[
           Consumer(
             builder: (_, ref, _) {
@@ -127,17 +127,17 @@ class _SponsorCardContainer extends StatelessWidget {
 
               return Text(
                 switch (level) {
-                  SponsorLevel.platinum => l10n.homeSponsorPlatinum,
-                  SponsorLevel.gold => l10n.homeSponsorGold,
-                  SponsorLevel.silver => l10n.homeSponsorSilver,
-                  SponsorLevel.bronze => l10n.homeSponsorsBronze,
-                  SponsorLevel.inKind => l10n.homeSponsorInKind,
-                  SponsorLevel.senior => l10n.homeSponsorSenior,
-                  SponsorLevel.junior => l10n.homeSponsorJunior,
+                  .platinum => l10n.homeSponsorPlatinum,
+                  .gold => l10n.homeSponsorGold,
+                  .silver => l10n.homeSponsorSilver,
+                  .bronze => l10n.homeSponsorsBronze,
+                  .inKind => l10n.homeSponsorInKind,
+                  .senior => l10n.homeSponsorSenior,
+                  .junior => l10n.homeSponsorJunior,
                 },
                 style: theme.typography.subH2Semibold.copyWith(
                   fontSize: switch (context.screenSize) {
-                    ScreenSize.extraLarge => 32,
+                    .extraLarge => 32,
                     _ => 24,
                   },
                 ),
@@ -149,7 +149,7 @@ class _SponsorCardContainer extends StatelessWidget {
           else
             ResponsiveGrid(
               columnSizes: switch (context.screenSize) {
-                ScreenSize.extraLarge || ScreenSize.large => sponsors.length,
+                .extraLarge || .large => sponsors.length,
                 _ => 1,
               },
               rowSizes: sponsors.length,
@@ -175,8 +175,8 @@ class _SponsorItem extends StatelessWidget {
         onTap: () => Utils.launchUrlLink(item.url),
         child: SizedBox.fromSize(
           size: switch (context.screenSize) {
-            ScreenSize.extraLarge => const Size.fromHeight(100),
-            _ => const Size.fromHeight(60),
+            .extraLarge => const .fromHeight(100),
+            _ => const .fromHeight(60),
           },
           child: SvgPicture.network(item.logo, semanticsLabel: item.name),
         ),

@@ -35,63 +35,63 @@ class FclTheme {
           ),
           typography: FclTypographyScheme(
             h1Bold: FlutterLatamTypography.h1.copyWith(
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
               color: FlutterLatamColors.white,
             ),
             h2Bold: FlutterLatamTypography.h2.copyWith(
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
               color: FlutterLatamColors.white,
             ),
             h3Bold: FlutterLatamTypography.h3.copyWith(
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
               color: FlutterLatamColors.white,
             ),
             h4Bold: FlutterLatamTypography.h4.copyWith(
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
               color: FlutterLatamColors.white,
             ),
             subH1Regular: FlutterLatamTypography.subH1.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: .w400,
               color: FlutterLatamColors.white,
             ),
             subH2Semibold: FlutterLatamTypography.subH2.copyWith(
-              fontWeight: FontWeight.w600,
+              fontWeight: .w600,
               color: FlutterLatamColors.white,
             ),
             subH3Regular: FlutterLatamTypography.subH3.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: .w400,
               color: FlutterLatamColors.white,
             ),
             buttonNormalMedium: FlutterLatamTypography.buttonNormal.copyWith(
-              fontWeight: FontWeight.w500,
+              fontWeight: .w500,
               color: FlutterLatamColors.white,
             ),
             buttonSmallMedium: FlutterLatamTypography.buttonSmall.copyWith(
-              fontWeight: FontWeight.w500,
+              fontWeight: .w500,
               color: FlutterLatamColors.white,
             ),
             body1Regular: FlutterLatamTypography.body1.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: .w400,
               color: FlutterLatamColors.white,
             ),
             body2Regular: FlutterLatamTypography.body2.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: .w400,
               color: FlutterLatamColors.white,
             ),
             body3Regular: FlutterLatamTypography.body3.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: .w400,
               color: FlutterLatamColors.white,
             ),
             body3Light: FlutterLatamTypography.body3.copyWith(
-              fontWeight: FontWeight.w300,
+              fontWeight: .w300,
               color: FlutterLatamColors.white,
             ),
             body4Regular: FlutterLatamTypography.body4.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: .w400,
               color: FlutterLatamColors.white,
             ),
             captionRegular: FlutterLatamTypography.caption.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: .w400,
               color: FlutterLatamColors.white,
             ),
           ),

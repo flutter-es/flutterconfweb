@@ -9,30 +9,30 @@ class MainDialog extends StatelessWidget {
 
   static Future<T?> show<T>(BuildContext context, {required Widget child}) {
     return switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large => showDialog<T>(
+      .extraLarge || .large => showDialog<T>(
         context: context,
         barrierDismissible: false,
         builder: (_) => FractionallySizedBox(
           widthFactor: .6,
           heightFactor: .6,
           child: Container(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(24)),
+            clipBehavior: .antiAliasWithSaveLayer,
+            decoration: BoxDecoration(borderRadius: .circular(24)),
             child: MainDialog(child: child),
           ),
         ),
       ),
-      ScreenSize.normal || ScreenSize.small => showModalBottomSheet<T>(
+      .normal || .small => showModalBottomSheet<T>(
         context: context,
         isDismissible: false,
         showDragHandle: true,
         useRootNavigator: true,
         isScrollControlled: true,
-        clipBehavior: Clip.hardEdge,
+        clipBehavior: .hardEdge,
         backgroundColor: FlutterLatamColors.darkBlue,
         barrierColor: FlutterLatamColors.black.withValues(alpha: .3),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: .vertical(top: .circular(24)),
         ),
         builder: (_) => MainDialog(child: child),
       ),

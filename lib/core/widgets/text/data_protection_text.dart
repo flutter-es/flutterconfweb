@@ -9,11 +9,7 @@ import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DataProtectionText extends ConsumerWidget {
-  const DataProtectionText({
-    this.textAlign = TextAlign.start,
-    this.textSize,
-    super.key,
-  });
+  const DataProtectionText({this.textAlign = .start, this.textSize, super.key});
 
   final TextAlign textAlign;
   final double? textSize;
@@ -25,10 +21,10 @@ class DataProtectionText extends ConsumerWidget {
 
     final theme = context.theme.fclThemeScheme;
     final textTheme = switch (context.screenSize) {
-      ScreenSize.extraLarge || ScreenSize.large =>
-        theme.typography.body3Regular.copyWith(fontSize: textSize),
-      ScreenSize.normal || ScreenSize.small =>
-        theme.typography.body4Regular.copyWith(fontSize: textSize),
+      .extraLarge ||
+      .large => theme.typography.body3Regular.copyWith(fontSize: textSize),
+      .normal ||
+      .small => theme.typography.body4Regular.copyWith(fontSize: textSize),
     };
 
     return RichText(
@@ -37,7 +33,7 @@ class DataProtectionText extends ConsumerWidget {
         children: <InlineSpan>[
           TextSpan(
             text: l10n.dataProtectionDialogParagraphOne,
-            style: textTheme.copyWith(fontStyle: FontStyle.italic),
+            style: textTheme.copyWith(fontStyle: .italic),
           ),
           TextSpan(
             text: l10n.dataProtectionDialogParagraphTwo,
@@ -45,9 +41,7 @@ class DataProtectionText extends ConsumerWidget {
             children: <InlineSpan>[
               TextSpan(
                 text: l10n.dataProtectionDialogParagraphTwoBold,
-                style: textTheme.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: textTheme.copyWith(fontWeight: .bold),
               ),
             ],
           ),
@@ -58,7 +52,7 @@ class DataProtectionText extends ConsumerWidget {
               TextSpan(
                 text: l10n.dataProtectionDialogLinkText,
                 style: textTheme.copyWith(
-                  decoration: TextDecoration.underline,
+                  decoration: .underline,
                   decorationColor: FlutterLatamColors.white,
                 ),
                 recognizer: TapGestureRecognizer()

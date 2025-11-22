@@ -18,23 +18,23 @@ class LanguageButton extends ConsumerWidget {
     return Container(
       height: 50,
       width: switch (context.screenSize) {
-        ScreenSize.extraLarge || ScreenSize.large => 160,
-        ScreenSize.normal || ScreenSize.small => 100,
+        .extraLarge || .large => 160,
+        .normal || .small => 100,
       },
-      margin: const EdgeInsets.all(10),
+      margin: const .all(10),
       decoration: const BoxDecoration(
         color: FlutterLatamColors.mediumBlue,
-        borderRadius: BorderRadius.all(Radius.circular(60)),
+        borderRadius: .all(.circular(60)),
       ),
       child: Stack(
         children: <Widget>[
           FractionallySizedBox(
             widthFactor: .5,
             child: Container(
-              margin: const EdgeInsets.all(5),
+              margin: const .all(5),
               decoration: BoxDecoration(
                 color: FlutterLatamColors.darkBlue,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: .circular(20),
               ),
             ),
           ).animate().slideX(
@@ -79,13 +79,13 @@ class _LanguageItem extends StatelessWidget {
 
     return Center(
       child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const .all(.circular(20)),
         child: InkWell(
           onTap: onTap,
           mouseCursor: SystemMouseCursors.click,
           child: Text(
             title.toUpperCase(),
-            textAlign: TextAlign.center,
+            textAlign: .center,
             style: theme.typography.h4Bold.copyWith(
               fontSize: 16,
               color: switch (isActive) {

@@ -24,12 +24,12 @@ class HomeSpeakers extends ConsumerWidget {
     return randomSpeakersList.maybeWhen(
       data: (data) {
         final colSize = switch (context.screenSize) {
-          ScreenSize.extraLarge => 4,
+          .extraLarge => 4,
           _ => 2,
         };
         final imageSize = switch (context.screenSize) {
-          ScreenSize.extraLarge || ScreenSize.large => const Size.square(206),
-          ScreenSize.normal || ScreenSize.small => const Size.square(120),
+          .extraLarge || .large => const Size.square(206),
+          .normal || .small => const Size.square(120),
         };
 
         return SectionContainer(
@@ -39,16 +39,16 @@ class HomeSpeakers extends ConsumerWidget {
               title: (
                 text: l10n.homeSpeakersTitle,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge => 64,
-                  ScreenSize.large => 48,
-                  ScreenSize.normal || ScreenSize.small => 24,
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
                 },
               ),
               subtitle: (
                 text: l10n.homeSpeakersDescription,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 16,
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
                 },
               ),
               spacing: 12,
@@ -88,28 +88,26 @@ class _RedirectSpeakersCard extends ConsumerWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: FlutterLatamColors.blue,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: .circular(20),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(30),
+            padding: const .all(30),
             child: Column(
               spacing: 30,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: .min,
+              mainAxisAlignment: .center,
               children: <Widget>[
                 Text(
                   l10n.homeSpeakersRedirectTitle,
-                  textAlign: TextAlign.center,
+                  textAlign: .center,
                   style: switch (context.screenSize) {
-                    ScreenSize.extraLarge ||
-                    ScreenSize.large => theme.typography.h3Bold,
-                    ScreenSize.normal ||
-                    ScreenSize.small => theme.typography.h4Bold,
+                    .extraLarge || .large => theme.typography.h3Bold,
+                    .normal || .small => theme.typography.h4Bold,
                   },
                 ),
                 FclButton.secondary(
                   label: l10n.homeSpeakersSeeMoreSpeakers,
-                  buttonSize: ButtonSize.small,
+                  buttonSize: .small,
                   onPressed: () => _goToSpeakers(ref),
                 ),
               ],

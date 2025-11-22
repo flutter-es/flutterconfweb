@@ -16,11 +16,11 @@ class CardContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: FlutterLatamColors.darkBlue,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      clipBehavior: .antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(borderRadius: .circular(20)),
       child: IntrinsicHeight(
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: <Widget>[
             Container(
               width: 10,
@@ -28,11 +28,11 @@ class CardContainer extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(
+                padding: .symmetric(
                   horizontal: switch (context.screenSize) {
-                    ScreenSize.extraLarge => 64,
-                    ScreenSize.large => 48,
-                    ScreenSize.normal || ScreenSize.small => 24,
+                    .extraLarge => 64,
+                    .large => 48,
+                    .normal || .small => 24,
                   },
                   vertical: 32,
                 ),

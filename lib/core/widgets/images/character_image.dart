@@ -41,17 +41,11 @@ class CharacterImage extends StatelessWidget {
                   child: DecoratedBox(
                     position: DecorationPosition.foreground,
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: FlutterLatamColors.white,
-                        width: 2,
-                      ),
+                      shape: .circle,
+                      border: .all(color: FlutterLatamColors.white, width: 2),
                     ),
                     child: ClipOval(
-                      child: SvgPicture.network(
-                        flagImageUrl,
-                        fit: BoxFit.cover,
-                      ),
+                      child: SvgPicture.network(flagImageUrl, fit: .cover),
                     ),
                   ),
                 ),

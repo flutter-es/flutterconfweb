@@ -39,13 +39,13 @@ class SpeakerCardItem extends StatelessWidget {
       child: Center(
         child: Column(
           spacing: 20,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: <Widget>[
             if (imageBackgroundColor != null)
               DecoratedBox(
                 decoration: BoxDecoration(
                   color: imageBackgroundColor,
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: .circular(30),
                 ),
                 child: imageChild,
               )
@@ -55,29 +55,29 @@ class SpeakerCardItem extends StatelessWidget {
               title: (
                 text: speaker.name,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 24,
-                  ScreenSize.normal || ScreenSize.small => 12,
+                  .extraLarge || .large => 24,
+                  .normal || .small => 12,
                 },
               ),
               subtitle: (
                 text: speaker.title,
                 size: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 16,
-                  ScreenSize.normal || ScreenSize.small => 12,
+                  .extraLarge || .large => 16,
+                  .normal || .small => 12,
                 },
               ),
               spacing: 4,
             ),
             Row(
               spacing: 20,
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: .min,
               children: <Widget>[
                 SocialMediaRow(
                   socialMediaList: socialLinks.map((item) {
                     final iconPath = switch (item.type) {
-                      SocialMedia.linkedin => Assets.images.icons.linkedIn,
-                      SocialMedia.github => Assets.images.icons.github,
-                      SocialMedia.twitter => Assets.images.icons.twitter,
+                      .linkedin => Assets.images.icons.linkedIn,
+                      .github => Assets.images.icons.github,
+                      .twitter => Assets.images.icons.twitter,
                     };
                     return (iconPath: iconPath, linkUrl: item.link);
                   }).toList(),
