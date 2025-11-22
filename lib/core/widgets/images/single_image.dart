@@ -6,7 +6,7 @@ class SingleImage extends StatelessWidget {
   const SingleImage({
     required this.imageUrl,
     required this.size,
-    required this.borderRadius,
+    this.borderRadius = 12,
     super.key,
   });
 
@@ -36,14 +36,14 @@ class SingleImage extends StatelessWidget {
 class SingleImageContainer extends StatelessWidget {
   const SingleImageContainer({
     required this.size,
-    required this.borderRadius,
+    this.borderRadius = 12,
     this.image,
     super.key,
   });
 
-  final DecorationImage? image;
   final Size size;
   final double borderRadius;
+  final DecorationImage? image;
 
   @override
   Widget build(BuildContext context) {
