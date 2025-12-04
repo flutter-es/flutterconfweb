@@ -35,7 +35,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             const HomeFeatures(),
             const HomeGallery(),
             const HomeCollaborations(type: .sponsor),
-            const HomeCollaborations(type: .speaker),
+            // const HomeCollaborations(type: .speaker),
             /*
             // TODO(FV): Temp
             const HomeVenue(),
