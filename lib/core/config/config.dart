@@ -16,4 +16,8 @@ class Config {
   String get privacyPolicyUrl {
     return const String.fromEnvironment('FCL_PRIVACY_POLICY_URL');
   }
+
+  String get firebaseStorageUrl {
+    return const String.fromEnvironment('FIREBASE_STORAGE_URL');
+  }
 }
