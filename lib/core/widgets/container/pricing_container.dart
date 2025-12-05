@@ -27,7 +27,7 @@ class PricingContainer extends ConsumerWidget {
 
     return pricingList.maybeWhen(
       data: (data) => SectionContainer(
-        spacing: 30,
+        spacing: 50,
         children: <Widget>[
           TitleSubtitleText(
             title: (
@@ -47,22 +47,36 @@ class PricingContainer extends ConsumerWidget {
             ),
             spacing: 12,
           ),
-          ResponsiveGrid(
-            columnSizes: switch (context.screenSize) {
-              .extraLarge => 3,
-              _ => 1,
-            },
-            rowSizes: switch (context.screenSize) {
-              .extraLarge => 3,
-              _ => data.length,
-            },
-            children: <Widget>[
-              for (final item in data) _PricingCardItem(detail: item),
-            ],
-          ),
+          if (data.length == 1)
+            Center(
+              child: SizedBox(
+                width: switch (context.screenSize) {
+                  ScreenSize.extraLarge || ScreenSize.large => 380,
+                  _ => null,
+                },
+                child: _PricingCardItem(detail: data.first),
+              ),
+            )
+          else
+            ResponsiveGrid(
+              columnSizes: switch (context.screenSize) {
+                .extraLarge => data.length,
+                _ => 1,
+              },
+              rowSizes: switch (context.screenSize) {
+                .extraLarge => data.length,
+                _ => data.length,
+              },
+              children: <Widget>[
+                for (final item in data) _PricingCardItem(detail: item),
+              ],
+            ),
         ],
       ),
       orElse: Offstage.new,
+      error: (error, stackTrace) {
+        return const Offstage();
+      },
     );
   }
 }
@@ -82,16 +96,16 @@ class _PricingCardItem extends ConsumerWidget {
     return Card.filled(
       margin: EdgeInsets.zero,
       color: switch (detail.type) {
-        .early => FlutterLatamColors.yellow,
-        .regular => FlutterLatamColors.blue,
-        .late => FlutterLatamColors.red,
+        .early || .angel => FlutterLatamColors.darkYellow,
+        .regular => FlutterLatamColors.fluorescent,
+        .late => FlutterLatamColors.fuchsia,
       },
       clipBehavior: .antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(
         borderRadius: .circular(20),
         side: switch (detail.type) {
-          TicketType.early => const BorderSide(
-            color: FlutterLatamColors.yellow,
+          .early || .angel => const BorderSide(
+            color: FlutterLatamColors.darkYellow,
             width: 4,
           ),
           _ => .none,
@@ -114,77 +128,74 @@ class _PricingCardItem extends ConsumerWidget {
               ),
             ),
           ),
-          SizedBox(
-            width: .infinity,
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                color: FlutterLatamColors.darkBlue,
-              ),
-              child: Padding(
-                padding: const .all(30),
-                child: Column(
-                  spacing: 5,
-                  mainAxisSize: .min,
-                  crossAxisAlignment: .start,
-                  children: <Widget>[
-                    Text(
-                      l10n.homePricingEndDate(detail.endDate),
-                      style: theme.typography.body1Regular.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: switch (detail.type) {
-                          .early => FlutterLatamColors.lightYellow,
-                          .regular => FlutterLatamColors.mediumBlue,
-                          .late => FlutterLatamColors.lightRed,
-                        },
-                      ),
+          DecoratedBox(
+            decoration: const BoxDecoration(
+              color: FlutterLatamColors.darkBlue,
+            ),
+            child: Padding(
+              padding: const .all(30),
+              child: Column(
+                spacing: 5,
+                mainAxisSize: .min,
+                crossAxisAlignment: .start,
+                children: <Widget>[
+                  Text(
+                    l10n.homePricingEndDate(detail.endDate),
+                    style: theme.typography.body1Regular.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: switch (detail.type) {
+                        .early || .angel => FlutterLatamColors.darkYellow,
+                        .regular => FlutterLatamColors.fluorescent,
+                        .late => FlutterLatamColors.fuchsia,
+                      },
                     ),
-                    Text(
-                      '\$ ${detail.price.toStringAsFixed(0)}',
-                      style: theme.typography.h1Bold.copyWith(
-                        fontSize: switch (context.screenSize) {
-                          .extraLarge || .large => 64,
-                          _ => 32,
-                        },
-                      ),
+                  ),
+                  Text(
+                    '\$ ${detail.price.toStringAsFixed(0)}',
+                    style: theme.typography.h1Bold.copyWith(
+                      fontSize: switch (context.screenSize) {
+                        .extraLarge || .large => 64,
+                        _ => 32,
+                      },
                     ),
-                    ...[
-                      for (final item in detail.features)
-                        Row(
-                          mainAxisSize: .min,
-                          crossAxisAlignment: .start,
-                          children: <Widget>[
-                            Text(
-                              '\u2022 ',
-                              style: theme.typography.body2Regular,
-                            ),
-                            Expanded(
-                              child: Text(
-                                item,
-                                style: switch (context.screenSize) {
-                                  .extraLarge ||
-                                  .large => theme.typography.body2Regular,
-                                  .normal ||
-                                  .small => theme.typography.body3Regular,
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                    ],
-                    if (detail.type == .regular)
-                      Padding(
-                        padding: const .only(top: 20),
-                        child: FclButton.primary(
-                          label: l10n.homePricingBuyTicketsButton,
-                          buttonSize: .small,
-                          onPressed: () => _showDisclaimerDialog(
-                            context,
-                            config.ticketPageUrl,
+                  ),
+                  ...[
+                    for (final item in detail.features)
+                      Row(
+                        mainAxisSize: .min,
+                        crossAxisAlignment: .start,
+                        children: <Widget>[
+                          Text(
+                            '\u2022 ',
+                            style: theme.typography.body2Regular,
                           ),
-                        ),
+                          Expanded(
+                            child: Text(
+                              item,
+                              style: switch (context.screenSize) {
+                                .extraLarge ||
+                                .large => theme.typography.body2Regular,
+                                .normal ||
+                                .small => theme.typography.body3Regular,
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                   ],
-                ),
+                  if (detail.type == .angel)
+                    Padding(
+                      padding: const .only(top: 20),
+                      child: FclButton.primary(
+                        label: l10n.homePricingBuyTicketsButton,
+                        buttonSize: .small,
+                        onPressed: () => _showDisclaimerDialog(
+                          context,
+                          config.ticketPageUrl,
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
           ),
