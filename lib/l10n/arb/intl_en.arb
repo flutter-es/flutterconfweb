@@ -69,8 +69,8 @@
   "homeNoveltiesAppTitle": "We'll have an official app by 2025!",
   "homeNoveltiesAppDescription": "Everything you need for FlutterConf Latam is now in the palm of your hand.",
   "homeNoveltiesAppSoon": "Soon:",
-  "homePricingTitle": "The Flutter experience within everyone's reach!",
-  "homePricingDescription": "Take advantage of the early bird price and secure your spot",
+  "homePricingTitle": "Prices designed for you",
+  "homePricingDescription": "Enjoy affordable rates and reserve your ticket in advance",
   "homePricingEndDate": "Until {date}",
   "@homePricingEndDate": {
     "placeholders": {

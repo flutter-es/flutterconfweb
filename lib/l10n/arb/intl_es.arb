@@ -69,8 +69,8 @@
   "homeNoveltiesAppTitle": "¡Este 2025 tendremos app oficial!",
   "homeNoveltiesAppDescription": "Todo lo que necesitas de FlutterConfLatam ahora en la palma de tu mano.",
   "homeNoveltiesAppSoon": "Proximamente:",
-  "homePricingTitle": "¡La experiencia Flutter al alcance de todos!",
-  "homePricingDescription": "Aprovecha el precio early bird y asegura tu lugar",
+  "homePricingTitle": "Precios pensados para ti",
+  "homePricingDescription": "Disfruta tarifas accesibles y reserva tu entrada con anticipación",
   "homePricingEndDate": "Hasta {date}",
   "@homePricingEndDate": {
     "placeholders": {
