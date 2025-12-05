@@ -18,6 +18,7 @@ TicketsModel _$TicketsModelFromJson(Map<String, dynamic> json) => TicketsModel(
 );
 
 const _$TicketTypeEnumMap = {
+  TicketType.angel: 'angel',
   TicketType.early: 'early',
   TicketType.regular: 'regular',
   TicketType.late: 'late',

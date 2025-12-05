@@ -25,4 +25,4 @@ class TicketsModel {
 }
 
 @JsonEnum()
-enum TicketType { early, regular, late }
+enum TicketType { angel, early, regular, late }
