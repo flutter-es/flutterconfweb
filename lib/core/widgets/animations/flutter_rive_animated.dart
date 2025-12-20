@@ -17,24 +17,14 @@ class FlutterRiveAnimated extends StatefulWidget {
 }
 
 class _FlutterRiveAnimatedState extends State<FlutterRiveAnimated> {
-  late StateMachineController? _stateMachineController;
-  late RiveAnimation _animation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _animation = .asset(
-      widget.path,
-      artboard: widget.animation.name,
-      fit: .contain,
-      onInit: _onRiveInit,
-    );
-  }
+  late final _fileLoader = FileLoader.fromAsset(
+    widget.path,
+    riveFactory: .rive,
+  );
 
   @override
   void dispose() {
-    _stateMachineController?.dispose();
+    _fileLoader.dispose();
     super.dispose();
   }
 
@@ -43,19 +33,18 @@ class _FlutterRiveAnimatedState extends State<FlutterRiveAnimated> {
     return LayoutBuilder(
       builder: (_, constraints) => SizedBox.fromSize(
         size: Size(constraints.maxWidth, constraints.maxHeight),
-        child: _animation,
+        child: RiveWidgetBuilder(
+          fileLoader: _fileLoader,
+          artboardSelector: ArtboardSelector.byName(widget.animation.name),
+          builder: (_, state) => switch (state) {
+            RiveLoaded() => RiveWidget(
+              controller: state.controller,
+              fit: .cover,
+            ),
+            _ => const Offstage(),
+          },
+        ),
       ),
     );
-  }
-
-  void _onRiveInit(Artboard artboard) {
-    _stateMachineController = StateMachineController.fromArtboard(
-      artboard,
-      widget.animation.name,
-    );
-
-    if (_stateMachineController != null) {
-      artboard.addController(_stateMachineController!);
-    }
   }
 }
