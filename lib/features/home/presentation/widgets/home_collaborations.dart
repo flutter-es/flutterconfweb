@@ -1,8 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
-import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
@@ -23,6 +23,8 @@ class HomeCollaborations extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(currentLocalizationProvider).languageCode;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
@@ -44,9 +46,13 @@ class HomeCollaborations extends ConsumerWidget {
           imagePath: Assets.images.collaborations.dashSponsor,
           button: (
             text: l10n.homeCollaborationSponsorButton,
-            function: () => ref
-                .read(navigationViewModelProvider.notifier)
-                .selectNavItemFromRoute('/${AppRoutePath.home.pathName}'),
+            function: () => _downloadFile(
+              switch (language) {
+                'es' => Assets.files.sponsorFileEs,
+                _ => Assets.files.sponsorFileEn,
+              },
+              '${language.toUpperCase()}-${config.sponsorshipFileName}',
+            ),
           ),
         ),
       ],
@@ -74,6 +80,10 @@ class HomeCollaborations extends ConsumerWidget {
   }
 
   void _goToUrl(String url) => Utils.launchUrlLink(url);
+
+  void _downloadFile(String assetPath, String fileName) {
+    unawaited(Utils.downloadPdf(assetPath, fileName));
+  }
 }
 
 class _CollaborationCardItem extends StatelessWidget {
