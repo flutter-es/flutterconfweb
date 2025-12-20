@@ -20,4 +20,8 @@ class Config {
   String get firebaseStorageUrl {
     return const String.fromEnvironment('FIREBASE_STORAGE_URL');
   }
+
+  String get sponsorshipFileName {
+    return const String.fromEnvironment('SPONSORSHIP_FILE_NAME');
+  }
 }
