@@ -31,8 +31,14 @@ class $AssetsFilesGen {
   /// File path: assets/files/social_networks.json
   String get socialNetworks => 'assets/files/social_networks.json';
 
+  /// File path: assets/files/sponsor_file_en.pdf
+  String get sponsorFileEn => 'assets/files/sponsor_file_en.pdf';
+
+  /// File path: assets/files/sponsor_file_es.pdf
+  String get sponsorFileEs => 'assets/files/sponsor_file_es.pdf';
+
   /// List of all assets
-  List<String> get values => [socialNetworks];
+  List<String> get values => [socialNetworks, sponsorFileEn, sponsorFileEs];
 }
 
 class $AssetsImagesGen {
