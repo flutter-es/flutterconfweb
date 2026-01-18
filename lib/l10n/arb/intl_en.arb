@@ -29,7 +29,7 @@
     }
   },
   "morePagesText": "More pages",
-  "homeMainTitle": "FlutterConfLatam 2025\nCancún - México",
+  "homeMainTitle": "FlutterConfLatam 2026\nCancun - Mexico",
   "homeMainDescription": "September 22nd and 23th",
   "homeMainExperienceOne": "Cancun",
   "homeMainExperienceTwo": " brings a different kind of wave. Dash invites you to experience it.",
@@ -58,6 +58,7 @@
     }
   },
   "homeFeatureBuyTicketButton": "Buy tickets",
+  "homeGalleryText": "Join the Flutter community where we all connect and grow!",
   "homeVenueGratitudeMessage": "We thank the University of the Americas (UDLA) for opening the doors of its campus to us and hosting FlutterConf Latam 2025.",
   "homeVenueGratitudeName": "University of the Americas",
   "homeNoveltiesTitle": "News for 2025",
