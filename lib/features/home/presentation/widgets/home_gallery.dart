@@ -5,7 +5,9 @@ import 'package:flutter_conf_latam/core/widgets/container/keep_alive_container.d
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/container/shimmer_container.dart';
 import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
+import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeGallery extends ConsumerWidget {
@@ -13,6 +15,7 @@ class HomeGallery extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(appLocalizationsProvider);
     final gallery = ref.watch(galleryPreviewProvider);
 
     final size = switch (context.screenSize) {
@@ -24,6 +27,15 @@ class HomeGallery extends ConsumerWidget {
       child: SectionContainer(
         spacing: 0,
         children: <Widget>[
+          TitleSubtitleText(
+            subtitle: (
+              text: l10n.homeGalleryText,
+              size: switch (context.screenSize) {
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
+              },
+            ),
+          ),
           gallery.maybeWhen(
             data: (data) {
               if (data.isEmpty) return const Offstage();
