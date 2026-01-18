@@ -25,7 +25,7 @@ class HomeGallery extends ConsumerWidget {
 
     return KeepAliveContainer(
       child: SectionContainer(
-        spacing: 0,
+        spacing: 30,
         children: <Widget>[
           TitleSubtitleText(
             subtitle: (
