@@ -6,16 +6,16 @@ typedef TextWithSize = ({String text, double size});
 
 class TitleSubtitleText extends StatelessWidget {
   const TitleSubtitleText({
-    required this.title,
-    required this.subtitle,
+    this.title,
+    this.subtitle,
     this.textAlign = .center,
     this.crossAxisAlignment = .center,
     this.spacing = 0,
     super.key,
   });
 
-  final TextWithSize title;
-  final TextWithSize subtitle;
+  final TextWithSize? title;
+  final TextWithSize? subtitle;
   final TextAlign textAlign;
   final CrossAxisAlignment crossAxisAlignment;
   final double spacing;
@@ -29,18 +29,20 @@ class TitleSubtitleText extends StatelessWidget {
       mainAxisSize: .min,
       crossAxisAlignment: crossAxisAlignment,
       children: <Widget>[
-        Text(
-          title.text,
-          textAlign: textAlign,
-          style: theme.typography.h1Bold.copyWith(fontSize: title.size),
-        ),
-        Text(
-          subtitle.text,
-          textAlign: textAlign,
-          style: theme.typography.subH1Regular.copyWith(
-            fontSize: subtitle.size,
+        if (title != null)
+          Text(
+            title!.text,
+            textAlign: textAlign,
+            style: theme.typography.h1Bold.copyWith(fontSize: title!.size),
           ),
-        ),
+        if (subtitle != null)
+          Text(
+            subtitle!.text,
+            textAlign: textAlign,
+            style: theme.typography.subH1Regular.copyWith(
+              fontSize: subtitle!.size,
+            ),
+          ),
       ],
     );
   }
