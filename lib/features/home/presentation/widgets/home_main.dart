@@ -30,7 +30,7 @@ class HomeMain extends ConsumerWidget {
           begin: .bottomCenter,
           end: .topCenter,
           colors: [FlutterLatamColors.mainBlue, FlutterLatamColors.steelBlue],
-          stops: [0.77, 1.38],
+          stops: [0.8, 1],
         ),
       ),
       child: SectionContainer(
