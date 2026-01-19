@@ -7,8 +7,6 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
-import 'package:flutter_conf_latam/core/widgets/dialog/data_protection_dialog.dart';
-import 'package:flutter_conf_latam/core/widgets/dialog/main_dialog.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/pricing/domain/models/tickets/tickets_model.dart';
 import 'package:flutter_conf_latam/features/pricing/presentation/view_model/pricing_view_model.dart';
@@ -204,11 +202,12 @@ class _PricingCardItem extends ConsumerWidget {
     );
   }
 
-  Future<void> _showDisclaimerDialog(BuildContext context, String url) async {
-    final result = await MainDialog.show<bool>(
-      context,
-      child: const DataProtectionDialog(),
-    );
-    if (result ?? false) unawaited(Utils.launchUrlLink(url));
+  void _showDisclaimerDialog(BuildContext context, String url) {
+    // final result = await MainDialog.show<bool>(
+    //   context,
+    //   child: const DataProtectionDialog(),
+    // );
+    // if (result ?? false)
+    unawaited(Utils.launchUrlLink(url));
   }
 }

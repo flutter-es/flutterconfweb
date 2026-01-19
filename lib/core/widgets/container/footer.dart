@@ -5,7 +5,6 @@ import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dar
 import 'package:flutter_conf_latam/core/social/providers/social_media_provider.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/icons/social_media_row.dart';
-import 'package:flutter_conf_latam/core/widgets/text/data_protection_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
@@ -125,6 +124,7 @@ class Footer extends ConsumerWidget {
             ],
           ),
         ),
+        /*
         Builder(
           builder: (_) {
             final paddingHorizontal = switch (context.screenSize) {
@@ -163,6 +163,7 @@ class Footer extends ConsumerWidget {
             );
           },
         ),
+        */
       ],
     );
   }

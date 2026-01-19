@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
-import 'package:flutter_conf_latam/core/widgets/dialog/data_protection_dialog.dart';
-import 'package:flutter_conf_latam/core/widgets/dialog/main_dialog.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -47,11 +45,12 @@ class ExtraButtons extends ConsumerWidget {
     };
   }
 
-  Future<void> _showDisclaimerDialog(BuildContext context, String url) async {
-    final result = await MainDialog.show<bool>(
-      context,
-      child: const DataProtectionDialog(),
-    );
-    if (result ?? false) unawaited(Utils.launchUrlLink(url));
+  void _showDisclaimerDialog(BuildContext context, String url) {
+    // final result = await MainDialog.show<bool>(
+    //   context,
+    //   child: const DataProtectionDialog(),
+    // );
+    // if (result ?? false)
+    unawaited(Utils.launchUrlLink(url));
   }
 }

@@ -8,8 +8,6 @@ import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
-import 'package:flutter_conf_latam/core/widgets/dialog/data_protection_dialog.dart';
-import 'package:flutter_conf_latam/core/widgets/dialog/main_dialog.dart';
 import 'package:flutter_conf_latam/core/widgets/text/adaptable_text.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -145,9 +143,9 @@ class _BuyTicketFeature extends ConsumerWidget {
             child: FclButton.secondary(
               label: l10n.homeFeatureBuyTicketButton,
               buttonSize: .small,
-              onPressed: () => unawaited(
-                _showDisclaimerDialog(context, config.ticketPageUrl),
-              ),
+              onPressed: () {
+                _showDisclaimerDialog(context, config.ticketPageUrl);
+              },
             ),
           ),
         ],
@@ -174,11 +172,12 @@ class _BuyTicketFeature extends ConsumerWidget {
     );
   }
 
-  Future<void> _showDisclaimerDialog(BuildContext context, String url) async {
-    final result = await MainDialog.show<bool>(
-      context,
-      child: const DataProtectionDialog(),
-    );
-    if (result ?? false) unawaited(Utils.launchUrlLink(url));
+  void _showDisclaimerDialog(BuildContext context, String url) {
+    // final result = await MainDialog.show<bool>(
+    //   context,
+    //   child: const DataProtectionDialog(),
+    // );
+    // if (result ?? false)
+    unawaited(Utils.launchUrlLink(url));
   }
 }
