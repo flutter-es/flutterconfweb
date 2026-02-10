@@ -5,6 +5,7 @@ import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 enum ButtonPosition { row, column }
@@ -16,6 +17,8 @@ class ExtraButtons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final language = ref.watch(currentLocalizationProvider).languageCode;
+
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
@@ -23,7 +26,13 @@ class ExtraButtons extends ConsumerWidget {
       FclButton.secondary(
         label: l10n.menuBeSponsorButton,
         buttonSize: .small,
-        onPressed: () {},
+        onPressed: () => _downloadFile(
+          switch (language) {
+            'es' => Assets.files.sponsorFileEs,
+            _ => Assets.files.sponsorFileEn,
+          },
+          '${language.toUpperCase()}-${config.sponsorshipFileName}',
+        ),
       ),
       /*
       FclButton.secondary(
@@ -52,5 +61,9 @@ class ExtraButtons extends ConsumerWidget {
     // );
     // if (result ?? false)
     unawaited(Utils.launchUrlLink(url));
+  }
+
+  void _downloadFile(String assetPath, String fileName) {
+    unawaited(Utils.downloadPdf(assetPath, fileName));
   }
 }
