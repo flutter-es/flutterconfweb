@@ -181,7 +181,7 @@ class _PricingCardItem extends ConsumerWidget {
                         ],
                       ),
                   ],
-                  if (detail.type == .angel)
+                  if (detail.type == .early)
                     Padding(
                       padding: const .only(top: 20),
                       child: FclButton.primary(
