@@ -2,16 +2,18 @@ import 'dart:ui';
 
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/home/data/home_repository.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final sponsorsProvider = FutureProvider((ref) {
   return ref.watch(homeRepositoryProvider).getSponsors();
 });
 
-final faqListProvider = FutureProvider.family((ref, Locale locale) {
+final faqListProvider = FutureProvider((ref) {
+  final localeName = ref.watch(appLocalizationsProvider).localeName;
   return ref
       .watch(homeRepositoryProvider)
-      .getFaqData(language: locale.languageCode);
+      .getFaqData(language: Locale(localeName).languageCode);
 });
 
 final galleryPreviewProvider = FutureProvider.autoDispose((ref) async {

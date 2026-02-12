@@ -19,7 +19,7 @@ class SpeakersMain extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final speakers = ref.watch(speakersProvider(Locale(l10n.localeName)));
+    final speakers = ref.watch(speakersProvider);
 
     final size = switch (context.screenSize) {
       .extraLarge || .large => const Size.square(206),
@@ -75,9 +75,7 @@ class SpeakersMain extends ConsumerWidget {
               ),
             ),
             error: (_, _) => ErrorContainer(
-              onRetry: () => ref.invalidate(
-                speakersProvider(Locale(l10n.localeName)),
-              ),
+              onRetry: () => ref.invalidate(speakersProvider),
             ),
           ),
         ],

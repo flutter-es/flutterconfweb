@@ -17,9 +17,7 @@ class HomeSpeakers extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final randomSpeakersList = ref.watch(
-      speakersRandomProvider(Locale(l10n.localeName)),
-    );
+    final randomSpeakersList = ref.watch(speakersRandomProvider);
 
     return randomSpeakersList.maybeWhen(
       data: (data) {

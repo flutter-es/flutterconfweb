@@ -6,17 +6,15 @@ import 'package:flutter_conf_latam/features/schedule/domain/models/schedule_resp
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final scheduleProvider = FutureProvider.family((ref, Locale locale) {
+final scheduleProvider = FutureProvider((ref) {
+  final localeName = ref.watch(appLocalizationsProvider).localeName;
   return ref
       .watch(scheduleRepositoryProvider)
-      .getSchedules(language: locale.languageCode);
+      .getSchedules(language: Locale(localeName).languageCode);
 });
 
 final daysScheduleProvider = FutureProvider((ref) async {
-  final l10n = ref.watch(appLocalizationsProvider);
-
-  final locale = Locale(l10n.localeName);
-  final schedule = await ref.watch(scheduleProvider(locale).future);
+  final schedule = await ref.watch(scheduleProvider.future);
 
   return <ScheduleDayModel?>[
     schedule.days.firstWhereOrNull((item) => item.day == 1),

@@ -6,7 +6,6 @@ import 'package:flutter_conf_latam/core/widgets/images/character_image.dart';
 import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/view_model/speakers_view_model.dart';
-import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,10 +17,7 @@ class SpeakerDetailMain extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final parameter = (id: id, locale: Locale(l10n.localeName));
-
-    final speaker = ref.watch(speakerProvider(parameter));
+    final speaker = ref.watch(speakerProvider(id));
 
     return speaker.when(
       data: (data) => _SpeakerDetailContainer(
@@ -86,7 +82,7 @@ class SpeakerDetailMain extends ConsumerWidget {
       ),
       error: (_, _) => Center(
         child: ErrorContainer(
-          onRetry: () => ref.invalidate(speakerProvider(parameter)),
+          onRetry: () => ref.invalidate(speakerProvider(id)),
         ),
       ),
     );
