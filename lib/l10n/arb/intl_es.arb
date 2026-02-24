@@ -72,12 +72,17 @@
   "homeNoveltiesAppSoon": "Proximamente:",
   "homePricingTitle": "Precios pensados para ti",
   "homePricingDescription": "Disfruta tarifas accesibles y reserva tu entrada con anticipación",
-  "homePricingEndDate": "Hasta {date}",
-  "@homePricingEndDate": {
+  "homePricingDateRange": "Desde {startDate} hasta {endDate}",
+  "@homePricingDateRange": {
     "placeholders": {
-      "date": {
+      "startDate": {
         "type": "DateTime",
-        "format": "MMMM d",
+        "format": "d MMM",
+        "isCustomDateFormat": "true"
+      },
+      "endDate": {
+        "type": "DateTime",
+        "format": "d MMM",
         "isCustomDateFormat": "true"
       }
     }

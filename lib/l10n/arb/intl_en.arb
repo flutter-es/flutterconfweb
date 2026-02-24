@@ -72,12 +72,17 @@
   "homeNoveltiesAppSoon": "Soon:",
   "homePricingTitle": "Prices designed for you",
   "homePricingDescription": "Enjoy affordable rates and reserve your ticket in advance",
-  "homePricingEndDate": "Until {date}",
-  "@homePricingEndDate": {
+  "homePricingDateRange": "From {startDate} to {endDate}",
+  "@homePricingDateRange": {
     "placeholders": {
-      "date": {
+      "startDate": {
         "type": "DateTime",
-        "format": "MMMM d",
+        "format": "d MMM",
+        "isCustomDateFormat": "true"
+      },
+      "endDate": {
+        "type": "DateTime",
+        "format": "d MMM",
         "isCustomDateFormat": "true"
       }
     }
