@@ -5,7 +5,6 @@ import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
-import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/pricing/domain/models/tickets/tickets_model.dart';
@@ -55,16 +54,18 @@ class PricingContainer extends ConsumerWidget {
                 child: _PricingCardItem(detail: data.first),
               ),
             )
+          else if (context.screenSize == .extraLarge)
+            Row(
+              spacing: 30,
+              crossAxisAlignment: .start,
+              children: <Widget>[
+                for (final item in data)
+                  Expanded(child: _PricingCardItem(detail: item)),
+              ],
+            )
           else
-            ResponsiveGrid(
-              columnSizes: switch (context.screenSize) {
-                .extraLarge => data.length,
-                _ => 1,
-              },
-              rowSizes: switch (context.screenSize) {
-                .extraLarge => data.length,
-                _ => data.length,
-              },
+            Column(
+              spacing: 30,
               children: <Widget>[
                 for (final item in data) _PricingCardItem(detail: item),
               ],
@@ -91,6 +92,7 @@ class _PricingCardItem extends ConsumerWidget {
     final now = DateTime.now();
     final isWithinDateRange =
         !now.isBefore(detail.startDate) && !now.isAfter(detail.endDate);
+    final isPastEndDate = now.isAfter(detail.endDate);
 
     return Card.filled(
       margin: .zero,
@@ -138,7 +140,12 @@ class _PricingCardItem extends ConsumerWidget {
                 crossAxisAlignment: .start,
                 children: <Widget>[
                   Text(
-                    l10n.homePricingDateRange(detail.startDate, detail.endDate),
+                    isPastEndDate
+                        ? l10n.homePricingSoldOut
+                        : l10n.homePricingDateRange(
+                            detail.startDate,
+                            detail.endDate,
+                          ),
                     style: theme.typography.h1Bold.copyWith(
                       fontSize: 24,
                       fontWeight: .w700,
@@ -155,6 +162,10 @@ class _PricingCardItem extends ConsumerWidget {
                         .extraLarge || .large => 64,
                         _ => 32,
                       },
+                      decoration: isPastEndDate
+                          ? TextDecoration.lineThrough
+                          : null,
+                      decorationColor: FlutterLatamColors.white,
                     ),
                   ),
                   ...[
