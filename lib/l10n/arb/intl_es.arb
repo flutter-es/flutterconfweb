@@ -87,6 +87,7 @@
       }
     }
   },
+  "homePricingSoldOut": "Agotado",
   "homePricingBuyTicketsButton": "Comprar tickets",
   "homeSpeakersTitle": "Expertos que vienen a compartirlo todo",
   "homeSpeakersDescription": "Prepárate para aprender, sorprenderte y conectar con algunos de los mejores de la comunidad.",
