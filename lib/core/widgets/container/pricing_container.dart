@@ -21,7 +21,7 @@ class PricingContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(appLocalizationsProvider);
-    final pricingList = ref.watch(pricingProvider(Locale(l10n.localeName)));
+    final pricingList = ref.watch(pricingProvider);
 
     return pricingList.maybeWhen(
       data: (data) => SectionContainer(
@@ -72,9 +72,6 @@ class PricingContainer extends ConsumerWidget {
         ],
       ),
       orElse: Offstage.new,
-      error: (error, stackTrace) {
-        return const Offstage();
-      },
     );
   }
 }
@@ -91,22 +88,25 @@ class _PricingCardItem extends ConsumerWidget {
     final l10n = ref.watch(appLocalizationsProvider);
     final config = ref.watch(configProvider);
 
+    final now = DateTime.now();
+    final isWithinDateRange =
+        !now.isBefore(detail.startDate) && !now.isAfter(detail.endDate);
+
     return Card.filled(
-      margin: EdgeInsets.zero,
-      color: switch (detail.type) {
-        .early || .angel => FlutterLatamColors.darkYellow,
-        .regular => FlutterLatamColors.fluorescent,
-        .late => FlutterLatamColors.fuchsia,
+      margin: .zero,
+      color: switch (isWithinDateRange) {
+        true => FlutterLatamColors.fluorescent,
+        false => FlutterLatamColors.darkBlue.withValues(alpha: .6),
       },
       clipBehavior: .antiAliasWithSaveLayer,
       shape: RoundedRectangleBorder(
         borderRadius: .circular(20),
-        side: switch (detail.type) {
-          .early || .angel => const BorderSide(
-            color: FlutterLatamColors.darkYellow,
+        side: switch (isWithinDateRange) {
+          true => const BorderSide(
+            color: FlutterLatamColors.fluorescent,
             width: 4,
           ),
-          _ => .none,
+          false => .none,
         },
       ),
       child: Column(
@@ -138,13 +138,13 @@ class _PricingCardItem extends ConsumerWidget {
                 crossAxisAlignment: .start,
                 children: <Widget>[
                   Text(
-                    l10n.homePricingEndDate(detail.endDate),
-                    style: theme.typography.body1Regular.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: switch (detail.type) {
-                        .early || .angel => FlutterLatamColors.darkYellow,
-                        .regular => FlutterLatamColors.fluorescent,
-                        .late => FlutterLatamColors.fuchsia,
+                    l10n.homePricingDateRange(detail.startDate, detail.endDate),
+                    style: theme.typography.h1Bold.copyWith(
+                      fontSize: 24,
+                      fontWeight: .w700,
+                      color: switch (isWithinDateRange) {
+                        true => FlutterLatamColors.fluorescent,
+                        false => FlutterLatamColors.white,
                       },
                     ),
                   ),
@@ -181,7 +181,7 @@ class _PricingCardItem extends ConsumerWidget {
                         ],
                       ),
                   ],
-                  if (detail.type == .early)
+                  if (isWithinDateRange)
                     Padding(
                       padding: const .only(top: 20),
                       child: FclButton.primary(
