@@ -9,6 +9,7 @@ class TicketsModel {
     required this.type,
     required this.title,
     required this.price,
+    required this.startDate,
     required this.endDate,
     required this.features,
   });
@@ -20,9 +21,10 @@ class TicketsModel {
   final TicketType type;
   final String title;
   final double price;
+  final DateTime startDate;
   final DateTime endDate;
   final List<String> features;
 }
 
 @JsonEnum()
-enum TicketType { angel, early, regular, late }
+enum TicketType { preEarly, early, regular, late }

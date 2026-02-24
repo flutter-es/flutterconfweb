@@ -11,6 +11,7 @@ TicketsModel _$TicketsModelFromJson(Map<String, dynamic> json) => TicketsModel(
   type: $enumDecode(_$TicketTypeEnumMap, json['type']),
   title: json['title'] as String,
   price: (json['price'] as num).toDouble(),
+  startDate: DateTime.parse(json['startDate'] as String),
   endDate: DateTime.parse(json['endDate'] as String),
   features: (json['features'] as List<dynamic>)
       .map((e) => e as String)
@@ -18,7 +19,7 @@ TicketsModel _$TicketsModelFromJson(Map<String, dynamic> json) => TicketsModel(
 );
 
 const _$TicketTypeEnumMap = {
-  TicketType.angel: 'angel',
+  TicketType.preEarly: 'preEarly',
   TicketType.early: 'early',
   TicketType.regular: 'regular',
   TicketType.late: 'late',
