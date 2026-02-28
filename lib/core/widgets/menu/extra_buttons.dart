@@ -34,13 +34,11 @@ class ExtraButtons extends ConsumerWidget {
           '${language.toUpperCase()}-${config.sponsorshipFileName}',
         ),
       ),
-      /*
       FclButton.secondary(
         label: l10n.menuBeSpeakerButton,
         buttonSize: .small,
         onPressed: () => Utils.launchUrlLink(config.cfpFormUrl),
       ),
-      */
       FclButton.primary(
         label: l10n.menuBuyTicketsButton,
         buttonSize: .small,
