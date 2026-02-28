@@ -5,6 +5,8 @@ import 'package:flutter_conf_latam/core/routes/app_routes_pages.dart';
 import 'package:flutter_conf_latam/core/widgets/navigation/shell_navigator_page.dart';
 import 'package:flutter_conf_latam/features/errors/presentation/pages/error_page.dart';
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/privacy_page.dart';
+import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/terms_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -111,6 +113,7 @@ class AppRoutes {
                   return const NoTransitionPage(child: ContactPage());
                 },
               ),
+              */
               GoRoute(
                 path: '/${AppRoutePath.privacyPolicy.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
@@ -125,7 +128,6 @@ class AppRoutes {
                   return const NoTransitionPage(child: TermsPage());
                 },
               ),
-              */
             ],
           ),
         ],
