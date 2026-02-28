@@ -110,3 +110,7 @@ keys**.json
 
 # FVM Version Cache
 .fvm/
+
+# Firebase related
+.firebaserc
+.firebase/
