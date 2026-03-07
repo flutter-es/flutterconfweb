@@ -193,7 +193,7 @@ flutter analyze
 - **firebase_core**: Firebase initialization
 - **cloud_firestore**: Database
 - **go_router**: Navigation and routing
-- **hooks_riverpod**: State management
+- **signals**: State management
 - **flutter_animate**: Animations
 - **google_fonts**: Google fonts
 - **intl**: Internationalization
