@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:rive/rive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,16 +31,10 @@ Future<void> bootstrap(
       await RiveNative.init();
       await Firebase.initializeApp(options: options);
 
-      runApp(
-        ProviderScope(
-          overrides: [
-            sharedPrefsInstanceProvider.overrideWithValue(
-              await SharedPreferences.getInstance(),
-            ),
-          ],
-          child: await builder(),
-        ),
-      );
+      final prefs = await SharedPreferences.getInstance();
+      initSharedPreferences(prefs);
+
+      runApp(await builder());
     },
     (error, stack) {
       if (kDebugMode) log(error.toString(), stackTrace: stack);

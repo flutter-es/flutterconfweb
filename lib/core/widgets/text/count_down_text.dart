@@ -6,9 +6,9 @@ import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/gen/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class CountDownText extends ConsumerStatefulWidget {
+class CountDownText extends StatefulWidget {
   const CountDownText({
     required this.startDate,
     required this.endDate,
@@ -19,10 +19,10 @@ class CountDownText extends ConsumerStatefulWidget {
   final DateTime endDate;
 
   @override
-  ConsumerState<CountDownText> createState() => _CountDownTextState();
+  State<CountDownText> createState() => _CountDownTextState();
 }
 
-class _CountDownTextState extends ConsumerState<CountDownText> {
+class _CountDownTextState extends State<CountDownText> {
   Duration _duration = Duration.zero;
   Timer? _timer;
 
@@ -42,7 +42,7 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
     final columnRowSize = switch (context.screenSize) {
       .extraLarge => 4,
       _ => 2,

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/organizers/domain/models/communities/communities_model.dart';
 import 'package:flutter_conf_latam/features/organizers/domain/models/organizers/organizers_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
 class OrganizersRepository {
   OrganizersRepository(this.database);
@@ -33,6 +33,6 @@ class OrganizersRepository {
   }
 }
 
-final organizersRepositoryProvider = Provider(
-  (ref) => OrganizersRepository(ref.watch(firebaseFirestoreProvider)),
+final organizersRepository = computed(
+  () => OrganizersRepository(firebaseFirestore.value),
 );

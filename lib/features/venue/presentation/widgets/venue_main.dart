@@ -12,15 +12,15 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class VenueMain extends ConsumerWidget {
+class VenueMain extends StatelessWidget {
   const VenueMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     final theme = context.theme.fclThemeScheme;
 

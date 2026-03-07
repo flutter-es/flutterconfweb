@@ -1,30 +1,39 @@
+import 'dart:async';
+
 import 'package:flutter_conf_latam/core/providers/shared_providers.dart';
 import 'package:flutter_conf_latam/features/gallery/data/gallery_repository.dart';
 import 'package:flutter_conf_latam/features/gallery/domain/models/gallery_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
-final galleryDataProvider = FutureProvider((ref) {
-  return ref.watch(galleryRepositoryProvider).getGallery();
+final galleryDataSignal = futureSignal<List<GalleryModel>>(() async {
+  return galleryRepository.value.getGallery();
 });
 
 typedef GalleryInfo = ({List<GalleryModel> galleryList, int totalList});
 
-final galleryProvider = FutureProvider<GalleryInfo>((ref) async {
-  final pagination = ref.watch(paginationProvider);
+final gallerySignal = computed<AsyncState<GalleryInfo>>(() {
+  final dataState = galleryDataSignal.value;
 
-  if (pagination.page != 1) {
-    await Future<void>.delayed(const Duration(seconds: 1));
-  }
-  final list = await ref.watch(galleryDataProvider.future);
+  return dataState.map(
+    data: (list) {
+      final pagination = paginationController.value;
+      final startIndex = (pagination.page - 1) * pagination.pageSize;
+      final endIndex = startIndex + pagination.pageSize;
 
-  final startIndex = (pagination.page - 1) * pagination.pageSize;
-  final endIndex = startIndex + pagination.pageSize;
+      if (startIndex >= list.length) {
+        return AsyncState.data((galleryList: <GalleryModel>[], totalList: 0));
+      }
 
-  if (startIndex >= list.length) {
-    return (galleryList: <GalleryModel>[], totalList: 0);
-  }
-  return (
-    galleryList: list.sublist(startIndex, endIndex.clamp(0, list.length)),
-    totalList: list.length,
+      return AsyncState.data((
+        galleryList: list.sublist(startIndex, endIndex.clamp(0, list.length)),
+        totalList: list.length,
+      ));
+    },
+    error: AsyncState<GalleryInfo>.error,
+    loading: AsyncState<GalleryInfo>.loading,
   );
 });
+
+void reloadGallery() {
+  unawaited(galleryDataSignal.reload());
+}

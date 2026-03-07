@@ -2,12 +2,21 @@ import 'package:collection/collection.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
-class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
-  @override
-  List<NavigationItemModel> build() {
-    // final l10n = ref.watch(appLocalizationsProvider);
+class NavigationController {
+  NavigationController() {
+    _state = signal(_buildInitialList());
+  }
+
+  late final Signal<List<NavigationItemModel>> _state;
+
+  List<NavigationItemModel> get value => _state.value;
+
+  ReadonlySignal<List<NavigationItemModel>> get state => _state;
+
+  List<NavigationItemModel> _buildInitialList() {
+    // final l10n = appLocalizations.value;
     final navigationItemList = <NavigationItemModel>[
       NavigationItemModel(
         label: '',
@@ -78,26 +87,26 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
     if (_selectedNav.isNotEmpty) {
       selectNavItemFromRoute(_selectedNav);
     } else {
-      selectNavItem(state.first);
+      selectNavItem(_state.value.first);
     }
   }
 
   void selectNavItemFromRoute(String route) {
     selectNavItem(
-      state.firstWhere((item) {
+      _state.value.firstWhere((item) {
         if (item.route != null) {
           return item.route == route;
         } else if (item.subMenus != null) {
           return item.subMenus!.where((item) => item.route == route).isNotEmpty;
         }
         return false;
-      }, orElse: () => state.first),
+      }, orElse: () => _state.value.first),
     );
   }
 
   void selectNavItem(NavigationItemModel item) {
-    state = [
-      for (final element in state)
+    _state.value = [
+      for (final element in _state.value)
         element.copyWith(
           isSelected: item.route == element.route,
           subMenus: item.route != element.route
@@ -113,13 +122,12 @@ class NavigationViewModel extends Notifier<List<NavigationItemModel>> {
         item.subMenus?.firstWhereOrNull((item) => item.isSelected)?.route;
 
     if (currentRoute == null) return;
-    ref.read(webLocalStorageProvider).storeSelectedNav(currentRoute);
+    webLocalStorage.value.storeSelectedNav(currentRoute);
   }
 
-  String get _selectedNav => ref.read(webLocalStorageProvider).getSelectedNav();
+  String get _selectedNav => webLocalStorage.value.getSelectedNav();
+
+  void dispose() => _state.dispose();
 }
 
-final navigationViewModelProvider =
-    NotifierProvider<NavigationViewModel, List<NavigationItemModel>>(
-      NavigationViewModel.new,
-    );
+final navigationController = NavigationController();

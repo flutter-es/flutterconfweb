@@ -11,15 +11,15 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class Footer extends ConsumerWidget {
+class Footer extends StatelessWidget {
   const Footer({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
 
     final paddingHorizontal = switch (context.screenSize) {
       .extraLarge => 122.0,
@@ -169,62 +169,63 @@ class Footer extends ConsumerWidget {
   }
 }
 
-class _SocialFooter extends ConsumerWidget {
+class _SocialFooter extends StatelessWidget {
   const _SocialFooter();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final socialMediaList = ref.watch(
-      socialMediaProvider.select((value) => value.value ?? []),
-    );
+  Widget build(BuildContext context) {
+    return Watch((context) {
+      final socialMediaList = socialMediaSignal.value;
+      final list = socialMediaList.value ?? [];
 
-    return Column(
-      spacing: 10,
-      mainAxisSize: .min,
-      crossAxisAlignment: .start,
-      mainAxisAlignment: .spaceBetween,
-      children: <Widget>[
-        SizedBox.fromSize(
-          size: const Size(222, 167),
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: InkWell(
-              onTap: () => _goToHome(ref),
-              child: SvgPicture.asset(Assets.images.fclMxMainLogo),
+      return Column(
+        spacing: 10,
+        mainAxisSize: .min,
+        crossAxisAlignment: .start,
+        mainAxisAlignment: .spaceBetween,
+        children: <Widget>[
+          SizedBox.fromSize(
+            size: const Size(222, 167),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: InkWell(
+                onTap: _goToHome,
+                child: SvgPicture.asset(Assets.images.fclMxMainLogo),
+              ),
             ),
           ),
-        ),
-        SocialMediaRow(
-          socialMediaList: socialMediaList.map((item) {
-            final iconPath = switch (item.type) {
-              .youtube => Assets.images.icons.youtube,
-              .linkedIn => Assets.images.icons.linkedIn,
-              .tikTok => Assets.images.icons.tikTok,
-              .twitter => Assets.images.icons.twitter,
-              .facebook => Assets.images.icons.facebook,
-              .instagram => Assets.images.icons.instagram,
-            };
-            return (iconPath: iconPath, linkUrl: item.link);
-          }).toList(),
-        ),
-      ],
-    );
+          SocialMediaRow(
+            socialMediaList: list.map((item) {
+              final iconPath = switch (item.type) {
+                .youtube => Assets.images.icons.youtube,
+                .linkedIn => Assets.images.icons.linkedIn,
+                .tikTok => Assets.images.icons.tikTok,
+                .twitter => Assets.images.icons.twitter,
+                .facebook => Assets.images.icons.facebook,
+                .instagram => Assets.images.icons.instagram,
+              };
+              return (iconPath: iconPath, linkUrl: item.link);
+            }).toList(),
+          ),
+        ],
+      );
+    });
   }
 
-  void _goToHome(WidgetRef ref) {
-    ref
-        .read(navigationViewModelProvider.notifier)
-        .selectNavItemFromRoute('/${AppRoutePath.home.pathName}');
+  void _goToHome() {
+    navigationController.selectNavItemFromRoute(
+      '/${AppRoutePath.home.pathName}',
+    );
   }
 }
 
-class _SocialVideos extends ConsumerWidget {
+class _SocialVideos extends StatelessWidget {
   const _SocialVideos();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
 
     const youtubeUrl = 'https://www.youtube.com/watch';
     final videoList = <({String text, String url})>[

@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/view_model/privacy_terms_view_model.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/widgets/markdown_container.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class TermsPage extends ConsumerStatefulWidget {
+class TermsPage extends StatefulWidget {
   const TermsPage({super.key});
 
   @override
-  ConsumerState<TermsPage> createState() => _TermsPageState();
+  State<TermsPage> createState() => _TermsPageState();
 }
 
-class _TermsPageState extends ConsumerState<TermsPage> {
+class _TermsPageState extends State<TermsPage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override
@@ -38,16 +38,17 @@ class _TermsPageState extends ConsumerState<TermsPage> {
   }
 }
 
-class _TermsMain extends ConsumerWidget {
+class _TermsMain extends StatelessWidget {
   const _TermsMain();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final termsData = ref.watch(termsProvider);
-
-    return termsData.maybeWhen(
-      data: (data) => MarkdownContainer(markdownData: data),
-      orElse: Offstage.new,
-    );
+  Widget build(BuildContext context) {
+    return Watch((context) {
+      final termsData = termsSignal.value;
+      return termsData.maybeMap(
+        data: (data) => MarkdownContainer(markdownData: data),
+        orElse: () => const Offstage(),
+      );
+    });
   }
 }

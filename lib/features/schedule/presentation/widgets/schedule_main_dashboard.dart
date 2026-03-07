@@ -1,6 +1,6 @@
 part of 'schedule_main.dart';
 
-class _ScheduleDashboard extends HookConsumerWidget {
+class _ScheduleDashboard extends HookWidget {
   const _ScheduleDashboard({
     required this.currentIndex,
     required this.duration,
@@ -10,7 +10,7 @@ class _ScheduleDashboard extends HookConsumerWidget {
   final Duration duration;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final index = useState(currentIndex);
     final controller = useAnimationController(duration: duration);
 
@@ -27,37 +27,37 @@ class _ScheduleDashboard extends HookConsumerWidget {
       return null;
     }, [currentIndex]);
 
-    final scheduleDayList = ref.watch(daysScheduleProvider);
-    return scheduleDayList.maybeWhen(
-      data: (data) => FadeTransition(
-        opacity: controller,
-        child: IndexedStack(
-          index: currentIndex,
-          clipBehavior: .antiAliasWithSaveLayer,
-          children: <Widget>[
-            for (final (idx, daySchedule) in data.indexed)
-              if (daySchedule != null)
-                Visibility(
-                  visible: currentIndex == idx,
-                  child: Column(
-                    spacing: 10,
-                    mainAxisSize: .min,
-                    children: <Widget>[
-                      for (final item in daySchedule.slots)
-                        _ScheduleSlotItem(slot: item),
-                    ],
+    return Watch((context) {
+      final scheduleDayList = daysScheduleSignal.value;
+      return scheduleDayList.maybeMap(
+        data: (data) => FadeTransition(
+          opacity: controller,
+          child: IndexedStack(
+            index: currentIndex,
+            clipBehavior: .antiAliasWithSaveLayer,
+            children: <Widget>[
+              for (final (idx, daySchedule) in data.indexed)
+                if (daySchedule != null)
+                  Visibility(
+                    visible: currentIndex == idx,
+                    child: Column(
+                      spacing: 10,
+                      mainAxisSize: .min,
+                      children: <Widget>[
+                        for (final item in daySchedule.slots)
+                          _ScheduleSlotItem(slot: item),
+                      ],
+                    ),
                   ),
-                ),
-          ],
+            ],
+          ),
         ),
-      ),
-      error: (_, _) => Center(
-        child: ErrorContainer(
-          onRetry: () => ref.invalidate(daysScheduleProvider),
+        error: (_, _) => const Center(
+          child: ErrorContainer(onRetry: reloadSchedule),
         ),
-      ),
-      orElse: Offstage.new,
-    );
+        orElse: () => const Offstage(),
+      );
+    });
   }
 }
 

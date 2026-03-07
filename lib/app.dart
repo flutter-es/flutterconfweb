@@ -8,7 +8,7 @@ import 'package:flutter_conf_latam/core/routes/app_routes.dart';
 import 'package:flutter_conf_latam/l10n/gen/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
 @JS('window')
 external JSWindow get window;
@@ -17,8 +17,20 @@ extension type JSWindow._(JSObject _) implements JSObject {
   external int get initTime;
 }
 
-class FlutterConfApp extends ConsumerWidget {
-  FlutterConfApp({super.key}) {
+class FlutterConfApp extends StatefulWidget {
+  const FlutterConfApp({super.key});
+
+  @override
+  State<FlutterConfApp> createState() => _FlutterConfAppState();
+}
+
+class _FlutterConfAppState extends State<FlutterConfApp> {
+  final _appRoutes = AppRoutes();
+  final _analytics = FirebaseAnalytics.instance;
+
+  @override
+  void initState() {
+    super.initState();
     unawaited(_analytics.logAppOpen());
 
     final initTime = window.initTime;
@@ -30,12 +42,9 @@ class FlutterConfApp extends ConsumerWidget {
     );
   }
 
-  final _appRoutes = AppRoutes();
-  final _analytics = FirebaseAnalytics.instance;
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final appLocale = ref.watch(currentLocalizationProvider);
+  Widget build(BuildContext context) {
+    final appLocale = currentLocale.watch(context);
 
     return MaterialApp.router(
       title: 'Flutter Conf LATAM',

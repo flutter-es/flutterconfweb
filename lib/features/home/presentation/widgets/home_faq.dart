@@ -11,57 +11,59 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class HomeFaq extends ConsumerWidget {
+class HomeFaq extends StatelessWidget {
   const HomeFaq({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final faqList = ref.watch(faqListProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
-    return faqList.maybeWhen(
-      data: (data) {
-        return SectionContainer(
-          spacing: 30,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.homeFaqTitle,
-                size: switch (context.screenSize) {
-                  .extraLarge => 64,
-                  .large => 48,
-                  .normal || .small => 24,
-                },
+    return Watch((context) {
+      final faqList = faqListSignal.value;
+      return faqList.maybeMap(
+        data: (data) {
+          return SectionContainer(
+            spacing: 30,
+            children: <Widget>[
+              TitleSubtitleText(
+                title: (
+                  text: l10n.homeFaqTitle,
+                  size: switch (context.screenSize) {
+                    .extraLarge => 64,
+                    .large => 48,
+                    .normal || .small => 24,
+                  },
+                ),
+                subtitle: (
+                  text: l10n.homeFaqDescription,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 24,
+                    .normal || .small => 16,
+                  },
+                ),
+                spacing: 12,
               ),
-              subtitle: (
-                text: l10n.homeFaqDescription,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 16,
+              ResponsiveGrid(
+                columnSizes: switch (context.screenSize) {
+                  .extraLarge => 2,
+                  _ => 1,
                 },
+                rowSizes: switch (context.screenSize) {
+                  .extraLarge => 2,
+                  _ => data.length,
+                },
+                children: <Widget>[
+                  for (final item in data) _FaqCardItem(item: item),
+                ],
               ),
-              spacing: 12,
-            ),
-            ResponsiveGrid(
-              columnSizes: switch (context.screenSize) {
-                .extraLarge => 2,
-                _ => 1,
-              },
-              rowSizes: switch (context.screenSize) {
-                .extraLarge => 2,
-                _ => data.length,
-              },
-              children: <Widget>[
-                for (final item in data) _FaqCardItem(item: item),
-              ],
-            ),
-          ],
-        );
-      },
-      orElse: Offstage.new,
-    );
+            ],
+          );
+        },
+        orElse: () => const Offstage(),
+      );
+    });
   }
 }
 

@@ -8,84 +8,83 @@ import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/view_model/speakers_view_model.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class SpeakerDetailMain extends ConsumerWidget {
+class SpeakerDetailMain extends StatelessWidget {
   const SpeakerDetailMain({required this.id, super.key});
 
   final String id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final speaker = ref.watch(speakerProvider(id));
-
-    return speaker.when(
-      data: (data) => _SpeakerDetailContainer(
-        headerChildren: <Widget>[
-          CharacterImage(
-            imageUrl: data.photo,
-            flagImageUrl: data.countryFlag,
-            size: const .square(120),
-          ),
-          Expanded(
-            child: TitleSubtitleText(
-              title: (
-                text: data.name,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 22,
-                },
-              ),
-              subtitle: (
-                text: data.title,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 16,
-                  .normal || .small => 14,
-                },
-              ),
-              spacing: 4,
-              textAlign: .start,
-              crossAxisAlignment: .start,
-            ),
-          ),
-        ],
-        detailChild: switch (context.screenSize) {
-          .extraLarge || .large => _SpeakerDescription(
-            text: data.description ?? '',
-            hasSize: true,
-          ),
-          .normal || .small => _SpeakerDescription(
-            text: data.description ?? '',
-          ),
-        },
-      ),
-      loading: () => const Shimmer(
-        child: _SpeakerDetailContainer(
+  Widget build(BuildContext context) {
+    return Watch((context) {
+      final speakerSignal = getSpeakerSignal(id);
+      return speakerSignal.value.map(
+        data: (data) => _SpeakerDetailContainer(
           headerChildren: <Widget>[
-            ShimmerLoading(
-              isLoading: true,
-              child: SingleImageContainer(
-                size: .square(120),
-                borderRadius: 30,
-              ),
+            CharacterImage(
+              imageUrl: data.photo,
+              flagImageUrl: data.countryFlag,
+              size: const .square(120),
             ),
-            ShimmerLoading(
-              isLoading: true,
-              child: TitleSubtitleTextContainer(crossAxisAlignment: .start),
+            Expanded(
+              child: TitleSubtitleText(
+                title: (
+                  text: data.name,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 24,
+                    .normal || .small => 22,
+                  },
+                ),
+                subtitle: (
+                  text: data.title,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 16,
+                    .normal || .small => 14,
+                  },
+                ),
+                spacing: 4,
+                textAlign: .start,
+                crossAxisAlignment: .start,
+              ),
             ),
           ],
-          detailChild: ShimmerLoading(
-            isLoading: true,
-            child: _SpeakerDescription.loading(),
+          detailChild: switch (context.screenSize) {
+            .extraLarge || .large => _SpeakerDescription(
+              text: data.description ?? '',
+              hasSize: true,
+            ),
+            .normal || .small => _SpeakerDescription(
+              text: data.description ?? '',
+            ),
+          },
+        ),
+        loading: () => const Shimmer(
+          child: _SpeakerDetailContainer(
+            headerChildren: <Widget>[
+              ShimmerLoading(
+                isLoading: true,
+                child: SingleImageContainer(
+                  size: .square(120),
+                  borderRadius: 30,
+                ),
+              ),
+              ShimmerLoading(
+                isLoading: true,
+                child: TitleSubtitleTextContainer(crossAxisAlignment: .start),
+              ),
+            ],
+            detailChild: ShimmerLoading(
+              isLoading: true,
+              child: _SpeakerDescription.loading(),
+            ),
           ),
         ),
-      ),
-      error: (_, _) => Center(
-        child: ErrorContainer(
-          onRetry: () => ref.invalidate(speakerProvider(id)),
+        error: (_, _) => Center(
+          child: ErrorContainer(onRetry: speakerSignal.reload),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

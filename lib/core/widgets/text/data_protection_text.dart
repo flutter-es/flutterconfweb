@@ -6,18 +6,18 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class DataProtectionText extends ConsumerWidget {
+class DataProtectionText extends StatelessWidget {
   const DataProtectionText({this.textAlign = .start, this.textSize, super.key});
 
   final TextAlign textAlign;
   final double? textSize;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     final theme = context.theme.fclThemeScheme;
     final textTheme = switch (context.screenSize) {

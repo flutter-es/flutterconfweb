@@ -1,7 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/speakers/domain/models/speaker_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
 class SpeakersRepository {
   SpeakersRepository(this.functions);
@@ -41,6 +41,6 @@ class SpeakersRepository {
   }
 }
 
-final speakersRepositoryProvider = Provider(
-  (ref) => SpeakersRepository(ref.watch(firebaseFunctionsProvider)),
+final speakersRepository = computed(
+  () => SpeakersRepository(firebaseFunctions.value),
 );

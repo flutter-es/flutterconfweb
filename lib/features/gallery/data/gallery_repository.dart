@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/gallery/domain/models/gallery_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
 class GalleryRepository {
   GalleryRepository(this.database);
@@ -19,6 +19,6 @@ class GalleryRepository {
   }
 }
 
-final galleryRepositoryProvider = Provider(
-  (ref) => GalleryRepository(ref.watch(firebaseFirestoreProvider)),
+final galleryRepository = computed(
+  () => GalleryRepository(firebaseFirestore.value),
 );

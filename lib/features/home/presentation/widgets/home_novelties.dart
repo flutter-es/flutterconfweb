@@ -10,14 +10,14 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class HomeNovelties extends ConsumerWidget {
+class HomeNovelties extends StatelessWidget {
   const HomeNovelties({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
     final novelties = <({String title, String description, String image})>[
       (
         title: l10n.homeNoveltiesMerchTitle,
@@ -89,12 +89,12 @@ class HomeNovelties extends ConsumerWidget {
   }
 }
 
-class _NoveltyAppCard extends ConsumerWidget {
+class _NoveltyAppCard extends StatelessWidget {
   const _NoveltyAppCard();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
     return Card(
       color: FlutterLatamColors.blue,
@@ -165,15 +165,15 @@ class _NoveltyAppCard extends ConsumerWidget {
   }
 }
 
-class _AppStoreSection extends ConsumerWidget {
+class _AppStoreSection extends StatelessWidget {
   const _AppStoreSection();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     final appLogoUrls = <({String imagePath, String url})>[
       (imagePath: Assets.images.novelties.appStore, url: config.appStoreUrl),

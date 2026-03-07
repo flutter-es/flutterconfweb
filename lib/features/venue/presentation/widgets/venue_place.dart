@@ -6,14 +6,14 @@ import 'package:flutter_conf_latam/core/widgets/container/section_container.dart
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class VenuePlace extends ConsumerWidget {
+class VenuePlace extends StatelessWidget {
   const VenuePlace({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
     final about = <({String title, String description, String image})>[
       (
         title: l10n.aboutPlaceInstallationTitle,

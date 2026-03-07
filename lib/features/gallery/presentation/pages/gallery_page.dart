@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/gallery/presentation/widgets/gallery_list.dart';
 import 'package:flutter_conf_latam/features/gallery/presentation/widgets/gallery_main.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class GalleryPage extends ConsumerStatefulWidget {
+class GalleryPage extends StatefulWidget {
   const GalleryPage({super.key});
 
   @override
-  ConsumerState<GalleryPage> createState() => _GalleryPageState();
+  State<GalleryPage> createState() => _GalleryPageState();
 }
 
-class _GalleryPageState extends ConsumerState<GalleryPage> {
+class _GalleryPageState extends State<GalleryPage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override

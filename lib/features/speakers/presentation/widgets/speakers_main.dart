@@ -11,15 +11,14 @@ import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/view_model/speakers_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class SpeakersMain extends ConsumerWidget {
+class SpeakersMain extends StatelessWidget {
   const SpeakersMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final speakers = ref.watch(speakersProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
     final size = switch (context.screenSize) {
       .extraLarge || .large => const Size.square(206),
@@ -48,36 +47,41 @@ class SpeakersMain extends ConsumerWidget {
             ),
             spacing: 12,
           ),
-          speakers.when(
-            data: (data) => _SpeakerListContainer(
-              children: <Widget>[
-                for (final item in data)
-                  SpeakerCardItem(speaker: item, imageSize: size, isMain: true),
-              ],
-            ),
-            loading: () => Shimmer(
-              child: _SpeakerListContainer(
-                children: .generate(12, (_) {
-                  return Center(
-                    child: ShimmerLoading(
-                      isLoading: true,
-                      child: Column(
-                        spacing: 20,
-                        children: <Widget>[
-                          SingleImageContainer(size: size, borderRadius: 30),
-                          const TitleSubtitleTextContainer(),
-                          const SocialMediaRowContainer(),
-                        ],
-                      ),
+          Watch((context) {
+            final speakers = speakersSignal.value;
+            return speakers.map(
+              data: (data) => _SpeakerListContainer(
+                children: <Widget>[
+                  for (final item in data)
+                    SpeakerCardItem(
+                      speaker: item,
+                      imageSize: size,
+                      isMain: true,
                     ),
-                  );
-                }),
+                ],
               ),
-            ),
-            error: (_, _) => ErrorContainer(
-              onRetry: () => ref.invalidate(speakersProvider),
-            ),
-          ),
+              loading: () => Shimmer(
+                child: _SpeakerListContainer(
+                  children: .generate(12, (_) {
+                    return Center(
+                      child: ShimmerLoading(
+                        isLoading: true,
+                        child: Column(
+                          spacing: 20,
+                          children: <Widget>[
+                            SingleImageContainer(size: size, borderRadius: 30),
+                            const TitleSubtitleTextContainer(),
+                            const SocialMediaRowContainer(),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+              error: (_, _) => ErrorContainer(onRetry: speakersSignal.reload),
+            );
+          }),
         ],
       ),
     );

@@ -14,14 +14,14 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class HomeFeatures extends ConsumerWidget {
+class HomeFeatures extends StatelessWidget {
   const HomeFeatures({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
     final features = <({String title, String description, String image})>[
       (
         title: l10n.homeFeatureLearnTitle,
@@ -106,15 +106,15 @@ class HomeFeatures extends ConsumerWidget {
   }
 }
 
-class _BuyTicketFeature extends ConsumerWidget {
+class _BuyTicketFeature extends StatelessWidget {
   const _BuyTicketFeature();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     final children = <Widget>[
       Align(

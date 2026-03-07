@@ -2,21 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_conf_latam/core/config/config.dart';
 import 'package:flutter_conf_latam/core/services/web_local_storage_service.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:signals/signals.dart';
 
-final firebaseFirestoreProvider = Provider((_) => FirebaseFirestore.instance);
+final firebaseFirestore = signal(FirebaseFirestore.instance);
+final firebaseFunctions = signal(FirebaseFunctions.instance);
 
-final firebaseFunctionsProvider = Provider((_) => FirebaseFunctions.instance);
+late final Signal<SharedPreferences> sharedPrefsInstance;
 
-final sharedPrefsInstanceProvider = Provider<SharedPreferences>((ref) {
-  throw UnimplementedError('You must implement shared preferences');
+void initSharedPreferences(SharedPreferences prefs) {
+  sharedPrefsInstance = signal(prefs);
+}
+
+final webLocalStorage = computed(() {
+  return WebLocalStorageService(preferences: sharedPrefsInstance.value);
 });
 
-final webLocalStorageProvider = Provider((ref) {
-  return WebLocalStorageService(
-    preferences: ref.watch(sharedPrefsInstanceProvider),
-  );
-});
-
-final configProvider = Provider((ref) => Config());
+final appConfig = signal(Config());

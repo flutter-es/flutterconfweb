@@ -8,16 +8,15 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/home_colla
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_gallery.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends State<HomePage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override

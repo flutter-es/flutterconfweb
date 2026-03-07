@@ -1,10 +1,8 @@
 part of 'schedule_main.dart';
 
-enum _ScheduleCardPosition { row, column }
+enum ScheduleCardPosition { row, column }
 
-enum _ScheduleCardItemPosition { row, column }
-
-class _ScheduleCard extends ConsumerWidget {
+class _ScheduleCard extends StatelessWidget {
   const _ScheduleCard({
     required this.sessions,
     required this.color,
@@ -14,14 +12,14 @@ class _ScheduleCard extends ConsumerWidget {
 
   final List<ScheduleSessionModel> sessions;
   final Color color;
-  final _ScheduleCardPosition position;
-  final _ScheduleCardItemPosition itemPosition;
+  final ScheduleCardPosition position;
+  final ScheduleCardPosition itemPosition;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
     final scheduleTrack = sessions.firstOrNull;
 
     final scheduleChildren = <Widget>[
@@ -104,15 +102,15 @@ class _ScheduleCard extends ConsumerWidget {
   }
 }
 
-class _ScheduleDetail extends ConsumerWidget {
+class _ScheduleDetail extends StatelessWidget {
   const _ScheduleDetail({required this.session});
 
   final ScheduleSessionModel session;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
 
     final scheduleTypeTitle = switch (session.type) {
       .lighting => l10n.scheduleLightingTitle(session.track),

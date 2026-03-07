@@ -3,7 +3,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/home/domain/models/faq/faq_model.dart';
 import 'package:flutter_conf_latam/features/home/domain/models/sponsors/sponsor_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
 class HomeRepository {
   HomeRepository(this.database, this.functions);
@@ -40,9 +40,6 @@ class HomeRepository {
   }
 }
 
-final homeRepositoryProvider = Provider(
-  (ref) => HomeRepository(
-    ref.watch(firebaseFirestoreProvider),
-    ref.watch(firebaseFunctionsProvider),
-  ),
+final homeRepository = computed(
+  () => HomeRepository(firebaseFirestore.value, firebaseFunctions.value),
 );

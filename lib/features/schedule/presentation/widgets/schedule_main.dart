@@ -13,18 +13,18 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
 part 'schedule_main_dashboard.dart';
 
 part 'schedule_main_dashboard_item.dart';
 
-class ScheduleMain extends HookConsumerWidget {
+class ScheduleMain extends StatelessWidget {
   const ScheduleMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
     return SectionContainer(
       spacing: 48,
@@ -64,13 +64,13 @@ class ScheduleMain extends HookConsumerWidget {
   }
 }
 
-class _ScheduleDashboardContainer extends HookConsumerWidget {
+class _ScheduleDashboardContainer extends HookWidget {
   const _ScheduleDashboardContainer();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
 
     final selectedSchedule = useState(0);
     final scheduleDays = [l10n.scheduleOptionDayOne, l10n.scheduleOptionDayTwo];
@@ -85,7 +85,7 @@ class _ScheduleDashboardContainer extends HookConsumerWidget {
         child: Padding(
           padding: switch (context.screenSize) {
             .extraLarge || .large => const .all(30),
-            .normal || ScreenSize.small => const .all(20),
+            .normal || .small => const .all(20),
           },
           child: Column(
             spacing: 30,

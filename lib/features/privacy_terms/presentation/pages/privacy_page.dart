@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/view_model/privacy_terms_view_model.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/widgets/markdown_container.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class PrivacyPage extends ConsumerStatefulWidget {
+class PrivacyPage extends StatefulWidget {
   const PrivacyPage({super.key});
 
   @override
-  ConsumerState<PrivacyPage> createState() => _PrivacyPageState();
+  State<PrivacyPage> createState() => _PrivacyPageState();
 }
 
-class _PrivacyPageState extends ConsumerState<PrivacyPage> {
+class _PrivacyPageState extends State<PrivacyPage> {
   final analytics = FirebaseAnalytics.instance;
 
   @override
@@ -38,16 +38,17 @@ class _PrivacyPageState extends ConsumerState<PrivacyPage> {
   }
 }
 
-class _PrivacyMain extends ConsumerWidget {
+class _PrivacyMain extends StatelessWidget {
   const _PrivacyMain();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final privacyPolicyData = ref.watch(privacyPolicyProvider);
-
-    return privacyPolicyData.maybeWhen(
-      data: (data) => MarkdownContainer(markdownData: data),
-      orElse: Offstage.new,
-    );
+  Widget build(BuildContext context) {
+    return Watch((context) {
+      final privacyPolicyData = privacyPolicySignal.value;
+      return privacyPolicyData.maybeMap(
+        data: (data) => MarkdownContainer(markdownData: data),
+        orElse: () => const Offstage(),
+      );
+    });
   }
 }

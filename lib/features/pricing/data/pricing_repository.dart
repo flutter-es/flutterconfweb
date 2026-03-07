@@ -1,7 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/features/pricing/domain/models/tickets/tickets_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
 class PricingRepository {
   PricingRepository(this.functions);
@@ -23,6 +23,6 @@ class PricingRepository {
   }
 }
 
-final pricingRepositoryProvider = Provider(
-  (ref) => PricingRepository(ref.watch(firebaseFunctionsProvider)),
+final pricingRepository = computed(
+  () => PricingRepository(firebaseFunctions.value),
 );

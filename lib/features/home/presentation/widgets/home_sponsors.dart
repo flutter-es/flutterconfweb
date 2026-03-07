@@ -11,89 +11,91 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
 typedef SponsorLevelList = ({List<SponsorModel> sponsors, SponsorLevel level});
 
-class HomeSponsors extends ConsumerWidget {
+class HomeSponsors extends StatelessWidget {
   const HomeSponsors({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final sponsors = ref.watch(sponsorsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
-    return sponsors.maybeWhen(
-      data: (data) {
-        final sponsorsLevelList = <SponsorLevelList>[
-          (
-            sponsors: data.where((item) => item.isPlatinum).toList(),
-            level: .platinum,
-          ),
-          (
-            sponsors: data.where((item) => item.isGold).toList(),
-            level: .gold,
-          ),
-          (
-            sponsors: data.where((item) => item.isSilver).toList(),
-            level: .silver,
-          ),
-          (
-            sponsors: data.where((item) => item.isBronze).toList(),
-            level: .bronze,
-          ),
-          (
-            sponsors: data.where((item) => item.isInKind).toList(),
-            level: .inKind,
-          ),
-          (
-            sponsors: data.where((item) => item.isSenior).toList(),
-            level: .senior,
-          ),
-          (
-            sponsors: data.where((item) => item.isJunior).toList(),
-            level: .junior,
-          ),
-        ];
+    return Watch((context) {
+      final sponsors = sponsorsSignal.value;
+      return sponsors.maybeMap(
+        data: (data) {
+          final sponsorsLevelList = <SponsorLevelList>[
+            (
+              sponsors: data.where((item) => item.isPlatinum).toList(),
+              level: .platinum,
+            ),
+            (
+              sponsors: data.where((item) => item.isGold).toList(),
+              level: .gold,
+            ),
+            (
+              sponsors: data.where((item) => item.isSilver).toList(),
+              level: .silver,
+            ),
+            (
+              sponsors: data.where((item) => item.isBronze).toList(),
+              level: .bronze,
+            ),
+            (
+              sponsors: data.where((item) => item.isInKind).toList(),
+              level: .inKind,
+            ),
+            (
+              sponsors: data.where((item) => item.isSenior).toList(),
+              level: .senior,
+            ),
+            (
+              sponsors: data.where((item) => item.isJunior).toList(),
+              level: .junior,
+            ),
+          ];
 
-        return SectionContainer(
-          spacing: 30,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.homeSponsorsTitle,
-                size: switch (context.screenSize) {
-                  .extraLarge => 64,
-                  .large => 48,
-                  .normal || .small => 24,
-                },
+          return SectionContainer(
+            spacing: 30,
+            children: <Widget>[
+              TitleSubtitleText(
+                title: (
+                  text: l10n.homeSponsorsTitle,
+                  size: switch (context.screenSize) {
+                    .extraLarge => 64,
+                    .large => 48,
+                    .normal || .small => 24,
+                  },
+                ),
+                subtitle: (
+                  text: l10n.homeSponsorsMessage,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 24,
+                    .normal || .small => 16,
+                  },
+                ),
+                spacing: 12,
               ),
-              subtitle: (
-                text: l10n.homeSponsorsMessage,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 16,
-                },
+              Column(
+                spacing: 30,
+                mainAxisSize: .min,
+                children: <Widget>[
+                  for (final item in sponsorsLevelList)
+                    if (item.sponsors.isNotEmpty)
+                      _SponsorCardContainer(
+                        sponsors: item.sponsors,
+                        level: item.level,
+                      ),
+                ],
               ),
-              spacing: 12,
-            ),
-            Column(
-              spacing: 30,
-              mainAxisSize: .min,
-              children: <Widget>[
-                for (final item in sponsorsLevelList)
-                  if (item.sponsors.isNotEmpty)
-                    _SponsorCardContainer(
-                      sponsors: item.sponsors,
-                      level: item.level,
-                    ),
-              ],
-            ),
-          ],
-        );
-      },
-      orElse: Offstage.new,
-    );
+            ],
+          );
+        },
+        orElse: () => const Offstage(),
+      );
+    });
   }
 }
 
@@ -106,6 +108,7 @@ class _SponsorCardContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
+    final l10n = appLocalizations.watch(context);
 
     return CardContainer(
       borderColor: switch (level) {
@@ -121,28 +124,22 @@ class _SponsorCardContainer extends StatelessWidget {
         spacing: 30,
         mainAxisSize: .min,
         children: <Widget>[
-          Consumer(
-            builder: (_, ref, _) {
-              final l10n = ref.watch(appLocalizationsProvider);
-
-              return Text(
-                switch (level) {
-                  .platinum => l10n.homeSponsorPlatinum,
-                  .gold => l10n.homeSponsorGold,
-                  .silver => l10n.homeSponsorSilver,
-                  .bronze => l10n.homeSponsorsBronze,
-                  .inKind => l10n.homeSponsorInKind,
-                  .senior => l10n.homeSponsorSenior,
-                  .junior => l10n.homeSponsorJunior,
-                },
-                style: theme.typography.subH2Semibold.copyWith(
-                  fontSize: switch (context.screenSize) {
-                    .extraLarge => 32,
-                    _ => 24,
-                  },
-                ),
-              );
+          Text(
+            switch (level) {
+              .platinum => l10n.homeSponsorPlatinum,
+              .gold => l10n.homeSponsorGold,
+              .silver => l10n.homeSponsorSilver,
+              .bronze => l10n.homeSponsorsBronze,
+              .inKind => l10n.homeSponsorInKind,
+              .senior => l10n.homeSponsorSenior,
+              .junior => l10n.homeSponsorJunior,
             },
+            style: theme.typography.subH2Semibold.copyWith(
+              fontSize: switch (context.screenSize) {
+                .extraLarge => 32,
+                _ => 24,
+              },
+            ),
           ),
           if (sponsors.length == 1)
             _SponsorItem(item: sponsors.first)
