@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/widgets/container/dialog_container.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/widgets/speaker_detail_main.dart';
 
@@ -15,15 +15,13 @@ class SpeakerDetailPage extends StatefulWidget {
 }
 
 class _SpeakerDetailPageState extends State<SpeakerDetailPage> {
-  final analytics = FirebaseAnalytics.instance;
-
   @override
   void initState() {
     super.initState();
     unawaited(
-      analytics.logScreenView(
+      analyticsRepository.value.logScreenView(
         screenName: 'speakers_detail_page',
-        parameters: <String, Object>{'speakerId': widget.id},
+        screenClass: 'speaker_${widget.id}',
       ),
     );
   }
