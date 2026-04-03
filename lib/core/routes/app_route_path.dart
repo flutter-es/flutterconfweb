@@ -11,7 +11,8 @@ enum AppRoutePath {
   contact('contact'),
   */
   privacyPolicy('privacy-policy'),
-  termsConditions('terms-conditions');
+  termsConditions('terms-conditions')
+  ;
 
   const AppRoutePath(this.pathName);
 
