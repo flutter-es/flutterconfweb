@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/core/widgets/container/pricing_container.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_collaborations.dart';
@@ -17,12 +17,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final analytics = FirebaseAnalytics.instance;
-
   @override
   void initState() {
     super.initState();
-    unawaited(analytics.logScreenView(screenName: 'home_page'));
+    unawaited(analyticsRepository.value.logScreenView(screenName: 'home_page'));
   }
 
   @override

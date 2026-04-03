@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/card_container.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/home/domain/models/sponsors/sponsor_model.dart';
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
@@ -13,7 +13,7 @@ import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:signals/signals_flutter.dart';
 
-typedef SponsorLevelList = ({List<SponsorModel> sponsors, SponsorLevel level});
+typedef SponsorTierList = ({List<SponsorEntity> sponsors, SponsorsTier tier});
 
 class HomeSponsors extends StatelessWidget {
   const HomeSponsors({super.key});
@@ -26,34 +26,34 @@ class HomeSponsors extends StatelessWidget {
       final sponsors = sponsorsSignal.value;
       return sponsors.maybeMap(
         data: (data) {
-          final sponsorsLevelList = <SponsorLevelList>[
+          final sponsorsTierList = <SponsorTierList>[
             (
-              sponsors: data.where((item) => item.isPlatinum).toList(),
-              level: .platinum,
+              sponsors: data.where((item) => item.tier == .platinum).toList(),
+              tier: .platinum,
             ),
             (
-              sponsors: data.where((item) => item.isGold).toList(),
-              level: .gold,
+              sponsors: data.where((item) => item.tier == .gold).toList(),
+              tier: .gold,
             ),
             (
-              sponsors: data.where((item) => item.isSilver).toList(),
-              level: .silver,
+              sponsors: data.where((item) => item.tier == .silver).toList(),
+              tier: .silver,
             ),
             (
-              sponsors: data.where((item) => item.isBronze).toList(),
-              level: .bronze,
+              sponsors: data.where((item) => item.tier == .bronze).toList(),
+              tier: .bronze,
             ),
             (
-              sponsors: data.where((item) => item.isInKind).toList(),
-              level: .inKind,
+              sponsors: data.where((item) => item.tier == .inKind).toList(),
+              tier: .inKind,
             ),
             (
-              sponsors: data.where((item) => item.isSenior).toList(),
-              level: .senior,
+              sponsors: data.where((item) => item.tier == .senior).toList(),
+              tier: .senior,
             ),
             (
-              sponsors: data.where((item) => item.isJunior).toList(),
-              level: .junior,
+              sponsors: data.where((item) => item.tier == .junior).toList(),
+              tier: .junior,
             ),
           ];
 
@@ -82,11 +82,11 @@ class HomeSponsors extends StatelessWidget {
                 spacing: 30,
                 mainAxisSize: .min,
                 children: <Widget>[
-                  for (final item in sponsorsLevelList)
+                  for (final item in sponsorsTierList)
                     if (item.sponsors.isNotEmpty)
                       _SponsorCardContainer(
                         sponsors: item.sponsors,
-                        level: item.level,
+                        tier: item.tier,
                       ),
                 ],
               ),
@@ -100,10 +100,10 @@ class HomeSponsors extends StatelessWidget {
 }
 
 class _SponsorCardContainer extends StatelessWidget {
-  const _SponsorCardContainer({required this.sponsors, required this.level});
+  const _SponsorCardContainer({required this.sponsors, required this.tier});
 
-  final List<SponsorModel> sponsors;
-  final SponsorLevel level;
+  final List<SponsorEntity> sponsors;
+  final SponsorsTier tier;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +111,7 @@ class _SponsorCardContainer extends StatelessWidget {
     final l10n = appLocalizations.watch(context);
 
     return CardContainer(
-      borderColor: switch (level) {
+      borderColor: switch (tier) {
         .platinum => FlutterLatamColors.blue,
         .gold => FlutterLatamColors.yellow,
         .silver => FlutterLatamColors.green,
@@ -125,7 +125,7 @@ class _SponsorCardContainer extends StatelessWidget {
         mainAxisSize: .min,
         children: <Widget>[
           Text(
-            switch (level) {
+            switch (tier) {
               .platinum => l10n.homeSponsorPlatinum,
               .gold => l10n.homeSponsorGold,
               .silver => l10n.homeSponsorSilver,
@@ -163,19 +163,19 @@ class _SponsorCardContainer extends StatelessWidget {
 class _SponsorItem extends StatelessWidget {
   const _SponsorItem({required this.item});
 
-  final SponsorModel item;
+  final SponsorEntity item;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: InkWell(
-        onTap: () => Utils.launchUrlLink(item.url),
+        onTap: () => Utils.launchUrlLink(item.websiteUrl ?? ''),
         child: SizedBox.fromSize(
           size: switch (context.screenSize) {
             .extraLarge => const .fromHeight(100),
             _ => const .fromHeight(60),
           },
-          child: SvgPicture.network(item.logo, semanticsLabel: item.name),
+          child: SvgPicture.network(item.logoUrl, semanticsLabel: item.name),
         ),
       ),
     );

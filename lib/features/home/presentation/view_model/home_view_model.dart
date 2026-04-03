@@ -1,22 +1,24 @@
 import 'dart:async';
-import 'dart:ui';
 
+import 'package:flutter_conf_common/flutter_conf_common.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
-import 'package:flutter_conf_latam/features/home/data/home_repository.dart';
-import 'package:flutter_conf_latam/features/home/domain/models/faq/faq_model.dart';
-import 'package:flutter_conf_latam/features/home/domain/models/sponsors/sponsor_model.dart';
-import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals.dart';
 
-final sponsorsSignal = futureSignal<List<SponsorModel>>(() async {
-  return homeRepository.value.getSponsors();
+final sponsorsSignal = futureSignal<List<SponsorEntity>>(() async {
+  final result = await sponsorRepository.value.listActiveSponsors();
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
 
-final faqListSignal = futureSignal<List<FaqModel>>(() async {
-  final localeName = appLocalizations.value.localeName;
-  return homeRepository.value.getFaqData(
-    language: Locale(localeName).languageCode,
-  );
+final faqListSignal = futureSignal<List<FaqEntity>>(() async {
+  final result = await faqRepository.value.listPublishedFaqs();
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
 
 final galleryPreviewSignal = futureSignal<List<String>>(() async {
