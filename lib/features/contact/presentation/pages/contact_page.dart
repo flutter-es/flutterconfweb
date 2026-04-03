@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
@@ -23,12 +22,12 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
-  final analytics = FirebaseAnalytics.instance;
-
   @override
   void initState() {
     super.initState();
-    unawaited(analytics.logScreenView(screenName: 'contact_page'));
+    unawaited(
+      analyticsRepository.value.logScreenView(screenName: 'contact_page'),
+    );
   }
 
   @override
@@ -60,16 +59,16 @@ class _ContactMain extends StatelessWidget {
           title: (
             text: l10n.contactMainTitle,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 24,
             },
           ),
           subtitle: (
             text: l10n.contactMainDescription,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
             },
           ),
         ),
