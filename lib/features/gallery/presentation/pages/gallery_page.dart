@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/gallery/presentation/widgets/gallery_list.dart';
 import 'package:flutter_conf_latam/features/gallery/presentation/widgets/gallery_main.dart';
@@ -14,12 +14,12 @@ class GalleryPage extends StatefulWidget {
 }
 
 class _GalleryPageState extends State<GalleryPage> {
-  final analytics = FirebaseAnalytics.instance;
-
   @override
   void initState() {
     super.initState();
-    unawaited(analytics.logScreenView(screenName: 'gallery_page'));
+    unawaited(
+      analyticsRepository.value.logScreenView(screenName: 'gallery_page'),
+    );
   }
 
   @override
