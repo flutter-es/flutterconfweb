@@ -67,8 +67,14 @@ class TitleSubtitleTextContainer extends StatelessWidget {
       spacing: 16,
       crossAxisAlignment: crossAxisAlignment,
       children: <Widget>[
-        Container(width: 200, height: 24, decoration: decoration),
-        Container(width: 100, height: 24, decoration: decoration),
+        SizedBox.fromSize(
+          size: const Size(200, 24),
+          child: DecoratedBox(decoration: decoration),
+        ),
+        SizedBox.fromSize(
+          size: const Size(100, 24),
+          child: DecoratedBox(decoration: decoration),
+        ),
       ],
     );
   }

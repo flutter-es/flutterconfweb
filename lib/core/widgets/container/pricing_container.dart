@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/pricing/domain/models/tickets/tickets_model.dart';
 import 'package:flutter_conf_latam/features/pricing/presentation/view_model/pricing_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
@@ -82,7 +82,7 @@ class PricingContainer extends StatelessWidget {
 class _PricingCardItem extends StatelessWidget {
   const _PricingCardItem({required this.detail});
 
-  final TicketsModel detail;
+  final TicketPricingEntity detail;
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +90,9 @@ class _PricingCardItem extends StatelessWidget {
 
     final l10n = appLocalizations.watch(context);
     final config = appConfig.watch(context);
+
+    final isSpanish = l10n.localeName == 'es';
+    final benefits = isSpanish ? detail.benefitsEs : detail.benefitsEn;
 
     final now = DateTime.now();
     final isWithinDateRange =
@@ -120,12 +123,11 @@ class _PricingCardItem extends StatelessWidget {
             padding: const .symmetric(vertical: 28, horizontal: 30),
             child: Center(
               child: Text(
-                detail.title,
+                detail.name,
                 style: theme.typography.body1Regular.copyWith(
-                  color: switch (detail.type) {
-                    .early => FlutterLatamColors.darkBlue,
-                    _ => FlutterLatamColors.white,
-                  },
+                  color: isWithinDateRange
+                      ? FlutterLatamColors.darkBlue
+                      : FlutterLatamColors.white,
                 ),
               ),
             ),
@@ -158,7 +160,7 @@ class _PricingCardItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\$ ${detail.price.toStringAsFixed(0)}',
+                    '${detail.currency} ${detail.price.toStringAsFixed(0)}',
                     style: theme.typography.h1Bold.copyWith(
                       fontSize: switch (context.screenSize) {
                         .extraLarge || .large => 64,
@@ -171,7 +173,7 @@ class _PricingCardItem extends StatelessWidget {
                     ),
                   ),
                   ...[
-                    for (final item in detail.features)
+                    for (final item in benefits)
                       Row(
                         mainAxisSize: .min,
                         crossAxisAlignment: .start,
