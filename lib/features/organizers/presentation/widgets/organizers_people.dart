@@ -71,26 +71,26 @@ class _OrganizersPeopleState extends State<OrganizersPeople> {
                 },
                 child: _OrganizerListContainer(
                   children: <Widget>[
-                    for (final item in data.galleryList)
+                    for (final item in data.organizerList)
                       Center(
                         child: Column(
                           spacing: 20,
                           children: <Widget>[
                             CharacterImage(
-                              imageUrl: item.imageUrl,
-                              flagImageUrl: item.countryFlag,
+                              imageUrl: item.user.avatarUrl ?? '',
+                              flagImageUrl: item.user.countryFlag ?? '',
                               size: size,
                             ),
                             TitleSubtitleText(
                               title: (
-                                text: item.name,
+                                text: item.user.name,
                                 size: switch (context.screenSize) {
                                   .extraLarge || .large => 24,
                                   .normal || .small => 12,
                                 },
                               ),
                               subtitle: (
-                                text: item.levels.join(' - '),
+                                text: item.areas.map((a) => a.name).join(' - '),
                                 size: switch (context.screenSize) {
                                   .extraLarge || .large => 16,
                                   .normal || .small => 12,

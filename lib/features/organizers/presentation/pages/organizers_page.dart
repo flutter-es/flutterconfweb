@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/widgets/organizers_communities.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/widgets/organizers_people.dart';
@@ -14,12 +14,12 @@ class OrganizersPage extends StatefulWidget {
 }
 
 class _OrganizersPageState extends State<OrganizersPage> {
-  final analytics = FirebaseAnalytics.instance;
-
   @override
   void initState() {
     super.initState();
-    unawaited(analytics.logScreenView(screenName: 'organizers_page'));
+    unawaited(
+      analyticsRepository.value.logScreenView(screenName: 'organizers_page'),
+    );
   }
 
   @override

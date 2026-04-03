@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
@@ -46,9 +49,17 @@ class OrganizersCommunities extends StatelessWidget {
               children: <Widget>[
                 for (final item in data)
                   InkWell(
-                    onTap: () => Utils.launchUrlLink(item.url),
+                    onTap: () {
+                      final socialLink = item.socialLinks?.firstWhereOrNull(
+                        (l) => l.type == .website,
+                      );
+
+                      if (socialLink != null) {
+                        unawaited(Utils.launchUrlLink(socialLink.url));
+                      }
+                    },
                     child: SingleImage(
-                      imageUrl: item.image,
+                      imageUrl: item.logoUrl ?? '',
                       borderRadius: 20,
                       size: const .fromHeight(180),
                     ),
