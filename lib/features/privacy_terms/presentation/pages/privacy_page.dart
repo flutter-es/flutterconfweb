@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/view_model/privacy_terms_view_model.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/widgets/markdown_container.dart';
@@ -15,12 +15,12 @@ class PrivacyPage extends StatefulWidget {
 }
 
 class _PrivacyPageState extends State<PrivacyPage> {
-  final analytics = FirebaseAnalytics.instance;
-
   @override
   void initState() {
     super.initState();
-    unawaited(analytics.logScreenView(screenName: 'privacy_page'));
+    unawaited(
+      analyticsRepository.value.logScreenView(screenName: 'privacy_page'),
+    );
   }
 
   @override
