@@ -2,8 +2,9 @@ import 'dart:async';
 import 'dart:js_interop';
 import 'dart:ui';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/routes/app_routes.dart';
 import 'package:flutter_conf_latam/l10n/gen/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -26,19 +27,24 @@ class FlutterConfApp extends StatefulWidget {
 
 class _FlutterConfAppState extends State<FlutterConfApp> {
   final _appRoutes = AppRoutes();
-  final _analytics = FirebaseAnalytics.instance;
 
   @override
   void initState() {
     super.initState();
-    unawaited(_analytics.logAppOpen());
+    final analytics = analyticsRepository.value;
+
+    unawaited(
+      analytics.logEvent(event: const AnalyticsEvent(name: 'app_open')),
+    );
 
     final initTime = window.initTime;
     final currentTime = DateTime.now().millisecondsSinceEpoch;
 
     final diff = (currentTime - initTime) / 1000;
     unawaited(
-      _analytics.logEvent(name: 'render_time', parameters: {'diff': diff}),
+      analytics.logEvent(
+        event: AnalyticsEvent(name: 'render_time', parameters: {'diff': diff}),
+      ),
     );
   }
 
