@@ -44,8 +44,8 @@ class _ScheduleDashboard extends HookWidget {
                       spacing: 10,
                       mainAxisSize: .min,
                       children: <Widget>[
-                        for (final item in daySchedule.slots)
-                          _ScheduleSlotItem(slot: item),
+                        for (final slot in daySchedule.scheduleSlots)
+                          _ScheduleSlotItem(slot: slot),
                       ],
                     ),
                   ),
@@ -64,10 +64,11 @@ class _ScheduleDashboard extends HookWidget {
 class _ScheduleSlotItem extends StatelessWidget {
   const _ScheduleSlotItem({required this.slot});
 
-  final ScheduleSlotModel slot;
+  final ScheduleSlotInfo slot;
 
   @override
   Widget build(BuildContext context) {
+    final slotSessions = slot.scheduleSlotSessions;
     return IntrinsicHeight(
       child: Row(
         spacing: 10,
@@ -79,23 +80,23 @@ class _ScheduleSlotItem extends StatelessWidget {
             },
             child: Column(
               spacing: 10,
-              children: slot.scheduleSlots.others.entries.map((item) {
+              children: slotSessions.others.entries.map((item) {
                 return _ScheduleCard(
                   sessions: item.value,
                   color: switch (item.key.type) {
                     .checkIn => FlutterLatamColors.purple,
                     .keynote || .panel => FlutterLatamColors.lightGreen,
                     .breaks || .lunch => FlutterLatamColors.purple,
-                    .lighting => FlutterLatamColors.pink,
-                    .session => FlutterLatamColors.blue,
-                    .finish => FlutterLatamColors.mediumRed,
+                    .lightningTalk => FlutterLatamColors.pink,
+                    .talk => FlutterLatamColors.blue,
+                    .closing => FlutterLatamColors.mediumRed,
                     _ => Colors.transparent,
                   },
                   position: switch (context.screenSize) {
                     .extraLarge => .row,
                     _ => .column,
                   },
-                  itemPosition: slot.scheduleSlots.workshopsHacks.isNotEmpty
+                  itemPosition: slotSessions.workshopsHacks.isNotEmpty
                       ? .column
                       : switch (context.screenSize) {
                           .extraLarge || .large => .row,
@@ -105,7 +106,7 @@ class _ScheduleSlotItem extends StatelessWidget {
               }).toList(),
             ),
           ),
-          if (slot.scheduleSlots.workshopsHacks.isNotEmpty)
+          if (slotSessions.workshopsHacks.isNotEmpty)
             Flexible(
               flex: switch (context.screenSize) {
                 .small || .normal => 3,
@@ -113,7 +114,7 @@ class _ScheduleSlotItem extends StatelessWidget {
               },
               child: Column(
                 spacing: 10,
-                children: slot.scheduleSlots.workshopsHacks.entries.map((item) {
+                children: slotSessions.workshopsHacks.entries.map((item) {
                   return Expanded(
                     child: _ScheduleCard(
                       sessions: item.value,

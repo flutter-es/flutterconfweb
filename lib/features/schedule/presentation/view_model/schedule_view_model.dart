@@ -1,31 +1,31 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_conf_latam/features/schedule/data/schedule_repository.dart';
-import 'package:flutter_conf_latam/features/schedule/domain/models/schedule_response_model.dart';
-import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_common/flutter_conf_common.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:signals/signals.dart';
 
-final scheduleSignal = futureSignal<ScheduleResponseModel>(() async {
-  final localeName = appLocalizations.value.localeName;
-  return scheduleRepository.value.getSchedules(
-    language: Locale(localeName).languageCode,
-  );
+final scheduleSignal = futureSignal<List<EventDayEntity>>(() async {
+  final result = await eventDayRepository.value.listEventDaysByYear(year: 2026);
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
 
-final daysScheduleSignal = computed<AsyncState<List<ScheduleDayModel?>>>(() {
+final daysScheduleSignal = computed<AsyncState<List<EventDayEntity?>>>(() {
   final scheduleState = scheduleSignal.value;
 
   return scheduleState.map(
-    data: (schedule) {
-      return AsyncState.data(<ScheduleDayModel?>[
-        schedule.days.firstWhereOrNull((item) => item.day == 1),
-        schedule.days.firstWhereOrNull((item) => item.day == 2),
+    data: (days) {
+      return AsyncState.data(<EventDayEntity?>[
+        days.firstWhereOrNull((item) => item.dayNumber == 1),
+        days.firstWhereOrNull((item) => item.dayNumber == 2),
       ]);
     },
-    error: AsyncState<List<ScheduleDayModel?>>.error,
-    loading: AsyncState<List<ScheduleDayModel?>>.loading,
+    error: AsyncState<List<EventDayEntity?>>.error,
+    loading: AsyncState<List<EventDayEntity?>>.loading,
   );
 });
 
