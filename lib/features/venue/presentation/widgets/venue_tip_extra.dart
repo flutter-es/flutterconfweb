@@ -6,7 +6,6 @@ import 'package:flutter_conf_latam/core/widgets/container/section_container.dart
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/venue/presentation/view_model/venue_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:signals/signals_flutter.dart';
 
 class VenueTipExtra extends StatelessWidget {
@@ -59,13 +58,17 @@ class VenueTipExtra extends StatelessWidget {
                         description: l10n.localeName == 'es'
                             ? tip.descriptionEs
                             : tip.descriptionEn,
-                        imagePath: switch (tip.category) {
-                          .security => Assets.images.about.security,
-                          .transportation => Assets.images.about.taxi,
-                          .deliveryApps => Assets.images.about.delivery,
-                          .accommodation => Assets.images.about.university,
-                          .food => Assets.images.about.food,
-                          _ => Assets.images.about.map,
+                        icon: switch (tip.category) {
+                          .security => Icons.security,
+                          .transportation => Icons.directions_bus,
+                          .deliveryApps => Icons.delivery_dining,
+                          .accommodation => Icons.hotel,
+                          .food => Icons.restaurant,
+                          .weather => Icons.cloud,
+                          .currency => Icons.attach_money,
+                          .language => Icons.language,
+                          .emergency => Icons.emergency,
+                          .other => Icons.info,
                         },
                       ),
                   ],

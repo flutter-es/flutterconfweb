@@ -14,76 +14,6 @@ import 'package:signals/signals_flutter.dart';
 class VenuePlace extends StatelessWidget {
   const VenuePlace({super.key});
 
-  String _amenityImage(VenueAmenities amenity) {
-    return switch (amenity) {
-      .wifi || .chargingStations => Assets.images.about.university,
-      .catering ||
-      .cafeteria ||
-      .waterStations ||
-      .vendingMachines => Assets.images.about.food,
-      .parking ||
-      .valetParking ||
-      .publicTransportAccess => Assets.images.about.taxi,
-      .accessibility ||
-      .elevators ||
-      .wheelchairRamps ||
-      .restrooms ||
-      .nursingRoom => Assets.images.about.security,
-      _ => Assets.images.about.map,
-    };
-  }
-
-  String _amenityTitle(VenueAmenities amenity, AppLocalizations l10n) {
-    return switch (amenity) {
-      .wifi => l10n.amenityWifi,
-      .chargingStations => l10n.amenityChargingStations,
-      .accessibility => l10n.amenityAccessibility,
-      .elevators => l10n.amenityElevators,
-      .wheelchairRamps => l10n.amenityWheelchairRamps,
-      .parking => l10n.amenityParking,
-      .valetParking => l10n.amenityValetParking,
-      .publicTransportAccess => l10n.amenityPublicTransportAccess,
-      .catering => l10n.amenityCatering,
-      .cafeteria => l10n.amenityCafeteria,
-      .waterStations => l10n.amenityWaterStations,
-      .vendingMachines => l10n.amenityVendingMachines,
-      .airConditioning => l10n.amenityAirConditioning,
-      .restrooms => l10n.amenityRestrooms,
-      .lockers => l10n.amenityLockers,
-      .coatCheck => l10n.amenityCoatCheck,
-      .atm => l10n.amenityAtm,
-      .security => l10n.amenitySecurity,
-      .firstAid => l10n.amenityFirstAid,
-      .nursingRoom => l10n.amenityNursingRoom,
-      .prayerRoom => l10n.amenityPrayerRoom,
-      .smokingArea => l10n.amenitySmokingArea,
-      .outdoorArea => l10n.amenityOutdoorArea,
-      .greenRoom => l10n.amenityGreenRoom,
-      .quietRoom => l10n.amenityQuietRoom,
-      .projectors => l10n.amenityProjectors,
-      .soundSystem => l10n.amenitySoundSystem,
-      .liveStreaming => l10n.amenityLiveStreaming,
-      .translationServices => l10n.amenityTranslationServices,
-      .other => l10n.amenityOther,
-    };
-  }
-
-  String _amenityDescription(VenueAmenities amenity, AppLocalizations l10n) {
-    return switch (amenity) {
-      .wifi => l10n.amenityWifiDescription,
-      .chargingStations => l10n.amenityChargingStationsDescription,
-      .accessibility => l10n.amenityAccessibilityDescription,
-      .parking => l10n.amenityParkingDescription,
-      .publicTransportAccess => l10n.amenityPublicTransportAccessDescription,
-      .catering => l10n.amenityCateringDescription,
-      .cafeteria => l10n.amenityCafeteriaDescription,
-      .waterStations => l10n.amenityWaterStationsDescription,
-      .restrooms => l10n.amenityRestroomsDescription,
-      .firstAid => l10n.amenityFirstAidDescription,
-      _ => _amenityTitle(amenity, l10n),
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = appLocalizations.watch(context);
@@ -193,7 +123,7 @@ class VenuePlace extends StatelessWidget {
                           amenity.customName ??
                           _amenityTitle(amenity.type, l10n),
                       description: _amenityDescription(amenity.type, l10n),
-                      imagePath: _amenityImage(amenity.type),
+                      icon: _amenityIcon(amenity.type),
                     ),
                 ],
               ),
@@ -203,5 +133,91 @@ class VenuePlace extends StatelessWidget {
         orElse: () => const Offstage(),
       );
     });
+  }
+
+  String _amenityTitle(VenueAmenities amenity, AppLocalizations l10n) {
+    return switch (amenity) {
+      .wifi => l10n.amenityWifi,
+      .chargingStations => l10n.amenityChargingStations,
+      .accessibility => l10n.amenityAccessibility,
+      .elevators => l10n.amenityElevators,
+      .wheelchairRamps => l10n.amenityWheelchairRamps,
+      .parking => l10n.amenityParking,
+      .valetParking => l10n.amenityValetParking,
+      .publicTransportAccess => l10n.amenityPublicTransportAccess,
+      .catering => l10n.amenityCatering,
+      .cafeteria => l10n.amenityCafeteria,
+      .waterStations => l10n.amenityWaterStations,
+      .vendingMachines => l10n.amenityVendingMachines,
+      .airConditioning => l10n.amenityAirConditioning,
+      .restrooms => l10n.amenityRestrooms,
+      .lockers => l10n.amenityLockers,
+      .coatCheck => l10n.amenityCoatCheck,
+      .atm => l10n.amenityAtm,
+      .security => l10n.amenitySecurity,
+      .firstAid => l10n.amenityFirstAid,
+      .nursingRoom => l10n.amenityNursingRoom,
+      .prayerRoom => l10n.amenityPrayerRoom,
+      .smokingArea => l10n.amenitySmokingArea,
+      .outdoorArea => l10n.amenityOutdoorArea,
+      .greenRoom => l10n.amenityGreenRoom,
+      .quietRoom => l10n.amenityQuietRoom,
+      .projectors => l10n.amenityProjectors,
+      .soundSystem => l10n.amenitySoundSystem,
+      .liveStreaming => l10n.amenityLiveStreaming,
+      .translationServices => l10n.amenityTranslationServices,
+      .other => l10n.amenityOther,
+    };
+  }
+
+  String _amenityDescription(VenueAmenities amenity, AppLocalizations l10n) {
+    return switch (amenity) {
+      .wifi => l10n.amenityWifiDescription,
+      .chargingStations => l10n.amenityChargingStationsDescription,
+      .accessibility => l10n.amenityAccessibilityDescription,
+      .parking => l10n.amenityParkingDescription,
+      .publicTransportAccess => l10n.amenityPublicTransportAccessDescription,
+      .catering => l10n.amenityCateringDescription,
+      .cafeteria => l10n.amenityCafeteriaDescription,
+      .waterStations => l10n.amenityWaterStationsDescription,
+      .restrooms => l10n.amenityRestroomsDescription,
+      .firstAid => l10n.amenityFirstAidDescription,
+      _ => _amenityTitle(amenity, l10n),
+    };
+  }
+
+  IconData _amenityIcon(VenueAmenities amenity) {
+    return switch (amenity) {
+      .wifi => Icons.wifi,
+      .chargingStations => Icons.electrical_services,
+      .accessibility => Icons.accessible,
+      .elevators => Icons.elevator,
+      .wheelchairRamps => Icons.accessible_forward,
+      .parking => Icons.local_parking,
+      .valetParking => Icons.car_rental,
+      .publicTransportAccess => Icons.directions_bus,
+      .catering => Icons.restaurant,
+      .cafeteria => Icons.coffee,
+      .waterStations => Icons.water_drop,
+      .vendingMachines => Icons.local_drink,
+      .airConditioning => Icons.ac_unit,
+      .restrooms => Icons.wc,
+      .lockers => Icons.lock,
+      .coatCheck => Icons.checkroom,
+      .atm => Icons.atm,
+      .security => Icons.security,
+      .firstAid => Icons.medical_services,
+      .nursingRoom => Icons.baby_changing_station,
+      .prayerRoom => Icons.mosque,
+      .smokingArea => Icons.smoking_rooms,
+      .outdoorArea => Icons.park,
+      .greenRoom => Icons.meeting_room,
+      .quietRoom => Icons.do_not_disturb,
+      .projectors => Icons.videocam,
+      .soundSystem => Icons.speaker,
+      .liveStreaming => Icons.live_tv,
+      .translationServices => Icons.translate,
+      .other => Icons.more_horiz,
+    };
   }
 }
