@@ -102,7 +102,6 @@ flutter:
     - assets/images/icons/
     - assets/images/novelties/
     - assets/images/sponsors/
-    - assets/images/venue/
     - assets/markdown/
 
   fonts:
