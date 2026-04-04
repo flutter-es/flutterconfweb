@@ -119,7 +119,10 @@ class _ScheduleDetail extends StatelessWidget {
       .workshop => l10n.scheduleWorkshopTitle,
       _ => null,
     };
-    // final requirements = session.requirements ?? [];
+
+    final prerequisites = l10n.localeName == 'es'
+        ? session.callForPaper?.prerequisitesEs ?? []
+        : session.callForPaper?.prerequisitesEn ?? [];
 
     final scheduleChild = Column(
       mainAxisSize: .min,
@@ -148,28 +151,28 @@ class _ScheduleDetail extends StatelessWidget {
           ),
         if (session.speakers.isNotEmpty)
           _ScheduleDetailSpeaker(speakers: session.speakers),
-        // if (requirements.isNotEmpty)
-        //   Column(
-        //     spacing: 4,
-        //     crossAxisAlignment: .start,
-        //     children: <Widget>[
-        //       Text(
-        //         l10n.scheduleRequirementTitle,
-        //         style: switch (context.screenSize) {
-        //           .extraLarge || .large => theme.typography.body3Regular,
-        //           .normal || .small => theme.typography.body4Regular,
-        //         },
-        //       ),
-        //       for (final item in requirements)
-        //         Text(
-        //           '${'\u2022 '} $item',
-        //           style: switch (context.screenSize) {
-        //             .extraLarge || .large => theme.typography.body4Regular,
-        //             .normal || .small => theme.typography.captionRegular,
-        //           },
-        //         ),
-        //     ],
-        //   ),
+        if (prerequisites.isNotEmpty)
+          Column(
+            spacing: 4,
+            crossAxisAlignment: .start,
+            children: <Widget>[
+              Text(
+                l10n.scheduleRequirementTitle,
+                style: switch (context.screenSize) {
+                  .extraLarge || .large => theme.typography.body3Regular,
+                  .normal || .small => theme.typography.body4Regular,
+                },
+              ),
+              for (final item in prerequisites)
+                Text(
+                  '${'\u2022 '} $item',
+                  style: switch (context.screenSize) {
+                    .extraLarge || .large => theme.typography.body4Regular,
+                    .normal || .small => theme.typography.captionRegular,
+                  },
+                ),
+            ],
+          ),
       ],
     );
 
