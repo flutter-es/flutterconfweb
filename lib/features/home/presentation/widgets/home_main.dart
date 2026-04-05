@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
@@ -12,17 +10,17 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class HomeMain extends ConsumerWidget {
+class HomeMain extends StatelessWidget {
   const HomeMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     return DecoratedBox(
       decoration: const BoxDecoration(
@@ -92,9 +90,7 @@ class HomeMain extends ConsumerWidget {
                 },
               ),
               recognizer: TapGestureRecognizer()
-                ..onTap = () => unawaited(
-                  Utils.launchUrlLink(config.countryPageUrl),
-                ),
+                ..onTap = () => Utils.launchUrlLink(config.countryPageUrl),
             ),
           ),
           CountDownText(

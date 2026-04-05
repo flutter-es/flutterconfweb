@@ -6,21 +6,21 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
 enum ButtonPosition { row, column }
 
-class ExtraButtons extends ConsumerWidget {
+class ExtraButtons extends StatelessWidget {
   const ExtraButtons({required this.position, super.key});
 
   final ButtonPosition position;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final language = ref.watch(currentLocalizationProvider).languageCode;
+  Widget build(BuildContext context) {
+    final language = currentLocale.watch(context).languageCode;
 
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     final children = <Widget>[
       FclButton.secondary(

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
@@ -13,7 +12,7 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -23,12 +22,12 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
-  final analytics = FirebaseAnalytics.instance;
-
   @override
   void initState() {
     super.initState();
-    unawaited(analytics.logScreenView(screenName: 'contact_page'));
+    unawaited(
+      analyticsRepository.value.logScreenView(screenName: 'contact_page'),
+    );
   }
 
   @override
@@ -46,12 +45,12 @@ class _ContactPageState extends State<ContactPage> {
   }
 }
 
-class _ContactMain extends ConsumerWidget {
+class _ContactMain extends StatelessWidget {
   const _ContactMain();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
     return SectionContainer(
       spacing: 24,
@@ -60,16 +59,16 @@ class _ContactMain extends ConsumerWidget {
           title: (
             text: l10n.contactMainTitle,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge => 64,
-              ScreenSize.large => 48,
-              ScreenSize.normal || ScreenSize.small => 24,
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 24,
             },
           ),
           subtitle: (
             text: l10n.contactMainDescription,
             size: switch (context.screenSize) {
-              ScreenSize.extraLarge || ScreenSize.large => 24,
-              ScreenSize.normal || ScreenSize.small => 16,
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
             },
           ),
         ),
@@ -79,15 +78,15 @@ class _ContactMain extends ConsumerWidget {
   }
 }
 
-class _ContactEmailCard extends ConsumerWidget {
+class _ContactEmailCard extends StatelessWidget {
   const _ContactEmailCard();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -96,8 +95,8 @@ class _ContactEmailCard extends ConsumerWidget {
       ),
       child: Padding(
         padding: .all(switch (context.screenSize) {
-          ScreenSize.extraLarge || ScreenSize.large => 28,
-          ScreenSize.normal || ScreenSize.small => 12,
+          .extraLarge || .large => 28,
+          .normal || .small => 12,
         }),
         child: Flex(
           spacing: 10,

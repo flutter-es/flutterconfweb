@@ -1,34 +1,55 @@
-import 'package:flutter_conf_latam/core/providers/shared_providers.dart';
-import 'package:flutter_conf_latam/features/organizers/data/organizers_repository.dart';
-import 'package:flutter_conf_latam/features/organizers/domain/models/organizers/organizers_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'dart:async';
 
-final organizersDataProvider = FutureProvider((ref) {
-  return ref.watch(organizersRepositoryProvider).getOrganizers();
+import 'package:flutter_conf_common/flutter_conf_common.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
+import 'package:flutter_conf_latam/core/providers/shared_providers.dart';
+import 'package:signals/signals.dart';
+
+final organizersDataSignal = futureSignal<List<OrganizerEntity>>(() async {
+  final result = await organizerRepository.value.listAllOrganizers();
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
 
-typedef OrganizersInfo = ({List<OrganizersModel> galleryList, int totalList});
+typedef OrganizersInfo = ({List<OrganizerEntity> organizerList, int totalList});
 
-final organizersProvider = FutureProvider<OrganizersInfo>((ref) async {
-  final pagination = ref.watch(paginationProvider);
+final organizersSignal = computed<AsyncState<OrganizersInfo>>(() {
+  final dataState = organizersDataSignal.value;
 
-  if (pagination.page != 1) {
-    await Future<void>.delayed(const Duration(seconds: 1));
-  }
-  final list = await ref.watch(organizersDataProvider.future);
+  return dataState.map(
+    data: (list) {
+      final pagination = paginationController.value;
+      final startIndex = (pagination.page - 1) * pagination.pageSize;
+      final endIndex = startIndex + pagination.pageSize;
 
-  final startIndex = (pagination.page - 1) * pagination.pageSize;
-  final endIndex = startIndex + pagination.pageSize;
+      if (startIndex >= list.length) {
+        return AsyncState.data(
+          (organizerList: <OrganizerEntity>[], totalList: 0),
+        );
+      }
 
-  if (startIndex >= list.length) {
-    return (galleryList: <OrganizersModel>[], totalList: 0);
-  }
-  return (
-    galleryList: list.sublist(startIndex, endIndex.clamp(0, list.length)),
-    totalList: list.length,
+      return AsyncState.data((
+        organizerList: list.sublist(startIndex, endIndex.clamp(0, list.length)),
+        totalList: list.length,
+      ));
+    },
+    error: AsyncState<OrganizersInfo>.error,
+    loading: AsyncState<OrganizersInfo>.loading,
   );
 });
 
-final communitiesProvider = FutureProvider((ref) {
-  return ref.watch(organizersRepositoryProvider).getCommunities();
+final communitiesSignal = futureSignal<List<CommunityEntity>>(() async {
+  final result = await communityRepository.value.listActiveCommunities();
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
+
+void reloadOrganizers() {
+  unawaited(organizersDataSignal.reload());
+  unawaited(communitiesSignal.reload());
+}

@@ -9,75 +9,77 @@ import 'package:flutter_conf_latam/features/speakers/presentation/view_model/spe
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class HomeSpeakers extends ConsumerWidget {
+class HomeSpeakers extends StatelessWidget {
   const HomeSpeakers({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final randomSpeakersList = ref.watch(speakersRandomProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
-    return randomSpeakersList.maybeWhen(
-      data: (data) {
-        final colSize = switch (context.screenSize) {
-          .extraLarge => 4,
-          _ => 2,
-        };
-        final imageSize = switch (context.screenSize) {
-          .extraLarge || .large => const Size.square(206),
-          .normal || .small => const Size.square(120),
-        };
+    return Watch((context) {
+      final randomSpeakersList = speakersRandomSignal.value;
+      return randomSpeakersList.maybeMap(
+        data: (data) {
+          final colSize = switch (context.screenSize) {
+            .extraLarge => 4,
+            _ => 2,
+          };
+          final imageSize = switch (context.screenSize) {
+            .extraLarge || .large => const Size.square(206),
+            .normal || .small => const Size.square(120),
+          };
 
-        return SectionContainer(
-          spacing: 30,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.homeSpeakersTitle,
-                size: switch (context.screenSize) {
-                  .extraLarge => 64,
-                  .large => 48,
-                  .normal || .small => 24,
-                },
+          return SectionContainer(
+            spacing: 30,
+            children: <Widget>[
+              TitleSubtitleText(
+                title: (
+                  text: l10n.homeSpeakersTitle,
+                  size: switch (context.screenSize) {
+                    .extraLarge => 64,
+                    .large => 48,
+                    .normal || .small => 24,
+                  },
+                ),
+                subtitle: (
+                  text: l10n.homeSpeakersDescription,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 24,
+                    .normal || .small => 16,
+                  },
+                ),
+                spacing: 12,
               ),
-              subtitle: (
-                text: l10n.homeSpeakersDescription,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 16,
-                },
+              ResponsiveGrid(
+                columnSizes: colSize,
+                rowSizes: ((data.length + 1) / colSize).ceil(),
+                children: <Widget>[
+                  for (final (index, item) in data.indexed)
+                    SpeakerCardItem(
+                      speaker: item,
+                      imageSize: imageSize,
+                      imageBackgroundColor: _speakerListColors[index],
+                    ),
+                  const _RedirectSpeakersCard(),
+                ],
               ),
-              spacing: 12,
-            ),
-            ResponsiveGrid(
-              columnSizes: colSize,
-              rowSizes: ((data.length + 1) / colSize).ceil(),
-              children: <Widget>[
-                for (final (index, item) in data.indexed)
-                  SpeakerCardItem(
-                    speaker: item,
-                    imageSize: imageSize,
-                    imageBackgroundColor: _speakerListColors[index],
-                  ),
-                const _RedirectSpeakersCard(),
-              ],
-            ),
-          ],
-        );
-      },
-      orElse: Offstage.new,
-    );
+            ],
+          );
+        },
+        orElse: () => const Offstage(),
+      );
+    });
   }
 }
 
-class _RedirectSpeakersCard extends ConsumerWidget {
+class _RedirectSpeakersCard extends StatelessWidget {
   const _RedirectSpeakersCard();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
     final theme = context.theme.fclThemeScheme;
 
     return Center(
@@ -106,7 +108,7 @@ class _RedirectSpeakersCard extends ConsumerWidget {
                 FclButton.secondary(
                   label: l10n.homeSpeakersSeeMoreSpeakers,
                   buttonSize: .small,
-                  onPressed: () => _goToSpeakers(ref),
+                  onPressed: _goToSpeakers,
                 ),
               ],
             ),
@@ -116,8 +118,8 @@ class _RedirectSpeakersCard extends ConsumerWidget {
     );
   }
 
-  void _goToSpeakers(WidgetRef ref) {
-    // .selectNavItemFromRoute('/${AppRoutePath.speakers.pathName}');
+  void _goToSpeakers() {
+    // navigationController.selectNavItemFromRoute('/${AppRoutePath.speakers.pathName}');
   }
 }
 

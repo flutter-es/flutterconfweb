@@ -1,26 +1,49 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/features/speakers/data/speakers_repository.dart';
-import 'package:flutter_conf_latam/features/speakers/domain/models/speaker_model.dart';
-import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'dart:async';
 
-final speakersRandomProvider = FutureProvider((ref) {
-  final localeName = ref.watch(appLocalizationsProvider).localeName;
-  return ref
-      .watch(speakersRepositoryProvider)
-      .getSpeakers(language: Locale(localeName).languageCode, isRandom: true);
+import 'package:flutter_conf_common/flutter_conf_common.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
+import 'package:flutter_conf_latam/core/dependencies.dart';
+import 'package:signals/signals.dart';
+
+final speakersSignal = futureSignal<List<SpeakerEntity>>(() async {
+  final result = await speakerRepository.value.listActiveSpeakers();
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
 
-final speakersProvider = FutureProvider((ref) {
-  final localeName = ref.watch(appLocalizationsProvider).localeName;
-  return ref
-      .watch(speakersRepositoryProvider)
-      .getSpeakers(language: Locale(localeName).languageCode);
+final speakersRandomSignal = futureSignal<List<SpeakerEntity>>(() async {
+  final result = await speakerRepository.value.listActiveSpeakers();
+  return switch (result) {
+    Success(:final data) => (List<SpeakerEntity>.from(
+      data,
+    )..shuffle()).take(11).toList(),
+    Failure(:final failure) => throw failure,
+  };
 });
 
-final speakerProvider = FutureProvider.family<SpeakerModel, String>((ref, arg) {
-  final localeName = ref.watch(appLocalizationsProvider).localeName;
-  return ref
-      .watch(speakersRepositoryProvider)
-      .getSpeaker(speakerId: arg, language: Locale(localeName).languageCode);
-});
+final _speakerCache = <String, FutureSignal<SpeakerEntity>>{};
+
+FutureSignal<SpeakerEntity> getSpeakerSignal(String speakerId) {
+  return _speakerCache.putIfAbsent(speakerId, () {
+    return futureSignal<SpeakerEntity>(() async {
+      final result = await speakerRepository.value.getSpeakerById(
+        id: speakerId,
+      );
+      return switch (result) {
+        Success(:final data) => data,
+        Failure(:final failure) => throw failure,
+      };
+    });
+  });
+}
+
+void reloadSpeakers() {
+  unawaited(speakersRandomSignal.reload());
+  unawaited(speakersSignal.reload());
+
+  for (final signal in _speakerCache.values) {
+    unawaited(signal.reload());
+  }
+}

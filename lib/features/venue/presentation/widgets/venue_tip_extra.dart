@@ -4,90 +4,80 @@ import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
+import 'package:flutter_conf_latam/features/venue/presentation/view_model/venue_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class VenueTipExtra extends ConsumerWidget {
+class VenueTipExtra extends StatelessWidget {
   const VenueTipExtra({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
-    final about = <VenueTipItem>[
-      VenueTipItem(
-        title: l10n.aboutExtraSafetyTitle,
-        description: l10n.aboutExtraSafetyDescription,
-        image: Assets.images.about.security,
-      ),
-      VenueTipItem(
-        title: l10n.aboutExtraTransportTitle,
-        description: l10n.aboutExtraTransportDescription,
-        image: Assets.images.about.taxi,
-      ),
-      VenueTipItem(
-        title: l10n.aboutExtraDeliveryAppTitle,
-        description: l10n.aboutExtraDeliveryAppDescription,
-        image: Assets.images.about.delivery,
-      ),
-    ];
-
-    return SectionContainer(
-      spacing: 30,
-      children: <Widget>[
-        TitleSubtitleText(
-          title: (
-            text: l10n.aboutExtraInfoTitle,
-            size: switch (context.screenSize) {
-              .extraLarge => 64,
-              .large => 48,
-              .normal || .small => 24,
-            },
-          ),
-          subtitle: (
-            text: l10n.aboutExtraInfoDescription,
-            size: switch (context.screenSize) {
-              .extraLarge || .large => 24,
-              .normal || .small => 16,
-            },
-          ),
-          spacing: 12,
-        ),
-        ResponsiveGrid(
-          columnSizes: switch (context.screenSize) {
-            .extraLarge => 3,
-            _ => 1,
-          },
-          rowSizes: switch (context.screenSize) {
-            .extraLarge => 2,
-            _ => about.length,
-          },
-          children: <Widget>[
-            for (final item in about)
-              GridCardItem(
-                title: item.title,
-                description: item.description,
-                imagePath: item.image,
-                url: item.url,
+    return Watch((context) {
+      final venueState = venueSignal.value;
+      return venueState.maybeMap(
+        data: (venue) {
+          final tips = venue.tips;
+          return SectionContainer(
+            spacing: 30,
+            children: <Widget>[
+              TitleSubtitleText(
+                title: (
+                  text: l10n.aboutExtraInfoTitle,
+                  size: switch (context.screenSize) {
+                    .extraLarge => 64,
+                    .large => 48,
+                    .normal || .small => 24,
+                  },
+                ),
+                subtitle: (
+                  text: l10n.aboutExtraInfoDescription,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 24,
+                    .normal || .small => 16,
+                  },
+                ),
+                spacing: 12,
               ),
-          ],
-        ),
-      ],
-    );
+              if (tips.isNotEmpty)
+                ResponsiveGrid(
+                  columnSizes: switch (context.screenSize) {
+                    .extraLarge => 3,
+                    _ => 1,
+                  },
+                  rowSizes: switch (context.screenSize) {
+                    .extraLarge => 2,
+                    _ => tips.length,
+                  },
+                  children: <Widget>[
+                    for (final tip in tips)
+                      GridCardItem(
+                        title: tip.title,
+                        description: l10n.localeName == 'es'
+                            ? tip.descriptionEs
+                            : tip.descriptionEn,
+                        icon: switch (tip.category) {
+                          .security => Icons.security,
+                          .transportation => Icons.directions_bus,
+                          .deliveryApps => Icons.delivery_dining,
+                          .accommodation => Icons.hotel,
+                          .food => Icons.restaurant,
+                          .weather => Icons.cloud,
+                          .currency => Icons.attach_money,
+                          .language => Icons.language,
+                          .emergency => Icons.emergency,
+                          .other => Icons.info,
+                        },
+                      ),
+                  ],
+                ),
+            ],
+          );
+        },
+        orElse: () => const Offstage(),
+      );
+    });
   }
-}
-
-class VenueTipItem {
-  VenueTipItem({
-    required this.title,
-    required this.description,
-    required this.image,
-    this.url,
-  });
-
-  final String title;
-  final String description;
-  final String image;
-  final ({String url, String text})? url;
 }

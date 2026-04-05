@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_conf_latam/core/providers/shared_providers.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
@@ -14,27 +12,25 @@ import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/view_model/organizers_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class OrganizersPeople extends HookConsumerWidget {
+class OrganizersPeople extends StatefulWidget {
   const OrganizersPeople({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  State<OrganizersPeople> createState() => _OrganizersPeopleState();
+}
 
-    final paginationInfo = ref.watch(paginationProvider);
-    final organizers = ref.watch(organizersProvider);
+class _OrganizersPeopleState extends State<OrganizersPeople> {
+  @override
+  void initState() {
+    super.initState();
+    paginationController.update(pageSize: 16);
+  }
 
-    useEffect(() {
-      unawaited(
-        Future.microtask(() {
-          ref.read(paginationProvider.notifier).update(pageSize: 16);
-        }),
-      );
-      return null;
-    }, const []);
+  @override
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
     final size = switch (context.screenSize) {
       .extraLarge || .large => const Size.square(206),
@@ -42,94 +38,95 @@ class OrganizersPeople extends HookConsumerWidget {
     };
 
     return KeepAliveContainer(
-      child: SectionContainer(
-        spacing: 48,
-        children: <Widget>[
-          TitleSubtitleText(
-            title: (
-              text: l10n.organizersPeopleTitle,
-              size: switch (context.screenSize) {
-                .extraLarge => 64,
-                .large => 48,
-                .normal || .small => 24,
-              },
-            ),
-            subtitle: (
-              text: l10n.organizersPeopleDescription,
-              size: switch (context.screenSize) {
-                .extraLarge || .large => 24,
-                .normal || .small => 16,
-              },
-            ),
-            spacing: 12,
-          ),
-          organizers.when(
-            data: (data) => PaginationContainer(
-              totalSize: data.totalList,
-              pageSize: paginationInfo.pageSize,
-              currentPage: paginationInfo.page,
-              onChangedPage: (value) {
-                ref.read(paginationProvider.notifier).update(page: value);
-              },
-              child: _OrganizerListContainer(
-                children: <Widget>[
-                  for (final item in data.galleryList)
-                    Center(
-                      child: Column(
-                        spacing: 20,
-                        children: <Widget>[
-                          CharacterImage(
-                            imageUrl: item.imageUrl,
-                            flagImageUrl: item.countryFlag,
-                            size: size,
-                          ),
-                          TitleSubtitleText(
-                            title: (
-                              text: item.name,
-                              size: switch (context.screenSize) {
-                                .extraLarge || .large => 24,
-                                .normal || .small => 12,
-                              },
-                            ),
-                            subtitle: (
-                              text: item.levels.join(' - '),
-                              size: switch (context.screenSize) {
-                                .extraLarge || .large => 16,
-                                .normal || .small => 12,
-                              },
-                            ),
-                            spacing: 4,
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
+      child: Watch((context) {
+        final organizers = organizersSignal.value;
+        return SectionContainer(
+          spacing: 48,
+          children: <Widget>[
+            TitleSubtitleText(
+              title: (
+                text: l10n.organizersPeopleTitle,
+                size: switch (context.screenSize) {
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
+                },
               ),
-            ),
-            loading: () => Shimmer(
-              child: _OrganizerListContainer(
-                children: .generate(9, (_) {
-                  return Center(
-                    child: ShimmerLoading(
-                      isLoading: true,
-                      child: Column(
-                        spacing: 20,
-                        children: <Widget>[
-                          SingleImageContainer(size: size, borderRadius: 30),
-                          const TitleSubtitleTextContainer(),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
+              subtitle: (
+                text: l10n.organizersPeopleDescription,
+                size: switch (context.screenSize) {
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
+                },
               ),
+              spacing: 12,
             ),
-            error: (_, _) => ErrorContainer(
-              onRetry: () => ref.invalidate(organizersProvider),
+            organizers.map(
+              data: (data) => PaginationContainer(
+                totalSize: data.totalList,
+                pageSize: paginationController.value.pageSize,
+                currentPage: paginationController.value.page,
+                onChangedPage: (value) {
+                  paginationController.update(page: value);
+                },
+                child: _OrganizerListContainer(
+                  children: <Widget>[
+                    for (final item in data.organizerList)
+                      Center(
+                        child: Column(
+                          spacing: 20,
+                          children: <Widget>[
+                            CharacterImage(
+                              imageUrl: item.user.avatarUrl ?? '',
+                              flagImageUrl: item.user.countryFlag ?? '',
+                              size: size,
+                            ),
+                            TitleSubtitleText(
+                              title: (
+                                text: item.user.name,
+                                size: switch (context.screenSize) {
+                                  .extraLarge || .large => 24,
+                                  .normal || .small => 12,
+                                },
+                              ),
+                              subtitle: (
+                                text: item.areas.map((a) => a.name).join(' - '),
+                                size: switch (context.screenSize) {
+                                  .extraLarge || .large => 16,
+                                  .normal || .small => 12,
+                                },
+                              ),
+                              spacing: 4,
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              loading: () => Shimmer(
+                child: _OrganizerListContainer(
+                  children: .generate(9, (_) {
+                    return Center(
+                      child: ShimmerLoading(
+                        isLoading: true,
+                        child: Column(
+                          spacing: 20,
+                          children: <Widget>[
+                            SingleImageContainer(size: size, borderRadius: 30),
+                            const TitleSubtitleTextContainer(),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+              error: (_, _) => const ErrorContainer(onRetry: reloadOrganizers),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 }

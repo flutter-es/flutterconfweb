@@ -1,123 +1,49 @@
+import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:intl/intl.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'schedule_response_model.g.dart';
+typedef SlotSession = ({String slotId, SessionTypes type});
+typedef MapSlotSessions = Map<SlotSession, List<EventDaySessionRelation>>;
 
-@JsonSerializable(createToJson: false)
-class ScheduleResponseModel {
-  ScheduleResponseModel({required this.id, required this.days});
+extension EventDayEntityX on EventDayEntity {
+  List<ScheduleSlotInfo> get scheduleSlots {
+    final sessions = this.sessions ?? [];
+    final slotMap = <String, List<EventDaySessionRelation>>{};
 
-  factory ScheduleResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$ScheduleResponseModelFromJson(json);
+    for (final session in sessions) {
+      final dateString = DateFormat('HH_mm').format(session.startTime);
+      final key = '${id}_$dateString';
 
-  @JsonKey(name: 'conferenceId')
-  final String id;
-  final List<ScheduleDayModel> days;
+      slotMap[key] = [...(slotMap[key] ?? []), session];
+    }
+
+    return slotMap.entries.map((entry) {
+      return ScheduleSlotInfo(
+        id: entry.key,
+        name: entry.key,
+        sessions: entry.value,
+      );
+    }).toList();
+  }
 }
 
-@JsonSerializable(createToJson: false)
-class ScheduleDayModel {
-  ScheduleDayModel({
-    required this.id,
-    required this.day,
-    required this.date,
-    required this.slots,
-  });
-
-  factory ScheduleDayModel.fromJson(Map<String, dynamic> json) =>
-      _$ScheduleDayModelFromJson(json);
-
-  final String id;
-  final int day;
-  final DateTime date;
-  final List<ScheduleSlotModel> slots;
-}
-
-@JsonSerializable(createToJson: false)
-class ScheduleSlotModel {
-  ScheduleSlotModel({
+class ScheduleSlotInfo {
+  ScheduleSlotInfo({
     required this.id,
     required this.name,
     required this.sessions,
   });
 
-  factory ScheduleSlotModel.fromJson(Map<String, dynamic> json) =>
-      _$ScheduleSlotModelFromJson(json);
-
   final String id;
   final String name;
-  final List<ScheduleSessionModel> sessions;
+  final List<EventDaySessionRelation> sessions;
 }
 
-@JsonSerializable(createToJson: false)
-class ScheduleSessionModel {
-  ScheduleSessionModel({
-    required this.id,
-    required this.title,
-    required this.type,
-    required this.track,
-    required this.startDate,
-    required this.endDate,
-    this.description,
-    this.speakers,
-    this.tags,
-    this.requirements,
-  });
-
-  factory ScheduleSessionModel.fromJson(Map<String, dynamic> json) =>
-      _$ScheduleSessionModelFromJson(json);
-
-  final String id;
-  final String title;
-  final ScheduleType type;
-  final int track;
-  final DateTime startDate;
-  final DateTime endDate;
-  final String? description;
-  final List<SessionSpeakerModel>? speakers;
-  final List<String>? tags;
-  final List<String>? requirements;
-}
-
-@JsonSerializable(createToJson: false)
-class SessionSpeakerModel {
-  SessionSpeakerModel({
-    required this.id,
-    required this.name,
-    required this.imageUrl,
-  });
-
-  factory SessionSpeakerModel.fromJson(Map<String, dynamic> json) =>
-      _$SessionSpeakerModelFromJson(json);
-
-  final String id;
-  final String name;
-  final String imageUrl;
-}
-
-@JsonEnum()
-enum ScheduleType {
-  checkIn,
-  keynote,
-  panel,
-  breaks,
-  lunch,
-  lighting,
-  session,
-  workshop,
-  hackathon,
-  finish,
-}
-
-typedef SlotSession = ({String slotId, ScheduleType type});
-typedef MapSlotSessions = Map<SlotSession, List<ScheduleSessionModel>>;
-
-extension ScheduleSlotModelX on ScheduleSlotModel {
-  MapSlotSessions get scheduleSlots {
-    final sessionSlots = <SlotSession, List<ScheduleSessionModel>>{};
+extension ScheduleSlotInfoX on ScheduleSlotInfo {
+  MapSlotSessions get scheduleSlotSessions {
+    final sessionSlots = <SlotSession, List<EventDaySessionRelation>>{};
     for (final session in sessions) {
-      final dateString = DateFormat('HH_mm').format(session.startDate);
-      final key = (slotId: '${id}_$dateString', type: session.type);
+      final dateString = DateFormat('HH_mm').format(session.startTime);
+      final key = (slotId: '${id}_$dateString', type: session.sessionType);
 
       sessionSlots[key] = [...(sessionSlots[key] ?? []), session];
     }
@@ -126,9 +52,7 @@ extension ScheduleSlotModelX on ScheduleSlotModel {
 }
 
 extension SlotSessionX on SlotSession {
-  bool get isWorkshopOrHackathon {
-    return type == ScheduleType.workshop || type == ScheduleType.hackathon;
-  }
+  bool get isWorkshopOrHackathon => type == .workshop || type == .hackathon;
 }
 
 extension MapSlotSessionsX on MapSlotSessions {
@@ -143,11 +67,17 @@ extension MapSlotSessionsX on MapSlotSessions {
   };
 }
 
-extension ScheduleTrackModelX on ScheduleSessionModel {
+extension EventDaySessionRelationX on EventDaySessionRelation {
   bool get isTalkingTrack {
-    return type == ScheduleType.lighting ||
-        type == ScheduleType.session ||
-        type == ScheduleType.workshop ||
-        type == ScheduleType.hackathon;
+    return sessionType == .lightningTalk ||
+        sessionType == .talk ||
+        sessionType == .workshop ||
+        sessionType == .hackathon;
+  }
+
+  int get trackNumber => (dynamicTrack?.orderIndex ?? 0) + 1;
+
+  List<EventDaySessionCallForPaperSpeaker> get speakers {
+    return callForPaper?.speakers ?? [];
   }
 }

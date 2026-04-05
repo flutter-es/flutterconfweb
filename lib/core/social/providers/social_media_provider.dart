@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_conf_latam/core/social/models/social_media_model.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
-final socialMediaProvider = FutureProvider((_) async {
+final socialMediaSignal = futureSignal<List<SocialMediaModel>>(() async {
   final content = await rootBundle.loadString(Assets.files.socialNetworks);
   final response = json.decode(content) as List<dynamic>;
 

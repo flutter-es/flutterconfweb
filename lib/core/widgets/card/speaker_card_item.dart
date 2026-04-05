@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/widgets/icons/social_media_row.dart';
 import 'package:flutter_conf_latam/core/widgets/images/character_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/speakers/domain/models/speaker_model.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 
 class SpeakerCardItem extends StatelessWidget {
@@ -15,22 +15,23 @@ class SpeakerCardItem extends StatelessWidget {
     super.key,
   });
 
-  final SpeakerModel speaker;
+  final SpeakerEntity speaker;
   final Size imageSize;
   final bool isMain;
   final Color? imageBackgroundColor;
 
   @override
   Widget build(BuildContext context) {
-    final socialLinks = speaker.socialMediaLinks.where(
-      (item) => item.link.isNotEmpty,
+    final user = speaker.user;
+    final socialLinks = (user.socialLinks ?? []).where(
+      (item) => item.url.isNotEmpty,
     );
 
     final imageChild = CharacterImage(
       imageUrl: imageBackgroundColor != null
-          ? speaker.photoTransparent ?? ''
-          : speaker.photo,
-      flagImageUrl: speaker.countryFlag,
+          ? user.avatarTransparentUrl ?? ''
+          : user.avatarUrl ?? '',
+      flagImageUrl: user.countryFlag ?? '',
       size: imageSize,
     );
 
@@ -53,14 +54,14 @@ class SpeakerCardItem extends StatelessWidget {
               imageChild,
             TitleSubtitleText(
               title: (
-                text: speaker.name,
+                text: user.name,
                 size: switch (context.screenSize) {
                   .extraLarge || .large => 24,
                   .normal || .small => 12,
                 },
               ),
               subtitle: (
-                text: speaker.title,
+                text: user.jobTitle ?? '',
                 size: switch (context.screenSize) {
                   .extraLarge || .large => 16,
                   .normal || .small => 12,
@@ -78,8 +79,9 @@ class SpeakerCardItem extends StatelessWidget {
                       .linkedin => Assets.images.icons.linkedIn,
                       .github => Assets.images.icons.github,
                       .twitter => Assets.images.icons.twitter,
+                      _ => Assets.images.icons.twitter,
                     };
-                    return (iconPath: iconPath, linkUrl: item.link);
+                    return (iconPath: iconPath, linkUrl: item.url);
                   }).toList(),
                 ),
                 if (isMain)

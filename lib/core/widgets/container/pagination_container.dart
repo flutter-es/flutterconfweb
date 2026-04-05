@@ -5,9 +5,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class PaginationContainer extends ConsumerWidget {
+class PaginationContainer extends StatelessWidget {
   const PaginationContainer({
     required this.child,
     required this.totalSize,
@@ -26,8 +26,8 @@ class PaginationContainer extends ConsumerWidget {
   final int maxButtons;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
     return Column(
       spacing: 30,
@@ -74,7 +74,7 @@ class PaginationContainer extends ConsumerWidget {
   int get _totalPages => (totalSize / pageSize).ceil();
 }
 
-class _PaginationNumberButtons extends ConsumerWidget {
+class _PaginationNumberButtons extends StatelessWidget {
   const _PaginationNumberButtons({
     required this.currentPage,
     required this.totalPages,
@@ -88,10 +88,10 @@ class _PaginationNumberButtons extends ConsumerWidget {
   final int maxButtons;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     if (totalPages <= 1) return const Offstage();
 
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
 
     var startPage = max(1, currentPage - (maxButtons / 2).floor());
     final endPage = min(totalPages, startPage + maxButtons - 1);

@@ -7,7 +7,8 @@ enum FlutterConfAnimations {
   flutterDashTicket('flutterdashticket'),
   flutterDashFlag('flutterdashflag'),
   flutterConfConstruction('flutterconfconstruction'),
-  flutterDashConst('flutterdashconst');
+  flutterDashConst('flutterdashconst')
+  ;
 
   const FlutterConfAnimations(this.name);
 

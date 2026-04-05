@@ -1,23 +1,28 @@
-import 'dart:ui';
+import 'dart:async';
 
+import 'package:flutter_conf_common/flutter_conf_common.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
-import 'package:flutter_conf_latam/features/home/data/home_repository.dart';
-import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals.dart';
 
-final sponsorsProvider = FutureProvider((ref) {
-  return ref.watch(homeRepositoryProvider).getSponsors();
+final sponsorsSignal = futureSignal<List<SponsorEntity>>(() async {
+  final result = await sponsorRepository.value.listActiveSponsors();
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
 
-final faqListProvider = FutureProvider((ref) {
-  final localeName = ref.watch(appLocalizationsProvider).localeName;
-  return ref
-      .watch(homeRepositoryProvider)
-      .getFaqData(language: Locale(localeName).languageCode);
+final faqListSignal = futureSignal<List<FaqEntity>>(() async {
+  final result = await faqRepository.value.listPublishedFaqs();
+  return switch (result) {
+    Success(:final data) => data,
+    Failure(:final failure) => throw failure,
+  };
 });
 
-final galleryPreviewProvider = FutureProvider.autoDispose((ref) async {
-  final storageUrl = ref.watch(configProvider).firebaseStorageUrl;
+final galleryPreviewSignal = futureSignal<List<String>>(() async {
+  final storageUrl = appConfig.value.firebaseStorageUrl;
 
   await Future<void>.delayed(const Duration(seconds: 3));
   return <String>[
@@ -31,3 +36,7 @@ final galleryPreviewProvider = FutureProvider.autoDispose((ref) async {
     '$storageUrl/gallery%2F15_IMG_FCL.jpg?alt=media&token=a14a0693-7d81-4c09-bc90-3377c2648a51',
   ];
 });
+
+void reloadFaqs() {
+  unawaited(faqListSignal.reload());
+}

@@ -6,14 +6,14 @@ import 'package:flutter_conf_latam/core/widgets/images/carousel_images.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class GalleryMain extends ConsumerWidget {
+class GalleryMain extends StatelessWidget {
   const GalleryMain({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
     final carouselImageUrls = <String>[
       Assets.images.gallery.one,
       Assets.images.gallery.two,

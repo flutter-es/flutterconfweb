@@ -6,14 +6,14 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/l10n/support_locale.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class LanguageButton extends ConsumerWidget {
+class LanguageButton extends StatelessWidget {
   const LanguageButton({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final languageCode = ref.watch(currentLocalizationProvider).languageCode;
+  Widget build(BuildContext context) {
+    final languageCode = currentLocale.watch(context).languageCode;
 
     return Container(
       height: 50,
@@ -49,9 +49,7 @@ class LanguageButton extends ConsumerWidget {
                   child: _LanguageItem(
                     title: local.languageCode,
                     isActive: languageCode == local.languageCode,
-                    onTap: () => ref
-                        .read(currentLocalizationProvider.notifier)
-                        .update(newLocale: local),
+                    onTap: () => updateLocale(local),
                   ),
                 ),
             ],

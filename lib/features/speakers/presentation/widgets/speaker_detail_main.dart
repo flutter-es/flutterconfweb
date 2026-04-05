@@ -6,86 +6,94 @@ import 'package:flutter_conf_latam/core/widgets/images/character_image.dart';
 import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/view_model/speakers_view_model.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class SpeakerDetailMain extends ConsumerWidget {
+class SpeakerDetailMain extends StatelessWidget {
   const SpeakerDetailMain({required this.id, super.key});
 
   final String id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final speaker = ref.watch(speakerProvider(id));
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
+    final isSpanish = l10n.localeName == 'es';
 
-    return speaker.when(
-      data: (data) => _SpeakerDetailContainer(
-        headerChildren: <Widget>[
-          CharacterImage(
-            imageUrl: data.photo,
-            flagImageUrl: data.countryFlag,
-            size: const .square(120),
-          ),
-          Expanded(
-            child: TitleSubtitleText(
-              title: (
-                text: data.name,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 22,
-                },
+    return Watch((context) {
+      final speakerSignal = getSpeakerSignal(id);
+      return speakerSignal.value.map(
+        data: (data) {
+          final user = data.user;
+          final description = isSpanish ? user.bioEs : user.bioEn;
+
+          return _SpeakerDetailContainer(
+            headerChildren: <Widget>[
+              CharacterImage(
+                imageUrl: user.avatarUrl ?? '',
+                flagImageUrl: user.countryFlag ?? '',
+                size: const .square(120),
               ),
-              subtitle: (
-                text: data.title,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 16,
-                  .normal || .small => 14,
-                },
+              Expanded(
+                child: TitleSubtitleText(
+                  title: (
+                    text: user.name,
+                    size: switch (context.screenSize) {
+                      .extraLarge || .large => 24,
+                      .normal || .small => 22,
+                    },
+                  ),
+                  subtitle: (
+                    text: user.jobTitle ?? '',
+                    size: switch (context.screenSize) {
+                      .extraLarge || .large => 16,
+                      .normal || .small => 14,
+                    },
+                  ),
+                  spacing: 4,
+                  textAlign: .start,
+                  crossAxisAlignment: .start,
+                ),
               ),
-              spacing: 4,
-              textAlign: .start,
-              crossAxisAlignment: .start,
-            ),
-          ),
-        ],
-        detailChild: switch (context.screenSize) {
-          .extraLarge || .large => _SpeakerDescription(
-            text: data.description ?? '',
-            hasSize: true,
-          ),
-          .normal || .small => _SpeakerDescription(
-            text: data.description ?? '',
-          ),
+            ],
+            detailChild: switch (context.screenSize) {
+              .extraLarge || .large => _SpeakerDescription(
+                text: description ?? '',
+                hasSize: true,
+              ),
+              .normal || .small => _SpeakerDescription(
+                text: description ?? '',
+              ),
+            },
+          );
         },
-      ),
-      loading: () => const Shimmer(
-        child: _SpeakerDetailContainer(
-          headerChildren: <Widget>[
-            ShimmerLoading(
-              isLoading: true,
-              child: SingleImageContainer(
-                size: .square(120),
-                borderRadius: 30,
+        loading: () => const Shimmer(
+          child: _SpeakerDetailContainer(
+            headerChildren: <Widget>[
+              ShimmerLoading(
+                isLoading: true,
+                child: SingleImageContainer(
+                  size: .square(120),
+                  borderRadius: 30,
+                ),
               ),
-            ),
-            ShimmerLoading(
+              ShimmerLoading(
+                isLoading: true,
+                child: TitleSubtitleTextContainer(crossAxisAlignment: .start),
+              ),
+            ],
+            detailChild: ShimmerLoading(
               isLoading: true,
-              child: TitleSubtitleTextContainer(crossAxisAlignment: .start),
+              child: _SpeakerDescription.loading(),
             ),
-          ],
-          detailChild: ShimmerLoading(
-            isLoading: true,
-            child: _SpeakerDescription.loading(),
           ),
         ),
-      ),
-      error: (_, _) => Center(
-        child: ErrorContainer(
-          onRetry: () => ref.invalidate(speakerProvider(id)),
+        error: (_, _) => Center(
+          child: ErrorContainer(onRetry: speakerSignal.reload),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

@@ -1,93 +1,98 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/pricing/domain/models/tickets/tickets_model.dart';
 import 'package:flutter_conf_latam/features/pricing/presentation/view_model/pricing_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class PricingContainer extends ConsumerWidget {
+class PricingContainer extends StatelessWidget {
   const PricingContainer({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
-    final pricingList = ref.watch(pricingProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
-    return pricingList.maybeWhen(
-      data: (data) => SectionContainer(
-        spacing: 50,
-        children: <Widget>[
-          TitleSubtitleText(
-            title: (
-              text: l10n.homePricingTitle,
-              size: switch (context.screenSize) {
-                .extraLarge => 64,
-                .large => 48,
-                .normal || .small => 24,
-              },
-            ),
-            subtitle: (
-              text: l10n.homePricingDescription,
-              size: switch (context.screenSize) {
-                .extraLarge || .large => 24,
-                .normal || .small => 16,
-              },
-            ),
-            spacing: 12,
-          ),
-          if (data.length == 1)
-            Center(
-              child: SizedBox(
-                width: switch (context.screenSize) {
-                  ScreenSize.extraLarge || ScreenSize.large => 380,
-                  _ => null,
+    return Watch((context) {
+      final pricingList = pricingSignal.value;
+      return pricingList.maybeMap(
+        data: (data) => SectionContainer(
+          spacing: 50,
+          children: <Widget>[
+            TitleSubtitleText(
+              title: (
+                text: l10n.homePricingTitle,
+                size: switch (context.screenSize) {
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
                 },
-                child: _PricingCardItem(detail: data.first),
               ),
-            )
-          else if (context.screenSize == .extraLarge)
-            Row(
-              spacing: 30,
-              crossAxisAlignment: .start,
-              children: <Widget>[
-                for (final item in data)
-                  Expanded(child: _PricingCardItem(detail: item)),
-              ],
-            )
-          else
-            Column(
-              spacing: 30,
-              children: <Widget>[
-                for (final item in data) _PricingCardItem(detail: item),
-              ],
+              subtitle: (
+                text: l10n.homePricingDescription,
+                size: switch (context.screenSize) {
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
+                },
+              ),
+              spacing: 12,
             ),
-        ],
-      ),
-      orElse: Offstage.new,
-    );
+            if (data.length == 1)
+              Center(
+                child: SizedBox(
+                  width: switch (context.screenSize) {
+                    .extraLarge || .large => 380,
+                    _ => null,
+                  },
+                  child: _PricingCardItem(detail: data.first),
+                ),
+              )
+            else if (context.screenSize == .extraLarge)
+              Row(
+                spacing: 30,
+                crossAxisAlignment: .start,
+                children: <Widget>[
+                  for (final item in data)
+                    Expanded(child: _PricingCardItem(detail: item)),
+                ],
+              )
+            else
+              Column(
+                spacing: 30,
+                children: <Widget>[
+                  for (final item in data) _PricingCardItem(detail: item),
+                ],
+              ),
+          ],
+        ),
+        orElse: () => const Offstage(),
+      );
+    });
   }
 }
 
-class _PricingCardItem extends ConsumerWidget {
+class _PricingCardItem extends StatelessWidget {
   const _PricingCardItem({required this.detail});
 
-  final TicketsModel detail;
+  final TicketPricingEntity detail;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
+
+    final isSpanish = l10n.localeName == 'es';
+    final benefits = isSpanish ? detail.benefitsEs : detail.benefitsEn;
 
     final now = DateTime.now();
     final isWithinDateRange =
@@ -118,12 +123,11 @@ class _PricingCardItem extends ConsumerWidget {
             padding: const .symmetric(vertical: 28, horizontal: 30),
             child: Center(
               child: Text(
-                detail.title,
+                detail.name,
                 style: theme.typography.body1Regular.copyWith(
-                  color: switch (detail.type) {
-                    .early => FlutterLatamColors.darkBlue,
-                    _ => FlutterLatamColors.white,
-                  },
+                  color: isWithinDateRange
+                      ? FlutterLatamColors.darkBlue
+                      : FlutterLatamColors.white,
                 ),
               ),
             ),
@@ -156,7 +160,7 @@ class _PricingCardItem extends ConsumerWidget {
                     ),
                   ),
                   Text(
-                    '\$ ${detail.price.toStringAsFixed(0)}',
+                    '${detail.currency} ${detail.price.toStringAsFixed(0)}',
                     style: theme.typography.h1Bold.copyWith(
                       fontSize: switch (context.screenSize) {
                         .extraLarge || .large => 64,
@@ -169,7 +173,7 @@ class _PricingCardItem extends ConsumerWidget {
                     ),
                   ),
                   ...[
-                    for (final item in detail.features)
+                    for (final item in benefits)
                       Row(
                         mainAxisSize: .min,
                         crossAxisAlignment: .start,

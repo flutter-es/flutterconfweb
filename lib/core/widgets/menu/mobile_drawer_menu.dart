@@ -8,9 +8,9 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
-class MobileDrawerMenu extends ConsumerWidget {
+class MobileDrawerMenu extends StatelessWidget {
   const MobileDrawerMenu({
     required this.tabItems,
     required this.onSelect,
@@ -21,8 +21,8 @@ class MobileDrawerMenu extends ConsumerWidget {
   final ValueSetter<NavigationItemModel> onSelect;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = ref.watch(appLocalizationsProvider);
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.watch(context);
 
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,

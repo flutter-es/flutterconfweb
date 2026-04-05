@@ -1,10 +1,8 @@
 part of 'schedule_main.dart';
 
-enum _ScheduleCardPosition { row, column }
+enum ScheduleCardPosition { row, column }
 
-enum _ScheduleCardItemPosition { row, column }
-
-class _ScheduleCard extends ConsumerWidget {
+class _ScheduleCard extends StatelessWidget {
   const _ScheduleCard({
     required this.sessions,
     required this.color,
@@ -12,16 +10,16 @@ class _ScheduleCard extends ConsumerWidget {
     this.itemPosition = .column,
   });
 
-  final List<ScheduleSessionModel> sessions;
+  final List<EventDaySessionRelation> sessions;
   final Color color;
-  final _ScheduleCardPosition position;
-  final _ScheduleCardItemPosition itemPosition;
+  final ScheduleCardPosition position;
+  final ScheduleCardPosition itemPosition;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
     final scheduleTrack = sessions.firstOrNull;
 
     final scheduleChildren = <Widget>[
@@ -41,8 +39,8 @@ class _ScheduleCard extends ConsumerWidget {
     final scheduleCardChildren = <Widget>[
       if (scheduleTrack != null)
         Align(
-          alignment: switch (scheduleTrack.type) {
-            .workshop => .topLeft,
+          alignment: switch (scheduleTrack.sessionType) {
+            SessionTypes.workshop => .topLeft,
             _ => switch (context.screenSize) {
               .extraLarge || .large => .centerLeft,
               .normal || .small => .topLeft,
@@ -50,8 +48,8 @@ class _ScheduleCard extends ConsumerWidget {
           },
           child: Text(
             l10n.scheduleStartEndHour(
-              scheduleTrack.startDate,
-              scheduleTrack.endDate,
+              scheduleTrack.startTime,
+              scheduleTrack.endTime,
             ),
             style: theme.typography.subH2Semibold.copyWith(
               fontSize: switch (context.screenSize) {
@@ -104,31 +102,35 @@ class _ScheduleCard extends ConsumerWidget {
   }
 }
 
-class _ScheduleDetail extends ConsumerWidget {
+class _ScheduleDetail extends StatelessWidget {
   const _ScheduleDetail({required this.session});
 
-  final ScheduleSessionModel session;
+  final EventDaySessionRelation session;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = ref.watch(appLocalizationsProvider);
+    final l10n = appLocalizations.watch(context);
 
-    final scheduleTypeTitle = switch (session.type) {
-      .lighting => l10n.scheduleLightingTitle(session.track),
-      .session => l10n.scheduleSessionTitle(session.track),
+    final title = l10n.localeName == 'es' ? session.titleEs : session.titleEn;
+    final scheduleTypeTitle = switch (session.sessionType) {
+      .lightningTalk => l10n.scheduleLightingTitle(session.trackNumber),
+      .talk => l10n.scheduleSessionTitle(session.trackNumber),
       .workshop => l10n.scheduleWorkshopTitle,
       _ => null,
     };
-    final requirements = session.requirements ?? [];
+
+    final prerequisites = l10n.localeName == 'es'
+        ? session.callForPaper?.prerequisitesEs ?? []
+        : session.callForPaper?.prerequisitesEn ?? [];
 
     final scheduleChild = Column(
       mainAxisSize: .min,
       crossAxisAlignment: .start,
-      spacing: session.title.isNotEmpty ? 10 : 20,
+      spacing: title.isNotEmpty ? 10 : 20,
       children: <Widget>[
         Text(
-          scheduleTypeTitle ?? session.title,
+          scheduleTypeTitle ?? title,
           style: theme.typography.body4Regular.copyWith(
             fontSize: switch (context.screenSize) {
               .extraLarge || .large => 14,
@@ -139,7 +141,7 @@ class _ScheduleDetail extends ConsumerWidget {
         ),
         if (scheduleTypeTitle != null)
           Text(
-            session.title,
+            title,
             style: theme.typography.body3Light.copyWith(
               fontSize: switch (context.screenSize) {
                 .extraLarge || .large => 16,
@@ -147,9 +149,9 @@ class _ScheduleDetail extends ConsumerWidget {
               },
             ),
           ),
-        if ((session.speakers ?? []).isNotEmpty)
-          _ScheduleDetailSpeaker(speakers: session.speakers!),
-        if (requirements.isNotEmpty)
+        if (session.speakers.isNotEmpty)
+          _ScheduleDetailSpeaker(speakers: session.speakers),
+        if (prerequisites.isNotEmpty)
           Column(
             spacing: 4,
             crossAxisAlignment: .start,
@@ -161,7 +163,7 @@ class _ScheduleDetail extends ConsumerWidget {
                   .normal || .small => theme.typography.body4Regular,
                 },
               ),
-              for (final item in requirements)
+              for (final item in prerequisites)
                 Text(
                   '${'\u2022 '} $item',
                   style: switch (context.screenSize) {
@@ -178,9 +180,7 @@ class _ScheduleDetail extends ConsumerWidget {
       mouseCursor: SystemMouseCursors.click,
       onTap: session.isTalkingTrack ? () {} : null,
       child: Semantics(
-        label: scheduleTypeTitle != null
-            ? '$scheduleTypeTitle: ${session.title}'
-            : session.title,
+        label: scheduleTypeTitle != null ? '$scheduleTypeTitle: $title' : title,
         role: session.isTalkingTrack ? .spinButton : .tooltip,
         child: scheduleChild,
       ),
@@ -191,7 +191,7 @@ class _ScheduleDetail extends ConsumerWidget {
 class _ScheduleDetailSpeaker extends StatelessWidget {
   const _ScheduleDetailSpeaker({required this.speakers});
 
-  final List<SessionSpeakerModel> speakers;
+  final List<EventDaySessionCallForPaperSpeaker> speakers;
 
   @override
   Widget build(BuildContext context) {
@@ -206,10 +206,12 @@ class _ScheduleDetailSpeaker extends StatelessWidget {
             .small => 10,
           },
           backgroundColor: FlutterLatamColors.white,
-          backgroundImage: NetworkImage(item.imageUrl),
+          backgroundImage: item.user.avatarUrl != null
+              ? NetworkImage(item.user.avatarUrl!)
+              : null,
         ),
         Text(
-          item.name,
+          item.user.name,
           style: theme.typography.body3Light.copyWith(
             fontSize: switch (context.screenSize) {
               .extraLarge => 16,

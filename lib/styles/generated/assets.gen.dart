@@ -81,9 +81,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/surf_dash.png
   String get surfDash => 'assets/images/surf_dash.png';
 
-  /// Directory path: assets/images/venue
-  $AssetsImagesVenueGen get venue => const $AssetsImagesVenueGen();
-
   /// List of all assets
   List<String> get values => [
     fclMxMainLogo,
@@ -122,37 +119,17 @@ class $AssetsMarkdownGen {
 class $AssetsImagesAboutGen {
   const $AssetsImagesAboutGen();
 
-  /// File path: assets/images/about/delivery.png
-  String get delivery => 'assets/images/about/delivery.png';
-
   /// File path: assets/images/about/food.png
   String get food => 'assets/images/about/food.png';
 
   /// File path: assets/images/about/map.png
   String get map => 'assets/images/about/map.png';
 
-  /// File path: assets/images/about/phone.png
-  String get phone => 'assets/images/about/phone.png';
-
-  /// File path: assets/images/about/security.png
-  String get security => 'assets/images/about/security.png';
-
-  /// File path: assets/images/about/taxi.png
-  String get taxi => 'assets/images/about/taxi.png';
-
   /// File path: assets/images/about/university.png
   String get university => 'assets/images/about/university.png';
 
   /// List of all assets
-  List<String> get values => [
-    delivery,
-    food,
-    map,
-    phone,
-    security,
-    taxi,
-    university,
-  ];
+  List<String> get values => [food, map, university];
 }
 
 class $AssetsImagesCollaborationsGen {
@@ -313,22 +290,6 @@ class $AssetsImagesSponsorsGen {
 
   /// List of all assets
   List<String> get values => [flutterLogo, venueLogo];
-}
-
-class $AssetsImagesVenueGen {
-  const $AssetsImagesVenueGen();
-
-  /// File path: assets/images/venue/one.png
-  String get one => 'assets/images/venue/one.png';
-
-  /// File path: assets/images/venue/three.png
-  String get three => 'assets/images/venue/three.png';
-
-  /// File path: assets/images/venue/two.png
-  String get two => 'assets/images/venue/two.png';
-
-  /// List of all assets
-  List<String> get values => [one, three, two];
 }
 
 class Assets {

@@ -10,6 +10,7 @@ class GridCardItem extends StatelessWidget {
     required this.title,
     required this.description,
     this.imagePath,
+    this.icon,
     this.url,
     super.key,
   });
@@ -17,6 +18,7 @@ class GridCardItem extends StatelessWidget {
   final String title;
   final String description;
   final String? imagePath;
+  final IconData? icon;
   final ({String url, String text})? url;
 
   @override
@@ -50,6 +52,13 @@ class GridCardItem extends StatelessWidget {
                   SizedBox.square(
                     dimension: 80,
                     child: Image.asset(imagePath!, semanticLabel: title),
+                  )
+                else if (icon != null)
+                  Icon(
+                    icon,
+                    size: 64,
+                    color: FlutterLatamColors.white,
+                    semanticLabel: title,
                   ),
               ],
             ),

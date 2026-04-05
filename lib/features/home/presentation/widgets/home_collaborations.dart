@@ -12,21 +12,21 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:signals/signals_flutter.dart';
 
 enum CollaborationType { speaker, sponsor }
 
-class HomeCollaborations extends ConsumerWidget {
+class HomeCollaborations extends StatelessWidget {
   const HomeCollaborations({required this.type, super.key});
 
   final CollaborationType type;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final language = ref.watch(currentLocalizationProvider).languageCode;
+  Widget build(BuildContext context) {
+    final language = currentLocale.watch(context).languageCode;
 
-    final l10n = ref.watch(appLocalizationsProvider);
-    final config = ref.watch(configProvider);
+    final l10n = appLocalizations.watch(context);
+    final config = appConfig.watch(context);
 
     final collaborations = <CollaborationItem>[
       if (type == .speaker) ...[
