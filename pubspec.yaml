@@ -17,20 +17,20 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.5.2
   flutter_conf_backend:
-    path: ../flutter_conf_backend # Only for local
-    # git:
-    #   url: git@github.com:flutter-es/flutter_conf_backend.git
-    #   ref: main
+    # path: ../flutter_conf_backend # Only for local
+    git:
+      url: git@github.com:flutter-es/flutter_conf_backend.git
+      ref: main
   flutter_conf_common:
     # path: ../flutter_conf_common # Only for local
     git:
       url: git@github.com:flutter-es/flutter_conf_common.git
       ref: main
   flutter_conf_core:
-    path: ../flutter_conf_core # Only for local
-    # git:
-    #   url: git@github.com:flutter-es/flutter_conf_core.git
-    #   ref: main
+    # path: ../flutter_conf_core # Only for local
+    git:
+      url: git@github.com:flutter-es/flutter_conf_core.git
+      ref: main
   flutter_hooks: ^0.21.3+1
   flutter_layout_grid: ^2.0.8
   flutter_localizations:
