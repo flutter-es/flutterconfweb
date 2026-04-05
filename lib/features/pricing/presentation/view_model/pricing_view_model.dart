@@ -8,7 +8,7 @@ import 'package:signals/signals.dart';
 final pricingSignal = futureSignal<List<TicketPricingEntity>>(() async {
   final result = await ticketPricingRepository.value.listActiveTicketPricing();
   return switch (result) {
-    Success(:final data) => data,
+    Success(:final data) => data.reversed.toList(),
     Failure(:final failure) => throw failure,
   };
 });
