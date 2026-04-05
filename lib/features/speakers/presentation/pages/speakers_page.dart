@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/utils/page_preloader.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/core/widgets/container/page_loading.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/view_model/speakers_view_model.dart';
 import 'package:flutter_conf_latam/features/speakers/presentation/widgets/speakers_main.dart';
 
@@ -33,19 +34,16 @@ class _SpeakersPageState extends State<SpeakersPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) return const PageLoading();
+
     return CustomScrollView(
       slivers: <Widget>[
-        if (_isLoading)
-          const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
-          )
-        else
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const SpeakersMain(),
-              const Footer(),
-            ]),
-          ),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            const SpeakersMain(),
+            const Footer(),
+          ]),
+        ),
       ],
     );
   }

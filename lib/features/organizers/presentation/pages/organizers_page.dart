@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/utils/page_preloader.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/core/widgets/container/page_loading.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/view_model/organizers_view_model.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/widgets/organizers_communities.dart';
 import 'package:flutter_conf_latam/features/organizers/presentation/widgets/organizers_people.dart';
@@ -34,20 +35,17 @@ class _OrganizersPageState extends State<OrganizersPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) return const PageLoading();
+
     return CustomScrollView(
       slivers: <Widget>[
-        if (_isLoading)
-          const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
-          )
-        else
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const OrganizersPeople(),
-              const OrganizersCommunities(),
-              const Footer(),
-            ]),
-          ),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            const OrganizersPeople(),
+            const OrganizersCommunities(),
+            const Footer(),
+          ]),
+        ),
       ],
     );
   }

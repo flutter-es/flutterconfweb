@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/utils/page_preloader.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
+import 'package:flutter_conf_latam/core/widgets/container/page_loading.dart';
 import 'package:flutter_conf_latam/core/widgets/container/pricing_container.dart';
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_collaborations.dart';
@@ -44,22 +45,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) return const PageLoading();
+
     return CustomScrollView(
       slivers: <Widget>[
-        if (_isLoading)
-          const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
-          )
-        else
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const HomeMain(),
-              const HomeFeatures(),
-              const HomeGallery(),
-              const HomeCollaborations(type: .sponsor),
-              const HomeCollaborations(type: .speaker),
-              const PricingContainer(),
-              /*
+        SliverList(
+          delegate: SliverChildListDelegate([
+            const HomeMain(),
+            const HomeFeatures(),
+            const HomeGallery(),
+            const HomeCollaborations(type: .sponsor),
+            const HomeCollaborations(type: .speaker),
+            const PricingContainer(),
+            /*
             // TODO(FV): Temp
             const HomeVenue(),
             const HomeNovelties(),
@@ -67,9 +65,9 @@ class _HomePageState extends State<HomePage> {
             const HomeSponsors(),
             const HomeFaq(),
             */
-              const Footer(),
-            ]),
-          ),
+            const Footer(),
+          ]),
+        ),
       ],
     );
   }
