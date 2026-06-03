@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:js_interop';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_core/flutter_conf_core.dart';
@@ -18,7 +17,7 @@ extension type JSWindow._(JSObject _) implements JSObject {
   external int get initTime;
 }
 
-class FlutterConfApp extends StatefulWidget {
+class FlutterConfApp extends SignalStatefulWidget {
   const FlutterConfApp({super.key});
 
   @override
@@ -31,6 +30,10 @@ class _FlutterConfAppState extends State<FlutterConfApp> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _initializeAnalytics());
+  }
+
+  void _initializeAnalytics() {
     final analytics = analyticsRepository.value;
 
     unawaited(
@@ -50,7 +53,7 @@ class _FlutterConfAppState extends State<FlutterConfApp> {
 
   @override
   Widget build(BuildContext context) {
-    final appLocale = currentLocale.watch(context);
+    final appLocale = currentLocale.value;
 
     return MaterialApp.router(
       title: 'Flutter Conf LATAM',
@@ -61,12 +64,7 @@ class _FlutterConfAppState extends State<FlutterConfApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
-        dragDevices: {
-          PointerDeviceKind.mouse,
-          PointerDeviceKind.touch,
-          PointerDeviceKind.stylus,
-          PointerDeviceKind.unknown,
-        },
+        dragDevices: {.mouse, .touch, .stylus, .unknown},
       ),
     );
   }
