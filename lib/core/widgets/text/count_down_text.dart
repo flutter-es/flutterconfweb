@@ -8,7 +8,7 @@ import 'package:flutter_conf_latam/l10n/gen/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals_flutter.dart';
 
-class CountDownText extends StatefulWidget {
+class CountDownText extends SignalStatefulWidget {
   const CountDownText({
     required this.startDate,
     required this.endDate,
@@ -42,7 +42,7 @@ class _CountDownTextState extends State<CountDownText> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final columnRowSize = switch (context.screenSize) {
       .extraLarge => 4,
       _ => 2,

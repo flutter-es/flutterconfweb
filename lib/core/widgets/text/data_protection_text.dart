@@ -8,7 +8,7 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class DataProtectionText extends StatelessWidget {
+class DataProtectionText extends SignalWidget {
   const DataProtectionText({this.textAlign = .start, this.textSize, super.key});
 
   final TextAlign textAlign;
@@ -16,8 +16,8 @@ class DataProtectionText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     final theme = context.theme.fclThemeScheme;
     final textTheme = switch (context.screenSize) {

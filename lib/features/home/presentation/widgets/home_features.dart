@@ -16,12 +16,12 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class HomeFeatures extends StatelessWidget {
+class HomeFeatures extends SignalWidget {
   const HomeFeatures({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final features = <({String title, String description, String image})>[
       (
         title: l10n.homeFeatureLearnTitle,
@@ -106,15 +106,15 @@ class HomeFeatures extends StatelessWidget {
   }
 }
 
-class _BuyTicketFeature extends StatelessWidget {
+class _BuyTicketFeature extends SignalWidget {
   const _BuyTicketFeature();
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     final children = <Widget>[
       Align(

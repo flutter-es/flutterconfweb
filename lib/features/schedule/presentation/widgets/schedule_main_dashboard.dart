@@ -27,37 +27,39 @@ class _ScheduleDashboard extends HookWidget {
       return null;
     }, [currentIndex]);
 
-    return Watch((context) {
-      final scheduleDayList = daysScheduleSignal.value;
-      return scheduleDayList.maybeMap(
-        data: (data) => FadeTransition(
-          opacity: controller,
-          child: IndexedStack(
-            index: currentIndex,
-            clipBehavior: .antiAliasWithSaveLayer,
-            children: <Widget>[
-              for (final (idx, daySchedule) in data.indexed)
-                if (daySchedule != null)
-                  Visibility(
-                    visible: currentIndex == idx,
-                    child: Column(
-                      spacing: 10,
-                      mainAxisSize: .min,
-                      children: <Widget>[
-                        for (final slot in daySchedule.scheduleSlots)
-                          _ScheduleSlotItem(slot: slot),
-                      ],
+    return SignalBuilder(
+      builder: (context) {
+        final scheduleDayList = daysScheduleSignal.value;
+        return scheduleDayList.maybeMap(
+          data: (data) => FadeTransition(
+            opacity: controller,
+            child: IndexedStack(
+              index: currentIndex,
+              clipBehavior: .antiAliasWithSaveLayer,
+              children: <Widget>[
+                for (final (idx, daySchedule) in data.indexed)
+                  if (daySchedule != null)
+                    Visibility(
+                      visible: currentIndex == idx,
+                      child: Column(
+                        spacing: 10,
+                        mainAxisSize: .min,
+                        children: <Widget>[
+                          for (final slot in daySchedule.scheduleSlots)
+                            _ScheduleSlotItem(slot: slot),
+                        ],
+                      ),
                     ),
-                  ),
-            ],
+              ],
+            ),
           ),
-        ),
-        error: (_, _) => const Center(
-          child: ErrorContainer(onRetry: reloadSchedule),
-        ),
-        orElse: () => const Offstage(),
-      );
-    });
+          error: (_, _) => const Center(
+            child: ErrorContainer(onRetry: reloadSchedule),
+          ),
+          orElse: () => const Offstage(),
+        );
+      },
+    );
   }
 }
 

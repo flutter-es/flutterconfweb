@@ -12,12 +12,12 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class HomeNovelties extends StatelessWidget {
+class HomeNovelties extends SignalWidget {
   const HomeNovelties({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final novelties = <({String title, String description, String image})>[
       (
         title: l10n.homeNoveltiesMerchTitle,
@@ -89,12 +89,12 @@ class HomeNovelties extends StatelessWidget {
   }
 }
 
-class _NoveltyAppCard extends StatelessWidget {
+class _NoveltyAppCard extends SignalWidget {
   const _NoveltyAppCard();
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return Card(
       color: FlutterLatamColors.blue,
@@ -165,15 +165,15 @@ class _NoveltyAppCard extends StatelessWidget {
   }
 }
 
-class _AppStoreSection extends StatelessWidget {
+class _AppStoreSection extends SignalWidget {
   const _AppStoreSection();
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     final appLogoUrls = <({String imagePath, String url})>[
       (imagePath: Assets.images.novelties.appStore, url: config.appStoreUrl),

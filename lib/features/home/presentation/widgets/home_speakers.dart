@@ -11,75 +11,73 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class HomeSpeakers extends StatelessWidget {
+class HomeSpeakers extends SignalWidget {
   const HomeSpeakers({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
+    final randomSpeakersList = speakersRandomSignal.value;
 
-    return Watch((context) {
-      final randomSpeakersList = speakersRandomSignal.value;
-      return randomSpeakersList.maybeMap(
-        data: (data) {
-          final colSize = switch (context.screenSize) {
-            .extraLarge => 4,
-            _ => 2,
-          };
-          final imageSize = switch (context.screenSize) {
-            .extraLarge || .large => const Size.square(206),
-            .normal || .small => const Size.square(120),
-          };
+    return randomSpeakersList.maybeMap(
+      data: (data) {
+        final colSize = switch (context.screenSize) {
+          .extraLarge => 4,
+          _ => 2,
+        };
+        final imageSize = switch (context.screenSize) {
+          .extraLarge || .large => const Size.square(206),
+          .normal || .small => const Size.square(120),
+        };
 
-          return SectionContainer(
-            spacing: 30,
-            children: <Widget>[
-              TitleSubtitleText(
-                title: (
-                  text: l10n.homeSpeakersTitle,
-                  size: switch (context.screenSize) {
-                    .extraLarge => 64,
-                    .large => 48,
-                    .normal || .small => 24,
-                  },
-                ),
-                subtitle: (
-                  text: l10n.homeSpeakersDescription,
-                  size: switch (context.screenSize) {
-                    .extraLarge || .large => 24,
-                    .normal || .small => 16,
-                  },
-                ),
-                spacing: 12,
+        return SectionContainer(
+          spacing: 30,
+          children: <Widget>[
+            TitleSubtitleText(
+              title: (
+                text: l10n.homeSpeakersTitle,
+                size: switch (context.screenSize) {
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
+                },
               ),
-              ResponsiveGrid(
-                columnSizes: colSize,
-                rowSizes: ((data.length + 1) / colSize).ceil(),
-                children: <Widget>[
-                  for (final (index, item) in data.indexed)
-                    SpeakerCardItem(
-                      speaker: item,
-                      imageSize: imageSize,
-                      imageBackgroundColor: _speakerListColors[index],
-                    ),
-                  const _RedirectSpeakersCard(),
-                ],
+              subtitle: (
+                text: l10n.homeSpeakersDescription,
+                size: switch (context.screenSize) {
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
+                },
               ),
-            ],
-          );
-        },
-        orElse: () => const Offstage(),
-      );
-    });
+              spacing: 12,
+            ),
+            ResponsiveGrid(
+              columnSizes: colSize,
+              rowSizes: ((data.length + 1) / colSize).ceil(),
+              children: <Widget>[
+                for (final (index, item) in data.indexed)
+                  SpeakerCardItem(
+                    speaker: item,
+                    imageSize: imageSize,
+                    imageBackgroundColor: _speakerListColors[index],
+                  ),
+                const _RedirectSpeakersCard(),
+              ],
+            ),
+          ],
+        );
+      },
+      orElse: () => const Offstage(),
+    );
   }
 }
 
-class _RedirectSpeakersCard extends StatelessWidget {
+class _RedirectSpeakersCard extends SignalWidget {
   const _RedirectSpeakersCard();
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final theme = context.theme.fclThemeScheme;
 
     return Center(

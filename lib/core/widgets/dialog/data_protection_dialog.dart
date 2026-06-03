@@ -7,12 +7,12 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class DataProtectionDialog extends StatelessWidget {
+class DataProtectionDialog extends SignalWidget {
   const DataProtectionDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final theme = context.theme.fclThemeScheme;
 
     final paddingTop = switch (context.screenSize) {

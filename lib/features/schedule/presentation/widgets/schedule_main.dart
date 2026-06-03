@@ -20,12 +20,12 @@ part 'schedule_main_dashboard.dart';
 
 part 'schedule_main_dashboard_item.dart';
 
-class ScheduleMain extends StatelessWidget {
+class ScheduleMain extends SignalWidget {
   const ScheduleMain({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return SectionContainer(
       spacing: 48,
@@ -71,59 +71,66 @@ class _ScheduleDashboardContainer extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = appLocalizations.watch(context);
-
     final selectedSchedule = useState(0);
-    final scheduleDays = [l10n.scheduleOptionDayOne, l10n.scheduleOptionDayTwo];
 
-    return SizedBox(
-      width: .infinity,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: FlutterLatamColors.darkBlue,
-          borderRadius: .circular(30),
-        ),
-        child: Padding(
-          padding: switch (context.screenSize) {
-            .extraLarge || .large => const .all(30),
-            .normal || .small => const .all(20),
-          },
-          child: Column(
-            spacing: 30,
-            crossAxisAlignment: .start,
-            children: <Widget>[
-              OptionButtonList(
-                options: scheduleDays,
-                selectedValue: selectedSchedule.value,
-                onChanged: (value) => selectedSchedule.value = value,
-              ),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                transitionBuilder: (child, animation) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-                child: Text(
-                  key: ValueKey(selectedSchedule.value),
-                  l10n.scheduleOptionDayTitle(
-                    selectedSchedule.value + 1,
-                    scheduleDays[selectedSchedule.value],
+    return SignalBuilder(
+      builder: (context) {
+        final l10n = appLocalizations.value;
+        final scheduleDays = [
+          l10n.scheduleOptionDayOne,
+          l10n.scheduleOptionDayTwo,
+        ];
+
+        return SizedBox(
+          width: .infinity,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: FlutterLatamColors.darkBlue,
+              borderRadius: .circular(30),
+            ),
+            child: Padding(
+              padding: switch (context.screenSize) {
+                .extraLarge || .large => const .all(30),
+                .normal || .small => const .all(20),
+              },
+              child: Column(
+                spacing: 30,
+                crossAxisAlignment: .start,
+                children: <Widget>[
+                  OptionButtonList(
+                    options: scheduleDays,
+                    selectedValue: selectedSchedule.value,
+                    onChanged: (value) => selectedSchedule.value = value,
                   ),
-                  style: theme.typography.h4Bold.copyWith(
-                    fontSize: switch (context.screenSize) {
-                      .extraLarge || .large => 24,
-                      .normal || .small => 16,
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 200),
+                    transitionBuilder: (child, animation) {
+                      return FadeTransition(opacity: animation, child: child);
                     },
+                    child: Text(
+                      key: ValueKey(selectedSchedule.value),
+                      l10n.scheduleOptionDayTitle(
+                        selectedSchedule.value + 1,
+                        scheduleDays[selectedSchedule.value],
+                      ),
+                      style: theme.typography.h4Bold.copyWith(
+                        fontSize: switch (context.screenSize) {
+                          .extraLarge || .large => 24,
+                          .normal || .small => 16,
+                        },
+                      ),
+                    ),
                   ),
-                ),
+                  _ScheduleDashboard(
+                    currentIndex: selectedSchedule.value,
+                    duration: const Duration(milliseconds: 500),
+                  ),
+                ],
               ),
-              _ScheduleDashboard(
-                currentIndex: selectedSchedule.value,
-                duration: const Duration(milliseconds: 500),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -10,7 +10,7 @@ import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:signals/signals_flutter.dart';
 
-class MobileDrawerMenu extends StatelessWidget {
+class MobileDrawerMenu extends SignalWidget {
   const MobileDrawerMenu({
     required this.tabItems,
     required this.onSelect,
@@ -22,7 +22,7 @@ class MobileDrawerMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return Drawer(
       backgroundColor: FlutterLatamColors.mainBlue,

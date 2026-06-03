@@ -8,12 +8,12 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class LanguageButton extends StatelessWidget {
+class LanguageButton extends SignalWidget {
   const LanguageButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final languageCode = currentLocale.watch(context).languageCode;
+    final languageCode = currentLocale.value.languageCode;
 
     return Container(
       height: 50,

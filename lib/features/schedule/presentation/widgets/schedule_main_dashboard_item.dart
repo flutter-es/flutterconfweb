@@ -2,7 +2,7 @@ part of 'schedule_main.dart';
 
 enum ScheduleCardPosition { row, column }
 
-class _ScheduleCard extends StatelessWidget {
+class _ScheduleCard extends SignalWidget {
   const _ScheduleCard({
     required this.sessions,
     required this.color,
@@ -19,7 +19,7 @@ class _ScheduleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final scheduleTrack = sessions.firstOrNull;
 
     final scheduleChildren = <Widget>[
@@ -102,7 +102,7 @@ class _ScheduleCard extends StatelessWidget {
   }
 }
 
-class _ScheduleDetail extends StatelessWidget {
+class _ScheduleDetail extends SignalWidget {
   const _ScheduleDetail({required this.session});
 
   final EventDaySessionRelation session;
@@ -110,7 +110,7 @@ class _ScheduleDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     final title = l10n.localeName == 'es' ? session.titleEs : session.titleEn;
     final scheduleTypeTitle = switch (session.sessionType) {

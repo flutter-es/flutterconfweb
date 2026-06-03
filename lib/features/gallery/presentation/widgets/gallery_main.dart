@@ -8,12 +8,12 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:signals/signals_flutter.dart';
 
-class GalleryMain extends StatelessWidget {
+class GalleryMain extends SignalWidget {
   const GalleryMain({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final carouselImageUrls = <String>[
       Assets.images.gallery.one,
       Assets.images.gallery.two,

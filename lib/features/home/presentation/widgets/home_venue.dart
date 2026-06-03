@@ -8,12 +8,12 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class HomeVenue extends StatelessWidget {
+class HomeVenue extends SignalWidget {
   const HomeVenue({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final theme = context.theme.fclThemeScheme;
 
     return SectionContainer(

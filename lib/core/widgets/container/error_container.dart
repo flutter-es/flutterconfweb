@@ -5,14 +5,14 @@ import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals_flutter.dart';
 
-class ErrorContainer extends StatelessWidget {
+class ErrorContainer extends SignalWidget {
   const ErrorContainer({required this.onRetry, super.key});
 
   final VoidCallback onRetry;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return Column(
       spacing: 40,

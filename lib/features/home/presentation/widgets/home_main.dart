@@ -12,15 +12,15 @@ import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class HomeMain extends StatelessWidget {
+class HomeMain extends SignalWidget {
   const HomeMain({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     return DecoratedBox(
       decoration: const BoxDecoration(

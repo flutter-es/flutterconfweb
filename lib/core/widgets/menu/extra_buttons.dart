@@ -10,17 +10,17 @@ import 'package:signals/signals_flutter.dart';
 
 enum ButtonPosition { row, column }
 
-class ExtraButtons extends StatelessWidget {
+class ExtraButtons extends SignalWidget {
   const ExtraButtons({required this.position, super.key});
 
   final ButtonPosition position;
 
   @override
   Widget build(BuildContext context) {
-    final language = currentLocale.watch(context).languageCode;
+    final language = currentLocale.value.languageCode;
 
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     final children = <Widget>[
       FclButton.secondary(
@@ -34,11 +34,13 @@ class ExtraButtons extends StatelessWidget {
           '${language.toUpperCase()}-${config.sponsorshipFileName}',
         ),
       ),
+      /*
       FclButton.secondary(
         label: l10n.menuBeSpeakerButton,
         buttonSize: .small,
         onPressed: () => Utils.launchUrlLink(config.cfpFormUrl),
       ),
+      */
       FclButton.primary(
         label: l10n.menuBuyTicketsButton,
         buttonSize: .small,

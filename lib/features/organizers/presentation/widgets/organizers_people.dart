@@ -14,7 +14,7 @@ import 'package:flutter_conf_latam/features/organizers/presentation/view_model/o
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals_flutter.dart';
 
-class OrganizersPeople extends StatefulWidget {
+class OrganizersPeople extends SignalStatefulWidget {
   const OrganizersPeople({super.key});
 
   @override
@@ -30,103 +30,101 @@ class _OrganizersPeopleState extends State<OrganizersPeople> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     final size = switch (context.screenSize) {
       .extraLarge || .large => const Size.square(206),
       .normal || .small => const Size.square(120),
     };
 
+    final organizers = organizersSignal.value;
     return KeepAliveContainer(
-      child: Watch((context) {
-        final organizers = organizersSignal.value;
-        return SectionContainer(
-          spacing: 48,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.organizersPeopleTitle,
-                size: switch (context.screenSize) {
-                  .extraLarge => 64,
-                  .large => 48,
-                  .normal || .small => 24,
-                },
-              ),
-              subtitle: (
-                text: l10n.organizersPeopleDescription,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 16,
-                },
-              ),
-              spacing: 12,
+      child: SectionContainer(
+        spacing: 48,
+        children: <Widget>[
+          TitleSubtitleText(
+            title: (
+              text: l10n.organizersPeopleTitle,
+              size: switch (context.screenSize) {
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
+              },
             ),
-            organizers.map(
-              data: (data) => PaginationContainer(
-                totalSize: data.totalList,
-                pageSize: paginationController.value.pageSize,
-                currentPage: paginationController.value.page,
-                onChangedPage: (value) {
-                  paginationController.update(page: value);
-                },
-                child: _OrganizerListContainer(
-                  children: <Widget>[
-                    for (final item in data.organizerList)
-                      Center(
-                        child: Column(
-                          spacing: 20,
-                          children: <Widget>[
-                            CharacterImage(
-                              imageUrl: item.user.avatarUrl ?? '',
-                              flagImageUrl: item.user.countryFlag ?? '',
-                              size: size,
-                            ),
-                            TitleSubtitleText(
-                              title: (
-                                text: item.user.name,
-                                size: switch (context.screenSize) {
-                                  .extraLarge || .large => 24,
-                                  .normal || .small => 12,
-                                },
-                              ),
-                              subtitle: (
-                                text: item.areas.map((a) => a.name).join(' - '),
-                                size: switch (context.screenSize) {
-                                  .extraLarge || .large => 16,
-                                  .normal || .small => 12,
-                                },
-                              ),
-                              spacing: 4,
-                            ),
-                          ],
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              loading: () => Shimmer(
-                child: _OrganizerListContainer(
-                  children: .generate(9, (_) {
-                    return Center(
-                      child: ShimmerLoading(
-                        isLoading: true,
-                        child: Column(
-                          spacing: 20,
-                          children: <Widget>[
-                            SingleImageContainer(size: size, borderRadius: 30),
-                            const TitleSubtitleTextContainer(),
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-              error: (_, _) => const ErrorContainer(onRetry: reloadOrganizers),
+            subtitle: (
+              text: l10n.organizersPeopleDescription,
+              size: switch (context.screenSize) {
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
+              },
             ),
-          ],
-        );
-      }),
+            spacing: 12,
+          ),
+          organizers.map(
+            data: (data) => PaginationContainer(
+              totalSize: data.totalList,
+              pageSize: paginationController.value.pageSize,
+              currentPage: paginationController.value.page,
+              onChangedPage: (value) {
+                paginationController.update(page: value);
+              },
+              child: _OrganizerListContainer(
+                children: <Widget>[
+                  for (final item in data.organizerList)
+                    Center(
+                      child: Column(
+                        spacing: 20,
+                        children: <Widget>[
+                          CharacterImage(
+                            imageUrl: item.user.avatarUrl ?? '',
+                            flagImageUrl: item.user.countryFlag ?? '',
+                            size: size,
+                          ),
+                          TitleSubtitleText(
+                            title: (
+                              text: item.user.name,
+                              size: switch (context.screenSize) {
+                                .extraLarge || .large => 24,
+                                .normal || .small => 12,
+                              },
+                            ),
+                            subtitle: (
+                              text: item.areas.map((a) => a.name).join(' - '),
+                              size: switch (context.screenSize) {
+                                .extraLarge || .large => 16,
+                                .normal || .small => 12,
+                              },
+                            ),
+                            spacing: 4,
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            loading: () => Shimmer(
+              child: _OrganizerListContainer(
+                children: .generate(9, (_) {
+                  return Center(
+                    child: ShimmerLoading(
+                      isLoading: true,
+                      child: Column(
+                        spacing: 20,
+                        children: <Widget>[
+                          SingleImageContainer(size: size, borderRadius: 30),
+                          const TitleSubtitleTextContainer(),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+            error: (_, _) => const ErrorContainer(onRetry: reloadOrganizers),
+          ),
+        ],
+      ),
     );
   }
 }

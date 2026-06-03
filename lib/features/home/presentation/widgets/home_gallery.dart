@@ -10,12 +10,13 @@ import 'package:flutter_conf_latam/features/home/presentation/view_model/home_vi
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals_flutter.dart';
 
-class HomeGallery extends StatelessWidget {
+class HomeGallery extends SignalWidget {
   const HomeGallery({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
+    final gallery = galleryPreviewSignal.value;
 
     final size = switch (context.screenSize) {
       .extraLarge => const Size.square(360),
@@ -35,37 +36,34 @@ class HomeGallery extends StatelessWidget {
               },
             ),
           ),
-          Watch((context) {
-            final gallery = galleryPreviewSignal.value;
-            return gallery.maybeMap(
-              data: (data) {
-                if (data.isEmpty) return const Offstage();
-                return CarouselContainer(
-                  itemSize: size,
-                  items: <Widget>[
-                    for (final item in data)
-                      Center(
-                        child: SingleImage(imageUrl: item, size: size),
-                      ),
-                  ],
-                );
-              },
-              loading: () => Shimmer(
-                child: CarouselContainer(
-                  itemSize: size,
-                  items: .generate(20, (_) {
-                    return Center(
-                      child: ShimmerLoading(
-                        isLoading: true,
-                        child: SingleImageContainer(size: size),
-                      ),
-                    );
-                  }),
-                ),
+          gallery.maybeMap(
+            data: (data) {
+              if (data.isEmpty) return const Offstage();
+              return CarouselContainer(
+                itemSize: size,
+                items: <Widget>[
+                  for (final item in data)
+                    Center(
+                      child: SingleImage(imageUrl: item, size: size),
+                    ),
+                ],
+              );
+            },
+            loading: () => Shimmer(
+              child: CarouselContainer(
+                itemSize: size,
+                items: .generate(20, (_) {
+                  return Center(
+                    child: ShimmerLoading(
+                      isLoading: true,
+                      child: SingleImageContainer(size: size),
+                    ),
+                  );
+                }),
               ),
-              orElse: () => const Offstage(),
-            );
-          }),
+            ),
+            orElse: () => const Offstage(),
+          ),
         ],
       ),
     );

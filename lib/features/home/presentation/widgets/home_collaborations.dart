@@ -16,20 +16,21 @@ import 'package:signals/signals_flutter.dart';
 
 enum CollaborationType { speaker, sponsor }
 
-class HomeCollaborations extends StatelessWidget {
+class HomeCollaborations extends SignalWidget {
   const HomeCollaborations({required this.type, super.key});
 
   final CollaborationType type;
 
   @override
   Widget build(BuildContext context) {
-    final language = currentLocale.watch(context).languageCode;
+    final language = currentLocale.value.languageCode;
 
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     final collaborations = <CollaborationItem>[
       if (type == .speaker) ...[
+        /*
         CollaborationItem(
           title: l10n.homeCollaborationSpeakerTitle,
           description: l10n.homeCollaborationSpeakerDescription,
@@ -39,6 +40,7 @@ class HomeCollaborations extends StatelessWidget {
             function: () => _goToUrl(config.cfpFormUrl),
           ),
         ),
+        */
       ] else ...[
         CollaborationItem(
           title: l10n.homeCollaborationSponsorTitle,
@@ -79,7 +81,7 @@ class HomeCollaborations extends StatelessWidget {
     );
   }
 
-  void _goToUrl(String url) => Utils.launchUrlLink(url);
+  // void _goToUrl(String url) => Utils.launchUrlLink(url);
 
   void _downloadFile(String assetPath, String fileName) {
     unawaited(Utils.downloadPdf(assetPath, fileName));

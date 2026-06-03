@@ -7,7 +7,7 @@ import 'package:flutter_conf_latam/features/privacy_terms/presentation/view_mode
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/widgets/markdown_container.dart';
 import 'package:signals/signals_flutter.dart';
 
-class TermsPage extends StatefulWidget {
+class TermsPage extends SignalStatefulWidget {
   const TermsPage({super.key});
 
   @override
@@ -38,17 +38,15 @@ class _TermsPageState extends State<TermsPage> {
   }
 }
 
-class _TermsMain extends StatelessWidget {
+class _TermsMain extends SignalWidget {
   const _TermsMain();
 
   @override
   Widget build(BuildContext context) {
-    return Watch((context) {
-      final termsData = termsSignal.value;
-      return termsData.maybeMap(
-        data: (data) => MarkdownContainer(markdownData: data),
-        orElse: () => const Offstage(),
-      );
-    });
+    final termsData = termsSignal.value;
+    return termsData.maybeMap(
+      data: (data) => MarkdownContainer(markdownData: data),
+      orElse: () => const Offstage(),
+    );
   }
 }

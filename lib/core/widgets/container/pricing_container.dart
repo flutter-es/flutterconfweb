@@ -14,72 +14,70 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class PricingContainer extends StatelessWidget {
+class PricingContainer extends SignalWidget {
   const PricingContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
+    final pricingList = pricingSignal.value;
 
-    return Watch((context) {
-      final pricingList = pricingSignal.value;
-      return pricingList.maybeMap(
-        data: (data) => SectionContainer(
-          spacing: 50,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.homePricingTitle,
-                size: switch (context.screenSize) {
-                  .extraLarge => 64,
-                  .large => 48,
-                  .normal || .small => 24,
-                },
-              ),
-              subtitle: (
-                text: l10n.homePricingDescription,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 16,
-                },
-              ),
-              spacing: 12,
+    return pricingList.maybeMap(
+      data: (data) => SectionContainer(
+        spacing: 50,
+        children: <Widget>[
+          TitleSubtitleText(
+            title: (
+              text: l10n.homePricingTitle,
+              size: switch (context.screenSize) {
+                .extraLarge => 64,
+                .large => 48,
+                .normal || .small => 24,
+              },
             ),
-            if (data.length == 1)
-              Center(
-                child: SizedBox(
-                  width: switch (context.screenSize) {
-                    .extraLarge || .large => 380,
-                    _ => null,
-                  },
-                  child: _PricingCardItem(detail: data.first),
-                ),
-              )
-            else if (context.screenSize == .extraLarge)
-              Row(
-                spacing: 30,
-                crossAxisAlignment: .start,
-                children: <Widget>[
-                  for (final item in data)
-                    Expanded(child: _PricingCardItem(detail: item)),
-                ],
-              )
-            else
-              Column(
-                spacing: 30,
-                children: <Widget>[
-                  for (final item in data) _PricingCardItem(detail: item),
-                ],
+            subtitle: (
+              text: l10n.homePricingDescription,
+              size: switch (context.screenSize) {
+                .extraLarge || .large => 24,
+                .normal || .small => 16,
+              },
+            ),
+            spacing: 12,
+          ),
+          if (data.length == 1)
+            Center(
+              child: SizedBox(
+                width: switch (context.screenSize) {
+                  .extraLarge || .large => 380,
+                  _ => null,
+                },
+                child: _PricingCardItem(detail: data.first),
               ),
-          ],
-        ),
-        orElse: () => const Offstage(),
-      );
-    });
+            )
+          else if (context.screenSize == .extraLarge)
+            Row(
+              spacing: 30,
+              crossAxisAlignment: .start,
+              children: <Widget>[
+                for (final item in data)
+                  Expanded(child: _PricingCardItem(detail: item)),
+              ],
+            )
+          else
+            Column(
+              spacing: 30,
+              children: <Widget>[
+                for (final item in data) _PricingCardItem(detail: item),
+              ],
+            ),
+        ],
+      ),
+      orElse: () => const Offstage(),
+    );
   }
 }
 
-class _PricingCardItem extends StatelessWidget {
+class _PricingCardItem extends SignalWidget {
   const _PricingCardItem({required this.detail});
 
   final TicketPricingEntity detail;
@@ -88,8 +86,8 @@ class _PricingCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     final isSpanish = l10n.localeName == 'es';
     final benefits = isSpanish ? detail.benefitsEs : detail.benefitsEn;

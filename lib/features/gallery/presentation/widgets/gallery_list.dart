@@ -9,7 +9,7 @@ import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/features/gallery/presentation/view_model/gallery_view_model.dart';
 import 'package:signals/signals_flutter.dart';
 
-class GalleryList extends StatelessWidget {
+class GalleryList extends SignalWidget {
   const GalleryList({super.key});
 
   @override
@@ -19,40 +19,38 @@ class GalleryList extends StatelessWidget {
       _ => const Size.square(264),
     };
 
-    return Watch((context) {
-      final galleryList = gallerySignal.value;
-      return galleryList.map(
-        data: (data) => PaginationContainer(
-          totalSize: data.totalList,
-          pageSize: paginationController.value.pageSize,
-          currentPage: paginationController.value.page,
-          onChangedPage: (value) {
-            paginationController.update(page: value);
-          },
-          child: _GalleryListContainer(
-            children: <Widget>[
-              for (final item in data.galleryList)
-                Center(
-                  child: SingleImage(imageUrl: item.imageUrl, size: size),
-                ),
-            ],
-          ),
+    final galleryList = gallerySignal.value;
+    return galleryList.map(
+      data: (data) => PaginationContainer(
+        totalSize: data.totalList,
+        pageSize: paginationController.value.pageSize,
+        currentPage: paginationController.value.page,
+        onChangedPage: (value) {
+          paginationController.update(page: value);
+        },
+        child: _GalleryListContainer(
+          children: <Widget>[
+            for (final item in data.galleryList)
+              Center(
+                child: SingleImage(imageUrl: item.imageUrl, size: size),
+              ),
+          ],
         ),
-        loading: () => Shimmer(
-          child: _GalleryListContainer(
-            children: List.generate(9, (_) {
-              return Center(
-                child: ShimmerLoading(
-                  isLoading: true,
-                  child: SingleImageContainer(size: size),
-                ),
-              );
-            }),
-          ),
+      ),
+      loading: () => Shimmer(
+        child: _GalleryListContainer(
+          children: List.generate(9, (_) {
+            return Center(
+              child: ShimmerLoading(
+                isLoading: true,
+                child: SingleImageContainer(size: size),
+              ),
+            );
+          }),
         ),
-        error: (_, _) => const ErrorContainer(onRetry: reloadGallery),
-      );
-    });
+      ),
+      error: (_, _) => const ErrorContainer(onRetry: reloadGallery),
+    );
   }
 }
 

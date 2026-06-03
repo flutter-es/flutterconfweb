@@ -14,7 +14,7 @@ import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:signals/signals_flutter.dart';
 
-class ContactPage extends StatefulWidget {
+class ContactPage extends SignalStatefulWidget {
   const ContactPage({super.key});
 
   @override
@@ -45,12 +45,12 @@ class _ContactPageState extends State<ContactPage> {
   }
 }
 
-class _ContactMain extends StatelessWidget {
+class _ContactMain extends SignalWidget {
   const _ContactMain();
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return SectionContainer(
       spacing: 24,
@@ -78,15 +78,15 @@ class _ContactMain extends StatelessWidget {
   }
 }
 
-class _ContactEmailCard extends StatelessWidget {
+class _ContactEmailCard extends SignalWidget {
   const _ContactEmailCard();
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
 
-    final l10n = appLocalizations.watch(context);
-    final config = appConfig.watch(context);
+    final l10n = appLocalizations.value;
+    final config = appConfig.value;
 
     return DecoratedBox(
       decoration: BoxDecoration(

@@ -9,13 +9,13 @@ import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
 
-class ErrorPage extends StatelessWidget {
+class ErrorPage extends SignalWidget {
   const ErrorPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return Scaffold(
       body: Center(

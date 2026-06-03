@@ -13,7 +13,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
 
-class ShellNavigatorPage extends StatefulWidget {
+class ShellNavigatorPage extends SignalStatefulWidget {
   const ShellNavigatorPage({required this.child, super.key});
 
   final Widget child;
@@ -36,74 +36,73 @@ class _ShellNavigatorPageState extends State<ShellNavigatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
+    final allItems = navigationController.value;
 
-    return Watch((context) {
-      final allItems = navigationController.value;
-      final tabItems = allItems.where((item) => item.visible).toList();
+    final tabItems = allItems.where((item) => item.visible).toList();
 
-      if (_previousItems != null && !listEquals(_previousItems, allItems)) {
-        final itemRoute = allItems.singleWhereOrNull((item) => item.isSelected);
-        if (itemRoute != null) {
-          if ((itemRoute.route ?? '').isNotEmpty) {
+    if (_previousItems != null && !listEquals(_previousItems, allItems)) {
+      final itemRoute = allItems.singleWhereOrNull((item) => item.isSelected);
+      if (itemRoute != null) {
+        if ((itemRoute.route ?? '').isNotEmpty) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) context.go(itemRoute.route!);
+          });
+        } else if ((itemRoute.subMenus ?? []).isNotEmpty) {
+          final subItemRoute = itemRoute.subMenus?.singleWhereOrNull(
+            (item) => item.isSelected,
+          );
+          if (subItemRoute != null && subItemRoute.route.isNotEmpty) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted) context.go(itemRoute.route!);
+              if (mounted) context.go(subItemRoute.route);
             });
-          } else if ((itemRoute.subMenus ?? []).isNotEmpty) {
-            final subItemRoute = itemRoute.subMenus?.singleWhereOrNull(
-              (item) => item.isSelected,
-            );
-            if (subItemRoute != null && subItemRoute.route.isNotEmpty) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (mounted) context.go(subItemRoute.route);
-              });
-            }
           }
         }
       }
-      _previousItems = List.from(allItems);
+    }
+    _previousItems = List.from(allItems);
 
-      return Scaffold(
-        backgroundColor: FlutterLatamColors.mainBlue,
-        appBar: switch (context.isMobileFromResponsive) {
-          true => AppBar(
-            backgroundColor: FlutterLatamColors.mainBlue,
-            leadingWidth: 90,
-            leading: Padding(
-              padding: const .all(8),
-              child: InkWell(
-                mouseCursor: SystemMouseCursors.click,
-                onTap: switch (tabItems.isNotEmpty) {
-                  true => () => _goToRoute(tabItems.first),
-                  false => null,
-                },
-                child: SvgPicture.asset(
-                  Assets.images.fclMxMainLogo,
-                  semanticsLabel: l10n.menuHomeText,
-                ),
+    return Scaffold(
+      backgroundColor: FlutterLatamColors.mainBlue,
+      appBar: switch (context.isMobileFromResponsive) {
+        true => AppBar(
+          backgroundColor: FlutterLatamColors.mainBlue,
+          leadingWidth: 90,
+          leading: Padding(
+            padding: const .all(8),
+            child: InkWell(
+              mouseCursor: SystemMouseCursors.click,
+              onTap: switch (tabItems.isNotEmpty) {
+                true => () => _goToRoute(tabItems.first),
+                false => null,
+              },
+              child: SvgPicture.asset(
+                Assets.images.fclMxMainLogo,
+                semanticsLabel: l10n.menuHomeText,
               ),
             ),
           ),
-          false => null,
-        },
-        endDrawer: switch (context.isMobileFromResponsive) {
-          true => MobileDrawerMenu(tabItems: tabItems, onSelect: _goToRoute),
-          false => null,
-        },
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: NestedScrollView(
-                headerSliverBuilder: (_, _) {
-                  return [
-                    if (!context.isMobileFromResponsive)
-                      HeaderMenu(tabItems: tabItems, onSelect: _goToRoute),
-                  ];
-                },
-                body: widget.child,
-              ),
+        ),
+        false => null,
+      },
+      endDrawer: switch (context.isMobileFromResponsive) {
+        true => MobileDrawerMenu(tabItems: tabItems, onSelect: _goToRoute),
+        false => null,
+      },
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: NestedScrollView(
+              headerSliverBuilder: (_, _) {
+                return [
+                  if (!context.isMobileFromResponsive)
+                    HeaderMenu(tabItems: tabItems, onSelect: _goToRoute),
+                ];
+              },
+              body: widget.child,
             ),
-            /*
+          ),
+          /*
             SizedBox(
               height: switch (context.screenSize) {
                 .extraLarge || .large => 56,
@@ -115,10 +114,9 @@ class _ShellNavigatorPageState extends State<ShellNavigatorPage> {
               ),
             ),
             */
-          ],
-        ),
-      );
-    });
+        ],
+      ),
+    );
   }
 
   void _goToRoute(NavigationItemModel item) {

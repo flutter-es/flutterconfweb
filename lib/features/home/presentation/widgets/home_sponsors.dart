@@ -15,91 +15,89 @@ import 'package:signals/signals_flutter.dart';
 
 typedef SponsorTierList = ({List<SponsorEntity> sponsors, SponsorsTier tier});
 
-class HomeSponsors extends StatelessWidget {
+class HomeSponsors extends SignalWidget {
   const HomeSponsors({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
+    final sponsors = sponsorsSignal.value;
 
-    return Watch((context) {
-      final sponsors = sponsorsSignal.value;
-      return sponsors.maybeMap(
-        data: (data) {
-          final sponsorsTierList = <SponsorTierList>[
-            (
-              sponsors: data.where((item) => item.tier == .platinum).toList(),
-              tier: .platinum,
-            ),
-            (
-              sponsors: data.where((item) => item.tier == .gold).toList(),
-              tier: .gold,
-            ),
-            (
-              sponsors: data.where((item) => item.tier == .silver).toList(),
-              tier: .silver,
-            ),
-            (
-              sponsors: data.where((item) => item.tier == .bronze).toList(),
-              tier: .bronze,
-            ),
-            (
-              sponsors: data.where((item) => item.tier == .inKind).toList(),
-              tier: .inKind,
-            ),
-            (
-              sponsors: data.where((item) => item.tier == .senior).toList(),
-              tier: .senior,
-            ),
-            (
-              sponsors: data.where((item) => item.tier == .junior).toList(),
-              tier: .junior,
-            ),
-          ];
+    return sponsors.maybeMap(
+      data: (data) {
+        final sponsorsTierList = <SponsorTierList>[
+          (
+            sponsors: data.where((item) => item.tier == .platinum).toList(),
+            tier: .platinum,
+          ),
+          (
+            sponsors: data.where((item) => item.tier == .gold).toList(),
+            tier: .gold,
+          ),
+          (
+            sponsors: data.where((item) => item.tier == .silver).toList(),
+            tier: .silver,
+          ),
+          (
+            sponsors: data.where((item) => item.tier == .bronze).toList(),
+            tier: .bronze,
+          ),
+          (
+            sponsors: data.where((item) => item.tier == .inKind).toList(),
+            tier: .inKind,
+          ),
+          (
+            sponsors: data.where((item) => item.tier == .senior).toList(),
+            tier: .senior,
+          ),
+          (
+            sponsors: data.where((item) => item.tier == .junior).toList(),
+            tier: .junior,
+          ),
+        ];
 
-          return SectionContainer(
-            spacing: 30,
-            children: <Widget>[
-              TitleSubtitleText(
-                title: (
-                  text: l10n.homeSponsorsTitle,
-                  size: switch (context.screenSize) {
-                    .extraLarge => 64,
-                    .large => 48,
-                    .normal || .small => 24,
-                  },
-                ),
-                subtitle: (
-                  text: l10n.homeSponsorsMessage,
-                  size: switch (context.screenSize) {
-                    .extraLarge || .large => 24,
-                    .normal || .small => 16,
-                  },
-                ),
-                spacing: 12,
+        return SectionContainer(
+          spacing: 30,
+          children: <Widget>[
+            TitleSubtitleText(
+              title: (
+                text: l10n.homeSponsorsTitle,
+                size: switch (context.screenSize) {
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
+                },
               ),
-              Column(
-                spacing: 30,
-                mainAxisSize: .min,
-                children: <Widget>[
-                  for (final item in sponsorsTierList)
-                    if (item.sponsors.isNotEmpty)
-                      _SponsorCardContainer(
-                        sponsors: item.sponsors,
-                        tier: item.tier,
-                      ),
-                ],
+              subtitle: (
+                text: l10n.homeSponsorsMessage,
+                size: switch (context.screenSize) {
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
+                },
               ),
-            ],
-          );
-        },
-        orElse: () => const Offstage(),
-      );
-    });
+              spacing: 12,
+            ),
+            Column(
+              spacing: 30,
+              mainAxisSize: .min,
+              children: <Widget>[
+                for (final item in sponsorsTierList)
+                  if (item.sponsors.isNotEmpty)
+                    _SponsorCardContainer(
+                      sponsors: item.sponsors,
+                      tier: item.tier,
+                    ),
+              ],
+            ),
+          ],
+        );
+      },
+      orElse: () => const Offstage(),
+    );
   }
 }
 
-class _SponsorCardContainer extends StatelessWidget {
+class _SponsorCardContainer extends SignalWidget {
   const _SponsorCardContainer({required this.sponsors, required this.tier});
 
   final List<SponsorEntity> sponsors;
@@ -108,7 +106,7 @@ class _SponsorCardContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return CardContainer(
       borderColor: switch (tier) {

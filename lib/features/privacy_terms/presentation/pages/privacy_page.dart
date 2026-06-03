@@ -7,7 +7,7 @@ import 'package:flutter_conf_latam/features/privacy_terms/presentation/view_mode
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/widgets/markdown_container.dart';
 import 'package:signals/signals_flutter.dart';
 
-class PrivacyPage extends StatefulWidget {
+class PrivacyPage extends SignalStatefulWidget {
   const PrivacyPage({super.key});
 
   @override
@@ -38,17 +38,15 @@ class _PrivacyPageState extends State<PrivacyPage> {
   }
 }
 
-class _PrivacyMain extends StatelessWidget {
+class _PrivacyMain extends SignalWidget {
   const _PrivacyMain();
 
   @override
   Widget build(BuildContext context) {
-    return Watch((context) {
-      final privacyPolicyData = privacyPolicySignal.value;
-      return privacyPolicyData.maybeMap(
-        data: (data) => MarkdownContainer(markdownData: data),
-        orElse: () => const Offstage(),
-      );
-    });
+    final privacyPolicyData = privacyPolicySignal.value;
+    return privacyPolicyData.maybeMap(
+      data: (data) => MarkdownContainer(markdownData: data),
+      orElse: () => const Offstage(),
+    );
   }
 }

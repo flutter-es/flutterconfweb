@@ -11,89 +11,87 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class SpeakerDetailMain extends StatelessWidget {
+class SpeakerDetailMain extends SignalWidget {
   const SpeakerDetailMain({required this.id, super.key});
 
   final String id;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
     final isSpanish = l10n.localeName == 'es';
 
-    return Watch((context) {
-      final speakerSignal = getSpeakerSignal(id);
-      return speakerSignal.value.map(
-        data: (data) {
-          final user = data.user;
-          final description = isSpanish ? user.bioEs : user.bioEn;
+    final speakerSignal = getSpeakerSignal(id);
+    return speakerSignal.value.map(
+      data: (data) {
+        final user = data.user;
+        final description = isSpanish ? user.bioEs : user.bioEn;
 
-          return _SpeakerDetailContainer(
-            headerChildren: <Widget>[
-              CharacterImage(
-                imageUrl: user.avatarUrl ?? '',
-                flagImageUrl: user.countryFlag ?? '',
-                size: const .square(120),
-              ),
-              Expanded(
-                child: TitleSubtitleText(
-                  title: (
-                    text: user.name,
-                    size: switch (context.screenSize) {
-                      .extraLarge || .large => 24,
-                      .normal || .small => 22,
-                    },
-                  ),
-                  subtitle: (
-                    text: user.jobTitle ?? '',
-                    size: switch (context.screenSize) {
-                      .extraLarge || .large => 16,
-                      .normal || .small => 14,
-                    },
-                  ),
-                  spacing: 4,
-                  textAlign: .start,
-                  crossAxisAlignment: .start,
-                ),
-              ),
-            ],
-            detailChild: switch (context.screenSize) {
-              .extraLarge || .large => _SpeakerDescription(
-                text: description ?? '',
-                hasSize: true,
-              ),
-              .normal || .small => _SpeakerDescription(
-                text: description ?? '',
-              ),
-            },
-          );
-        },
-        loading: () => const Shimmer(
-          child: _SpeakerDetailContainer(
-            headerChildren: <Widget>[
-              ShimmerLoading(
-                isLoading: true,
-                child: SingleImageContainer(
-                  size: .square(120),
-                  borderRadius: 30,
-                ),
-              ),
-              ShimmerLoading(
-                isLoading: true,
-                child: TitleSubtitleTextContainer(crossAxisAlignment: .start),
-              ),
-            ],
-            detailChild: ShimmerLoading(
-              isLoading: true,
-              child: _SpeakerDescription.loading(),
+        return _SpeakerDetailContainer(
+          headerChildren: <Widget>[
+            CharacterImage(
+              imageUrl: user.avatarUrl ?? '',
+              flagImageUrl: user.countryFlag ?? '',
+              size: const .square(120),
             ),
+            Expanded(
+              child: TitleSubtitleText(
+                title: (
+                  text: user.name,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 24,
+                    .normal || .small => 22,
+                  },
+                ),
+                subtitle: (
+                  text: user.jobTitle ?? '',
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 16,
+                    .normal || .small => 14,
+                  },
+                ),
+                spacing: 4,
+                textAlign: .start,
+                crossAxisAlignment: .start,
+              ),
+            ),
+          ],
+          detailChild: switch (context.screenSize) {
+            .extraLarge || .large => _SpeakerDescription(
+              text: description ?? '',
+              hasSize: true,
+            ),
+            .normal || .small => _SpeakerDescription(
+              text: description ?? '',
+            ),
+          },
+        );
+      },
+      loading: () => const Shimmer(
+        child: _SpeakerDetailContainer(
+          headerChildren: <Widget>[
+            ShimmerLoading(
+              isLoading: true,
+              child: SingleImageContainer(
+                size: .square(120),
+                borderRadius: 30,
+              ),
+            ),
+            ShimmerLoading(
+              isLoading: true,
+              child: TitleSubtitleTextContainer(crossAxisAlignment: .start),
+            ),
+          ],
+          detailChild: ShimmerLoading(
+            isLoading: true,
+            child: _SpeakerDescription.loading(),
           ),
         ),
-        error: (_, _) => Center(
-          child: ErrorContainer(onRetry: speakerSignal.reload),
-        ),
-      );
-    });
+      ),
+      error: (_, _) => Center(
+        child: ErrorContainer(onRetry: speakerSignal.reload),
+      ),
+    );
   }
 }
 

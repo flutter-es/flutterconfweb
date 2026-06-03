@@ -11,80 +11,36 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:signals/signals_flutter.dart';
 
-class VenuePlace extends StatelessWidget {
+class VenuePlace extends SignalWidget {
   const VenuePlace({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
+    final venueState = venueSignal.value;
 
-    return Watch((context) {
-      final venueState = venueSignal.value;
-      return venueState.maybeMap(
-        data: (venue) {
-          final amenities = venue.amenities;
+    return venueState.maybeMap(
+      data: (venue) {
+        final amenities = venue.amenities;
 
-          if (amenities.isEmpty) {
-            final about = <({String title, String description, String image})>[
-              (
-                title: l10n.aboutPlaceInstallationTitle,
-                description: l10n.aboutPlaceInstallationDescription,
-                image: Assets.images.about.university,
-              ),
-              (
-                title: l10n.aboutPlaceFoodTitle,
-                description: l10n.aboutPlaceFoodDescription,
-                image: Assets.images.about.food,
-              ),
-              (
-                title: l10n.aboutPlaceMoveTitle,
-                description: l10n.aboutPlaceMoveDescription,
-                image: Assets.images.about.map,
-              ),
-            ];
-
-            return SectionContainer(
-              spacing: 30,
-              children: <Widget>[
-                TitleSubtitleText(
-                  title: (
-                    text: l10n.aboutPlaceTitle,
-                    size: switch (context.screenSize) {
-                      .extraLarge => 64,
-                      .large => 48,
-                      .normal || .small => 24,
-                    },
-                  ),
-                  subtitle: (
-                    text: l10n.aboutPlaceDescription,
-                    size: switch (context.screenSize) {
-                      .extraLarge || .large => 24,
-                      .normal || .small => 16,
-                    },
-                  ),
-                  spacing: 12,
-                ),
-                ResponsiveGrid(
-                  columnSizes: switch (context.screenSize) {
-                    .extraLarge => 3,
-                    _ => 1,
-                  },
-                  rowSizes: switch (context.screenSize) {
-                    .extraLarge => 2,
-                    _ => about.length,
-                  },
-                  children: <Widget>[
-                    for (final item in about)
-                      GridCardItem(
-                        title: item.title,
-                        description: item.description,
-                        imagePath: item.image,
-                      ),
-                  ],
-                ),
-              ],
-            );
-          }
+        if (amenities.isEmpty) {
+          final about = <({String title, String description, String image})>[
+            (
+              title: l10n.aboutPlaceInstallationTitle,
+              description: l10n.aboutPlaceInstallationDescription,
+              image: Assets.images.about.university,
+            ),
+            (
+              title: l10n.aboutPlaceFoodTitle,
+              description: l10n.aboutPlaceFoodDescription,
+              image: Assets.images.about.food,
+            ),
+            (
+              title: l10n.aboutPlaceMoveTitle,
+              description: l10n.aboutPlaceMoveDescription,
+              image: Assets.images.about.map,
+            ),
+          ];
 
           return SectionContainer(
             spacing: 30,
@@ -114,25 +70,66 @@ class VenuePlace extends StatelessWidget {
                 },
                 rowSizes: switch (context.screenSize) {
                   .extraLarge => 2,
-                  _ => amenities.length,
+                  _ => about.length,
                 },
                 children: <Widget>[
-                  for (final amenity in amenities)
+                  for (final item in about)
                     GridCardItem(
-                      title:
-                          amenity.customName ??
-                          _amenityTitle(amenity.type, l10n),
-                      description: _amenityDescription(amenity.type, l10n),
-                      icon: _amenityIcon(amenity.type),
+                      title: item.title,
+                      description: item.description,
+                      imagePath: item.image,
                     ),
                 ],
               ),
             ],
           );
-        },
-        orElse: () => const Offstage(),
-      );
-    });
+        }
+
+        return SectionContainer(
+          spacing: 30,
+          children: <Widget>[
+            TitleSubtitleText(
+              title: (
+                text: l10n.aboutPlaceTitle,
+                size: switch (context.screenSize) {
+                  .extraLarge => 64,
+                  .large => 48,
+                  .normal || .small => 24,
+                },
+              ),
+              subtitle: (
+                text: l10n.aboutPlaceDescription,
+                size: switch (context.screenSize) {
+                  .extraLarge || .large => 24,
+                  .normal || .small => 16,
+                },
+              ),
+              spacing: 12,
+            ),
+            ResponsiveGrid(
+              columnSizes: switch (context.screenSize) {
+                .extraLarge => 3,
+                _ => 1,
+              },
+              rowSizes: switch (context.screenSize) {
+                .extraLarge => 2,
+                _ => amenities.length,
+              },
+              children: <Widget>[
+                for (final amenity in amenities)
+                  GridCardItem(
+                    title:
+                        amenity.customName ?? _amenityTitle(amenity.type, l10n),
+                    description: _amenityDescription(amenity.type, l10n),
+                    icon: _amenityIcon(amenity.type),
+                  ),
+              ],
+            ),
+          ],
+        );
+      },
+      orElse: () => const Offstage(),
+    );
   }
 
   String _amenityTitle(VenueAmenities amenity, AppLocalizations l10n) {

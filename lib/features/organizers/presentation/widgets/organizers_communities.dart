@@ -14,76 +14,74 @@ import 'package:flutter_conf_latam/features/organizers/presentation/view_model/o
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals_flutter.dart';
 
-class OrganizersCommunities extends StatelessWidget {
+class OrganizersCommunities extends SignalWidget {
   const OrganizersCommunities({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
+    final communities = communitiesSignal.value;
 
-    return Watch((context) {
-      final communities = communitiesSignal.value;
-      return SectionContainer(
-        spacing: 30,
-        children: <Widget>[
-          TitleSubtitleText(
-            title: (
-              text: l10n.organizersCommunityTitle,
-              size: switch (context.screenSize) {
-                .extraLarge => 64,
-                .large => 48,
-                .normal || .small => 24,
-              },
-            ),
-            subtitle: (
-              text: l10n.organizersCommunityDescription,
-              size: switch (context.screenSize) {
-                .extraLarge || .large => 24,
-                .normal || .small => 16,
-              },
-            ),
-            spacing: 12,
+    return SectionContainer(
+      spacing: 30,
+      children: <Widget>[
+        TitleSubtitleText(
+          title: (
+            text: l10n.organizersCommunityTitle,
+            size: switch (context.screenSize) {
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 24,
+            },
           ),
-          communities.map(
-            data: (data) => _CommunityListContainer(
-              children: <Widget>[
-                for (final item in data)
-                  InkWell(
-                    onTap: () {
-                      final socialLink = item.socialLinks?.firstWhereOrNull(
-                        (l) => l.type == .website,
-                      );
+          subtitle: (
+            text: l10n.organizersCommunityDescription,
+            size: switch (context.screenSize) {
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
+            },
+          ),
+          spacing: 12,
+        ),
+        communities.map(
+          data: (data) => _CommunityListContainer(
+            children: <Widget>[
+              for (final item in data)
+                InkWell(
+                  onTap: () {
+                    final socialLink = item.socialLinks?.firstWhereOrNull(
+                      (l) => l.type == .website,
+                    );
 
-                      if (socialLink != null) {
-                        unawaited(Utils.launchUrlLink(socialLink.url));
-                      }
-                    },
-                    child: SingleImage(
-                      imageUrl: item.logoUrl ?? '',
-                      borderRadius: 20,
-                      size: const .fromHeight(180),
-                    ),
+                    if (socialLink != null) {
+                      unawaited(Utils.launchUrlLink(socialLink.url));
+                    }
+                  },
+                  child: SingleImage(
+                    imageUrl: item.logoUrl ?? '',
+                    borderRadius: 20,
+                    size: const .fromHeight(180),
                   ),
-              ],
-            ),
-            loading: () => Shimmer(
-              child: _CommunityListContainer(
-                children: .generate(9, (_) {
-                  return const ShimmerLoading(
-                    isLoading: true,
-                    child: SingleImageContainer(
-                      borderRadius: 20,
-                      size: .fromHeight(180),
-                    ),
-                  );
-                }),
-              ),
-            ),
-            error: (_, _) => ErrorContainer(onRetry: communitiesSignal.reload),
+                ),
+            ],
           ),
-        ],
-      );
-    });
+          loading: () => Shimmer(
+            child: _CommunityListContainer(
+              children: .generate(9, (_) {
+                return const ShimmerLoading(
+                  isLoading: true,
+                  child: SingleImageContainer(
+                    borderRadius: 20,
+                    size: .fromHeight(180),
+                  ),
+                );
+              }),
+            ),
+          ),
+          error: (_, _) => ErrorContainer(onRetry: communitiesSignal.reload),
+        ),
+      ],
+    );
   }
 }
 

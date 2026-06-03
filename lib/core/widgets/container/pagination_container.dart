@@ -7,7 +7,7 @@ import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
-class PaginationContainer extends StatelessWidget {
+class PaginationContainer extends SignalWidget {
   const PaginationContainer({
     required this.child,
     required this.totalSize,
@@ -27,7 +27,7 @@ class PaginationContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     return Column(
       spacing: 30,
@@ -74,7 +74,7 @@ class PaginationContainer extends StatelessWidget {
   int get _totalPages => (totalSize / pageSize).ceil();
 }
 
-class _PaginationNumberButtons extends StatelessWidget {
+class _PaginationNumberButtons extends SignalWidget {
   const _PaginationNumberButtons({
     required this.currentPage,
     required this.totalPages,
@@ -91,7 +91,7 @@ class _PaginationNumberButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     if (totalPages <= 1) return const Offstage();
 
-    final l10n = appLocalizations.watch(context);
+    final l10n = appLocalizations.value;
 
     var startPage = max(1, currentPage - (maxButtons / 2).floor());
     final endPage = min(totalPages, startPage + maxButtons - 1);
