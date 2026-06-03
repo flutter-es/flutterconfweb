@@ -26,15 +26,13 @@ about speakers, schedule, venue, sponsors, and ticket sales.
 
 ## Prerequisites
 
-Before getting started, make sure you have the following installed:
-
-- **Flutter SDK**: 3.41.0 or higher
-- **Dart SDK**: >=3.11.0 <4.0.0
-- **Firebase CLI**: For deployment and Firebase configuration
+- **Flutter SDK**: 3.44.0 or higher
+- **Dart SDK**: 3.12.0 or higher
+- **Firebase CLI**:
   ```bash
   npm install -g firebase-tools
   ```
-- **Google Chrome**: To run the application in development mode
+- **Google Chrome**: to run in development mode
 
 ## Project Structure
 
@@ -42,27 +40,23 @@ Before getting started, make sure you have the following installed:
 lib/
 ├── core/
 │   ├── dependencies.dart          # Signal initialization
+│   ├── routes/                    # Routing + SeoRouteObserver
+│   ├── seo/                       # Meta tags, SEO config, structured data
 │   ├── responsive/                # Responsive utilities
+│   ├── utils/                     # Asset optimizer
 │   └── widgets/                   # Reusable UI components
-│       ├── card/                  # Card components
-│       ├── container/             # Layout containers
-│       ├── image/                 # Image widgets
-│       ├── section/               # Page sections
-│       └── text/                  # Text components
 ├── features/                      # Feature modules
-│   ├── contact/                   # Contact page
-│   ├── gallery/                   # Photo gallery
-│   ├── home/                      # Landing page
-│   ├── organizers/                # Organizers & communities
-│   ├── pricing/                   # Ticket pricing
-│   ├── privacy_terms/             # Legal pages
-│   ├── schedule/                  # Event schedule
-│   ├── speakers/                  # Speakers listing & details
-│   └── venue/                     # Venue information
-├── l10n/                          # Localization
-│   ├── arb/                       # Translation files (en, es)
-│   └── gen/                       # Generated localization
-└── main.dart                      # Entry point
+│   ├── contact/
+│   ├── gallery/
+│   ├── home/
+│   ├── organizers/
+│   ├── pricing/
+│   ├── privacy_terms/
+│   ├── schedule/
+│   ├── speakers/
+│   └── venue/
+├── l10n/                          # Localization (en, es)
+└── main.dart
 ```
 
 ## Initial Setup
@@ -82,43 +76,18 @@ flutter pub get
 
 ### 3. Configure Firebase
 
-This project uses Firebase services provided by `flutter_conf_backend`:
+```bash
+dart pub global activate flutterfire_cli
 
-- Firebase Authentication
-- Data Connect (SQL Database)
-- Firebase Storage
-- Firebase Hosting
+flutterfire configure \
+  --project=<PROJECT_ID> \
+  --out=lib/firebase_options.dart \
+  --platforms=web
+```
 
-> **Note:** Firebase data sources and initialization are handled by the `flutter_conf_backend` package.
-> This project only needs to generate the `firebase_options.dart` file.
+### 4. Configure environment variables
 
-#### Configuration steps:
-
-1. Create a project in [Firebase Console](https://console.firebase.google.com/) (or use an existing one)
-
-2. Login to Firebase CLI:
-   ```bash
-   firebase login
-   ```
-
-3. Configure FlutterFire to generate `firebase_options.dart`:
-   ```bash
-   # Install FlutterFire CLI if you don't have it
-   dart pub global activate flutterfire_cli
-
-   # Configure Firebase for the project
-   flutterfire configure \
-     --project=<PROJECT_ID> \
-     --out=lib/firebase_options.dart \
-     --platforms=web
-   ```
-
-### 4. Configure environment variables (keys.json)
-
-The project uses a `keys.json` file to store configuration variables. This file is required for building the
-application.
-
-Create a `keys.json` file in the root directory with the following structure:
+Create `keys.json` in the root directory:
 
 ```json
 {
@@ -133,11 +102,6 @@ Create a `keys.json` file in the root directory with the following structure:
 }
 ```
 
-**Important**: Replace all example values with your actual URLs and configuration.
-
-**Note**: This file should not be committed to version control if it contains sensitive information. Add it to
-`.gitignore` if necessary.
-
 ### 5. Generate localization files
 
 ```bash
@@ -146,71 +110,131 @@ flutter gen-l10n
 
 ## Development
 
-### Running the app
-
 ```bash
 flutter run -d chrome --dart-define-from-file=keys.json
 ```
 
-### Running with Firebase Emulators
+### With Firebase Emulators
 
-For local development with mock data, use Firebase Emulators:
+```bash
+# In flutter_conf_backend directory
+firebase emulators:start
 
-1. Navigate to the `flutter_conf_backend` directory and start emulators:
-   ```bash
-   cd ../flutter_conf_backend
-   firebase emulators:start
-   ```
+# Then run the app (auto-connects to emulators in debug mode)
+flutter run -d chrome --dart-define-from-file=keys.json
+```
 
-2. Run the web app (it will automatically connect to emulators in debug mode):
-   ```bash
-   flutter run -d chrome --dart-define-from-file=keys.json
-   ```
+## Build & Deploy
 
-> **Note:** The app automatically uses Firebase emulators when running in debug mode (see `lib/bootstrap.dart:37`).
-> Emulator configuration is handled by `flutter_conf_backend` package.
-
-### Build for production
+### Standard build
 
 ```bash
 flutter build web --release --dart-define-from-file=keys.json
 ```
 
-Compiled files will be generated in `build/web/`
+### Build with custom Service Worker (recommended)
 
-## Deployment to Firebase Hosting
-
-### 1. Configure Firebase Hosting
-
-Hosting configuration is located in `firebase.json` and includes:
-
-- Cache control for JavaScript files
-- Rewrites for SPA routing
-- Public directory: `build/web`
-
-### 2. Build and deploy
+Repeat visits load in ~0.3s with cache-first strategy:
 
 ```bash
-# Build the application
-flutter build web --release --no-tree-shake-icons --dart-define-from-file=keys.json
+./tool/integrate_custom_sw.sh
+```
 
-# Deploy to Firebase Hosting
+> **Important:** Increment the cache version in `web/flutter_service_worker_config.js` on each deploy:
+> ```javascript
+> const CACHE_NAME = 'flutter-conf-v2';  // increment each deploy
+> const RUNTIME_CACHE = 'flutter-conf-runtime-v2';
+> ```
+
+### Deploy to Firebase Hosting
+
+```bash
 firebase deploy --project <PROJECT_ID> --only hosting
 ```
 
-## Architecture
+## SEO & Performance
 
-This project follows Clean Architecture principles with Signals for state management:
+The site is optimized for SEO and performance. Key implementations:
+
+### What's implemented
+
+- **Static meta tags** in `index.html` — read by all crawlers before JS executes
+- **Dynamic meta tags per route** — updated via `SeoRouteObserver` on navigation (read by Googlebot)
+- **Open Graph + Twitter Cards** — social media previews
+- **JSON-LD Structured Data** — Google rich snippets (event, organization, breadcrumbs)
+- **Canonical URLs** — avoids duplicate content
+- **Rive asset preloading** — critical animations cached before first use
+- **Loading indicator** — spinner shown while Flutter engine loads
+- **Custom Service Worker** — cache-first for static assets (pending activation per deploy)
+
+> **Note on crawlers:** Dynamic meta tags work for Googlebot (executes JS). Social crawlers (WhatsApp, LinkedIn,
+> Twitter) only read static tags from `index.html` — both layers are configured.
+
+### Configure SEO URLs
+
+Edit `lib/core/seo/seo_config.dart`:
+
+```dart
+
+static const String baseUrl = 'https://flutterconflatam.dev';
+static const String defaultImageUrl = 'https://flutterconflatam.dev/icons/Icon-512.png';
+```
+
+### Add SEO for a new route
+
+Add to the `routes` map in `lib/core/seo/seo_config.dart`:
+
+```dart
+
+final map = <String, dynamic>{
+  '/nueva-ruta': SeoConfig(
+    title: 'Nueva Ruta - Flutter Conf Latam',
+    description: 'Descripción para Google y redes sociales',
+    keywords: ['flutter', 'conferencia'],
+    imageUrl: defaultImageUrl,
+  ),
+};
+```
+
+`SeoRouteObserver` applies it automatically on navigation.
+
+### Add custom Structured Data
+
+In `lib/core/routes/helpers/seo_route_observer.dart`, method `_addStructuredDataForRoute`:
+
+```dart
+/*
+case '/faq':
+  MetaTagsManager.addStructuredData(
+    StructuredDataBuilder.buildFaqData([
+      FaqItem(question: '¿Cuándo es el evento?', answer: '22-24 Sept 2026'),
+    ]),
+  );
+*/
+```
+
+### Verify SEO
+
+```bash
+# Check meta tags update on navigation
+flutter run -d chrome --dart-define-from-file=keys.json
+# DevTools → Elements → <head> — og:title, twitter:card, application/ld+json
+
+# Lighthouse (run on release build)
+python3 -m http.server 8080 --directory build/web
+# DevTools → Lighthouse → Navigation → Performance + SEO
+# Expected: SEO ~95, Performance ~85
+
+# Structured data
+# https://search.google.com/test/rich-results
+```
+
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    flutter_conf_latam (web)                     │
 │                      (Presentation Layer)                       │
-│                                                                 │
-│  • Pages and Widgets                                            │
-│  • Signals State Management                                     │
-│  • Routing with go_router                                       │
-│  • Responsive Design                                            │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -249,23 +273,12 @@ This project follows Clean Architecture principles with Signals for state manage
 
 ## Localization
 
-The project supports multiple languages:
+Supports English (`en`) and Spanish (`es`). Translation files in `lib/l10n/arb/`.
 
-- English (en)
-- Spanish (es)
-
-Translation files are located at:
-
-- `lib/l10n/arb/intl_en.arb`
-- `lib/l10n/arb/intl_es.arb`
-
-### Adding new translations
-
-1. Edit the `.arb` files in `lib/l10n/arb/`
-2. Regenerate localization files:
-   ```bash
-   flutter gen-l10n
-   ```
+```bash
+# Regenerate after editing .arb files
+flutter gen-l10n
+```
 
 ## Related Packages
 
@@ -279,15 +292,11 @@ Translation files are located at:
 
 ### Flutter SDK not found
 
-Verify that Flutter is installed correctly and in your PATH:
-
 ```bash
 flutter doctor
 ```
 
 ### l10n errors
-
-Regenerate localization files:
 
 ```bash
 flutter gen-l10n
@@ -295,21 +304,35 @@ flutter gen-l10n
 
 ### Firebase issues
 
-Make sure you have executed:
-
 ```bash
 flutterfire configure
 ```
 
 ### keys.json not found
 
-Ensure you have created the `keys.json` file in the root directory as described in the configuration section.
+Create the file as described in [Configure environment variables](#4-configure-environment-variables).
+
+### Meta tags not updating on navigation
+
+Verify `SeoRouteObserver` is in the router (`lib/core/routes/app_routes.dart`):
+
+```dart
+
+final route = GoRouter(
+  observers: [SeoRouteObserver()],
+  // ...
+);
+```
+
+### Service Worker not updating content
+
+Increment cache version in `web/flutter_service_worker_config.js` and rebuild with `./tool/integrate_custom_sw.sh`.
 
 ## Contributing
 
 1. Create a branch from `main`
 2. Make your changes
-3. Run analysis: `flutter analyze`
+3. Run `flutter analyze`
 4. Create a Pull Request
 
 ## License
