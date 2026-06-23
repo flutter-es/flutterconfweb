@@ -11,8 +11,8 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/home_colla
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_gallery.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_sponsors.dart';
 import 'package:flutter_conf_latam/features/pricing/presentation/view_model/pricing_view_model.dart';
-import 'package:flutter_conf_latam/features/speakers/presentation/view_model/speakers_view_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,9 +34,9 @@ class _HomePageState extends State<HomePage> {
   Future<void> _preloadData() async {
     await PagePreloader.preload([
       sponsorsSignal,
-      faqListSignal,
-      galleryPreviewSignal,
-      speakersRandomSignal,
+      // faqListSignal,
+      // galleryPreviewSignal,
+      // speakersRandomSignal,
       pricingSignal,
     ]);
 
@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage> {
             const HomeMain(),
             const HomeFeatures(),
             const HomeGallery(),
+            const HomeSponsors(),
             const HomeCollaborations(type: .sponsor),
             const HomeCollaborations(type: .speaker),
             const PricingContainer(),
@@ -62,7 +63,6 @@ class _HomePageState extends State<HomePage> {
             const HomeVenue(),
             const HomeNovelties(),
             const HomeSpeakers(),
-            const HomeSponsors(),
             const HomeFaq(),
             */
             const Footer(),
