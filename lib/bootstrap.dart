@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_backend/flutter_conf_backend.dart';
 import 'package:flutter_conf_common/flutter_conf_common.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
-import 'package:flutter_conf_latam/core/utils/asset_optimizer.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:rive/rive.dart';
@@ -32,7 +31,6 @@ Future<void> bootstrap(
       WidgetsFlutterBinding.ensureInitialized();
       await RiveNative.init();
 
-      unawaited(AssetOptimizer.preloadCriticalAnimations());
       final initializer = FirebaseInitializer.withConfig(
         options: options,
         appCheckConfig: null,
