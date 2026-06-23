@@ -12,7 +12,7 @@ dependencies:
   cached_network_image: ^3.4.1
   collection: ^1.19.1
   equatable: ^2.0.8
-  firebase_core: ^4.5.0
+  firebase_core: ^4.11.0
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.2
@@ -44,7 +44,7 @@ dependencies:
   intl: ^0.20.2
   json_annotation: ^4.12.0
   markdown_widget: ^2.3.2+8
-  rive: ^0.14.7
+  rive: ^0.14.9
   shared_preferences: ^2.5.5
   signals: ^7.1.0
   timezone: ^0.11.0
@@ -62,8 +62,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.14.0
-  vector_graphics_compiler: ^1.2.5
-  very_good_analysis: ^10.2.0
+  vector_graphics_compiler: ^1.2.6
+  very_good_analysis: ^10.3.0
 
 flutter_gen:
   output: lib/styles/generated/
