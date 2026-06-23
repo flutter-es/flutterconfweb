@@ -1,16 +1,11 @@
 import 'package:signals/signals.dart';
 
 class PagePreloader {
-  static Future<void> preload(
-    List<FutureSignal<dynamic>> signals, {
-    Duration timeout = const Duration(seconds: 10),
-  }) async {
+  static Future<void> preload(List<FutureSignal<dynamic>> signals) async {
     await Future.wait(
-      signals.map((signal) {
-        return signal.future
-            .catchError((_) => null)
-            .timeout(timeout, onTimeout: () => null);
-      }),
+      signals.map(
+        (signal) => signal.future.catchError((_) => null),
+      ),
     );
   }
 }
