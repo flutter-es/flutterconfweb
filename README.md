@@ -38,15 +38,24 @@ about speakers, schedule, venue, sponsors, and ticket sales.
 
 ```
 lib/
+├── app.dart
+├── bootstrap.dart
 ├── core/
+│   ├── config/                    # App configuration
 │   ├── dependencies.dart          # Signal initialization
+│   ├── enums/                     # Shared enumerations
+│   ├── extensions/                # Dart extension methods
+│   ├── providers/                 # Shared providers
+│   ├── responsive/                # Responsive utilities
 │   ├── routes/                    # Routing + SeoRouteObserver
 │   ├── seo/                       # Meta tags, SEO config, structured data
-│   ├── responsive/                # Responsive utilities
-│   ├── utils/                     # Asset optimizer
+│   ├── services/                  # Web local storage and other services
+│   ├── social/                    # Social media models and providers
+│   ├── utils/                     # Page preloader and utilities
 │   └── widgets/                   # Reusable UI components
 ├── features/                      # Feature modules
 │   ├── contact/
+│   ├── errors/
 │   ├── gallery/
 │   ├── home/
 │   ├── organizers/
@@ -54,9 +63,14 @@ lib/
 │   ├── privacy_terms/
 │   ├── schedule/
 │   ├── speakers/
+│   ├── splash/
 │   └── venue/
 ├── l10n/                          # Localization (en, es)
-└── main.dart
+├── main.dart
+└── styles/                        # Theme, colors, typography, generated assets
+    ├── core/
+    ├── generated/
+    └── schemes/
 ```
 
 ## Initial Setup
@@ -126,25 +140,11 @@ flutter run -d chrome --dart-define-from-file=keys.json
 
 ## Build & Deploy
 
-### Standard build
+### Build
 
 ```bash
 flutter build web --release --dart-define-from-file=keys.json
 ```
-
-### Build with custom Service Worker (recommended)
-
-Repeat visits load in ~0.3s with cache-first strategy:
-
-```bash
-./tool/integrate_custom_sw.sh
-```
-
-> **Important:** Increment the cache version in `web/flutter_service_worker_config.js` on each deploy:
-> ```javascript
-> const CACHE_NAME = 'flutter-conf-v2';  // increment each deploy
-> const RUNTIME_CACHE = 'flutter-conf-runtime-v2';
-> ```
 
 ### Deploy to Firebase Hosting
 
@@ -165,7 +165,6 @@ The site is optimized for SEO and performance. Key implementations:
 - **Canonical URLs** — avoids duplicate content
 - **Rive asset preloading** — critical animations cached before first use
 - **Loading indicator** — spinner shown while Flutter engine loads
-- **Custom Service Worker** — cache-first for static assets (pending activation per deploy)
 
 > **Note on crawlers:** Dynamic meta tags work for Googlebot (executes JS). Social crawlers (WhatsApp, LinkedIn,
 > Twitter) only read static tags from `index.html` — both layers are configured.
@@ -258,18 +257,28 @@ python3 -m http.server 8080 --directory build/web
 
 ## Main Dependencies
 
-| Package                | Purpose                       |
-|------------------------|-------------------------------|
-| `signals`              | Reactive state management     |
-| `go_router`            | Navigation and routing        |
-| `flutter_conf_core`    | Domain layer and repositories |
-| `flutter_conf_backend` | Firebase implementations      |
-| `flutter_conf_common`  | Shared utilities              |
-| `cached_network_image` | Image caching                 |
-| `flutter_animate`      | Animations                    |
-| `google_fonts`         | Google Fonts integration      |
-| `rive`                 | Interactive animations        |
-| `shared_preferences`   | Local storage for preferences |
+| Package                       | Purpose                       |
+|-------------------------------|-------------------------------|
+| `signals`                     | Reactive state management     |
+| `go_router`                   | Navigation and routing        |
+| `flutter_conf_core`           | Domain layer and repositories |
+| `flutter_conf_backend`        | Firebase implementations      |
+| `flutter_conf_common`         | Shared utilities              |
+| `firebase_core`               | Firebase initialization       |
+| `flutter_hooks`               | Hook-based widget utilities   |
+| `cached_network_image`        | Network image caching         |
+| `flutter_animate`             | Animations                    |
+| `flutter_layout_grid`         | CSS Grid-style layouts        |
+| `flutter_staggered_grid_view` | Staggered grid layouts        |
+| `flutter_svg`                 | SVG asset rendering           |
+| `google_fonts`                | Google Fonts integration      |
+| `rive`                        | Interactive animations        |
+| `markdown_widget`             | Markdown rendering            |
+| `shared_preferences`          | Local storage for preferences |
+| `url_launcher`                | Open URLs in browser          |
+| `timezone`                    | Timezone-aware date/time      |
+| `universal_html`              | Web platform APIs             |
+| `vector_graphics`             | Optimized vector rendering    |
 
 ## Localization
 
@@ -324,13 +333,9 @@ final route = GoRouter(
 );
 ```
 
-### Service Worker not updating content
-
-Increment cache version in `web/flutter_service_worker_config.js` and rebuild with `./tool/integrate_custom_sw.sh`.
-
 ## Contributing
 
-1. Create a branch from `main`
+1. Create a branch from `develop`
 2. Make your changes
 3. Run `flutter analyze`
 4. Create a Pull Request
