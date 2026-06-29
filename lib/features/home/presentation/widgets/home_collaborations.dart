@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/core/utils/utils.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
@@ -12,6 +9,7 @@ import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
 
 enum CollaborationType { speaker, sponsor }
@@ -23,10 +21,7 @@ class HomeCollaborations extends SignalWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = currentLocale.value.languageCode;
-
     final l10n = appLocalizations.value;
-    final config = appConfig.value;
 
     final collaborations = <CollaborationItem>[
       if (type == .speaker) ...[
@@ -48,13 +43,7 @@ class HomeCollaborations extends SignalWidget {
           imagePath: Assets.images.collaborations.dashSponsor,
           button: (
             text: l10n.homeCollaborationSponsorButton,
-            function: () => _downloadFile(
-              switch (language) {
-                'es' => Assets.files.sponsorFileEs,
-                _ => Assets.files.sponsorFileEn,
-              },
-              '${language.toUpperCase()}-${config.sponsorshipFileName}',
-            ),
+            function: () => context.go('/${AppRoutePath.sponsorship.pathName}'),
           ),
         ),
       ],
@@ -82,10 +71,6 @@ class HomeCollaborations extends SignalWidget {
   }
 
   // void _goToUrl(String url) => Utils.launchUrlLink(url);
-
-  void _downloadFile(String assetPath, String fileName) {
-    unawaited(Utils.downloadPdf(assetPath, fileName));
-  }
 }
 
 class _CollaborationCardItem extends StatelessWidget {

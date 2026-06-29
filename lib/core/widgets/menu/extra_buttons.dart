@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
-import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
 
 enum ButtonPosition { row, column }
@@ -17,8 +18,6 @@ class ExtraButtons extends SignalWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = currentLocale.value.languageCode;
-
     final l10n = appLocalizations.value;
     final config = appConfig.value;
 
@@ -26,13 +25,7 @@ class ExtraButtons extends SignalWidget {
       FclButton.secondary(
         label: l10n.menuBeSponsorButton,
         buttonSize: .small,
-        onPressed: () => _downloadFile(
-          switch (language) {
-            'es' => Assets.files.sponsorFileEs,
-            _ => Assets.files.sponsorFileEn,
-          },
-          '${language.toUpperCase()}-${config.sponsorshipFileName}',
-        ),
+        onPressed: () => context.go('/${AppRoutePath.sponsorship.pathName}'),
       ),
       /*
       FclButton.secondary(
@@ -61,9 +54,5 @@ class ExtraButtons extends SignalWidget {
     // );
     // if (result ?? false)
     unawaited(Utils.launchUrlLink(url));
-  }
-
-  void _downloadFile(String assetPath, String fileName) {
-    unawaited(Utils.downloadPdf(assetPath, fileName));
   }
 }
