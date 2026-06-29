@@ -4,6 +4,9 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
+  static String mailtoWithSubject(String email, String subject) =>
+      'mailto:$email?subject=${Uri.encodeComponent(subject)}';
+
   static Future<void> launchUrlLink(String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) await launchUrl(Uri.parse(url));
