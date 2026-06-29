@@ -1,6 +1,7 @@
 enum AppRoutePath {
   splash(''),
   home('home'),
+  sponsorship('be-sponsor'),
   /*
   venue('venue'),
   organizers('organizers'),
@@ -11,8 +12,7 @@ enum AppRoutePath {
   contact('contact'),
   */
   privacyPolicy('privacy-policy'),
-  termsConditions('terms-conditions')
-  ;
+  termsConditions('terms-conditions');
 
   const AppRoutePath(this.pathName);
 

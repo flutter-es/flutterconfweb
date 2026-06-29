@@ -9,6 +9,7 @@ import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.da
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/privacy_page.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/terms_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
+import 'package:flutter_conf_latam/features/sponsorship/presentation/pages/sponsorship_page.dart';
 import 'package:go_router/go_router.dart';
 
 final _mainRoutesKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -38,6 +39,13 @@ class AppRoutes {
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: HomePage());
+                },
+              ),
+              GoRoute(
+                path: '/${AppRoutePath.sponsorship.pathName}',
+                parentNavigatorKey: _tabRoutesKeys,
+                pageBuilder: (_, _) {
+                  return const NoTransitionPage(child: SponsorshipPage());
                 },
               ),
               /*
