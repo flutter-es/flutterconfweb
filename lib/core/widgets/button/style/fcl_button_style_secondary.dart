@@ -4,6 +4,7 @@ class _FclButtonStyleSecondary extends _FclButtonStyle {
   const _FclButtonStyleSecondary({
     required super.buttonSize,
     required super.theme,
+    super.textSize,
   });
 
   @override
@@ -28,8 +29,8 @@ class _FclButtonStyleSecondary extends _FclButtonStyle {
   WidgetStateProperty<OutlinedBorder?>? get shape {
     return const WidgetStatePropertyAll(
       RoundedRectangleBorder(
+        borderRadius: .all(.circular(12)),
         side: BorderSide(color: FlutterLatamColors.white, width: 1.5),
-        borderRadius: .all(.circular(80)),
       ),
     );
   }

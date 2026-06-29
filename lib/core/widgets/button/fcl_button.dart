@@ -12,6 +12,8 @@ enum ButtonVariant { primary, secondary }
 
 enum ButtonSize { small, large }
 
+enum ButtonTextSize { small, medium, large }
+
 class FclButton extends StatelessWidget {
   const FclButton.primary({
     required this.label,
@@ -19,6 +21,8 @@ class FclButton extends StatelessWidget {
     required this.buttonSize,
     this.iconAlignment = .start,
     this.icon,
+    this.color,
+    this.textSize,
     super.key,
   }) : variant = .primary;
 
@@ -28,8 +32,10 @@ class FclButton extends StatelessWidget {
     required this.buttonSize,
     this.iconAlignment = .start,
     this.icon,
+    this.textSize,
     super.key,
-  }) : variant = .secondary;
+  })  : variant = .secondary,
+        color = null;
 
   final String label;
   final ButtonVariant variant;
@@ -37,6 +43,8 @@ class FclButton extends StatelessWidget {
   final IconAlignment iconAlignment;
   final VoidCallback? onPressed;
   final Widget? icon;
+  final Color? color;
+  final ButtonTextSize? textSize;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +53,13 @@ class FclButton extends StatelessWidget {
         .primary => _FclButtonStylePrimary(
           buttonSize: buttonSize,
           theme: context.theme,
+          color: color,
+          textSize: textSize,
         ),
         .secondary => _FclButtonStyleSecondary(
           buttonSize: buttonSize,
           theme: context.theme,
+          textSize: textSize,
         ),
       },
       onPressed: onPressed,

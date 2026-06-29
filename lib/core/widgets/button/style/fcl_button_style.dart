@@ -1,10 +1,15 @@
 part of '../fcl_button.dart';
 
 class _FclButtonStyle extends ButtonStyle {
-  const _FclButtonStyle({required this.buttonSize, required this.theme});
+  const _FclButtonStyle({
+    required this.buttonSize,
+    required this.theme,
+    this.textSize,
+  });
 
   final ButtonSize buttonSize;
   final ThemeData theme;
+  final ButtonTextSize? textSize;
 
   @override
   AlignmentGeometry? get alignment => .center;
@@ -34,8 +39,8 @@ class _FclButtonStyle extends ButtonStyle {
   @override
   WidgetStateProperty<Size?>? get fixedSize {
     return WidgetStatePropertyAll(switch (buttonSize) {
-      ButtonSize.small => const .fromHeight(44),
-      ButtonSize.large => const .fromHeight(68),
+      .small => const .fromHeight(44),
+      .large => const .fromHeight(68),
     });
   }
 
@@ -58,8 +63,8 @@ class _FclButtonStyle extends ButtonStyle {
   @override
   WidgetStateProperty<double>? get iconSize {
     return WidgetStatePropertyAll(switch (buttonSize) {
-      ButtonSize.small => 20,
-      ButtonSize.large => 24,
+      .small => 20,
+      .large => 24,
     });
   }
 
@@ -70,12 +75,17 @@ class _FclButtonStyle extends ButtonStyle {
 
   @override
   WidgetStateProperty<TextStyle?>? get textStyle {
-    return WidgetStatePropertyAll(
-      switch (buttonSize) {
-        .small => theme.fclThemeScheme.typography.buttonSmallMedium,
-        .large => theme.fclThemeScheme.typography.buttonNormalMedium,
+    final typo = theme.fclThemeScheme.typography;
+    final resolved = switch (textSize) {
+      .small => typo.buttonSmallMedium,
+      .medium => typo.buttonSmallMedium.copyWith(fontSize: 18),
+      .large => typo.buttonNormalMedium,
+      null => switch (buttonSize) {
+        .small => typo.buttonSmallMedium,
+        .large => typo.buttonNormalMedium,
       },
-    );
+    };
+    return WidgetStatePropertyAll(resolved);
   }
 
   @override

@@ -4,15 +4,20 @@ class _FclButtonStylePrimary extends _FclButtonStyle {
   const _FclButtonStylePrimary({
     required super.buttonSize,
     required super.theme,
+    super.textSize,
+    this.color,
   });
+
+  final Color? color;
 
   @override
   WidgetStateProperty<Color?>? get backgroundColor {
+    final base = color ?? FlutterLatamColors.blue;
     return .resolveWith((states) {
       if (states.contains(WidgetState.disabled)) {
-        return FlutterLatamColors.blue.withValues(alpha: .3);
+        return base.withValues(alpha: .3);
       }
-      return FlutterLatamColors.blue;
+      return base;
     });
   }
 
@@ -27,7 +32,7 @@ class _FclButtonStylePrimary extends _FclButtonStyle {
   @override
   WidgetStateProperty<OutlinedBorder?>? get shape {
     return const WidgetStatePropertyAll(
-      RoundedRectangleBorder(borderRadius: .all(.circular(80))),
+      RoundedRectangleBorder(borderRadius: .all(.circular(12))),
     );
   }
 }
