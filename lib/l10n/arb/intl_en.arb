@@ -250,5 +250,96 @@
   "dataProtectionDialogButtonMessageBold": "\"Understood\"",
   "dataProtectionDialogButtonMessageTwo": ", you will be redirected to the purchase page, and you agree that you have read the Data Protection Notice.",
   "dataProtectionDialogAcceptButton": "Understood",
-  "marqueeDisclaimer": "Get vaccinated against yellow fever! If you're coming from Colombia \uD83C\uDDE8\uD83C\uDDF4, Peru \uD83C\uDDF5\uD83C\uDDEA, Bolivia \uD83C\uDDE7\uD83C\uDDF4, or Brazil \uD83C\uDDE7\uD83C\uDDF7, don't forget to get vaccinated at least 10 days before traveling to Ecuador."
+  "marqueeDisclaimer": "Get vaccinated against yellow fever! If you're coming from Colombia \uD83C\uDDE8\uD83C\uDDF4, Peru \uD83C\uDDF5\uD83C\uDDEA, Bolivia \uD83C\uDDE7\uD83C\uDDF4, or Brazil \uD83C\uDDE7\uD83C\uDDF7, don't forget to get vaccinated at least 10 days before traveling to Ecuador.",
+  "sponsorshipHeroTagline": "Put your brand in front of\nthe Flutter LATAM community",
+  "sponsorshipHeroDescription": "More than 400 developers, the Flutter team\nfrom Google, and ~20 GDEs in one place.",
+  "sponsorshipContactButton": "Contact",
+  "sponsorshipContactSubject": "I want to be a sponsor - FlutterConf Latam 2026",
+  "sponsorshipPackageContactSubject": "Package inquiry {tier} - FlutterConf Latam 2026",
+  "@sponsorshipPackageContactSubject": {
+    "placeholders": {
+      "tier": { "type": "String" }
+    }
+  },
+  "sponsorshipStartupContactSubject": "Startup Spotlight application - FlutterConf Latam 2026",
+  "sponsorshipWhySectionTitle": "Why become a sponsor?",
+  "sponsorshipWhyTalentTitle": "Attract talent",
+  "sponsorshipWhyTalentDescription": "Connect with hundreds of Flutter developers and recruit the best profiles in the region.",
+  "sponsorshipWhyBrandTitle": "Expand your brand",
+  "sponsorshipWhyBrandDescription": "Gain visibility with a highly engaged technical community throughout LATAM.",
+  "sponsorshipWhyRelationsTitle": "Build relationships",
+  "sponsorshipWhyRelationsDescription": "Build connections with leaders, companies, and the Flutter open source community.",
+  "sponsorshipWhyExpertiseTitle": "Demonstrate expertise",
+  "sponsorshipWhyExpertiseDescription": "Share your knowledge with a talk and position your team as a technical reference.",
+  "sponsorshipWhyLeadershipTitle": "Thought leadership",
+  "sponsorshipWhyLeadershipDescription": "Be part of the most important Flutter event in the region and lead the conversation.",
+  "sponsorshipPackagesSectionTitle": "Sponsorship packages",
+  "sponsorshipPackagesPromoLabel": "Promotion valid from June 15 to July 15",
+  "sponsorshipPackageTierPlatinum": "Platinum",
+  "sponsorshipPackageTierGold": "Gold",
+  "sponsorshipPackageTierSilver": "Silver",
+  "sponsorshipPackageTierBronze": "Bronze",
+  "sponsorshipPackageRegularPrice": "Regular price",
+  "sponsorshipPackagePromoPrice": "Promo price",
+  "sponsorshipPackageNoStand": "No stand",
+  "sponsorshipPackageTalkIncluded": "Talk: Yes",
+  "sponsorshipPackageNoTalk": "Talk: No",
+  "sponsorshipPackageCtaButton": "I want this package",
+  "sponsorshipPackageVipTickets": "{count} VIP tickets",
+  "@sponsorshipPackageVipTickets": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sponsorshipPackagePrice": "{price}",
+  "@sponsorshipPackagePrice": {
+    "placeholders": {
+      "price": {
+        "type": "int",
+        "format": "decimalPattern"
+      }
+    }
+  },
+  "sponsorshipBenefitsSectionTitle": "Compare the benefits",
+  "sponsorshipBenefitsSectionSubtitle": "Activate columns to compare level by level.",
+  "sponsorshipBenefitVipTickets": "VIP Tickets",
+  "sponsorshipBenefitNetworking": "Networking access",
+  "sponsorshipBenefitWebSocial": "Website / Social / Banner",
+  "sponsorshipBenefitMentions": "Opening & closing mentions",
+  "sponsorshipBenefitStand": "Stand size",
+  "sponsorshipBenefitMerchandising": "Logo on merchandise",
+  "sponsorshipBenefitTalk": "Speaking slot",
+  "sponsorshipBenefitTalkDisclaimer": "The speaking slot applies only to Platinum and Gold, subject to approval. Travel and hotel for the speaker are covered by the sponsor.",
+  "sponsorshipAlacarteSectionTitle": "Additional opportunities",
+  "sponsorshipAlacarteDescription": "À la carte sponsorships to boost your presence.",
+  "sponsorshipAlacarteVipParty": "VIP Networking Party",
+  "sponsorshipAlacarteVipPartyDescription": "Sponsor the exclusive networking party at the event.",
+  "sponsorshipAlacarteLunch": "Speakers & sponsors dinner",
+  "sponsorshipAlacarteLunchDescription": "Host the gathering of speakers and sponsors.",
+  "sponsorshipAlacarteStreaming": "Video streaming",
+  "sponsorshipAlacarteStreamingDescription": "Bring your brand to the event's live broadcast.",
+  "sponsorshipAlacartePrize": "Prize sponsor",
+  "sponsorshipAlacartePrizeDescription": "Associate your brand with the event's giveaways and challenges.",
+  "sponsorshipAlacarteCoffee": "Coffee Break / Catering",
+  "sponsorshipAlacarteCoffeeDescription": "Sponsor the coffee and food stations.",
+  "sponsorshipAlacarteSwag": "Swag and more",
+  "sponsorshipAlacarteSwagDescription": "Include your brand in the official event swag.",
+  "sponsorshipStartupSectionLabel": "Startup spotlight",
+  "sponsorshipStartupBadge": "Only 10 spots!",
+  "sponsorshipStartupTitle": "Your project. Our platform.",
+  "sponsorshipStartupDescription": "A FREE stand for your startup to shine in front of the Flutter LATAM community.",
+  "sponsorshipStartupRequirement": "Flutter is required",
+  "sponsorshipStartupBenefit1": "Premium stand at the event",
+  "sponsorshipStartupBenefit2": "45–50 min demo + setup time",
+  "sponsorshipStartupBenefit3": "Logo on social media and step & repeat",
+  "sponsorshipStartupBenefit4": "Demo space for your product",
+  "sponsorshipStartupBenefit5": "Discounted sponsorship option",
+  "sponsorshipStartupBenefit6": "Full community visibility",
+  "sponsorshipStartupApplyButton": "Apply now",
+  "sponsorshipStartupNote": "Does not cover travel or lodging. Requires own ticket and in-person presentation.",
+  "sponsorshipCtaTitle": "Let's build the Flutter\ncommunity in LATAM together",
+  "sponsorshipCtaDescription": "Download our sponsorship prospectus and discover all the available opportunities for your brand.",
+  "sponsorshipCtaDownloadButton": "Download sponsorship kit"
 }
