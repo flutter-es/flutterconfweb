@@ -7,12 +7,19 @@ import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/core/widgets/container/page_loading.dart';
 import 'package:flutter_conf_latam/core/widgets/container/pricing_container.dart';
 import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/organizers_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/pricing_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/venue_view_model.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_collaborations.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_contact.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_faq.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_gallery.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_organizers_communities.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_organizers_people.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_sponsors.dart';
-import 'package:flutter_conf_latam/features/pricing/presentation/view_model/pricing_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_venue.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,10 +41,11 @@ class _HomePageState extends State<HomePage> {
   Future<void> _preloadData() async {
     await PagePreloader.preload([
       sponsorsSignal,
-      // faqListSignal,
-      // galleryPreviewSignal,
-      // speakersRandomSignal,
       pricingSignal,
+      venueSignal,
+      organizersDataSignal,
+      communitiesSignal,
+      faqListSignal,
     ]);
 
     if (mounted) setState(() => _isLoading = false);
@@ -53,18 +61,16 @@ class _HomePageState extends State<HomePage> {
           delegate: SliverChildListDelegate([
             const HomeMain(),
             const HomeFeatures(),
-            const HomeGallery(),
+            const HomeVenue(),
+            const PricingContainer(),
             const HomeSponsors(),
             const HomeCollaborations(type: .sponsor),
             const HomeCollaborations(type: .speaker),
-            const PricingContainer(),
-            /*
-            // TODO(FV): Temp
-            const HomeVenue(),
-            const HomeNovelties(),
-            const HomeSpeakers(),
+            const OrganizersPeople(),
+            const OrganizersCommunities(),
+            const HomeGallery(),
             const HomeFaq(),
-            */
+            const HomeContact(),
             const Footer(),
           ]),
         ),
