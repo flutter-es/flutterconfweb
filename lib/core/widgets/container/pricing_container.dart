@@ -8,7 +8,7 @@ import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/pricing/presentation/view_model/pricing_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/pricing_view_model.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';

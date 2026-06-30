@@ -10,14 +10,12 @@ class SpeakerCardItem extends StatelessWidget {
   const SpeakerCardItem({
     required this.speaker,
     required this.imageSize,
-    this.isMain = false,
     this.imageBackgroundColor,
     super.key,
   });
 
   final SpeakerEntity speaker;
   final Size imageSize;
-  final bool isMain;
   final Color? imageBackgroundColor;
 
   @override
@@ -35,72 +33,51 @@ class SpeakerCardItem extends StatelessWidget {
       size: imageSize,
     );
 
-    return InkWell(
-      onTap: isMain ? () => _goToDetail(context) : null,
-      child: Center(
-        child: Column(
-          spacing: 20,
-          mainAxisSize: .min,
-          children: <Widget>[
-            if (imageBackgroundColor != null)
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: imageBackgroundColor,
-                  borderRadius: .circular(30),
-                ),
-                child: imageChild,
-              )
-            else
-              imageChild,
-            TitleSubtitleText(
-              title: (
-                text: user.name,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 12,
-                },
+    return Center(
+      child: Column(
+        spacing: 20,
+        mainAxisSize: .min,
+        children: <Widget>[
+          if (imageBackgroundColor != null)
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: imageBackgroundColor,
+                borderRadius: .circular(30),
               ),
-              subtitle: (
-                text: user.jobTitle ?? '',
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 16,
-                  .normal || .small => 12,
-                },
-              ),
-              spacing: 4,
+              child: imageChild,
+            )
+          else
+            imageChild,
+          TitleSubtitleText(
+            title: (
+              text: user.name,
+              size: switch (context.screenSize) {
+                .extraLarge || .large => 24,
+                .normal || .small => 12,
+              },
             ),
-            Row(
-              spacing: 20,
-              mainAxisSize: .min,
-              children: <Widget>[
-                SocialMediaRow(
-                  socialMediaList: socialLinks.map((item) {
-                    final iconPath = switch (item.type) {
-                      .linkedin => Assets.images.icons.linkedIn,
-                      .github => Assets.images.icons.github,
-                      .twitter => Assets.images.icons.twitter,
-                      _ => Assets.images.icons.twitter,
-                    };
-                    return (iconPath: iconPath, linkUrl: item.url);
-                  }).toList(),
-                ),
-                if (isMain)
-                  InkWell(
-                    onTap: () => _goToDetail(context),
-                    child: const SizedBox.square(
-                      dimension: 24,
-                      child: Icon(Icons.info_rounded),
-                    ),
-                  ),
-              ],
+            subtitle: (
+              text: user.jobTitle ?? '',
+              size: switch (context.screenSize) {
+                .extraLarge || .large => 16,
+                .normal || .small => 12,
+              },
             ),
-          ],
-        ),
+            spacing: 4,
+          ),
+          SocialMediaRow(
+            socialMediaList: socialLinks.map((item) {
+              final iconPath = switch (item.type) {
+                .linkedin => Assets.images.icons.linkedIn,
+                .github => Assets.images.icons.github,
+                .twitter => Assets.images.icons.twitter,
+                _ => Assets.images.icons.twitter,
+              };
+              return (iconPath: iconPath, linkUrl: item.url);
+            }).toList(),
+          ),
+        ],
       ),
     );
-  }
-
-  void _goToDetail(BuildContext context) {
-    // context.go('/${AppRoutePath.speakers.pathName}/${speaker.id}');
   }
 }
