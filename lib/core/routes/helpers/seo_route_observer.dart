@@ -50,10 +50,6 @@ class SeoRouteObserver extends NavigatorObserver {
         MetaTagsManager.addStructuredData(
           StructuredDataBuilder.buildEventData(),
         );
-      case '/organizers':
-        MetaTagsManager.addStructuredData(
-          StructuredDataBuilder.buildOrganizationData(),
-        );
       case '/splash':
         MetaTagsManager.removeStructuredData();
       default:
@@ -79,12 +75,7 @@ class SeoRouteObserver extends NavigatorObserver {
   String _getRouteName(String routePart) {
     return switch (routePart) {
       'speakers' => 'Speakers',
-      'schedule' => 'Agenda',
-      'pricing' => 'Tickets',
-      'venue' => 'Sede',
-      'gallery' => 'Galería',
-      'organizers' => 'Organizadores',
-      'contact' => 'Contacto',
+      'be-sponsor' => 'Sponsorship',
       'privacy-policy' => 'Política de Privacidad',
       'terms-conditions' => 'Términos y Condiciones',
       _ => routePart,

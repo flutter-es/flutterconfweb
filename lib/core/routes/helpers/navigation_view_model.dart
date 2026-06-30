@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
+import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals.dart';
 
 class NavigationController {
@@ -16,48 +17,16 @@ class NavigationController {
   ReadonlySignal<List<NavigationItemModel>> get state => _state;
 
   List<NavigationItemModel> _buildInitialList() {
-    // final l10n = appLocalizations.value;
     final navigationItemList = <NavigationItemModel>[
       NavigationItemModel(
         label: '',
         route: '/${AppRoutePath.home.pathName}',
         isSelected: true,
       ),
-      /*
       NavigationItemModel(
-        label: l10n.menuAboutText,
-        subMenus: <SubNavigationItemModel>[
-          SubNavigationItemModel(
-            label: l10n.menuVenueText,
-            route: '/${AppRoutePath.venue.pathName}',
-          ),
-          SubNavigationItemModel(
-            label: l10n.menuOrganizersText,
-            route: '/${AppRoutePath.organizers.pathName}',
-          ),
-        ],
-      ),
-      NavigationItemModel(
-        label: l10n.menuPricingText,
-        route: '/${AppRoutePath.pricing.pathName}',
-      ),
-      NavigationItemModel(
-        label: l10n.menuSpeakersText,
+        label: appLocalizations.value.menuSpeakersText,
         route: '/${AppRoutePath.speakers.pathName}',
       ),
-      NavigationItemModel(
-        label: l10n.menuScheduleText,
-        route: '/${AppRoutePath.schedule.pathName}',
-      ),
-      NavigationItemModel(
-        label: l10n.menuGalleryText,
-        route: '/${AppRoutePath.gallery.pathName}',
-      ),
-      NavigationItemModel(
-        label: l10n.menuContactText,
-        route: '/${AppRoutePath.contact.pathName}',
-      ),
-      */
     ];
 
     if (_selectedNav.isEmpty) return navigationItemList;

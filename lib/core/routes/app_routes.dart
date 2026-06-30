@@ -8,6 +8,7 @@ import 'package:flutter_conf_latam/features/errors/presentation/pages/error_page
 import 'package:flutter_conf_latam/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/privacy_page.dart';
 import 'package:flutter_conf_latam/features/privacy_terms/presentation/pages/terms_page.dart';
+import 'package:flutter_conf_latam/features/speakers/presentation/pages/speakers_page.dart';
 import 'package:flutter_conf_latam/features/splash/presentation/pages/splash.page.dart';
 import 'package:flutter_conf_latam/features/sponsorship/presentation/pages/sponsorship_page.dart';
 import 'package:go_router/go_router.dart';
@@ -48,82 +49,13 @@ class AppRoutes {
                   return const NoTransitionPage(child: SponsorshipPage());
                 },
               ),
-              /*
-              GoRoute(
-                path: '/${AppRoutePath.venue.pathName}',
-                parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, _) {
-                  return const NoTransitionPage(child: VenuePage());
-                },
-              ),
-              GoRoute(
-                path: '/${AppRoutePath.organizers.pathName}',
-                parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, _) {
-                  return const NoTransitionPage(child: OrganizersPage());
-                },
-              ),
-              GoRoute(
-                path: '/${AppRoutePath.pricing.pathName}',
-                parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, _) {
-                  return const NoTransitionPage(child: PricingPage());
-                },
-              ),
               GoRoute(
                 path: '/${AppRoutePath.speakers.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
                 pageBuilder: (_, _) {
                   return const NoTransitionPage(child: SpeakersPage());
                 },
-                routes: <RouteBase>[
-                  GoRoute(
-                    path: ':id',
-                    parentNavigatorKey: _mainRoutesKey,
-                    pageBuilder: (context, state) {
-                      final id = state.pathParameters['id']!;
-                      return switch (context.screenSize) {
-                        ScreenSize.extraLarge || ScreenSize.large => DialogPage(
-                          key: state.pageKey,
-                          sizeFactor: switch (context.screenSize) {
-                            ScreenSize.extraLarge => (width: .6, height: .6),
-                            _ => (width: .8, height: .7),
-                          },
-                          child: SpeakerDetailPage(id: id),
-                        ),
-                        ScreenSize.normal ||
-                        ScreenSize.small => ModalBottomPage(
-                          key: state.pageKey,
-                          isScrollControlled: true,
-                          child: SpeakerDetailPage(id: id),
-                        ),
-                      };
-                    },
-                  ),
-                ],
               ),
-              GoRoute(
-                path: '/${AppRoutePath.schedule.pathName}',
-                parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, _) {
-                  return const NoTransitionPage(child: SchedulePage());
-                },
-              ),
-              GoRoute(
-                path: '/${AppRoutePath.gallery.pathName}',
-                parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, _) {
-                  return const NoTransitionPage(child: GalleryPage());
-                },
-              ),
-              GoRoute(
-                path: '/${AppRoutePath.contact.pathName}',
-                parentNavigatorKey: _tabRoutesKeys,
-                pageBuilder: (_, _) {
-                  return const NoTransitionPage(child: ContactPage());
-                },
-              ),
-              */
               GoRoute(
                 path: '/${AppRoutePath.privacyPolicy.pathName}',
                 parentNavigatorKey: _tabRoutesKeys,
