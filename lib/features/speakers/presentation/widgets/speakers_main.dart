@@ -54,7 +54,6 @@ class SpeakersMain extends SignalWidget {
                   SpeakerCardItem(
                     speaker: item,
                     imageSize: size,
-                    isMain: true,
                   ),
               ],
             ),
@@ -95,6 +94,8 @@ class _SpeakerListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (children.isEmpty) return const SizedBox.shrink();
+
     final colSize = switch (context.screenSize) {
       .extraLarge => 4,
       _ => 2,
