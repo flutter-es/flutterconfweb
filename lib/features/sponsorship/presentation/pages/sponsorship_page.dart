@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/widgets/container/footer.dart';
 import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_benefits_section.dart';
-import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_pdf_section.dart';
 import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_hero.dart';
 import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_opportunities_section.dart';
 import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_packages_section.dart';
+import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_pdf_section.dart';
 import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_startup_section.dart';
 import 'package:flutter_conf_latam/features/sponsorship/presentation/widgets/sponsorship_why_section.dart';
 
