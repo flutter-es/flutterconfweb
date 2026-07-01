@@ -1,19 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_core/flutter_conf_core.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
-import 'package:flutter_conf_latam/core/widgets/container/card_container.dart';
-import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
+import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
-import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/home_signals.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
-
-typedef SponsorTierList = ({List<SponsorEntity> sponsors, SponsorsTier tier});
 
 class HomeSponsors extends SignalWidget {
   const HomeSponsors({super.key});
@@ -21,73 +22,65 @@ class HomeSponsors extends SignalWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = appLocalizations.value;
-    final sponsors = sponsorsSignal.value;
 
-    return sponsors.maybeMap(
-      data: (data) {
-        final sponsorsTierList = <SponsorTierList>[
-          (
-            sponsors: data.where((item) => item.tier == .platinum).toList(),
-            tier: .platinum,
-          ),
-          (
-            sponsors: data.where((item) => item.tier == .gold).toList(),
-            tier: .gold,
-          ),
-          (
-            sponsors: data.where((item) => item.tier == .silver).toList(),
-            tier: .silver,
-          ),
-          (
-            sponsors: data.where((item) => item.tier == .bronze).toList(),
-            tier: .bronze,
-          ),
-          (
-            sponsors: data.where((item) => item.tier == .inKind).toList(),
-            tier: .inKind,
-          ),
-          (
-            sponsors: data.where((item) => item.tier == .senior).toList(),
-            tier: .senior,
-          ),
-          (
-            sponsors: data.where((item) => item.tier == .junior).toList(),
-            tier: .junior,
-          ),
-        ];
+    final currentSponsors = sponsorsSignal.value;
+    final pastSponsors = pastSponsorsSignal.value;
+
+    return currentSponsors.maybeMap(
+      data: (current) {
+        if (current.isEmpty) return const SizedBox.shrink();
+
+        final past = pastSponsors.maybeMap(
+          data: (p) => p,
+          orElse: () => <SponsorEntity>[],
+        );
 
         return SectionContainer(
-          spacing: 30,
+          spacing: 56,
           children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.homeSponsorsTitle,
-                size: switch (context.screenSize) {
+            Text(
+              l10n.homeSponsorsTitle,
+              textAlign: .center,
+              style: context.theme.fclThemeScheme.typography.h1Bold.copyWith(
+                fontSize: switch (context.screenSize) {
                   .extraLarge => 64,
                   .large => 48,
-                  .normal || .small => 24,
+                  .normal || .small => 32,
                 },
+                color: FlutterLatamColors.white,
               ),
-              subtitle: (
-                text: l10n.homeSponsorsMessage,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 16,
-                },
-              ),
-              spacing: 12,
             ),
             Column(
-              spacing: 30,
+              spacing: 32,
               mainAxisSize: .min,
               children: <Widget>[
-                for (final item in sponsorsTierList)
-                  if (item.sponsors.isNotEmpty)
-                    _SponsorCardContainer(
-                      sponsors: item.sponsors,
-                      tier: item.tier,
-                    ),
+                _SectionLabel(
+                  text: l10n.homeSponsorsConfirmedLabel,
+                  color: FlutterLatamColors.mediumBlue,
+                ),
+                _CurrentSponsorsGrid(sponsors: current),
               ],
+            ),
+            if (past.isNotEmpty)
+              Column(
+                spacing: 32,
+                mainAxisSize: .min,
+                children: <Widget>[
+                  _SectionLabel(
+                    text: l10n.homeSponsorsEditionsLabel,
+                    color: FlutterLatamColors.white.withValues(alpha: .5),
+                  ),
+                  _PastSponsorsCarousel(sponsors: past),
+                ],
+              ),
+            Center(
+              child: FclButton.secondary(
+                label: l10n.homeSponsorsWantToBeButton,
+                buttonSize: .large,
+                onPressed: () => context.go(
+                  '/${AppRoutePath.sponsorship.pathName}',
+                ),
+              ),
             ),
           ],
         );
@@ -97,85 +90,297 @@ class HomeSponsors extends SignalWidget {
   }
 }
 
-class _SponsorCardContainer extends SignalWidget {
-  const _SponsorCardContainer({required this.sponsors, required this.tier});
+class _SectionLabel extends StatelessWidget {
+  const _SectionLabel({required this.text, required this.color});
 
-  final List<SponsorEntity> sponsors;
-  final SponsorsTier tier;
+  final String text;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.fclThemeScheme;
-    final l10n = appLocalizations.value;
-
-    return CardContainer(
-      borderColor: switch (tier) {
-        .platinum => FlutterLatamColors.blue,
-        .gold => FlutterLatamColors.yellow,
-        .silver => FlutterLatamColors.green,
-        .bronze => FlutterLatamColors.bronze,
-        .inKind => FlutterLatamColors.purple,
-        .senior => FlutterLatamColors.lightBlue,
-        .junior => FlutterLatamColors.lightYellow,
-      },
-      child: Column(
-        spacing: 30,
-        mainAxisSize: .min,
-        children: <Widget>[
-          Text(
-            switch (tier) {
-              .platinum => l10n.homeSponsorPlatinum,
-              .gold => l10n.homeSponsorGold,
-              .silver => l10n.homeSponsorSilver,
-              .bronze => l10n.homeSponsorsBronze,
-              .inKind => l10n.homeSponsorInKind,
-              .senior => l10n.homeSponsorSenior,
-              .junior => l10n.homeSponsorJunior,
-            },
-            style: theme.typography.subH2Semibold.copyWith(
-              fontSize: switch (context.screenSize) {
-                .extraLarge => 32,
-                _ => 24,
-              },
-            ),
-          ),
-          if (sponsors.length == 1)
-            _SponsorItem(item: sponsors.first)
-          else
-            ResponsiveGrid(
-              columnSizes: switch (context.screenSize) {
-                .extraLarge || .large => sponsors.length,
-                _ => 1,
-              },
-              rowSizes: sponsors.length,
-              children: <Widget>[
-                for (final item in sponsors) _SponsorItem(item: item),
-              ],
-            ),
-        ],
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: theme.typography.captionRegular.copyWith(
+        color: color,
+        letterSpacing: 4,
+        fontWeight: .w600,
       ),
     );
   }
 }
 
-class _SponsorItem extends StatelessWidget {
-  const _SponsorItem({required this.item});
+class _CurrentSponsorsGrid extends StatelessWidget {
+  const _CurrentSponsorsGrid({required this.sponsors});
 
-  final SponsorEntity item;
+  final List<SponsorEntity> sponsors;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: InkWell(
-        onTap: () => Utils.launchUrlLink(item.websiteUrl ?? ''),
-        child: SizedBox.fromSize(
-          size: switch (context.screenSize) {
-            .extraLarge => const .fromHeight(100),
-            _ => const .fromHeight(60),
-          },
-          child: SvgPicture.network(item.logoUrl, semanticsLabel: item.name),
+    final cardWidth = switch (context.screenSize) {
+      .extraLarge => 260.0,
+      .large => 220.0,
+      _ => null,
+    };
+
+    if (cardWidth != null) {
+      return Center(
+        child: Wrap(
+          spacing: 16,
+          runSpacing: 16,
+          alignment: .center,
+          children: <Widget>[
+            for (final s in sponsors)
+              _CurrentSponsorCard(sponsor: s, cardWidth: cardWidth),
+          ],
+        ),
+      );
+    }
+
+    return Column(
+      spacing: 12,
+      children: <Widget>[
+        for (final s in sponsors)
+          _CurrentSponsorCard(sponsor: s, cardWidth: null),
+      ],
+    );
+  }
+}
+
+class _CurrentSponsorCard extends HookWidget {
+  const _CurrentSponsorCard({required this.sponsor, required this.cardWidth});
+
+  final SponsorEntity sponsor;
+  final double? cardWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    final isHovered = useState(false);
+
+    final theme = context.theme.fclThemeScheme;
+    final color = switch (sponsor.tier) {
+      .platinum => FlutterLatamColors.mediumBlue,
+      .gold => FlutterLatamColors.yellow,
+      .silver => FlutterLatamColors.silver,
+      .bronze => FlutterLatamColors.bronze,
+      .inKind => FlutterLatamColors.fluorescent,
+      .senior => FlutterLatamColors.lightBlue,
+      .junior => FlutterLatamColors.lightYellow,
+    };
+
+    final card = AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      width: cardWidth,
+      decoration: BoxDecoration(
+        color: FlutterLatamColors.darkBlue,
+        borderRadius: .circular(16),
+        border: .all(
+          color: isHovered.value
+              ? color.withValues(alpha: .45)
+              : FlutterLatamColors.white.withValues(alpha: .08),
+          width: 1.5,
         ),
       ),
+      padding: const .symmetric(horizontal: 32, vertical: 24),
+      child: SizedBox(
+        height: switch (context.screenSize) {
+          .extraLarge => 90,
+          .large => 70,
+          _ => 56,
+        },
+        child: _GrayscaleLogo(url: sponsor.logoUrl, isHovered: isHovered.value),
+      ),
+    );
+
+    final badge = AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      padding: const .symmetric(horizontal: 12, vertical: 5),
+      decoration: BoxDecoration(
+        borderRadius: .circular(100),
+        color: color.withValues(alpha: isHovered.value ? .12 : .06),
+        border: .all(color: color.withValues(alpha: isHovered.value ? .8 : .4)),
+      ),
+      child: Text(
+        switch (sponsor.tier) {
+          .platinum => appLocalizations.value.homeSponsorPlatinum,
+          .gold => appLocalizations.value.homeSponsorGold,
+          .silver => appLocalizations.value.homeSponsorSilver,
+          .bronze => appLocalizations.value.homeSponsorsBronze,
+          .inKind => appLocalizations.value.homeSponsorInKind,
+          .senior => appLocalizations.value.homeSponsorSenior,
+          .junior => appLocalizations.value.homeSponsorJunior,
+        }.toUpperCase(),
+        style: theme.typography.captionRegular.copyWith(
+          color: color,
+          fontSize: 11,
+          letterSpacing: 2,
+          fontWeight: .w600,
+        ),
+      ),
+    );
+
+    return MouseRegion(
+      cursor: sponsor.websiteUrl != null ? SystemMouseCursors.click : .defer,
+      onEnter: (_) => isHovered.value = true,
+      onExit: (_) => isHovered.value = false,
+      child: GestureDetector(
+        onTap: () {
+          if (sponsor.websiteUrl != null) {
+            unawaited(Utils.launchUrlLink(sponsor.websiteUrl!));
+          }
+        },
+        child: SizedBox(
+          width: cardWidth,
+          child: Column(
+            spacing: 10,
+            mainAxisSize: .min,
+            children: <Widget>[card, badge],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PastSponsorsCarousel extends StatefulWidget {
+  const _PastSponsorsCarousel({required this.sponsors});
+
+  final List<SponsorEntity> sponsors;
+
+  @override
+  State<_PastSponsorsCarousel> createState() => _PastSponsorsCarouselState();
+}
+
+class _PastSponsorsCarouselState extends State<_PastSponsorsCarousel> {
+  late final ScrollController _scrollController;
+  late final List<SponsorEntity> _items;
+
+  Timer? _timer;
+  bool _isHovered = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+
+    _items = [...widget.sponsors, ...widget.sponsors];
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startScroll());
+  }
+
+  void _startScroll() {
+    _timer = Timer.periodic(const Duration(milliseconds: 16), (_) {
+      if (_isHovered || !_scrollController.hasClients) return;
+      final max = _scrollController.position.maxScrollExtent;
+      final half = max / 2;
+
+      if (_scrollController.offset >= half) {
+        _scrollController.jumpTo(_scrollController.offset - half);
+      } else {
+        _scrollController.jumpTo(_scrollController.offset + 1.5);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: SizedBox(
+        height: switch (context.screenSize) {
+          .extraLarge || .large => 100,
+          _ => 72,
+        },
+        child: ListView.separated(
+          itemCount: _items.length,
+          scrollDirection: .horizontal,
+          controller: _scrollController,
+          physics: const NeverScrollableScrollPhysics(),
+          separatorBuilder: (_, _) => const SizedBox(width: 16),
+          itemBuilder: (_, i) => _PastSponsorCard(sponsor: _items[i]),
+        ),
+      ),
+    );
+  }
+}
+
+class _PastSponsorCard extends HookWidget {
+  const _PastSponsorCard({required this.sponsor});
+
+  final SponsorEntity sponsor;
+
+  @override
+  Widget build(BuildContext context) {
+    final isHovered = useState(false);
+
+    final cardHeight = switch (context.screenSize) {
+      .extraLarge || .large => 100.0,
+      _ => 72.0,
+    };
+
+    return MouseRegion(
+      cursor: sponsor.websiteUrl != null ? SystemMouseCursors.click : .defer,
+      onEnter: (_) => isHovered.value = true,
+      onExit: (_) => isHovered.value = false,
+      child: GestureDetector(
+        onTap: () {
+          if (sponsor.websiteUrl != null) {
+            unawaited(Utils.launchUrlLink(sponsor.websiteUrl!));
+          }
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          width: cardHeight * (16 / 9),
+          height: cardHeight,
+          decoration: BoxDecoration(
+            color: FlutterLatamColors.darkBlue,
+            borderRadius: .circular(12),
+            border: .all(
+              color: isHovered.value
+                  ? FlutterLatamColors.white.withValues(alpha: .25)
+                  : FlutterLatamColors.white.withValues(alpha: .08),
+            ),
+          ),
+          padding: const .symmetric(horizontal: 20, vertical: 12),
+          child: _GrayscaleLogo(
+            url: sponsor.logoUrl,
+            isHovered: isHovered.value,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GrayscaleLogo extends StatelessWidget {
+  const _GrayscaleLogo({required this.url, required this.isHovered});
+
+  final String url;
+  final bool isHovered;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      fit: .expand,
+      children: <Widget>[
+        SvgPicture.network(url),
+        AnimatedOpacity(
+          opacity: isHovered ? 0 : 1,
+          duration: const Duration(milliseconds: 250),
+          child: ColorFiltered(
+            colorFilter: const ColorFilter.matrix(Utils.grayscaleMatrix),
+            child: SvgPicture.network(url),
+          ),
+        ),
+      ],
     );
   }
 }

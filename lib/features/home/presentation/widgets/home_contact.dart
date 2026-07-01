@@ -20,8 +20,9 @@ class HomeContact extends SignalWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.value;
     final theme = context.theme.fclThemeScheme;
+
+    final l10n = appLocalizations.value;
     final email = appConfig.value.contactEmail;
 
     return SectionContainer(
@@ -54,40 +55,79 @@ class HomeContact extends SignalWidget {
               color: FlutterLatamColors.mediumBlue.withValues(alpha: .4),
             ),
           ),
-          child: Row(
-            mainAxisSize: .min,
-            spacing: 16,
-            children: <Widget>[
-              Expanded(
-                child: Text(
+          child: switch (context.screenSize) {
+            .extraLarge || .large => Row(
+              spacing: 16,
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    email,
+                    style: theme.typography.body2Regular.copyWith(
+                      color: FlutterLatamColors.mediumBlue,
+                    ),
+                  ),
+                ),
+                FclButton.secondary(
+                  label: l10n.contactCopyEmail,
+                  buttonSize: .small,
+                  icon: SizedBox.square(
+                    dimension: 18,
+                    child: SvgPicture.asset(Assets.images.icons.copy),
+                  ),
+                  onPressed: () {
+                    _copyEmail(context, email, l10n.contactCopyEmail);
+                  },
+                ),
+                FclButton.primary(
+                  label: l10n.menuContactText,
+                  buttonSize: .small,
+                  icon: const Icon(Icons.mail_outline),
+                  onPressed: () => unawaited(
+                    Utils.launchUrlLink('mailto:$email'),
+                  ),
+                ),
+              ],
+            ),
+            _ => Column(
+              spacing: 12,
+              crossAxisAlignment: .start,
+              children: <Widget>[
+                Text(
                   email,
                   style: theme.typography.body2Regular.copyWith(
                     color: FlutterLatamColors.mediumBlue,
                   ),
                 ),
-              ),
-              FclButton.secondary(
-                label: l10n.contactCopyEmail,
-                buttonSize: .small,
-                icon: SvgPicture.asset(
-                  Assets.images.icons.copy,
-                  width: 18,
-                  height: 18,
+                Row(
+                  spacing: 12,
+                  children: <Widget>[
+                    Expanded(
+                      child: FclButton.secondary(
+                        label: l10n.contactCopyEmail,
+                        buttonSize: .small,
+                        icon: SizedBox.square(
+                          dimension: 18,
+                          child: SvgPicture.asset(Assets.images.icons.copy),
+                        ),
+                        onPressed: () {
+                          _copyEmail(context, email, l10n.contactCopyEmail);
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: FclButton.primary(
+                        label: l10n.menuContactText,
+                        buttonSize: .small,
+                        onPressed: () => unawaited(
+                          Utils.launchUrlLink('mailto:$email'),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                onPressed: () {
-                  _copyEmail(context, email, l10n.contactCopyEmail);
-                },
-              ),
-              FclButton.primary(
-                label: l10n.menuContactText,
-                buttonSize: .small,
-                icon: const Icon(Icons.mail_outline),
-                onPressed: () => unawaited(
-                  Utils.launchUrlLink('mailto:$email'),
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          },
         ),
       ],
     );

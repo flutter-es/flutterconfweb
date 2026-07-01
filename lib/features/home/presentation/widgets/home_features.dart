@@ -8,6 +8,8 @@ import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/card/grid_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
+import 'package:flutter_conf_latam/core/widgets/dialog/data_protection_dialog.dart';
+import 'package:flutter_conf_latam/core/widgets/dialog/main_dialog.dart';
 import 'package:flutter_conf_latam/core/widgets/text/adaptable_text.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
@@ -97,7 +99,10 @@ class HomeFeatures extends SignalWidget {
               ),
             ),
             const Flexible(
-              child: SizedBox(width: .infinity, child: _BuyTicketFeature()),
+              child: SizedBox(
+                width: .infinity,
+                child: _BuyTicketFeature(showDisclaimer: false, price: 175),
+              ),
             ),
           ],
         ),
@@ -107,15 +112,13 @@ class HomeFeatures extends SignalWidget {
 }
 
 class _BuyTicketFeature extends SignalWidget {
-  const _BuyTicketFeature();
+  const _BuyTicketFeature({required this.price, required this.showDisclaimer});
+
+  final double price;
+  final bool showDisclaimer;
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme.fclThemeScheme;
-
-    final l10n = appLocalizations.value;
-    final config = appConfig.value;
-
     final children = <Widget>[
       Align(
         child: SizedBox.square(
@@ -128,12 +131,12 @@ class _BuyTicketFeature extends SignalWidget {
         crossAxisAlignment: .start,
         children: <Widget>[
           AdaptableText(
-            l10n.homeFeatureBuyTicketTitle(150),
+            appLocalizations.value.homeFeatureBuyTicketTitle(price),
             textAlign: switch (context.screenSize) {
               .small || .normal => .center,
               _ => .start,
             },
-            style: theme.typography.h3Bold,
+            style: context.theme.fclThemeScheme.typography.h3Bold,
           ),
           Align(
             alignment: switch (context.screenSize) {
@@ -141,10 +144,17 @@ class _BuyTicketFeature extends SignalWidget {
               .normal || .small => .center,
             },
             child: FclButton.secondary(
-              label: l10n.homeFeatureBuyTicketButton,
+              label: appLocalizations.value.homeFeatureBuyTicketButton,
               buttonSize: .small,
               onPressed: () {
-                _showDisclaimerDialog(context, config.ticketPageUrl);
+                if (!showDisclaimer) {
+                  _goToTicketUrl(appConfig.value.ticketPageUrl);
+                  return;
+                }
+
+                unawaited(
+                  _showDisclaimerDialog(context, appConfig.value.ticketPageUrl),
+                );
               },
             ),
           ),
@@ -172,12 +182,13 @@ class _BuyTicketFeature extends SignalWidget {
     );
   }
 
-  void _showDisclaimerDialog(BuildContext context, String url) {
-    // final result = await MainDialog.show<bool>(
-    //   context,
-    //   child: const DataProtectionDialog(),
-    // );
-    // if (result ?? false)
-    unawaited(Utils.launchUrlLink(url));
+  Future<void> _showDisclaimerDialog(BuildContext context, String url) async {
+    final result = await MainDialog.show<bool>(
+      context,
+      child: const DataProtectionDialog(),
+    );
+    if (result ?? false) _goToTicketUrl(url);
   }
+
+  void _goToTicketUrl(String url) => unawaited(Utils.launchUrlLink(url));
 }

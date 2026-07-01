@@ -6,7 +6,7 @@ import 'package:flutter_conf_latam/core/widgets/container/section_container.dart
 import 'package:flutter_conf_latam/core/widgets/container/shimmer_container.dart';
 import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/home/presentation/view_model/home_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/home_signals.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals_flutter.dart';
 

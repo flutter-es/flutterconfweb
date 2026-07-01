@@ -1,15 +1,17 @@
-import 'package:flutter/gestures.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
-import 'package:flutter_conf_latam/core/widgets/container/section_container.dart';
+import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/text/count_down_text.dart';
-import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
 import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
 import 'package:flutter_conf_latam/styles/theme.dart';
+import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
 
 class HomeMain extends SignalWidget {
@@ -17,87 +19,234 @@ class HomeMain extends SignalWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme.fclThemeScheme;
+    final dashImage = Image.asset(
+      Assets.images.surfDash,
+      width: switch (context.screenSize) {
+        .extraLarge => 560,
+        .large => 420,
+        .normal || .small => 280,
+      },
+    );
 
-    final l10n = appLocalizations.value;
-    final config = appConfig.value;
-
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: .bottomCenter,
-          end: .topCenter,
-          colors: [FlutterLatamColors.mainBlue, FlutterLatamColors.steelBlue],
-          stops: [0.8, 1],
-        ),
+    final titleWhite = Text(
+      appLocalizations.value.homeMainTitle,
+      textAlign: switch (context.screenSize) {
+        .extraLarge || .large => .start,
+        _ => .center,
+      },
+      style: context.theme.fclThemeScheme.typography.h1Bold.copyWith(
+        fontSize: switch (context.screenSize) {
+          .extraLarge => 72,
+          .large => 52,
+          .normal || .small => 36,
+        },
+        height: 1.1,
       ),
-      child: SectionContainer(
+    );
+
+    final titleColored = Text(
+      appLocalizations.value.homeMainTitleColored,
+      textAlign: switch (context.screenSize) {
+        .extraLarge || .large => .start,
+        _ => .center,
+      },
+      style: context.theme.fclThemeScheme.typography.h1Bold.copyWith(
+        fontSize: switch (context.screenSize) {
+          .extraLarge => 72,
+          .large => 52,
+          .normal || .small => 36,
+        },
+        height: 1.1,
+        color: FlutterLatamColors.mediumBlue,
+      ),
+    );
+
+    final description = Text(
+      appLocalizations.value.homeMainDescription,
+      textAlign: switch (context.screenSize) {
+        .extraLarge || .large => .start,
+        _ => .center,
+      },
+      style: context.theme.fclThemeScheme.typography.body2Regular.copyWith(
+        color: FlutterLatamColors.white.withValues(alpha: .85),
+        fontSize: switch (context.screenSize) {
+          .extraLarge => 18,
+          .large => 16,
+          .normal || .small => 14,
+        },
+      ),
+    );
+
+    final buttons = switch (context.screenSize) {
+      .extraLarge || .large => Row(
+        spacing: 16,
         children: <Widget>[
-          Center(
-            child: SizedBox.fromSize(
-              size: switch (context.screenSize) {
-                .extraLarge => const Size(760, 750),
-                .large => const Size(520, 513),
-                .normal || .small => const Size(300, 296),
-              },
-              child: Image.asset(Assets.images.surfDash),
+          FclButton.primary(
+            label: appLocalizations.value.menuBuyTicketsButton,
+            buttonSize: .large,
+            onPressed: () => unawaited(
+              Utils.launchUrlLink(appConfig.value.ticketPageUrl),
             ),
           ),
-          TitleSubtitleText(
-            title: (
-              text: l10n.homeMainTitle,
-              size: switch (context.screenSize) {
-                .extraLarge => 64,
-                .large => 48,
-                .normal || .small => 24,
-              },
+          FclButton.secondary(
+            label: appLocalizations.value.menuBeSponsorButton,
+            buttonSize: .large,
+            onPressed: () => context.go(
+              '/${AppRoutePath.sponsorship.pathName}',
             ),
-            subtitle: (
-              text: l10n.homeMainDescription,
-              size: switch (context.screenSize) {
-                .extraLarge => 40,
-                .large => 36,
-                .normal || .small => 16,
-              },
-            ),
-            spacing: switch (context.screenSize) {
-              .extraLarge || .large => 24,
-              .normal || .small => 12,
-            },
-          ),
-          RichText(
-            textAlign: .center,
-            text: TextSpan(
-              text: l10n.homeMainExperienceOne,
-              children: <InlineSpan>[
-                TextSpan(
-                  text: l10n.homeMainExperienceTwo,
-                  style: theme.typography.subH1Regular.copyWith(
-                    decoration: .none,
-                    fontSize: switch (context.screenSize) {
-                      .extraLarge || .large => 40,
-                      .normal || .small => 16,
-                    },
-                  ),
-                ),
-              ],
-              style: theme.typography.subH1Regular.copyWith(
-                decoration: .underline,
-                decorationColor: FlutterLatamColors.white,
-                fontSize: switch (context.screenSize) {
-                  .extraLarge || .large => 40,
-                  .normal || .small => 16,
-                },
-              ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () => Utils.launchUrlLink(config.countryPageUrl),
-            ),
-          ),
-          CountDownText(
-            startDate: .now(),
-            endDate: DateTime(2026, 9, 22, 7, 30),
           ),
         ],
+      ),
+      _ => Column(
+        spacing: 12,
+        crossAxisAlignment: .stretch,
+        children: <Widget>[
+          FclButton.primary(
+            label: appLocalizations.value.menuBuyTicketsButton,
+            buttonSize: .large,
+            onPressed: () => unawaited(
+              Utils.launchUrlLink(appConfig.value.ticketPageUrl),
+            ),
+          ),
+          FclButton.secondary(
+            label: appLocalizations.value.menuBeSponsorButton,
+            buttonSize: .large,
+            onPressed: () => context.go(
+              '/${AppRoutePath.sponsorship.pathName}',
+            ),
+          ),
+        ],
+      ),
+    };
+
+    return Column(
+      spacing: 24,
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            const Positioned.fill(child: _HeroBackground()),
+            Padding(
+              padding: .symmetric(
+                horizontal: switch (context.screenSize) {
+                  .extraLarge => 122,
+                  .large => 72,
+                  .normal || .small => 28,
+                },
+                vertical: switch (context.screenSize) {
+                  .extraLarge || .large => 80,
+                  .normal || .small => 48,
+                },
+              ),
+              child: switch (context.screenSize) {
+                .extraLarge || .large => Row(
+                  spacing: 40,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        spacing: 24,
+                        mainAxisSize: .min,
+                        crossAxisAlignment: .start,
+                        children: <Widget>[
+                          _HeroBadge(
+                            text: appLocalizations.value.homeHeroBadge,
+                          ),
+                          Column(
+                            mainAxisSize: .min,
+                            crossAxisAlignment: .start,
+                            children: <Widget>[titleWhite, titleColored],
+                          ),
+                          description,
+                          buttons,
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Align(alignment: .centerRight, child: dashImage),
+                    ),
+                  ],
+                ),
+                _ => Column(
+                  spacing: 24,
+                  mainAxisSize: .min,
+                  children: <Widget>[
+                    dashImage,
+                    _HeroBadge(text: appLocalizations.value.homeHeroBadge),
+                    Column(
+                      mainAxisSize: .min,
+                      children: <Widget>[titleWhite, titleColored],
+                    ),
+                    description,
+                    buttons,
+                  ],
+                ),
+              },
+            ),
+          ],
+        ),
+        CountDownText(
+          startDate: .now(),
+          endDate: DateTime(2026, 9, 22, 7, 30),
+        ),
+      ],
+    );
+  }
+}
+
+class _HeroBackground extends StatelessWidget {
+  const _HeroBackground();
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(color: FlutterLatamColors.mainBlue),
+        const Positioned(
+          top: -150,
+          right: -150,
+          child: SizedBox.square(
+            dimension: 600,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                shape: .circle,
+                gradient: RadialGradient(
+                  colors: [Color(0x4DC49A1A), Colors.transparent],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _HeroBadge extends StatelessWidget {
+  const _HeroBadge({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: .circular(100),
+        border: .all(
+          color: FlutterLatamColors.mediumBlue.withValues(alpha: .6),
+        ),
+        color: FlutterLatamColors.mediumBlue.withValues(alpha: .08),
+      ),
+      child: Padding(
+        padding: const .symmetric(horizontal: 16, vertical: 8),
+        child: Text(
+          text,
+          style: context.theme.fclThemeScheme.typography.body4Regular.copyWith(
+            color: FlutterLatamColors.mediumBlue,
+            letterSpacing: 2,
+            fontWeight: .w600,
+          ),
+        ),
       ),
     );
   }

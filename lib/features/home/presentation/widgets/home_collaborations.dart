@@ -7,158 +7,190 @@ import 'package:flutter_conf_latam/core/widgets/container/section_container.dart
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
-import 'package:flutter_conf_latam/styles/generated/assets.gen.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
 
-enum CollaborationType { speaker, sponsor }
-
 class HomeCollaborations extends SignalWidget {
-  const HomeCollaborations({required this.type, super.key});
-
-  final CollaborationType type;
+  const HomeCollaborations({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final l10n = appLocalizations.value;
+    final stats = [
+      (
+        value: appLocalizations.value.homeCollaborationStat1Value,
+        label: appLocalizations.value.homeCollaborationStat1Label,
+      ),
+      (
+        value: appLocalizations.value.homeCollaborationStat2Value,
+        label: appLocalizations.value.homeCollaborationStat2Label,
+      ),
+      (
+        value: appLocalizations.value.homeCollaborationStat3Value,
+        label: appLocalizations.value.homeCollaborationStat3Label,
+      ),
+      (
+        value: appLocalizations.value.homeCollaborationStat4Value,
+        label: appLocalizations.value.homeCollaborationStat4Label,
+      ),
+    ];
 
-    final collaborations = <CollaborationItem>[
-      if (type == .speaker) ...[
-        /*
-        CollaborationItem(
-          title: l10n.homeCollaborationSpeakerTitle,
-          description: l10n.homeCollaborationSpeakerDescription,
-          imagePath: Assets.images.collaborations.dashSpeaker,
-          button: (
-            text: l10n.homeCollaborationSpeakerButton,
-            function: () => _goToUrl(config.cfpFormUrl),
-          ),
-        ),
-        */
-      ] else ...[
-        CollaborationItem(
-          title: l10n.homeCollaborationSponsorTitle,
-          description: l10n.homeCollaborationSponsorDescription,
-          imagePath: Assets.images.collaborations.dashSponsor,
-          button: (
-            text: l10n.homeCollaborationSponsorButton,
-            function: () => context.go('/${AppRoutePath.sponsorship.pathName}'),
-          ),
-        ),
-      ],
+    final benefits = [
+      appLocalizations.value.homeCollaborationBenefit1,
+      appLocalizations.value.homeCollaborationBenefit2,
+      appLocalizations.value.homeCollaborationBenefit3,
+    ];
+
+    final optionButtons = <Widget>[
+      FclButton.primary(
+        label: appLocalizations.value.homeCollaborationRequestButton,
+        buttonSize: .large,
+        icon: const Icon(Icons.arrow_forward_rounded, size: 18),
+        iconAlignment: .end,
+        onPressed: () => context.go('/${AppRoutePath.sponsorship.pathName}'),
+      ),
+      FclButton.secondary(
+        label: appLocalizations.value.homeCollaborationPackagesButton,
+        buttonSize: .large,
+        onPressed: () => context.go('/${AppRoutePath.sponsorship.pathName}'),
+      ),
     ];
 
     return SectionContainer(
-      spacing: 0,
+      spacing: 48,
       children: <Widget>[
+        TitleSubtitleText(
+          title: (
+            text: appLocalizations.value.homeCollaborationTitle,
+            size: switch (context.screenSize) {
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 32,
+            },
+          ),
+          subtitle: (
+            text: appLocalizations.value.homeCollaborationSubtitle,
+            size: switch (context.screenSize) {
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
+            },
+          ),
+          spacing: 12,
+        ),
         ResponsiveGrid(
           columnSizes: switch (context.screenSize) {
-            .extraLarge => 1,
+            .extraLarge || .large => 4,
             _ => 1,
           },
           rowSizes: switch (context.screenSize) {
-            .extraLarge || .large => 2,
-            .normal || .small => collaborations.length,
+            .extraLarge || .large => 1,
+            _ => 4,
           },
           children: <Widget>[
-            for (final item in collaborations)
-              _CollaborationCardItem(item: item),
+            for (final s in stats) _StatCard(value: s.value, label: s.label),
           ],
         ),
+        switch (context.screenSize) {
+          .extraLarge || .large => Row(
+            children: <Widget>[
+              Expanded(child: _BenefitsList(benefits: benefits)),
+              Row(spacing: 16, mainAxisSize: .min, children: optionButtons),
+            ],
+          ),
+          _ => Column(
+            spacing: 24,
+            mainAxisSize: .min,
+            crossAxisAlignment: .stretch,
+            children: <Widget>[
+              _BenefitsList(benefits: benefits),
+              ...optionButtons,
+            ],
+          ),
+        },
       ],
     );
   }
-
-  // void _goToUrl(String url) => Utils.launchUrlLink(url);
 }
 
-class _CollaborationCardItem extends StatelessWidget {
-  const _CollaborationCardItem({required this.item});
+class _StatCard extends StatelessWidget {
+  const _StatCard({required this.value, required this.label});
 
-  final CollaborationItem item;
+  final String value;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: FlutterLatamColors.blue,
-      clipBehavior: .antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(borderRadius: .circular(20)),
-      child: Padding(
-        padding: const .all(48),
-        child: Flex(
-          spacing: switch (context.screenSize) {
-            .extraLarge || .large => 50,
-            _ => 24,
-          },
-          direction: switch (context.screenSize) {
-            .extraLarge || .large => .horizontal,
-            _ => .vertical,
-          },
-          children: <Widget>[
-            Expanded(
-              flex: switch (context.screenSize) {
-                .extraLarge || .large => 2,
-                .normal || .small => 1,
+    final theme = context.theme.fclThemeScheme;
+
+    return Container(
+      padding: const .all(24),
+      decoration: BoxDecoration(
+        borderRadius: .circular(20),
+        color: FlutterLatamColors.darkBlue,
+        border: .all(color: FlutterLatamColors.white.withValues(alpha: .08)),
+      ),
+      child: Column(
+        spacing: 12,
+        mainAxisSize: .min,
+        crossAxisAlignment: .start,
+        children: <Widget>[
+          Text(
+            value,
+            style: theme.typography.h1Bold.copyWith(
+              fontSize: switch (context.screenSize) {
+                .extraLarge || .large => 56,
+                _ => 40,
               },
-              child: Column(
-                spacing: 30,
-                mainAxisSize: .min,
-                crossAxisAlignment: .start,
-                children: <Widget>[
-                  TitleSubtitleText(
-                    title: (
-                      text: item.title,
-                      size: switch (context.screenSize) {
-                        .extraLarge || .large => 32,
-                        .normal || .small => 24,
-                      },
-                    ),
-                    subtitle: (
-                      text: item.description,
-                      size: switch (context.screenSize) {
-                        .extraLarge || .large => 18,
-                        .normal || .small => 16,
-                      },
-                    ),
-                    textAlign: .start,
-                    crossAxisAlignment: .start,
-                    spacing: 10,
-                  ),
-                  FclButton.secondary(
-                    label: item.button.text,
-                    buttonSize: .small,
-                    onPressed: item.button.function,
-                  ),
-                ],
-              ),
+              color: FlutterLatamColors.mediumBlue,
             ),
-            Expanded(
-              child: SizedBox.square(
-                dimension: switch (context.screenSize) {
-                  .extraLarge || .large => 370,
-                  .normal || .small => 180,
-                },
-                child: SvgPicture.asset(item.imagePath),
-              ),
+          ),
+          Text(
+            label,
+            style: theme.typography.body3Regular.copyWith(
+              color: FlutterLatamColors.white,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class CollaborationItem {
-  CollaborationItem({
-    required this.title,
-    required this.description,
-    required this.imagePath,
-    required this.button,
-  });
+class _BenefitsList extends StatelessWidget {
+  const _BenefitsList({required this.benefits});
 
-  final String title;
-  final String description;
-  final String imagePath;
-  final ({String text, VoidCallback function}) button;
+  final List<String> benefits;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
+    return Column(
+      spacing: 16,
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
+      children: <Widget>[
+        for (final benefit in benefits)
+          Row(
+            spacing: 12,
+            crossAxisAlignment: .start,
+            children: <Widget>[
+              const Icon(
+                Icons.check_rounded,
+                size: 16,
+                color: FlutterLatamColors.yellow,
+              ),
+              Expanded(
+                child: Text(
+                  benefit,
+                  style: theme.typography.body3Regular.copyWith(
+                    color: FlutterLatamColors.white.withValues(alpha: .7),
+                  ),
+                ),
+              ),
+            ],
+          ),
+      ],
+    );
+  }
 }
