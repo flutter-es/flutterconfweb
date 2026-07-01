@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/routes/helpers/navigation_item_model.dart';
-import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals.dart';
 
 class NavigationController {
@@ -23,10 +22,13 @@ class NavigationController {
         route: '/${AppRoutePath.home.pathName}',
         isSelected: true,
       ),
+      // TODO(FV): Uncomment when is ready
+      /*
       NavigationItemModel(
         label: appLocalizations.value.menuSpeakersText,
         route: '/${AppRoutePath.speakers.pathName}',
       ),
+      */
     ];
 
     if (_selectedNav.isEmpty) return navigationItemList;
