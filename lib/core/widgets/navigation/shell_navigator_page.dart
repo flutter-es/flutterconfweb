@@ -121,5 +121,12 @@ class _ShellNavigatorPageState extends State<ShellNavigatorPage> {
 
   void _goToRoute(NavigationItemModel item) {
     navigationController.selectNavItem(item);
+
+    final routeSubmenu = item.subMenus
+        ?.firstWhereOrNull((i) => i.isSelected)
+        ?.route;
+
+    final route = item.route ?? routeSubmenu;
+    if (route != null && route.isNotEmpty) context.go(route);
   }
 }
