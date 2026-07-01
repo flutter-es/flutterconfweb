@@ -2,21 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
-import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/l10n/gen/app_localizations.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
+import 'package:flutter_conf_latam/styles/core/colors.dart';
+import 'package:flutter_conf_latam/styles/theme.dart';
 import 'package:signals/signals_flutter.dart';
 
 class CountDownText extends SignalStatefulWidget {
   const CountDownText({
     required this.startDate,
     required this.endDate,
+    this.label,
     super.key,
   });
 
   final DateTime startDate;
   final DateTime endDate;
+  final String? label;
 
   @override
   State<CountDownText> createState() => _CountDownTextState();
@@ -43,48 +45,107 @@ class _CountDownTextState extends State<CountDownText> {
   @override
   Widget build(BuildContext context) {
     final l10n = appLocalizations.value;
-    final columnRowSize = switch (context.screenSize) {
-      .extraLarge => 4,
-      _ => 2,
-    };
-
-    final titleSize = switch (context.screenSize) {
-      .extraLarge => 84.0,
-      .large => 64.0,
-      .normal || .small => 24.0,
-    };
-
-    final subtitleSize = switch (context.screenSize) {
-      .extraLarge || .large => 24.0,
-      .normal || .small => 20.0,
-    };
+    final theme = context.theme.fclThemeScheme;
 
     if (_duration <= Duration.zero) {
       return Center(
         child: TitleSubtitleText(
-          title: (text: l10n.homeCountDownFinishTitle, size: titleSize),
-          subtitle: (text: l10n.homeCountDownFinishMessage, size: subtitleSize),
+          title: (
+            text: l10n.homeCountDownFinishTitle,
+            size: switch (context.screenSize) {
+              .extraLarge => 84,
+              .large => 64,
+              .normal || .small => 24,
+            },
+          ),
+          subtitle: (
+            text: l10n.homeCountDownFinishMessage,
+            size: switch (context.screenSize) {
+              .extraLarge || .large => 24,
+              .normal || .small => 20,
+            },
+          ),
         ),
       );
     }
 
-    return ResponsiveGrid(
-      rowSizes: columnRowSize,
-      columnSizes: columnRowSize,
+    final days = _duration.inDays.toString();
+    final hours = _twoDigits(_duration.inHours.remainder(24));
+    final minutes = _twoDigits(_duration.inMinutes.remainder(60));
+    final seconds = _twoDigits(_duration.inSeconds.remainder(60));
+
+    final items = [
+      (value: days, label: l10n.homeCountDownDays),
+      (value: hours, label: l10n.homeCountDownHours),
+      (value: minutes, label: l10n.homeCountDownMinutes),
+      (value: seconds, label: l10n.homeCountDownSeconds),
+    ];
+
+    final numberSize = switch (context.screenSize) {
+      .extraLarge => 56.0,
+      .large => 44.0,
+      .normal || .small => 28.0,
+    };
+
+    final labelSize = switch (context.screenSize) {
+      .extraLarge || .large => 12.0,
+      .normal || .small => 10.0,
+    };
+
+    return Column(
+      spacing: 16,
+      mainAxisSize: .min,
       children: <Widget>[
-        for (final item in _formatDuration(_duration, l10n))
-          Center(
-            child: TitleSubtitleText(
-              title: (text: item.value, size: titleSize),
-              subtitle: (text: item.text, size: subtitleSize),
-            ),
+        Text(
+          widget.label ?? l10n.homeCountDownLabel,
+          style: theme.typography.captionRegular.copyWith(
+            color: FlutterLatamColors.white.withValues(alpha: .5),
+            letterSpacing: 3,
+            fontWeight: .w500,
           ),
+        ),
+        Row(
+          spacing: switch (context.screenSize) {
+            .extraLarge || .large => 12,
+            _ => 6,
+          },
+          mainAxisSize: .min,
+          mainAxisAlignment: .center,
+          crossAxisAlignment: .start,
+          children: <Widget>[
+            for (var i = 0; i < items.length; i++) ...[
+              _CountdownUnit(
+                value: items[i].value,
+                label: items[i].label,
+                cardSize: switch (context.screenSize) {
+                  .extraLarge => 120,
+                  .large => 96,
+                  .normal || .small => 64,
+                },
+                numberSize: numberSize,
+                labelSize: labelSize,
+                animate: i == 3,
+              ),
+              if (i < items.length - 1)
+                Padding(
+                  padding: .only(top: labelSize),
+                  child: Text(
+                    ':',
+                    style: theme.typography.h1Bold.copyWith(
+                      fontSize: numberSize,
+                      color: FlutterLatamColors.white.withValues(alpha: .4),
+                    ),
+                  ),
+                ),
+            ],
+          ],
+        ),
       ],
     );
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       setState(() {
         _duration = _duration - const Duration(seconds: 1);
         if (_duration.inSeconds <= 0) {
@@ -95,22 +156,89 @@ class _CountDownTextState extends State<CountDownText> {
     });
   }
 
-  List<({String value, String text})> _formatDuration(
-    Duration duration,
-    AppLocalizations l10n,
-  ) {
-    final days = duration.inDays.toString();
-    final hours = _twoDigits(duration.inHours.remainder(24));
-    final minutes = _twoDigits(duration.inMinutes.remainder(60));
-    final seconds = _twoDigits(duration.inSeconds.remainder(60));
-
-    return [
-      (value: days, text: l10n.homeCountDownDays),
-      (value: hours, text: l10n.homeCountDownHours),
-      (value: minutes, text: l10n.homeCountDownMinutes),
-      (value: seconds, text: l10n.homeCountDownSeconds),
-    ];
-  }
-
   String _twoDigits(int n) => n.toString().padLeft(2, '0');
+}
+
+class _CountdownUnit extends StatelessWidget {
+  const _CountdownUnit({
+    required this.value,
+    required this.label,
+    required this.cardSize,
+    required this.numberSize,
+    required this.labelSize,
+    required this.animate,
+  });
+
+  final String value;
+  final String label;
+  final double cardSize;
+  final double numberSize;
+  final double labelSize;
+  final bool animate;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
+    return Column(
+      spacing: 8,
+      mainAxisSize: .min,
+      children: <Widget>[
+        SizedBox.square(
+          dimension: cardSize,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: .circular(16),
+              color: FlutterLatamColors.darkBlue,
+              border: .all(
+                color: FlutterLatamColors.white.withValues(alpha: .08),
+              ),
+            ),
+            child: Center(
+              child: switch (animate) {
+                true => AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  transitionBuilder: (child, animation) {
+                    final slide = Tween<Offset>(
+                      begin: const Offset(0, .5),
+                      end: .zero,
+                    ).animate(animation);
+
+                    return FadeTransition(
+                      opacity: animation,
+                      child: SlideTransition(position: slide, child: child),
+                    );
+                  },
+                  child: Text(
+                    value,
+                    key: ValueKey(value),
+                    style: theme.typography.h1Bold.copyWith(
+                      fontSize: numberSize,
+                      color: FlutterLatamColors.white,
+                    ),
+                  ),
+                ),
+                false => Text(
+                  value,
+                  style: theme.typography.h1Bold.copyWith(
+                    fontSize: numberSize,
+                    color: FlutterLatamColors.white,
+                  ),
+                ),
+              },
+            ),
+          ),
+        ),
+        Text(
+          label.toUpperCase(),
+          style: theme.typography.captionRegular.copyWith(
+            fontSize: labelSize,
+            color: FlutterLatamColors.white.withValues(alpha: .5),
+            letterSpacing: 2,
+            fontWeight: .w500,
+          ),
+        ),
+      ],
+    );
+  }
 }
