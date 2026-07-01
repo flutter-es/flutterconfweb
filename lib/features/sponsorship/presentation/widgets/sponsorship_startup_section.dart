@@ -31,7 +31,7 @@ class SponsorshipStartupSection extends SignalWidget {
       padding: .symmetric(
         horizontal: switch (context.screenSize) {
           .extraLarge || .large => 96,
-          .normal || .small => 56,
+          _ => 0,
         },
       ),
       child: SectionContainer(
@@ -63,45 +63,54 @@ class SponsorshipStartupSection extends SignalWidget {
               mainAxisSize: .min,
               crossAxisAlignment: .start,
               children: <Widget>[
-                Row(
-                  spacing: 8,
-                  children: <Widget>[
-                    const Icon(
-                      Icons.rocket_launch_outlined,
-                      color: FlutterLatamColors.lightGreen,
-                    ),
-                    Text(
-                      l10n.sponsorshipStartupSectionLabel.toUpperCase(),
-                      style: theme.typography.body3Regular.copyWith(
-                        letterSpacing: 2,
-                        fontWeight: .w600,
+                switch (context.screenSize) {
+                  .extraLarge || .large => Row(
+                    spacing: 8,
+                    children: <Widget>[
+                      const Icon(
+                        Icons.rocket_launch_outlined,
                         color: FlutterLatamColors.lightGreen,
                       ),
-                    ),
-                    const Spacer(),
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius: .circular(20),
-                        border: .all(
-                          color: FlutterLatamColors.yellow.withValues(
-                            alpha: .3,
-                          ),
-                        ),
-                        color: FlutterLatamColors.yellow.withValues(alpha: .1),
-                      ),
-                      child: Padding(
-                        padding: const .symmetric(horizontal: 14, vertical: 8),
-                        child: Text(
-                          l10n.sponsorshipStartupBadge,
-                          style: theme.typography.body4Regular.copyWith(
-                            fontWeight: .w600,
-                            color: FlutterLatamColors.yellow,
-                          ),
+                      Text(
+                        l10n.sponsorshipStartupSectionLabel.toUpperCase(),
+                        style: theme.typography.body3Regular.copyWith(
+                          letterSpacing: 2,
+                          fontWeight: .w600,
+                          color: FlutterLatamColors.lightGreen,
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                      const Spacer(),
+                      _StartupBadge(label: l10n.sponsorshipStartupBadge),
+                    ],
+                  ),
+                  _ => Column(
+                    spacing: 8,
+                    crossAxisAlignment: .start,
+                    mainAxisSize: .min,
+                    children: <Widget>[
+                      Row(
+                        spacing: 8,
+                        children: <Widget>[
+                          const Icon(
+                            Icons.rocket_launch_outlined,
+                            color: FlutterLatamColors.lightGreen,
+                          ),
+                          Flexible(
+                            child: Text(
+                              l10n.sponsorshipStartupSectionLabel.toUpperCase(),
+                              style: theme.typography.body3Regular.copyWith(
+                                letterSpacing: 2,
+                                fontWeight: .w600,
+                                color: FlutterLatamColors.lightGreen,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      _StartupBadge(label: l10n.sponsorshipStartupBadge),
+                    ],
+                  ),
+                },
                 Text(
                   l10n.sponsorshipStartupTitle,
                   style: theme.typography.h1Bold.copyWith(
@@ -210,6 +219,35 @@ class SponsorshipStartupSection extends SignalWidget {
         Utils.mailtoWithSubject(
           const String.fromEnvironment('CONTACT_EMAIL'),
           subject,
+        ),
+      ),
+    );
+  }
+}
+
+class _StartupBadge extends StatelessWidget {
+  const _StartupBadge({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme.fclThemeScheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: .circular(20),
+        border: .all(color: FlutterLatamColors.yellow.withValues(alpha: .3)),
+        color: FlutterLatamColors.yellow.withValues(alpha: .1),
+      ),
+      child: Padding(
+        padding: const .symmetric(horizontal: 14, vertical: 8),
+        child: Text(
+          label,
+          style: theme.typography.body4Regular.copyWith(
+            fontWeight: .w600,
+            color: FlutterLatamColors.yellow,
+          ),
         ),
       ),
     );

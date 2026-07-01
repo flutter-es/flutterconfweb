@@ -97,11 +97,6 @@ class _BenefitsTable extends SignalWidget {
     ];
 
     final tableContent = Table(
-      border: TableBorder(
-        horizontalInside: BorderSide(
-          color: FlutterLatamColors.white.withValues(alpha: .08),
-        ),
-      ),
       columnWidths: const {
         0: FlexColumnWidth(2.5),
         1: FlexColumnWidth(),
@@ -131,11 +126,14 @@ class _BenefitsTable extends SignalWidget {
                 isLabel: true,
               ),
               for (final (index, value) in row.values.indexed)
-                _TableCell(
-                  text: value,
-                  backgroundColor: index == 0
-                      ? FlutterLatamColors.darkBlue
-                      : null,
+                TableCell(
+                  verticalAlignment: .fill,
+                  child: _TableCell(
+                    text: value,
+                    backgroundColor: index == 0
+                        ? FlutterLatamColors.darkBlue
+                        : null,
+                  ),
                 ),
             ],
           ),
@@ -174,8 +172,18 @@ class _TableCell extends StatelessWidget {
     final theme = context.theme.fclThemeScheme;
     final baseStyle = style ?? theme.typography.body2Regular;
 
-    return ColoredBox(
-      color: backgroundColor ?? Colors.transparent,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: backgroundColor ?? Colors.transparent,
+        border: switch (isHeader) {
+          true => null,
+          false => Border(
+            bottom: BorderSide(
+              color: FlutterLatamColors.white.withValues(alpha: .08),
+            ),
+          ),
+        },
+      ),
       child: Padding(
         padding: .symmetric(horizontal: 12, vertical: isHeader ? 20 : 16),
         child: text == '✓'

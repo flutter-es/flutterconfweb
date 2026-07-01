@@ -79,12 +79,7 @@ class SponsorshipOpportunitiesSection extends SignalWidget {
             rowSizes: 2,
             children: cards,
           ),
-          .normal => ResponsiveGrid(
-            columnSizes: 2,
-            rowSizes: 3,
-            children: cards,
-          ),
-          .small => Column(spacing: 16, mainAxisSize: .min, children: cards),
+          _ => Column(spacing: 16, mainAxisSize: .min, children: cards),
         },
       ],
     );
