@@ -1,6 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/providers/shared_providers.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/container/error_container.dart';
 import 'package:flutter_conf_latam/core/widgets/container/keep_alive_container.dart';
 import 'package:flutter_conf_latam/core/widgets/container/pagination_container.dart';
@@ -10,7 +14,7 @@ import 'package:flutter_conf_latam/core/widgets/container/shimmer_container.dart
 import 'package:flutter_conf_latam/core/widgets/images/character_image.dart';
 import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/core/widgets/text/title_subtitle_text.dart';
-import 'package:flutter_conf_latam/features/home/presentation/view_model/organizers_view_model.dart';
+import 'package:flutter_conf_latam/features/home/presentation/view_model/home_signals.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:signals/signals_flutter.dart';
 
@@ -68,7 +72,7 @@ class _OrganizersPeopleState extends State<OrganizersPeople> {
               onChangedPage: (value) {
                 paginationController.update(page: value);
               },
-              child: _OrganizerListContainer(
+              child: _OrganizerPeopleGrid(
                 children: <Widget>[
                   for (final item in data.organizerList)
                     Center(
@@ -104,7 +108,7 @@ class _OrganizersPeopleState extends State<OrganizersPeople> {
               ),
             ),
             loading: () => Shimmer(
-              child: _OrganizerListContainer(
+              child: _OrganizerPeopleGrid(
                 children: .generate(9, (_) {
                   return Center(
                     child: ShimmerLoading(
@@ -129,8 +133,8 @@ class _OrganizersPeopleState extends State<OrganizersPeople> {
   }
 }
 
-class _OrganizerListContainer extends StatelessWidget {
-  const _OrganizerListContainer({required this.children});
+class _OrganizerPeopleGrid extends StatelessWidget {
+  const _OrganizerPeopleGrid({required this.children});
 
   final List<Widget> children;
 
@@ -141,6 +145,100 @@ class _OrganizerListContainer extends StatelessWidget {
     final colSize = switch (context.screenSize) {
       .extraLarge => 4,
       _ => 2,
+    };
+
+    return ResponsiveGrid(
+      columnSizes: colSize,
+      rowSizes: (children.length / colSize).ceil(),
+      children: children,
+    );
+  }
+}
+
+class OrganizersCommunities extends SignalWidget {
+  const OrganizersCommunities({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = appLocalizations.value;
+    final communities = communitiesSignal.value;
+
+    return SectionContainer(
+      spacing: 30,
+      children: <Widget>[
+        TitleSubtitleText(
+          title: (
+            text: l10n.organizersCommunityTitle,
+            size: switch (context.screenSize) {
+              .extraLarge => 64,
+              .large => 48,
+              .normal || .small => 24,
+            },
+          ),
+          subtitle: (
+            text: l10n.organizersCommunityDescription,
+            size: switch (context.screenSize) {
+              .extraLarge || .large => 24,
+              .normal || .small => 16,
+            },
+          ),
+          spacing: 12,
+        ),
+        communities.map(
+          data: (data) => _OrganizerCommunitiesGrid(
+            children: <Widget>[
+              for (final item in data)
+                InkWell(
+                  onTap: () {
+                    final socialLink = item.socialLinks?.firstWhereOrNull(
+                      (l) => l.type == .website,
+                    );
+
+                    if (socialLink != null) {
+                      unawaited(Utils.launchUrlLink(socialLink.url));
+                    }
+                  },
+                  child: SingleImage(
+                    imageUrl: item.logoUrl ?? '',
+                    borderRadius: 20,
+                    size: const .fromHeight(180),
+                  ),
+                ),
+            ],
+          ),
+          loading: () => Shimmer(
+            child: _OrganizerCommunitiesGrid(
+              children: .generate(9, (_) {
+                return const ShimmerLoading(
+                  isLoading: true,
+                  child: SingleImageContainer(
+                    borderRadius: 20,
+                    size: .fromHeight(180),
+                  ),
+                );
+              }),
+            ),
+          ),
+          error: (_, _) => ErrorContainer(onRetry: communitiesSignal.reload),
+        ),
+      ],
+    );
+  }
+}
+
+class _OrganizerCommunitiesGrid extends StatelessWidget {
+  const _OrganizerCommunitiesGrid({required this.children});
+
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    if (children.isEmpty) return const SizedBox.shrink();
+
+    final colSize = switch (context.screenSize) {
+      .extraLarge => 3,
+      .large => 2,
+      _ => 1,
     };
 
     return ResponsiveGrid(
