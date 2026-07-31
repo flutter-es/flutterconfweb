@@ -304,10 +304,18 @@ class _PricingCard extends SignalWidget {
                 child: FclButton.primary(
                   label: l10n.homePricingBuyTicketsButton,
                   buttonSize: .small,
-                  onPressed: () => _showDisclaimerDialog(
-                    context,
-                    appConfig.value.ticketPageUrl,
-                  ),
+                  onPressed: () {
+                    final url = ticket.url ?? appConfig.value.ticketPageUrl;
+                    const showDisclaimer = bool.fromEnvironment(
+                      'SHOW_DISCLAIMER_DIALOG',
+                    );
+
+                    if (showDisclaimer) {
+                      unawaited(_showDisclaimerDialog(context, url));
+                    } else {
+                      unawaited(Utils.launchUrlLink(url));
+                    }
+                  },
                 ),
               ),
           ],

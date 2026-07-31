@@ -101,7 +101,7 @@ class HomeFeatures extends SignalWidget {
             const Flexible(
               child: SizedBox(
                 width: .infinity,
-                child: _BuyTicketFeature(showDisclaimer: false, price: 175),
+                child: _BuyTicketFeature(price: 150),
               ),
             ),
           ],
@@ -112,10 +112,9 @@ class HomeFeatures extends SignalWidget {
 }
 
 class _BuyTicketFeature extends SignalWidget {
-  const _BuyTicketFeature({required this.price, required this.showDisclaimer});
+  const _BuyTicketFeature({required this.price});
 
   final double price;
-  final bool showDisclaimer;
 
   @override
   Widget build(BuildContext context) {
@@ -147,14 +146,16 @@ class _BuyTicketFeature extends SignalWidget {
               label: appLocalizations.value.homeFeatureBuyTicketButton,
               buttonSize: .small,
               onPressed: () {
-                if (!showDisclaimer) {
-                  _goToTicketUrl(appConfig.value.ticketPageUrl);
-                  return;
-                }
-
-                unawaited(
-                  _showDisclaimerDialog(context, appConfig.value.ticketPageUrl),
+                final url = appConfig.value.ticketPageUrl;
+                const showDisclaimer = bool.fromEnvironment(
+                  'SHOW_DISCLAIMER_DIALOG',
                 );
+
+                if (!showDisclaimer) {
+                  _goToTicketUrl(url);
+                } else {
+                  unawaited(_showDisclaimerDialog(context, url));
+                }
               },
             ),
           ),

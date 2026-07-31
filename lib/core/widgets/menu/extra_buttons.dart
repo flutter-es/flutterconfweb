@@ -5,6 +5,8 @@ import 'package:flutter_conf_latam/core/dependencies.dart';
 import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
 import 'package:flutter_conf_latam/core/utils/utils.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
+import 'package:flutter_conf_latam/core/widgets/dialog/data_protection_dialog.dart';
+import 'package:flutter_conf_latam/core/widgets/dialog/main_dialog.dart';
 import 'package:flutter_conf_latam/l10n/localization_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:signals/signals_flutter.dart';
@@ -37,7 +39,15 @@ class ExtraButtons extends SignalWidget {
       FclButton.primary(
         label: l10n.menuBuyTicketsButton,
         buttonSize: .small,
-        onPressed: () => _showDisclaimerDialog(context, config.ticketPageUrl),
+        onPressed: () {
+          const showDisclaimer = bool.fromEnvironment('SHOW_DISCLAIMER_DIALOG');
+
+          if (showDisclaimer) {
+            unawaited(_showDisclaimerDialog(context, config.ticketPageUrl));
+          } else {
+            unawaited(Utils.launchUrlLink(config.ticketPageUrl));
+          }
+        },
       ),
     ];
 
@@ -47,12 +57,11 @@ class ExtraButtons extends SignalWidget {
     };
   }
 
-  void _showDisclaimerDialog(BuildContext context, String url) {
-    // final result = await MainDialog.show<bool>(
-    //   context,
-    //   child: const DataProtectionDialog(),
-    // );
-    // if (result ?? false)
-    unawaited(Utils.launchUrlLink(url));
+  Future<void> _showDisclaimerDialog(BuildContext context, String url) async {
+    final result = await MainDialog.show<bool>(
+      context,
+      child: const DataProtectionDialog(),
+    );
+    if (result ?? false) unawaited(Utils.launchUrlLink(url));
   }
 }
