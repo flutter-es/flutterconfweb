@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.flutterconflatam.app",
+      "sha256_cert_fingerprints": [
+        "0D:12:0D:A6:E2:1A:41:11:95:3D:88:16:1C:7A:BE:91:F1:90:1D:BB:4D:C7:91:89:6C:A1:32:D7:31:FD:BF:CB"
+      ]
+    }
+  }
+]

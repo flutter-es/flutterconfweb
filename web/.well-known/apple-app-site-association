@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "UDU6GKR257.dev.flutterconflatam.app",
+        "paths": [
+          "/agenda/*",
+          "/speakers/*",
+          "/home",
+          "/venue",
+          "/notifications"
+        ]
+      }
+    ]
+  }
+}
