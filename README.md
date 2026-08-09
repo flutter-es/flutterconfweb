@@ -12,17 +12,23 @@ about speakers, schedule, venue, sponsors, and ticket sales.
 
 ## Features
 
-| Feature             | Description                                                   |
-|---------------------|---------------------------------------------------------------|
-| **Home**            | Hero section, event features, novelties, and collaborations   |
-| **Speakers**        | Browse speakers with detailed profiles and social links       |
-| **Schedule**        | Interactive schedule with sessions, workshops, and activities |
-| **Venue**           | Event location with maps, amenities, and travel tips          |
-| **Pricing**         | Ticket tiers and pricing information                          |
-| **Gallery**         | Photo gallery from previous events                            |
-| **Organizers**      | Meet the team and allied communities                          |
-| **Contact**         | Contact form and social media links                           |
-| **Privacy & Terms** | Legal documents (Privacy Policy, Terms of Service)            |
+| Feature             | Description                                                                       |
+|---------------------|-----------------------------------------------------------------------------------|
+| **Home**            | Single-page layout: hero, features, novelties, timeline, and the sections below   |
+| **Speakers**        | Browse speakers with detailed profiles and social links (own route: `/speakers`)  |
+| **Schedule**        | Sessions/workshops/activities timeline — section inside Home, no standalone route |
+| **Venue**           | Event location with maps, amenities, and travel tips — section inside Home        |
+| **Pricing**         | Ticket tiers and pricing information — section inside Home                        |
+| **Gallery**         | Photo gallery from previous events — section inside Home                          |
+| **Organizers**      | Meet the team and allied communities — section inside Home                        |
+| **Sponsorship**     | "Be a sponsor" page with packages/startup track (own route: `/be-sponsor`)        |
+| **Contact**         | Contact form and social media links — section inside Home                         |
+| **Privacy & Terms** | Legal documents (own routes: `/privacy-policy`, `/terms-conditions`)              |
+
+> **Note:** only Home, Speakers, Sponsorship, Privacy Policy, and Terms & Conditions are real routes
+> (`lib/core/routes/app_route_path.dart`). Schedule/Venue/Pricing/Gallery/Organizers/Contact are sections
+> rendered inside the single Home page (`lib/features/home/presentation/widgets/`), not standalone features —
+> there is no `lib/features/{schedule,venue,pricing,gallery,organizers,contact}/` folder.
 
 ## Prerequisites
 
@@ -45,6 +51,7 @@ lib/
 │   ├── dependencies.dart          # Signal initialization
 │   ├── enums/                     # Shared enumerations
 │   ├── extensions/                # Dart extension methods
+│   ├── models/                    # Shared data models
 │   ├── providers/                 # Shared providers
 │   ├── responsive/                # Responsive utilities
 │   ├── routes/                    # Routing + SeoRouteObserver
@@ -54,17 +61,13 @@ lib/
 │   ├── utils/                     # Page preloader and utilities
 │   └── widgets/                   # Reusable UI components
 ├── features/                      # Feature modules
-│   ├── contact/
 │   ├── errors/
-│   ├── gallery/
-│   ├── home/
-│   ├── organizers/
-│   ├── pricing/
+│   ├── home/                      # Single-page layout, hosts schedule/venue/pricing/gallery/organizers/contact
+│   │   └── presentation/widgets/  # home_timeline, home_venue, home_pricing, home_gallery, home_organizers, etc.
 │   ├── privacy_terms/
-│   ├── schedule/
 │   ├── speakers/
 │   ├── splash/
-│   └── venue/
+│   └── sponsorship/                # "Be a sponsor" page (packages + startup track)
 ├── l10n/                          # Localization (en, es)
 ├── main.dart
 └── styles/                        # Theme, colors, typography, generated assets
@@ -112,7 +115,10 @@ Create `keys.json` in the root directory:
   "GOOGLE_APP_URL": "https://play.google.com/store/apps/details?id=your.package.name",
   "VENUE_MAP_URL": "https://maps.google.com/your-venue-location",
   "CONTACT_EMAIL": "contact@example.com",
-  "FCL_PRIVACY_POLICY_URL": "https://example.com/privacy-policy"
+  "FCL_PRIVACY_POLICY_URL": "https://example.com/privacy-policy",
+  "FIREBASE_STORAGE_URL": "https://firebasestorage.googleapis.com/v0/b/your-project.appspot.com/o",
+  "SPONSORSHIP_FILE_NAME": "Your Sponsorship Package",
+  "SHOW_DISCLAIMER_DIALOG": false
 }
 ```
 
