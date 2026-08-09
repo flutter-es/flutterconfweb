@@ -1,6 +1,6 @@
-**Fecha Efectiva:** 17 de julio de 2025
+**Fecha Efectiva:** 8 de agosto de 2026
 
-Esta Política de Privacidad explica cómo **Flutter Conf Latam 2025** ("nosotros", "nuestro" o "nos") recopila, utiliza, divulga y protege sus datos personales cuando utiliza nuestra aplicación móvil oficial (la "Aplicación"). Nos comprometemos a salvaguardar su privacidad y a garantizar la transparencia de acuerdo con las leyes de protección de datos aplicables, incluyendo el Reglamento General de Protección de Datos (GDPR), la Ley de Privacidad del Consumidor de California (CCPA) y marcos similares.
+Esta Política de Privacidad explica cómo **Flutter Conf Latam 2026** ("nosotros", "nuestro" o "nos") recopila, utiliza, divulga y protege sus datos personales cuando utiliza nuestra aplicación móvil oficial (la "Aplicación"). Nos comprometemos a salvaguardar su privacidad y a garantizar la transparencia de acuerdo con las leyes de protección de datos aplicables, incluyendo el Reglamento General de Protección de Datos (GDPR), la Ley de Privacidad del Consumidor de California (CCPA) y marcos similares.
 
 ---
 
@@ -50,15 +50,32 @@ Su información puede ser compartida con proveedores de servicios externos de co
 
 Todos los proveedores externos cumplen con los estándares de protección de datos, y los datos pueden procesarse de conformidad con mecanismos internacionales de transferencia de datos como las Cláusulas Contractuales Tipo (SCC) o el Marco de Privacidad de Datos.
 
-### **5. Almacenamiento y Ubicación de Datos**
+### **5. Funciones de IA**
 
-Algunos datos pueden ser procesados o almacenados en servidores ubicados fuera de su país. Las operaciones principales del evento se gestionan in situ en **UDLA Park, Quito, Ecuador**, durante el evento Flutter Conf Latam 2025. Los datos se cifran y almacenan de forma segura en entornos de la nube con acceso restringido.
+La aplicación incluye funciones opcionales impulsadas por IA (como el Organizador de Agenda con IA), construidas
+sobre **Google Gemini** y accedidas mediante **Firebase AI Logic**. Al usar alguna de estas funciones:
 
-### **6. Retención de Datos**
+* Sus preferencias declaradas (por ejemplo, tracks de interés, nivel técnico, disponibilidad, y los speakers que
+  marque como "imperdibles") y datos estructurados de las sesiones que no lo identifican (títulos, horarios,
+  tracks) se envían a los modelos Gemini de Google para generar una respuesta.
+* El contenido generado, imágenes y otros medios pueden llevar una marca de agua mediante [Google SynthID](https://deepmind.google/technologies/synthid/)
+  para ayudar a identificar contenido generado por IA.
+* Minimizamos lo que se envía — su nombre y otros datos que lo identifiquen directamente nunca se incluyen en
+  estas solicitudes.
+* Los resultados generados por IA pueden contener errores y están claramente etiquetados como generados por IA
+  dentro de la aplicación.
+* Estas funciones están controladas por una configuración administrada por el equipo organizador y pueden
+  desactivarse en cualquier momento; usarlas siempre es opcional.
+
+### **6. Almacenamiento y Ubicación de Datos**
+
+Algunos datos pueden ser procesados o almacenados en servidores ubicados fuera de su país. Las operaciones principales del evento se gestionan in situ en **Universidad Tecnológica de Cancún, Cancún, México**, durante el evento Flutter Conf Latam 2026 (22-23 de septiembre de 2026). Los datos se cifran y almacenan de forma segura en entornos de la nube con acceso restringido.
+
+### **7. Retención de Datos**
 
 Retenemos los datos del usuario solo durante el tiempo que sea necesario para cumplir los fines descritos en esta Política, o según lo exija la ley. Puede solicitar la eliminación de sus datos personales en cualquier momento contactándonos.
 
-### **7. Sus Derechos**
+### **8. Sus Derechos**
 
 Según su jurisdicción, puede tener derecho a:
 
@@ -72,11 +89,11 @@ Puede ejercer estos derechos contactándonos en:
 
 📧 **flutterconflatam@gmail.com**
 
-### **8. Privacidad de los Niños**
+### **9. Privacidad de los Niños**
 
 Esta aplicación no está dirigida a personas menores de 13 años. No recopilamos a sabiendas datos personales de niños. Si se descubre que se ha recopilado dicha información de forma no intencional, se eliminará de inmediato.
 
-### **9. Seguridad de los Datos**
+### **10. Seguridad de los Datos**
 
 Implementamos medidas estándar de la industria, que incluyen:
 
@@ -86,18 +103,19 @@ Implementamos medidas estándar de la industria, que incluyen:
 
 A pesar de nuestros esfuerzos, ninguna plataforma digital puede garantizar una seguridad absoluta.
 
-### **10. Cambios a esta Política**
+### **11. Cambios a esta Política**
 
 Podemos actualizar esta Política de Privacidad según sea necesario para reflejar cambios legales, operativos o tecnológicos. Si se realizan cambios significativos, lo notificaremos a los usuarios dentro de la aplicación o a través del sitio web del evento.
 
-### **11. Contáctenos**
+### **12. Contáctenos**
 
 Para preguntas, inquietudes o para ejercer sus derechos de datos, por favor contacte a:
 
-**Flutter Conf Latam 2025**
+**Flutter Conf Latam 2026**
 
 📧 Correo electrónico: flutterconflatam@gmail.com
 
 🌐 Sitio web: [https://flutterconflatam.dev](https://flutterconflatam.dev/)
 
-📍 Ubicación: UDLA Park, Quito, Ecuador
+📍 Ubicación: Universidad Tecnológica de Cancún, Carretera Cancún-Aeropuerto Km 11.5, SM 299, Mz 5, Lt 1, cerca de
+Punta Nizuc, 77565 Cancún, Quintana Roo, México
