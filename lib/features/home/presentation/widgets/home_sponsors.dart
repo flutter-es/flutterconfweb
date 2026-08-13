@@ -35,8 +35,11 @@ class HomeSponsors extends SignalWidget {
           orElse: () => <SponsorEntity>[],
         );
 
+        final spotlight = current.where((s) => s.tier == .spotlight).toList();
+        final regular = current.where((s) => s.tier != .spotlight).toList();
+
         return SectionContainer(
-          spacing: 56,
+          spacing: 48,
           children: <Widget>[
             Text(
               l10n.homeSponsorsTitle,
@@ -50,17 +53,32 @@ class HomeSponsors extends SignalWidget {
                 color: FlutterLatamColors.white,
               ),
             ),
-            Column(
-              spacing: 32,
-              mainAxisSize: .min,
-              children: <Widget>[
-                _SectionLabel(
-                  text: l10n.homeSponsorsConfirmedLabel,
-                  color: FlutterLatamColors.mediumBlue,
-                ),
-                _CurrentSponsorsGrid(sponsors: current),
-              ],
-            ),
+            if (regular.isNotEmpty)
+              Column(
+                spacing: 32,
+                mainAxisSize: .min,
+                children: <Widget>[
+                  _SectionLabel(
+                    text: l10n.homeSponsorsConfirmedLabel,
+                    color: FlutterLatamColors.mediumBlue,
+                  ),
+                  _CurrentSponsorsGrid(sponsors: regular),
+                ],
+              ),
+            if (spotlight.isNotEmpty) ...[
+              Divider(color: FlutterLatamColors.white.withValues(alpha: .1)),
+              Column(
+                spacing: 32,
+                mainAxisSize: .min,
+                children: <Widget>[
+                  _SectionLabel(
+                    text: l10n.homeSponsorsSpotlightLabel,
+                    color: FlutterLatamColors.fuchsia,
+                  ),
+                  _CurrentSponsorsGrid(sponsors: spotlight),
+                ],
+              ),
+            ],
             if (past.isNotEmpty)
               Column(
                 spacing: 32,
@@ -167,6 +185,7 @@ class _CurrentSponsorCard extends HookWidget {
       .inKind => FlutterLatamColors.fluorescent,
       .senior => FlutterLatamColors.lightBlue,
       .junior => FlutterLatamColors.lightYellow,
+      .spotlight => FlutterLatamColors.fuchsia,
     };
 
     final card = AnimatedContainer(
@@ -193,32 +212,37 @@ class _CurrentSponsorCard extends HookWidget {
       ),
     );
 
-    final badge = AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      padding: const .symmetric(horizontal: 12, vertical: 5),
-      decoration: BoxDecoration(
-        borderRadius: .circular(100),
-        color: color.withValues(alpha: isHovered.value ? .12 : .06),
-        border: .all(color: color.withValues(alpha: isHovered.value ? .8 : .4)),
-      ),
-      child: Text(
-        switch (sponsor.tier) {
-          .platinum => appLocalizations.value.homeSponsorPlatinum,
-          .gold => appLocalizations.value.homeSponsorGold,
-          .silver => appLocalizations.value.homeSponsorSilver,
-          .bronze => appLocalizations.value.homeSponsorsBronze,
-          .inKind => appLocalizations.value.homeSponsorInKind,
-          .senior => appLocalizations.value.homeSponsorSenior,
-          .junior => appLocalizations.value.homeSponsorJunior,
-        }.toUpperCase(),
-        style: theme.typography.captionRegular.copyWith(
-          color: color,
-          fontSize: 11,
-          letterSpacing: 2,
-          fontWeight: .w600,
-        ),
-      ),
-    );
+    final badge = sponsor.tier == .spotlight
+        ? null
+        : AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            padding: const .symmetric(horizontal: 12, vertical: 5),
+            decoration: BoxDecoration(
+              borderRadius: .circular(100),
+              color: color.withValues(alpha: isHovered.value ? .12 : .06),
+              border: .all(
+                color: color.withValues(alpha: isHovered.value ? .8 : .4),
+              ),
+            ),
+            child: Text(
+              switch (sponsor.tier) {
+                .platinum => appLocalizations.value.homeSponsorPlatinum,
+                .gold => appLocalizations.value.homeSponsorGold,
+                .silver => appLocalizations.value.homeSponsorSilver,
+                .bronze => appLocalizations.value.homeSponsorsBronze,
+                .inKind => appLocalizations.value.homeSponsorInKind,
+                .senior => appLocalizations.value.homeSponsorSenior,
+                .junior => appLocalizations.value.homeSponsorJunior,
+                .spotlight => appLocalizations.value.homeSponsorSpotlight,
+              }.toUpperCase(),
+              style: theme.typography.captionRegular.copyWith(
+                color: color,
+                fontSize: 11,
+                letterSpacing: 2,
+                fontWeight: .w600,
+              ),
+            ),
+          );
 
     return MouseRegion(
       cursor: sponsor.websiteUrl != null ? SystemMouseCursors.click : .defer,
@@ -235,7 +259,7 @@ class _CurrentSponsorCard extends HookWidget {
           child: Column(
             spacing: 10,
             mainAxisSize: .min,
-            children: <Widget>[card, badge],
+            children: <Widget>[card, ?badge],
           ),
         ),
       ),
