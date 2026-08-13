@@ -491,7 +491,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: f563d90e06d8e65bb4493efacbabfdfd3959c25e
+      resolved-ref: f28ae02ec5c9d44bedeac1229aff5b98ad3efe0f
       url: "git@github.com:flutter-es/flutter_conf_backend.git"
     source: git
     version: "0.1.0+1"
@@ -509,7 +509,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: a4c5a6cf6d3e7b26bedada69a06c3f25313b6923
+      resolved-ref: "0c182c5ad2ef811b6829e4abdde4f83b65753b11"
       url: "git@github.com:flutter-es/flutter_conf_core.git"
     source: git
     version: "0.1.0+1"
