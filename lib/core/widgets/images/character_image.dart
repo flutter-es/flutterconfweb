@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/widgets/images/single_image.dart';
 import 'package:flutter_conf_latam/styles/core/colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CharacterImage extends StatelessWidget {
   const CharacterImage({
@@ -33,23 +32,26 @@ class CharacterImage extends StatelessWidget {
                   borderRadius: 30,
                 ),
               ),
-              Positioned(
-                top: flagPadding,
-                left: flagPadding,
-                child: SizedBox.square(
-                  dimension: flagSize,
-                  child: DecoratedBox(
-                    position: DecorationPosition.foreground,
-                    decoration: BoxDecoration(
-                      shape: .circle,
-                      border: .all(color: FlutterLatamColors.white, width: 2),
-                    ),
-                    child: ClipOval(
-                      child: SvgPicture.network(flagImageUrl, fit: .cover),
+              if (flagImageUrl.isNotEmpty)
+                Positioned(
+                  top: flagPadding,
+                  left: flagPadding,
+                  child: SizedBox.square(
+                    dimension: flagSize,
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(
+                        shape: .circle,
+                        color: FlutterLatamColors.white,
+                      ),
+                      child: Center(
+                        child: Text(
+                          flagImageUrl,
+                          style: TextStyle(fontSize: flagSize * .6),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
             ],
           );
         },
