@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_conf_latam/core/responsive/responsive_context_layout.dart';
+import 'package:flutter_conf_latam/core/routes/app_route_path.dart';
+import 'package:flutter_conf_latam/core/routes/helpers/navigation_view_model.dart';
 import 'package:flutter_conf_latam/core/widgets/button/fcl_button.dart';
 import 'package:flutter_conf_latam/core/widgets/card/speaker_card_item.dart';
 import 'package:flutter_conf_latam/core/widgets/container/responsive_grid.dart';
@@ -55,12 +57,8 @@ class HomeSpeakers extends SignalWidget {
               columnSizes: colSize,
               rowSizes: ((data.length + 1) / colSize).ceil(),
               children: <Widget>[
-                for (final (index, item) in data.indexed)
-                  SpeakerCardItem(
-                    speaker: item,
-                    imageSize: imageSize,
-                    imageBackgroundColor: _speakerListColors[index],
-                  ),
+                for (final item in data)
+                  SpeakerCardItem(speaker: item, imageSize: imageSize),
                 const _RedirectSpeakersCard(),
               ],
             ),
@@ -117,24 +115,8 @@ class _RedirectSpeakersCard extends SignalWidget {
   }
 
   void _goToSpeakers() {
-    // navigationController.selectNavItemFromRoute('/${AppRoutePath.speakers.pathName}');
+    navigationController.selectNavItemFromRoute(
+      '/${AppRoutePath.speakers.pathName}',
+    );
   }
 }
-
-final _speakerListColors = <Color>[
-  FlutterLatamColors.green,
-  FlutterLatamColors.red,
-  FlutterLatamColors.blue,
-  FlutterLatamColors.red,
-  FlutterLatamColors.blue,
-  FlutterLatamColors.yellow,
-  FlutterLatamColors.red,
-  FlutterLatamColors.green,
-  FlutterLatamColors.blue,
-  FlutterLatamColors.green,
-  FlutterLatamColors.red,
-  FlutterLatamColors.blue,
-  FlutterLatamColors.yellow,
-  FlutterLatamColors.blue,
-  FlutterLatamColors.green,
-];

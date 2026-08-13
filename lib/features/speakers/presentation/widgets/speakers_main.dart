@@ -51,10 +51,7 @@ class SpeakersMain extends SignalWidget {
             data: (data) => _SpeakerListContainer(
               children: <Widget>[
                 for (final item in data)
-                  SpeakerCardItem(
-                    speaker: item,
-                    imageSize: size,
-                  ),
+                  SpeakerCardItem(speaker: item, imageSize: size),
               ],
             ),
             loading: () => Shimmer(
