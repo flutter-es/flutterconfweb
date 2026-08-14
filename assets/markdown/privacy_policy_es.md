@@ -73,7 +73,14 @@ Algunos datos pueden ser procesados o almacenados en servidores ubicados fuera d
 
 ### **7. Retención de Datos**
 
-Retenemos los datos del usuario solo durante el tiempo que sea necesario para cumplir los fines descritos en esta Política, o según lo exija la ley. Puede solicitar la eliminación de sus datos personales en cualquier momento contactándonos.
+Retenemos los datos del usuario solo durante el tiempo que sea necesario para cumplir los fines descritos en esta Política, o según lo exija la ley.
+
+Puede solicitar la eliminación de su cuenta y sus datos personales en cualquier momento, ya sea desde la app (Perfil → Eliminar cuenta) o contactándonos. La eliminación funciona en dos pasos:
+
+* Su cuenta se oculta de inmediato para el resto de usuarios y queda marcada para eliminación. Tiene **30 días** para arrepentirse y cancelar la solicitud desde la app.
+* Pasados los 30 días, sus datos personales se anonimizan: nombre, email, avatar, datos de contacto e información de dieta/accesibilidad se eliminan de forma permanente y no pueden recuperarse. Su cuenta de autenticación de Firebase se elimina.
+
+Los registros de la conferencia que no son datos personales por sí mismos —como charlas enviadas, puntajes de evaluación o historial de sesiones— se conservan tras la anonimización para que el registro histórico de la conferencia se mantenga íntegro, pero sin nombre ni datos de contacto asociados.
 
 ### **8. Sus Derechos**
 
@@ -81,7 +88,7 @@ Según su jurisdicción, puede tener derecho a:
 
 * Acceder a los datos personales que tenemos sobre usted
 * Corregir información inexacta o incompleta
-* Solicitar la eliminación de sus datos ("derecho al olvido")
+* Solicitar la eliminación de sus datos ("derecho al olvido") — ver la Sección 7 arriba para el detalle de cómo se maneja técnicamente
 * Retirar su consentimiento para un procesamiento específico
 * Oponerse o restringir el procesamiento de sus datos
 

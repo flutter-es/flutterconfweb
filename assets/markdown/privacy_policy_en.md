@@ -73,7 +73,14 @@ Some data may be processed or stored on servers located outside your country. Co
 
 ### **7. Data Retention**
 
-We retain user data only for as long as it is necessary to fulfill the purposes outlined in this Policy, or as required by law. You may request deletion of your personal data at any time by contacting us.
+We retain user data only for as long as it is necessary to fulfill the purposes outlined in this Policy, or as required by law.
+
+You may request deletion of your account and personal data at any time, either from within the app (Profile → Delete account) or by contacting us. Deletion works in two steps:
+
+* Your account is immediately hidden from other users and marked for deletion. You have **30 days** to change your mind and cancel the request from within the app.
+* After 30 days, your personal data is anonymized: your name, email, avatar, contact details, and dietary/accessibility information are permanently scrubbed and cannot be recovered. Your Firebase authentication account is deleted.
+
+Conference records that are not personal data on their own — such as submitted talks, evaluation scores, or session history — are kept after anonymization so the historical record of the conference stays intact, but with no name or contact information attached to them.
 
 ### **8. Your Rights**
 
@@ -81,7 +88,7 @@ Depending on your jurisdiction, you may have the right to:
 
 * Access the personal data we hold about you
 * Correct inaccurate or incomplete information
-* Request deletion of your data (“right to be forgotten”)
+* Request deletion of your data (“right to be forgotten”) — see Section 7 above for how this is handled technically
 * Withdraw your consent for specific processing
 * Object to or restrict the processing of your data
 
