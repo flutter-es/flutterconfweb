@@ -491,7 +491,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: f28ae02ec5c9d44bedeac1229aff5b98ad3efe0f
+      resolved-ref: ffd6b8afb9441e155888e0ab89e94141169e8e12
       url: "git@github.com:flutter-es/flutter_conf_backend.git"
     source: git
     version: "0.1.0+1"
@@ -509,7 +509,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "0c182c5ad2ef811b6829e4abdde4f83b65753b11"
+      resolved-ref: dade617de4acf8b6debddfe9a738c35ca8088234
       url: "git@github.com:flutter-es/flutter_conf_core.git"
     source: git
     version: "0.1.0+1"
@@ -1377,10 +1377,10 @@ packages:
     dependency: transitive
     description:
       name: synchronized
-      sha256: "61894a1956de6b4fc1aefd0892e109514a1a706cbece3ac59decd90ff5a7a423"
+      sha256: "3a7b5d17422dd0f8d5c6c14feaa5a1c65638b9455f871a96f08437562c046931"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.1+1"
+    version: "3.4.1+2"
   term_glyph:
     dependency: transitive
     description:
