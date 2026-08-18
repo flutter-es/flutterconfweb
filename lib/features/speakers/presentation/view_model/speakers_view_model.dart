@@ -15,12 +15,16 @@ final speakersSignal = futureSignal<List<SpeakerEntity>>(() async {
 
 final speakersRandomSignal = futureSignal<List<SpeakerEntity>>(() async {
   final result = await speakerRepository.value.listActiveSpeakers();
-  return switch (result) {
-    Success(:final data) => (List<SpeakerEntity>.from(
-      data,
-    )..shuffle()).take(11).toList(),
-    Failure(:final failure) => throw failure,
-  };
+  switch (result) {
+    case Success(:final data):
+      final speakerCompleted = List<SpeakerEntity>.from(data).where((item) {
+        return item.presentationImageUrl != null;
+      }).toList();
+
+      return (speakerCompleted..shuffle()).take(11).toList();
+    case Failure(:final failure):
+      throw failure;
+  }
 });
 
 final _speakerCache = <String, FutureSignal<SpeakerEntity>>{};

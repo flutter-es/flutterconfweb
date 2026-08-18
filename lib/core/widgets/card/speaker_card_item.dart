@@ -26,7 +26,9 @@ class SpeakerCardItem extends StatelessWidget {
           DecoratedBox(
             decoration: BoxDecoration(borderRadius: .circular(30)),
             child: CharacterImage(
-              imageUrl: speaker.presentationImageUrl ?? user.avatarUrl ?? '',
+              imageUrl: (speaker.presentationImageUrl ?? '').isNotEmpty
+                  ? speaker.presentationImageUrl!
+                  : user.avatarUrl ?? '',
               flagImageUrl: user.countryFlag ?? '',
               size: imageSize,
             ),
