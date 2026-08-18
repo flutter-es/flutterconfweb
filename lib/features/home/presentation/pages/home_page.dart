@@ -12,6 +12,7 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/home_featu
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_gallery.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_pricing.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_speakers.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_sponsors.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_timeline.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_venue.dart';
@@ -63,8 +64,8 @@ class _HomePageState extends State<HomePage> {
             const HomePricing(),
             const HomeCollaborations(),
             const HomeTimeline(),
+            const HomeSpeakers(),
             // TODO(FV): Uncomment when is ready
-            // const HomeSpeakers(),
             // const OrganizersPeople(),
             // const OrganizersCommunities(),
             const HomeGallery(),
