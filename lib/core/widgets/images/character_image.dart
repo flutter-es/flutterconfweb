@@ -29,7 +29,7 @@ class CharacterImage extends StatelessWidget {
                 child: SingleImage(
                   imageUrl: imageUrl,
                   size: Size(constraints.maxWidth, constraints.maxHeight),
-                  borderRadius: 30,
+                  borderRadius: 100,
                 ),
               ),
               if (flagImageUrl.isNotEmpty)
