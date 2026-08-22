@@ -31,9 +31,14 @@ Future<void> bootstrap(
       WidgetsFlutterBinding.ensureInitialized();
       await RiveNative.init();
 
+      const webDebugSiteKey = String.fromEnvironment('WEB_DEBUG_SITE_KEY');
+      const webCaptchaSiteKey = String.fromEnvironment('WEB_CAPTCHA_SITE_KEY');
+
       final initializer = FirebaseInitializer.withConfig(
         options: options,
-        appCheckConfig: null,
+        appCheckConfig: kDebugMode
+            ? AppCheckConfig.debug(webCaptchaSiteKey: webDebugSiteKey)
+            : AppCheckConfig.release(webCaptchaSiteKey: webCaptchaSiteKey),
       );
 
       final result = await initializer.initialize();
