@@ -29,10 +29,10 @@ packages:
     dependency: "direct overridden"
     description:
       name: archive
-      sha256: a96e8b390886ee8abb49b7bd3ac8df6f451c621619f52a26e815fdcf568959ff
+      sha256: be169cf6ac481e052c4538715d88841d567150dfe1df38aaec76461a4e7b39f2
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.9"
+    version: "4.1.0"
   args:
     dependency: transitive
     description:
@@ -491,7 +491,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: ffd6b8afb9441e155888e0ab89e94141169e8e12
+      resolved-ref: "36dad3ff824b269ced1699b9858e7364b706f06f"
       url: "git@github.com:flutter-es/flutter_conf_backend.git"
     source: git
     version: "0.1.0+1"
@@ -500,7 +500,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: da727ddea3e147e6ae3bc6f43e70f522f4372778
+      resolved-ref: cdec747bd6b77b5bc589958591bf92e54138d38a
       url: "git@github.com:flutter-es/flutter_conf_common.git"
     source: git
     version: "0.1.0+1"
@@ -509,7 +509,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: dade617de4acf8b6debddfe9a738c35ca8088234
+      resolved-ref: "3ef03983c75e0065c21d492ddbdabf642aa6ea72"
       url: "git@github.com:flutter-es/flutter_conf_core.git"
     source: git
     version: "0.1.0+1"
@@ -772,10 +772,10 @@ packages:
     dependency: transitive
     description:
       name: image
-      sha256: "6300175e00616bbc832e2fc91bfa4d776af5402c81c7151bee6905bb08473c52"
+      sha256: "1976370a4df3091bb0f72409c187ad1f9132a818bc6b95ca59c0bae1c75c688e"
       url: "https://pub.dev"
     source: hosted
-    version: "4.9.1"
+    version: "4.9.2"
   image_size_getter:
     dependency: transitive
     description:
@@ -1337,10 +1337,10 @@ packages:
     dependency: transitive
     description:
       name: sqlite3
-      sha256: "64b2c63c8232dd20d14b34105a81ebfd74320442e8451f836179ec89986aa478"
+      sha256: "4c7fe79840389aaeaf05fd093f795b631b5a98e2bd28d54e555c100f4a9c7a1c"
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.1"
+    version: "3.5.2"
   stack_trace:
     dependency: transitive
     description:
@@ -1561,10 +1561,10 @@ packages:
     dependency: transitive
     description:
       name: vm_service
-      sha256: "0016aef94fc66495ac78af5859181e3f3bf2026bd8eecc72b9565601e19ab360"
+      sha256: "5f37239c4851efcef929cea7824e76df7f2f0970aef85d66bbc430afa40e72f0"
       url: "https://pub.dev"
     source: hosted
-    version: "15.2.0"
+    version: "15.3.0"
   watcher:
     dependency: transitive
     description:
