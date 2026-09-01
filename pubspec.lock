@@ -499,7 +499,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "67f69bcf3473f6faddc3113767f56768734f847a"
+      resolved-ref: "293464ee6dfbf4a1b292c6e2be927168abb0f4d6"
       url: "git@github.com:flutter-es/flutter_conf_backend.git"
     source: git
     version: "0.1.0+1"
@@ -517,7 +517,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "2d0b0aa562e8cb53635b34a90eb1e7a925439b70"
+      resolved-ref: "2f56206cb7e3daabacf2781b47aedca9c2e9f5ea"
       url: "git@github.com:flutter-es/flutter_conf_core.git"
     source: git
     version: "0.1.0+1"
@@ -820,10 +820,10 @@ packages:
     dependency: transitive
     description:
       name: jni_flutter
-      sha256: "7b717011ea40d04fd47c2731d3d1d36eb99eba3435c2753d62489e8c3c9991d5"
+      sha256: b2310cdd4c18c65c081ab141a41efa94aa26c65431803703ece51996f174f351
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   jni_util:
     dependency: transitive
     description:
