@@ -1,6 +1,10 @@
 **Fecha Efectiva:** 8 de agosto de 2026
 
-Esta Política de Privacidad explica cómo **Flutter Conf Latam 2026** ("nosotros", "nuestro" o "nos") recopila, utiliza, divulga y protege sus datos personales cuando utiliza nuestra aplicación móvil oficial (la "Aplicación"). Nos comprometemos a salvaguardar su privacidad y a garantizar la transparencia de acuerdo con las leyes de protección de datos aplicables, incluyendo el Reglamento General de Protección de Datos (GDPR), la Ley de Privacidad del Consumidor de California (CCPA) y marcos similares.
+Esta Política de Privacidad explica cómo **Flutter Conf Latam 2026** ("nosotros", "nuestro" o "nos") recopila, utiliza,
+divulga y protege sus datos personales cuando utiliza nuestra aplicación móvil oficial (la "Aplicación"). Nos
+comprometemos a salvaguardar su privacidad y a garantizar la transparencia de acuerdo con las leyes de protección de
+datos aplicables, incluyendo el Reglamento General de Protección de Datos (GDPR), la Ley de Privacidad del Consumidor de
+California (CCPA) y marcos similares.
 
 ---
 
@@ -43,44 +47,63 @@ Utilizamos la información recopilada para:
 
 ### **4. Intercambio y Procesamiento de Datos**
 
-Su información puede ser compartida con proveedores de servicios externos de confianza únicamente para fines operativos, tales como:
+Su información puede ser compartida con proveedores de servicios externos de confianza únicamente para fines operativos,
+tales como:
 
 * **Google Firebase** para análisis, informes de fallos y mensajería
 * Proveedores de infraestructura en la nube que alojan de forma segura los servicios de backend
 
-Todos los proveedores externos cumplen con los estándares de protección de datos, y los datos pueden procesarse de conformidad con mecanismos internacionales de transferencia de datos como las Cláusulas Contractuales Tipo (SCC) o el Marco de Privacidad de Datos.
+Todos los proveedores externos cumplen con los estándares de protección de datos, y los datos pueden procesarse de
+conformidad con mecanismos internacionales de transferencia de datos como las Cláusulas Contractuales Tipo (SCC) o el
+Marco de Privacidad de Datos.
 
 ### **5. Funciones de IA**
 
-La aplicación incluye funciones opcionales impulsadas por IA (como el Organizador de Agenda con IA), construidas
-sobre **Google Gemini** y accedidas mediante **Firebase AI Logic**. Al usar alguna de estas funciones:
+La aplicación incluye funciones opcionales impulsadas por IA (como el Organizador de Agenda con IA y el Generador de
+Certificados), construidas sobre **Google Gemini** y accedidas mediante **Firebase AI Logic**. Al usar alguna de estas
+funciones:
 
-* Sus preferencias declaradas (por ejemplo, tracks de interés, nivel técnico, disponibilidad, y los speakers que
-  marque como "imperdibles") y datos estructurados de las sesiones que no lo identifican (títulos, horarios,
-  tracks) se envían a los modelos Gemini de Google para generar una respuesta.
-* El contenido generado, imágenes y otros medios pueden llevar una marca de agua mediante [Google SynthID](https://deepmind.google/technologies/synthid/)
-  para ayudar a identificar contenido generado por IA.
-* Minimizamos lo que se envía — su nombre y otros datos que lo identifiquen directamente nunca se incluyen en
-  estas solicitudes.
-* Los resultados generados por IA pueden contener errores y están claramente etiquetados como generados por IA
-  dentro de la aplicación.
-* Estas funciones están controladas por una configuración administrada por el equipo organizador y pueden
-  desactivarse en cualquier momento; usarlas siempre es opcional.
+* Para el Organizador de Agenda con IA: sus preferencias declaradas (por ejemplo, tracks de interés, nivel técnico,
+  disponibilidad, y los speakers que marque como "imperdibles") y datos estructurados de las sesiones que no lo
+  identifican (títulos, horarios, tracks) se envían a los modelos Gemini de Google para generar una respuesta.
+* Para el Generador de Certificados: su nombre, su rol en el evento (por ejemplo, asistente, speaker), el idioma y tema
+  que elija para el certificado, y los ids de los stickers decorativos que haya elegido se envían a un modelo de
+  generación de imágenes de Google Gemini, junto con la plantilla del certificado, para componer su nombre y
+  decoraciones directamente sobre la imagen final.
+* El contenido generado, imágenes y otros medios pueden llevar una marca de agua
+  mediante [Google SynthID](https://deepmind.google/technologies/synthid/) para ayudar a identificar contenido generado
+  por IA.
+* Minimizamos lo que se envía en cada función según lo que esa función necesita — por ejemplo, el Organizador de Agenda
+  con IA nunca recibe su nombre ni otros datos que lo identifiquen directamente.
+* Los resultados generados por IA pueden contener errores y están claramente etiquetados como generados por IA dentro de
+  la aplicación.
+* Estas funciones están controladas por una configuración administrada por el equipo organizador y pueden desactivarse
+  en cualquier momento; usarlas siempre es opcional.
 
 ### **6. Almacenamiento y Ubicación de Datos**
 
-Algunos datos pueden ser procesados o almacenados en servidores ubicados fuera de su país. Las operaciones principales del evento se gestionan in situ en **Universidad Tecnológica de Cancún, Cancún, México**, durante el evento Flutter Conf Latam 2026 (22-23 de septiembre de 2026). Los datos se cifran y almacenan de forma segura en entornos de la nube con acceso restringido.
+Algunos datos pueden ser procesados o almacenados en servidores ubicados fuera de su país. Las operaciones principales
+del evento se gestionan in situ en **Universidad Tecnológica de Cancún, Cancún, México**, durante el evento Flutter Conf
+Latam 2026 (22-23 de septiembre de 2026). Los datos se cifran y almacenan de forma segura en entornos de la nube con
+acceso restringido.
 
 ### **7. Retención de Datos**
 
-Retenemos los datos del usuario solo durante el tiempo que sea necesario para cumplir los fines descritos en esta Política, o según lo exija la ley.
+Retenemos los datos del usuario solo durante el tiempo que sea necesario para cumplir los fines descritos en esta
+Política, o según lo exija la ley.
 
-Puede solicitar la eliminación de su cuenta y sus datos personales en cualquier momento, ya sea desde la app (Perfil → Eliminar cuenta) o contactándonos. La eliminación funciona en dos pasos:
+Puede solicitar la eliminación de su cuenta y sus datos personales en cualquier momento, ya sea desde la app (Perfil →
+Eliminar cuenta) o contactándonos. La eliminación funciona en dos pasos:
 
-* Su cuenta se oculta de inmediato para el resto de usuarios y queda marcada para eliminación. Tiene **30 días** para arrepentirse y cancelar la solicitud desde la app.
-* Pasados los 30 días, sus datos personales se anonimizan: nombre, email, avatar, datos de contacto e información de dieta/accesibilidad se eliminan de forma permanente y no pueden recuperarse. Su cuenta de autenticación de Firebase se elimina.
+* Su cuenta se oculta de inmediato para el resto de usuarios y queda marcada para eliminación. Tiene **30 días** para
+  arrepentirse y cancelar la solicitud desde la app.
+* Pasados los 30 días, sus datos personales se anonimizan: nombre, email, avatar, datos de contacto e información de
+  dieta/accesibilidad se eliminan de forma permanente y no pueden recuperarse. Su cuenta de autenticación de Firebase se
+  elimina.
 
-Los registros de la conferencia que no son datos personales por sí mismos —como charlas enviadas, puntajes de evaluación o historial de sesiones— se conservan tras la anonimización para que el registro histórico de la conferencia se mantenga íntegro, pero sin nombre ni datos de contacto asociados.
+Los registros de la conferencia que no son datos personales por sí mismos —como charlas enviadas, puntajes de evaluación
+o historial de sesiones— se conservan tras la anonimización para que el registro histórico de la conferencia se mantenga
+íntegro, pero sin nombre ni datos de contacto asociados.
 
 ### **8. Sus Derechos**
 
@@ -88,7 +111,8 @@ Según su jurisdicción, puede tener derecho a:
 
 * Acceder a los datos personales que tenemos sobre usted
 * Corregir información inexacta o incompleta
-* Solicitar la eliminación de sus datos ("derecho al olvido") — ver la Sección 7 arriba para el detalle de cómo se maneja técnicamente
+* Solicitar la eliminación de sus datos ("derecho al olvido") — ver la Sección 7 arriba para el detalle de cómo se
+  maneja técnicamente
 * Retirar su consentimiento para un procesamiento específico
 * Oponerse o restringir el procesamiento de sus datos
 
@@ -98,7 +122,8 @@ Puede ejercer estos derechos contactándonos en:
 
 ### **9. Privacidad de los Niños**
 
-Esta aplicación no está dirigida a personas menores de 13 años. No recopilamos a sabiendas datos personales de niños. Si se descubre que se ha recopilado dicha información de forma no intencional, se eliminará de inmediato.
+Esta aplicación no está dirigida a personas menores de 13 años. No recopilamos a sabiendas datos personales de niños. Si
+se descubre que se ha recopilado dicha información de forma no intencional, se eliminará de inmediato.
 
 ### **10. Seguridad de los Datos**
 
@@ -112,7 +137,9 @@ A pesar de nuestros esfuerzos, ninguna plataforma digital puede garantizar una s
 
 ### **11. Cambios a esta Política**
 
-Podemos actualizar esta Política de Privacidad según sea necesario para reflejar cambios legales, operativos o tecnológicos. Si se realizan cambios significativos, lo notificaremos a los usuarios dentro de la aplicación o a través del sitio web del evento.
+Podemos actualizar esta Política de Privacidad según sea necesario para reflejar cambios legales, operativos o
+tecnológicos. Si se realizan cambios significativos, lo notificaremos a los usuarios dentro de la aplicación o a través
+del sitio web del evento.
 
 ### **12. Contáctenos**
 
@@ -124,5 +151,5 @@ Para preguntas, inquietudes o para ejercer sus derechos de datos, por favor cont
 
 🌐 Sitio web: [https://flutterconflatam.dev](https://flutterconflatam.dev/)
 
-📍 Ubicación: Universidad Tecnológica de Cancún, Carretera Cancún-Aeropuerto Km 11.5, SM 299, Mz 5, Lt 1, cerca de
-Punta Nizuc, 77565 Cancún, Quintana Roo, México
+📍 Ubicación: Universidad Tecnológica de Cancún, Carretera Cancún-Aeropuerto Km 11.5, SM 299, Mz 5, Lt 1, cerca de Punta
+Nizuc, 77565 Cancún, Quintana Roo, México

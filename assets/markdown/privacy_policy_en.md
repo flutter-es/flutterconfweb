@@ -1,6 +1,9 @@
 **Effective Date:** August 8, 2026
 
-This Privacy Policy explains how **Flutter Conf Latam 2026** ("we", "our", or "us") collects, uses, discloses, and protects your personal data when you use our official mobile application (the "App"). We are committed to safeguarding your privacy and ensuring transparency in accordance with applicable data protection laws, including the General Data Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and similar frameworks.
+This Privacy Policy explains how **Flutter Conf Latam 2026** ("we", "our", or "us") collects, uses, discloses, and
+protects your personal data when you use our official mobile application (the "App"). We are committed to safeguarding
+your privacy and ensuring transparency in accordance with applicable data protection laws, including the General Data
+Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and similar frameworks.
 
 ---
 
@@ -53,34 +56,46 @@ data transfer mechanisms such as SCCs or the Data Privacy Framework.
 
 ### **5. AI Features**
 
-The app includes optional, opt-in AI-powered features (such as the AI Schedule Organizer) built on **Google Gemini**,
-accessed via **Firebase AI Logic**. When you use one of these features:
+The app includes optional, opt-in AI-powered features (such as the AI Schedule Organizer and the Certificate Generator)
+built on **Google Gemini**, accessed via **Firebase AI Logic**. When you use one of these features:
 
-* Your stated preferences (e.g., session tracks, technical level, availability, and any speakers you mark as
-  "must-see") and structured, non-identifying session data (titles, times, tracks) are sent to Google's Gemini
-  models to generate a response.
-* Generated content, images and other media may be watermarked using [Google SynthID](https://deepmind.google/technologies/synthid/)
-  to help identify AI-generated content.
-* We minimize what is sent — your name and other directly identifying account details are never included in these
-  requests.
+* For the AI Schedule Organizer: your stated preferences (e.g., session tracks, technical level, availability, and any
+  speakers you mark as "must-see") and structured, non-identifying session data (titles, times, tracks)
+  are sent to Google's Gemini models to generate a response.
+* For the Certificate Generator: your name, your event role (e.g., attendee, speaker), the language and theme you choose
+  for the certificate, and the ids of any decorative stickers you chose are sent to a Google Gemini image generation
+  model, together with the certificate template, so it can composite your name and decorations directly onto the final
+  image.
+* Generated content, images and other media may be watermarked
+  using [Google SynthID](https://deepmind.google/technologies/synthid/) to help identify AI-generated content.
+* We minimize what is sent per feature to only what that feature needs — for example, the AI Schedule Organizer never
+  receives your name or other directly identifying account details.
 * AI-generated results may contain errors and are clearly labeled as AI-generated in the app.
 * These features are gated by an admin-controlled setting and can be disabled at any time; using them is always
   optional.
 
 ### **6. Data Storage and Location**
 
-Some data may be processed or stored on servers located outside your country. Core event operations are managed on-site at **Universidad Tecnológica de Cancún, Cancún, Mexico**, during the Flutter Conf Latam 2026 event (September 22-23, 2026). Data is encrypted and securely stored in cloud environments with restricted access.
+Some data may be processed or stored on servers located outside your country. Core event operations are managed on-site
+at **Universidad Tecnológica de Cancún, Cancún, Mexico**, during the Flutter Conf Latam 2026 event (September 22-23,
+2026). Data is encrypted and securely stored in cloud environments with restricted access.
 
 ### **7. Data Retention**
 
-We retain user data only for as long as it is necessary to fulfill the purposes outlined in this Policy, or as required by law.
+We retain user data only for as long as it is necessary to fulfill the purposes outlined in this Policy, or as required
+by law.
 
-You may request deletion of your account and personal data at any time, either from within the app (Profile → Delete account) or by contacting us. Deletion works in two steps:
+You may request deletion of your account and personal data at any time, either from within the app (Profile → Delete
+account) or by contacting us. Deletion works in two steps:
 
-* Your account is immediately hidden from other users and marked for deletion. You have **30 days** to change your mind and cancel the request from within the app.
-* After 30 days, your personal data is anonymized: your name, email, avatar, contact details, and dietary/accessibility information are permanently scrubbed and cannot be recovered. Your Firebase authentication account is deleted.
+* Your account is immediately hidden from other users and marked for deletion. You have **30 days** to change your mind
+  and cancel the request from within the app.
+* After 30 days, your personal data is anonymized: your name, email, avatar, contact details, and dietary/accessibility
+  information are permanently scrubbed and cannot be recovered. Your Firebase authentication account is deleted.
 
-Conference records that are not personal data on their own — such as submitted talks, evaluation scores, or session history — are kept after anonymization so the historical record of the conference stays intact, but with no name or contact information attached to them.
+Conference records that are not personal data on their own — such as submitted talks, evaluation scores, or session
+history — are kept after anonymization so the historical record of the conference stays intact, but with no name or
+contact information attached to them.
 
 ### **8. Your Rights**
 
@@ -98,7 +113,8 @@ You may exercise these rights by contacting us at:
 
 ### **9. Children’s Privacy**
 
-This app is not directed to individuals under the age of 13. We do not knowingly collect personal data from children. If such information is found to be collected unintentionally, it will be promptly deleted.
+This app is not directed to individuals under the age of 13. We do not knowingly collect personal data from children. If
+such information is found to be collected unintentionally, it will be promptly deleted.
 
 ### **10. Data Security**
 
@@ -112,7 +128,8 @@ Despite our efforts, no digital platform can guarantee absolute security.
 
 ### **11. Changes to this Policy**
 
-We may update this Privacy Policy as needed to reflect legal, operational, or technological changes. If any significant changes are made, we will notify users within the app or via the event website.
+We may update this Privacy Policy as needed to reflect legal, operational, or technological changes. If any significant
+changes are made, we will notify users within the app or via the event website.
 
 ### **12. Contact Us**
 
