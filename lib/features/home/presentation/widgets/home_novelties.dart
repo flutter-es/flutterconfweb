@@ -18,69 +18,59 @@ class HomeNovelties extends SignalWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = appLocalizations.value;
-    final novelties = <({String title, String description, String image})>[
-      (
-        title: l10n.homeNoveltiesMerchTitle,
-        description: l10n.homeNoveltiesMerchDescription,
-        image: Assets.images.novelties.one,
-      ),
-      (
-        title: l10n.homeNoveltiesTriviaTitle,
-        description: l10n.homeNoveltiesTriviaDescription,
-        image: Assets.images.novelties.two,
-      ),
-    ];
+    final novelties = <({String title, String description, String image})>[];
 
     return SectionContainer(
-      spacing: 60,
+      spacing: 48,
       children: <Widget>[
-        Column(
-          spacing: 30,
-          children: <Widget>[
-            TitleSubtitleText(
-              title: (
-                text: l10n.homeNoveltiesTitle,
-                size: switch (context.screenSize) {
-                  .extraLarge => 64,
-                  .large => 48,
-                  .normal || .small => 24,
-                },
+        if (novelties.isNotEmpty)
+          Column(
+            spacing: 30,
+            children: <Widget>[
+              TitleSubtitleText(
+                title: (
+                  text: l10n.homeNoveltiesTitle,
+                  size: switch (context.screenSize) {
+                    .extraLarge => 64,
+                    .large => 48,
+                    .normal || .small => 24,
+                  },
+                ),
+                subtitle: (
+                  text: l10n.homeNoveltiesDescription,
+                  size: switch (context.screenSize) {
+                    .extraLarge || .large => 24,
+                    .normal || .small => 16,
+                  },
+                ),
+                spacing: 12,
               ),
-              subtitle: (
-                text: l10n.homeNoveltiesDescription,
-                size: switch (context.screenSize) {
-                  .extraLarge || .large => 24,
-                  .normal || .small => 16,
+              ResponsiveGrid(
+                columnSizes: switch (context.screenSize) {
+                  .extraLarge || .large => 2,
+                  .normal || .small => 1,
                 },
+                rowSizes: switch (context.screenSize) {
+                  .extraLarge || .large => 2,
+                  .normal || .small => novelties.length,
+                },
+                children: <Widget>[
+                  for (final item in novelties)
+                    GridCardItem(
+                      title: item.title,
+                      description: item.description,
+                      imagePath: item.image,
+                    ),
+                ],
               ),
-              spacing: 12,
-            ),
-            ResponsiveGrid(
-              columnSizes: switch (context.screenSize) {
-                .extraLarge || .large => 2,
-                .normal || .small => 1,
-              },
-              rowSizes: switch (context.screenSize) {
-                .extraLarge || .large => 2,
-                .normal || .small => novelties.length,
-              },
-              children: <Widget>[
-                for (final item in novelties)
-                  GridCardItem(
-                    title: item.title,
-                    description: item.description,
-                    imagePath: item.image,
-                  ),
-              ],
-            ),
-          ],
-        ),
+            ],
+          ),
         SizedBox(
-          width: double.infinity,
+          width: .infinity,
           height: switch (context.screenSize) {
-            .extraLarge => 530,
-            .large => 1040,
-            .normal || .small => 760,
+            .extraLarge => 665,
+            .large => 1110,
+            .normal || .small => 910,
           },
           child: const _NoveltyAppCard(),
         ),

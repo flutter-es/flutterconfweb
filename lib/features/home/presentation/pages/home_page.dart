@@ -11,6 +11,7 @@ import 'package:flutter_conf_latam/features/home/presentation/widgets/home_conta
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_features.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_gallery.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_main.dart';
+import 'package:flutter_conf_latam/features/home/presentation/widgets/home_novelties.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_pricing.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_speakers.dart';
 import 'package:flutter_conf_latam/features/home/presentation/widgets/home_sponsors.dart';
@@ -56,10 +57,9 @@ class _HomePageState extends State<HomePage> {
         SliverList(
           delegate: SliverChildListDelegate([
             const HomeMain(),
-            // TODO(FV): Uncomment when is ready
-            // const HomeNovelties(),
             const HomeVenue(),
             const HomeFeatures(),
+            const HomeNovelties(),
             const HomeSponsors(),
             const HomePricing(),
             const HomeCollaborations(),
